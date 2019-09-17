@@ -1259,7 +1259,7 @@
     react-inspector "^3.0.2"
     uuid "^3.3.2"
 
-"@storybook/addon-knobs@5.2.0":
+"@storybook/addon-knobs@5.2.0", "@storybook/addon-knobs@^5.2.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-5.2.0.tgz#976d3ede32b81548444aa3cc0adc7265ebefae94"
   integrity sha512-FYU7geG9xZptW4qWRO9Tzzl8OZIh6/m+TZSy6FpFQCJDKY/bKA6Lww5FH1rFE9nyZwFpIO+cBs2kZTqVC/XxRA==
@@ -1295,6 +1295,61 @@
     global "^4.3.2"
     prop-types "^15.7.2"
     qs "^6.6.0"
+
+"@storybook/addon-notes@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-notes/-/addon-notes-5.2.0.tgz#adb0cc498ac4e111ba0d427a6cc2164111162b9d"
+  integrity sha512-t3x2AXepCsKdGWM6ZOoRZDM2XDT0s/tQDanM2xFnYsIm6G9TD/KdLoOmXlcsxoxnPKl/LSAj+bGQBpB3xEAZ2Q==
+  dependencies:
+    "@storybook/addons" "5.2.0"
+    "@storybook/api" "5.2.0"
+    "@storybook/client-logger" "5.2.0"
+    "@storybook/components" "5.2.0"
+    "@storybook/core-events" "5.2.0"
+    "@storybook/router" "5.2.0"
+    "@storybook/theming" "5.2.0"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    markdown-to-jsx "^6.10.3"
+    memoizerific "^1.11.3"
+    prop-types "^15.7.2"
+    util-deprecate "^1.0.2"
+
+"@storybook/addon-storysource@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.2.0.tgz#70f71557798c38454ddf56780bd861cece20d548"
+  integrity sha512-+yiPg5iChtWVcu+Chtysu8FTE+vw9vFzv8tp+ZlBjBHmUXPju+fy4CxPhF9vVvfxUht8I4ecPiyMfUNDlZme8w==
+  dependencies:
+    "@storybook/addons" "5.2.0"
+    "@storybook/components" "5.2.0"
+    "@storybook/router" "5.2.0"
+    "@storybook/source-loader" "5.2.0"
+    "@storybook/theming" "5.2.0"
+    core-js "^3.0.1"
+    estraverse "^4.2.0"
+    loader-utils "^1.2.3"
+    prettier "^1.16.4"
+    prop-types "^15.7.2"
+    react-syntax-highlighter "^8.0.1"
+    regenerator-runtime "^0.12.1"
+    util-deprecate "^1.0.2"
+
+"@storybook/addon-viewport@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-5.2.0.tgz#9ca544fa1553dcd63242d6783335a944bdf70b49"
+  integrity sha512-Z7lxY7uUIHXFoFHRrGeni9uACzeosH5kMtf8Y2/SYAyuxH076NTktquaNPFzaC7yxCpRvoAYIuHn6GGs9nKJQQ==
+  dependencies:
+    "@storybook/addons" "5.2.0"
+    "@storybook/api" "5.2.0"
+    "@storybook/client-logger" "5.2.0"
+    "@storybook/components" "5.2.0"
+    "@storybook/core-events" "5.2.0"
+    "@storybook/theming" "5.2.0"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    memoizerific "^1.11.3"
+    prop-types "^15.7.2"
+    util-deprecate "^1.0.2"
 
 "@storybook/addons@5.2.0", "@storybook/addons@^5.2.0":
   version "5.2.0"
@@ -1533,6 +1588,21 @@
     lodash "^4.17.11"
     memoizerific "^1.11.3"
     qs "^6.6.0"
+
+"@storybook/source-loader@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-5.2.0.tgz#3ea4daf3154464fd509a3a1bd23dc391b194c2e3"
+  integrity sha512-bX9ihc/JgJW6xsSwz780+xcQGZD4WuevMm4TgjBmEjN7HUAbfgALi53qR3kj4gKgaF/siU9DSIYsKuBj0HAn2Q==
+  dependencies:
+    "@storybook/addons" "5.2.0"
+    "@storybook/router" "5.2.0"
+    core-js "^3.0.1"
+    estraverse "^4.2.0"
+    global "^4.3.2"
+    loader-utils "^1.2.3"
+    prettier "^1.16.4"
+    prop-types "^15.7.2"
+    regenerator-runtime "^0.12.1"
 
 "@storybook/theming@5.2.0":
   version "5.2.0"
@@ -7645,7 +7715,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-markdown-to-jsx@^6.9.1, markdown-to-jsx@^6.9.3:
+markdown-to-jsx@^6.10.3, markdown-to-jsx@^6.9.1, markdown-to-jsx@^6.9.3:
   version "6.10.3"
   resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-6.10.3.tgz#7f0946684acd321125ff2de7fd258a9b9c7c40b7"
   integrity sha512-PSoUyLnW/xoW6RsxZrquSSz5eGEOTwa15H5eqp3enmrp8esmgDJmhzd6zmQ9tgAA9TxJzx1Hmf3incYU/IamoQ==
@@ -9631,6 +9701,11 @@ prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
+
+prettier@^1.16.4:
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
+  integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
 
 pretty-bytes@^5.1.0:
   version "5.3.0"
