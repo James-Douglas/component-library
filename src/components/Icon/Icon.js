@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import iconLib from './iconLib';
 import styles from './Icon.module.css';
-import '../../index.css';
 
 const ManorIcon = ({size = 2, flipV = false, flipH = false, ...props}) => {
 
