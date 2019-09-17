@@ -1,9 +1,9 @@
 import React from 'react'
-import "./index.css"
+import styles from "./Button.module.css"
 
 export default function Button() {
   return (
-    <div className="btn text-invalid w-256">
+    <div className={styles.button}>
       button
     </div>
   )

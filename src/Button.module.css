@@ -1,0 +1,4 @@
+
+.button {
+  @apply text-success w-256;
+}
