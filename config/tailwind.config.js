@@ -85,8 +85,14 @@ module.exports = {
 
             'blue': '#1C3E94',             /* Not currently used */
             'dark-blue': '#001443',
+            'blue-aa': '#001442',
+            'blue-aa-hover': '#136ED2',
+            'blue-aa-dark-hover': '#7A98FF',
 
             'green': '#0DB14B',
+            'green-aa': '#36A93F',
+            'green-hover-aa': '#319639',
+
             'aqua': '#008284',
             'yellow': '#F49E1E',             /* Not currently used */
             'orange': '#EF5123',             /* Not currently used */
@@ -102,8 +108,7 @@ module.exports = {
             'disabled': '#CCCCCC',
             'link': '#164AD9',
             'disabled-text': '#B6B2AF',
-
-            'placeholder-text': '#787673',    /* TODO - Nina to confirm that this color is no longer used */
+            'placeholder-text': '#787673',
 
             /* primary colour pallet */
             'midnight-blue': '#001545',                                          /* active */
@@ -123,8 +128,6 @@ module.exports = {
             /* error validation colour pallet */
             'validation-text': '#EE415D',                                        /* validation / text*/
             'validation-background': '#FDE8EB',                                  /* validation /  background */
-
-            
         },
 
 
@@ -511,6 +514,7 @@ module.exports = {
             tight: '1.25',
             snug: '1.4',
             normal: '1.5',
+            relaxed: '1.625',
             loose: '2',
         },
 
@@ -938,10 +942,10 @@ module.exports = {
                 fontSize: theme('fontSize.base'),
                 textDecoration: 'underline',
                 '&:focus': {
-                    color: theme('colors.light-blue'),
+                    color: theme('colors.blue-aa-hover'),
                 },
                 '&:hover': {
-                    color: theme('colors.light-blue'),
+                    color: theme('colors.blue-aa-hover'),
                 },
                 '&:active': {
                     color: 'inherit',
