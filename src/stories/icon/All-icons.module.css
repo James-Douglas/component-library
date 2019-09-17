@@ -1,0 +1,10 @@
+
+.icon-wrap {
+  @apply text-success text-placeholder-text fill-current;
+  display: flex;
+  width: 60vw;
+  margin: 0 auto;
+  align-items: center;
+  padding-bottom: 2rem;
+  
+}
