@@ -59,7 +59,7 @@ Column.propTypes = {
     PropTypes.string,
     PropTypes.array,
   ]),
-}
+};
 
 Column.defaultProps = {
   children: [],
