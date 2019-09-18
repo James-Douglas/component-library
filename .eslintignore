@@ -1,0 +1,3 @@
+**/*.js
+# Enable linting just for some files
+!src/**/*.js

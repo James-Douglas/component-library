@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../../index.css';
-
 class ManorInput extends React.Component {
   constructor(props) {
     super(props);
