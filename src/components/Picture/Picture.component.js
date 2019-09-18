@@ -7,14 +7,23 @@ const Picture = ({
   src, srcsets, alt, title,
 }) => (
   <picture>
-    {srcsets.map((srcset) => <source srcSet={srcset} key={srcset} />)}
+    {srcsets.map((source) => (
+      <source
+        srcSet={source.srcset}
+        media={source.media}
+        key={source.srcset}
+      />
+    ))}
     <img src={src} alt={alt} title={title} />
   </picture>
 );
 
 Picture.propTypes = {
   src: PropTypes.string,
-  srcsets: PropTypes.arrayOf(PropTypes.string),
+  srcsets: PropTypes.arrayOf(PropTypes.shape({
+    srcset: PropTypes.string,
+    media: PropTypes.string,
+  })),
   alt: PropTypes.string,
   title: PropTypes.string,
 };
