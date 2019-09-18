@@ -31,11 +31,18 @@ module.exports = {
     },
     webpack: {
         configure: (webpackConfig, { env, paths }) => {
-            console.log(gatherComponents())
+            //reset paths so we dont let create react app freak out
             paths.appBuild = `${__dirname}/lib`;
-            webpackConfig.entry = gatherComponents();
+            paths.appHtml = `${__dirname}/src/index.css`;
+            paths.appIndexJs = `${__dirname}/src/index.css`
+
+            const components = gatherComponents()
+            components["styles"] = `${__dirname}/src/index.css`
+
+            webpackConfig.entry = components
             webpackConfig.output = {
                 path: `${__dirname}/lib`,
+                filename: 'components/[name]/index.js',
                 library: '',
                 libraryTarget: 'commonjs-module',
             };
@@ -50,7 +57,6 @@ module.exports = {
                 filename: '[name].css',
             }));
             webpackConfig.optimization.runtimeChunk = false;
-            console.log(webpackConfig)
             return webpackConfig;
         },
     },
