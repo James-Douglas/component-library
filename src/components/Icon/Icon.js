@@ -4,7 +4,7 @@ import icons from './icons';
 import styles from './Icon.module.css';
 
 const Icon = ({
-  size = 2, flipV = false, flipH = false, name,
+  size, flipV, flipH, name,
 }) => {
   const icon = icons[name] || { viewBox: '', paths: [] };
   const { viewBox } = icon;
