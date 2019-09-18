@@ -2,18 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Container.module.css';
 
-const Container = (props) => {
-
-  return ( 
-    <div className={`${styles.container} ${styles.fixed} ${props.classes}`}>
-      {props.children}
-    </div>
-  );
-}
+const Container = ({ classes, children }) => (
+  <div className={`${styles.container} ${styles.fixed} ${classes}`}>
+    {children}
+  </div>
+);
 
 Container.propTypes = {
-  row: PropTypes.string.isRequired,
-  classes: PropTypes.string
+  classes: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
+};
+
+Container.defaultProps = {
+  classes: '',
+  children: [],
 };
 
 export default Container;
