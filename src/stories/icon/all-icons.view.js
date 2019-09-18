@@ -1,5 +1,5 @@
 import React from 'react';
-import ManorIcon from '../../components/Icon/Icon';
+import ManorIcon from '../../components/Icon/Icon.component';
 
 import styles from './All-icons.module.css';
 import '../../index.css';

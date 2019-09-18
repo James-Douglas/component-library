@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import ManorIcon from '../../components/Icon/Icon';
+import Icon from '../../components/Icon/Icon.component';
 import iconReadme from '../../components/Icon/Icon.md';
 
 import AllIconsView from './all-icons.view';
@@ -10,6 +10,6 @@ import AllIconsView from './all-icons.view';
 storiesOf('Icon', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => <ManorIcon name="contact" />, { notes: iconReadme })
+  .add('Default', () => <Icon name="contact" />, { notes: iconReadme })
 
   .add('All icons', () => <AllIconsView />, { notes: iconReadme });
