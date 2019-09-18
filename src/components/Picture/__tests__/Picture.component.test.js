@@ -14,10 +14,10 @@ describe('Picture', () => {
   });
 
   it('uses title and alt props', () => {
-    const { container } = render(<Picture alt={'test'} title={'Test'} />);
-      const img = container.querySelector('img');
-      expect(img).toBeDefined();
-      expect(img.getAttribute('alt')).toEqual('test');
-      expect(img.getAttribute('title')).toEqual('Test');
+    const { container } = render(<Picture alt="test" title="Test" />);
+    const img = container.querySelector('img');
+    expect(img).toBeDefined();
+    expect(img.getAttribute('alt')).toEqual('test');
+    expect(img.getAttribute('title')).toEqual('Test');
   });
 });

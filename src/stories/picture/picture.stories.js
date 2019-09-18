@@ -7,4 +7,4 @@ import pictureReadme from '../../components/Picture/Picture.md';
 
 storiesOf('Picture', module)
   .addDecorator(withKnobs)
-  .add('Default', () => <Picture />, { notes: pictureReadme});
+  .add('Default', () => <Picture />, { notes: pictureReadme });
