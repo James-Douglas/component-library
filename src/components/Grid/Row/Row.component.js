@@ -13,6 +13,7 @@ Row.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
+    PropTypes.object,
   ]),
 };
 

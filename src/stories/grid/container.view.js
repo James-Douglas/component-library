@@ -20,10 +20,8 @@ const ContainerView = ({ classes }) => (
         <p>The grid also uses a 12 column based system, which is built on top of flexbox technology.</p>
       </Row>
       <Row>
-        <Column>
-          <p>Col-1</p>
-        </Column>
-        <Column><p>Col-2</p></Column>
+        <Column>Col-1</Column>
+        <Column>Col-2</Column>
         <Column>Col-3</Column>
         <Column>Col-4</Column>
         <Column>Col-5</Column>

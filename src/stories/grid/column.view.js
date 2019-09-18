@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
@@ -52,5 +53,16 @@ const ColumnView = () => (
     </Container>
   </div>
 );
+
+Column.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
+}
+
+Column.defaultProps = {
+  children: [],
+};
 
 export default ColumnView;
