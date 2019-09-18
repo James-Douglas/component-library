@@ -1,20 +1,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, boolean, object } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { withKnobs } from '@storybook/addon-knobs';
 
-import ManorIcon from '../../../src/components/Icon/Icon.js';
-import iconReadme from '../../../src/components/Icon/Icon.md';
+import ManorIcon from '../../components/Icon/Icon.component';
+import iconReadme from '../../components/Icon/Icon.md';
 
-import AllIconsView from './all-icons.view.js';
+import AllIconsView from './all-icons.view';
 
 storiesOf('Icon', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => { 
-    return <ManorIcon name='contact' />
-  }, { notes: iconReadme })
+  .add('Default', () => <ManorIcon name="contact" />, { notes: iconReadme })
 
-  .add('All icons', () => { 
-    return <AllIconsView />
-  }, { notes: iconReadme })
+  .add('All icons', () => <AllIconsView />, { notes: iconReadme });
