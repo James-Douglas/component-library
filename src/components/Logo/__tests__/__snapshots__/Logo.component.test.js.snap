@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo renders correctly without props 1`] = `"<div class=\\"logo \\" id=\\"logo\\"><a href=\\"https://www.comparethemarket.com.au\\"><picture><source srcset=\\"ctm-logo-desktop.svg\\" media=\\"(min-width: 992px)\\"><source srcset=\\"ctm-logo-mobile.svg\\"><img src=\\"ctm-logo-desktop.svg\\" alt=\\"Compare The Market Australia Logo\\" title=\\"Compare The Market Australia\\"></picture></a></div>"`;
