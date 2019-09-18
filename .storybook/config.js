@@ -1,5 +1,6 @@
 import { addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
+import '../src/index.css'
 
 addParameters({
   options: {
