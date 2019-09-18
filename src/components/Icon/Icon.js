@@ -6,7 +6,7 @@ import styles from './Icon.module.css';
 const Icon = ({
   size = 2, flipV = false, flipH = false, name,
 }) => {
-  const icon = icons[name];
+  const icon = icons[name] || { viewBox: '', paths: [] };
   const { viewBox } = icon;
   const inlineStyles = {
     width: `${size}rem`,
@@ -34,14 +34,14 @@ const Icon = ({
   );
 };
 
-ManorIcon.propTypes = {
+Icon.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.number,
-  flipV: PropTypes.string,
-  flipH: PropTypes.string,
+  flipV: PropTypes.bool,
+  flipH: PropTypes.bool,
 };
 
-ManorIcon.defaultProps = {
+Icon.defaultProps = {
   size: 10,
   flipV: false,
   flipH: false,

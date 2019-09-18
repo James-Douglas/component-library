@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import ManorIcon from '../../components/Icon/Icon.component';
+import ManorIcon from '../../components/Icon/Icon';
 import iconReadme from '../../components/Icon/Icon.md';
 
 import AllIconsView from './all-icons.view';
