@@ -7,7 +7,13 @@ const Picture = ({
   src, srcsets, alt, title,
 }) => (
   <picture>
-    {srcsets.map((source) => <source srcSet={source.srcset} media={source.media} key={source.srcset} />)}
+    {srcsets.map((source) => (
+      <source
+        srcSet={source.srcset}
+        media={source.media}
+        key={source.srcset}
+      />
+    ))}
     <img src={src} alt={alt} title={title} />
   </picture>
 );

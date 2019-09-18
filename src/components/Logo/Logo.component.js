@@ -8,21 +8,18 @@ import screens from '../../../config/screens';
 import logoMobile from '../../../assets/images/ctm-logo-mobile.svg';
 import logoDesktop from '../../../assets/images/ctm-logo-desktop.svg';
 
-const Logo = ({ size, src, srcsets }) => {
-
-  return (
-    <div className={`${styles.logo} ${size} w-4`} id="logo">
-      <a href="https://www.comparethemarket.com.au">
-        <Picture
-          src={src}
-          srcsets={srcsets}
-          alt="Compare The Market Australia Logo"
-          title="Compare The Market Australia"
-        />
-      </a>
-    </div>
-  );
-};
+const Logo = ({ size, src, srcsets }) => (
+  <div className={`${styles.logo} ${size} w-4`} id="logo">
+    <a href="https://www.comparethemarket.com.au">
+      <Picture
+        src={src}
+        srcsets={srcsets}
+        alt="Compare The Market Australia Logo"
+        title="Compare The Market Australia"
+      />
+    </a>
+  </div>
+);
 
 Logo.propTypes = {
   size: PropTypes.string,
