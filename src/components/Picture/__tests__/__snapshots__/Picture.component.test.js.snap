@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Picture renders correctly without props 1`] = `
+<div>
+  <picture>
+    <img
+      alt="a placeholder image"
+      src="placeholder.png"
+      title="a placeholder title"
+    />
+  </picture>
+</div>
+`;
