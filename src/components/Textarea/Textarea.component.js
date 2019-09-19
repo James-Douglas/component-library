@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Textarea.module.css';
 
-const ManorTextarea = ({
+const Textarea = ({
   id,
   name,
   label,
@@ -112,7 +112,7 @@ const ManorTextarea = ({
   );
 };
 
-ManorTextarea.propTypes = {
+Textarea.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
   label: PropTypes.string,
@@ -131,7 +131,7 @@ ManorTextarea.propTypes = {
   maxLength: PropTypes.string,
 };
 
-ManorTextarea.defaultProps = {
+Textarea.defaultProps = {
   name: '',
   value: '',
   label: '',
@@ -149,4 +149,4 @@ ManorTextarea.defaultProps = {
   maxChars: '',
 };
 
-export default ManorTextarea;
+export default Textarea;

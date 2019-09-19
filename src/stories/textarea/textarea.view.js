@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ManorTextarea from '../../components/Textarea/Textarea.component';
+import Textarea from '../../components/Textarea/Textarea.component';
 import './textarea.css';
 
 /*
@@ -31,7 +31,7 @@ const TextareaView = ({
 }) => (
   <>
     <div className={`${!bordered ? 'grey-background' : ''} `}>
-      <ManorTextarea
+      <Textarea
         id={id}
         name={name}
         label={label}
