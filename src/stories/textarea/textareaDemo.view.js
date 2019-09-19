@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ManorTextarea from '../../components/Textarea/Textarea.component';
+import Textarea from '../../components/Textarea/Textarea.component';
 import './textarea.css';
 
 /*
@@ -33,7 +33,7 @@ const TextareaDemoView = ({
     <div className={`${!bordered ? 'grey-background' : ''} `}>
       <div className="add-padding-around-field-for-display-purposes">
 
-        <ManorTextarea
+        <Textarea
           id={id}
           name={name}
           label={label}
