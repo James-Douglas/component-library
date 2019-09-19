@@ -1,0 +1,11 @@
+.logo {
+  transition: all 200ms ease;
+}
+
+.logo.large {
+  height: 4.4rem;     /* 44px */
+}
+
+.logo.small {
+  height: 3.2rem;     /* 32px */
+}

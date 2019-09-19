@@ -4,10 +4,10 @@ Basic icon component, uses svg tags and paths
 ## Usage
 
 ~~~js
-<ManorIcon 
-  name
-  flipH
-  flipV
+<Icon 
+  name={'info'}
+  flipH={false}
+  flipV={false}
 />
 ~~~
 
