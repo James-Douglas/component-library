@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Container.module.css';
 
-const Container = ({ classes, children }) => (
+const Container = ({ children, classes }) => (
   <div className={`${styles.container} ${styles.fixed} ${classes}`}>
     {children}
   </div>

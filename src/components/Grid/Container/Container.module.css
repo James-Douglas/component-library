@@ -4,4 +4,3 @@
 .fixed {
   @apply flex max-w-6xl relative mx-auto flex-col;
 }
-
