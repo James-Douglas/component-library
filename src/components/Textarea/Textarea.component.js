@@ -25,8 +25,6 @@ const ManorTextarea = ({
   let charLimit;
   let textareaRemainChars;
   let optionalField;
-  let maxlengthIndicator;
-
 
   if (maxLength || maxChars) {
     charLimit = maxChars || maxLength;
@@ -34,33 +32,26 @@ const ManorTextarea = ({
   }
 
   const [stateValue, setStateValue] = useState(value);
+  const [stateRemainChars, setStateRemainChars] = useState(textareaRemainChars);
 
   const handleChange = (event) => {
     isDirty = true;
-    console.log("hello");
     if (maxLength || maxChars) {
       charLimit = maxChars || maxLength;
       textareaRemainChars = event.target.value ? charLimit - event.target.value.length : charLimit;
-      console.log(textareaRemainChars);
       if (textareaRemainChars < 0) {
+        /* todo this is not working as intended - it did work in svelte and technically should work now  */
         event.target.setCustomValidity('Maximum Characters exceeded');
         charsExceed = true;
       } else {
         if (charsExceed) {
+          /* todo this is not working as intended - it did work in svelte and technically should work now  */
           event.target.setCustomValidity('');
         }
         charsExceed = false;
       }
-      maxlengthIndicator = (
-          <span id={`${id}-maxlength-indicator`} className={`manor-maxlength-indicator manor-subscript ${textareaRemainChars < 0 ? `${styles['max-chars-exceeded']}` : ''} `}>
-        <span className="sr-only">
-          {`${textareaRemainChars && textareaRemainChars < 0 ? ' Exceeded character limit' : ' Remaining allowed characters'} for the ${label} field `}
-        </span>
-            {textareaRemainChars}
-      </span>
-      );
+      setStateRemainChars(textareaRemainChars);
     }
-    console.log("hello there");
     setStateValue(event.target.value);
   };
 
@@ -71,17 +62,6 @@ const ManorTextarea = ({
           {`The ${label} field is `}
         </span>
         Optional
-      </span>
-    );
-  }
-
-  if (maxLength || maxChars) {
-    maxlengthIndicator = (
-      <span id={`${id}-maxlength-indicator`} className={`manor-maxlength-indicator manor-subscript ${textareaRemainChars < 0 ? `${styles['max-chars-exceeded']}` : ''} `}>
-        <span className="sr-only">
-          {`${textareaRemainChars && textareaRemainChars < 0 ? ' Exceeded character limit' : ' Remaining allowed characters'} for the ${label} field `}
-        </span>
-        {textareaRemainChars}
       </span>
     );
   }
@@ -114,7 +94,15 @@ const ManorTextarea = ({
         </label>
 
         <div className={`${styles['supporting-elements']}`}>
-          {maxlengthIndicator}
+          {(maxLength || maxChars)
+          && (
+          <span id={`${id}-maxlength-indicator`} className={`manor-maxlength-indicator manor-subscript ${textareaRemainChars < 0 ? `${styles['max-chars-exceeded']}` : ''} `}>
+            <span className="sr-only">
+              {`${textareaRemainChars && textareaRemainChars < 0 ? ' Exceeded character limit' : ' Remaining allowed characters'} for the ${label} field `}
+            </span>
+            {stateRemainChars}
+          </span>
+          )}
           {' '}
           {optionalField}
         </div>

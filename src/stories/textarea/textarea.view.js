@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ManorTextarea from '../../components/Textarea/Textarea.component';
-import styles from './textarea.module.css';
+import './textarea.css';
 
 /*
   Note: That the Textarea field background color is transparent, the bordered parameter is used
@@ -30,7 +30,7 @@ const TextareaView = ({
   maxLength,
 }) => (
   <>
-    <div className={`${!bordered < 0 ? `${styles['grey-background']}` : ''} `}>
+    <div className={`${!bordered ? 'grey-background' : ''} `}>
       <ManorTextarea
         id={id}
         name={name}
@@ -50,7 +50,7 @@ const TextareaView = ({
         maxLength={maxLength}
       />
     </div>
-    <div className={`${styles.feedback}`}>{bordered ? '' : 'PLEASE NOTE: The grey background is not part of the actual component'}</div>
+    <div className="feedback">{bordered ? '' : 'PLEASE NOTE: The grey background is not part of the actual component'}</div>
     <div className="scrollable w-auto" />
   </>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ManorTextarea from '../../components/Textarea/Textarea.component';
-import styles from './textarea.module.css';
+import './textarea.css';
 
 /*
 Note: That the Textarea field background color is transparent, the bordered parameter is used
@@ -30,8 +30,8 @@ const TextareaDemoView = ({
   maxLength,
 }) => (
   <>
-    <div className={`${!bordered < 0 ? `${styles['grey-background']}` : ''} `}>
-      <div className={`${styles['add-padding-around-field-for-display-purposes']}`}>
+    <div className={`${!bordered ? 'grey-background' : ''} `}>
+      <div className="add-padding-around-field-for-display-purposes">
 
         <ManorTextarea
           id={id}
