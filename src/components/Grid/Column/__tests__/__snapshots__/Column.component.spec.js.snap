@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Column adds "col" class by default if no props are supplied 1`] = `
+<div>
+  <div
+    class="col "
+  />
+</div>
+`;
+
+exports[`Column breakpoint column classes get applied as intended 1`] = `
+<div>
+  <div
+    class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 offset-1 "
+  />
+</div>
+`;
+
+exports[`Column renders correctly without props 1`] = `
+<div>
+  <div
+    class="col "
+  />
+</div>
+`;
