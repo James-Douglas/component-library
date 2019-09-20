@@ -1,0 +1,24 @@
+.white-bg {
+    background: white;
+}
+
+.explanation {
+    @apply text-green-button;
+}
+
+.section {
+    margin-top: 2.4rem;  /* 24px */
+}
+
+p {
+    margin-bottom: 1.2rem;  /* 12px */
+}
+
+.full {
+    @apply bg-grey-lighter;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent; /* make scrollbar transparent */
+}

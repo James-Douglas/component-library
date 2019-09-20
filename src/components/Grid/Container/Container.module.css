@@ -1,0 +1,6 @@
+.container {
+  @apply w-full mx-auto px-16;
+}
+.fixed {
+  @apply flex max-w-6xl relative mx-auto flex-col;
+}
