@@ -1,0 +1,133 @@
+.manor-button, .manor-button-link {
+  transition : all 200ms ease-out;
+}
+.manor-button {
+  @apply shadow-sm flex items-center justify-center rounded-lg px-24 py-12 mb-16 font-bold text-lg capitalize;
+  min-height: 5.4rem;
+}
+.btn-icon {
+  @apply pointer-events-none;
+}
+.manor-button-link {
+  @apply flex capitalize;
+}
+.btn-icon{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+a > .btn-icon {
+  padding-right: 1rem;
+  padding-top: 0.2rem;
+}
+.center {
+  @apply block;
+}
+
+/* PRIMARY BUTTONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+[btnType='primary'] {
+  @apply bg-green-aa text-white;
+  fill: theme(colors.white); 
+}
+[btnType='primary']:hover {
+  @apply bg-green-hover-aa;
+}
+/* No onDark mode specified */
+
+/* SECONDARY BUTTONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+[btnType='secondary'] {
+  @apply bg-white border border-solid border-blue-aa text-blue-aa fill-current py-8;
+  min-height: 4.4rem; 
+}
+[btnType='secondary'].manor-button p {
+  @apply font-semibold;
+}
+[btnType='secondary']:hover {
+  @apply border-solid border-blue-aa-hover fill-current text-blue-aa-hover;
+}
+/* onDark */
+[btnType='secondary'][btnMode='onDark'] {
+  @apply bg-white border-transparent fill-current text-blue-aa;
+}
+[btnType='secondary']:hover[btnMode='onDark']:hover {
+  @apply bg-white text-blue-aa-hover fill-current;
+}
+
+/* TEXT BUTTONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+[btnType='text'] {
+  @apply shadow-none bg-transparent text-black fill-current;
+  text-decoration: none !important;
+}
+[btnType='text']:hover {
+  @apply text-blue-aa-hover fill-current;
+}
+[btnType='text'][btnMode='onDark'] {
+  @apply text-white fill-current;
+}
+[btnType='text'][btnMode='onDark']:hover {
+  @apply text-blue-aa-dark-hover fill-current;
+}
+
+/* LINKS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+[btnType='link'] {
+  @apply shadow-none bg-transparent text-black underline fill-current;
+}
+[btnType='link'][btnMode='onDark'] {
+  @apply text-white fill-current;
+}
+[btnType='link'].manor-button-link {
+  @apply font-semibold underline;
+}
+[btnType='link'].manor-button-link:hover {
+  @apply text-blue-aa-hover fill-current;
+}
+[btnType='link'][btnMode='onDark'].manor-button-link:hover {
+  @apply underline text-blue-aa-dark-hover fill-current;
+}
+
+/* FOOTER LINKS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+[btnType='footer-link'] {
+  @apply shadow-none bg-transparent text-black no-underline block;
+}
+[btnType='footer-link']:hover {
+  @apply text-black;
+}
+[btnType='footer-link'][btnMode='onDark'] {
+  @apply text-white fill-current;
+}
+[btnType='footer-link'].manor-button-link {
+  @apply text-sm font-semibold;
+  margin-bottom: 1rem;
+}
+[btnType='footer-link'].manor-button-link:hover {
+  @apply underline;
+}
+
+/* SIZING / DISABLED STATE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.manor-button.sm {
+  @apply w-full;
+  max-width: 12rem;
+  min-height: 3.6rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+.manor-button.sm p {
+  @apply text-xs font-bold;
+}
+.manor-button.md {
+  min-width: 16rem;
+}
+.manor-button.lg {
+  @apply w-full;
+  min-width: 16rem;
+}
+button:disabled,
+button[disabled] {
+  @apply cursor-not-allowed shadow-none;
+  opacity: 0.6;
+}

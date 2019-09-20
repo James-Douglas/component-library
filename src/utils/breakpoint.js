@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import screens from '../../config/screens';
+import throttle from './throttle';
 
 const breakpoints = Object.assign(
   {},
@@ -28,4 +30,17 @@ function isDesktop(breakpoint = getBreakpoint()) {
   return ['md', 'lg', 'xl', 'xxl'].includes(breakpoint);
 }
 
-export { getBreakpoint, isDesktop };
+function useIsDesktop() {
+  const [desktop, setIsDesktop] = useState(isDesktop);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(isDesktop());
+    };
+    const throttledHandleResize = throttle(handleResize);
+    window.addEventListener('resize', throttledHandleResize);
+    return () => window.removeEventListener('resize', throttledHandleResize);
+  }, []);
+  return desktop;
+}
+
+export { getBreakpoint, isDesktop, useIsDesktop };
