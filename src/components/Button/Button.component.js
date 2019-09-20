@@ -70,7 +70,7 @@ const Button = ({
             )}
           {(target === '_blank' || target === 'blank')
             && <span className="sr-only">Opens in new window</span>}
-        
+
         </a>
       )}
   </span>

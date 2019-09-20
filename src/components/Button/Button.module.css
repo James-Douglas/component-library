@@ -40,7 +40,7 @@ a > .btn-icon {
   @apply bg-white border border-solid border-blue-aa text-blue-aa fill-current py-8;
   min-height: 4.4rem; 
 }
-[btnType='secondary'].manor-button p {
+[btnType='secondary'].manor-button {
   @apply font-semibold;
 }
 [btnType='secondary']:hover {
@@ -116,7 +116,7 @@ a > .btn-icon {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
 }
-.manor-button.sm p {
+.manor-button.sm {
   @apply text-xs font-bold;
 }
 .manor-button.md {

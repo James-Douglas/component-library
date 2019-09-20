@@ -20,7 +20,7 @@ storiesOf('Button', module)
   .add('Text', () => <TextButtonView />, { notes: buttonReadme })
 
   .add('Link', () => <LinkButtonView />, { notes: buttonReadme })
-  
+
   .add('Footer-link', () => <FooterLinkButtonView />, { notes: buttonReadme });
 
 /*   .add('All icons', () => <AllIconsView />, { notes: iconReadme }); */
