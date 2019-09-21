@@ -11,11 +11,10 @@ import './Tooltip.module.css';
 const Tooltip = ({
   title, body, boundingElementSelector, screenReaderLabel,
 }) => {
-  const [active, setActive] = useState(false);
   const [pinned, setPinned] = useState(false);
   const desktop = useIsDesktop();
   const [tippyInstance, setTippyInstance] = useState(null);
-  const [tippyEnabled, setTippyEnabled] = useState(true);
+  const [tippyVisible, setTippyVisible] = useState(false);
   const tooltipElement = useRef(null);
   const boundingElement = useRef(null);
 
@@ -65,22 +64,13 @@ const Tooltip = ({
   };
 
   const hideTooltip = () => {
-    setTippyEnabled(true);
-    tippyInstance.hide();
-    setActive(false);
+    setTippyVisible(false);
     setPinned(false);
     document.body.removeEventListener('click', hideTooltip);
-    if (tooltipElement.current) {
-      tooltipElement.current.removeEventListener('blur', hideTooltip);
-    }
   };
 
   const showTooltip = () => {
-    setTippyEnabled(true);
-    if (tippyInstance) {
-      tippyInstance.show();
-    }
-    setActive(true);
+    setTippyVisible(true);
   };
 
   const throttledSetPlacementAndDynamicStyles = throttle(setPlacementAndDynamicStyles);
@@ -88,23 +78,19 @@ const Tooltip = ({
   const addOnShowListeners = () => {
     window.addEventListener('resize', throttledSetPlacementAndDynamicStyles);
     window.addEventListener('scroll', hideTooltip);
-    // document.body.addEventListener('keydown', escapeKeyHandler);
-    document.body.addEventListener('blur', hideTooltip);
   };
 
   const removeOnShowListeners = () => {
     window.removeEventListener('scroll', hideTooltip);
     window.removeEventListener('resize', throttledSetPlacementAndDynamicStyles);
-    // document.body.removeEventListener('keydown', escapeKeyHandler);
-    document.body.removeEventListener('blur', hideTooltip);
   };
 
   const onDestroy = () => {
     if (tippyInstance) {
       tippyInstance.destroy();
     }
-    removeOnShowListeners();
     document.body.removeEventListener('click', hideTooltip);
+    removeOnShowListeners();
   };
 
   useEffect(() => {
@@ -118,14 +104,8 @@ const Tooltip = ({
 
   const pinTooltip = (e) => {
     e.preventDefault();
-    if (!tippyInstance.state.isVisible) {
-      tippyInstance.show();
-    }
-    setActive(true);
+    showTooltip();
     setPinned(true);
-    document.body.addEventListener('click', hideTooltip);
-    tooltipElement.current.addEventListener('blur', hideTooltip);
-    setTippyEnabled(false);
   };
 
   const getContent = () => (
@@ -136,11 +116,10 @@ const Tooltip = ({
   );
 
   const onTippyShow = () => {
-    setPlacementAndDynamicStyles();
     document.body.click();
-    setActive(true);
+    document.body.addEventListener('click', hideTooltip);
+    setPlacementAndDynamicStyles();
     addOnShowListeners();
-    setTippyEnabled(true);
   };
 
   const handleKeyPress = (e) => {
@@ -165,17 +144,26 @@ const Tooltip = ({
         animation="scale"
         duration={[150, 75]}
         hideOnClick={false}
+        trigger="manual"
         onCreate={(instance) => setTippyInstance(instance)}
         onShow={onTippyShow}
-        enabled={tippyEnabled}
+        visible={tippyVisible}
       >
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <div
           role="tooltip"
           ref={tooltipElement}
-          className={`tooltip-icon ${pinned ? 'tooltip-pinned' : ''} ${active && !pinned ? 'tooltip-active' : ''}`}
+          className={`tooltip-icon ${pinned ? 'tooltip-pinned' : ''} ${tippyVisible && !pinned ? 'tooltip-active' : ''}`}
           onClick={pinTooltip}
           onKeyDown={handleKeyPress}
+          onFocus={showTooltip}
+          onBlur={hideTooltip}
+          onMouseEnter={showTooltip}
+          onMouseLeave={() => {
+            if (!pinned) {
+              hideTooltip();
+            }
+          }}
         >
           <>
             <span className="sr-only">{screenReaderLabel}</span>
