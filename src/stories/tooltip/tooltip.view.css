@@ -1,0 +1,4 @@
+.background {
+  @apply flex p-64;
+  height: 100vh;
+}
