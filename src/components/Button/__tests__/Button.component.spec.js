@@ -26,7 +26,7 @@ describe('Button', () => {
   });
 
   it('renders a primary button when the prop is supplied', () => {
-    const { container } = render(<Button id="test-id" btnType="primary" content='test thing' />);
+    const { container } = render(<Button id="test-id" btnType="primary" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
     const btnTypeAttr = btn.getAttribute('btntype');
@@ -35,7 +35,7 @@ describe('Button', () => {
   });
 
   it('renders a secondary button in mode = onDark, when the props are supplied', () => {
-    const { container } = render(<Button id="test-id" btnType="secondary" btnMode="onDark" content='test thing' />);
+    const { container } = render(<Button id="test-id" btnType="secondary" btnMode="onDark" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
     const btnTypeAttr = btn.getAttribute('btntype');
@@ -46,19 +46,19 @@ describe('Button', () => {
   });
 
   it('renders a text button with an icon when specified', () => {
-    const { container } = render(<Button id="test-id" btnType="text" icon="check" content='test thing' />);
+    const { container } = render(<Button id="test-id" btnType="text" icon="check" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
     const btnTypeAttr = btn.getAttribute('btntype');
     const icon = container.querySelector('.btn-icon').classList[0];
-    
+
     expect(btnTypeAttr).toBe('text');
     expect(btn.getAttribute('btnMode')).toBe('');
     expect(icon).toBe('btn-icon');
   });
 
   it('renders a link button (a href) when specified', () => {
-    const { container } = render(<Button id="test-id" btnType="link" href='#' content='test thing' />);
+    const { container } = render(<Button id="test-id" btnType="link" href="#" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
     const btnTypeAttr = btn.getAttribute('btntype');
@@ -69,7 +69,7 @@ describe('Button', () => {
   });
 
   it('renders a footer link (a href) when specified', () => {
-    const { container } = render(<Button id="test-id" btnType="footer-link" href='#' content='test thing' />);
+    const { container } = render(<Button id="test-id" btnType="footer-link" href="#" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
     const btnTypeAttr = btn.getAttribute('btntype');
