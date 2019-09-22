@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Container has a container and fixed class by default 1`] = `
+exports[`Container has a container class by default and NO fixed class 1`] = `
 <div>
   <div
     class="container "

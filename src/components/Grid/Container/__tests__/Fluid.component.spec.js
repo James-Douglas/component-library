@@ -8,7 +8,7 @@ describe('Container', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('has a container and fixed class by default', () => {
+  it('has a container class by default and NO fixed class', () => {
     const { container } = render(<Fluid />);
 
     const fluid = container.querySelector('.container');
