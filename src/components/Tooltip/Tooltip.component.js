@@ -18,6 +18,12 @@ const Tooltip = ({
   const tooltipElement = useRef(null);
   const boundingElement = useRef(null);
 
+  if (boundingElementSelector) {
+    boundingElement.current = document.querySelector(boundingElementSelector);
+  } else {
+    boundingElement.current = document.body;
+  }
+
   const updateDynamicStyles = (containerWidth) => {
     // Used to dynamically override tippy styles, in particular we set a max-width property to
     // constrain it to a container when there is a boundingElement
@@ -85,21 +91,15 @@ const Tooltip = ({
     window.removeEventListener('resize', throttledSetPlacementAndDynamicStyles);
   };
 
-  const onDestroy = () => {
-    if (tippyInstance) {
-      tippyInstance.destroy();
-    }
-    document.body.removeEventListener('click', hideTooltip);
-    removeOnShowListeners();
-  };
-
+  /* On unmount functionality */
   useEffect(() => {
-    if (boundingElementSelector) {
-      boundingElement.current = document.querySelector(boundingElementSelector);
-    } else {
-      boundingElement.current = document.body;
-    }
-    return onDestroy;
+    return () => {
+      if (tippyInstance) {
+        tippyInstance.destroy();
+      }
+      document.body.removeEventListener('click', hideTooltip);
+      removeOnShowListeners();
+    };
   }, []);
 
   const pinTooltip = (e) => {
@@ -176,8 +176,16 @@ const Tooltip = ({
 };
 
 Tooltip.propTypes = {
-  title: PropTypes.string,
-  body: PropTypes.string,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  body: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   boundingElementSelector: PropTypes.string,
   screenReaderLabel: PropTypes.string,
 };
