@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container has a container and fixed class by default 1`] = `
+<div>
+  <div
+    class="container "
+  />
+</div>
+`;
+
+exports[`Container renders correctly without props 1`] = `
+<div>
+  <div
+    class="container "
+  />
+</div>
+`;
