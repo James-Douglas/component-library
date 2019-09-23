@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import styles from './Column.module.css';
 
 const Column = ({
-  col, sm, md, lg, xl, xxl, offset, children, classes,
+  col, sm, md, lg, xl, xxl, offset, children, className,
 }) => {
   const generateClass = (prop, value) => {
-    let className = `${prop}-${value}`;
+    let classNames = `${prop}-${value}`;
 
     switch (prop) {
       case 'col':
       case 'offset':
         break;
       default:
-        className = `col-${className}`;
+        classNames = `col-${classNames}`;
     }
-    return styles[className];
+    return styles[classNames];
   };
 
   const generateClassList = () => {
@@ -41,14 +41,14 @@ const Column = ({
   const generatedClasses = generateClassList();
 
   return (
-    <div className={`${generatedClasses} ${classes}`}>
+    <div className={`${generatedClasses} ${className}`}>
       {children}
     </div>
   );
 };
 
 Column.propTypes = {
-  classes: PropTypes.string,
+  className: PropTypes.string,
   col: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -84,7 +84,7 @@ Column.propTypes = {
 };
 
 Column.defaultProps = {
-  classes: '',
+  className: '',
   col: 0,
   sm: 0,
   md: 0,

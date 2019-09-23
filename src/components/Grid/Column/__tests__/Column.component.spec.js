@@ -39,4 +39,12 @@ describe('Column', () => {
     expect(xxl).toBeDefined();
     expect(offset).toBeDefined();
   });
+
+  it('allows additional classes to be passed through', () => {
+    const { container } = render(<Column className="test-class" />);
+
+    expect(container).toMatchSnapshot();
+    const test = container.getElementsByClassName('test-class');
+    expect(test).toBeDefined();
+  });
 });

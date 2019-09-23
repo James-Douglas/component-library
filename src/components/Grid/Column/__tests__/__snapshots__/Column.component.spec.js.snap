@@ -8,6 +8,14 @@ exports[`Column adds "col" class by default if no props are supplied 1`] = `
 </div>
 `;
 
+exports[`Column allows additional classes to be passed through 1`] = `
+<div>
+  <div
+    class="col test-class"
+  />
+</div>
+`;
+
 exports[`Column breakpoint column classes get applied as intended 1`] = `
 <div>
   <div
