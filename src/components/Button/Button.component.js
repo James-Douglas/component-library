@@ -4,70 +4,51 @@ import Icon from '../Icon/Icon.component';
 import styles from './Button.module.css';
 
 const Button = ({
-  id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target,
+  id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel,
 }) => {
   const isInlineBlock = href && btnType !== 'footer-link' ? 'inline-block' : '';
 
-  const renderIcon = () => {
-    let btnIcon;
+  const renderContent = () => {
     if (icon) {
-      btnIcon = (
+      return (
         <>
-          {!iconAlignRight
-        && <>{content}</>}
           <div className={`${styles['btn-icon']}`}>
             <Icon name={icon} size={size} />
           </div>
-          {iconAlignRight
-        && <>{content}</>}
+          {content}
         </>
       );
     } else {
-      btnIcon = <>{content}</>;
+      return <>{content}</>;
     }
-    return btnIcon;
   };
 
   const renderButton = () => {
-    let btn;
 
-    if (btnType === 'primary' || btnType === 'secondary') {
-      btn = (
-        <button
-          id={id}
-          btntype={btnType}
-          btnmode={btnMode}
-          className={`
-          ${styles['manor-button']} 
+    const isButton = btnType === 'primary' || btnType === 'secondary';
+    const Tag = isButton ? 'button' : 'a';
+
+    return ( 
+      <Tag
+        id={id}
+        className={`
+          ${styles[`${isButton ? 'manor-button': 'manor-button-link'}`]} 
           ${styles[btnSize]}
+          ${styles[btnType]}
+          ${styles[btnMode]}
           ${content === '' ? styles.center : ''}
-        `}
-          disabled={disabled}
-          type="button"
-        >
-          {renderIcon()}
-        </button>
-      );
-    } else {
-      btn = (
-        <a
-          id={id}
-          btntype={btnType}
-          btnmode={btnMode}
-          href={href}
-          target={target}
-          disabled={disabled}
-          className={`
-          ${styles['manor-button-link']}
-          ${content === '' ? styles.center : ''}
-        `}
-        >
-          {renderIcon()}
-        </a>
-      );
-    }
-    return btn;
-  };
+          ${styles[`${iconAlignRight ? 'align-right' : ''}`]}
+        ` 
+      }
+        disabled={disabled}
+        href={ isButton ? null: href}
+        target={isButton ? null : target}
+        rel={isButton ? null : rel}
+      >
+        {renderContent()}
+    </Tag>
+  );
+};
 
 
   return (
@@ -92,6 +73,7 @@ Button.propTypes = {
   iconAlignRight: PropTypes.bool,
   href: PropTypes.string,
   target: PropTypes.string,
+  rel: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -105,6 +87,7 @@ Button.defaultProps = {
   iconAlignRight: false,
   href: '',
   target: '',
+  rel: '',
 };
 
 export default Button;

@@ -1,3 +1,5 @@
+/* BASE STYLING
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .manor-button, .manor-button-link {
   transition : all 200ms ease-out;
 }
@@ -25,29 +27,27 @@ a > .btn-icon {
 
 /* PRIMARY BUTTONS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-[btnType='primary'] {
+.primary {
   @apply bg-green-aa text-white;
   fill: theme(colors.white); 
 }
-[btnType='primary']:hover {
+.primary:hover {
   @apply bg-green-hover-aa;
 }
+
 /* No onDark mode specified */
 
 /* SECONDARY BUTTONS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-[btnType='secondary'] {
-  @apply bg-white border border-solid border-blue-aa text-blue-aa fill-current py-8;
+.secondary {
+  @apply bg-white border border-solid border-blue-aa text-blue-aa fill-current font-semibold py-8;
   min-height: 4.4rem; 
 }
-[btnType='secondary'].manor-button {
-  @apply font-semibold;
-}
-[btnType='secondary']:hover {
+.secondary:hover {
   @apply border-solid border-blue-aa-hover fill-current text-blue-aa-hover;
 }
 /* onDark */
-[btnType='secondary'][btnMode='onDark'] {
+.secondary.onDark {
   @apply bg-white border-transparent fill-current text-blue-aa;
 }
 [btnType='secondary']:hover[btnMode='onDark']:hover {
@@ -56,54 +56,53 @@ a > .btn-icon {
 
 /* TEXT BUTTONS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-[btnType='text'] {
-  @apply shadow-none bg-transparent text-black fill-current;
-  text-decoration: none !important;
+a.text {
+  @apply shadow-none bg-transparent text-black fill-current no-underline;
 }
-[btnType='text']:hover {
+a.text:hover {
   @apply text-blue-aa-hover fill-current;
 }
-[btnType='text'][btnMode='onDark'] {
+a.text.onDark{
   @apply text-white fill-current;
 }
-[btnType='text'][btnMode='onDark']:hover {
+a.text.onDark:hover {
   @apply text-blue-aa-dark-hover fill-current;
 }
 
 /* LINKS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-[btnType='link'] {
+a.link {
   @apply shadow-none bg-transparent text-black underline fill-current;
 }
-[btnType='link'][btnMode='onDark'] {
+a.link.onDark {
   @apply text-white fill-current;
 }
-[btnType='link'].manor-button-link {
+a.link.manor-button-link {
   @apply font-semibold underline;
 }
-[btnType='link'].manor-button-link:hover {
+a.link.manor-button-link:hover {
   @apply text-blue-aa-hover fill-current;
 }
-[btnType='link'][btnMode='onDark'].manor-button-link:hover {
+a.link.onDark.manor-button-link:hover {
   @apply underline text-blue-aa-dark-hover fill-current;
 }
 
 /* FOOTER LINKS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-[btnType='footer-link'] {
+a.footer-link {
   @apply shadow-none bg-transparent text-black no-underline block;
 }
-[btnType='footer-link']:hover {
+a.footer-link:hover {
   @apply text-black;
 }
-[btnType='footer-link'][btnMode='onDark'] {
+a.footer-link.onDark {
   @apply text-white fill-current;
 }
-[btnType='footer-link'].manor-button-link {
+a.footer-link.manor-button-link {
   @apply text-sm font-semibold;
   margin-bottom: 1rem;
 }
-[btnType='footer-link'].manor-button-link:hover {
+a.footer-link.manor-button-link:hover {
   @apply underline;
 }
 
@@ -130,4 +129,7 @@ button:disabled,
 button[disabled] {
   @apply cursor-not-allowed shadow-none;
   opacity: 0.6;
+}
+.align-right {
+  flex-direction: row-reverse;
 }
