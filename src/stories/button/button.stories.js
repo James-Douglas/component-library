@@ -9,7 +9,6 @@ import LinkButtonView from './link.view';
 import FooterLinkButtonView from './footer-link.view';
 import buttonReadme from '../../components/Button/button.md';
 
-
 storiesOf('Button', module)
   .addDecorator(withKnobs)
 
@@ -22,5 +21,3 @@ storiesOf('Button', module)
   .add('Link', () => <LinkButtonView />, { notes: buttonReadme })
 
   .add('Footer-link', () => <FooterLinkButtonView />, { notes: buttonReadme });
-
-/*   .add('All icons', () => <AllIconsView />, { notes: iconReadme }); */

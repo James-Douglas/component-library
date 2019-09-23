@@ -5,42 +5,51 @@ import styles from './Button.module.css';
 
 const Button = ({
   id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target,
-}) => (
-  <span className={`manor-button-wrap ${href && btnType !== 'footer-link' ? 'inline-block' : ''} `}>
-    {btnType === 'primary' || btnType === 'secondary'
-      ? (
+}) => {
+  const isInlineBlock = href && btnType !== 'footer-link' ? 'inline-block' : '';
+
+  const renderIcon = () => {
+    let btnIcon;
+    if (icon) {
+      btnIcon = (
+        <>
+          {!iconAlignRight
+        && <>{content}</>}
+          <div className={`${styles['btn-icon']}`}>
+            <Icon name={icon} size={size} />
+          </div>
+          {iconAlignRight
+        && <>{content}</>}
+        </>
+      );
+    } else {
+      btnIcon = <>{content}</>;
+    }
+    return btnIcon;
+  };
+
+  const renderButton = () => {
+    let btn;
+
+    if (btnType === 'primary' || btnType === 'secondary') {
+      btn = (
         <button
           id={id}
           btntype={btnType}
           btnmode={btnMode}
           className={`
-            ${styles['manor-button']} 
-            ${styles[btnSize]}
-            ${content === '' ? styles.center : ''}
-          `}
+          ${styles['manor-button']} 
+          ${styles[btnSize]}
+          ${content === '' ? styles.center : ''}
+        `}
           disabled={disabled}
           type="button"
         >
-          {icon
-            ? (
-              <>
-                {!iconAlignRight
-                && <>{content}</>}
-                <div className={`${styles['btn-icon']}`}>
-                  <Icon name={icon} size={size} />
-                </div>
-                {iconAlignRight
-                && <>{content}</>}
-              </>
-            )
-            : (
-              <>{content}</>
-            )}
-
+          {renderIcon()}
         </button>
-      )
-
-      : (
+      );
+    } else {
+      btn = (
         <a
           id={id}
           btntype={btnType}
@@ -49,32 +58,24 @@ const Button = ({
           target={target}
           disabled={disabled}
           className={`
-            ${styles['manor-button-link']}
-            ${content === '' ? styles.center : ''}
-          `}
+          ${styles['manor-button-link']}
+          ${content === '' ? styles.center : ''}
+        `}
         >
-          {icon
-            ? (
-              <>
-                {!iconAlignRight
-                && <>{content}</>}
-                <div className={`${styles['btn-icon']}`}>
-                  <Icon name={icon} size={size} />
-                </div>
-                {iconAlignRight
-                && <>{content}</>}
-              </>
-            )
-            : (
-              <>{content}</>
-            )}
-          {(target === '_blank' || target === 'blank')
-            && <span className="sr-only">Opens in new window</span>}
-
+          {renderIcon()}
         </a>
-      )}
-  </span>
-);
+      );
+    }
+    return btn;
+  };
+
+
+  return (
+    <span className={`manor-button-wrap ${isInlineBlock}`}>
+      {renderButton()}
+    </span>
+  );
+};
 
 Button.propTypes = {
   id: PropTypes.string.isRequired,
