@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../components/Button/Button.component';
-import { useIsDesktop } from '../../utils/breakpoint';
+import useIsDesktop from '../../hooks/useIsDesktop';
 import './button-view.css';
 
 const SecondaryButtonView = () => {
