@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Row.module.css';
 
-const Row = ({ classes, children }) => (
-  <div className={`${styles.row} ${classes}`}>
+const Row = ({ children, className }) => (
+  <div className={`${styles.row} ${className}`}>
     {children}
   </div>
 );
 
 Row.propTypes = {
-  classes: PropTypes.string,
+  className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -18,7 +18,7 @@ Row.propTypes = {
 };
 
 Row.defaultProps = {
-  classes: '',
+  className: '',
   children: [],
 };
 

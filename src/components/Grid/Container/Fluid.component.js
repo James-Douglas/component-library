@@ -2,23 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Container.module.css';
 
-const Container = ({ children, classes }) => (
-  <div className={`${styles.container} ${classes}`}>
+const FluidContainer = ({ children, className }) => (
+  <div className={`${styles.container} ${className}`}>
     {children}
   </div>
 );
 
-Container.propTypes = {
-  classes: PropTypes.string,
+FluidContainer.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
   ]),
 };
 
-Container.defaultProps = {
-  classes: '',
+FluidContainer.defaultProps = {
+  className: '',
   children: [],
 };
 
-export default Container;
+export default FluidContainer;

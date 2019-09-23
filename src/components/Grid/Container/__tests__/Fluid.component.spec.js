@@ -17,4 +17,12 @@ describe('Container', () => {
     expect(fluid).toBeDefined();
     expect(fluid.classList[1]).toBeUndefined();
   });
+
+  it('allows additional classes to be passed through', () => {
+    const { container } = render(<Fluid className="test-class" />);
+
+    expect(container).toMatchSnapshot();
+    const test = container.getElementsByClassName('test-class');
+    expect(test).toBeDefined();
+  });
 });

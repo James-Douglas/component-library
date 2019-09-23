@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Container allows additional classes to be passed through 1`] = `
+<div>
+  <div
+    class="container test-class"
+  />
+</div>
+`;
+
 exports[`Container has a container class by default and NO fixed class 1`] = `
 <div>
   <div
