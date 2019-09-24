@@ -23,7 +23,6 @@ function getBreakpoint() {
 
   return 'xxl';
 }
-
 function isDesktop(breakpoint = getBreakpoint()) {
   return ['md', 'lg', 'xl', 'xxl'].includes(breakpoint);
 }
