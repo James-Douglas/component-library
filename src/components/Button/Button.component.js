@@ -4,7 +4,7 @@ import Icon from '../Icon/Icon.component';
 import styles from './Button.module.css';
 
 const Button = ({
-  id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel,
+  id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel, handleClick,
 }) => {
   const isInlineBlock = href && btnType !== 'footer-link' ? 'inline-block' : '';
 
@@ -23,31 +23,31 @@ const Button = ({
   };
 
   const renderButton = () => {
-
     const isButton = btnType === 'primary' || btnType === 'secondary';
     const Tag = isButton ? 'button' : 'a';
 
-    return ( 
+    return (
       <Tag
+        onClick={handleClick}
         id={id}
         className={`
-          ${styles[`${isButton ? 'manor-button': 'manor-button-link'}`]} 
+          manor-rich-text
+          ${styles[`${isButton ? 'manor-button' : 'manor-button-link'}`]} 
           ${styles[btnSize]}
           ${styles[btnType]}
-          ${btnMode ? `${styles[btnMode]}`: '' }
+          ${btnMode ? `${styles[btnMode]}` : ''}
           ${content === '' ? styles.center : ''}
-          ${iconAlignRight ? `${styles['align-right']}`: '' }
-        ` 
-      }
+          ${iconAlignRight ? `${styles['align-right']}` : ''}
+        `}
         disabled={disabled}
-        href={ isButton ? null: href}
+        href={isButton ? null : href}
         target={isButton ? null : target}
         rel={isButton ? null : rel}
       >
         {renderContent()}
-    </Tag>
-  );
-};
+      </Tag>
+    );
+  };
 
 
   return (
@@ -73,6 +73,7 @@ Button.propTypes = {
   href: PropTypes.string,
   target: PropTypes.string,
   rel: PropTypes.string,
+  handleClick: PropTypes.func,
 };
 
 Button.defaultProps = {
@@ -85,8 +86,9 @@ Button.defaultProps = {
   size: 2,
   iconAlignRight: false,
   href: '',
-  target: '',
+  target: '#',
   rel: '',
+  handleClick: () => {},
 };
 
 export default Button;

@@ -6,15 +6,16 @@ exports[`Button renders correctly with minimal props 1`] = `
     class="manor-button-wrap "
   >
     <button
-      btnmode=""
-      btntype="primary"
       class="
+          manor-rich-text
           manor-button 
           md
+          primary
+          
           center
+          
         "
       id="test-id"
-      type="button"
     >
       
     </button>
@@ -28,16 +29,17 @@ exports[`Button renders with props 1`] = `
     class="manor-button-wrap "
   >
     <button
-      btnmode="onDark"
-      btntype="primary"
       class="
+          manor-rich-text
           manor-button 
           md
+          primary
+          onDark
           
+          align-right
         "
       disabled=""
       id="test-id"
-      type="button"
     >
       <div
         class="btn-icon"

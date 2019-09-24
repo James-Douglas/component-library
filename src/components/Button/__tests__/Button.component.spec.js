@@ -14,13 +14,12 @@ describe('Button', () => {
 
     const btn = container.querySelector('#test-id');
     const icon = btn.querySelector('.btn-icon');
-    const btnTypeAttr = btn.getAttribute('btntype');
-    const btnModeAttr = btn.getAttribute('btnmode');
 
     expect(getByText('test content')).toBeDefined();
-    expect(btnTypeAttr).toBe('primary');
-    expect(btnModeAttr).toBe('onDark');
-    expect(btn.classList[1]).toBe('md');
+    expect(btn.classList).toContain('primary');
+    expect(btn.classList).toContain('onDark');
+    expect(btn.classList).toContain('md');
+    expect(btn.classList).not.toContain('secondary');
     expect(icon).toBeTruthy();
     expect(container).toMatchSnapshot();
   });
@@ -29,31 +28,30 @@ describe('Button', () => {
     const { container } = render(<Button id="test-id" btnType="primary" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
-    const btnTypeAttr = btn.getAttribute('btntype');
 
-    expect(btnTypeAttr).toBe('primary');
+    expect(btn.classList).toContain('primary');
   });
 
   it('renders a secondary button in mode = onDark, when the props are supplied', () => {
     const { container } = render(<Button id="test-id" btnType="secondary" btnMode="onDark" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
-    const btnTypeAttr = btn.getAttribute('btntype');
-    const btnModeAttr = btn.getAttribute('btnmode');
 
-    expect(btnTypeAttr).toBe('secondary');
-    expect(btnModeAttr).toBe('onDark');
+    expect(btn.classList).toContain('secondary');
+    expect(btn.classList).not.toContain('primary');
+    expect(btn.classList).toContain('onDark');
   });
 
   it('renders a text button with an icon when specified', () => {
     const { container } = render(<Button id="test-id" btnType="text" icon="check" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
-    const btnTypeAttr = btn.getAttribute('btntype');
     const icon = container.querySelector('.btn-icon').classList[0];
 
-    expect(btnTypeAttr).toBe('text');
-    expect(btn.getAttribute('btnMode')).toBe('');
+    expect(btn.classList).toContain('text');
+    expect(btn.classList).not.toContain('onDark');
+    expect(btn.classList).not.toContain('primary');
+    expect(btn.classList).not.toContain('secondary');
     expect(icon).toBe('btn-icon');
   });
 
@@ -61,21 +59,21 @@ describe('Button', () => {
     const { container } = render(<Button id="test-id" btnType="link" href="#" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
-    const btnTypeAttr = btn.getAttribute('btntype');
 
-    expect(btnTypeAttr).toBe('link');
+    expect(btn.classList).toContain('link');
     expect(btn.getAttribute('href')).toBe('#');
-    expect(btn.getAttribute('btnMode')).toBe('');
+    expect(btn.classList).not.toContain('onDark');
   });
 
   it('renders a footer link (a href) when specified', () => {
     const { container } = render(<Button id="test-id" btnType="footer-link" href="#" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
-    const btnTypeAttr = btn.getAttribute('btntype');
 
-    expect(btnTypeAttr).toBe('footer-link');
+    expect(btn.classList).toContain('footer-link');
+    expect(btn.classList).not.toContain('secondary');
+    expect(btn.classList).not.toContain('link');
+    expect(btn.classList).not.toContain('onDark');
     expect(btn.getAttribute('href')).toBe('#');
-    expect(btn.getAttribute('btnMode')).toBe('');
   });
 });
