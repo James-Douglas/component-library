@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Button from '../Button.component';
 
-/* id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, */
+/* id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel */
 describe('Button', () => {
   it('renders correctly with minimal props', () => {
     const { container } = render(<Button id="test-id" />);

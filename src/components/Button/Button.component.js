@@ -18,9 +18,8 @@ const Button = ({
           {content}
         </>
       );
-    } else {
-      return <>{content}</>;
     }
+    return <>{content}</>;
   };
 
   const renderButton = () => {
@@ -35,9 +34,9 @@ const Button = ({
           ${styles[`${isButton ? 'manor-button': 'manor-button-link'}`]} 
           ${styles[btnSize]}
           ${styles[btnType]}
-          ${styles[btnMode]}
+          ${btnMode ? `${styles[btnMode]}`: '' }
           ${content === '' ? styles.center : ''}
-          ${styles[`${iconAlignRight ? 'align-right' : ''}`]}
+          ${iconAlignRight ? `${styles['align-right']}`: '' }
         ` 
       }
         disabled={disabled}
