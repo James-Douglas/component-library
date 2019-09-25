@@ -16,3 +16,16 @@
   background: white;
   padding: 50px;
 }
+
+.grid-view {
+  height: 60vh;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+}
+.results-container {
+  background: #143D96;
+  color: white;
+  padding: 2rem;
+}

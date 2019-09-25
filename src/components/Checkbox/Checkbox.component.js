@@ -1,47 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useCheckedState from '../../hooks/useCheckedState';
+import useToggleState from '../../hooks/useToggleState';
 import Icon from '../Icon/Icon.component';
 import styles from './Checkbox.module.css';
 
 const Checkbox = ({
-  id, content
+  id, icon, disabled, invertColour, handleClick, children, 
 }) => {
-  
-  const { value, onChange } = useCheckedState(false);
+  const { toggle, onChange } = useToggleState(false);
 
-  return ( 
-    <div className={`${styles['manor-checkbox-wrap']}`}>
+  const renderIcon = () => {
+    if (toggle) {
+      return (
+        <Icon name={icon} size="2" />
+      );
+    }
+    return null;
+  };
+
+  return (
+    <>
       <input
         id={id}
-        name={'temp'}
-        type={'checkbox'}
+        name="temp"
+        type="checkbox"
+        disabled={disabled}
         onChange={onChange}
-        checked={value}
+        checked={toggle}
         className={`
           hidden
           ${styles['manor-checkbox-input']}
         `}
       />
 
-      <label
-        for={id}
-        className={`
+      <label htmlFor={id} onClick={handleClick}>
+        <div className={`
           ${styles['manor-checkbox']}
+          ${invertColour ? `${styles.inverted}` : ''}
         `}
-      >
-        
-      </label>   
-    </div>
-  )
+        >
+          {renderIcon()}
+        </div>
+
+        {children}
+      </label>
+
+
+    </>
+  );
 };
 
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  size: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  disabled: PropTypes.bool,
+  invertColour: PropTypes.bool,
+  handleClick: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
-
+  icon: 'check',
+  size: 2,
+  disabled: false,
+  invertColour: false,
+  handleClick: () => {},
 };
 
 export default Checkbox;
