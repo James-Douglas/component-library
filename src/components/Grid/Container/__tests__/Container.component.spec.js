@@ -18,4 +18,12 @@ describe('Container', () => {
     expect(fixed).toBeDefined();
     expect(containerComponent).toBeDefined();
   });
+
+  it('allows additional classes to be passed through', () => {
+    const { container } = render(<Container className="test-class" />);
+
+    expect(container).toMatchSnapshot();
+    const test = container.getElementsByClassName('test-class');
+    expect(test).toBeDefined();
+  });
 });
