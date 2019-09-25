@@ -9,7 +9,7 @@ import logoMobile from '../../../assets/images/ctm-logo-mobile.svg';
 import logoDesktop from '../../../assets/images/ctm-logo-desktop.svg';
 
 const Logo = ({ size, src, srcsets }) => (
-  <div className={`${styles.logo} ${size} w-4`} id="logo">
+  <div className={`${styles.logo} ${styles[size]} `} id="logo">
     <a href="https://www.comparethemarket.com.au">
       <Picture
         src={src}
