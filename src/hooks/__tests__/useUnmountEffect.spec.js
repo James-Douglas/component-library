@@ -4,7 +4,7 @@ import useUnmountEffect from '../useUnmountEffect';
 describe('useUnmountEffect', () => {
   it('should not call function before unmount', () => {
     const unmountCb = jest.fn();
-    const rendered = renderHook(() => useUnmountEffect(unmountCb));
+    renderHook(() => useUnmountEffect(unmountCb));
     expect(unmountCb.mock.calls.length).toBe(0);
   });
 

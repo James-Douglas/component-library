@@ -4,18 +4,14 @@ import { render, fireEvent } from '@testing-library/react';
 import Tooltip, { calculateTooltipWidth, getTippyPlacement, getContent } from '../Tooltip.component';
 
 describe('calculateTooltipWidth()', () => {
-  const testTooltipElement = (right) => {
-    return {
-      getBoundingClientRect: () => ({ right }),
-    };
-  };
+  const testTooltipElement = (right) => ({
+    getBoundingClientRect: () => ({ right }),
+  });
 
-  const testBoundingElement = (left, right, offsetWidth) => {
-    return {
-      getBoundingClientRect: () => ({ right, left }),
-      offsetWidth,
-    };
-  };
+  const testBoundingElement = (left, right, offsetWidth) => ({
+    getBoundingClientRect: () => ({ right, left }),
+    offsetWidth,
+  });
 
   it('returns null when params null', () => {
     expect(calculateTooltipWidth()).toBeNull();
@@ -62,18 +58,15 @@ describe('getTippyPlacement()', () => {
 });
 
 describe('getContent()', () => {
-
-  const ContentContainer = ({ title, body }) => {
-    return (
-      <>
-        {getContent(title, body)}
-      </>
-    );
-  }
+  const ContentContainer = ({ title, body }) => (
+    <>
+      {getContent(title, body)}
+    </>
+  );
 
   ContentContainer.propTypes = {
     title: PropTypes.string,
-    body: PropTypes.string
+    body: PropTypes.string,
   };
 
   ContentContainer.defaultProps = {
