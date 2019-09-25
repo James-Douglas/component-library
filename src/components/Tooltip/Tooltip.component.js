@@ -93,7 +93,6 @@ const Tooltip = ({
     tippyInstance.set({
       placement: getTippyPlacement(desktop, containerWidth),
     });
-    // updateDynamicStyles(containerWidth);
   };
 
   const hideTooltip = () => {
