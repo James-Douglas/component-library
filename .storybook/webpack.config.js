@@ -5,5 +5,16 @@ module.exports = async ({ config }) => {
         test: /\.css$/,
         loaders: ["postcss-loader"],
     });
+    config.module.rules.push({
+        test: /\.js$/,
+        loaders: [{
+            loader: 'eslint-loader',
+            options: {
+                emitError: true,
+                failOnError: true
+            },
+        }],
+        include: path.resolve(__dirname, '../src')
+    })
     return config;
 };
