@@ -4,7 +4,14 @@ exports[`Row allows additional classes to be passed through 1`] = `
 <div>
   <div
     class="row test-class"
-  />
+  >
+    <style>
+      .row {
+        @apply flex flex-wrap -mx-16;
+      }
+      
+    </style>
+  </div>
 </div>
 `;
 
@@ -12,7 +19,14 @@ exports[`Row has a row class by default 1`] = `
 <div>
   <div
     class="row "
-  />
+  >
+    <style>
+      .row {
+        @apply flex flex-wrap -mx-16;
+      }
+      
+    </style>
+  </div>
 </div>
 `;
 
@@ -20,6 +34,13 @@ exports[`Row renders correctly without props 1`] = `
 <div>
   <div
     class="row "
-  />
+  >
+    <style>
+      .row {
+        @apply flex flex-wrap -mx-16;
+      }
+      
+    </style>
+  </div>
 </div>
 `;

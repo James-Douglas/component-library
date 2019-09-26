@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Contact.module.css';
+import styles from './styles';
 import Icon from '../../Icon/Icon.component';
 import useIsDesktop from '../../../hooks/useIsDesktop';
 
 
 const Contact = ({ number, size }) => {
-  const mobileLabel = useIsDesktop() ? number : 'Need help?';
-  const mobileClassName = !useIsDesktop() ? 'mobile' : '';
+  const isDesktop = useIsDesktop();
+  const mobileLabel = isDesktop ? number : 'Need help?';
+  const mobileClassName = !isDesktop ? 'mobile' : '';
   return (
     <div>
-      <a className={`${styles[size]} ${styles[mobileClassName]} ${styles.contact}`} href={`tel:${number}`} target="link-target">
-        <span className={`${styles['mx-4']}`}><Icon name="contact" size={2} /></span>
+      <style jsx>{styles}</style>
+      <a className={`${size} ${mobileClassName} contact`} href={`tel:${number}`} target="link-target">
+        <span className="mx-4"><Icon name="contact" size={2} /></span>
         { mobileLabel }
       </a>
-      <iframe title="link iframe" name="link-target" className={`${styles['link-iframe']}`} />
+      <iframe title="link iframe" name="link-target" className="link-iframe" />
     </div>
   );
 };

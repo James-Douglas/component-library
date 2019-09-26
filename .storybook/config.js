@@ -1,3 +1,5 @@
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 import { addParameters, configure } from '@storybook/react';
 import { create } from '@storybook/theming';
 import '../src/index.css'

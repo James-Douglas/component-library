@@ -26,7 +26,7 @@
 
 let defaultConfig = require('tailwindcss/defaultConfig')
 
-let screens = require('./screens').default;
+let screens = require('./config/screens').default;
 
 module.exports = {
 

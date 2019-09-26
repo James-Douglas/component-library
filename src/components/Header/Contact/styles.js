@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 .large {
  @apply text-xl;
 }
@@ -32,3 +35,4 @@
  margin-left: 0.4rem;
  margin-right: 0.4rem;
 }
+`;

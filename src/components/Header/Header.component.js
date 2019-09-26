@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Header.module.css';
+import styles from './styles';
 import Logo from '../Logo/Logo.component';
 
 import FluidContainer from '../Grid/Container/Fluid.component';
@@ -9,9 +9,10 @@ import Contact from './Contact/Contact.component';
 const Header = ({ isSticky, stuck, number }) => {
   const size = stuck ? 'small' : 'large';
   return (
-    <header className={`${isSticky ? `${styles.sticky}` : ''}  ${stuck ? `${styles.stuck}` : ''}`}>
+    <header className={`${isSticky ? 'sticky' : ''}  ${stuck ? 'stuck' : ''}`}>
+      <style jsx>{styles}</style>
       <FluidContainer>
-        <div className={styles.wrap}>
+        <div className="wrap">
           <Logo size={size} />
           <Contact number={number} size={size} />
         </div>

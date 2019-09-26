@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header renders correctly without props 1`] = `
-"<header class=\\"  \\"><div class=\\"container \\"><div class=\\"wrap\\"><div class=\\"logo large \\" id=\\"logo\\"><a href=\\"https://www.comparethemarket.com.au\\"><picture><source srcset=\\"ctm-logo-desktop.svg\\" media=\\"(min-width: 992px)\\"><source srcset=\\"ctm-logo-mobile.svg\\"><img src=\\"ctm-logo-desktop.svg\\" alt=\\"Compare The Market Australia Logo\\" title=\\"Compare The Market Australia\\"></picture></a></div><div><a class=\\"large  contact\\" href=\\"tel:1800 000 000\\" target=\\"link-target\\"><span class=\\"mx-4\\"><svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" x=\\"0px\\" y=\\"0px\\" enable-background=\\"0 0 44 44\\" class=\\" 
+"<header class=\\"  \\"><style></style><div class=\\"container \\"><div class=\\"wrap\\"><div class=\\"logo large\\" id=\\"logo\\"><a href=\\"https://www.comparethemarket.com.au\\"><picture><source srcset=\\"ctm-logo-desktop.svg\\" media=\\"(min-width: 992px)\\"><source srcset=\\"ctm-logo-mobile.svg\\"><img src=\\"ctm-logo-desktop.svg\\" alt=\\"Compare The Market Australia Logo\\" title=\\"Compare The Market Australia\\"><style></style></picture></a><style></style></div><div><style></style><a class=\\"large  contact\\" href=\\"tel:1800 000 000\\" target=\\"link-target\\"><span class=\\"mx-4\\"><svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" x=\\"0px\\" y=\\"0px\\" enable-background=\\"0 0 44 44\\" class=\\" 
         icon 
          
          

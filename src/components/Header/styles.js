@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 header {
   @apply flex w-full bg-white z-50;
   height: 6rem;        /* 60px */
@@ -17,3 +20,4 @@ header {
   height: 4.4rem;        /* 44px */
   transition: all 200ms ease;
 }
+`;
