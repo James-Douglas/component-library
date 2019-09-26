@@ -22,7 +22,7 @@ const styles = css`
 
 
 const Logo = ({ size, src, srcsets }) => (
-  <div className={`logo ${size} w-4`} id="logo">
+  <div className={`logo ${size}`} id="logo">
     <a href="https://www.comparethemarket.com.au">
       <Picture
         src={src}
