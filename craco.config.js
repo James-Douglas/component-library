@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
 const gatherComponents = () => {
     const entryPoints = {};
@@ -18,15 +19,16 @@ const gatherComponents = () => {
     return entryPoints
 };
 
-const filterPlugins = (webpackConfig, pluginType) => {
-    const i = webpackConfig.plugins.findIndex((e) => typeof e === pluginType);
-    return webpackConfig.plugins.splice(i, 1);
-};
 
 module.exports = {
     style: {
         postcss: {
             mode: POSTCSS_MODES.file,
+        },
+    },
+    babel: {
+        loaderOptions: {
+            babelrc: true,
         },
     },
     webpack: {
@@ -46,11 +48,15 @@ module.exports = {
                 library: '',
                 libraryTarget: 'commonjs-module',
             };
-            webpackConfig.plugins = filterPlugins(webpackConfig, HtmlWebpackPlugin);
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof HtmlWebpackPlugin));
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof MiniCssExtractPlugin));
             const { GenerateSW } = WorkboxWebpackPlugin;
-            webpackConfig.plugins = filterPlugins(webpackConfig, GenerateSW);
-            webpackConfig.plugins = filterPlugins(webpackConfig, InterpolateHtmlPlugin);
-            webpackConfig.plugins = filterPlugins(webpackConfig, ManifestPlugin);
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof GenerateSW));
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof InterpolateHtmlPlugin));
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof ManifestPlugin));
+
+            webpackConfig.resolve.plugins = webpackConfig.resolve.plugins.filter(plugin => !(plugin instanceof ModuleScopePlugin));
+
             webpackConfig.plugins.push(new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional
