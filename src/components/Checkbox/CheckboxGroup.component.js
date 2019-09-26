@@ -20,7 +20,8 @@ const CheckboxGroup = ({
       >
         <div className={`
           ${styles['checkbox-content']}
-        `}>
+        `}
+        >
           <p>{checkbox.content}</p>
         </div>
       </Checkbox>

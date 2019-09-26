@@ -12,7 +12,9 @@ const checkboxesA = [
   { id: 'A-3', icon: 'check', content: 'A-3 check' },
   { id: 'A-4', icon: 'check', content: 'A-4 check' },
   { id: 'A-5', icon: 'check', content: 'A-5 check' },
-  { id: 'A-6', icon: 'check', content: 'A-6 check', disabled: true },
+  {
+    id: 'A-6', icon: 'check', content: 'A-6 check', disabled: true,
+  },
 ];
 
 const checkboxesB = [

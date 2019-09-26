@@ -7,17 +7,20 @@ const checkboxes = [
   { id: 'A-2', icon: 'check', content: 'A-2 check' },
   { id: 'A-3', icon: 'check', content: 'A-3 check' },
   { id: 'A-4', icon: 'check', content: 'A-4 check' },
-  { id: 'A-5', icon: 'check', invertColour: true, content: 'A-5 check', disabled: true },
-  { id: 'A-6', icon: 'check', invertColour: true, content: 'A-6 check', disabled: true },
+  {
+    id: 'A-5', icon: 'check', invertColour: true, content: 'A-5 check', disabled: true,
+  },
+  {
+    id: 'A-6', icon: 'check', invertColour: true, content: 'A-6 check', disabled: true,
+  },
 ];
 
 /* checkboxesArr, colSize, groupId, handleClick, */
 /*  checkbox.id checkbox.icon checkbox.invertColour checkbox.disabled */
 
 describe('CheckboxGroup', () => {
-
   it('renders with minimal props', () => {
-    const { container } = render(<CheckboxGroup groupId={"test-group-id"} checkboxesArr={checkboxes} />);
+    const { container } = render(<CheckboxGroup groupId="test-group-id" checkboxesArr={checkboxes} />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
@@ -27,9 +30,9 @@ describe('CheckboxGroup', () => {
       <CheckboxGroup
         groupId="test-group-id"
         checkboxesArr={checkboxes}
-        colSize={'5'}
+        colSize="5"
         handleClick={mockTestClick}
-      />
+      />,
     );
 
     const checkboxGroup = container.querySelector('#test-group-id');
@@ -37,7 +40,7 @@ describe('CheckboxGroup', () => {
 
     fireEvent.click(chkA1, { button: 0 });
 
-    expect(checkboxGroup.id).toBe('test-group-id')
+    expect(checkboxGroup.id).toBe('test-group-id');
     expect(chkA1.getAttribute('disabled')).toBe(null);
     expect(chkA1.getElementsByTagName('svg')).toBeDefined();
     expect(mockTestClick).toHaveBeenCalled();
@@ -45,10 +48,10 @@ describe('CheckboxGroup', () => {
   });
 
   it('checks on click', () => {
-    const { container } = render(<CheckboxGroup groupId={"test-group-id"} checkboxesArr={checkboxes} />);
-    
+    const { container } = render(<CheckboxGroup groupId="test-group-id" checkboxesArr={checkboxes} />);
+
     const chkA1Input = container.querySelector('#A-1');
-    
+
     const chkA1Label = container.querySelector('label[for="A-1"]');
     fireEvent.click(chkA1Label, { button: 0 });
 
@@ -57,10 +60,10 @@ describe('CheckboxGroup', () => {
   });
 
   it('does not check when disabled', () => {
-    const { container } = render(<CheckboxGroup groupId={"test-group-id"} checkboxesArr={checkboxes} />);
-    
+    const { container } = render(<CheckboxGroup groupId="test-group-id" checkboxesArr={checkboxes} />);
+
     const chkA6Input = container.querySelector('#A-6');
-    
+
     const chkA6Label = container.querySelector('label[for="A-6"]');
     fireEvent.click(chkA6Label, { button: 0 });
 
