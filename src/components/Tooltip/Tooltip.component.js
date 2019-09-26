@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tippy from '@tippy.js/react';
 
 import Icon from '../Icon/Icon.component';
-import { useIsDesktop } from '../../utils/breakpoint';
+import useIsDesktop from '../../hooks/useIsDesktop';
 import throttle from '../../utils/throttle';
 import useUnmountEffect from '../../hooks/useUnmountEffect';
 import './Tooltip.module.css';
