@@ -38,8 +38,6 @@ const Checkbox = ({
 
         {children}
       </label>
-
-
     </>
   );
 };
