@@ -23,3 +23,6 @@ label {
 .manor-checkbox-input:checked + label > .manor-checkbox.inverted {
   @apply bg-white border-none text-dark-blue fill-current;
 }
+.disabled {
+  @apply pointer-events-none;
+}

@@ -1,3 +1,6 @@
 .checkbox-content {
   @apply ml-20 cursor-pointer;
 }
+.disabled {
+  @apply pointer-events-none;
+}

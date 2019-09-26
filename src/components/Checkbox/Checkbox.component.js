@@ -5,14 +5,14 @@ import Icon from '../Icon/Icon.component';
 import styles from './Checkbox.module.css';
 
 const Checkbox = ({
-  id, icon, disabled, invertColour, handleClick, children, 
+  id, icon, disabled, invertColour, handleClick, children,
 }) => {
   const { toggle, onChange } = useToggleState(false);
 
   const renderIcon = () => {
     if (toggle) {
       return (
-        <Icon name={icon} size="2" />
+        <Icon name={icon} size={2} />
       );
     }
     return null;
@@ -33,7 +33,7 @@ const Checkbox = ({
         `}
       />
 
-      <label htmlFor={id} onClick={handleClick}>
+      <label htmlFor={id} onClick={handleClick} className={disabled ? `${styles.disabled}` : ''}>
         <div className={`
           ${styles['manor-checkbox']}
           ${invertColour ? `${styles.inverted}` : ''}
@@ -53,20 +53,22 @@ const Checkbox = ({
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
   icon: PropTypes.string,
-  size: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
   disabled: PropTypes.bool,
   invertColour: PropTypes.bool,
   handleClick: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 Checkbox.defaultProps = {
   icon: 'check',
-  size: 2,
   disabled: false,
   invertColour: false,
+  children: [],
   handleClick: () => {},
 };
 

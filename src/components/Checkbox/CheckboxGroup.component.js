@@ -8,17 +8,19 @@ import styles from './CheckboxGroup.module.css';
 const CheckboxGroup = ({
   checkboxesArr, colSize, groupId, handleClick,
 }) => {
-  const generateCheckboxes = () => checkboxesArr.map((checkbox, idx) => (
-    <Column col={colSize} key={`col-${checkbox.id}${idx}`}>
+  const generateCheckboxes = () => checkboxesArr.map((checkbox) => (
+    <Column col={colSize} key={`col-${checkbox.id}`}>
       <Checkbox
         id={checkbox.id}
         invertColour={checkbox.invertColour}
         icon={checkbox.icon}
-        size={checkbox.size}
-        key={`${checkbox.id}${idx}`}
+        key={`${checkbox.id}`}
         handleClick={handleClick}
+        disabled={checkbox.disabled}
       >
-        <div className={`${styles['checkbox-content']}`}>
+        <div className={`
+          ${styles['checkbox-content']}
+        `}>
           <p>{checkbox.content}</p>
         </div>
       </Checkbox>
@@ -35,14 +37,17 @@ const CheckboxGroup = ({
 };
 
 CheckboxGroup.propTypes = {
-  checkboxesArr: PropTypes.array.isRequired,
+  groupId: PropTypes.string.isRequired,
+  checkboxesArr: PropTypes.arrayOf(
+    PropTypes.object,
+  ).isRequired,
   colSize: PropTypes.string,
-  groupId: PropTypes.string,
-  invertColour: PropTypes.bool,
+  handleClick: PropTypes.func,
 };
 
 CheckboxGroup.defaultProps = {
-
+  colSize: '6',
+  handleClick: () => {},
 };
 
 export default CheckboxGroup;
