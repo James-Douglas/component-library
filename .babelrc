@@ -25,16 +25,7 @@
             ]
         },
         "test": {
-            "plugins": [
-                [
-                    "styled-jsx/babel-test",
-                    {
-                        "plugins": [
-                            "styled-jsx-plugin-postcss"
-                        ]
-                    }
-                ]
-            ]
+            "plugins": []
         }
     }
 }
