@@ -19,10 +19,6 @@ const gatherComponents = () => {
     return entryPoints
 };
 
-const filterPlugins = (webpackConfig, pluginType) => {
-    const i = webpackConfig.plugins.findIndex((e) => typeof e === pluginType);
-    return webpackConfig.plugins.splice(i, 1);
-};
 
 module.exports = {
     style: {
@@ -52,11 +48,12 @@ module.exports = {
                 library: '',
                 libraryTarget: 'commonjs-module',
             };
-            webpackConfig.plugins = filterPlugins(webpackConfig, HtmlWebpackPlugin);
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof HtmlWebpackPlugin));
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof MiniCssExtractPlugin));
             const { GenerateSW } = WorkboxWebpackPlugin;
-            webpackConfig.plugins = filterPlugins(webpackConfig, GenerateSW);
-            webpackConfig.plugins = filterPlugins(webpackConfig, InterpolateHtmlPlugin);
-            webpackConfig.plugins = filterPlugins(webpackConfig, ManifestPlugin);
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof GenerateSW));
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof InterpolateHtmlPlugin));
+            webpackConfig.plugins = webpackConfig.plugins.filter(plugin => !(plugin instanceof ManifestPlugin));
 
             webpackConfig.resolve.plugins = webpackConfig.resolve.plugins.filter(plugin => !(plugin instanceof ModuleScopePlugin));
 
