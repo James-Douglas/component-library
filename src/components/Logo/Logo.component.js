@@ -1,15 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line no-unused-vars
-import styles from './Logo.module.css';
-
+import css from 'styled-jsx/css';
 import Picture from '../Picture/Picture.component';
 import screens from '../../../config/screens';
 import logoMobile from '../../../assets/images/ctm-logo-mobile.svg';
 import logoDesktop from '../../../assets/images/ctm-logo-desktop.svg';
 
+const styles = css`
+.logo {
+  transition: all 200ms ease;
+}
+
+.logo.large {
+  height: 4.4rem;     /* 44px */
+}
+
+.logo.small {
+  height: 3.2rem;     /* 32px */
+}
+`;
+
+
 const Logo = ({ size, src, srcsets }) => (
-  <div className={`${styles.logo} ${size} w-4`} id="logo">
+  <div className={`logo ${size} w-4`} id="logo">
     <a href="https://www.comparethemarket.com.au">
       <Picture
         src={src}
@@ -18,6 +31,9 @@ const Logo = ({ size, src, srcsets }) => (
         title="Compare The Market Australia"
       />
     </a>
+    <style jsx>
+      {styles}
+    </style>
   </div>
 );
 

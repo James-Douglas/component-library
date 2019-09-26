@@ -8,6 +8,7 @@ exports[`Picture renders correctly without props 1`] = `
       src="placeholder.png"
       title="a placeholder title"
     />
+    <style />
   </picture>
 </div>
 `;

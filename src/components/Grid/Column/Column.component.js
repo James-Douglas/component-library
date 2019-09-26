@@ -78,8 +78,8 @@ Column.propTypes = {
     PropTypes.number,
   ]),
   children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
   ]),
 };
 
