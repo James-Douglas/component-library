@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 .tooltip-wrapper {
   @apply flex items-center w-full;
 }
@@ -49,3 +52,4 @@
   }
 }
 /* end tippy.js theme */
+`;

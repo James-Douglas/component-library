@@ -6,8 +6,7 @@ import Icon from '../Icon/Icon.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import throttle from '../../utils/throttle';
 import useUnmountEffect from '../../hooks/useUnmountEffect';
-import './Tooltip.module.css';
-
+import styles from './styles';
 
 /**
  * Calculates the width of the tooltip when there is a boundingElement & we're in a "small"
@@ -150,6 +149,7 @@ const Tooltip = ({
 
   return (
     <div className={`tooltip-wrapper ${desktop ? 'justify-center' : 'justify-end'}`}>
+      <style jsx>{styles}</style>
       <Tippy
         content={getContent(title, body)}
         theme="manor"
