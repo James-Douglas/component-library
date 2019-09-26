@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 label {
   @apply flex;
 }
@@ -23,6 +26,10 @@ label {
 .manor-checkbox-input:checked + label > .manor-checkbox.inverted {
   @apply bg-white border-none text-dark-blue fill-current;
 }
+.checkbox-content {
+  @apply ml-20 cursor-pointer;
+}
 .disabled {
   @apply pointer-events-none;
 }
+`;

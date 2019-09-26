@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Checkbox from './Checkbox.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
-import styles from './CheckboxGroup.module.css';
+import styles from './styles';
 
 const CheckboxGroup = ({
   checkboxesArr, colSize, groupId, handleClick,
@@ -18,10 +18,8 @@ const CheckboxGroup = ({
         handleClick={handleClick}
         disabled={checkbox.disabled}
       >
-        <div className={`
-          ${styles['checkbox-content']}
-        `}
-        >
+        <style jsx>{styles}</style>
+        <div className="checkbox-content">
           <p>{checkbox.content}</p>
         </div>
       </Checkbox>
@@ -29,11 +27,14 @@ const CheckboxGroup = ({
   ));
 
   return (
-    <div id={groupId} className="checkbox-group">
-      <Row>
-        {generateCheckboxes()}
-      </Row>
-    </div>
+    <>
+      <style jsx>{styles}</style>
+      <div id={groupId} className="checkbox-group">
+        <Row>
+          {generateCheckboxes()}
+        </Row>
+      </div>
+    </>
   );
 };
 

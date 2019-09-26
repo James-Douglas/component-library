@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useToggleState from '../../hooks/useToggleState';
 import Icon from '../Icon/Icon.component';
-import styles from './Checkbox.module.css';
+import styles from './styles';
 
 const Checkbox = ({
   id, icon, disabled, invertColour, handleClick, children,
@@ -20,6 +20,7 @@ const Checkbox = ({
 
   return (
     <>
+      <style jsx>{styles}</style>
       <input
         id={id}
         name="temp"
@@ -27,18 +28,11 @@ const Checkbox = ({
         disabled={disabled}
         onChange={onChange}
         checked={toggle}
-        className={`
-          hidden
-          ${styles['manor-checkbox-input']}
-        `}
+        className="hidden manor-checkbox-input"
       />
 
-      <label htmlFor={id} onClick={handleClick} className={disabled ? `${styles.disabled}` : ''}>
-        <div className={`
-          ${styles['manor-checkbox']}
-          ${invertColour ? `${styles.inverted}` : ''}
-        `}
-        >
+      <label htmlFor={id} onClick={handleClick} className={disabled ? 'disabled' : ''}>
+        <div className={`manor-checkbox ${invertColour ? 'inverted' : ''}`}>
           {renderIcon()}
         </div>
 
