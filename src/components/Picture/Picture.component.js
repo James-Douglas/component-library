@@ -1,7 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line no-unused-vars
-import styles from './Picture.module.css';
+import css from 'styled-jsx/css';
+
+const styles = css`
+picture {
+  height: 100%;
+}
+
+img {
+  height: 100%;
+  object-fit: contain;
+  object-position: left;
+}
+`;
 
 const Picture = ({
   src, srcsets, alt, title,
@@ -15,6 +26,7 @@ const Picture = ({
       />
     ))}
     <img src={src} alt={alt} title={title} />
+    <style jsx>{styles}</style>
   </picture>
 );
 
