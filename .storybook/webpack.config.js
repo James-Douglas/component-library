@@ -5,6 +5,28 @@ module.exports = async ({ config }) => {
         test: /\.css$/,
         loaders: ["postcss-loader"],
     });
+
+    config.module.rules.push({
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loaders: [{
+            loader: 'babel-loader',
+            options: {
+                "plugins": [
+                    [
+                        "styled-jsx/babel",
+                        {
+                            "plugins": [
+                                "styled-jsx-plugin-postcss"
+                            ]
+                        }
+                    ]
+                ]
+            }
+        }],
+        include: path.resolve(__dirname, '../src')
+    })
+
     config.module.rules.push({
         test: /\.js$/,
         loaders: [{
@@ -14,7 +36,8 @@ module.exports = async ({ config }) => {
                 failOnError: true
             },
         }],
-        include: path.resolve(__dirname, '../src')
+        include: path.resolve(__dirname, '../src'),
     })
+
     return config;
 };
