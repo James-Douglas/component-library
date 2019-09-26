@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
 const gatherComponents = () => {
     const entryPoints = {};
@@ -27,6 +28,11 @@ module.exports = {
     style: {
         postcss: {
             mode: POSTCSS_MODES.file,
+        },
+    },
+    babel: {
+        loaderOptions: {
+            babelrc: true,
         },
     },
     webpack: {
@@ -51,6 +57,9 @@ module.exports = {
             webpackConfig.plugins = filterPlugins(webpackConfig, GenerateSW);
             webpackConfig.plugins = filterPlugins(webpackConfig, InterpolateHtmlPlugin);
             webpackConfig.plugins = filterPlugins(webpackConfig, ManifestPlugin);
+
+            webpackConfig.resolve.plugins = webpackConfig.resolve.plugins.filter(plugin => !(plugin instanceof ModuleScopePlugin));
+
             webpackConfig.plugins.push(new MiniCssExtractPlugin({
                 // Options similar to the same options in webpackOptions.output
                 // both options are optional

@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Row.module.css';
 
 const Row = ({ children, className }) => (
-  <div className={`${styles.row} ${className}`}>
+  <div className={`row ${className}`}>
     {children}
+    <style jsx>
+      {`.row {
+        @apply flex flex-wrap -mx-16;
+      }
+      `}
+    </style>
   </div>
 );
 
