@@ -1,39 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useValueState from '../../hooks/useValueState';
+import Icon from '../Icon/Icon.component';
+import styles from './styles.js';
 
-class ManorInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: '' };
-    this.handleChange = this.handleChange.bind(this);
-  }
+/* 
+  Requires fieldset to handle the label, fieldset not in master yet
+*/
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
+const Input = ({
+  id, autoFill, disabled
+}) => {
 
-  render() {
-    const { content } = this.props;
-    const { value } = this.state;
-    return (
-      <>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label>
-          {content}
-          <input type="text" value={value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </>
-    );
-  }
-}
+  const { value, onChange } = useValueState('');
 
-ManorInput.propTypes = {
-  content: PropTypes.string,
+  return (
+    <>
+      <style jsx>{styles}</style>
+      <div className='input-wrap-default'>
+        <div className={`
+          fix-wrap
+          ${autoFill && !disabled ? 'manor-prefilled-border' : ''}
+        `}>
+          
+        
+          <input
+            id={id}
+            value={value}
+            onChange={onChange}
+          />
+        </div>
+      </div>
+    </>
+  );
 };
 
-ManorInput.defaultProps = {
-  content: '',
+Input.propTypes = {
+  id: PropTypes.string.isRequired
 };
 
-export default ManorInput;
+Input.defaultProps = {
+ 
+};
+
+export default Input;

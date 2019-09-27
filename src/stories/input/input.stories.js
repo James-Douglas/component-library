@@ -2,12 +2,12 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import ManorInput from '../../components/Input/Input.component';
+import Input from '../../components/Input/Input.component';
 // import inputReadme from '../../components/Input/Input.md';
 
 storiesOf('Input', module)
   .addDecorator(withKnobs)
-  .add('Default', () => <ManorInput content="temp" />);
+  .add('Default', () => <Input content="temp" />);
 
 /* import Input from '../../src/Input/Input.svelte';
 import InputBgGrey from './inputBgGrey.view.svelte';
