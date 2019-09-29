@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import css from 'styled-jsx/css';
 
@@ -13,7 +13,7 @@ const styles = css`
 `;
 
 const Label = ({
-  forId, text, tooltip, tooltipEnabled, forceFullWidth
+  forId, text, tooltip, tooltipEnabled, forceFullWidth,
 }) => {
   const [hasTooltip, setHasTooltip] = useState(true);
   useEffect(() => {

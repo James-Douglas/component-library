@@ -12,8 +12,8 @@ will be expected to set bordered accordingly.
 */
 
 const tooltip = {
-  title: 'text area tooltip!'
-}
+  title: 'text area tooltip!',
+};
 
 const TextareaDemoView = ({
   id,

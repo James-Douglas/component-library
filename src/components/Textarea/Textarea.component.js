@@ -12,13 +12,13 @@ export function getRemainingLimit(stateValue, charLimit) {
 export function getOptionalFieldContent(required, id, label) {
   if (!required) {
     return (
-        <span className="manor-optional-indicator manor-subscript" id={`${id}-optional-indicator`}>
-          <style jsx>{styles}</style>
-          <span className="sr-only">
-            {`The ${label} field is `}
-          </span>
-          Optional
+      <span className="manor-optional-indicator manor-subscript" id={`${id}-optional-indicator`}>
+        <style jsx>{styles}</style>
+        <span className="sr-only">
+          {`The ${label} field is `}
         </span>
+          Optional
+      </span>
     );
   }
   return null;
@@ -82,7 +82,7 @@ const Textarea = ({
   }, [textAreaRemainChars]);
 
   useEffect(() => {
-    textAreaElement.current.setCustomValidity( charsExceed ? 'Maximum characters exceeded' : '');
+    textAreaElement.current.setCustomValidity(charsExceed ? 'Maximum characters exceeded' : '');
   }, [charsExceed]);
 
   const handleChange = (event) => {

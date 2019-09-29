@@ -25,9 +25,7 @@ const styles = css`
  * @param body {string} - (Optional) the tooltip body
  * @returns {boolean} - true if a title or body exists
  */
-const hasTooltipContent = (title, body) => {
-  return !!((body && body.length) || (title && title.length));
-};
+const hasTooltipContent = (title, body) => !!((body && body.length) || (title && title.length));
 
 /**
  * Determine whether the label tooltip should be displayed
@@ -40,9 +38,7 @@ const hasTooltipContent = (title, body) => {
  * @param desktop {boolean} - Whether we are at desktop resolution
  * @returns {boolean} - true if the label tooltip
  */
-const shouldEnableLabelTooltip = (forceFullWidth, desktop) => {
-  return forceFullWidth || !desktop;
-};
+const shouldEnableLabelTooltip = (forceFullWidth, desktop) => forceFullWidth || !desktop;
 
 /**
  * Gets the label for the sr-only element
@@ -57,7 +53,9 @@ const getScreenReaderLabel = (screenReaderLabel, label) => {
   return screenReaderLabel;
 };
 
-const Fieldset = ({ label, tooltip, forceFullWidth, validationMessage, children, supportingElements }) => {
+const Fieldset = ({
+  label, tooltip, forceFullWidth, validationMessage, children, supportingElements,
+}) => {
   const [hasTooltip, setHasTooltip] = useState(false);
   const [enableLabelTooltip, setEnableLabelTooltip] = useState(false);
   const [srLabel, setSrLabel] = useState(tooltip.screenReaderLabel);

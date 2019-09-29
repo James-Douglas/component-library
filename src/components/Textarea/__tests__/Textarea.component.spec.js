@@ -1,9 +1,6 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react';
-
+import { fireEvent, render } from '@testing-library/react';
 import Textarea from '../Textarea.component';
-import {wait} from '@testing-library/dom';
-import {text} from '@storybook/addon-knobs';
 
 describe('Textarea.component.js', () => {
   it('renders with id prop', () => {
@@ -279,7 +276,7 @@ describe('Textarea.component.js', () => {
       value: 'hello',
       maxLength: '7',
     };
-
+    /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea {...props} />);
 
     const theTextareaElement = container.querySelector('.manor-maxlength-indicator');
@@ -289,7 +286,7 @@ describe('Textarea.component.js', () => {
     expect(theTextareaElement1).toBeNull();
 
     const textareaField = container.querySelector('textarea');
-    fireEvent.change(textareaField, { target: { value: 'helloworld' }});
+    fireEvent.change(textareaField, { target: { value: 'helloworld' } });
 
     const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
     expect(theTextareaElement2.value).toBe('helloworld');
@@ -348,7 +345,7 @@ describe('Textarea.component.js', () => {
       value: 'hello',
       maxChars: '7',
     };
-
+    /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea {...props} />);
 
     const theTextareaElement = container.querySelector('.manor-maxlength-indicator');
@@ -358,7 +355,7 @@ describe('Textarea.component.js', () => {
     expect(theTextareaElement1).toBeNull();
 
     const textareaField = container.querySelector('textarea');
-    fireEvent.change(textareaField, { target: { value: 'helloworld' }});
+    fireEvent.change(textareaField, { target: { value: 'helloworld' } });
 
     const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
     expect(theTextareaElement2.value).toBe('helloworld');
