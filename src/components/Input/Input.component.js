@@ -22,7 +22,6 @@ const Input = ({
           fix-wrap
           ${autoFill && !disabled ? 'manor-prefilled-border' : ''}
         `}>
-          
         
           <input
             id={id}
