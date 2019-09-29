@@ -1,5 +1,5 @@
 {
-  "name": "manor-ctm",
+  "name": "@comparethemarketau/manor-ctm",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -48,7 +48,7 @@
     }
   },
   "publishConfig": {
-    "registry": "https://nexus.comparethemarket.com.au/repository/platform-packages/",
+    "registry": "https://nexus.comparethemarket.com.au/repository/npm-all/",
     "access": "public",
     "tag": "latest"
   },
@@ -57,17 +57,7 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      [
-        "@semantic-release/github",
-        {
-          "assets": [
-            {
-              "path": "lib/*"
-            }
-          ]
-        }
-      ]
+      "@semantic-release/npm"
     ]
   },
   "browserslist": {
