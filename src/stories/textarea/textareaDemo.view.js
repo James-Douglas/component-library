@@ -11,6 +11,10 @@ background - additional padding added for display purposes also. The developer
 will be expected to set bordered accordingly.
 */
 
+const tooltip = {
+  title: 'text area tooltip!'
+}
+
 const TextareaDemoView = ({
   id,
   name,
@@ -50,6 +54,7 @@ const TextareaDemoView = ({
           readonly={readonly}
           maxChars={maxChars}
           maxLength={maxLength}
+          tooltip={tooltip}
         />
       </div>
     </div>

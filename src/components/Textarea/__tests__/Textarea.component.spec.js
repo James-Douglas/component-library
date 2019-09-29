@@ -1,7 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import {fireEvent, render} from '@testing-library/react';
 
 import Textarea from '../Textarea.component';
+import {wait} from '@testing-library/dom';
+import {text} from '@storybook/addon-knobs';
 
 describe('Textarea.component.js', () => {
   it('renders with id prop', () => {
@@ -32,26 +34,16 @@ describe('Textarea.component.js', () => {
     expect(container.innerHTML).toMatchSnapshot();
   });
 
-  /*
+  it('on input, set value func is called', () => {
+    const getValueCb = jest.fn();
+    const { container } = render(<Textarea id="input-id" onChange={getValueCb} />);
 
-  ### This currently fails due to the code for testing the call back function is not right ###
+    const textareaField = container.querySelector('textarea');
+    fireEvent.change(textareaField, { target: { value: 'thing' } });
 
-it('on input, set value func is called', () => {
-  const { container, component } = render(<Textarea id='input-id' />);
-
-  const getValueCb = jest.fn();
-  component.$on('setValue', getValueCb);
-
-  const textareaField = container.querySelector('textarea');
-  textareaField.value = 'thing';
-  textareaField.dispatchEvent(new Event('input'));
-
-  return new Promise(resolve => setImmediate(resolve)).then(() => {
-    jest.runAllTimers();
+    expect(textareaField).toHaveValue('thing');
     expect(getValueCb).toBeCalled();
   });
-});
-  */
 
 
   /* *******************************************************************************************
@@ -72,27 +64,6 @@ it('on input, set value func is called', () => {
     expect(theTextareaElementId).toContain('textarea-id');
   });
 
-
-  it('renders a label for the textarea with a class associated with the border styles when the field is disabled', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      bordered: true,
-      disabled: true,
-
-    };
-
-    /* eslint-disable-next-line react/jsx-props-no-spreading */
-    const { container } = render(<Textarea {...props} />);
-
-    const theLabel = container.querySelector('.manor-bordered-field-disabled-label');
-    expect(theLabel.innerHTML).toContain('this is a test');
-
-    const theTextareaElementId = container.querySelector('.manor-textarea-default:disabled').id;
-    expect(theTextareaElementId).toContain('textarea-id');
-  });
-
-
   /* *******************************************************************************************
         test grey background support
     ******************************************************************************************** */
@@ -111,28 +82,6 @@ it('on input, set value func is called', () => {
 
     const theTextareaElementId2 = container.querySelector('.manor-textarea-default').id;
     expect(theTextareaElementId2).toContain('textarea-id');
-  });
-
-
-  it('renders a label for the textarea without a class associated with the border styles when specified and the field is disabled (used for grey backgrounds)', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      bordered: false,
-      disabled: true,
-    };
-
-    /* eslint-disable-next-line react/jsx-props-no-spreading */
-    const { container } = render(<Textarea {...props} />);
-
-    const theLabel1 = container.querySelector('.manor-bordered-field-disabled-label');
-    expect(theLabel1).toBeNull();
-
-    const theLabel2 = container.querySelector('.manor-textarea-label');
-    expect(theLabel2.innerHTML).toContain('this is a test');
-
-    const theTextareaElementId = container.querySelector('.manor-textarea-default:disabled').id;
-    expect(theTextareaElementId).toContain('textarea-id');
   });
 
 
@@ -300,98 +249,6 @@ it('on input, set value func is called', () => {
     expect(theTextareaElement.value).toBe('Hello World');
   });
 
-
-  /* *******************************************************************************************
-       test on change event functionality
-    ******************************************************************************************** */
-
-  /*
-  it('on change, set value func is called', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      value: 'hello',
-    };
-
-    const { container, component } = render(<Textarea {...props} />);
-
-    const getValueCb = jest.fn();
-
-    component.$on('setValue', getValueCb);
-
-    const textareaField = container.querySelector('textarea');
-    textareaField.value = 'helloworld';
-    textareaField.dispatchEvent(new Event('input'));
-
-    return new Promise(resolve => setImmediate(resolve)).then(() => {
-      jest.runAllTimers();
-      expect(getValueCb).toBeCalled();
-    });
-  });
-
-
-  it('on change, set value func is called, error css class is not removed', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      invalid: true,
-      value: 'hello',
-    };
-
-    const { container, component } = render(<Textarea {...props} />);
-
-    const theTextareaElementId1 = container.querySelector('.manor-textarea-default.invalid').id;
-    expect(theTextareaElementId1).toContain('textarea-id');
-
-    const getValueCb = jest.fn();
-
-    component.$on('setValue', getValueCb);
-
-    const textareaField = container.querySelector('textarea');
-    textareaField.value = 'helloworld';
-    textareaField.dispatchEvent(new Event('input'));
-
-    return new Promise(resolve => setImmediate(resolve)).then(() => {
-      jest.runAllTimers();
-      expect(getValueCb).toBeCalled();
-
-      const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
-      expect(theTextareaElement2.value).toBe('helloworld');
-    });
-  });
-
-
-  it('on change, set value func is called, manor-prefilled css class removed', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      autofill: true,
-      value: 'hello',
-    };
-
-    const { container, component } = render(<Textarea {...props} />);
-
-    const theTextareaElementId1 = container.querySelector('.manor-textarea-default.manor-prefilled').id;
-    expect(theTextareaElementId1).toContain('textarea-id');
-
-    const getValueCb = jest.fn();
-
-    component.$on('setValue', getValueCb);
-
-    const textareaField = container.querySelector('textarea');
-    textareaField.value = 'helloworld';
-    textareaField.dispatchEvent(new Event('input'));
-
-    return new Promise(resolve => setImmediate(resolve)).then(() => {
-      jest.runAllTimers();
-      expect(getValueCb).toBeCalled();
-
-      const theTextareaElement2 = container.querySelector('.manor-textarea-default.manor-prefilled');
-      expect(theTextareaElement2).toBeNull();
-    });
-  });
-*/
-
   /* *******************************************************************************************
        test on maxChars / maxLength functionality
     ******************************************************************************************** */
@@ -414,7 +271,7 @@ it('on input, set value func is called', () => {
     expect(theTextareaElement1).toBeNull();
   });
 
-  /*
+
   it('on maxLength exceeded, validation is performed', () => {
     const props = {
       id: 'textarea-id',
@@ -423,7 +280,7 @@ it('on input, set value func is called', () => {
       maxLength: '7',
     };
 
-    const { container, component } = render(<Textarea {...props} />);
+    const { container } = render(<Textarea {...props} />);
 
     const theTextareaElement = container.querySelector('.manor-maxlength-indicator');
     expect(theTextareaElement.innerHTML).toContain('2');
@@ -431,34 +288,18 @@ it('on input, set value func is called', () => {
     const theTextareaElement1 = container.querySelector('.manor-textarea-default.invalid');
     expect(theTextareaElement1).toBeNull();
 
-    const getValueCb = jest.fn();
-
-    component.$on('setValue', getValueCb);
-
     const textareaField = container.querySelector('textarea');
-    textareaField.value = 'helloworld';
-    textareaField.dispatchEvent(new Event('input'));
+    fireEvent.change(textareaField, { target: { value: 'helloworld' }});
 
-    return new Promise((resolve) => setImmediate(resolve)).then(() => {
-      jest.runAllTimers();
-      expect(getValueCb).toBeCalled();
+    const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
+    expect(theTextareaElement2.value).toBe('helloworld');
 
-      const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
-      expect(theTextareaElement2.value).toBe('helloworld');
+    const theTextareaElement3 = container.querySelector('.manor-textarea-default:invalid');
+    expect(theTextareaElement3.value).toBe('helloworld');
 
-      const theTextareaElement3 = container.querySelector('.manor-textarea-default:invalid');
-      expect(theTextareaElement3.value).toBe('helloworld');
-
-      const theTextareaElement4 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
-      expect(theTextareaElement4.innerHTML).toContain('-3');
-    });
+    const theTextareaElement4 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
+    expect(theTextareaElement4.innerHTML).toContain('-3');
   });
-  */
-
-
-  /*
-
-  ### This one is failing because :invalid is not being triggered which probably means the custom validation message had not been applied ####
 
   it('if default supplied text exceeds max length limit, validation is performed', () => {
     const props = {
@@ -469,7 +310,7 @@ it('on input, set value func is called', () => {
       autofill: true,
     };
 
-    / * eslint-disable-next-line react/jsx-props-no-spreading * /
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const { container } = render(<Textarea {...props} />);
 
     const theTextareaElement = container.querySelector('.manor-textarea-default.invalid');
@@ -481,7 +322,6 @@ it('on input, set value func is called', () => {
     const theTextareaElement3 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
     expect(theTextareaElement3.innerHTML).toContain('-3');
   });
-  */
 
   it('on maxLength provided, indicator is displayed', () => {
     const props = {
@@ -501,8 +341,6 @@ it('on input, set value func is called', () => {
     expect(theTextareaElement1).toBeNull();
   });
 
-
-  /*
   it('on maxChars exceeded, validation is performed', () => {
     const props = {
       id: 'textarea-id',
@@ -511,7 +349,7 @@ it('on input, set value func is called', () => {
       maxChars: '7',
     };
 
-    const { container, component } = render(<Textarea {...props} />);
+    const { container } = render(<Textarea {...props} />);
 
     const theTextareaElement = container.querySelector('.manor-maxlength-indicator');
     expect(theTextareaElement.innerHTML).toContain('2');
@@ -519,33 +357,18 @@ it('on input, set value func is called', () => {
     const theTextareaElement1 = container.querySelector('.manor-textarea-default.invalid');
     expect(theTextareaElement1).toBeNull();
 
-    const getValueCb = jest.fn();
-
-    component.$on('setValue', getValueCb);
-
     const textareaField = container.querySelector('textarea');
-    textareaField.value = 'helloworld';
-    textareaField.dispatchEvent(new Event('input'));
+    fireEvent.change(textareaField, { target: { value: 'helloworld' }});
 
-    return new Promise((resolve) => setImmediate(resolve)).then(() => {
-      jest.runAllTimers();
-      expect(getValueCb).toBeCalled();
+    const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
+    expect(theTextareaElement2.value).toBe('helloworld');
 
-      const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
-      expect(theTextareaElement2.value).toBe('helloworld');
+    const theTextareaElement3 = container.querySelector('.manor-textarea-default:invalid');
+    expect(theTextareaElement3.value).toBe('helloworld');
 
-      const theTextareaElement3 = container.querySelector('.manor-textarea-default:invalid');
-      expect(theTextareaElement3.value).toBe('helloworld');
-
-      const theTextareaElement4 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
-      expect(theTextareaElement4.innerHTML).toContain('-3');
-    });
+    const theTextareaElement4 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
+    expect(theTextareaElement4.innerHTML).toContain('-3');
   });
-  */
-
-  /*
-
-  ### This one is failing because :invalid is not being triggered which probably means the custom validation message had not been applied ####
 
   it('if default supplied text exceeds maxChars limit, validation is performed', () => {
     const props = {
@@ -556,7 +379,7 @@ it('on input, set value func is called', () => {
       autofill: true,
     };
 
-    / * eslint-disable-next-line react/jsx-props-no-spreading * /
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const { container } = render(<Textarea {...props} />);
 
     const theTextareaElement = container.querySelector('.manor-textarea-default.invalid');
@@ -568,7 +391,6 @@ it('on input, set value func is called', () => {
     const theTextareaElement3 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
     expect(theTextareaElement3.innerHTML).toContain('-3');
   });
-  */
 
   it('if maxLenth and maxChars limit not supplied maxlength indicator does not exist', () => {
     const props = {
