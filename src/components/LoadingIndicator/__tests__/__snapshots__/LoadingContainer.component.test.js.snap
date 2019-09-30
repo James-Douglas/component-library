@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`LoadingContainer renders correctly without props 1`] = `"<div class=\\"loading-container\\"><style></style><div class=\\"spin-wrap\\"><style></style><div class=\\"dot-pulse\\"></div></div><h2>Please wait... your results are on their way.</h2></div>"`;
