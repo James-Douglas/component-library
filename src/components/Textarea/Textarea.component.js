@@ -5,8 +5,8 @@ import Fieldset from '../Fieldset/Fieldset.component';
 
 import styles from './styles';
 
-export function getRemainingLimit(stateValue, charLimit) {
-  return stateValue ? charLimit - stateValue.length : charLimit;
+export function getRemainingLimit(value, charLimit) {
+  return value ? charLimit - value.length : charLimit;
 }
 
 export function getOptionalFieldContent(required, id, label) {

@@ -1,6 +1,77 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import Textarea from '../Textarea.component';
+import Textarea, { getRemainingLimit, getOptionalFieldContent, getRemainingCharsContent } from '../Textarea.component';
+
+describe('getRemainingLimit()', () => {
+  it('returns charLimit when no value given', () => {
+    expect(getRemainingLimit(null, 200)).toEqual(200);
+  });
+
+  it('returns remaining limit when value provided', () => {
+    expect(getRemainingLimit('test', 200)).toEqual(196);
+  });
+});
+
+describe('getOptionalFieldContent()', () => {
+  it('returns null if required is true', () => {
+    expect(getOptionalFieldContent(true, 'test', 'test label')).toBeNull();
+  });
+
+  it('returns content when required is false', () => {
+    // eslint-disable-next-line react/prop-types
+    const OptionalFieldContentContainer = ({ required, id, label }) => (
+      <>
+        {getOptionalFieldContent(required, id, label)}
+      </>
+    );
+    const { container, getByText } = render(<OptionalFieldContentContainer required={false} id="test" label="test label" />);
+    expect(container.firstChild.id).toEqual('test-optional-indicator');
+    expect(getByText('The test label field is')).toBeInTheDocument();
+    expect(getByText('Optional')).toBeInTheDocument();
+  });
+});
+
+describe('getRemainingCharsContent()', () => {
+  const RemainingCharsContentContainer = ({
+  // eslint-disable-next-line react/prop-types
+    maxChars, maxLength, id, textAreaRemainChars, label,
+  }) => (
+    <>
+      {getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)}
+    </>
+  );
+
+  it('returns null if maxChars and maxLength is null', () => {
+    expect(getRemainingCharsContent(null, null, 'test', 100, 'test label')).toBeNull();
+  });
+
+  it('returns content when maxChars is available', () => {
+    const { container, getByText } = render(<RemainingCharsContentContainer maxChars={50} id="test" textAreaRemainChars={20} label="test label" />);
+    const wrapper = container.firstChild;
+    expect(wrapper.id).toEqual('test-maxlength-indicator');
+    expect(wrapper).not.toHaveClass('max-chars-exceeded');
+    expect(getByText('Remaining allowed characters for the test label field')).toBeInTheDocument();
+    expect(getByText('20')).toBeInTheDocument();
+  });
+
+  it('returns content when maxLength is available', () => {
+    const { container, getByText } = render(<RemainingCharsContentContainer maxLength={50} id="test" textAreaRemainChars={20} label="test label" />);
+    const wrapper = container.firstChild;
+    expect(wrapper.id).toEqual('test-maxlength-indicator');
+    expect(wrapper).not.toHaveClass('max-chars-exceeded');
+    expect(getByText('Remaining allowed characters for the test label field')).toBeInTheDocument();
+    expect(getByText('20')).toBeInTheDocument();
+  });
+
+  it('returns correct content when limit exceeded', () => {
+    const { container, getByText } = render(<RemainingCharsContentContainer maxChars={50} id="test" textAreaRemainChars={-1} label="test label" />);
+    const wrapper = container.firstChild;
+    expect(wrapper.id).toEqual('test-maxlength-indicator');
+    expect(wrapper).toHaveClass('max-chars-exceeded');
+    expect(getByText('Exceeded character limit for the test label field')).toBeInTheDocument();
+    expect(getByText('-1')).toBeInTheDocument();
+  });
+});
 
 describe('Textarea.component.js', () => {
   it('renders with id prop', () => {
