@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { render, fireEvent } from '@testing-library/react';
 import Tooltip, { calculateTooltipWidth, getTippyPlacement, getContent } from '../Tooltip.component';
 
@@ -58,21 +57,12 @@ describe('getTippyPlacement()', () => {
 });
 
 describe('getContent()', () => {
+  // eslint-disable-next-line react/prop-types
   const ContentContainer = ({ title, body }) => (
     <>
       {getContent(title, body)}
     </>
   );
-
-  ContentContainer.propTypes = {
-    title: PropTypes.string,
-    body: PropTypes.string,
-  };
-
-  ContentContainer.defaultProps = {
-    title: null,
-    body: null,
-  };
 
   it('returns correct content for title only', () => {
     const { container } = render(<ContentContainer title="test title" />);

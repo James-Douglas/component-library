@@ -25,7 +25,9 @@ const styles = css`
  * @param body {string} - (Optional) the tooltip body
  * @returns {boolean} - true if a title or body exists
  */
-const hasTooltipContent = (title, body) => !!((body && body.length) || (title && title.length));
+export function hasTooltipContent(title, body) {
+  return !!((body && body.length) || (title && title.length));
+}
 
 /**
  * Determine whether the label tooltip should be displayed
@@ -38,7 +40,9 @@ const hasTooltipContent = (title, body) => !!((body && body.length) || (title &&
  * @param desktop {boolean} - Whether we are at desktop resolution
  * @returns {boolean} - true if the label tooltip
  */
-const shouldEnableLabelTooltip = (forceFullWidth, desktop) => forceFullWidth || !desktop;
+export function shouldEnableLabelTooltip(forceFullWidth, desktop) {
+  return forceFullWidth || !desktop;
+}
 
 /**
  * Gets the label for the sr-only element
@@ -46,12 +50,30 @@ const shouldEnableLabelTooltip = (forceFullWidth, desktop) => forceFullWidth || 
  * @param label {string} - (Optional) The label text for the form element, if exists
  * @returns {string} - Text for the sr-only element
  */
-const getScreenReaderLabel = (screenReaderLabel, label) => {
+export function getScreenReaderLabel(screenReaderLabel, label) {
   if (!screenReaderLabel || screenReaderLabel === '') {
     return label ? `Click here for additional information about ${label}` : 'tooltip';
   }
   return screenReaderLabel;
-};
+}
+
+export function renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel) {
+  if (!enableLabelTooltip && hasTooltip) {
+    return (
+      <Column col="2">
+        <div className="tooltip-container">
+          <Tooltip
+            title={title}
+            body={body}
+            boundingElementSelector={boundingElementSelector || '.fieldset'}
+            screenReaderLabel={srLabel}
+          />
+        </div>
+      </Column>
+    );
+  }
+  return null;
+}
 
 const Fieldset = ({
   label, tooltip, forceFullWidth, validationMessage, children, supportingElements,
@@ -59,7 +81,7 @@ const Fieldset = ({
   const [hasTooltip, setHasTooltip] = useState(false);
   const [enableLabelTooltip, setEnableLabelTooltip] = useState(false);
   const [srLabel, setSrLabel] = useState(tooltip.screenReaderLabel);
-  const desktop = useIsDesktop();
+  const desktop = useIsDesktop(false);
   const { title, body, boundingElementSelector } = tooltip;
   const { screenReaderLabel } = tooltip;
 
@@ -83,18 +105,7 @@ const Fieldset = ({
         <Column sm={forceFullWidth ? '12' : '10'} xs="12">
           {children}
         </Column>
-        {!enableLabelTooltip && hasTooltip && (
-          <Column col="2">
-            <div className="tooltip-container">
-              <Tooltip
-                title={title}
-                body={body}
-                boundingElementSelector={boundingElementSelector || '.fieldset'}
-                screenReaderLabel={srLabel}
-              />
-            </div>
-          </Column>
-        )}
+        {renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel)}
       </Row>
       <Row>
         <Column xs="12" sm="10">

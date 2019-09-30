@@ -9,15 +9,15 @@ const breakpoints = Object.assign(
 function getBreakpoint() {
   const width = window.innerWidth;
 
-  if (width <= breakpoints.xs) {
+  if (width < breakpoints.xs) {
     return 'xs';
-  } if (width <= breakpoints.sm) {
+  } if (width < breakpoints.sm) {
     return 'sm';
-  } if (width <= breakpoints.md) {
+  } if (width < breakpoints.md) {
     return 'md';
-  } if (width <= breakpoints.lg) {
+  } if (width < breakpoints.lg) {
     return 'lg';
-  } if (width <= breakpoints.xl) {
+  } if (width < breakpoints.xl) {
     return 'xl';
   }
 
