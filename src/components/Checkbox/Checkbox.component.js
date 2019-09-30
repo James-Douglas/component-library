@@ -5,7 +5,7 @@ import Icon from '../Icon/Icon.component';
 import styles from './styles';
 
 const Checkbox = ({
-  id, icon, disabled, invertColour, handleClick, children,
+  id, icon, disabled, invertColour, handleClick, handleKeyUp, children,
 }) => {
   const { toggle, onChange } = useToggleState(false);
 
@@ -23,20 +23,22 @@ const Checkbox = ({
       <style jsx>{styles}</style>
       <input
         id={id}
-        name="temp"
+        name={id}
         type="checkbox"
         disabled={disabled}
         onChange={onChange}
         checked={toggle}
-        className="hidden manor-checkbox-input"
+        className="manor-checkbox-input"
+        onClick={(e) => e.stopPropagation()}
       />
 
-      <label htmlFor={id} onClick={handleClick} className={disabled ? 'disabled' : ''}>
+      <label htmlFor={id} onClick={handleClick} onKeyUp={handleKeyUp} className={disabled ? 'disabled' : ''}>
         <div className={`manor-checkbox ${invertColour ? 'inverted' : ''}`}>
           {renderIcon()}
         </div>
-
-        {children}
+        <div className="checkbox-content">
+          {children}
+        </div>
       </label>
     </>
   );
@@ -48,6 +50,7 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   invertColour: PropTypes.bool,
   handleClick: PropTypes.func,
+  handleKeyUp: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -62,6 +65,7 @@ Checkbox.defaultProps = {
   invertColour: false,
   children: [],
   handleClick: () => {},
+  handleKeyUp: () => {},
 };
 
 export default Checkbox;

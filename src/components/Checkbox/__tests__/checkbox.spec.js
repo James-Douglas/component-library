@@ -18,7 +18,7 @@ describe('Checkbox', () => {
         invertColour
         handleClick={mockTestClick}
       >
-        <div id="child-content" />
+        <p>child content</p>
       </Checkbox>,
     );
 

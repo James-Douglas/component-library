@@ -7,7 +7,6 @@ const useToggleState = (initValue) => {
     toggle,
     onChange: (e) => {
       setToggle(e.target.checked);
-      // console.log(e.target.checked);
     },
   };
 };

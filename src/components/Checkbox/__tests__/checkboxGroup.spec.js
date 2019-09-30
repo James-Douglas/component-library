@@ -1,38 +1,28 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import CheckboxGroup from '../CheckboxGroup.component';
-
-const checkboxes = [
-  { id: 'A-1', icon: 'check', content: 'A-1 check' },
-  { id: 'A-2', icon: 'check', content: 'A-2 check' },
-  { id: 'A-3', icon: 'check', content: 'A-3 check' },
-  { id: 'A-4', icon: 'check', content: 'A-4 check' },
-  {
-    id: 'A-5', icon: 'check', invertColour: true, content: 'A-5 check', disabled: true,
-  },
-  {
-    id: 'A-6', icon: 'check', invertColour: true, content: 'A-6 check', disabled: true,
-  },
-];
-
-/* checkboxesArr, colSize, groupId, handleClick, */
-/*  checkbox.id checkbox.icon checkbox.invertColour checkbox.disabled */
+import Checkbox from '../Checkbox.component';
 
 describe('CheckboxGroup', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<CheckboxGroup groupId="test-group-id" checkboxesArr={checkboxes} />);
+    const { container } = render(
+      <CheckboxGroup groupId="test-group-id">
+        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
+      </CheckboxGroup>,
+    );
     expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('renders with props', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup
-        groupId="test-group-id"
-        checkboxesArr={checkboxes}
-        colSize="5"
-        handleClick={mockTestClick}
-      />,
+      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
+      </CheckboxGroup>,
     );
 
     const checkboxGroup = container.querySelector('#test-group-id');
@@ -48,7 +38,14 @@ describe('CheckboxGroup', () => {
   });
 
   it('checks on click', () => {
-    const { container } = render(<CheckboxGroup groupId="test-group-id" checkboxesArr={checkboxes} />);
+    const mockTestClick = jest.fn();
+    const { container } = render(
+      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
+      </CheckboxGroup>,
+    );
 
     const chkA1Input = container.querySelector('#A-1');
 
@@ -60,14 +57,21 @@ describe('CheckboxGroup', () => {
   });
 
   it('does not check when disabled', () => {
-    const { container } = render(<CheckboxGroup groupId="test-group-id" checkboxesArr={checkboxes} />);
+    const mockTestClick = jest.fn();
+    const { container } = render(
+      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3" icon="check" disabled><p>A-3 check</p></Checkbox>
+      </CheckboxGroup>,
+    );
 
-    const chkA6Input = container.querySelector('#A-6');
+    const chkA3Input = container.querySelector('#A-3');
 
-    const chkA6Label = container.querySelector('label[for="A-6"]');
-    fireEvent.click(chkA6Label, { button: 0 });
+    const chkA3Label = container.querySelector('label[for="A-3"]');
+    fireEvent.click(chkA3Label, { button: 0 });
 
-    expect(chkA6Input.checked).toBe(false);
+    expect(chkA3Input.checked).toBe(false);
     expect(container.innerHTML).toMatchSnapshot();
   });
 });

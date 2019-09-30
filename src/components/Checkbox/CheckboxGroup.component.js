@@ -1,37 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from './Checkbox.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
-import styles from './styles';
 
 const CheckboxGroup = ({
-  checkboxesArr, colSize, groupId, handleClick,
+  groupId, colSize, handleClick, handleKeyUp, children,
 }) => {
-  const generateCheckboxes = () => checkboxesArr.map((checkbox) => (
-    <Column col={colSize} key={`col-${checkbox.id}`}>
-      <Checkbox
-        id={checkbox.id}
-        invertColour={checkbox.invertColour}
-        icon={checkbox.icon}
-        key={`${checkbox.id}`}
-        handleClick={handleClick}
-        disabled={checkbox.disabled}
-      >
-        <style jsx>{styles}</style>
-        <div className="checkbox-content">
-          <p>{checkbox.content}</p>
-        </div>
-      </Checkbox>
+  const generateGroup = () => children.map((child) => (
+    <Column col={colSize} key={`key-${child.props.id}`}>
+      {child}
     </Column>
   ));
 
   return (
     <>
-      <style jsx>{styles}</style>
-      <div id={groupId} className="checkbox-group">
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <div id={groupId} className="checkbox-group" onClick={handleClick} onKeyUp={handleKeyUp}>
         <Row>
-          {generateCheckboxes()}
+          {generateGroup()}
         </Row>
       </div>
     </>
@@ -40,16 +26,22 @@ const CheckboxGroup = ({
 
 CheckboxGroup.propTypes = {
   groupId: PropTypes.string.isRequired,
-  checkboxesArr: PropTypes.arrayOf(
-    PropTypes.object,
-  ).isRequired,
   colSize: PropTypes.string,
   handleClick: PropTypes.func,
+  handleKeyUp: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 CheckboxGroup.defaultProps = {
   colSize: '6',
   handleClick: () => {},
+  handleKeyUp: () => {},
+  children: [],
 };
 
 export default CheckboxGroup;

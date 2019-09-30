@@ -1,28 +1,11 @@
 import React, { useState } from 'react';
 import Container from '../../components/Grid/Container/Container.component';
 import CheckboxGroup from '../../components/Checkbox/CheckboxGroup.component';
+import Checkbox from '../../components/Checkbox/Checkbox.component';
 import './checkbox-view.css';
 
 const g1 = 'checkbox-group-a';
 const g2 = 'checkbox-group-b';
-
-const checkboxesA = [
-  { id: 'A-1', icon: 'check', content: 'A-1 check' },
-  { id: 'A-2', icon: 'check', content: 'A-2 check' },
-  { id: 'A-3', icon: 'check', content: 'A-3 check' },
-  { id: 'A-4', icon: 'check', content: 'A-4 check' },
-  { id: 'A-5', icon: 'check', content: 'A-5 check' },
-  { id: 'A-6', icon: 'check', content: 'A-6 check' },
-];
-
-const checkboxesB = [
-  { id: 'B-1', icon: 'check', content: 'B-1 check' },
-  { id: 'B-2', icon: 'check', content: 'B-2 check' },
-  { id: 'B-3', icon: 'check', content: 'B-3 check' },
-  { id: 'B-4', icon: 'check', content: 'B-4 check' },
-  { id: 'B-5', icon: 'check', content: 'B-5 check' },
-  { id: 'B-6', icon: 'check', content: 'B-6 check' },
-];
 
 const CheckboxGroupView = () => {
   const [checkboxGroupA, updateCheckboxGroupA] = useState([]);
@@ -35,23 +18,38 @@ const CheckboxGroupView = () => {
     return [...arr, checkbox];
   };
 
-  const logClick = (e) => {
+  const logEvent = (e) => {
     const currentGroup = e.currentTarget.closest('.checkbox-group').id;
-    const checkbox = e.currentTarget.getAttribute('for');
+    const checkbox = e.target.getAttribute('for') || e.target.id;
 
-    if (currentGroup === g1) {
-      updateCheckboxGroupA(clickedItems(checkboxGroupA, checkbox));
-    } else if (currentGroup === g2) {
-      updateCheckboxGroupB(clickedItems(checkboxGroupB, checkbox));
+    if (e.key === ' ' || e.key === undefined) {
+      if (currentGroup === g1) {
+        updateCheckboxGroupA(clickedItems(checkboxGroupA, checkbox));
+      } else if (currentGroup === g2) {
+        updateCheckboxGroupB(clickedItems(checkboxGroupB, checkbox));
+      }
     }
   };
 
-
   return (
-    <div className="grid-view ">
+    <div className="grid-view">
       <Container>
-        <CheckboxGroup groupId={g1} checkboxesArr={checkboxesA} colSize="6" handleClick={logClick} />
-        <CheckboxGroup groupId={g2} checkboxesArr={checkboxesB} colSize="6" handleClick={logClick} />
+        <CheckboxGroup groupId={g1} colSize="6" handleClick={logEvent} handleKeyUp={logEvent}>
+          <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
+          <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
+          <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
+          <Checkbox id="A-4" icon="check"><p>A-4 check</p></Checkbox>
+          <Checkbox id="A-5" icon="check"><p>A-5 check</p></Checkbox>
+          <Checkbox id="A-6" icon="check"><p>A-6 check</p></Checkbox>
+        </CheckboxGroup>
+        <CheckboxGroup groupId={g2} colSize="6" handleClick={logEvent} handleKeyUp={logEvent}>
+          <Checkbox id="B-1" icon="check"><p>B-1 check</p></Checkbox>
+          <Checkbox id="B-2" icon="check"><p>B-2 check</p></Checkbox>
+          <Checkbox id="B-3" icon="check"><p>B-3 check</p></Checkbox>
+          <Checkbox id="B-4" icon="check"><p>B-4 check</p></Checkbox>
+          <Checkbox id="B-5" icon="check"><p>B-5 check</p></Checkbox>
+          <Checkbox id="B-6" icon="check"><p>B-6 check</p></Checkbox>
+        </CheckboxGroup>
 
         <div className="results-container">
           {checkboxGroupA.length || checkboxGroupB.length
@@ -59,20 +57,19 @@ const CheckboxGroupView = () => {
               <>
                 <p className="results">
                   {g1}
-:
+              :
                   {' '}
                   {checkboxGroupA.join(', ')}
                 </p>
                 <p className="results">
                   {g2}
-:
+              :
                   {' '}
                   {checkboxGroupB.join(', ')}
                 </p>
               </>
             )
             : <p className="results">Nothing selected</p>}
-
         </div>
 
       </Container>
