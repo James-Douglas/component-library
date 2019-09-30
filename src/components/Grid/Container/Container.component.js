@@ -12,7 +12,6 @@ Container.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.array,
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
