@@ -20,13 +20,15 @@ const CheckboxGroupView = () => {
 
   const logEvent = (e) => {
     const currentGroup = e.currentTarget.closest('.checkbox-group').id;
-    const checkbox = e.target.getAttribute('for') || e.target.id;
+    const checkboxID = e.target.getAttribute('for') || e.target.id;
 
-    if (e.key === ' ' || e.key === undefined) {
-      if (currentGroup === g1) {
-        updateCheckboxGroupA(clickedItems(checkboxGroupA, checkbox));
-      } else if (currentGroup === g2) {
-        updateCheckboxGroupB(clickedItems(checkboxGroupB, checkbox));
+    if (checkboxID.length) {
+      if (e.key === ' ' || e.key === undefined) {
+        if (currentGroup === g1) {
+          updateCheckboxGroupA(clickedItems(checkboxGroupA, checkboxID));
+        } else if (currentGroup === g2) {
+          updateCheckboxGroupB(clickedItems(checkboxGroupB, checkboxID));
+        }
       }
     }
   };
