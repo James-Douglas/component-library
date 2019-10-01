@@ -5,13 +5,11 @@ import Column from '../Grid/Column/Column.component';
 
 export const generateGroup = (colSize, children) => {
   if (children) {
-    return children.map((child) => {
-      return (
+    return children.map((child) => (
       <Column col={colSize} key={`key-${child.props.id}`}>
         {child}
       </Column>
-      )
-    });
+    ));
   }
   return null;
 };
