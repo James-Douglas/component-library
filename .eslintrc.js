@@ -28,4 +28,11 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'max-len': ["error", { "code": 200, "ignoreUrls": true, "ignoreComments": true, "ignoreStrings": true, "ignoreTemplateLiterals": true }]
   },
+  settings: {
+    "import/resolver": {
+      node: {
+        "paths": ["src"]
+      }
+    },
+  },
 };

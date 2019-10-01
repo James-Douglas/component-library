@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useIsDesktop from 'hooks/useIsDesktop';
 import styles from './styles';
 import Icon from '../../Icon/Icon.component';
-import useIsDesktop from '../../../hooks/useIsDesktop';
 
 
 const Contact = ({ number, size }) => {

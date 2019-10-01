@@ -10,6 +10,6 @@ storiesOf('Bar', module)
   .add('Default', () => (
     <div>
       <Header number="1800 123 456" />
-      <Bar value="66" backwards={false} />
+      <Bar value={66} backwards={false} />
     </div>
   ));

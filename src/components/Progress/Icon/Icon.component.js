@@ -7,12 +7,17 @@ const ProgressIcon = ({
   active,
   mobile,
   index,
-}) => (
-  <span className={`progress-icon ${active ? 'active' : ''} ${disabled ? 'disabled' : ''} ${mobile ? 'isMobile' : ''}`}>
-    <style jsx>{styles}</style>
-    {index}
-  </span>
-);
+}) => {
+  const activeClass = active ? 'active' : '';
+  const disabledClass = disabled ? 'disabled' : '';
+  const mobileClass = mobile ? 'isMobile' : '';
+  return (
+    <span className={`progress-icon ${activeClass} ${disabledClass} ${mobileClass}`}>
+      <style jsx>{styles}</style>
+      {index}
+    </span>
+  );
+};
 
 
 ProgressIcon.propTypes = {

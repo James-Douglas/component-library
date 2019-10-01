@@ -14,7 +14,10 @@ const StickyTracker = ({
 };
 
 StickyTracker.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   steps: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
@@ -24,7 +27,7 @@ StickyTracker.propTypes = {
 };
 
 StickyTracker.defaultProps = {
-  value: '70',
+  value: 70,
   steps: [{ label: 'About You', url: '#label' }],
 };
 

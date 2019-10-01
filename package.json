@@ -15,14 +15,14 @@
     "styled-jsx-plugin-postcss": "^2.0.1"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test --reporters=jest-silent-reporter --coverage --watchAll",
-    "test:ci": "cross-env CI=true craco test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
-    "lint": "eslint --ext .js src/ --fix"
+    "start": "NODE_PATH=./src craco start",
+    "build": "NODE_PATH=./src craco build",
+    "test": "NODE_PATH=./src craco test --reporters=jest-silent-reporter --coverage --watchAll",
+    "test:ci": "NODE_PATH=./src cross-env CI=true craco test",
+    "eject": "NODE_PATH=./src react-scripts eject",
+    "storybook": "NODE_PATH=./src start-storybook -p 9009 -s public",
+    "build-storybook": "NODE_PATH=./src build-storybook -s public",
+    "lint": "NODE_PATH=./src eslint --ext .js src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

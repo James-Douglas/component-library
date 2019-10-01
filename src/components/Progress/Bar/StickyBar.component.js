@@ -13,11 +13,14 @@ const StickyBar = ({
 };
 
 StickyBar.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
 
 StickyBar.defaultProps = {
-  value: '70',
+  value: 70,
 };
 
 export default StickyBar;
