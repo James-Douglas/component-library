@@ -1,8 +1,43 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render, fireEvent } from '@testing-library/react';
-import Checkbox from '../Checkbox.component';
+import Checkbox, { renderIcon } from '../Checkbox.component';
 
-describe('Checkbox', () => {
+
+describe('renderIcon()', () => {
+  const IconContainer = ({ icon, toggle }) => (
+    <>
+      {renderIcon(icon, toggle)}
+    </>
+  );
+
+  IconContainer.propTypes = {
+    icon: PropTypes.string,
+    toggle: PropTypes.bool,
+  };
+
+  IconContainer.defaultProps = {
+    icon: null,
+    toggle: null,
+  };
+
+  it('does not render an icon if toggle condition is not met', () => {
+    const { container } = render(<IconContainer toggle={false} />);
+
+    expect(container).toBeEmpty();
+  });
+
+  it('renders an icon when params are set (icon name and toggle is true)', () => {
+    const { container } = render(<IconContainer icon="check" toggle />);
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toBeDefined();
+    expect(container.innerHTML).toMatchSnapshot();
+  });
+});
+
+describe('Checkbox.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(<Checkbox id="test-id" />);
     expect(container.innerHTML).toMatchSnapshot();

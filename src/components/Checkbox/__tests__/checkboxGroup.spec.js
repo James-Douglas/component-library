@@ -1,9 +1,54 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render, fireEvent } from '@testing-library/react';
-import CheckboxGroup from '../CheckboxGroup.component';
+import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
 
-describe('CheckboxGroup', () => {
+describe('generateGroup', () => {
+  const GroupContainer = ({ colSize, children }) => (
+    <>
+      {generateGroup(colSize, children)}
+    </>
+  );
+
+  GroupContainer.propTypes = {
+    colSize: PropTypes.string,
+    children: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.node),
+    ]),
+  };
+
+  GroupContainer.defaultProps = {
+    colSize: null,
+    children: [],
+  };
+
+  it('does not render children if there are none', () => {
+    const { container } = render(<GroupContainer />);
+
+    expect(container).toBeEmpty();
+  });
+
+  it('renders if there are children', () => {
+    const { container } = render(
+      <GroupContainer colSize="6">
+        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
+      </GroupContainer>,
+    );
+
+    const cols = container.querySelectorAll('.col-6');
+
+    expect(cols).toBeDefined();
+    expect(cols.length).toBe(2);
+    expect(container.innerHTML).toMatchSnapshot();
+  });
+});
+
+describe('CheckboxGroup.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(
       <CheckboxGroup groupId="test-group-id">

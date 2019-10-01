@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckboxGroup checks on click 1`] = `
+exports[`CheckboxGroup.component checks on click 1`] = `
 "<div id=\\"test-group-id\\" class=\\"checkbox-group\\"><div class=\\"row \\"><div class=\\"col-5 \\"><style></style><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"\\"><div class=\\"manor-checkbox \\"><svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" x=\\"0px\\" y=\\"0px\\" enable-background=\\"0 -4 44 44\\" class=\\" 
         icon 
          
@@ -11,21 +11,21 @@ exports[`CheckboxGroup checks on click 1`] = `
       </style></div></div>"
 `;
 
-exports[`CheckboxGroup does not check when disabled 1`] = `
+exports[`CheckboxGroup.component does not check when disabled 1`] = `
 "<div id=\\"test-group-id\\" class=\\"checkbox-group\\"><div class=\\"row \\"><div class=\\"col-5 \\"><style></style><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"\\"><div class=\\"manor-checkbox \\"></div><div class=\\"checkbox-content\\"><p>A-1 check</p></div></label></div><div class=\\"col-5 \\"><style></style><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-2\\" class=\\"\\"><div class=\\"manor-checkbox \\"></div><div class=\\"checkbox-content\\"><p>A-2 check</p></div></label></div><div class=\\"col-5 \\"><style></style><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" disabled=\\"\\" class=\\"manor-checkbox-input\\"><label for=\\"A-3\\" class=\\"disabled\\"><div class=\\"manor-checkbox \\"></div><div class=\\"checkbox-content\\"><p>A-3 check</p></div></label></div><style>.row {
         @apply flex flex-wrap -mx-16;
       }
       </style></div></div>"
 `;
 
-exports[`CheckboxGroup renders with minimal props 1`] = `
+exports[`CheckboxGroup.component renders with minimal props 1`] = `
 "<div id=\\"test-group-id\\" class=\\"checkbox-group\\"><div class=\\"row \\"><div class=\\"col-6 \\"><style></style><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"\\"><div class=\\"manor-checkbox \\"></div><div class=\\"checkbox-content\\"><p>A-1 check</p></div></label></div><div class=\\"col-6 \\"><style></style><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-2\\" class=\\"\\"><div class=\\"manor-checkbox \\"></div><div class=\\"checkbox-content\\"><p>A-2 check</p></div></label></div><div class=\\"col-6 \\"><style></style><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-3\\" class=\\"\\"><div class=\\"manor-checkbox \\"></div><div class=\\"checkbox-content\\"><p>A-3 check</p></div></label></div><style>.row {
         @apply flex flex-wrap -mx-16;
       }
       </style></div></div>"
 `;
 
-exports[`CheckboxGroup renders with props 1`] = `
+exports[`CheckboxGroup.component renders with props 1`] = `
 "<div id=\\"test-group-id\\" class=\\"checkbox-group\\"><div class=\\"row \\"><div class=\\"col-5 \\"><style></style><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"\\"><div class=\\"manor-checkbox \\"><svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" x=\\"0px\\" y=\\"0px\\" enable-background=\\"0 -4 44 44\\" class=\\" 
         icon 
          
@@ -35,3 +35,5 @@ exports[`CheckboxGroup renders with props 1`] = `
       }
       </style></div></div>"
 `;
+
+exports[`generateGroup renders if there are children 1`] = `"<div class=\\"col-6 \\"><style></style><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"\\"><div class=\\"manor-checkbox \\"></div><div class=\\"checkbox-content\\"><p>A-1 check</p></div></label></div><div class=\\"col-6 \\"><style></style><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-2\\" class=\\"\\"><div class=\\"manor-checkbox \\"></div><div class=\\"checkbox-content\\"><p>A-2 check</p></div></label></div>"`;

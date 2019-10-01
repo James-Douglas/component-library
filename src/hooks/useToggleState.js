@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 const useToggleState = (initValue) => {
-  const [toggle, setToggle] = useState(initValue);
+  const [value, setToggle] = useState(initValue);
 
   return {
-    toggle,
-    onChange: (e) => {
-      setToggle(e.target.checked);
+    value,
+    toggle: () => {
+      setToggle(!value);
     },
   };
 };

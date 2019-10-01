@@ -2,12 +2,14 @@
 ## Usage
 ~~~js
 <Checkbox
-	{id}
-	{disabled}
-	{checked}
-	{invertColour}
-	{icon}
-	{size}
+	id={'example-id'}
+	disabled={false}
+	checked={false}
+	invertColour={false}
+	icon={'check'}
+    handleClick={func}
+    handleKeyUp={func}
+    children={<p>checkbox content</p>}
 />
 ~~~
 
@@ -20,15 +22,15 @@ Checkbox is a custom checkbox, styled with an icon. This is the default, singula
     * Defines if the checkbox is disabled or not. Defaults to false.
 3. `checked` *(optional) boolean*
     * Defines the checkbox checked state. Defaults to false.
-4. `invertColour` *(optional) string*
+4. `invertColour` *(optional) boolean*
     * Changes the color of the checked state - blue bg, white tick, or white bg, blue tick.
-5. `groupClass` *(optional) string*
-    * Adds a class to the wrap of the checkbox
 6. `icon` *(optional) string*
     * Defines the icon needed for the checkbox. Defaults to 'check'.
-7. `size` *(optional) number*
-    * Size of the icon
+6. `handleClick` *(optional) func*
+    * Supplies the label with a custom click function.
+6. `handleKeyUp` *(optional) string*
+    * Supplies the label with a custom keyUp function.
+6. `children` *(optional) string*
+    * Defines the associated content for the checkbox, used by the wrapper component, `<CheckboxGroup/>`. Not required for the singular checkbox.
 
-## Events
 
-The `itemChecked` event is dispatched on click, providing an object with the id of the checkbox *(string)* and its checked state *(boolean)*

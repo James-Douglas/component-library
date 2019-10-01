@@ -4,19 +4,19 @@ import useToggleState from '../../hooks/useToggleState';
 import Icon from '../Icon/Icon.component';
 import styles from './styles';
 
+export const renderIcon = (icon, value) => {
+  if (value) {
+    return (
+      <Icon name={icon} size={2} />
+    );
+  }
+  return null;
+};
+
 const Checkbox = ({
   id, icon, disabled, invertColour, handleClick, handleKeyUp, children,
 }) => {
-  const { toggle, onChange } = useToggleState(false);
-
-  const renderIcon = () => {
-    if (toggle) {
-      return (
-        <Icon name={icon} size={2} />
-      );
-    }
-    return null;
-  };
+  const { value, toggle } = useToggleState(false);
 
   return (
     <>
@@ -26,15 +26,15 @@ const Checkbox = ({
         name={id}
         type="checkbox"
         disabled={disabled}
-        onChange={onChange}
-        checked={toggle}
+        onChange={toggle}
+        checked={value}
         className="manor-checkbox-input"
         onClick={(e) => e.stopPropagation()}
       />
 
       <label htmlFor={id} onClick={handleClick} onKeyUp={handleKeyUp} className={disabled ? 'disabled' : ''}>
         <div className={`manor-checkbox ${invertColour ? 'inverted' : ''}`}>
-          {renderIcon()}
+          {renderIcon(icon, value)}
         </div>
         <div className="checkbox-content">
           {children}
