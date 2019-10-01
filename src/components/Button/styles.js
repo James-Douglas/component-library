@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 /* BASE STYLING
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .manor-button, .manor-button-link {
@@ -133,3 +136,4 @@ button[disabled] {
 .align-right {
   @apply flex-row-reverse;
 }
+`;
