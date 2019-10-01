@@ -14,9 +14,15 @@ export const renderIcon = (icon, value) => {
 };
 
 const Checkbox = ({
-  id, icon, disabled, invertColour, handleClick, handleKeyUp, children,
+  id, icon, disabled, invertColour, handleChange, children,
 }) => {
-  const { value, toggle } = useToggleState(false);
+  const [value, toggle] = useToggleState(false);
+
+  const toggleEventHandler = (e) => {
+    // console.trace()
+    toggle(e)
+    handleChange(e)
+  }
 
   return (
     <>
@@ -26,13 +32,13 @@ const Checkbox = ({
         name={id}
         type="checkbox"
         disabled={disabled}
-        onChange={toggle}
+        onChange={toggleEventHandler}
         checked={value}
         className="manor-checkbox-input"
-        onClick={(e) => e.stopPropagation()}
+
       />
 
-      <label htmlFor={id} onClick={handleClick} onKeyUp={handleKeyUp} className={disabled ? 'disabled' : ''}>
+      <label htmlFor={id} onKeyUp={toggleEventHandler} className={disabled ? 'disabled' : ''}>
         <div className={`manor-checkbox ${invertColour ? 'inverted' : ''}`}>
           {renderIcon(icon, value)}
         </div>
@@ -64,8 +70,8 @@ Checkbox.defaultProps = {
   disabled: false,
   invertColour: false,
   children: [],
-  handleClick: () => {},
-  handleKeyUp: () => {},
+  handleClick: () => { },
+  handleKeyUp: () => { },
 };
 
 export default Checkbox;

@@ -14,6 +14,7 @@ label {
 .manor-checkbox-input {
   opacity: 0;
   width: 0;
+  height: 0;
 }
 .manor-checkbox-input:invalid + label > .manor-checkbox{
   @apply border-invalid text-invalid fill-current;
