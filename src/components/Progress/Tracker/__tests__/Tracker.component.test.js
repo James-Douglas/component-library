@@ -23,12 +23,10 @@ describe('Tracker', () => {
     expect(container.innerHTML).toMatchSnapshot();
   });
   it('should check scroll and update isSticky and stuck props', () => {
-    window.scrollTo(120, 1000);
     const { container } = render(<Tracker value={60} steps={props.steps} isSticky stuck />);
     expect(container.innerHTML).toMatchSnapshot();
   });
   it('should check scroll and update isSticky and stuck props', () => {
-    window.scrollTo(4, 1000);
     const { container } = render(<Tracker value={60} isSticky={false} stuck={false} />);
     expect(container.innerHTML).toMatchSnapshot();
   });
@@ -58,10 +56,6 @@ describe('processTrackerItems', () => {
   };
   it('returns correct content for object without active and disabled props', () => {
     const { container } = render(<TrackerItems steps={[{ label: 'About You', url: '#label' }, { label: 'Your Cover', url: '#another' }]} />);
-    expect(container.innerHTML).toMatchSnapshot();
-  });
-  it('returns incorrect content for object without active and disabled props', () => {
-    const { container } = render(<TrackerItems steps={[{ myLabel: 'About You', link: '#label' }, { myLabel: 'Your Cover', link: '#another' }]} />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 });

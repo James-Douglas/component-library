@@ -8,12 +8,10 @@ describe('Header', () => {
     expect(container.innerHTML).toMatchSnapshot();
   });
   it('should check scroll and update isSticky and stuck props', () => {
-    window.scrollTo(400, 1000);
     const { container } = render(<Header number="1800 000 000" isSticky stuck />);
     expect(container.innerHTML).toMatchSnapshot();
   });
   it('should check scroll and update isSticky and stuck - false props', () => {
-    window.scrollTo(4, 1000);
     const { container } = render(<Header number="1800 000 000" isSticky={false} stuck={false} />);
     expect(container.innerHTML).toMatchSnapshot();
   });

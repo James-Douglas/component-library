@@ -13,12 +13,10 @@ describe('Bar', () => {
     expect(container.innerHTML).toMatchSnapshot();
   });
   it('should check scroll and update isSticky and stuck props', () => {
-    window.scrollTo(120, 1000);
     const { container } = render(<Bar isSticky stuck />);
     expect(container.innerHTML).toMatchSnapshot();
   });
   it('should check scroll and update isSticky and stuck props', () => {
-    window.scrollTo(4, 1000);
     const { container } = render(<Bar isSticky={false} stuck={false} />);
     expect(container.innerHTML).toMatchSnapshot();
   });

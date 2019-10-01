@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProgressIcon goes to default number in properties when index is wrong type 1`] = `"<span class=\\"progress-icon active disabled isMobile\\"><style></style>3</span>"`;
-
 exports[`ProgressIcon renders correctly on Desktop 1`] = `"<span class=\\"progress-icon active  \\"><style></style>3</span>"`;
 
 exports[`ProgressIcon renders correctly on mobile 1`] = `"<span class=\\"progress-icon active  isMobile\\"><style></style>3</span>"`;
@@ -12,4 +10,4 @@ exports[`ProgressIcon renders correctly without disabled property 1`] = `"<span 
 
 exports[`ProgressIcon renders correctly without label 1`] = `"<span class=\\"progress-icon   isMobile\\"><style></style>3</span>"`;
 
-exports[`ProgressIcon renders with minimal properties 1`] = `"<span class=\\"progress-icon active disabled isMobile\\"><style></style>1</span>"`;
+exports[`ProgressIcon renders with minimal properties 1`] = `"<span class=\\"progress-icon active disabled isMobile\\"><style></style>3</span>"`;

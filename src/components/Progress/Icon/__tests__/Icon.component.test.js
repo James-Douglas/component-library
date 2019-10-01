@@ -4,7 +4,7 @@ import ProgressIcon from '../Icon.component';
 
 describe('ProgressIcon', () => {
   it('renders with minimal properties', () => {
-    const { container } = render(<ProgressIcon />);
+    const { container } = render(<ProgressIcon index={3} />);
     expect(container.innerHTML).toMatchSnapshot();
   });
   it('renders correctly without label', () => {
@@ -32,13 +32,7 @@ describe('ProgressIcon', () => {
     const { container } = render(<ProgressIcon index={props.index} disabled={props.disabled} mobile={props.mobile} />);
     expect(container.innerHTML).toMatchSnapshot();
   });
-  it('goes to default number in properties when index is wrong type', () => {
-    const props = {
-      index: '3',
-    };
-    const { container } = render(<ProgressIcon index={props.index} />);
-    expect(container.innerHTML).toMatchSnapshot();
-  });
+
   it('renders correctly on mobile', () => {
     const props = {
       index: 3,
