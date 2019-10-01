@@ -1,25 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { render, fireEvent } from '@testing-library/react';
 import Checkbox, { renderIcon } from '../Checkbox.component';
 
 
 describe('renderIcon()', () => {
+  // eslint-disable-next-line react/prop-types
   const IconContainer = ({ icon, toggle }) => (
     <>
       {renderIcon(icon, toggle)}
     </>
   );
-
-  IconContainer.propTypes = {
-    icon: PropTypes.string,
-    toggle: PropTypes.bool,
-  };
-
-  IconContainer.defaultProps = {
-    icon: null,
-    toggle: null,
-  };
 
   it('does not render an icon if toggle condition is not met', () => {
     const { container } = render(<IconContainer toggle={false} />);

@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 
-export const generateGroup = (colSize, children) => (
-  children.map((child) => (
-    <Column col={colSize} key={`key-${child.props.id}`}>
-      {child}
-    </Column>
-  )));
+export const generateGroup = (colSize, children) => {
+  if (children) {
+    return children.map((child) => {
+      return (
+      <Column col={colSize} key={`key-${child.props.id}`}>
+        {child}
+      </Column>
+      )
+    });
+  }
+  return null;
+};
 
 const CheckboxGroup = ({
   groupId, colSize, handleClick, handleKeyUp, children,

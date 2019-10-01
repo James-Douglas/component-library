@@ -3,25 +3,22 @@ import useToggleState from '../useToggleState';
 
 describe('useToggleState', () => {
   it('should toggle to true', () => {
-  
     const { result } = renderHook(() => useToggleState(false));
 
     act(() => {
-      result.current.toggle()
-    })
+      result.current.toggle();
+    });
 
-    expect(result.current.value).toBe(true)
+    expect(result.current.value).toBe(true);
   });
 
   it('should toggle to false', () => {
-  
     const { result } = renderHook(() => useToggleState(true));
 
     act(() => {
-      result.current.toggle()
-    })
+      result.current.toggle();
+    });
 
-    expect(result.current.value).toBe(false)
+    expect(result.current.value).toBe(false);
   });
-
 });

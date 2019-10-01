@@ -1,30 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { render, fireEvent } from '@testing-library/react';
 import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
 
 describe('generateGroup', () => {
+  // eslint-disable-next-line react/prop-types
   const GroupContainer = ({ colSize, children }) => (
     <>
       {generateGroup(colSize, children)}
     </>
   );
-
-  GroupContainer.propTypes = {
-    colSize: PropTypes.string,
-    children: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.array,
-      PropTypes.node,
-      PropTypes.arrayOf(PropTypes.node),
-    ]),
-  };
-
-  GroupContainer.defaultProps = {
-    colSize: null,
-    children: [],
-  };
 
   it('does not render children if there are none', () => {
     const { container } = render(<GroupContainer />);
@@ -98,7 +83,6 @@ describe('CheckboxGroup.component', () => {
     fireEvent.click(chkA1Label, { button: 0 });
 
     expect(chkA1Input.checked).toBe(true);
-    expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('does not check when disabled', () => {
@@ -117,6 +101,5 @@ describe('CheckboxGroup.component', () => {
     fireEvent.click(chkA3Label, { button: 0 });
 
     expect(chkA3Input.checked).toBe(false);
-    expect(container.innerHTML).toMatchSnapshot();
   });
 });
