@@ -28,9 +28,9 @@ ProgressIcon.propTypes = {
 };
 
 ProgressIcon.defaultProps = {
-  disabled: 'true',
-  active: 'true',
-  mobile: 'true',
+  disabled: true,
+  active: true,
+  mobile: true,
   index: 1,
 };
 
