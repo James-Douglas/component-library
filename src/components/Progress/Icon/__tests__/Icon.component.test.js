@@ -3,52 +3,20 @@ import { render } from '@testing-library/react';
 import ProgressIcon from '../Icon.component';
 
 describe('ProgressIcon', () => {
-  it('renders with minimal properties', () => {
-    const { container } = render(<ProgressIcon index={3} />);
-    expect(container.innerHTML).toMatchSnapshot();
+  it('renders correctly without props', () => {
+    const { getByText } = render(<ProgressIcon />);
+    expect(getByText('1')).toBeInTheDocument();
   });
-  it('renders correctly without label', () => {
-    const props = {
-      index: 3,
-      active: false,
-      disabled: false,
-    };
-    const { container } = render(<ProgressIcon index={props.index} active={props.active} disabled={props.disabled} mobile={props.mobile} />);
-    expect(container.innerHTML).toMatchSnapshot();
+  it('renders correctly for disabled prop', () => {
+    const { getByText } = render(<ProgressIcon index={4} disabled />);
+    expect(getByText('4')).toHaveClass('disabled');
   });
-  it('renders correctly without active property', () => {
-    const props = {
-      index: 3,
-      disabled: false,
-    };
-    const { container } = render(<ProgressIcon index={props.index} disabled={props.disabled} mobile={props.mobile} />);
-    expect(container.innerHTML).toMatchSnapshot();
+  it('renders correctly for active prop', () => {
+    const { getByText } = render(<ProgressIcon index={4} active />);
+    expect(getByText('4')).toHaveClass('active');
   });
-  it('renders correctly without disabled property', () => {
-    const props = {
-      index: 3,
-      active: false,
-    };
-    const { container } = render(<ProgressIcon index={props.index} disabled={props.disabled} mobile={props.mobile} />);
-    expect(container.innerHTML).toMatchSnapshot();
-  });
-
-  it('renders correctly on mobile', () => {
-    const props = {
-      index: 3,
-      active: false,
-      disabled: false,
-    };
-    const { container } = render(<ProgressIcon index={props.index} disabled={props.disabled} mobile />);
-    expect(container.innerHTML).toMatchSnapshot();
-  });
-  it('renders correctly on Desktop', () => {
-    const props = {
-      index: 3,
-      active: false,
-      disabled: false,
-    };
-    const { container } = render(<ProgressIcon index={props.index} disabled={props.disabled} mobile={false} />);
-    expect(container.innerHTML).toMatchSnapshot();
+  it('renders correctly for mobile prop', () => {
+    const { getByText } = render(<ProgressIcon index={4} />);
+    expect(getByText('4')).not.toHaveClass('isMobile');
   });
 });

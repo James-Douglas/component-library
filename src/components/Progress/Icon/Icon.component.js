@@ -10,9 +10,9 @@ const ProgressIcon = ({
 }) => {
   const activeClass = active ? 'active' : '';
   const disabledClass = disabled ? 'disabled' : '';
-  const mobileClass = mobile ? 'isMobile' : '';
+  const desktopClass = !mobile ? 'mobile' : '';
   return (
-    <span className={`progress-icon ${activeClass} ${disabledClass} ${mobileClass}`}>
+    <span className={`progress-icon ${activeClass} ${disabledClass} ${desktopClass}`}>
       <style jsx>{styles}</style>
       {index}
     </span>
@@ -28,9 +28,9 @@ ProgressIcon.propTypes = {
 };
 
 ProgressIcon.defaultProps = {
-  disabled: true,
-  active: true,
-  mobile: true,
+  disabled: false,
+  active: false,
+  mobile: false,
   index: 1,
 };
 

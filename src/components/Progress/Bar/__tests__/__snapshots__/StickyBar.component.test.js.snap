@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`StickyBar renders correctly with value as number 1`] = `"<div class=\\"progress-container  \\"><style></style><progress class=\\"progress \\" max=\\"100\\" value=\\"55\\"></progress><div class=\\"label  forwards\\" style=\\"margin-left: 55vw; right: 4.8rem;\\">55%</div></div>"`;
-
-exports[`StickyBar renders correctly with value as string 1`] = `"<div class=\\"progress-container  \\"><style></style><progress class=\\"progress \\" max=\\"100\\" value=\\"60\\"></progress><div class=\\"label  forwards\\" style=\\"margin-left: 60vw; right: 4.8rem;\\">60%</div></div>"`;

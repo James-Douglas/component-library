@@ -10,11 +10,12 @@ const Bar = ({
 }) => {
   const stickyClass = isSticky ? 'sticky' : '';
   const stuckClass = stuck ? 'stuck' : '';
+  const leftIndent = { marginLeft: `${value}vw`, right: value > 10 ? '4.8rem' : '3.5rem' };
   return (
     <div className={`progress-container ${stickyClass} ${stuckClass}`}>
       <style jsx>{styles}</style>
-      <progress className={`progress ${(value === 100) ? 'complete' : ''}`} max="100" value={value} />
-      <div className={`label  ${(!backwards) ? 'forwards' : ''}`} style={{ marginLeft: `${value}vw`, right: value > 10 ? '4.8rem' : '3.5rem' }}>
+      <progress className={`progress ${(value === 100 || value === '100') ? 'complete' : ''}`} max="100" value={value} />
+      <div className={`label  ${(!backwards) ? 'forwards' : ''}`} style={leftIndent}>
         {`${value}%`}
       </div>
     </div>

@@ -4,11 +4,11 @@ import StickyBar from '../StickyBar.component';
 
 describe('StickyBar', () => {
   it('renders correctly with value as string', () => {
-    const { container } = render(<StickyBar value="60" />);
-    expect(container.innerHTML).toMatchSnapshot();
+    const { getByText } = render(<StickyBar value="60" />);
+    expect(getByText('60%')).toBeInTheDocument();
   });
   it('renders correctly with value as number', () => {
-    const { container } = render(<StickyBar value={55} />);
-    expect(container.innerHTML).toMatchSnapshot();
+    const { getByText } = render(<StickyBar value={60} />);
+    expect(getByText('60%')).toBeInTheDocument();
   });
 });

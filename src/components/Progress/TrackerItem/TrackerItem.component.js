@@ -24,10 +24,10 @@ TrackerItem.propTypes = {
 
 TrackerItem.defaultProps = {
   index: 1,
-  mobile: true,
   label: 'Label',
-  active: true,
-  disabled: true,
+  mobile: false,
+  active: false,
+  disabled: false,
 };
 
 export default TrackerItem;

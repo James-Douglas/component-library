@@ -5,19 +5,42 @@ import Bar from '../Bar.component';
 
 describe('Bar', () => {
   it('renders correctly with value as string', () => {
-    const { container } = render(<Bar value="66" backwards={false} />);
-    expect(container.innerHTML).toMatchSnapshot();
+    const { getByText } = render(<Bar value="60" />);
+    expect(getByText('60%')).toBeInTheDocument();
   });
   it('renders correctly with value as number', () => {
-    const { container } = render(<Bar value={55} />);
-    expect(container.innerHTML).toMatchSnapshot();
+    const { getByText } = render(<Bar value={55} />);
+    expect(getByText('55%')).toBeInTheDocument();
   });
-  it('should check scroll and update isSticky and stuck props', () => {
-    const { container } = render(<Bar isSticky stuck />);
-    expect(container.innerHTML).toMatchSnapshot();
+  it('should check scroll and add isSticky and stuck props', () => {
+    const { container } = render(<Bar value="60" isSticky stuck />);
+    expect(container.firstChild).toHaveClass('stuck', 'sticky');
   });
-  it('should check scroll and update isSticky and stuck props', () => {
-    const { container } = render(<Bar isSticky={false} stuck={false} />);
-    expect(container.innerHTML).toMatchSnapshot();
+  it('should check scroll and remove isSticky and stuck props', () => {
+    const { container } = render(<Bar value="60" isSticky={false} stuck={false} />);
+    expect(container.firstChild).not.toHaveClass('stuck', 'sticky');
+  });
+  it('should check progress classes', () => {
+    const { container } = render(<Bar value={100} />);
+    const list = container.getElementsByTagName('progress')[0];
+    expect(list).toHaveClass('complete');
+  });
+  it('should check progress value', () => {
+    const { container } = render(<Bar value={100} />);
+    const list = container.getElementsByTagName('progress')[0];
+    expect(list).toHaveAttribute('value', '100');
+  });
+  it('should check label styles', () => {
+    const { container } = render(<Bar value="60" backwards />);
+    const label = container.getElementsByClassName('label')[0];
+    expect(label).not.toHaveClass('forwards');
+  });
+  it('should check styles', () => {
+    const { container } = render(<Bar value="60" />);
+    const label = container.getElementsByClassName('label')[0];
+    expect(label).toHaveStyle(`
+      marginLeft: 60vw;
+      right: 4.8rem;
+    `);
   });
 });

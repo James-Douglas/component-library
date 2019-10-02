@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react-hooks'
 import useIsSticky from '../useIsSticky';
 
 describe('useIsSticky', () => {
@@ -15,8 +15,9 @@ describe('useIsSticky', () => {
     // set scroll
     global.window.scrollY = scrollTop;
     // trigger scroll event
-    map.scroll();
-
+    act(() => {
+      map.scroll();
+    })
     expect(result.current).toBe(true);
   });
 
@@ -33,8 +34,9 @@ describe('useIsSticky', () => {
     // set scroll
     global.window.scrollY = scrollTop;
     // trigger scroll event
-    map.scroll();
-
+    act(() => {
+      map.scroll();
+    })
     expect(result.current).toBe(false);
   });
 });

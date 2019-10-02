@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Bar renders correctly with value as number 1`] = `"<div class=\\"progress-container  \\"><style></style><progress class=\\"progress \\" max=\\"100\\" value=\\"55\\"></progress><div class=\\"label  forwards\\" style=\\"margin-left: 55vw; right: 4.8rem;\\">55%</div></div>"`;
-
-exports[`Bar renders correctly with value as string 1`] = `"<div class=\\"progress-container  \\"><style></style><progress class=\\"progress \\" max=\\"100\\" value=\\"66\\"></progress><div class=\\"label  forwards\\" style=\\"margin-left: 66vw; right: 4.8rem;\\">66%</div></div>"`;
-
-exports[`Bar should check scroll and update isSticky and stuck props 1`] = `"<div class=\\"progress-container sticky stuck\\"><style></style><progress class=\\"progress \\" max=\\"100\\" value=\\"70\\"></progress><div class=\\"label  forwards\\" style=\\"margin-left: 70vw; right: 4.8rem;\\">70%</div></div>"`;
-
-exports[`Bar should check scroll and update isSticky and stuck props 2`] = `"<div class=\\"progress-container  \\"><style></style><progress class=\\"progress \\" max=\\"100\\" value=\\"70\\"></progress><div class=\\"label  forwards\\" style=\\"margin-left: 70vw; right: 4.8rem;\\">70%</div></div>"`;

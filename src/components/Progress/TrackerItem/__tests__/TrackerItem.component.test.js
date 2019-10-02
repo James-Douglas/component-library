@@ -2,16 +2,22 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import TrackerItem from '../TrackerItem.component';
 
+
+let mockUseIsDesktopValue = true;
+jest.mock('../../../../hooks/useIsDesktop', () => ({
+  __esModule: true,
+  default: jest.fn(() => mockUseIsDesktopValue),
+}));
+
 describe('TrackerItem', () => {
-  it('renders correctly', () => {
-    const props = {
-      index: 3,
-      mobile: false,
-      label: '66%',
-      active: false,
-      disabled: true,
-    };
-    const { container } = render(<TrackerItem index={props.index} mobile={props.mobile} label={props.label} active={props.active} disabled={props.disabled} />);
-    expect(container.innerHTML).toMatchSnapshot();
+  it('renders correctly with label depending from desktop version', () => {
+    mockUseIsDesktopValue = true;
+    const { getByText } = render(<TrackerItem mobile={mockUseIsDesktopValue} index={4} label="About you" />);
+    expect(getByText('About you')).toBeInTheDocument();
+  });
+  it('renders correctly with label depending from mobile version', () => {
+    mockUseIsDesktopValue = false;
+    const { container } = render(<TrackerItem mobile={mockUseIsDesktopValue} index={4} label="About you" />);
+    expect(container.firstChild).toBeEmpty();
   });
 });
