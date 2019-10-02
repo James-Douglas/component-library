@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks'
+import { renderHook, act } from '@testing-library/react-hooks';
 import useIsSticky from '../useIsSticky';
 
 describe('useIsSticky', () => {
@@ -17,7 +17,7 @@ describe('useIsSticky', () => {
     // trigger scroll event
     act(() => {
       map.scroll();
-    })
+    });
     expect(result.current).toBe(true);
   });
 
@@ -36,7 +36,7 @@ describe('useIsSticky', () => {
     // trigger scroll event
     act(() => {
       map.scroll();
-    })
+    });
     expect(result.current).toBe(false);
   });
 });

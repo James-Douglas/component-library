@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Tracker from '../Tracker.component';
+
 describe('Tracker', () => {
   const props = {
     steps: [
