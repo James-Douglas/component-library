@@ -1,5 +1,5 @@
 {
-  "name": "manor-ctm",
+  "name": "@comparethemarketau/manor-ctm",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test --reporters=jest-silent-reporter --coverage --watchAll",
+    "tdd": "craco test --coverage --watchAll",
+    "test": "cross-env JEST_SILENT_REPORTER_DOTS=true craco test --reporters=jest-silent-reporter --coverage --watchAll",
     "test:ci": "cross-env CI=true craco test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
@@ -46,6 +47,19 @@
         "statements": 75
       }
     }
+  },
+  "publishConfig": {
+    "registry": "https://nexus.comparethemarket.com.au/repository/npm-all/",
+    "access": "public",
+    "tag": "latest"
+  },
+  "release": {
+    "branch": "master",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm"
+    ]
   },
   "browserslist": {
     "production": [
@@ -92,6 +106,7 @@
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "react-test-renderer": "^16.9.0",
+    "semantic-release": "^15.13.24",
     "tailwindcss": "^1.1.2",
     "tailwindcss-typography": "^2.2.0"
   }
