@@ -6,14 +6,12 @@ const useToggleState = (initValue) => {
   return [
     value,
     () => {
-      console.log("toggle method", value)
       setToggle((v) => {
-        const val = !v
-        console.log(val)
-        return val
-      })
-    }
-  ]
+        const val = !v;
+        return val;
+      });
+    },
+  ];
 };
 
 export default useToggleState;

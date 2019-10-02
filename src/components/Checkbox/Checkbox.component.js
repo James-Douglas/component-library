@@ -19,10 +19,11 @@ const Checkbox = ({
   const [value, toggle] = useToggleState(false);
 
   const toggleEventHandler = (e) => {
-    // console.trace()
-    toggle(e)
-    handleChange(e)
-  }
+    toggle();
+    if (handleChange) {
+      handleChange(e);
+    }
+  };
 
   return (
     <>
@@ -35,10 +36,9 @@ const Checkbox = ({
         onChange={toggleEventHandler}
         checked={value}
         className="manor-checkbox-input"
-
       />
 
-      <label htmlFor={id} onKeyUp={toggleEventHandler} className={disabled ? 'disabled' : ''}>
+      <label htmlFor={id} className={disabled ? 'disabled' : ''}>
         <div className={`manor-checkbox ${invertColour ? 'inverted' : ''}`}>
           {renderIcon(icon, value)}
         </div>
@@ -55,8 +55,7 @@ Checkbox.propTypes = {
   icon: PropTypes.string,
   disabled: PropTypes.bool,
   invertColour: PropTypes.bool,
-  handleClick: PropTypes.func,
-  handleKeyUp: PropTypes.func,
+  handleChange: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -70,8 +69,7 @@ Checkbox.defaultProps = {
   disabled: false,
   invertColour: false,
   children: [],
-  handleClick: () => { },
-  handleKeyUp: () => { },
+  handleChange: () => { },
 };
 
 export default Checkbox;

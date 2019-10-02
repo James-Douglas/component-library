@@ -41,7 +41,7 @@ describe('Checkbox.component', () => {
         icon="check"
         disabled={false}
         invertColour
-        handleClick={mockTestClick}
+        handleChange={mockTestClick}
       >
         <p>child content</p>
       </Checkbox>,
