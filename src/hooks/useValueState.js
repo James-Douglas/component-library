@@ -1,15 +1,17 @@
 import { useState } from 'react';
 
 const useValueState = (initValue) => {
-  const [value, setValue] = useState(initValue);
+  const [ value, setValue ] = useState(initValue);
 
-  return {
+  return [
     value,
-    onChange: (e) => {
+    (e) => {
       setValue(e.target.value);
-      console.log(e.target.value);
     },
-  };
+    () => {
+      setValue('');
+    },
+  ];
 };
 
 export default useValueState;
