@@ -81,7 +81,6 @@ const Input = ({
 
   const [ value, setValue, clearValue ] = useValueState('');
   const inputWrapElement = useRef(null);
-  const inputElement = useRef(null);
 
   const clearInput = () => {
     clearValue();
@@ -121,9 +120,7 @@ const Input = ({
                 disabled={disabled}
                 value={value}
                 onChange={setValue}
-                
                 autoComplete='off'
-                ref={inputElement}
                 onFocus={addFocus}
                 onBlur={removeFocus}
                 className={`
