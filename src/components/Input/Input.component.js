@@ -5,11 +5,7 @@ import Icon from '../Icon/Icon.component';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles.js';
 
-/* 
-  Requires fieldset to handle the label, fieldset not in master yet
-*/
-
-const renderClearIcon = (value, clearInput, autoFill) => {
+const renderClearIcon = (value, clearInput, autofill, label) => {
   if (value.length) {
     return (
       <>
@@ -18,10 +14,10 @@ const renderClearIcon = (value, clearInput, autoFill) => {
         onClick={clearInput} 
         className={`
           input-clear-button
-          ${autoFill ? 'darker' : 'lighter'}
+          ${autofill ? 'darker' : 'lighter'}
         `}
         >
-          <div className='sr-only'>Clears the label (update to be dynamic) field.</div>
+          <div className='sr-only'>Clears the {label} field.</div>
           <Icon name={'closeCircle'} size={1.6}></Icon>
       </button>
       </>
@@ -30,7 +26,7 @@ const renderClearIcon = (value, clearInput, autoFill) => {
   return null;
 }
 
-const renderPrefix = (prefix, bordered, autoFill, disabled) => {
+const renderPrefix = (prefix, bordered, autofill, disabled) => {
   if (prefix) {
     return (
       <>
@@ -38,7 +34,7 @@ const renderPrefix = (prefix, bordered, autoFill, disabled) => {
         <span className={`
           prefix 
           ${!bordered ? 'prefix-no-border' : ''}
-          ${autoFill && !disabled ? 'manor-prefilled' : ''}
+          ${autofill && !disabled ? 'manor-prefilled' : ''}
         `} 
         >
           {prefix}
@@ -49,7 +45,7 @@ const renderPrefix = (prefix, bordered, autoFill, disabled) => {
   return null;
 }
 
-const renderSuffix = (suffix, bordered, autoFill, disabled) => {
+const renderSuffix = (suffix, bordered, autofill, disabled) => {
   if (suffix) {
     return (
       <>
@@ -57,7 +53,7 @@ const renderSuffix = (suffix, bordered, autoFill, disabled) => {
         <span className={`
           suffix 
           ${!bordered ? 'prefix-no-border' : ''}
-          ${autoFill && !disabled ? 'manor-prefilled' : ''}
+          ${autofill && !disabled ? 'manor-prefilled' : ''}
         `} 
         >
           {suffix}
@@ -68,8 +64,19 @@ const renderSuffix = (suffix, bordered, autoFill, disabled) => {
   return null;
 }
 
+const renderOptionalElement = (required) => {
+  if (!required) {
+    return (
+      <>
+        <span className="manor-subscript">Optional</span>
+      </>
+    )
+  }
+  return null;
+}
+
 const Input = ({
-  id, type, placeholder, autoFill, disabled, bordered, invalid, prefix, suffix, label, tooltip, forceFullWidth
+  id, type, placeholder, autofill, required, disabled, bordered, invalid, prefix, suffix, label, tooltip
 }) => {
 
   const [ value, setValue, clearValue ] = useValueState('');
@@ -81,11 +88,11 @@ const Input = ({
   }
 
   const addFocus = () => {
-    inputWrapElement.current.classList.add('fix-wrap-focus');
+    inputWrapElement.current.classList.add('input-wrap-focus');
   }
 
   const removeFocus = () => {
-    inputWrapElement.current.classList.remove('fix-wrap-focus');
+    inputWrapElement.current.classList.remove('input-wrap-focus');
   }
 
   return (
@@ -97,13 +104,15 @@ const Input = ({
             ref={inputWrapElement}
             className={`
             input-wrap
-            ${autoFill && !disabled ? 'manor-prefilled-border' : ''}
+            ${autofill && !disabled ? 'manor-prefilled-border' : ''}
             ${bordered ? 'input-border' : ''}
             ${invalid ? 'invalid' : ''}
             ${disabled ? 'disabled' : ''}
           `}
           >
-            {renderPrefix(prefix, bordered, autoFill, disabled)}
+
+            {renderPrefix(prefix, bordered, autofill, disabled)}
+
             <div className='input-clear-wrap'>
               <input
                 id={id}
@@ -112,28 +121,62 @@ const Input = ({
                 disabled={disabled}
                 value={value}
                 onChange={setValue}
-                className='input-default'
+                
                 autoComplete='off'
                 ref={inputElement}
                 onFocus={addFocus}
                 onBlur={removeFocus}
+                className={`
+                  input-default
+                  ${autofill && !disabled ? 'manor-prefilled' : ''}
+                `}
               />
-              {renderClearIcon(value, clearInput, autoFill)}
+
+              {renderClearIcon(value, clearInput, autofill, label)}
+
             </div>
-            {renderSuffix(suffix, bordered, autoFill, disabled)}
+
+            {renderSuffix(suffix, bordered, autofill, disabled)}
+
+          </div>
+          <div className='supporting-elements'>
+            {renderOptionalElement(required)}
           </div>
         </div>
+        
       </Fieldset>
     </>
   );
 };
 
 Input.propTypes = {
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  autofill: PropTypes.bool,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  bordered: PropTypes.bool,
+  invalid: PropTypes.bool,
+  prefix: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
+  suffix: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
+  label: PropTypes.string,
+  tooltip: PropTypes.object
 };
 
 Input.defaultProps = {
+  type: 'text',
+  autofill: false,
+  required: true,
+  disabled: false,
   bordered: true,
+  invalid: false,
 };
 
 export default Input;

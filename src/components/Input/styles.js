@@ -2,7 +2,7 @@ import css from 'styled-jsx/css';
 
 export default css`
 .input-container {
-  @apply relative w-256;
+  @apply relative mb-12;
 }
 
 .input-default, .input-container {
@@ -10,7 +10,7 @@ export default css`
  }
 
 .input-default {
-  @apply w-256  pl-12 block text-base border border-solid border-transparent;
+  @apply pl-12 block text-base border border-solid border-transparent;
   min-height: 4.4rem;
   padding-right: 3.6rem;
 }
@@ -49,10 +49,6 @@ input:focus, input:active, input:hover {
 
 input[disabled] {
   @apply bg-white cursor-not-allowed;
-}
-
-.disabled {
-  @apply opacity-50;
 }
 
 .lighter {
@@ -119,6 +115,10 @@ input[disabled] {
 
 .input-wrap-focus {
   @apply border border-solid border-light-blue;
+}
+
+.disabled {
+  @apply opacity-50;
 }
 
 .manor-prefilled,
