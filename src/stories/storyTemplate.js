@@ -9,12 +9,13 @@ const styles = css`
     @apply bg-grey-lighter;
   }
   .centered {
-    @apply w-full min-h-screen flex justify-center items-center flex-col;
+    @apply w-full h-full flex justify-center items-center flex-col;
   }
 `;
 
 const StoryTemplate = ({ background, children }) => (
   <div className={`centered ${background}`}>
+    <style jsx>{styles}</style>
     <Container>
       {children}
     </Container>

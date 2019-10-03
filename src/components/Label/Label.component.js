@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import css from 'styled-jsx/css';
 
-import Tooltip from '../Tooltip/Tooltip.component';
+import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 
@@ -21,21 +21,29 @@ const Label = ({
   }, [tooltip.body, tooltip.title]);
 
   const renderTooltip = () => {
+    const {
+      title, body, boundingElementSelector, screenReaderLabel, justifyEnd,
+    } = tooltip;
     if (hasTooltip && tooltipEnabled) {
       return (
         <Column col="2">
-          <Tooltip title={tooltip.title} body={tooltip.body} boundingElementSelector={tooltip.boundingElementSelector} screenReaderLabel={tooltip.screenReaderLabel} />
+          <Tooltip
+            title={title}
+            body={body}
+            boundingElementSelector={boundingElementSelector}
+            screenReaderLabel={screenReaderLabel}
+            justifyEnd={justifyEnd}
+          />
         </Column>
       );
     }
     return null;
   };
-
   return (
     <Row>
       <style jsx>{styles}</style>
       <div className="label">
-        <Column col={hasTooltip && !forceFullWidth ? '10' : '12'}>
+        <Column col={hasTooltip ? '10' : '12'}>
           <label htmlFor={forId} className="manor-body1 manor-spacing-label-to-field w-full">
             {text}
           </label>
@@ -49,12 +57,7 @@ const Label = ({
 Label.propTypes = {
   forId: PropTypes.string,
   text: PropTypes.string,
-  tooltip: PropTypes.shape({
-    title: PropTypes.string,
-    body: PropTypes.string,
-    boundingElementSelector: PropTypes.string,
-    screenReaderLabel: PropTypes.string,
-  }),
+  tooltip: PropTypes.shape(tooltipPropTypes),
   tooltipEnabled: PropTypes.bool,
   forceFullWidth: PropTypes.bool,
 };

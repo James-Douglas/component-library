@@ -10,6 +10,7 @@ const ToggleView = () => {
   };
 
   const handleChange = (id, group) => {
+    // eslint-disable-next-line no-console
     console.log(`${group} group toggle selected, id: ${id} `);
   };
 

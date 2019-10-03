@@ -41,7 +41,7 @@ export const getChildren = (children, type, name, selectedId, didToggle, rectOpt
 );
 
 const ToggleGroup = ({
-  id, name, label, tooltip, handleChange, children,rectOptions
+  id, name, label, tooltip, handleChange, children, rectOptions,
 }) => {
   const [selectedId, setSelectedId] = useState();
   const type = getType(children);

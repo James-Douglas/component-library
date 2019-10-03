@@ -12,7 +12,7 @@ describe('Contact', () => {
   it('renders correctly with number prop', () => {
     mockUseIsDesktopValue = true;
     const { container } = render(<Contact number="1800 000 001" size="large" />);
-    const link = container.querySelector(`[target="link-target"]`)
+    const link = container.querySelector('[target="link-target"]');
     expect(link).toHaveClass('large');
   });
   it('renders correctly for mobile prop', () => {

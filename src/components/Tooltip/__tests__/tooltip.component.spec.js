@@ -109,6 +109,11 @@ describe('Tooltip', () => {
     expect(getByText('test tooltip content')).toBeInTheDocument();
   });
 
+  it('renders with justify-end class when justifyEnd is true', () => {
+    const { container } = render(<Tooltip body="test tooltip content" justifyEnd />);
+    expect(container.querySelector('.tooltip-wrapper')).toHaveClass('justify-end');
+  });
+
   it('dismisses tooltip on escape key', async () => {
     render(<Tooltip body="test tooltip content" />);
     const tooltipTriggerElement = document.body.querySelector('.tooltip-icon');

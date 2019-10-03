@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Tracker, { processTrackerItems, processTrackerItemLink } from '../Tracker.component';
+import Tracker from '../Tracker.component';
 
 describe('processTrackerItemLink()', () => {
   const props = {
