@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Row = ({ children, className }) => (
-  <div className={`row ${className}`}>
+  <div className={`row ${className}`} jsx="true">
     {children}
-    <style jsx>
+    <style jsx="true">
       {`.row {
         @apply flex flex-wrap -mx-16;
       }

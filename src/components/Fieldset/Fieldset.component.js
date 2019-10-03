@@ -98,8 +98,8 @@ const Fieldset = ({
   }, [screenReaderLabel, label]);
 
   return (
-    <div className="fieldset">
-      <style jsx>{styles}</style>
+    <div className="fieldset" jsx="true">
+      <style jsx="true">{styles}</style>
       <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltip} forceFullWidth={forceFullWidth} />
       <Row>
         <Column sm={forceFullWidth ? '12' : '10'} xs="12">

@@ -33,7 +33,7 @@ const Label = ({
 
   return (
     <Row>
-      <style jsx>{styles}</style>
+      <style jsx="true">{styles}</style>
       <div className="label">
         <Column col={hasTooltip && !forceFullWidth ? '10' : '12'}>
           <label htmlFor={forId} className="manor-body1 manor-spacing-label-to-field w-full">

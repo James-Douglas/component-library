@@ -3,7 +3,9 @@ import css from 'styled-jsx/css';
 
 export default css`
 .supporting-elements {
-  @apply flex justify-end w-full pt-8;
+  margin-top: 1.8rem;
+  @apply flex justify-end w-full;
+  
 }
 
 /* **********************************************************************

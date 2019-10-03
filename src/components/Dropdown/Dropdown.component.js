@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Fieldset from '../Fieldset/Fieldset.component';
-import styles from "./styles";
+import styles from './styles';
+import Container from '../Grid/Container/Container.component';
 
 const Dropdown = ({
   id,
@@ -15,50 +16,85 @@ const Dropdown = ({
   options,
   value,
   onChange,
+  defaultOption,
   label,
   tooltip,
   forceFullWidth,
+  supportingElements,
 }) => {
   const invalidClass = invalid ? 'invalid' : '';
-  const [isDirty, setIsDirty] = useState(false);
-  const [showDefaultStyle, setshowDefaultStyle] = useState(false);
+  const [isDirty, setIsDirty] = useState(!!value);
+
+  const optionsModified = defaultOption.hasDefaultOption ? [{
+    value: defaultOption.value,
+    title: defaultOption.title ? defaultOption.title : 'Please Select...',
+    disabled: defaultOption.disabled,
+    hidden: defaultOption.hidden,
+    class: 'manor-dropdown-option default',
+  }, ...options] : [...options];
+
+  const checkIfSelectedValueIsEqualToDefaultValue = (selectedValue) => {
+    if (defaultOption && defaultOption.hasDefaultOption) {
+      return (defaultOption.value === selectedValue);
+    }
+    return false;
+  };
+  const [showDefaultStyle, setshowDefaultStyle] = useState(checkIfSelectedValueIsEqualToDefaultValue(value));
   const [stateValue, setStateValue] = useState(value);
   const autofillClass = (autofill && !isDirty) ? 'manor-prefilled' : '';
   const borderedClass = bordered ? 'manor-input-border' : '';
+  const showDefaultClass = showDefaultStyle ? 'manor-default-selected' : '';
 
   const handleChange = (event) => {
-    console.log(event);
     event.preventDefault();
     setIsDirty(true);
-    setStateValue(event.target.value);
+    const selectedValue = event.target.value;
+    setStateValue(selectedValue);
+    setshowDefaultStyle(checkIfSelectedValueIsEqualToDefaultValue(selectedValue));
     if (onChange) {
       onChange(event);
     }
   };
 
   return (
-    <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth}>
-      <style jsx>{styles}</style>
-      <select
-        id={id}
-        name={name}
-        className={`manor-dropdown ${invalidClass} ${autofillClass} ${borderedClass}`}
-        disabled={disabled}
-        required={required}
-        readOnly={readonly}
-        value={stateValue}
-        onChange={handleChange}>
-        {options.map((option, index)=>{
-          <option value={option.value} disabled>{option.title}</option>
-          })
-        }
-
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-    </Fieldset>
-  )
+    <>
+      <style jsx="true">{styles}</style>
+      <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth}>
+        <select
+          id={id}
+          name={name}
+          className={`manor-dropdown ${invalidClass} ${autofillClass} ${borderedClass} ${showDefaultClass}`}
+          disabled={disabled}
+          required={required}
+          readOnly={readonly}
+          value={stateValue}
+          onChange={handleChange}
+        >
+          {optionsModified.map((option) => (
+            <option
+              key={option.value}
+              value={option.value}
+              id={id ? `${id}_${option.value}` : ''}
+              disabled={option.disabled}
+              hidden={option.hidden}
+              className={option.class ? option.class : 'manor-dropdown-option'}
+            >
+              {option.title}
+            </option>
+          ))}
+        </select>
+      </Fieldset>
+      {supportingElements && (
+      <div className="w-full">
+        <div className="supporting-elements">
+          <Container>
+            <span className="manor-dropdown-optional-indicator manor-subscript">{stateValue}</span>
+          </Container>
+        </div>
+      </div>
+      )}
+    </>
+  );
 };
 
 Dropdown.propTypes = {
@@ -73,14 +109,22 @@ Dropdown.propTypes = {
   readonly: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  options: PropTypes.shape({
+  supportingElements: PropTypes.bool,
+  defaultOption: PropTypes.shape({
+    hasDefaultOption: PropTypes.bool,
+    title: PropTypes.string,
+    value: PropTypes.string,
+    disabled: PropTypes.bool,
+    hidden: PropTypes.bool,
+    class: PropTypes.string,
+  }),
+  options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string,
     title: PropTypes.string,
-    description: PropTypes.string,
     disabled: PropTypes.bool,
-    accesskey: PropTypes.string,
     hidden: PropTypes.bool,
-  }),
+    className: PropTypes.string,
+  })),
   tooltip: PropTypes.shape({
     title: PropTypes.string,
     body: PropTypes.string,
@@ -102,8 +146,10 @@ Dropdown.defaultProps = {
   disabled: false,
   required: false,
   readonly: false,
+  supportingElements: false,
   onChange: null,
   options: [],
+  defaultOption: {},
 };
 
 export default Dropdown;
