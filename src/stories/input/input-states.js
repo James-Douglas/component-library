@@ -22,51 +22,39 @@ const prefixSuffixView = () => {
     <>
       <style jsx>{styles}</style>
       <div className="white-background">
-        <Input
-          id="input-email"
-          placeholder="example@email.com"
-          type="email"
-          bordered
-          autofill={false}
-          disabled={false}
-          invalid={false}
-          label="Your email address"
-          tooltip={tooltipEmail}
-        />
 
         <Input
-          id="input-mobile"
-          placeholder="(04)x xxx xxxx"
-          type="tel"
-          bordered
-          autofill={false}
-          disabled={false}
-          invalid={false}
-          label="Your mobile number"
-          tooltip={tooltipMobile}
-        />
-
-        <Input
-          id="input-age"
-          placeholder="e.g 25"
-          type="number"
-          bordered
-          autofill={false}
-          disabled={false}
-          invalid={false}
-          label="Your age"
-          tooltip={tooltipAge}
-        />
-
-        <Input
-          id="input-long-label"
-          placeholder="Placeholder value"
+          id="input-invalid"
+          placeholder="Invalid input example"
           type="text"
           bordered
           autofill={false}
           disabled={false}
+          invalid
+          label="An invalid input"
+        />
+
+        <Input
+          id="input-disabled"
+          placeholder="Disabled input example"
+          type="text"
+          bordered
+          autofill={false}
+          disabled
           invalid={false}
-          label="This is an example of a longer question for an input type, to see how it floats on lower screen sizes"
+          label="A disabled input"
+        />
+
+        <Input
+          id="input-autofill"
+          placeholder="Autofill example"
+          type="text"
+          prefillValue="autofilled value"
+          bordered
+          autofill
+          disabled={false}
+          invalid={false}
+          label="Autofill styling example"
         />
       </div>
     </>

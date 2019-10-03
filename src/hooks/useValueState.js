@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const useValueState = (initValue) => {
-  const [ value, setValue ] = useState(initValue);
+  const [value, setValue] = useState(initValue);
 
   return [
     value,
