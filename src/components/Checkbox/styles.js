@@ -1,20 +1,27 @@
 import css from 'styled-jsx/css';
 
 export default css`
+.checkbox-wrap {
+  @apply mb-12;
+}
 label {
   @apply flex cursor-pointer;
 }
+.alignment {
+  @apply mt-4;
+}
+.ap {
+  @apply absolute;
+}
 .manor-checkbox {
-  @apply bg-white border border-dark-blue mb-8 w-24 h-24 pointer-events-none;
+  @apply bg-white border border-dark-blue w-24 h-24 pointer-events-none;
   border-radius: 0.2rem;
 }
 .manor-checkbox:hover {
   @apply border-light-blue;
 }
 .manor-checkbox-input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  @apply h-0 w-0 opacity-0 float-left;
 }
 .manor-checkbox-input:invalid + label > .manor-checkbox{
   @apply border-invalid text-invalid fill-current;
@@ -32,7 +39,7 @@ label {
   @apply bg-white border-none text-dark-blue fill-current;
 }
 .checkbox-content {
-  @apply ml-20 pointer-events-none;
+  @apply ml-20 pointer-events-none text-base;
 }
 .manor-checkbox-input:focus + label > .manor-checkbox {
   box-shadow: 0 0 0 1px rgba(0, 123, 255, .5);

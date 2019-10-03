@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 .background {
   background: #F0F0F0;
   height: 100vh;
@@ -7,8 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 150px;
-  
+  padding-top: 100px;
 }
 .centered{
   width: 500px;
@@ -18,7 +20,7 @@
 }
 
 .grid-view {
-  height: 60vh;
+  height: 100vh;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -29,3 +31,4 @@
   color: white;
   padding: 2rem;
 }
+`;
