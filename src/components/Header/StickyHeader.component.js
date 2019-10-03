@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useIsSticky from '../../hooks/useIsSticky';
+import useIsSticky from 'hooks/useIsSticky';
 import Header from './Header.component';
 
 const StickyHeader = ({ number }) => {

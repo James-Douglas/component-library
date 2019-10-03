@@ -8,8 +8,10 @@ import Contact from './Contact/Contact.component';
 
 const Header = ({ isSticky, stuck, number }) => {
   const size = stuck ? 'small' : 'large';
+  const stuckClass = stuck ? 'stuck' : '';
+  const stickyClass = isSticky ? 'sticky' : '';
   return (
-    <header className={`${isSticky ? 'sticky' : ''}  ${stuck ? 'stuck' : ''}`}>
+    <header className={`${stickyClass} ${stuckClass}`}>
       <style jsx>{styles}</style>
       <FluidContainer>
         <div className="wrap">
