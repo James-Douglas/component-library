@@ -73,7 +73,7 @@ const Tooltip = ({
   title, body, boundingElementSelector, screenReaderLabel,
 }) => {
   const [pinned, setPinned] = useState(false);
-  const desktop = useIsDesktop();
+  const desktop = useIsDesktop(false);
   const [tippyInstance, setTippyInstance] = useState(null);
   const [tippyVisible, setTippyVisible] = useState(false);
   const tooltipElement = useRef(null);

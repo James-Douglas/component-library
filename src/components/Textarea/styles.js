@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 .label-default {
   @apply inline-flex;
 }
@@ -43,6 +46,9 @@ textarea[disabled] {
   @apply opacity-50;
 }
 
+.manor-maxlength-indicator {
+  @apply mr-4;
+}
 /* Note: this style currently wont be applied if aria-disabled is applied externally */
 .manor-bordered-field-disabled-label {
   @apply opacity-50;
@@ -156,3 +162,4 @@ textarea:not([disabled]).manor-textarea-default:-webkit-autofill:focus::-webkit-
 .pull-tab:not(.manor-disabled).manor-prefilled {
   border-top: 12px solid theme(colors.prechecked);
 }
+`;

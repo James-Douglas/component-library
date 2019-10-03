@@ -17,7 +17,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test --reporters=jest-silent-reporter --coverage --watchAll",
+    "tdd": "craco test --coverage --watchAll",
+    "test": "cross-env JEST_SILENT_REPORTER_DOTS=true craco test --reporters=jest-silent-reporter --coverage --watchAll",
     "test:ci": "cross-env CI=true craco test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
