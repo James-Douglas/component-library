@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import TrackerItem from '../TrackerItem.component';
 
-
 let mockUseIsDesktopValue = true;
 jest.mock('../../../../hooks/useIsDesktop', () => ({
   __esModule: true,

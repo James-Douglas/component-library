@@ -39,4 +39,10 @@ describe('useIsSticky', () => {
     });
     expect(result.current).toBe(false);
   });
+
+  it('default value', () => {
+    const { result } = renderHook(() => useIsSticky());
+    expect(result.current).toBe(false);
+  });
+
 });

@@ -16,7 +16,7 @@ describe('ProgressIcon', () => {
     expect(getByText('4')).toHaveClass('active');
   });
   it('renders correctly for mobile prop', () => {
-    const { getByText } = render(<ProgressIcon index={4} />);
-    expect(getByText('4')).not.toHaveClass('isMobile');
+    const { getByText } = render(<ProgressIcon index={4} mobile />);
+    expect(getByText('4')).not.toHaveClass('mobile');
   });
 });

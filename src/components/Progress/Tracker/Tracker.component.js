@@ -23,7 +23,7 @@ export function processTrackerItemLink(isDesktop, progressItem, index) {
 
 export function processTrackerItem(isDesktop, progressItem, index) {
   return (
-    <div className={`progress-step ${(progressItem.active) ? 'active' : ''} ${(progressItem.disabled) ? 'disabled' : ''}`} key={progressItem.label}>
+    <div className={`progress-step ${(progressItem.active) ? 'active' : ''} ${(progressItem.disabled) ? ' ' : ''}`} key={progressItem.label}>
       <style jsx>{styles}</style>
       <TrackerItem index={index + 1} mobile={isDesktop} label={progressItem.label} active={Boolean(progressItem.active)} disabled={Boolean(progressItem.disabled)} />
     </div>

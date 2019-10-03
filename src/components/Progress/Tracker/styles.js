@@ -143,22 +143,10 @@ progress::-ms-fill {
   100% { transform: translateX(0); }
 }
 
-@keyframes backwardsKey {
-  0% { transform: translateX(-5rem); }
-  100% { transform: translateX(0); }
-}
-
 .label {
   @apply relative flex items-center font-semibold;
-  height: 2.4rem;      /* 24px */
-}
-
-.backwards {
-  animation: 0.4s ease-in-out 0.3s 1 backwardsKey;
-}
-
-.forwards {
   animation: 0.4s ease-in-out 0.3s 1 forwardsKey;
+  height: 2.4rem;      /* 24px */
 }
 
 .sticky {

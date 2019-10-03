@@ -4,7 +4,6 @@ import styles from '../Tracker/styles';
 
 const Bar = ({
   value,
-  backwards,
   isSticky,
   stuck,
 }) => {
@@ -15,7 +14,7 @@ const Bar = ({
     <div className={`progress-container ${stickyClass} ${stuckClass}`}>
       <style jsx>{styles}</style>
       <progress className={`progress ${(value === 100 || value === '100') ? 'complete' : ''}`} max="100" value={value} />
-      <div className={`label  ${(!backwards) ? 'forwards' : ''}`} style={leftIndent}>
+      <div className="label" style={leftIndent}>
         {`${value}%`}
       </div>
     </div>
@@ -28,14 +27,12 @@ Bar.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
-  backwards: PropTypes.bool,
   isSticky: PropTypes.bool,
   stuck: PropTypes.bool,
 };
 
 Bar.defaultProps = {
   value: 70,
-  backwards: false,
   isSticky: false,
   stuck: false,
 };

@@ -5,6 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import StickyTracker from '../../components/Progress/Tracker/StickyTracker.component';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
 import Header from '../../components/Header/Header.component';
+import iconReadme from '../../components/Progress/Tracker/Tracker.md';
 
 storiesOf('StickyTracker', module)
   .addDecorator(withKnobs)
@@ -120,4 +121,4 @@ storiesOf('StickyTracker', module)
         </div>
       </FluidContainer>
     </div>
-  ));
+  ), { notes: iconReadme });

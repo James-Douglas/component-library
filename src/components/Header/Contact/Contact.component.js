@@ -12,7 +12,7 @@ const Contact = ({ number, size }) => {
   return (
     <div>
       <style jsx>{styles}</style>
-      <a className={`${size} ${mobileClassName} contact`} href={`tel:${number}`} target="link-target">
+      <a className={`contact ${size} ${mobileClassName}`} href={`tel:${number}`} target="link-target">
         <span className="mx-4"><Icon name="contact" size={2} /></span>
         { mobileLabel }
       </a>

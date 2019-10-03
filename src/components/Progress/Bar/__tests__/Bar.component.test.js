@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Bar from '../Bar.component';
 
-
 describe('Bar', () => {
   it('renders correctly with value as string', () => {
     const { getByText } = render(<Bar value="60" />);
@@ -15,10 +14,6 @@ describe('Bar', () => {
   it('should check scroll and add isSticky and stuck props', () => {
     const { container } = render(<Bar value="60" isSticky stuck />);
     expect(container.firstChild).toHaveClass('stuck', 'sticky');
-  });
-  it('should check scroll and remove isSticky and stuck props', () => {
-    const { container } = render(<Bar value="60" isSticky={false} stuck={false} />);
-    expect(container.firstChild).not.toHaveClass('stuck', 'sticky');
   });
   it('should check progress classes', () => {
     const { container } = render(<Bar value={100} />);
@@ -41,6 +36,14 @@ describe('Bar', () => {
     expect(label).toHaveStyle(`
       marginLeft: 60vw;
       right: 4.8rem;
+    `);
+  });
+  it('should check styles for value less than 10', () => {
+    const { container } = render(<Bar value="6" />);
+    const label = container.getElementsByClassName('label')[0];
+    expect(label).toHaveStyle(`
+      marginLeft: 6vw;
+      right: 3.5rem;
     `);
   });
 });
