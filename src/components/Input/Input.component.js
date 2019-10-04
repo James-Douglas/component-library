@@ -5,6 +5,8 @@ import Icon from '../Icon/Icon.component';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles.js';
 
+/* Input will need to accept children for the custom combo */
+
 const renderClearIcon = (value, clearInput, isAutofill, label) => {
   if (value.length) {
     return (
@@ -17,12 +19,7 @@ const renderClearIcon = (value, clearInput, isAutofill, label) => {
           ${isAutofill ? 'darker' : 'lighter'}
         `}
         >
-          <div className="sr-only">
-Clears the
-            {label}
-            {' '}
-field.
-          </div>
+          <div className="sr-only">Clears the {label}{' '}field.</div>
           <Icon name="closeCircle" size={1.6} />
         </button>
       </>
