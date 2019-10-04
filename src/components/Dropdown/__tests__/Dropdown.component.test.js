@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import Dropdown from '../Dropdown.component';
 import CheckboxGroup from '../../Checkbox/CheckboxGroup.component';
 import Checkbox from '../../Checkbox/Checkbox.component';
-import Textarea from "../../Textarea/Textarea.component";
+import Textarea from '../../Textarea/Textarea.component';
 
 describe('Dropdown', () => {
   const options = [
