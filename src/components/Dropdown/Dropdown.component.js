@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
-import Container from '../Grid/Container/Container.component';
 
 const Dropdown = ({
   id,
@@ -74,7 +73,7 @@ const Dropdown = ({
             <option
               key={option.value}
               value={option.value}
-              id={id ? `${id}_${option.value}` : ''}
+              id={`${id}_${option.value}`}
               disabled={option.disabled}
               hidden={option.hidden}
               className={option.class ? option.class : 'manor-dropdown-option'}
@@ -85,13 +84,13 @@ const Dropdown = ({
         </select>
       </Fieldset>
       {supportingElements && (
-      <div className="w-full">
-        <div className="supporting-elements">
-          <Container>
-            <span className="manor-dropdown-optional-indicator manor-subscript">{stateValue}</span>
-          </Container>
+        <div className="w-full">
+          <div className="supporting-elements">
+            <span className="manor-dropdown-optional-indicator manor-subscript">
+              {!required && ('OPTIONAL')}
+            </span>
+          </div>
         </div>
-      </div>
       )}
     </>
   );
