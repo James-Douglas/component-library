@@ -110,9 +110,9 @@ Dropdown.propTypes = {
   value: PropTypes.string,
   supportingElements: PropTypes.bool,
   defaultOption: PropTypes.shape({
-    hasDefaultOption: PropTypes.bool,
+    hasDefaultOption: PropTypes.bool.isRequired,
+    value: PropTypes.string.isRequired,
     title: PropTypes.string,
-    value: PropTypes.string,
     disabled: PropTypes.bool,
     hidden: PropTypes.bool,
     class: PropTypes.string,
