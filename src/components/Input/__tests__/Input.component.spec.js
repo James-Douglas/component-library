@@ -1,42 +1,107 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Checkbox, { renderIcon } from '../Checkbox.component';
+import Input, { renderClearIcon, renderAffix, renderOptionalElement } from '../Input.component';
 
-
-describe('renderIcon()', () => {
+describe('renderClearIcon()', () => {
   // eslint-disable-next-line react/prop-types
-  const IconContainer = ({ icon, toggle }) => (
+  const ClearIconContainer = ({ value, clearInput, isAutofill, label }) => (
     <>
-      {renderIcon(icon, toggle)}
+      {renderClearIcon(value, clearInput, isAutofill, label)}
     </>
   );
 
-  it('does not render an icon if toggle condition is not met', () => {
-    const { container } = render(<IconContainer toggle={false} />);
-
+  it('does not render an clearIcon if the value.length is over 0', () => {
+    const { container } = render(<ClearIconContainer value="" />);
+    
     expect(container).toBeEmpty();
+    expect(container.innerHTML).toMatchSnapshot();
   });
 
-  it('renders an icon when params are set (icon name and toggle is true)', () => {
-    const { container } = render(<IconContainer icon="check" toggle />);
+  it('renders a clearIcon when the value.length is > 0', () => {
+    const { container } = render(<ClearIconContainer value="input text" label='test input'/>);
 
     const svg = container.querySelector('svg');
 
     expect(svg).toBeDefined();
     expect(container.innerHTML).toMatchSnapshot();
   });
+
+});
+/* affixType, affixContent, bordered, isAutofill, disabled */
+describe('renderAffix()', () => {
+  // eslint-disable-next-line react/prop-types
+  const AffixContainer = ({ affixType, affixContent, bordered, isAutofill, disabled }) => (
+    <>
+      {renderAffix(affixType, affixContent, bordered, isAutofill, disabled)}
+    </>
+  );
+
+  it('does not render a prefix or suffix if its not supplied', () => {
+    const { container } = render(<AffixContainer />);
+    
+    expect(container).toBeEmpty();
+    expect(container.innerHTML).toMatchSnapshot();
+  });
+
+  
+  it('renders a prefix when supplied', () => {
+    const { container } = render(<AffixContainer affixType={'prefix'} affixContent={'?'}/>);
+    
+    const prefix = container.querySelector('.prefix');
+    const suffix = container.querySelector('.suffix');
+
+    expect(suffix).toBe(null);
+    expect(prefix).toBeInTheDocument();
+    expect(container.innerHTML).toMatchSnapshot();
+  });
+
+  it('renders a suffix when supplied', () => {
+    const { container } = render(<AffixContainer affixType={'suffix'} affixContent={'?'}/>);
+    
+    const prefix = container.querySelector('.prefix');
+    const suffix = container.querySelector('.suffix');
+
+    expect(prefix).toBe(null);
+    expect(suffix).toBeInTheDocument();
+    expect(container.innerHTML).toMatchSnapshot();
+  });
+
+  it('renders a suffix when supplied with additional styling for autofill and border', () => {
+    const { container } = render(<AffixContainer affixType={'prefix'} affixContent={'?'} border={false} isAutofill={true} disabled={false}/>);
+    
+    const prefix = container.querySelector('.prefix');
+    const suffix = container.querySelector('.suffix');
+    const border = container.querySelector('.prefix-no-border');
+    const prefill = container.querySelector('.manor-prefilled');
+
+    expect(suffix).toBe(null);
+    expect(prefix).toBeInTheDocument();
+    expect(border).toBeInTheDocument();
+    expect(prefill).toBeInTheDocument();
+    expect(container.innerHTML).toMatchSnapshot();
+  });
+
 });
 
-describe('Checkbox.component', () => {
+xdescribe('renderOptionalElement()', () => {
+
+});
+
+/* 
+  id, type, placeholder, prefillValue, autofill, 
+  required, disabled, bordered, invalid, prefix, 
+  suffix, label, tooltip, 
+*/
+xdescribe('Input.component', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<Checkbox id="test-id" />);
+    const { container } = render(<Input id="test-id" />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('renders with props', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <Checkbox
+      <Input
         id="test-id"
         icon="check"
         disabled={false}
@@ -44,7 +109,7 @@ describe('Checkbox.component', () => {
         handleChange={mockTestClick}
       >
         <p>child content</p>
-      </Checkbox>,
+      </Input>,
     );
 
     const checkbox = container.querySelector('#test-id');
@@ -62,7 +127,7 @@ describe('Checkbox.component', () => {
   });
 
   it('checks on click', () => {
-    const { container } = render(<Checkbox id="test-id" icon="check" disabled={false} invertColour />);
+    const { container } = render(<Input id="test-id" icon="check" disabled={false} invertColour />);
 
     const checkbox = container.querySelector('#test-id');
     const label = container.querySelector('label');
@@ -73,7 +138,7 @@ describe('Checkbox.component', () => {
   });
 
   it('click is disabled when disabled prop is supplied', () => {
-    const { container } = render(<Checkbox id="test-id" icon="check" disabled />);
+    const { container } = render(<Input id="test-id" icon="check" disabled />);
 
     const checkbox = container.querySelector('#test-id');
     const label = container.querySelector('label');

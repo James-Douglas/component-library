@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderAffix() does not render a prefix or suffix if its not supplied 1`] = `""`;
+
+exports[`renderAffix() renders a prefix when supplied 1`] = `
+"<style></style><span class=\\"
+          prefix
+          prefix-no-border
+          
+          
+        \\">?</span>"
+`;
+
+exports[`renderAffix() renders a suffix when supplied 1`] = `
+"<style></style><span class=\\"
+          suffix
+          
+          suffix-no-border
+          
+        \\">?</span>"
+`;
+
+exports[`renderAffix() renders a suffix when supplied with additional styling for autofill and border 1`] = `
+"<style></style><span class=\\"
+          prefix
+          prefix-no-border
+          
+          manor-prefilled
+        \\">?</span>"
+`;
+
+exports[`renderClearIcon() does not render an clearIcon if the value.length is over 0 1`] = `""`;
+
+exports[`renderClearIcon() renders a clearIcon when the value.length is > 0 1`] = `
+"<style></style><button class=\\"
+          input-clear-button
+          lighter
+        \\"><div class=\\"sr-only\\">Clears the test input field.</div><svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" x=\\"0px\\" y=\\"0px\\" enable-background=\\"0 0 44 44\\" class=\\" 
+        icon 
+         
+         
+      \\" viewBox=\\"0 0 44 44\\" style=\\"width: 1.6rem; height: 1.6rem;\\"><path d=\\"M22 .2C10 .2.2 10 .2 22S10 43.8 22 43.8 43.8 34 43.8 22 34 .2 22 .2zm9.9 29.4c.6.6.6 1.7 0 2.4-.6.6-1.7.6-2.4 0l-7.1-7.1-7.1 7.1c-.6.6-1.7.6-2.4 0-.6-.6-.6-1.7 0-2.4l7.1-7.1-7.1-7.1c-.6-.6-.6-1.7 0-2.4.6-.6 1.7-.6 2.4 0l7.1 7.1 7.1-7.1c.6-.6 1.7-.6 2.4 0 .6.6.6 1.7 0 2.4l-7.1 7.1 7.1 7.1z\\"></path></svg></button>"
+`;

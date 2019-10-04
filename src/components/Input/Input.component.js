@@ -7,7 +7,7 @@ import styles from './styles.js';
 
 /* Input will need to accept children for the custom combo */
 
-const renderClearIcon = (value, clearInput, isAutofill, label) => {
+export const renderClearIcon = (value, clearInput, isAutofill, label) => {
   if (value.length) {
     return (
       <>
@@ -28,18 +28,21 @@ const renderClearIcon = (value, clearInput, isAutofill, label) => {
   return null;
 };
 
-const renderPrefix = (prefix, bordered, isAutofill, disabled) => {
-  if (prefix) {
+export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled) => {
+  
+  if ( affixType && affixContent ) {
+
     return (
       <>
         <style jsx>{styles}</style>
         <span className={`
-          prefix 
-          ${!bordered ? 'prefix-no-border' : ''}
+          ${affixType === 'prefix' ? 'prefix' : 'suffix'}
+          ${!bordered && affixType === 'prefix' ? 'prefix-no-border' : ''}
+          ${!bordered && affixType === 'suffix' ? 'suffix-no-border' : ''}
           ${isAutofill && !disabled ? 'manor-prefilled' : ''}
         `}
         >
-          {prefix}
+          {affixContent}
         </span>
       </>
     );
@@ -47,26 +50,7 @@ const renderPrefix = (prefix, bordered, isAutofill, disabled) => {
   return null;
 };
 
-const renderSuffix = (suffix, bordered, isAutofill, disabled) => {
-  if (suffix) {
-    return (
-      <>
-        <style jsx>{styles}</style>
-        <span className={`
-          suffix 
-          ${!bordered ? 'prefix-no-border' : ''}
-          ${isAutofill && !disabled ? 'manor-prefilled' : ''}
-        `}
-        >
-          {suffix}
-        </span>
-      </>
-    );
-  }
-  return null;
-};
-
-const renderOptionalElement = (required) => {
+export const renderOptionalElement = (required) => {
   if (!required) {
     return (
       <>
@@ -78,9 +62,9 @@ const renderOptionalElement = (required) => {
 };
 
 const Input = ({
-  id, type, placeholder, prefillValue, autofill, required, disabled, bordered, invalid, prefix, suffix, label, tooltip,
+  id, type, placeholder, prefillValue, autofill, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip,
 }) => {
-  const [value, setValue, clearValue] = useValueState(prefillValue || '');
+  const [ value, setValue, clearValue ] = useValueState(prefillValue || '');
   const [ isAutofill, setIsAutofill ] = useState(autofill)
   const inputWrapElement = useRef(null);
   
@@ -118,7 +102,7 @@ const Input = ({
           `}
           >
 
-            {renderPrefix(prefix, bordered, isAutofill, disabled)}
+            {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
 
             <div className="input-clear-wrap">
               <input
@@ -142,7 +126,7 @@ const Input = ({
 
             </div>
 
-            {renderSuffix(suffix, bordered, isAutofill, disabled)}
+            {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
 
           </div>
           <div className="supporting-elements">

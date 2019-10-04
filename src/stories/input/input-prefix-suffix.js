@@ -44,8 +44,8 @@ const prefixSuffixView = () => {
           required={false}
           autofill={false}
           disabled={false}
-          prefix={<SvgUkFlag />}
-          suffix="?"
+          prefixContent={<SvgUkFlag />}
+          suffixContent="?"
           invalid={false}
           label="[Fieldset label] With tooltip, prefix and suffix"
           tooltip={tooltip}
@@ -59,7 +59,7 @@ const prefixSuffixView = () => {
           required={false}
           autofill={false}
           disabled={false}
-          prefix="prefix"
+          prefixContent="prefix"
           invalid={false}
           label="[Fieldset label] With prefix"
         />
@@ -72,7 +72,7 @@ const prefixSuffixView = () => {
           required={false}
           autofill={false}
           disabled={false}
-          suffix="suffix"
+          suffixContent="suffix"
           invalid={false}
           label="[Fieldset label] With suffix"
         />

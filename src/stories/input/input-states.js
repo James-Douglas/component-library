@@ -3,20 +3,6 @@ import Input from '../../components/Input/Input.component';
 import styles from './view-styles';
 
 const prefixSuffixView = () => {
-  const tooltipEmail = {
-    title: 'Tooltip heading',
-    body: 'Prefix and suffix view',
-  };
-
-  const tooltipMobile = {
-    title: 'Tooltip heading',
-    body: 'Prefix and suffix view',
-  };
-
-  const tooltipAge = {
-    title: 'Tooltip heading',
-    body: 'Prefix and suffix view',
-  };
 
   return (
     <>
@@ -56,6 +42,20 @@ const prefixSuffixView = () => {
           invalid={false}
           label="Autofill styling example"
         />
+
+        <Input
+          id="input-autofill-with-affix"
+          placeholder="Autofill example"
+          type="text"
+          prefillValue="autofilled value"
+          bordered
+          autofill
+          disabled={false}
+          invalid={false}
+          prefixContent={'$'}
+          suffixContent={'?'}
+          label="Autofill styling example with affixes"
+        />    
       </div>
     </>
   );
