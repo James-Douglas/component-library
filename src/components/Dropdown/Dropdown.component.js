@@ -21,9 +21,6 @@ const Dropdown = ({
   forceFullWidth,
   supportingElements,
 }) => {
-  const invalidClass = invalid ? 'invalid' : '';
-  const [isDirty, setIsDirty] = useState(!!value);
-
   const optionsModified = defaultOption.hasDefaultOption ? [{
     value: defaultOption.value,
     title: defaultOption.title ? defaultOption.title : 'Please Select...',
@@ -31,19 +28,19 @@ const Dropdown = ({
     hidden: defaultOption.hidden,
     class: 'manor-dropdown-option default',
   }, ...options] : [...options];
-
   const checkIfSelectedValueIsEqualToDefaultValue = (selectedValue) => {
     if (defaultOption && defaultOption.hasDefaultOption) {
       return (defaultOption.value === selectedValue);
     }
     return false;
   };
+  const invalidClass = invalid ? 'invalid' : '';
+  const [isDirty, setIsDirty] = useState(!!value);
   const [showDefaultStyle, setshowDefaultStyle] = useState(checkIfSelectedValueIsEqualToDefaultValue(value));
   const [stateValue, setStateValue] = useState(value);
   const autofillClass = (autofill && !isDirty) ? 'manor-prefilled' : '';
   const borderedClass = bordered ? 'manor-input-border' : '';
   const showDefaultClass = showDefaultStyle ? 'manor-default-selected' : '';
-
   const handleChange = (event) => {
     event.preventDefault();
     setIsDirty(true);
