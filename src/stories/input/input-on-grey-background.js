@@ -20,7 +20,6 @@ const greyBackgroundView = () => {
           required={false}
           autofill={false}
           disabled={false}
-          prefixContent={'fsdfs'}
           invalid={false}
           label="[Fieldset label] With tooltip"
           tooltip={tooltip}
