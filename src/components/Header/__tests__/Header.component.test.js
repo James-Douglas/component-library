@@ -26,4 +26,3 @@ describe('StickyBar', () => {
     expect(header).toHaveClass('stuck');
   });
 });
-

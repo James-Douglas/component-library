@@ -44,5 +44,4 @@ describe('useIsSticky', () => {
     const { result } = renderHook(() => useIsSticky());
     expect(result.current).toBe(false);
   });
-
 });
