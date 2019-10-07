@@ -67,7 +67,6 @@ const ToggleGroup = ({
   );
 };
 
-
 ToggleGroup.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,

@@ -1,14 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
-import styles from './styles';
 
 const CustomToggle = ({
   id, value, name, selectedId, invalid, disabled, autofill, handleChange, children,
 }) => {
   const [dirty, setDirty] = useState(false);
-  const toggleElement = useRef(null);
   const handleClick = () => {
     setDirty(true);
     if (handleChange) {
@@ -16,26 +15,22 @@ const CustomToggle = ({
     }
   };
 
-  const isChecked = selectedId ? selectedId === id : autofill || false;
-
   return (
-    <span className="flex">
-      <style jsx>{styles}</style>
-      <input
-        ref={toggleElement}
-        className="hidden toggle-input"
-        id={id}
-        type="radio"
-        onChange={handleClick}
-        onClick={() => null}
-        required={invalid}
-        checked={isChecked}
-        disabled={disabled}
-        name={name}
-        value={value}
-      />
-      {children}
-    </span>
+    <BaseToggle
+      id={id}
+      type="custom"
+      value={value}
+      name={name}
+      selectedId={selectedId}
+      invalid={invalid}
+      disabled={disabled}
+      autofill={autofill}
+      handleChange={handleClick}
+    >
+      <ToggleLabel dirty={dirty} autofill={autofill} id={id}>
+        {children}
+      </ToggleLabel>
+    </BaseToggle>
   );
 };
 

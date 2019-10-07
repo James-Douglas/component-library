@@ -1,14 +1,20 @@
 import css from 'styled-jsx/css';
 
 export default css`
-  .transition {
+ .transition {
     transition : all 200ms ease-out;
   }
   .toggle {
-    @apply relative bg-white shadow-sm border cursor-pointer mx-8 mb-16 w-full text-sm font-bold leading-normal;
+    @apply relative bg-white shadow-sm border cursor-pointer mx-8 mb-16 text-sm font-bold leading-normal;
+  }
+  .toggle-label {
+    @apply w-full;
   }
   .toggle:hover {
     @apply text-light-blue fill-current;
+  }
+  .toggle-input {
+    @apply opacity-0 h-0 w-0;
   }
   .toggle-input:invalid + label {
     @apply border-invalid text-invalid fill-current;
@@ -21,9 +27,12 @@ export default css`
   }
   .toggle-input:checked + label {
     @apply bg-dark-blue text-white fill-current shadow-none;
-  }
+  } 
   .toggle-input:checked + .autofill {
     @apply bg-prechecked text-black fill-current;
+  }
+  .toggle-input:focus + label {
+     box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }
   .square-toggle {
     @apply flex justify-around items-center w-128 h-128 p-8 text-center;
@@ -46,5 +55,11 @@ export default css`
   }
   .icon-label {
     @apply pt-32;
+  }
+   .image-toggle  {
+    @apply w-128 h-128 flex justify-around flex-col items-center;
+  }
+  .picture-size {
+    @apply w-48 h-48 text-center;
   }
 `;

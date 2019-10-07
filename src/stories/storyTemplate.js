@@ -8,13 +8,10 @@ const styles = css`
   .grey {
     @apply bg-grey-lighter;
   }
-  .centered {
-    @apply w-full h-full flex justify-center items-center flex-col;
-  }
 `;
 
 const StoryTemplate = ({ background, children }) => (
-  <div className={`centered ${background}`}>
+  <div className={background}>
     <style jsx>{styles}</style>
     <Container>
       {children}

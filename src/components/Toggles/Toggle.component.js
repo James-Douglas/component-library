@@ -1,14 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import BaseToggle from './BaseToggle';
 import ToggleLabel from './ToggleLabel';
 import Icon from '../Icon/Icon.component';
 import styles from './toggle.styles';
-
-const columns = {
-  1: '100%', 2: '50%', 3: '33.33%', 4: '25%', 5: '20%',
-};
+import Picture from '../Picture/Picture.component';
 
 export function getAlignment(rectOptions) {
   const { align } = rectOptions;
@@ -19,20 +16,30 @@ export function getTypeClasses(type, rectOptions) {
   return type === 'square' ? 'square-toggle' : `rect-toggle ${getAlignment(rectOptions)}`;
 }
 
-export function getInlineStyles(type, rectOptions) {
-  if (type !== 'rectangle') return {};
-  const { col, height } = rectOptions;
-  const inlineStyles = {
-    height: `${height}rem`,
-  };
-
-  if (col > 0) {
-    inlineStyles.width = columns[col];
-    inlineStyles.flexBasis = columns[col];
-  }
-
-  return inlineStyles;
+export function getPictureToggleContent(pictureOptions, label) {
+  const {
+    src, srcsets, alt, title,
+  } = pictureOptions;
+  return (
+    <>
+      <style jsx>{styles}</style>
+      <div className="image-toggle">
+        <span className="picture-size">
+          <Picture
+            src={src}
+            srcsets={srcsets}
+            alt={alt}
+            title={title}
+          />
+        </span>
+        <span className="">
+          {label}
+        </span>
+      </div>
+    </>
+  );
 }
+
 
 export function getIconToggleContent(icon, iconSize, label) {
   return (
@@ -59,28 +66,34 @@ export function getTextToggleContent(type, rectOptions, label) {
   );
 }
 
-export function getToggleContent(icon, iconSize, autofill, dirty, id, type, rectOptions, label) {
+export function getToggleContent(icon, iconSize, pictureOptions, autofill, dirty, id, type, rectOptions, label) {
+  let content;
+  if (pictureOptions) {
+    content = getPictureToggleContent(pictureOptions, label);
+  } else if (icon) {
+    content = getIconToggleContent(icon, iconSize, label);
+  } else {
+    content = getTextToggleContent(type, rectOptions, label);
+  }
   return (
     <ToggleLabel dirty={dirty} autofill={autofill} id={id}>
       <style jsx>{styles}</style>
-      {icon ? getIconToggleContent(icon, iconSize, label) : getTextToggleContent(type, rectOptions, label)}
+      {content}
     </ToggleLabel>
   );
 }
 
 const Toggle = ({
-  id, type, label, value, name, selectedId, invalid, disabled, autofill, handleChange, icon, iconSize, rectOptions,
+  id, type, label, value, name, selectedId, invalid, disabled, autofill, handleChange, icon, iconSize, pictureOptions, rectOptions,
 }) => {
   const [dirty, setDirty] = useState(false);
-  const toggleElement = useRef(null);
+
   const handleClick = () => {
     setDirty(true);
     if (handleChange) {
       handleChange(id);
     }
   };
-
-  const isChecked = selectedId ? selectedId === id : autofill || false;
 
   return (
     <BaseToggle
@@ -92,10 +105,10 @@ const Toggle = ({
       invalid={invalid}
       disabled={disabled}
       autofill={autofill}
-      handleChange={handleChange}
+      handleChange={handleClick}
       rectOptions={rectOptions}
     >
-      {getToggleContent(icon, iconSize, autofill, dirty, id, type, rectOptions, label)}
+      {getToggleContent(icon, iconSize, pictureOptions, autofill, dirty, id, type, rectOptions, label)}
     </BaseToggle>
   );
 };
@@ -103,7 +116,7 @@ const Toggle = ({
 
 Toggle.propTypes = {
   id: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['square', 'rectangle']).isRequired,
+  type: PropTypes.oneOf(['square', 'rectangle']),
   label: PropTypes.string.isRequired,
   value: PropTypes.string,
   selectedId: PropTypes.string,
@@ -114,7 +127,12 @@ Toggle.propTypes = {
   handleChange: PropTypes.func,
   icon: PropTypes.string,
   iconSize: PropTypes.number,
-  // eslint-disable-next-line react/forbid-prop-types
+  pictureOptions: PropTypes.shape({
+    src: PropTypes.string,
+    srcsets: PropTypes.arrayOf(PropTypes.string),
+    alt: PropTypes.string,
+    title: PropTypes.string,
+  }),
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -125,6 +143,7 @@ Toggle.propTypes = {
 Toggle.defaultProps = {
   value: '',
   name: '',
+  type: 'square',
   selectedId: null,
   invalid: false,
   disabled: false,
@@ -137,6 +156,7 @@ Toggle.defaultProps = {
     col: 1,
     height: 8,
   },
+  pictureOptions: null,
 };
 
 export default Toggle;

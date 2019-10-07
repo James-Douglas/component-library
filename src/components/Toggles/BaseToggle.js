@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './toggle.styles';
@@ -23,12 +23,11 @@ export function getInlineStyles(type, rectOptions) {
 }
 
 const BaseToggle = ({
-  id, type, value, name, selectedId, invalid, disabled, autofill, handleChange, rectOptions, children
+  id, type, value, name, selectedId, invalid, disabled, autofill, handleChange, rectOptions, children,
 }) => {
-  const [dirty, setDirty] = useState(false);
+  const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
   const handleClick = () => {
-    setDirty(true);
     if (handleChange) {
       handleChange(id);
     }
@@ -37,11 +36,19 @@ const BaseToggle = ({
   const isChecked = selectedId ? selectedId === id : autofill || false;
 
   return (
-    <span className="flex" style={getInlineStyles(type, rectOptions)}>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    <span
+      className="flex toggle"
+      /* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */
+      style={getInlineStyles(type, rectOptions)}
+      onClick={() => toggleElement.current.click()}
+      ref={wrapperElement}
+    >
       <style jsx>{styles}</style>
       <input
+        tabIndex={0}
         ref={toggleElement}
-        className="hidden toggle-input"
+        className="toggle-input"
         id={id}
         type="radio"
         onChange={handleClick}
@@ -59,8 +66,8 @@ const BaseToggle = ({
 
 BaseToggle.propTypes = {
   id: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['square', 'rectangle']).isRequired,
-  value: PropTypes.string,
+  type: PropTypes.oneOf(['square', 'rectangle', 'custom']).isRequired,
+  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
   selectedId: PropTypes.string,
   name: PropTypes.string,
   invalid: PropTypes.bool,
