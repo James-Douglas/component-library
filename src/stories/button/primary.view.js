@@ -1,7 +1,7 @@
 import React from 'react';
 import useIsDesktop from 'hooks/useIsDesktop';
-import Button from '../../components/Button/Button.component';
-import './button-view.css';
+import Button from 'components/Button/Button.component';
+import styles from './styles';
 
 const logClick = (e) => {
   // eslint-disable-next-line no-console
@@ -14,13 +14,16 @@ const PrimaryButtonView = () => {
   content = !desktop ? 'compare' : content = 'compare the market';
 
   return (
-    <div className="background">
-      <div className="container">
-        <Button id="primary-btn01" btnType="primary" btnSize="md" content={content} disabled={false} handleClick={logClick} />
-        <Button id="primary-btn02" btnType="primary" btnSize="md" content={content} icon="info" disabled={false} handleClick={logClick} />
-        <Button id="primary-btn03" btnType="primary" btnSize="md" content={content} icon="info" iconAlignRight disabled={false} handleClick={logClick} />
+    <>
+      <style jsx>{styles}</style>
+      <div className="background">
+        <div className="container">
+          <Button id="primary-btn01" btnType="primary" btnSize="md" content={content} disabled={false} handleClick={logClick} />
+          <Button id="primary-btn02" btnType="primary" btnSize="md" content={content} icon="info" disabled={false} handleClick={logClick} />
+          <Button id="primary-btn03" btnType="primary" btnSize="md" content={content} icon="info" iconAlignRight disabled={false} handleClick={logClick} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

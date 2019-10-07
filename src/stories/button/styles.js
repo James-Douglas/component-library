@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 .background {
   background: #F3F3F3;
   padding: 5em;
@@ -29,3 +32,4 @@
 .footer-alignment {
   margin-bottom: 2rem;
 }
+`;

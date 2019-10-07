@@ -2,19 +2,21 @@
 
 exports[`Button renders correctly with minimal props 1`] = `
 <div>
+  <style />
   <span
     class="manor-button-wrap "
   >
+    <style />
     <button
       class="
-          manor-rich-text
-          manor-button 
-          md
-          primary
-          
-          center
-          
-        "
+            manor-rich-text 
+            md
+            primary
+            manor-button 
+            
+            center
+            
+          "
       id="test-id"
     >
       
@@ -25,22 +27,25 @@ exports[`Button renders correctly with minimal props 1`] = `
 
 exports[`Button renders with props 1`] = `
 <div>
+  <style />
   <span
     class="manor-button-wrap "
   >
+    <style />
     <button
       class="
-          manor-rich-text
-          manor-button 
-          md
-          primary
-          onDark
-          
-          align-right
-        "
+            manor-rich-text 
+            md
+            primary
+            manor-button 
+            onDark
+            
+            align-right
+          "
       disabled=""
       id="test-id"
     >
+      <style />
       <div
         class="btn-icon"
       >

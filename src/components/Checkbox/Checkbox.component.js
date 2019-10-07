@@ -13,6 +13,20 @@ export const renderIcon = (icon, value) => {
   return null;
 };
 
+const renderContent = (children) => {
+  if (children) {
+    return (
+      <>
+        <style jsx>{styles}</style>
+        <div className="checkbox-content no-margin">
+          {children}
+        </div>
+      </>
+    );
+  }
+  return null;
+};
+
 const Checkbox = ({
   id, icon, disabled, invertColour, handleChange, children,
 }) => {
@@ -28,24 +42,37 @@ const Checkbox = ({
   return (
     <>
       <style jsx>{styles}</style>
-      <input
-        id={id}
-        name={id}
-        type="checkbox"
-        disabled={disabled}
-        onChange={toggleEventHandler}
-        checked={value}
-        className="manor-checkbox-input"
-      />
+      <div className="checkbox-wrap">
+        <input
+          id={id}
+          name={id}
+          type="checkbox"
+          disabled={disabled}
+          onChange={toggleEventHandler}
+          checked={value}
+          className="manor-checkbox-input"
+        />
 
-      <label htmlFor={id} className={disabled ? 'disabled' : ''}>
-        <div className={`manor-checkbox ${invertColour ? 'inverted' : ''}`}>
-          {renderIcon(icon, value)}
-        </div>
-        <div className="checkbox-content">
-          {children}
-        </div>
-      </label>
+        <label
+          htmlFor={id}
+          className={`
+            ${disabled ? 'disabled' : ''}
+            ${children ? '' : 'ap'}
+            ${children ? '' : 'alignment'}
+          `}
+        >
+          <div className={`
+            manor-checkbox 
+            ${invertColour ? 'inverted' : ''}
+          `}
+          >
+            {renderIcon(icon, value)}
+          </div>
+
+          {renderContent(children)}
+
+        </label>
+      </div>
     </>
   );
 };
@@ -58,7 +85,6 @@ Checkbox.propTypes = {
   handleChange: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.array,
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
@@ -68,8 +94,8 @@ Checkbox.defaultProps = {
   icon: 'check',
   disabled: false,
   invertColour: false,
-  children: [],
   handleChange: () => { },
+  children: null,
 };
 
 export default Checkbox;
