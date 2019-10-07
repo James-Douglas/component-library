@@ -8,4 +8,4 @@ storiesOf('Accordion', module)
   .addDecorator(withKnobs)
   .add('Default Accordion', () => (
     <Accordion />
-  ), { notes: iconReadme })
+  ), { notes: iconReadme });

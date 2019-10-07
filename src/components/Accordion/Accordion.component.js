@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from "./styles";
+import styles from './styles';
 
 const Accordion = ({
   title,
-  children
+  children,
 }) => (
   <div>
     <style jsx>{styles}</style>
@@ -28,7 +28,7 @@ Accordion.propTypes = {
 
 Accordion.defaultProps = {
   children: "If you're in position to purchase your gas and electricity with one provider...",
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 export default Accordion;
