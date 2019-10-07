@@ -128,6 +128,8 @@ module.exports = {
             /* error validation colour pallet */
             'validation-text': '#EE415D',                                        /* validation / text*/
             'validation-background': '#FDE8EB',                                  /* validation /  background */
+            /* focus */
+            'focus': '#5E9ED6',
         },
 
 

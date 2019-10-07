@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Tippy from '@tippy.js/react';
 
+import useIsDesktop from 'hooks/useIsDesktop';
+import useUnmountEffect from 'hooks/useUnmountEffect';
 import Icon from '../Icon/Icon.component';
-import useIsDesktop from '../../hooks/useIsDesktop';
 import throttle from '../../utils/throttle';
-import useUnmountEffect from '../../hooks/useUnmountEffect';
 import styles from './styles';
 
 /**
