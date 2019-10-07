@@ -24,18 +24,18 @@ storiesOf('Dropdown', module)
         <Dropdown id="input-one" value="First" options={options} supportingElements forceFullWidth label="Dropdown Label" bordered defaultOption={defaultOption} />
       </div>
     </Container>
-  ),{ notes: iconReadme })
+  ), { notes: iconReadme })
   .add('Dropdown with invalid prop', () => (
     <Container>
       <div style={{ marginTop: '40px' }}>
         <Dropdown id="input-one" value="First" options={options} supportingElements forceFullWidth label="Dropdown Label" invalid defaultOption={defaultOption} />
       </div>
     </Container>
-  ),{ notes: iconReadme })
+  ), { notes: iconReadme })
   .add('Dropdown with autofill prop', () => (
     <Container>
       <div style={{ marginTop: '40px' }}>
         <Dropdown id="input-one" options={options} supportingElements forceFullWidth label="Dropdown Label" autofill bordered defaultOption={defaultOption} />
       </div>
     </Container>
-  ),{ notes: iconReadme });
+  ), { notes: iconReadme });
