@@ -16,7 +16,7 @@ const Accordion = ({
   return (
     <div className={`accordion ${showClass}`}>
       <style jsx>{styles}</style>
-      <div className="accordion-head" onClick={toggleTrueFalse} onKeyUp={toggleTrueFalse} role="button">
+      <div className="accordion-head" onClick={toggleTrueFalse} onKeyUp={toggleTrueFalse} role="button" tabIndex={0}>
         <span>
           {title}
         </span>
