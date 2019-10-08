@@ -4,6 +4,7 @@ import css from 'styled-jsx/css';
 
 import Fieldset from '../Fieldset/Fieldset.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 
 const styles = css`
   .toggle-group {
@@ -12,29 +13,30 @@ const styles = css`
 `;
 
 export const getType = (children) => {
-  let maxContentLength = 0;
-  children.forEach((child) => {
+  for (let i = 0; i < children.length; i += 1) {
+    const child = children[i];
     if (child.props && child.props.label) {
-      if (child.props.label.length > maxContentLength) {
-        maxContentLength = child.props.label.length;
+      const { length } = child.props.label;
+      if (length > 25) {
+        return 'rectangle';
       }
     }
-  });
-  return maxContentLength > 25 ? 'rectangle' : 'square';
+  }
+  return 'square';
 };
 
-export const getChildren = (children, type, name, selectedId, didToggle, rectOptions) => (
+export const getChildren = (children, type, dirty, name, selectedId, didToggle, rectOptions) => (
   children.map((child, index) => {
-    const key = `toggle-${child.props.id}`;
+    const key = `toggle-${child.props.id || index}`;
     const propsToAdd = {
       key,
       name,
       selectedId,
       handleChange: didToggle,
       type,
+      dirty,
     };
     if (!child.props.id) propsToAdd.id = key;
-    if (!child.props.idx) propsToAdd.idx = index;
     if (type === 'rectangle') propsToAdd.rectOptions = rectOptions;
     return React.cloneElement(child, propsToAdd);
   })
@@ -44,13 +46,14 @@ const ToggleGroup = ({
   id, name, label, tooltip, handleChange, children, rectOptions,
 }) => {
   const [selectedId, setSelectedId] = useState();
+  const [dirty, setDirty] = useState();
   const type = getType(children);
   const didToggle = (toggleId) => {
     setSelectedId(toggleId);
-    if (handleChange) {
-      handleChange(toggleId);
-    }
+    setDirty(true);
   };
+
+  useDidUpdateEffect(handleChange, [selectedId], [handleChange, selectedId]);
 
   if (tooltip) {
     // eslint-disable-next-line no-param-reassign
@@ -61,7 +64,7 @@ const ToggleGroup = ({
     <Fieldset label={label} tooltip={tooltip} forceFullWidth>
       <style jsx>{styles}</style>
       <div className="toggle-group" id={id}>
-        {getChildren(children, type, name, selectedId, didToggle, rectOptions)}
+        {getChildren(children, type, dirty, name, selectedId, didToggle, rectOptions)}
       </div>
     </Fieldset>
   );
@@ -71,8 +74,8 @@ ToggleGroup.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
   tooltip: PropTypes.shape(tooltipPropTypes),
-  handleChange: PropTypes.func,
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -99,7 +102,6 @@ ToggleGroup.defaultProps = {
     col: 1,
     height: 8,
   },
-  handleChange: null,
   children: [],
 };
 

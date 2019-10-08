@@ -16,6 +16,8 @@ The CTM ToggleGroup component, wraps a given set of toggles (radio buttons under
 </ToggleGroup>
 ~~~
 
+*Priority: picture > icon
+
 ## Props
 The ToggleGroup component accepts the following props:
 

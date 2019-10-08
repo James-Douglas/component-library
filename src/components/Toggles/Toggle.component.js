@@ -7,8 +7,7 @@ import Icon from '../Icon/Icon.component';
 import styles from './toggle.styles';
 import Picture from '../Picture/Picture.component';
 
-export function getAlignment(rectOptions) {
-  const { align } = rectOptions;
+export function getAlignment({ align }) {
   return align ? `align-${align}` : '';
 }
 
@@ -32,7 +31,7 @@ export function getPictureToggleContent(pictureOptions, label) {
             title={title}
           />
         </span>
-        <span className="">
+        <span>
           {label}
         </span>
       </div>

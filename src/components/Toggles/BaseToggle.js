@@ -28,9 +28,7 @@ const BaseToggle = ({
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
   const handleClick = () => {
-    if (handleChange) {
-      handleChange(id);
-    }
+    handleChange(id);
   };
 
   const isChecked = selectedId ? selectedId === id : autofill || false;
@@ -67,13 +65,13 @@ const BaseToggle = ({
 BaseToggle.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['square', 'rectangle', 'custom']).isRequired,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   selectedId: PropTypes.string,
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
   autofill: PropTypes.bool,
-  handleChange: PropTypes.func,
+  handleChange: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
@@ -90,7 +88,6 @@ BaseToggle.defaultProps = {
   invalid: false,
   disabled: false,
   autofill: false,
-  handleChange: null,
   rectOptions: {
     align: 'center',
     col: 1,
