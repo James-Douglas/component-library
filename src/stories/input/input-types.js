@@ -18,6 +18,11 @@ const prefixSuffixView = () => {
     body: 'Prefix and suffix view',
   };
 
+  const logValue = (value) => {
+    // eslint-disable-next-line no-console
+    console.log(value);
+  };
+
   return (
     <>
       <style jsx>{styles}</style>
@@ -27,11 +32,11 @@ const prefixSuffixView = () => {
           placeholder="example@email.com"
           type="email"
           bordered
-          autofill={false}
           disabled={false}
           invalid={false}
           label="Your email address"
           tooltip={tooltipEmail}
+          handleChange={(value) => logValue(value)}
         />
 
         <Input
@@ -39,11 +44,11 @@ const prefixSuffixView = () => {
           placeholder="(04)x xxx xxxx"
           type="tel"
           bordered
-          autofill={false}
           disabled={false}
           invalid={false}
           label="Your mobile number"
           tooltip={tooltipMobile}
+          handleChange={(value) => logValue(value)}
         />
 
         <Input
@@ -51,11 +56,11 @@ const prefixSuffixView = () => {
           placeholder="e.g 25"
           type="number"
           bordered
-          autofill={false}
           disabled={false}
           invalid={false}
           label="Your age"
           tooltip={tooltipAge}
+          handleChange={(value) => logValue(value)}
         />
 
         <Input
@@ -63,10 +68,10 @@ const prefixSuffixView = () => {
           placeholder="Placeholder value"
           type="text"
           bordered
-          autofill={false}
           disabled={false}
           invalid={false}
           label="This is an example of a longer question for an input type, to see how it floats on lower screen sizes"
+          handleChange={(value) => logValue(value)}
         />
       </div>
     </>

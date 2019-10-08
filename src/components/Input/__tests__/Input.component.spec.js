@@ -26,9 +26,14 @@ const SvgUkFlag = () => (
   </svg>
 );
 
+/* renderClearIcon()
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 describe('renderClearIcon()', () => {
-  // eslint-disable-next-line react/prop-types
-  const ClearIconContainer = ({ value, clearInput, isAutofill, label }) => (
+  const ClearIconContainer = ({
+    // eslint-disable-next-line react/prop-types
+    value, clearInput, isAutofill, label,
+  }) => (
     <>
       {renderClearIcon(value, clearInput, isAutofill, label)}
     </>
@@ -36,25 +41,27 @@ describe('renderClearIcon()', () => {
 
   it('does not render an clearIcon if the value.length is over 0', () => {
     const { container } = render(<ClearIconContainer value="" />);
-    
+
     expect(container).toBeEmpty();
-    expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('renders a clearIcon when the value.length is > 0', () => {
-    const { container } = render(<ClearIconContainer value="input text" label='test input'/>);
+    const { container } = render(<ClearIconContainer value="input text" label="test input" />);
 
     const svg = container.querySelector('svg');
 
     expect(svg).toBeDefined();
-    expect(container.innerHTML).toMatchSnapshot();
   });
-
 });
-/* affixType, affixContent, bordered, isAutofill, disabled */
+
+/* renderAffix()
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 describe('renderAffix()', () => {
-  // eslint-disable-next-line react/prop-types
-  const AffixContainer = ({ affixType, affixContent, bordered, isAutofill, disabled }) => (
+  const AffixContainer = ({
+    // eslint-disable-next-line react/prop-types
+    affixType, affixContent, bordered, isAutofill, disabled,
+  }) => (
     <>
       {renderAffix(affixType, affixContent, bordered, isAutofill, disabled)}
     </>
@@ -62,37 +69,33 @@ describe('renderAffix()', () => {
 
   it('does not render a prefix or suffix if its not supplied', () => {
     const { container } = render(<AffixContainer />);
-    
+
     expect(container).toBeEmpty();
-    expect(container.innerHTML).toMatchSnapshot();
   });
 
-  
   it('renders a prefix when supplied', () => {
-    const { container } = render(<AffixContainer affixType={'prefix'} affixContent={'?'}/>);
-    
+    const { container } = render(<AffixContainer affixType="prefix" affixContent="?" bordered />);
+
     const prefix = container.querySelector('.prefix');
     const suffix = container.querySelector('.suffix');
 
     expect(suffix).toBe(null);
     expect(prefix).toBeInTheDocument();
-    expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('renders a suffix when supplied', () => {
-    const { container } = render(<AffixContainer affixType={'suffix'} affixContent={'?'}/>);
-    
+    const { container } = render(<AffixContainer affixType="suffix" affixContent="?" bordered />);
+
     const prefix = container.querySelector('.prefix');
     const suffix = container.querySelector('.suffix');
 
     expect(prefix).toBe(null);
     expect(suffix).toBeInTheDocument();
-    expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('renders a suffix when supplied with additional styling for autofill and border', () => {
-    const { container } = render(<AffixContainer affixType={'prefix'} affixContent={'?'} border={false} isAutofill={true} disabled={false}/>);
-    
+    const { container } = render(<AffixContainer affixType="prefix" affixContent="?" bordered={false} isAutofill disabled={false} />);
+
     const prefix = container.querySelector('.prefix');
     const border = container.querySelector('.prefix-no-border');
     const prefill = container.querySelector('.manor-prefilled');
@@ -100,100 +103,210 @@ describe('renderAffix()', () => {
     expect(prefix).toBeInTheDocument();
     expect(border).toBeInTheDocument();
     expect(prefill).toBeInTheDocument();
-    expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('does not render the additional stlying for autofill if its disabled', () => {
-    const { container } = render(<AffixContainer affixType={'prefix'} affixContent={'?'} isAutofill={true} disabled={true}/>);
-    
+    const { container } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill bordered disabled />);
+
     const prefix = container.querySelector('.prefix');
-    const border = container.querySelector('.prefix-no-border');
     const prefill = container.querySelector('.manor-prefilled');
 
     expect(prefix).toBeInTheDocument();
-    expect(border).toBeInTheDocument();
     expect(prefill).toBe(null);
-    expect(container.innerHTML).toMatchSnapshot();
   });
 
-  it('prefix and suffix can render components', () => {
-    const { container } = render(<AffixContainer affixType={'prefix'} affixContent={<SvgUkFlag/>} isAutofill={true} disabled={true}/>);
-    
-    const prefix = container.querySelector('.prefix');
-    const border = container.querySelector('.prefix-no-border');
+  it('can render a component via prop', () => {
+    const { container } = render(<AffixContainer affixType="suffix" bordered affixContent={<SvgUkFlag />} />);
+
+    const prefix = container.querySelector('.suffix');
     const prefill = container.querySelector('.manor-prefilled');
 
-    console.log(container.innerHTML)
     expect(prefix).toBeInTheDocument();
-    expect(border).toBeInTheDocument();
     expect(prefill).toBe(null);
-    expect(container.innerHTML).toMatchSnapshot();
+  });
+});
+
+/* renderOptionalElement()
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+describe('renderOptionalElement()', () => {
+  // eslint-disable-next-line react/prop-types
+  const OptionalElementContainer = ({ required }) => (
+    <>
+      {renderOptionalElement(required)}
+    </>
+  );
+
+  it('does not render the optional text when required === true', () => {
+    const { container } = render(<OptionalElementContainer required />);
+
+    expect(container).toBeEmpty();
   });
 
+  it('does render the optional text when required === false', () => {
+    const { container } = render(<OptionalElementContainer required={false} />);
+
+    const optionalTxt = container.querySelector('.manor-subscript');
+    expect(optionalTxt).toBeInTheDocument();
+  });
 });
 
-xdescribe('renderOptionalElement()', () => {
+/* Input.component
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-});
-
-/* 
-  id, type, placeholder, prefillValue, autofill, 
-  required, disabled, bordered, invalid, prefix, 
-  suffix, label, tooltip, 
+/*
+label, tooltip,
 */
-xdescribe('Input.component', () => {
+
+describe('Input.component', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<Input id="test-id" />);
+    const { container } = render(<Input id="test-id" handleChange={() => {}} />);
+
     expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('renders with props', () => {
-    const mockTestClick = jest.fn();
     const { container } = render(
       <Input
         id="test-id"
-        icon="check"
-        disabled={false}
-        invertColour
-        handleChange={mockTestClick}
-      >
-        <p>child content</p>
-      </Input>,
+        type="text"
+        placeholder="placeholder test"
+        label="input label"
+        autocomplete="on"
+        handleChange={() => {}}
+      />,
     );
 
-    const checkbox = container.querySelector('#test-id');
+    const input = container.querySelector('#test-id');
     const label = container.querySelector('label');
-    const labelStyle = container.querySelector('.manor-checkbox');
+    const placeholder = input.getAttribute('placeholder');
+    const autocomplete = input.getAttribute('autocomplete');
+    const inputBorder = container.querySelector('.input-border');
+    const fieldSet = container.querySelector('.fieldset');
+    const inputInvalid = container.querySelector('.invalid');
 
-    fireEvent.click(label, { button: 0 });
-
-    expect(mockTestClick).toHaveBeenCalled();
-    expect(labelStyle.classList).toContain('inverted');
-    expect(checkbox.getAttribute('disabled')).toBe(null);
-    expect(container.querySelector('#child-content')).toBeDefined();
-    expect(container.getElementsByTagName('svg')).toBeDefined();
+    expect(label.textContent).toBe('input label');
+    expect(placeholder).toBe('placeholder test');
+    expect(autocomplete).toBe('on');
+    expect(inputBorder).toBeInTheDocument();
+    expect(fieldSet).toBeInTheDocument();
+    expect(inputInvalid).toBe(null);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
-  it('checks on click', () => {
-    const { container } = render(<Input id="test-id" icon="check" disabled={false} invertColour />);
+  it('renders an unbordered input', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        bordered={false}
+        handleChange={() => {}}
+      />,
+    );
 
-    const checkbox = container.querySelector('#test-id');
-    const label = container.querySelector('label');
+    const inputBorder = container.querySelector('.input-border');
 
-    fireEvent.click(label, { button: 0 });
-
-    expect(checkbox.checked).toBe(true);
+    expect(inputBorder).toBe(null);
   });
 
-  it('click is disabled when disabled prop is supplied', () => {
-    const { container } = render(<Input id="test-id" icon="check" disabled />);
+  it('renders an invalid input', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        invalid
+        handleChange={() => {}}
+      />,
+    );
 
-    const checkbox = container.querySelector('#test-id');
-    const label = container.querySelector('label');
+    const inputInvalid = container.querySelector('.invalid');
 
-    fireEvent.click(label, { button: 0 });
+    expect(inputInvalid).toBeInTheDocument();
+  });
 
-    expect(checkbox.checked).toBe(false);
+  it('renders an a prefix and a suffix', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        prefixContent="$"
+        suffixContent="?"
+        handleChange={() => {}}
+      />,
+    );
+
+    const prefix = container.querySelector('.prefix');
+    const suffix = container.querySelector('.suffix');
+
+    expect(prefix).toBeInTheDocument();
+    expect(prefix.textContent).toBe('$');
+    expect(suffix).toBeInTheDocument();
+    expect(suffix.textContent).toBe('?');
+  });
+
+  it('adds focus styles on focus and removes on blur', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        handleChange={() => {}}
+      />,
+    );
+
+    const inputField = container.querySelector('#test-id');
+    const inputWrap = container.querySelector('.input-wrap');
+
+    inputField.focus();
+    expect(inputWrap).toHaveClass('input-wrap-focus');
+    inputField.blur();
+    expect(inputWrap).not.toHaveClass('input-wrap-focus');
+  });
+
+  it('accepts a prefill value and renders with prefill styling', () => {
+    let val;
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        prefillValue="autofilled value test"
+        handleChange={(value) => { val = value; }}
+      />,
+    );
+
+    const inputField = container.querySelector('#test-id');
+    const inputWrap = container.querySelector('.input-wrap');
+    expect(inputField).toHaveClass('manor-prefilled');
+    expect(inputWrap).toHaveClass('manor-prefilled-border');
+    expect(val).toBe('autofilled value test');
+  });
+
+  it('clears the input on click of the clear button', () => {
+    const clearValueCb = jest.fn();
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        handleChange={clearValueCb}
+      />,
+    );
+
+    const inputField = container.querySelector('#test-id');
+    fireEvent.input(inputField, { target: { value: 'test string' } });
+    expect(inputField.value).toBe('test string');
+
+    const clearBtn = container.querySelector('.input-clear-button');
+    fireEvent.click(clearBtn);
+    expect(inputField.value).toBe('');
+
+    expect(clearValueCb.mock.calls.length).toBe(3);
+    expect(clearValueCb.mock.calls[0][0]).toBe('');
+    expect(clearValueCb.mock.calls[1][0]).toBe('test string');
+    expect(clearValueCb.mock.calls[2][0]).toBe('');
   });
 });

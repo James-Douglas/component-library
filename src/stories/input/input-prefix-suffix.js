@@ -32,6 +32,11 @@ const prefixSuffixView = () => {
     </svg>
   );
 
+  const logValue = (value) => {
+    // eslint-disable-next-line no-console
+    console.log(value);
+  };
+
   return (
     <>
       <style jsx>{styles}</style>
@@ -42,13 +47,13 @@ const prefixSuffixView = () => {
           type="text"
           bordered
           required={false}
-          autofill={false}
           disabled={false}
           prefixContent={<SvgUkFlag />}
           suffixContent="?"
           invalid={false}
           label="[Fieldset label] With tooltip, prefix and suffix"
           tooltip={tooltip}
+          handleChange={(value) => logValue(value)}
         />
 
         <Input
@@ -57,11 +62,11 @@ const prefixSuffixView = () => {
           type="text"
           bordered
           required={false}
-          autofill={false}
           disabled={false}
           prefixContent="prefix"
           invalid={false}
           label="[Fieldset label] With prefix"
+          handleChange={(value) => logValue(value)}
         />
 
         <Input
@@ -70,11 +75,11 @@ const prefixSuffixView = () => {
           type="text"
           bordered
           required={false}
-          autofill={false}
           disabled={false}
           suffixContent="suffix"
           invalid={false}
           label="[Fieldset label] With suffix"
+          handleChange={(value) => logValue(value)}
         />
       </div>
 

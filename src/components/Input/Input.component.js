@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useValueState from '../../hooks/useValueState';
+import useValueState from 'hooks/useValueState';
 import Icon from '../Icon/Icon.component';
 import Fieldset from '../Fieldset/Fieldset.component';
-import styles from './styles.js';
+import styles from './styles';
 
 /* Input will need to accept children for the custom combo */
 
@@ -13,13 +13,19 @@ export const renderClearIcon = (value, clearInput, isAutofill, label) => {
       <>
         <style jsx>{styles}</style>
         <button
+          type="button"
           onClick={clearInput}
           className={`
           input-clear-button
           ${isAutofill ? 'darker' : 'lighter'}
         `}
         >
-          <div className="sr-only">Clears the {label}{' '}field.</div>
+          <div className="sr-only">
+Clears the
+            {label}
+            {' '}
+field.
+          </div>
           <Icon name="closeCircle" size={1.6} />
         </button>
       </>
@@ -29,9 +35,7 @@ export const renderClearIcon = (value, clearInput, isAutofill, label) => {
 };
 
 export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled) => {
-  
-  if ( affixType && affixContent ) {
-
+  if (affixType && affixContent) {
     return (
       <>
         <style jsx>{styles}</style>
@@ -62,21 +66,26 @@ export const renderOptionalElement = (required) => {
 };
 
 const Input = ({
-  id, type, placeholder, prefillValue, autofill, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip,
+  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange,
 }) => {
-  const [ value, setValue, clearValue ] = useValueState(prefillValue || '');
-  const [ isAutofill, setIsAutofill ] = useState(autofill)
+  const [value, setValue, clearValue] = useValueState(prefillValue || '');
+  const [isAutofill, setIsAutofill] = useState(!!prefillValue);
+
   const inputWrapElement = useRef(null);
-  
+
   const clearInput = () => {
     clearValue();
     setIsAutofill(false);
   };
 
-  const handleChange = (e) => {
+  const handleOnChange = (e) => {
     setIsAutofill(false);
     setValue(e);
-  }
+  };
+
+  useEffect(() => {
+    handleChange(value);
+  }, [handleChange, value]);
 
   const addFocus = () => {
     inputWrapElement.current.classList.add('input-wrap-focus');
@@ -112,8 +121,8 @@ const Input = ({
                 placeholder={placeholder}
                 disabled={disabled}
                 value={value}
-                onChange={handleChange}
-                autoComplete="off"
+                onChange={handleOnChange}
+                autoComplete={autocomplete}
                 onFocus={addFocus}
                 onBlur={removeFocus}
                 className={`
@@ -141,32 +150,45 @@ const Input = ({
 
 Input.propTypes = {
   id: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  prefillValue: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  autofill: PropTypes.bool,
   required: PropTypes.bool,
   disabled: PropTypes.bool,
   bordered: PropTypes.bool,
   invalid: PropTypes.bool,
-  prefix: PropTypes.oneOfType([
+  autocomplete: PropTypes.string,
+  prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
-  suffix: PropTypes.oneOfType([
+  suffixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
   label: PropTypes.string,
-  tooltip: PropTypes.object,
+  tooltip: PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    boundingElementSelector: PropTypes.string,
+    screenReaderLabel: PropTypes.string,
+  }),
 };
 
 Input.defaultProps = {
   type: 'text',
-  autofill: false,
+  placeholder: '',
+  prefillValue: '',
+  prefixContent: '',
+  suffixContent: '',
+  autocomplete: 'off',
   required: true,
   disabled: false,
   bordered: true,
   invalid: false,
+  label: '',
+  tooltip: {},
 };
 
 export default Input;
