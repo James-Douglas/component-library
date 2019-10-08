@@ -1,9 +1,10 @@
 import React from 'react';
 import Button from '../../components/Button/Button.component';
-import './button-view.css';
+import styles from './styles';
 
 const LinkButtonView = () => (
   <>
+    <style jsx>{styles}</style>
     <div className="background manor-rich-text">
       <p>On light backgrounds:</p>
       <div className="lightbg">

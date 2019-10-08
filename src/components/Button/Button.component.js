@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon.component';
-import styles from './Button.module.css';
+import styles from './styles';
 
 const Button = ({
   id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel, handleClick,
@@ -12,7 +12,8 @@ const Button = ({
     if (icon) {
       return (
         <>
-          <div className={`${styles['btn-icon']}`}>
+          <style jsx>{styles}</style>
+          <div className="btn-icon">
             <Icon name={icon} size={size} />
           </div>
           {content}
@@ -27,33 +28,38 @@ const Button = ({
     const Tag = isButton ? 'button' : 'a';
 
     return (
-      <Tag
-        onClick={handleClick}
-        id={id}
-        className={`
-          manor-rich-text
-          ${styles[`${isButton ? 'manor-button' : 'manor-button-link'}`]} 
-          ${styles[btnSize]}
-          ${styles[btnType]}
-          ${btnMode ? `${styles[btnMode]}` : ''}
-          ${content === '' ? styles.center : ''}
-          ${iconAlignRight ? `${styles['align-right']}` : ''}
-        `}
-        disabled={disabled}
-        href={isButton ? null : href}
-        target={isButton ? null : target}
-        rel={isButton ? null : rel}
-      >
-        {renderContent()}
-      </Tag>
+      <>
+        <style jsx>{styles}</style>
+        <Tag
+          onClick={handleClick}
+          id={id}
+          className={`
+            manor-rich-text 
+            ${btnSize}
+            ${btnType}
+            ${isButton ? 'manor-button' : 'manor-button-link'} 
+            ${btnMode ? `${btnMode}` : ''}
+            ${content === '' ? 'center' : ''}
+            ${iconAlignRight ? 'align-right' : ''}
+          `}
+          disabled={disabled}
+          href={isButton ? null : href}
+          target={isButton ? null : target}
+          rel={isButton ? null : rel}
+        >
+          {renderContent()}
+        </Tag>
+      </>
     );
   };
 
-
   return (
-    <span className={`manor-button-wrap ${isInlineBlock}`}>
-      {renderButton()}
-    </span>
+    <>
+      <style jsx>{styles}</style>
+      <span className={`manor-button-wrap ${isInlineBlock}`}>
+        {renderButton()}
+      </span>
+    </>
   );
 };
 
