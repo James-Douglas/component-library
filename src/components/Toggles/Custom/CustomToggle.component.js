@@ -5,13 +5,13 @@ import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 
 const CustomToggle = ({
-  id, value, name, selectedId, invalid, disabled, autofill, handleChange, children,
+  id, value, name, selectedId, invalid, disabled, autofill, onToggle, children,
 }) => {
   const [dirty, setDirty] = useState(false);
-  const handleClick = () => {
+  const handleToggle = () => {
     setDirty(true);
-    if (handleChange) {
-      handleChange(id);
+    if (onToggle) {
+      onToggle(id);
     }
   };
 
@@ -25,7 +25,7 @@ const CustomToggle = ({
       invalid={invalid}
       disabled={disabled}
       autofill={autofill}
-      handleChange={handleClick}
+      onToggle={handleToggle}
     >
       <ToggleLabel dirty={dirty} autofill={autofill} id={id}>
         {children}
@@ -42,7 +42,7 @@ CustomToggle.propTypes = {
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
   autofill: PropTypes.bool,
-  handleChange: PropTypes.func,
+  onToggle: PropTypes.func,
   children: PropTypes.node,
 };
 
@@ -53,7 +53,7 @@ CustomToggle.defaultProps = {
   invalid: false,
   disabled: false,
   autofill: false,
-  handleChange: null,
+  onToggle: null,
   children: [],
 };
 

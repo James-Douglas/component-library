@@ -83,14 +83,14 @@ export function getToggleContent(icon, iconSize, pictureOptions, autofill, dirty
 }
 
 const Toggle = ({
-  id, type, label, value, name, selectedId, invalid, disabled, autofill, handleChange, icon, iconSize, pictureOptions, rectOptions,
+  id, type, label, value, name, selectedId, invalid, disabled, autofill, onToggle, icon, iconSize, pictureOptions, rectOptions,
 }) => {
   const [dirty, setDirty] = useState(false);
 
   const handleClick = () => {
     setDirty(true);
-    if (handleChange) {
-      handleChange(id);
+    if (onToggle) {
+      onToggle(id);
     }
   };
 
@@ -104,7 +104,7 @@ const Toggle = ({
       invalid={invalid}
       disabled={disabled}
       autofill={autofill}
-      handleChange={handleClick}
+      onToggle={handleClick}
       rectOptions={rectOptions}
     >
       {getToggleContent(icon, iconSize, pictureOptions, autofill, dirty, id, type, rectOptions, label)}
@@ -115,15 +115,15 @@ const Toggle = ({
 
 Toggle.propTypes = {
   id: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['square', 'rectangle']),
   label: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['square', 'rectangle']),
   value: PropTypes.string,
   selectedId: PropTypes.string,
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
   autofill: PropTypes.bool,
-  handleChange: PropTypes.func,
+  onToggle: PropTypes.func,
   icon: PropTypes.string,
   iconSize: PropTypes.number,
   pictureOptions: PropTypes.shape({
@@ -147,7 +147,7 @@ Toggle.defaultProps = {
   invalid: false,
   disabled: false,
   autofill: false,
-  handleChange: null,
+  onToggle: null,
   icon: null,
   iconSize: 10,
   rectOptions: {

@@ -53,13 +53,13 @@ export function getDisplayLabel(label, backgroundColor) {
 }
 
 const ColorToggle = ({
-  id, label, backgroundColor, fontColor, value, name, selectedId, invalid, disabled, autofill, handleChange, children,
+  id, label, backgroundColor, fontColor, value, name, selectedId, invalid, disabled, autofill, onToggle,
 }) => {
   const [dirty, setDirty] = useState(false);
   const handleClick = () => {
     setDirty(true);
-    if (handleChange) {
-      handleChange(id);
+    if (onToggle) {
+      onToggle(id);
     }
   };
 
@@ -79,13 +79,12 @@ const ColorToggle = ({
         invalid={invalid}
         disabled={disabled}
         autofill={autofill}
-        handleChange={handleClick}
+        onToggle={handleClick}
       >
         <ToggleLabel dirty={dirty} autofill={autofill} id={id}>
           <span className="colour-toggle">
             <span className="content">{displayLabel}</span>
             <span className="border-colour" style={animationStyle} />
-            {children}
           </span>
         </ToggleLabel>
       </BaseToggle>
@@ -104,8 +103,7 @@ ColorToggle.propTypes = {
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
   autofill: PropTypes.bool,
-  handleChange: PropTypes.func,
-  children: PropTypes.node,
+  onToggle: PropTypes.func,
 };
 
 ColorToggle.defaultProps = {
@@ -117,8 +115,7 @@ ColorToggle.defaultProps = {
   invalid: false,
   disabled: false,
   autofill: false,
-  handleChange: null,
-  children: [],
+  onToggle: null,
 };
 
 export default ColorToggle;

@@ -56,7 +56,7 @@ describe('ColorToggle', () => {
 
   it('calls handleChange when change event fires', () => {
     const handleChangeCb = jest.fn();
-    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" fontColor="white" handleChange={handleChangeCb} />);
+    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" fontColor="white" onToggle={handleChangeCb} />);
     const element = container.querySelector('.toggle');
     fireEvent.click(element);
     expect(handleChangeCb).toHaveBeenCalled();

@@ -79,7 +79,7 @@ const ToggleView = () => {
   return (
     <StoryTemplate>
       <div className="mb-32">
-        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} handleChange={(id) => handleChange(id, 'DEFAULT')}>
+        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={(id) => handleChange(id, 'DEFAULT')}>
           <Toggle value="1" id="one" label="one" />
           <Toggle value="2" id="two" label="two" />
           <Toggle value="3" id="three" label="three" />
@@ -96,7 +96,7 @@ const ToggleView = () => {
       </div>
 
       <div className="mb-32">
-        <ToggleGroup label="Icons" name="toggleGroupB" tooltip={tooltip} handleChange={(id) => handleChange(id, 'ICONS')}>
+        <ToggleGroup label="Icons" name="toggleGroupB" tooltip={tooltip} onToggle={(id) => handleChange(id, 'ICONS')}>
           <Toggle value="contact" id="contact" label="Contact" icon="contact" iconSize={4} />
           <Toggle value="close" id="close" label="Close" icon="close" iconSize={4} />
           <Toggle value="info" id="info" label="Info" icon="info" iconSize={4} />
@@ -104,7 +104,7 @@ const ToggleView = () => {
       </div>
 
       <div className="mb-32">
-        <ToggleGroup label="Images" name="toggleGroupC" tooltip={tooltip} handleChange={(id) => handleChange(id, 'IMAGES')}>
+        <ToggleGroup label="Images" name="toggleGroupC" tooltip={tooltip} onToggle={(id) => handleChange(id, 'IMAGES')}>
           {makes.map((make, i) => (
             <Toggle value={i} id={names[i]} key={`toggle-${names[i]}`} label={names[i]} pictureOptions={{ src: make, alt: `${names[i]} logo`, title: names[i] }} />
           ))}
@@ -112,7 +112,7 @@ const ToggleView = () => {
       </div>
 
       <div className="mb-32">
-        <ToggleGroup label="Long" name="toggleGroupD" tooltip={tooltip} handleChange={(id) => handleChange(id, 'LONG')}>
+        <ToggleGroup label="Long" name="toggleGroupD" tooltip={tooltip} onToggle={(id) => handleChange(id, 'LONG')}>
           <Toggle value="x1" id="long1" label="S-type 3.0mpi x200 Automatic 5gr (rel.Mar)rwd, 179kW" />
           <Toggle value="x2" id="long2" label="S-type SE 3.0mpi x200 Automatic 5gr (rel.Mar)rwd, 179kW" />
           <Toggle value="x3" id="long3" label="S-type SE 4.0mpi x200 Automatic 5gr (rel.Mar)rwd, 209kW" />
@@ -124,7 +124,7 @@ const ToggleView = () => {
           label="Rectangle with columns & height"
           name="toggleGroupE"
           tooltip={tooltip}
-          handleChange={(id) => handleChange(id, 'RECT_COLUMNS_HEIGHT')}
+          onToggle={(id) => handleChange(id, 'RECT_COLUMNS_HEIGHT')}
           rectOptions={{
             col: 4,
             height: 12,
@@ -138,7 +138,7 @@ const ToggleView = () => {
 
 
       <div className="mb-32">
-        <ToggleGroup label="Inactive" id="toggleGroupF" name="toggleGroupE" tooltip={tooltip} handleChange={(id) => handleChange(id, 'INACTIVE')}>
+        <ToggleGroup label="Inactive" id="toggleGroupF" name="toggleGroupE" tooltip={tooltip} onToggle={(id) => handleChange(id, 'INACTIVE')}>
           <Toggle value="a" id="a" label="A" disabled />
           <Toggle value="b" id="b" label="B" disabled />
           <Toggle value="c" id="c" label="C" disabled />
@@ -146,7 +146,7 @@ const ToggleView = () => {
       </div>
 
       <div className="mb-32">
-        <ToggleGroup label="Pre-checked" id="toggleGroupG" name="toggleGroupF" tooltip={tooltip} handleChange={(id) => handleChange(id, 'PRE-CHECKED')}>
+        <ToggleGroup label="Pre-checked" id="toggleGroupG" name="toggleGroupF" tooltip={tooltip} onToggle={(id) => handleChange(id, 'PRE-CHECKED')}>
           <Toggle value="d" id="d" label="D" autofill />
           <Toggle value="e" id="e" label="E" />
           <Toggle value="f" id="f" label="F" />
@@ -154,7 +154,7 @@ const ToggleView = () => {
       </div>
 
       <div className="mb-32">
-        <ToggleGroup label="Invalid (required)" name="invalid" id="toggleGroupH" tooltip={tooltip} handleChange={(id) => handleChange(id, 'INVALID')}>
+        <ToggleGroup label="Invalid (required)" name="invalid" id="toggleGroupH" tooltip={tooltip} onToggle={(id) => handleChange(id, 'INVALID')}>
           <Toggle value="health" id="health" label="Health " invalid />
           <Toggle value="car" id="car" label="Car" invalid />
           <Toggle value="energy" id="energy" label="Energy" invalid />

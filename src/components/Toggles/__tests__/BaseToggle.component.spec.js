@@ -42,7 +42,7 @@ describe('BaseToggle', () => {
   });
   it('calls handleChange when toggled', () => {
     const handleChangeCb = jest.fn();
-    const { container } = render(<BaseToggle type="square" id="test-square" handleChange={handleChangeCb} />);
+    const { container } = render(<BaseToggle type="square" id="test-square" onToggle={handleChangeCb} />);
     const element = container.querySelector('.toggle');
     fireEvent.click(element);
     expect(handleChangeCb).toHaveBeenCalled();

@@ -32,7 +32,7 @@ export const getChildren = (children, type, dirty, name, selectedId, didToggle, 
       key,
       name,
       selectedId,
-      handleChange: didToggle,
+      onToggle: didToggle,
       type,
       dirty,
     };
@@ -43,7 +43,7 @@ export const getChildren = (children, type, dirty, name, selectedId, didToggle, 
 );
 
 const ToggleGroup = ({
-  id, name, label, tooltip, handleChange, children, rectOptions,
+  id, name, label, tooltip, onToggle, children, rectOptions,
 }) => {
   const [selectedId, setSelectedId] = useState();
   const [dirty, setDirty] = useState();
@@ -53,7 +53,7 @@ const ToggleGroup = ({
     setDirty(true);
   };
 
-  useDidUpdateEffect(handleChange, [selectedId], [handleChange, selectedId]);
+  useDidUpdateEffect(onToggle, [selectedId], [onToggle, selectedId]);
 
   if (tooltip) {
     // eslint-disable-next-line no-param-reassign
@@ -74,7 +74,7 @@ ToggleGroup.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
   tooltip: PropTypes.shape(tooltipPropTypes),
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),

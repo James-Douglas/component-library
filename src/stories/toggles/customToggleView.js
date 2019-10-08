@@ -58,12 +58,11 @@ const CustomToggleView = () => {
     <StoryTemplate background="grey">
       <div className="mb-32">
         <style jsx>{styles}</style>
-        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} handleChange={(id) => handleChange(id)}>
+        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={(id) => handleChange(id)}>
           <CustomToggle
             name="image"
             id="green"
             value="green"
-            handleChange={handleChange}
           >
             <div className="medicare-toggle">
               <div className="picture-container">
@@ -82,7 +81,6 @@ const CustomToggleView = () => {
             name="image"
             id="blue"
             value="blue"
-            handleChange={handleChange}
           >
             <div className="medicare-toggle">
               <div className="picture-container">
@@ -101,7 +99,6 @@ const CustomToggleView = () => {
             name="image"
             id="yellow"
             value="yellow"
-            handleChange={handleChange}
           >
             <div className="medicare-toggle">
               <div className="picture-container">
@@ -120,7 +117,6 @@ const CustomToggleView = () => {
             name="image"
             id="other"
             value="other"
-            handleChange={handleChange}
           >
             <div className="medicare-toggle">
               <div className="other-container">

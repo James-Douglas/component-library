@@ -145,7 +145,7 @@ describe('Toggle', () => {
 
   it('calls handleChange on handleChange when provided', () => {
     const handleChangeCb = jest.fn();
-    const { container } = render(<Toggle label="test label" id="test-id" handleChange={handleChangeCb} />);
+    const { container } = render(<Toggle label="test label" id="test-id" onToggle={handleChangeCb} />);
     const element = container.querySelector('.toggle');
     fireEvent.click(element);
     expect(handleChangeCb).toHaveBeenCalled();

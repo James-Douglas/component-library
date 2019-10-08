@@ -36,13 +36,13 @@ describe('getChildren()', () => {
     ]);
     const result = getChildren(testChildren, 'square', false, 'test-group', null, didToggleCb, null);
     const {
-      name, id, selectedId, handleChange, type, dirty,
+      name, id, selectedId, onToggle, type, dirty,
     } = result[0].props;
 
     expect(name).toEqual('test-group');
     expect(id).toEqual('a');
     expect(selectedId).toEqual(null);
-    expect(handleChange).toEqual(didToggleCb);
+    expect(onToggle).toEqual(didToggleCb);
     expect(type).toEqual('square');
     expect(dirty).toEqual(false);
   });
@@ -74,14 +74,14 @@ describe('getChildren()', () => {
 
 describe('ToggleGroup', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<ToggleGroup name="test-toggle-group" handleChange={() => {}} />);
+    const { container } = render(<ToggleGroup name="test-toggle-group" onToggle={() => {}} />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('calls handleChange on toggle selection', () => {
     const handleChangeCb = jest.fn();
     const { container } = render(
-      <ToggleGroup name="test-toggle-group-b" handleChange={handleChangeCb}>
+      <ToggleGroup name="test-toggle-group-b" onToggle={handleChangeCb}>
         <Toggle label="test toggle a" id="a" />
         <Toggle label="test toggle b" id="b" />
       </ToggleGroup>,
@@ -96,7 +96,7 @@ describe('ToggleGroup', () => {
     const handleChangeCb = jest.fn();
     const tooltip = { title: 'test' };
     const { container } = render(
-      <ToggleGroup name="test-toggle-group-b" handleChange={handleChangeCb} tooltip={tooltip}>
+      <ToggleGroup name="test-toggle-group-b" onToggle={handleChangeCb} tooltip={tooltip}>
         <Toggle label="test toggle a" id="a" />
         <Toggle label="test toggle b" id="b" />
       </ToggleGroup>,

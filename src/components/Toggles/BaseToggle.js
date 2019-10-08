@@ -23,12 +23,12 @@ export function getInlineStyles(type, rectOptions) {
 }
 
 const BaseToggle = ({
-  id, type, value, name, selectedId, invalid, disabled, autofill, handleChange, rectOptions, children,
+  id, type, value, name, selectedId, invalid, disabled, autofill, onToggle, rectOptions, children,
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
   const handleClick = () => {
-    handleChange(id);
+    onToggle(id);
   };
 
   const isChecked = selectedId ? selectedId === id : autofill || false;
@@ -71,7 +71,7 @@ BaseToggle.propTypes = {
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
   autofill: PropTypes.bool,
-  handleChange: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),

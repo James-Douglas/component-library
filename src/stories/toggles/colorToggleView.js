@@ -24,7 +24,7 @@ const ColorToggleView = () => {
     <StoryTemplate background="grey">
       <div className="mb-32">
         <style jsx>{styles}</style>
-        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} handleChange={(id) => handleChange(id)}>
+        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={(id) => handleChange(id)}>
           <ColorToggle backgroundColor="pink" id="pink" fontColor="white" />
           <ColorToggle backgroundColor="white" id="white" />
           <ColorToggle backgroundColor="silver" id="silver" />

@@ -1,5 +1,5 @@
 # ToggleGroup component
-The CTM ToggleGroup component, wraps a given set of toggles (radio buttons under the hood).
+The CTM ToggleGroup component, wraps a given set of toggles.
 
 ## Usage
 ~~~js
@@ -35,4 +35,7 @@ The ToggleGroup component accepts the following props:
     
 5. `handleChange` *(optional) function*
     * onChange handler function, called on select of a toggle with the id of that toggle 
+    
+6. `rectOptions` *(optional) object*
+    * Options object for rectangular toggles (see Toggle documentation)
     
