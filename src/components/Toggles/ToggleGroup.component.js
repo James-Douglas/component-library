@@ -55,13 +55,13 @@ const ToggleGroup = ({
 
   useDidUpdateEffect(onToggle, [selectedId], [onToggle, selectedId]);
 
+  const tooltipOptions = tooltip;
   if (tooltip) {
-    // eslint-disable-next-line no-param-reassign
-    tooltip.justifyEnd = true;
+    tooltipOptions.justifyEnd = true;
   }
 
   return (
-    <Fieldset label={label} tooltip={tooltip} forceFullWidth>
+    <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth>
       <style jsx>{styles}</style>
       <div className="toggle-group" id={id}>
         {getChildren(children, type, dirty, name, selectedId, didToggle, rectOptions)}

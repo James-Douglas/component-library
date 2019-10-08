@@ -9,6 +9,7 @@ const columns = {
 
 export function getInlineStyles(type, rectOptions) {
   if (type !== 'rectangle') return {};
+
   const { col, height } = rectOptions;
   const inlineStyles = {
     height: `${height}rem`,
@@ -27,6 +28,7 @@ const BaseToggle = ({
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
+
   const handleClick = () => {
     onToggle(id);
   };
@@ -37,7 +39,6 @@ const BaseToggle = ({
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <span
       className="flex toggle"
-      /* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */
       style={getInlineStyles(type, rectOptions)}
       onClick={() => toggleElement.current.click()}
       ref={wrapperElement}
@@ -72,7 +73,6 @@ BaseToggle.propTypes = {
   disabled: PropTypes.bool,
   autofill: PropTypes.bool,
   onToggle: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
