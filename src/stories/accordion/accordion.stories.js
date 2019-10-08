@@ -10,7 +10,7 @@ storiesOf('Accordion', module)
   .add('Default Accordion', () => (
     <Container>
       <div style={{ marginTop: '60px', backgroundColor: '#f9f9f9', padding: '30px' }}>
-        <Accordion title="What are the benefits of combining your electricity and gas bills?" show>
+        <Accordion title="What are the benefits of combining your electricity and gas bills?" >
           <div>
             <p>
 Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
@@ -32,7 +32,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
   .add('Multiple Accordion', () => (
     <Container>
       <div style={{ marginTop: '60px', backgroundColor: '#f9f9f9', padding: '30px' }}>
-        <Accordion title="What are the benefits of combining your electricity and gas bills?" show>
+        <Accordion title="What are the benefits of combining your electricity and gas bills?">
           <div>
             <p>
 Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
@@ -48,7 +48,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
             </p>
           </div>
         </Accordion>
-        <Accordion title="What are the benefits of combining your electricity and gas bills?">
+        <Accordion title="What are the benefits of combining your electricity and gas bills?" show>
           <div>
             <p>
 Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather

@@ -9,7 +9,7 @@ const Accordion = ({
   show,
   size,
 }) => {
-  const [isShow, setIsShow] = useState(!!show);
+  const [isShow, setIsShow] = useState(show);
   const showClass = isShow ? '' : 'hide';
   const arrowName = isShow ? 'Top' : 'Bottom';
   const toggleTrueFalse = () => setIsShow(!isShow);
@@ -42,7 +42,7 @@ Accordion.propTypes = {
 Accordion.defaultProps = {
   children: "If you're in position to purchase your gas and electricity with one provider...",
   title: 'Position to purchase',
-  show: true,
+  show: false,
   size: 2,
 };
 

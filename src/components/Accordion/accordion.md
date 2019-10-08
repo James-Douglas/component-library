@@ -7,8 +7,8 @@
 ## Props
 Checkbox is a custom checkbox, styled with an icon. This is the default, singular variety.
 
-1. `id` *(required) string*
-    * The checkbox ID. This is required, as it informs the label and the value of the checkbox.
+1. `title` * string*
+    * The title attribute click on. Shows a summary of the panel content.
 2. `disabled` *(optional) boolean*
     * Defines if the checkbox is disabled or not. Defaults to false.
 3. `checked` *(optional) boolean*
