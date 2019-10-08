@@ -5,6 +5,9 @@ export default css`
   transition: color 2s linear;
   border-bottom: 2px solid #999999;
 }
+.accordion .accordion-body {
+  display: block;
+}
 .accordion.hide {
    border-bottom: 1px solid rgba(0,0,0,.1);
 }

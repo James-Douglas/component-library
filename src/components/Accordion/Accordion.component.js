@@ -9,8 +9,8 @@ const Accordion = ({
   show,
   size,
 }) => {
-  const [isShow, setIsShow] = useState(show);
-  const showClass = !isShow ? 'hide' : '';
+  const [isShow, setIsShow] = useState(!!show);
+  const showClass = isShow ? '' : 'hide';
   const arrowName = isShow ? 'Top' : 'Bottom';
   const toggleTrueFalse = () => setIsShow(!isShow);
   return (
