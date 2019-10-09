@@ -11,34 +11,13 @@ const CheckboxGroupView = () => {
   const [checkboxGroupA, updateCheckboxGroupA] = useState([]);
   const [checkboxGroupB, updateCheckboxGroupB] = useState([]);
 
-  const clickedItems = (arr, checkboxID) => {
-    if (arr.includes(checkboxID)) {
-      return arr.filter((item) => item !== checkboxID);
-    }
-    return [...arr, checkboxID];
-  };
-
-  const logEvent1 = (selectedCheckboxes) => {
-    console.warn(`called`)
-    // console.warn(selectedCheckboxes);
-    // if (value) {
-    //     //   updateCheckboxGroupA(clickedItems(checkboxGroupA, id));
-    //     // }
-    // console.warn(clickedItems(checkboxGroupA, id));
-  };
-
-  const logEvent2 = ({id, value}) => {
-    console.warn(`called`)
-    // console.warn(`value: ${value}`);
-    // updateCheckboxGroupB(clickedItems(checkboxGroupB, id));
-  };
-
+  console.warn(checkboxGroupA.map((checkbox) => checkbox.id).join(', '));
   return (
     <>
       <style jsx>{styles}</style>
       <div className="grid-view">
         <Container>
-          <CheckboxGroup groupId={g1} colSize="6" handleClick={logEvent1}>
+          <CheckboxGroup groupId={g1} colSize="6" handleChange={(selectedCheckboxes) => updateCheckboxGroupA(selectedCheckboxes)}>
             <Checkbox id="A-1" icon="check">A-1 check</Checkbox>
             <Checkbox id="A-2" icon="check">A-2 check</Checkbox>
             <Checkbox id="A-3" icon="check">A-3 check</Checkbox>
@@ -46,7 +25,7 @@ const CheckboxGroupView = () => {
             <Checkbox id="A-5" icon="check">A-5 check</Checkbox>
             <Checkbox id="A-6" icon="check">A-6 check</Checkbox>
           </CheckboxGroup>
-          <CheckboxGroup groupId={g2} colSize="6" handleClick={logEvent2}>
+          <CheckboxGroup groupId={g2} colSize="6" handleChange={(selectedCheckboxes) => updateCheckboxGroupB(selectedCheckboxes)}>
             <Checkbox id="B-1" icon="check">B-1 check</Checkbox>
             <Checkbox id="B-2" icon="check">B-2 check</Checkbox>
             <Checkbox id="B-3" icon="check">B-3 check</Checkbox>
@@ -55,26 +34,26 @@ const CheckboxGroupView = () => {
             <Checkbox id="B-6" icon="check">B-6 check</Checkbox>
           </CheckboxGroup>
 
-          {/*<div className="results-container">*/}
-          {/*  {checkboxGroupA.length || checkboxGroupB.length*/}
-          {/*    ? (*/}
-          {/*      <>*/}
-          {/*        <p className="results">*/}
-          {/*          {g1}*/}
-          {/*    :*/}
-          {/*          {' '}*/}
-          {/*          {checkboxGroupA.join(', ')}*/}
-          {/*        </p>*/}
-          {/*        <p className="results">*/}
-          {/*          {g2}*/}
-          {/*    :*/}
-          {/*          {' '}*/}
-          {/*          {checkboxGroupB.join(', ')}*/}
-          {/*        </p>*/}
-          {/*      </>*/}
-          {/*    )*/}
-          {/*    : <p className="results">Nothing selected</p>}*/}
-          {/*</div>*/}
+          <div className="results-container">
+            {checkboxGroupA.length || checkboxGroupB.length
+              ? (
+                <>
+                  <p className="results">
+                    {g1}
+              :
+                    {' '}
+                    {checkboxGroupA.map((checkbox) => checkbox.id).join(', ')}
+                  </p>
+                  <p className="results">
+                    {g2}
+              :
+                    {' '}
+                    {checkboxGroupB.map((checkbox) => checkbox.id).join(', ')}
+                  </p>
+                </>
+              )
+              : <p className="results">Nothing selected</p>}
+          </div>
 
         </Container>
       </div>

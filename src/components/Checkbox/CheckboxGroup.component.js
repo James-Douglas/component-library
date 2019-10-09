@@ -19,27 +19,22 @@ export const generateGroup = (colSize, children, callback) => {
 };
 
 const CheckboxGroup = ({
-  groupId, colSize, handleClick, children,
+  groupId, colSize, handleChange, children,
 }) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
   const handleCheckboxClick = ({ id, value }) => {
-    console.warn(`${id} ${value}`)
-    if (value) {
-      const newSelectedCheckboxes = [...selectedCheckboxes, {id, value}];
+    const exists = selectedCheckboxes.find((checkbox) => checkbox.id === id);
+    if (value && !exists) {
+      const newSelectedCheckboxes = [...selectedCheckboxes, { id, value }];
       setSelectedCheckboxes(newSelectedCheckboxes);
-    } else {
-      // setSelectedCheckboxes('poop');
-      // setSelectedCheckboxes(selectedCheckboxes.filter((selectedCheckbox) => selectedCheckbox.id !== id));
-      const exists = selectedCheckboxes.find((checkbox) => checkbox.id === id);
-      if (exists) {
-        const newSelectedCheckboxes = selectedCheckboxes.filter((selectedCheckbox) => selectedCheckbox.id !== id);
-        setSelectedCheckboxes(newSelectedCheckboxes);
-      }
+    } else if (!value && exists) {
+      const newSelectedCheckboxes = selectedCheckboxes.filter((selectedCheckbox) => selectedCheckbox.id !== id);
+      setSelectedCheckboxes(newSelectedCheckboxes);
     }
   };
 
-  useDidUpdateEffect(handleClick, [selectedCheckboxes], [handleClick, selectedCheckboxes]);
+  useDidUpdateEffect(handleChange, [selectedCheckboxes], [handleChange, selectedCheckboxes]);
 
   return (
     <>
@@ -55,13 +50,13 @@ const CheckboxGroup = ({
 CheckboxGroup.propTypes = {
   groupId: PropTypes.string.isRequired,
   colSize: PropTypes.string,
-  handleClick: PropTypes.func,
+  handleChange: PropTypes.func,
   children: (props, propname, componentName) => componentName === 'Checkbox',
 };
 
 CheckboxGroup.defaultProps = {
   colSize: '6',
-  handleClick: () => { },
+  handleChange: () => { },
   children: [],
 };
 
