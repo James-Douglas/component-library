@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import css from 'styled-jsx/css';
+
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
+import Fieldset, { defaultFieldsetProps, fieldsetPropTypes } from '../Fieldset/Fieldset.component';
+
+const styles = css`
+  .checkbox-group {
+    @apply mb-16;
+  }
+`;
 
 export const generateGroup = (colSize, children, callback) => {
   if (children) {
@@ -19,7 +28,7 @@ export const generateGroup = (colSize, children, callback) => {
 };
 
 const CheckboxGroup = ({
-  groupId, colSize, handleChange, children,
+  fieldsetProps, groupId, colSize, handleChange, children,
 }) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
@@ -35,19 +44,29 @@ const CheckboxGroup = ({
   };
 
   useDidUpdateEffect(handleChange, [selectedCheckboxes], [handleChange, selectedCheckboxes]);
-
+  const {
+    label, tooltip, forceFullWidth, validationMessage, supportingElements,
+  } = fieldsetProps;
   return (
-    <>
+    <Fieldset
+      label={label}
+      tooltip={tooltip}
+      forceFullWidth={forceFullWidth}
+      validationMessage={validationMessage}
+      supportingElements={supportingElements}
+    >
+      <style jsx="true">{styles}</style>
       <div id={groupId} className="checkbox-group">
         <Row>
           {generateGroup(colSize, children, handleCheckboxClick)}
         </Row>
       </div>
-    </>
+    </Fieldset>
   );
 };
 
 CheckboxGroup.propTypes = {
+  fieldsetProps: PropTypes.shape(fieldsetPropTypes),
   groupId: PropTypes.string.isRequired,
   colSize: PropTypes.string,
   handleChange: PropTypes.func,
@@ -55,6 +74,7 @@ CheckboxGroup.propTypes = {
 };
 
 CheckboxGroup.defaultProps = {
+  fieldsetProps: defaultFieldsetProps,
   colSize: '6',
   handleChange: () => { },
   children: [],

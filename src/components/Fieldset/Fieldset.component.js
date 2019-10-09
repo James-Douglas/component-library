@@ -110,8 +110,10 @@ const Fieldset = ({
       </Row>
       <Row>
         <Column xs="12" sm="10">
-          <div className="relative w-full">
-            <FieldValidation message={validationMessage} />
+          <div className="relative w-full h-16 mb-8">
+            <span className="absolute w-full justify-start -mt-24">
+              <FieldValidation message={validationMessage} />
+            </span>
             {supportingElements}
           </div>
         </Column>
@@ -120,7 +122,7 @@ const Fieldset = ({
   );
 };
 
-Fieldset.propTypes = {
+export const fieldsetPropTypes = {
   label: PropTypes.string,
   tooltip: PropTypes.shape({
     title: PropTypes.string,
@@ -134,7 +136,7 @@ Fieldset.propTypes = {
   supportingElements: PropTypes.node,
 };
 
-Fieldset.defaultProps = {
+export const defaultFieldsetProps = {
   label: '',
   tooltip: {},
   forceFullWidth: false,
@@ -142,5 +144,9 @@ Fieldset.defaultProps = {
   children: [],
   supportingElements: [],
 };
+
+Fieldset.propTypes = fieldsetPropTypes;
+
+Fieldset.defaultProps = defaultFieldsetProps;
 
 export default Fieldset;

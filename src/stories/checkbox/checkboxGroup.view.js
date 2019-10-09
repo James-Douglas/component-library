@@ -7,16 +7,46 @@ import styles from './checkbox-view';
 const g1 = 'checkbox-group-a';
 const g2 = 'checkbox-group-b';
 
+const groupAFieldsetProps = {
+  label: 'Group A',
+};
+
+const groupBFieldsetProps = {
+  label: 'Group B',
+};
 const CheckboxGroupView = () => {
   const [checkboxGroupA, updateCheckboxGroupA] = useState([]);
   const [checkboxGroupB, updateCheckboxGroupB] = useState([]);
+
+  const handleGroupSelection = (selectedCheckboxes, group) => {
+    if (group === g1) {
+      updateCheckboxGroupA(selectedCheckboxes);
+      if (selectedCheckboxes.length) {
+        groupAFieldsetProps.validationMessage = 'Oops that doesn\'t seem right';
+      } else {
+        groupAFieldsetProps.validationMessage = null;
+      }
+    } else {
+      updateCheckboxGroupB(selectedCheckboxes);
+      if (selectedCheckboxes.length) {
+        groupBFieldsetProps.validationMessage = 'Sorry, but selecting anything in this checkbox will trigger a validation message, for science!';
+      } else {
+        groupBFieldsetProps.validationMessage = null;
+      }
+    }
+  };
 
   return (
     <>
       <style jsx>{styles}</style>
       <div className="grid-view">
         <Container>
-          <CheckboxGroup groupId={g1} colSize="6" handleChange={(selectedCheckboxes) => updateCheckboxGroupA(selectedCheckboxes)}>
+          <CheckboxGroup
+            fieldsetProps={groupAFieldsetProps}
+            groupId={g1}
+            colSize="6"
+            handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
+          >
             <Checkbox id="A-1" icon="check">A-1 check</Checkbox>
             <Checkbox id="A-2" icon="check">A-2 check</Checkbox>
             <Checkbox id="A-3" icon="check">A-3 check</Checkbox>
@@ -24,7 +54,12 @@ const CheckboxGroupView = () => {
             <Checkbox id="A-5" icon="check">A-5 check</Checkbox>
             <Checkbox id="A-6" icon="check">A-6 check</Checkbox>
           </CheckboxGroup>
-          <CheckboxGroup groupId={g2} colSize="6" handleChange={(selectedCheckboxes) => updateCheckboxGroupB(selectedCheckboxes)}>
+          <CheckboxGroup
+            fieldsetProps={groupBFieldsetProps}
+            groupId={g2}
+            colSize="6"
+            handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
+          >
             <Checkbox id="B-1" icon="check">B-1 check</Checkbox>
             <Checkbox id="B-2" icon="check">B-2 check</Checkbox>
             <Checkbox id="B-3" icon="check">B-3 check</Checkbox>
