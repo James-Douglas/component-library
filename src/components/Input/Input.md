@@ -10,7 +10,7 @@
         body: 'Tooltip body',
     }
     placeholder="placeholder string"
-    bordered={true}
+    bordered
     disabled={false}
     required={false}
     invalid={false}

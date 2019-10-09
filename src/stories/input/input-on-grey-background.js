@@ -23,8 +23,6 @@ const greyBackgroundView = () => {
           type="text"
           bordered={false}
           required={false}
-          disabled={false}
-          invalid={false}
           label="[Fieldset label] With tooltip"
           tooltip={tooltip}
           handleChange={(value) => logValue(value)}
@@ -35,8 +33,6 @@ const greyBackgroundView = () => {
           type="text"
           bordered={false}
           required={false}
-          disabled={false}
-          invalid={false}
           label="[Fieldset label] Without tooltip"
           handleChange={(value) => logValue(value)}
         />

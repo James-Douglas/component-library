@@ -5,8 +5,8 @@ const useValueState = (initValue) => {
 
   return [
     value,
-    (e) => {
-      setValue(e.target.value);
+    (val) => {
+      setValue(val);
     },
     () => {
       setValue('');

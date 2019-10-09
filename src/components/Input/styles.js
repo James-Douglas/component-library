@@ -11,7 +11,7 @@ export default css`
 
 .input-default {
   @apply pl-12 block text-base border border-solid border-transparent;
-  min-height: 4.4rem;
+  height: 4.4rem;
   padding-right: 3.6rem;
 }
 
@@ -86,7 +86,7 @@ input[disabled] {
 .prefix, .suffix {
   @apply flex items-center justify-center text-base font-bold;
   padding: 0.9rem 1.4rem;
-  min-height: 4.4rem;
+  height: 4.4rem;
 }
 
 .prefix {

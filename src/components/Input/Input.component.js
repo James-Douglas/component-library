@@ -35,15 +35,15 @@ field.
 };
 
 export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled) => {
+  const affixTypeClass = `${affixType === 'prefix' ? 'prefix' : 'suffix'}`;
+  const borderClass = `${!bordered && affixType ? `${affixType}-no-border` : ''}`;
+  const prefillClass = `${isAutofill && !disabled ? 'manor-prefilled' : ''}`;
+
   if (affixType && affixContent) {
     return (
       <>
         <style jsx>{styles}</style>
-        <span className={`
-          ${affixType === 'prefix' ? 'prefix' : 'suffix'}
-          ${!bordered && affixType === 'prefix' ? 'prefix-no-border' : ''}
-          ${!bordered && affixType === 'suffix' ? 'suffix-no-border' : ''}
-          ${isAutofill && !disabled ? 'manor-prefilled' : ''}
+        <span className={`${affixTypeClass} ${borderClass} ${prefillClass}
         `}
         >
           {affixContent}
@@ -80,7 +80,7 @@ const Input = ({
 
   const handleOnChange = (e) => {
     setIsAutofill(false);
-    setValue(e);
+    setValue(e.target.value);
   };
 
   useEffect(() => {
@@ -95,6 +95,10 @@ const Input = ({
     inputWrapElement.current.classList.remove('input-wrap-focus');
   };
 
+  const prefillClass = `${isAutofill && !disabled ? 'manor-prefilled-border' : ''}`;
+  const borderClass = `${bordered ? 'input-border' : ''}`;
+  const invalidClass = `${invalid ? 'invalid' : ''}`;
+  const disabledClass = `${disabled ? 'disabled' : ''}`;
   return (
     <>
       <Fieldset label={label} tooltip={tooltip}>
@@ -102,13 +106,7 @@ const Input = ({
         <div className="input-container">
           <div
             ref={inputWrapElement}
-            className={`
-            input-wrap
-            ${isAutofill && !disabled ? 'manor-prefilled-border' : ''}
-            ${bordered ? 'input-border' : ''}
-            ${invalid ? 'invalid' : ''}
-            ${disabled ? 'disabled' : ''}
-          `}
+            className={`input-wrap ${prefillClass} ${borderClass} ${invalidClass} ${disabledClass}`}
           >
 
             {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
