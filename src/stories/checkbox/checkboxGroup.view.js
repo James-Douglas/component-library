@@ -14,7 +14,7 @@ const groupAFieldsetProps = {
   tooltip: {
     title: 'Group A',
     body: 'This is a tooltip for group A',
-  }
+  },
 };
 
 const groupBFieldsetProps = {

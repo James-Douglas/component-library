@@ -46,7 +46,7 @@ const CheckboxGroup = ({
   useDidUpdateEffect(handleChange, [selectedCheckboxes], [handleChange, selectedCheckboxes]);
 
   const {
-    label, tooltip, forceFullWidth, validationMessage, supportingElements,
+    label, tooltip, validationMessage, supportingElements,
   } = fieldsetProps;
 
   return (
