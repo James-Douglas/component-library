@@ -1,4 +1,6 @@
+import css from 'styled-jsx/css';
 
+export default css`
 .icon {
   width: 1.6rem;        /* 16px */
   height: 1.6rem;       /* 16px */
@@ -22,3 +24,4 @@
   filter: FlipV;
   -ms-filter: "FlipV";
 }
+`;
