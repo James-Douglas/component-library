@@ -8,7 +8,7 @@ export default css`
     @apply relative bg-white shadow-sm border cursor-pointer mx-8 mb-16 text-sm font-bold leading-normal;
   }
   .toggle-label {
-    @apply w-full;
+    @apply w-full cursor-pointer;;
   }
   .toggle:hover {
     @apply text-light-blue fill-current;
