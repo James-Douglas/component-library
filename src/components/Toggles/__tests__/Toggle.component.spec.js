@@ -149,6 +149,6 @@ describe('Toggle', () => {
     const element = container.querySelector('.toggle');
     fireEvent.click(element);
     expect(handleChangeCb).toHaveBeenCalled();
-    expect(handleChangeCb.mock.calls[0][0]).toEqual({id: 'test-id', value: '' });
+    expect(handleChangeCb.mock.calls[0][0]).toEqual({ id: 'test-id', value: '' });
   });
 });

@@ -24,6 +24,6 @@ describe('CustomToggle', () => {
     const toggle = container.querySelector('.toggle');
     fireEvent.click(toggle);
     expect(onToggleCb).toHaveBeenCalled();
-    expect(onToggleCb.mock.calls[0][0]).toEqual({id: 'test-c', value: '' });
+    expect(onToggleCb.mock.calls[0][0]).toEqual({ id: 'test-c', value: '' });
   });
 });
