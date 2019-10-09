@@ -98,10 +98,16 @@ const Fieldset = ({
     setSrLabel(getScreenReaderLabel(screenReaderLabel, label));
   }, [screenReaderLabel, label]);
 
+  const tooltipOptions = tooltip;
+
+  if (!tooltipOptions.justifyEnd && desktop && enableLabelTooltip) {
+    tooltipOptions.justifyEnd = true;
+  }
+
   return (
-    <div className="fieldset" jsx="true">
+    <div className="fieldset">
       <style jsx="true">{styles}</style>
-      <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltip} forceFullWidth={forceFullWidth} />
+      <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} />
       <Row>
         <Column sm={forceFullWidth ? '12' : '10'} xs="12">
           {children}

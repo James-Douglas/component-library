@@ -44,14 +44,16 @@ const CheckboxGroup = ({
   };
 
   useDidUpdateEffect(handleChange, [selectedCheckboxes], [handleChange, selectedCheckboxes]);
+
   const {
     label, tooltip, forceFullWidth, validationMessage, supportingElements,
   } = fieldsetProps;
+
   return (
     <Fieldset
       label={label}
       tooltip={tooltip}
-      forceFullWidth={forceFullWidth}
+      forceFullWidth
       validationMessage={validationMessage}
       supportingElements={supportingElements}
     >
