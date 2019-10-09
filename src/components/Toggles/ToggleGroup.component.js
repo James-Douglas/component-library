@@ -25,14 +25,14 @@ export const getType = (children) => {
   return 'square';
 };
 
-export const getChildren = (children, type, dirty, name, selectedId, didToggle, rectOptions) => (
+export const getChildren = (children, type, dirty, name, selectedToggleId, handleToggle, rectOptions) => (
   children.map((child, index) => {
     const key = `toggle-${child.props.id || index}`;
     const propsToAdd = {
       key,
       name,
-      selectedId,
-      onToggle: didToggle,
+      selectedId: selectedToggleId,
+      onToggle: handleToggle,
       type,
       dirty,
     };
@@ -45,15 +45,15 @@ export const getChildren = (children, type, dirty, name, selectedId, didToggle, 
 const ToggleGroup = ({
   id, name, label, tooltip, onToggle, children, rectOptions,
 }) => {
-  const [selectedId, setSelectedId] = useState();
+  const [selectedToggle, setSelectedToggle] = useState({});
   const [dirty, setDirty] = useState();
   const type = getType(children);
-  const didToggle = (toggleId) => {
-    setSelectedId(toggleId);
+  const handleToggle = (toggle) => {
+    setSelectedToggle({ id: toggle.id, value: toggle.value });
     setDirty(true);
   };
 
-  useDidUpdateEffect(onToggle, [selectedId], [onToggle, selectedId]);
+  useDidUpdateEffect(onToggle, [selectedToggle], [onToggle, selectedToggle]);
 
   const tooltipOptions = tooltip;
   if (tooltip) {
@@ -64,7 +64,7 @@ const ToggleGroup = ({
     <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth>
       <style jsx>{styles}</style>
       <div className="toggle-group" id={id}>
-        {getChildren(children, type, dirty, name, selectedId, didToggle, rectOptions)}
+        {getChildren(children, type, dirty, name, selectedToggle.id, handleToggle, rectOptions)}
       </div>
     </Fieldset>
   );

@@ -57,7 +57,7 @@ The ToggleGroup component accepts the following props:
     * Autofills (toggles) when true.
     
 10. `onToggle` *(optional) function*
-    * Handler function called when a toggle is toggled on (called with the id of the toggle).
+    * Handler function called when a toggle is toggled on (called with object: { id, value } of the toggle).
     
 11. `icon` *(optional) string*
     * Name of the icon to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).

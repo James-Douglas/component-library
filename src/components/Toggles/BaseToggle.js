@@ -29,8 +29,8 @@ const BaseToggle = ({
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
 
-  const handleClick = () => {
-    onToggle(id);
+  const handleToggle = () => {
+    onToggle({ id, value });
   };
 
   const isChecked = selectedId ? selectedId === id : autofill || false;
@@ -50,7 +50,7 @@ const BaseToggle = ({
         className="toggle-input"
         id={id}
         type="radio"
-        onChange={handleClick}
+        onChange={handleToggle}
         required={invalid}
         checked={isChecked}
         disabled={disabled}

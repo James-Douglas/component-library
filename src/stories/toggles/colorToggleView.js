@@ -15,32 +15,32 @@ const ColorToggleView = () => {
     title: 'test',
   };
 
-  const handleChange = (id, group) => {
+  const handleChange = (id, value) => {
     // eslint-disable-next-line no-console
-    console.log(`TOGGLE SELECTED: ${id} `);
+    console.log(`TOGGLE SELECTED: ${id}, value: ${value} `);
   };
 
   return (
     <StoryTemplate background="grey">
       <div className="mb-32">
         <style jsx>{styles}</style>
-        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={(id) => handleChange(id)}>
-          <ColorToggle backgroundColor="pink" id="pink" fontColor="white" />
-          <ColorToggle backgroundColor="white" id="white" />
-          <ColorToggle backgroundColor="silver" id="silver" />
-          <ColorToggle backgroundColor="black" fontColor="white" id="black" />
-          <ColorToggle backgroundColor="gray" id="gray" />
-          <ColorToggle backgroundColor="blue" fontColor="white" id="blue" />
-          <ColorToggle backgroundColor="green" fontColor="white" id="green" />
-          <ColorToggle backgroundColor="gold" id="gold" />
-          <ColorToggle backgroundColor="maroon" fontColor="white" id="maroon" />
-          <ColorToggle backgroundColor="red" fontColor="white" id="red" />
-          <ColorToggle backgroundColor="orange" fontColor="white" id="orange" />
-          <ColorToggle backgroundColor="brown" fontColor="white" id="brown" />
-          <ColorToggle backgroundColor="purple" fontColor="white" id="purple" />
-          <ColorToggle backgroundColor="yellow" id="yellow" />
-          <ColorToggle backgroundColor="turquoise" id="turquoise" />
-          <ColorToggle backgroundColor="beige" id="beige" />
+        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={({ id, value }) => handleChange(id, value)}>
+          <ColorToggle backgroundColor="pink" value="pink" id="pink" fontColor="white" />
+          <ColorToggle backgroundColor="white" value="white" id="white" />
+          <ColorToggle backgroundColor="silver" value="silver" id="silver" />
+          <ColorToggle backgroundColor="black" value="black" fontColor="white" id="black" />
+          <ColorToggle backgroundColor="gray" value="gray" id="gray" />
+          <ColorToggle backgroundColor="blue" value="blue" fontColor="white" id="blue" />
+          <ColorToggle backgroundColor="green" value="green" fontColor="white" id="green" />
+          <ColorToggle backgroundColor="gold" value="gold" id="gold" />
+          <ColorToggle backgroundColor="maroon" value="maroon" fontColor="white" id="maroon" />
+          <ColorToggle backgroundColor="red" value="red" fontColor="white" id="red" />
+          <ColorToggle backgroundColor="orange" value="orange" fontColor="white" id="orange" />
+          <ColorToggle backgroundColor="brown" value="brown" fontColor="white" id="brown" />
+          <ColorToggle backgroundColor="purple" value="purple" fontColor="white" id="purple" />
+          <ColorToggle backgroundColor="yellow" value="yellow" id="yellow" />
+          <ColorToggle backgroundColor="turquoise" value="turquoise" id="turquoise" />
+          <ColorToggle backgroundColor="beige" value="beige" id="beige" />
         </ToggleGroup>
       </div>
 

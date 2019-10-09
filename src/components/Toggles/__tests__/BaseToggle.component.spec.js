@@ -40,12 +40,12 @@ describe('BaseToggle', () => {
     const { container } = render(<BaseToggle type="square" id="test-selected-id" selectedId="test-selected-id" autofill />);
     expect(container.querySelector('.toggle-input')).toHaveAttribute('checked');
   });
-  it('calls handleChange when toggled', () => {
-    const handleChangeCb = jest.fn();
-    const { container } = render(<BaseToggle type="square" id="test-square" onToggle={handleChangeCb} />);
+  it('calls onToggle when toggled', () => {
+    const onToggleCb = jest.fn();
+    const { container } = render(<BaseToggle type="square" id="test-square" onToggle={onToggleCb} />);
     const element = container.querySelector('.toggle');
     fireEvent.click(element);
-    expect(handleChangeCb).toHaveBeenCalled();
-    expect(handleChangeCb.mock.calls[0][0]).toEqual('test-square');
+    expect(onToggleCb).toHaveBeenCalled();
+    expect(onToggleCb.mock.calls[0][0]).toEqual({ id: 'test-square', value: '' });
   });
 });

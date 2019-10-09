@@ -56,10 +56,10 @@ const ColorToggle = ({
   id, label, backgroundColor, fontColor, value, name, selectedId, invalid, disabled, autofill, onToggle,
 }) => {
   const [dirty, setDirty] = useState(false);
-  const handleClick = () => {
+  const handleToggle = () => {
     setDirty(true);
     if (onToggle) {
-      onToggle(id);
+      onToggle({ id, value });
     }
   };
 
@@ -79,7 +79,7 @@ const ColorToggle = ({
         invalid={invalid}
         disabled={disabled}
         autofill={autofill}
-        onToggle={handleClick}
+        onToggle={handleToggle}
       >
         <ToggleLabel dirty={dirty} autofill={autofill} id={id}>
           <span className="colour-toggle">

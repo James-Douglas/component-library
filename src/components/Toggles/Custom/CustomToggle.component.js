@@ -11,7 +11,7 @@ const CustomToggle = ({
   const handleToggle = () => {
     setDirty(true);
     if (onToggle) {
-      onToggle(id);
+      onToggle({ id, value });
     }
   };
 

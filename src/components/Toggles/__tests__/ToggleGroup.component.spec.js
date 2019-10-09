@@ -78,18 +78,18 @@ describe('ToggleGroup', () => {
     expect(container.innerHTML).toMatchSnapshot();
   });
 
-  it('calls handleChange on toggle selection', () => {
-    const handleChangeCb = jest.fn();
+  it('calls onToggle on toggle selection', () => {
+    const onToggleCb = jest.fn();
     const { container } = render(
-      <ToggleGroup name="test-toggle-group-b" onToggle={handleChangeCb}>
+      <ToggleGroup name="test-toggle-group-b" onToggle={onToggleCb}>
         <Toggle label="test toggle a" id="a" />
         <Toggle label="test toggle b" id="b" />
       </ToggleGroup>,
     );
     const toggleA = container.querySelector('#a');
     fireEvent.click(toggleA);
-    expect(handleChangeCb).toHaveBeenCalled();
-    expect(handleChangeCb.mock.calls[0][0]).toBe('a');
+    expect(onToggleCb).toHaveBeenCalled();
+    expect(onToggleCb.mock.calls[0][0]).toEqual({id: 'a', value: '' });
   });
 
   it('adds justifyEnd property to tooltip when exists', () => {

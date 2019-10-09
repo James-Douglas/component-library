@@ -18,12 +18,12 @@ describe('CustomToggle', () => {
     expect(getByText('this is a test')).toBeInTheDocument();
   });
 
-  it('calls handleChange onchange', () => {
-    const handleChangeCb = jest.fn();
-    const { container } = render(<CustomToggle id="test-c" onToggle={handleChangeCb} />);
+  it('calls onToggle onchange', () => {
+    const onToggleCb = jest.fn();
+    const { container } = render(<CustomToggle id="test-c" onToggle={onToggleCb} />);
     const toggle = container.querySelector('.toggle');
     fireEvent.click(toggle);
-    expect(handleChangeCb).toHaveBeenCalled();
-    expect(handleChangeCb.mock.calls[0][0]).toEqual('test-c');
+    expect(onToggleCb).toHaveBeenCalled();
+    expect(onToggleCb.mock.calls[0][0]).toEqual({id: 'test-c', value: '' });
   });
 });

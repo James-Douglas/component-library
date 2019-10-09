@@ -87,10 +87,10 @@ const Toggle = ({
 }) => {
   const [dirty, setDirty] = useState(false);
 
-  const handleClick = () => {
+  const handleToggle = () => {
     setDirty(true);
     if (onToggle) {
-      onToggle(id);
+      onToggle({ id, value });
     }
   };
 
@@ -104,7 +104,7 @@ const Toggle = ({
       invalid={invalid}
       disabled={disabled}
       autofill={autofill}
-      onToggle={handleClick}
+      onToggle={handleToggle}
       rectOptions={rectOptions}
     >
       {getToggleContent(icon, iconSize, pictureOptions, autofill, dirty, id, type, rectOptions, label)}
@@ -117,7 +117,7 @@ Toggle.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['square', 'rectangle']),
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   selectedId: PropTypes.string,
   name: PropTypes.string,
   invalid: PropTypes.bool,
