@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import useToggleState from '../../hooks/useToggleState';
 import Icon from '../Icon/Icon.component';
@@ -37,13 +37,7 @@ const Checkbox = ({
     toggle(value);
   };
 
-  useDidUpdateEffect(handleChange, [{id, value}], [handleChange, id, value]);
-
-  // useEffect(() => {
-  //   if (handleChange) {
-  //     handleChange({ id, value });
-  //   }
-  // }, [handleChange, value, id]);
+  useDidUpdateEffect(handleChange, [{ id, value }], [handleChange, id, value]);
 
   return (
     <>

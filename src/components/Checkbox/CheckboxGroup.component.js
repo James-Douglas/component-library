@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
@@ -45,7 +45,7 @@ const CheckboxGroup = ({
       </div>
     </>
   );
-}
+};
 
 CheckboxGroup.propTypes = {
   groupId: PropTypes.string.isRequired,

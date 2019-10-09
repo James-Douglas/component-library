@@ -12,6 +12,7 @@ const FieldValidation = ({ message }) => {
   if (!message || !message.length) return null;
   return (
     <div className="field-validation manor-body1">
+      <style jsx>{styles}</style>
       {message}
     </div>
   );

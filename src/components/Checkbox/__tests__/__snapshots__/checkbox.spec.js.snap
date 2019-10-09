@@ -3,10 +3,10 @@
 exports[`Checkbox.component renders with minimal props 1`] = `
 "<style></style><div class=\\"checkbox-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"test-id\\" class=\\"
             
-            ap
-            alignment
+            ap alignment
           \\"><div class=\\"
             manor-checkbox 
+            
             
           \\"></div></label></div>"
 `;
@@ -15,10 +15,10 @@ exports[`Checkbox.component renders with props 1`] = `
 "<style></style><div class=\\"checkbox-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"test-id\\" class=\\"
             
             
-            
           \\"><div class=\\"
             manor-checkbox 
             inverted
+            
           \\"><svg version=\\"1.1\\" xmlns=\\"http://www.w3.org/2000/svg\\" x=\\"0px\\" y=\\"0px\\" enable-background=\\"0 -4 44 44\\" class=\\" 
         icon 
          

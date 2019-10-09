@@ -9,5 +9,5 @@ export default function useDidUpdateEffect(fn, args, deps) {
     } else {
       didMountRef.current = true;
     }
-  }, [deps]);
+  }, [args, deps, fn]);
 }

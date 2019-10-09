@@ -11,7 +11,6 @@ const CheckboxGroupView = () => {
   const [checkboxGroupA, updateCheckboxGroupA] = useState([]);
   const [checkboxGroupB, updateCheckboxGroupB] = useState([]);
 
-  console.warn(checkboxGroupA.map((checkbox) => checkbox.id).join(', '));
   return (
     <>
       <style jsx>{styles}</style>
