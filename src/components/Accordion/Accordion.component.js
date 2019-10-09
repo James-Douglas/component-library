@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import Icon from '../Icon/Icon.component';
+
 
 const Accordion = ({
   title,
   children,
   show,
   size,
+  onClickGroup,
 }) => {
   const [isShow, setIsShow] = useState(show);
   const showClass = isShow ? '' : 'hide';
   const arrowName = isShow ? 'Top' : 'Bottom';
-  const toggleTrueFalse = () => setIsShow(!isShow);
+  const toggleTrueFalse = () => {
+    if (onClickGroup) {
+      onClickGroup(!isShow);
+    }
+    return setIsShow(!isShow);
+  };
+  useEffect(() => {
+    setIsShow(show);
+  }, [show]);
   return (
     <div className={`accordion ${showClass}`}>
       <style jsx>{styles}</style>
@@ -37,6 +47,7 @@ Accordion.propTypes = {
   title: PropTypes.node,
   show: PropTypes.bool,
   size: PropTypes.number,
+  onClickGroup: PropTypes.func,
 };
 
 Accordion.defaultProps = {
@@ -44,6 +55,7 @@ Accordion.defaultProps = {
   title: 'Position to purchase',
   show: false,
   size: 2,
+  onClickGroup: null,
 };
 
 export default Accordion;

@@ -12,3 +12,7 @@
     padding-bottom: 100rem;
 }
 
+.h2-title {
+    @apply text-lg;
+    padding: 20px 0 10px;
+}
