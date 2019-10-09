@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css`
 .col,
 .col-1,
 .col-2,
@@ -211,3 +214,4 @@
   .col-xxl-12 { flex:0 0 100%; max-width:100%; }
   .col-xxl-auto { flex: 0 0 auto; width: auto; max-width: 100%; }
 }
+`;

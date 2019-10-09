@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import icons from './icons';
-import styles from './Icon.module.css';
+import styles from './styles';
 
 const Icon = ({
   size, flipV, flipH, name,
@@ -14,23 +14,26 @@ const Icon = ({
   };
 
   return (
-    <svg
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      x="0px"
-      y="0px"
-      enableBackground={`${viewBox}`}
-      className={` 
-        ${styles.icon} 
-        ${flipV ? `${styles.flipV}` : ''} 
-        ${flipH ? `${styles.flipH}` : ''} 
-      `}
-      viewBox={viewBox}
-      style={inlineStyles}
-    >
-      {/* eslint-disable-next-line react/no-array-index-key */}
-      {icon.paths.map((path, i) => <path d={path} key={i} />)}
-    </svg>
+    <>
+      <style jsx>{styles}</style>
+      <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        enableBackground={`${viewBox}`}
+        className={` 
+          icon
+          ${flipV ? 'flipV' : ''} 
+          ${flipH ? 'flipH' : ''} 
+        `}
+        viewBox={viewBox}
+        style={inlineStyles}
+      >
+        {/* eslint-disable-next-line react/no-array-index-key */}
+        {icon.paths.map((path, i) => <path d={path} key={i} />)}
+      </svg>
+    </>
   );
 };
 
