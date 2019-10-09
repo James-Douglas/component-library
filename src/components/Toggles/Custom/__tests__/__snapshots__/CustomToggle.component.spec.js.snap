@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomToggle renders with minimal props 1`] = `
+<div>
+  <span
+    class="flex toggle"
+  >
+    <style />
+    <input
+      class="toggle-input"
+      id="test-a"
+      name=""
+      tabindex="0"
+      type="radio"
+      value=""
+    />
+    <style />
+    <label
+      class="toggle-label transition "
+      for="test-a"
+    />
+  </span>
+</div>
+`;

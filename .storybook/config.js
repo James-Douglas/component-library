@@ -1,8 +1,12 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
-import { addParameters, configure } from '@storybook/react';
+import '@storybook/addon-console';
+import { addDecorator, addParameters, configure } from '@storybook/react';
+import { withConsole } from '@storybook/addon-console';
 import { create } from '@storybook/theming';
 import '../src/index.css'
+
+addDecorator((storyFn, context) => withConsole()(storyFn)(context));
 
 addParameters({
   options: {

@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
-import Tooltip from '../Tooltip/Tooltip.component';
+import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 
@@ -58,7 +58,7 @@ export function getScreenReaderLabel(screenReaderLabel, label) {
   return screenReaderLabel;
 }
 
-export function renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel) {
+export function renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd) {
   if (!enableLabelTooltip && hasTooltip) {
     return (
       <Column col="2">
@@ -68,6 +68,7 @@ export function renderTooltip(enableLabelTooltip, hasTooltip, title, body, bound
             body={body}
             boundingElementSelector={boundingElementSelector || '.fieldset'}
             screenReaderLabel={srLabel}
+            justifyEnd={justifyEnd}
           />
         </div>
       </Column>
@@ -83,7 +84,9 @@ const Fieldset = ({
   const [enableLabelTooltip, setEnableLabelTooltip] = useState(false);
   const [srLabel, setSrLabel] = useState(tooltip.screenReaderLabel);
   const desktop = useIsDesktop(false);
-  const { title, body, boundingElementSelector } = tooltip;
+  const {
+    title, body, boundingElementSelector, justifyEnd,
+  } = tooltip;
   const { screenReaderLabel } = tooltip;
 
   useEffect(() => {
@@ -112,7 +115,7 @@ const Fieldset = ({
         <Column sm={forceFullWidth ? '12' : '10'} xs="12">
           {children}
         </Column>
-        {renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel)}
+        {renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd)}
       </Row>
       <Row>
         <Column xs="12" sm="10">
@@ -130,12 +133,7 @@ const Fieldset = ({
 
 export const fieldsetPropTypes = {
   label: PropTypes.string,
-  tooltip: PropTypes.shape({
-    title: PropTypes.string,
-    body: PropTypes.string,
-    boundingElementSelector: PropTypes.string,
-    screenReaderLabel: PropTypes.string,
-  }),
+  tooltip: PropTypes.shape(tooltipPropTypes),
   forceFullWidth: PropTypes.bool,
   validationMessage: PropTypes.string,
   children: PropTypes.node,
