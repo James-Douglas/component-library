@@ -1,12 +1,12 @@
 import React from 'react';
 import ManorIcon from '../../components/Icon/Icon.component';
 
-import styles from './icons-view-styles';
+import iconStyles from './icons-view-styles';
 
 /* contact, close, closeCircle, info, check */
 const AllIconsView = () => (
   <>
-    <style jsx>{styles}</style>
+    <style jsx>{iconStyles}</style>
     <div className="icon-wrap">
       <ManorIcon name="contact" size={6} />
       <ManorIcon name="contact" size={4} />
