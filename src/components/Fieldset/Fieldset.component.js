@@ -7,6 +7,7 @@ import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import Tooltip from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
+import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const styles = css`
 .fieldset {
@@ -110,7 +111,7 @@ const Fieldset = ({
       <Row>
         <Column xs="12" sm="10">
           <div className="relative w-full">
-            {/* <FieldValidation message={validationMessage} /> */}
+            <FieldValidation message={validationMessage} />
             {supportingElements}
           </div>
         </Column>

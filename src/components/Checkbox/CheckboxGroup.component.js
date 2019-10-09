@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
+import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 
 export const generateGroup = (colSize, children, callback) => {
   if (children) {
@@ -19,15 +20,37 @@ export const generateGroup = (colSize, children, callback) => {
 
 const CheckboxGroup = ({
   groupId, colSize, handleClick, children,
-}) => (
-  <>
-    <div id={groupId} className="checkbox-group">
-      <Row>
-        {generateGroup(colSize, children, handleClick)}
-      </Row>
-    </div>
-  </>
-);
+}) => {
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+
+  const handleCheckboxClick = ({ id, value }) => {
+    console.warn(`${id} ${value}`)
+    if (value) {
+      const newSelectedCheckboxes = [...selectedCheckboxes, {id, value}];
+      setSelectedCheckboxes(newSelectedCheckboxes);
+    } else {
+      // setSelectedCheckboxes('poop');
+      // setSelectedCheckboxes(selectedCheckboxes.filter((selectedCheckbox) => selectedCheckbox.id !== id));
+      const exists = selectedCheckboxes.find((checkbox) => checkbox.id === id);
+      if (exists) {
+        const newSelectedCheckboxes = selectedCheckboxes.filter((selectedCheckbox) => selectedCheckbox.id !== id);
+        setSelectedCheckboxes(newSelectedCheckboxes);
+      }
+    }
+  };
+
+  useDidUpdateEffect(handleClick, [selectedCheckboxes], [handleClick, selectedCheckboxes]);
+
+  return (
+    <>
+      <div id={groupId} className="checkbox-group">
+        <Row>
+          {generateGroup(colSize, children, handleCheckboxClick)}
+        </Row>
+      </div>
+    </>
+  );
+}
 
 CheckboxGroup.propTypes = {
   groupId: PropTypes.string.isRequired,

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import useToggleState from '../../hooks/useToggleState';
 import Icon from '../Icon/Icon.component';
 import styles from './styles';
+import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 
 export const renderIcon = (icon, value) => {
   if (value) {
@@ -28,16 +29,21 @@ const renderContent = (children) => {
 };
 
 const Checkbox = ({
-  id, icon, disabled, invertColour, handleChange, children,
+  id, icon, disabled, invalid, invertColour, handleChange, children,
 }) => {
   const [value, toggle] = useToggleState(false);
 
-  const toggleEventHandler = (e) => {
-    toggle();
-    if (handleChange) {
-      handleChange(e);
-    }
+  const toggleEventHandler = () => {
+    toggle(value);
   };
+
+  useDidUpdateEffect(handleChange, [{id, value}], [handleChange, id, value]);
+
+  // useEffect(() => {
+  //   if (handleChange) {
+  //     handleChange({ id, value });
+  //   }
+  // }, [handleChange, value, id]);
 
   return (
     <>
@@ -57,13 +63,13 @@ const Checkbox = ({
           htmlFor={id}
           className={`
             ${disabled ? 'disabled' : ''}
-            ${children ? '' : 'ap'}
-            ${children ? '' : 'alignment'}
+            ${children ? '' : 'ap alignment'}
           `}
         >
           <div className={`
             manor-checkbox 
             ${invertColour ? 'inverted' : ''}
+            ${invalid ? 'manor-checkbox-invalid' : ''}
           `}
           >
             {renderIcon(icon, value)}
@@ -81,6 +87,7 @@ Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
   icon: PropTypes.string,
   disabled: PropTypes.bool,
+  invalid: PropTypes.bool,
   invertColour: PropTypes.bool,
   handleChange: PropTypes.func,
   children: PropTypes.oneOfType([
@@ -93,6 +100,7 @@ Checkbox.propTypes = {
 Checkbox.defaultProps = {
   icon: 'check',
   disabled: false,
+  invalid: false,
   invertColour: false,
   handleChange: () => { },
   children: null,
