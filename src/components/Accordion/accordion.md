@@ -1,27 +1,40 @@
 # Accordion component<br/>
 ## Usage
 ~~~js
-<Accordion />
+<Accordion title='title'>
+  <div>Content</div>
+</Accordion>
 ~~~
+
 
 ## Props
 Checkbox is a custom checkbox, styled with an icon. This is the default, singular variety.
 
-1. `title` * string*
-    * The title attribute click on. Shows a summary of the panel content.
-2. `disabled` *(optional) boolean*
-    * Defines if the checkbox is disabled or not. Defaults to false.
-3. `checked` *(optional) boolean*
-    * Defines the checkbox checked state. Defaults to false.
-4. `invertColour` *(optional) boolean*
-    * Changes the color of the checked state - blue bg, white tick, or white bg, blue tick.
-6. `icon` *(optional) string*
-    * Defines the icon needed for the checkbox. Defaults to 'check'.
-6. `handleClick` *(optional) func*
-    * Supplies the label with a custom click function.
-6. `handleKeyUp` *(optional) string*
-    * Supplies the label with a custom keyUp function.
-6. `children` *(optional) string*
-    * Defines the associated content for the checkbox, used by the wrapper component, `<CheckboxGroup/>`. Not required for the singular checkbox.
 
+1. `title` *(optional) string*
+    * Title text
+2. `children` *(optional) DOM*
+    * Defines text blocks.
+1. `show` *(optional) boolean* 
+    * Defines visibility of text blocks 
+4. `size` *(optional) number*
+    * Define size of the svg icon.    
+    
+ # Accordion group<br/>  
+ ## Usage
+ ~~~js
+<AccordionGroup>
+      <Accordion title="title" show>
+        <div>Content</div>
+      </Accordion>
+      <Accordion title="title">
+        <div>Content</div>
+      </Accordion>
+</AccordionGroup>
+ ~~~
+
+
+ AccordionGroup is a component that organizes content within collapsable items. AccordionGroup allows the display of only one collapsed item at a time.
+
+ Default styling for the AccordionGroup component when all sections are collapsed.
 
