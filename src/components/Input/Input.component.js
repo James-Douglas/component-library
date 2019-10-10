@@ -20,12 +20,7 @@ export const renderClearIcon = (value, clearInput, isAutofill, label) => {
           ${isAutofill ? 'darker' : 'lighter'}
         `}
         >
-          <div className="sr-only">
-Clears the
-            {label}
-            {' '}
-field.
-          </div>
+          <div className="sr-only">Clears the{label}{' '}field.</div>
           <Icon name="closeCircle" size={1.6} />
         </button>
       </>
