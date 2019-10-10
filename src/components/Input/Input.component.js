@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useValueState from 'hooks/useValueState';
 import Icon from '../Icon/Icon.component';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
@@ -63,13 +62,13 @@ export const renderOptionalElement = (required) => {
 const Input = ({
   id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange,
 }) => {
-  const [value, setValue, clearValue] = useValueState(prefillValue || '');
+  const [value, setValue] = useState(prefillValue || '');
   const [isAutofill, setIsAutofill] = useState(!!prefillValue);
 
   const inputWrapElement = useRef(null);
 
   const clearInput = () => {
-    clearValue();
+    setValue('');
     setIsAutofill(false);
   };
 
@@ -82,12 +81,11 @@ const Input = ({
     handleChange(value);
   }, [handleChange, value]);
 
-  const addFocus = () => {
-    inputWrapElement.current.classList.add('input-wrap-focus');
-  };
-
-  const removeFocus = () => {
-    inputWrapElement.current.classList.remove('input-wrap-focus');
+  const toggleFocus = () => {
+    const { current } = inputWrapElement;
+    if (current) {
+      current.classList.toggle('input-wrap-focus');
+    }
   };
 
   const prefillClass = `${isAutofill && !disabled ? 'manor-prefilled-border' : ''}`;
@@ -116,8 +114,8 @@ const Input = ({
                 value={value}
                 onChange={handleOnChange}
                 autoComplete={autocomplete}
-                onFocus={addFocus}
-                onBlur={removeFocus}
+                onFocus={toggleFocus}
+                onBlur={toggleFocus}
                 className={`
                   input-default
                   ${isAutofill && !disabled ? 'manor-prefilled' : ''}
