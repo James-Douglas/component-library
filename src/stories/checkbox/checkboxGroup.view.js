@@ -34,7 +34,7 @@ const CheckboxGroupView = () => {
   return (
     <>
       <style jsx>{styles}</style>
-      <div className="grid-view">
+      <div className="grid-view manor-rich-text">
         <Container>
           <CheckboxGroup groupId={g1} colSize="6" handleClick={logEvent} handleKeyUp={logEvent}>
             <Checkbox id="A-1" icon="check">A-1 check</Checkbox>
