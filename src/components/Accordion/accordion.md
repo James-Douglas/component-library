@@ -6,10 +6,7 @@
 </Accordion>
 ~~~
 
-
 ## Props
-Checkbox is a custom checkbox, styled with an icon. This is the default, singular variety.
-
 
 1. `title` *(optional) string*
     * Title text
@@ -32,7 +29,6 @@ Checkbox is a custom checkbox, styled with an icon. This is the default, singula
       </Accordion>
 </AccordionGroup>
  ~~~
-
 
  AccordionGroup is a component that organizes content within collapsable items. AccordionGroup allows the display of only one collapsed item at a time.
 
