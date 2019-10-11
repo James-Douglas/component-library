@@ -59,12 +59,22 @@ export const renderOptionalElement = (required) => {
   return null;
 };
 
-const Input = ({
-  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange,
-}) => {
-  const [value, setValue] = useState(prefillValue || '');
-  const [isAutofill, setIsAutofill] = useState(!!prefillValue);
+export const getInitialValue = (valueMasking, prefillValue) => {
+  if (valueMasking && prefillValue) {
+    return valueMasking(prefillValue);
+  } else if( prefillValue) {
+    return prefillValue;
+  }
+  
+  return '';
+}
 
+const Input = ({
+  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking,
+}) => {
+
+  const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
+  const [isAutofill, setIsAutofill] = useState(!!prefillValue);
   const inputWrapElement = useRef(null);
 
   const clearInput = () => {
@@ -74,7 +84,13 @@ const Input = ({
 
   const handleOnChange = (e) => {
     setIsAutofill(false);
-    setValue(e.target.value);
+
+    if (valueMasking) {
+      const newValue = valueMasking(e.target.value);
+      setValue(newValue);
+    } else {
+      setValue(e.target.value);
+    }
   };
 
   useEffect(() => {
@@ -92,6 +108,7 @@ const Input = ({
   const borderClass = `${bordered ? 'input-border' : ''}`;
   const invalidClass = `${invalid ? 'invalid' : ''}`;
   const disabledClass = `${disabled ? 'disabled' : ''}`;
+  
   return (
     <>
       <Fieldset label={label} tooltip={tooltip}>
