@@ -2,16 +2,14 @@ import css from 'styled-jsx/css';
 
 export default css`
 .callout {
-  border-left-width: 4px;
-  @apply bg-white;
-  padding: 10px 20px;
   @apply text-base font-semibold leading-tight;
+  @apply border-l-4 bg-white py-12 px-20 text-base font-semibold leading-tight;
 }
 .info {
- border-left-color: #143D96;
+ border-left-color: @apply border-l-warning;
 }
 .warning {
-  border-left-color: #fcc85f;
+  border-left-color: @apply border-l-info;
 }
 @media screen and (max-width: 768px) {
   .callout {
