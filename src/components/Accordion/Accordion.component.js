@@ -11,20 +11,23 @@ const Accordion = ({
   size,
   onClickGroup,
 }) => {
-  const [isShow, setIsShow] = useState(show);
-  const showClass = isShow ? '' : 'hide';
-  const arrowName = isShow ? 'Top' : 'Bottom';
+  const [isVisible, setIsVisible] = useState(show);
+  const visibleClass = isVisible ? '' : 'hide';
+  const arrowName = isVisible ? 'Top' : 'Bottom';
+
   const toggleTrueFalse = () => {
     if (onClickGroup) {
-      onClickGroup(!isShow);
+      onClickGroup(!isVisible);
     }
-    return setIsShow(!isShow);
+    return setIsVisible(!isVisible);
   };
+
   useEffect(() => {
-    setIsShow(show);
+    setIsVisible(show);
   }, [show]);
+
   return (
-    <div className={`accordion ${showClass}`}>
+    <div className={`accordion ${visibleClass}`}>
       <style jsx>{styles}</style>
       <div className="accordion-head" onClick={toggleTrueFalse} onKeyUp={toggleTrueFalse} role="button" tabIndex={0}>
         <span>
@@ -33,7 +36,7 @@ const Accordion = ({
         <span><Icon name={`arrow${arrowName}`} size={size} /></span>
       </div>
       <div className="accordion-body">
-        {children}
+        <div className="accordion-body-wrap">{children}</div>
       </div>
     </div>
   );
@@ -41,6 +44,7 @@ const Accordion = ({
 
 Accordion.propTypes = {
   children: PropTypes.oneOfType([
+    PropTypes.string,
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
@@ -51,8 +55,8 @@ Accordion.propTypes = {
 };
 
 Accordion.defaultProps = {
-  children: "If you're in position to purchase your gas and electricity with one provider...",
-  title: 'Position to purchase',
+  children: '',
+  title: '',
   show: false,
   size: 2,
   onClickGroup: null,

@@ -18,7 +18,7 @@ Car insurance protects you against financial loss for damages resulting from car
               events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
               of damage to cars, property, and even people.
             </p>
-            <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+            <h4 className="manor-h6">What does car insurance cover?</h4>
             <p>
 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -40,7 +40,7 @@ Car insurance protects you against financial loss for damages resulting from car
               events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
               of damage to cars, property, and even people.
             </p>
-            <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+            <h4 className="manor-h6">What does car insurance cover?</h4>
             <p>
 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -56,7 +56,7 @@ Car insurance protects you against financial loss for damages resulting from car
               events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
               of damage to cars, property, and even people.
             </p>
-            <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+            <h4 className="manor-h6">What does car insurance cover?</h4>
             <p>
 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -72,7 +72,7 @@ Car insurance protects you against financial loss for damages resulting from car
               events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
               of damage to cars, property, and even people.
             </p>
-            <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+            <h4 className="manor-h6">What does car insurance cover?</h4>
             <p>
 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -95,7 +95,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+              <h4 className="manor-h6">What does car insurance cover?</h4>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -111,7 +111,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+              <h4 className="manor-h6">What does car insurance cover?</h4>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -127,7 +127,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+              <h4 className="manor-h6">What does car insurance cover?</h4>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -151,7 +151,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+              <h4 className="manor-h6">What does car insurance cover?</h4>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -167,7 +167,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 style={{ fontSize: '16px', fontWeight: 'bold' }}>What does car insurance cover?</h4>
+              <h4 className="manor-h6">What does car insurance cover?</h4>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
