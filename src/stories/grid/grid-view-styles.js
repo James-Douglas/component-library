@@ -1,3 +1,6 @@
+import css from 'styled-jsx/css';
+
+export default css.global`
 .grid-view {
   height: 100vh;
   justify-content: center;
@@ -23,3 +26,4 @@ p {
   font-weight: bold;
   font-size: 1.5rem;
 }
+`;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Column.module.css';
+import styles from './styles';
 
 const Column = ({
   col, sm, md, lg, xl, xxl, offset, children, className,
@@ -15,7 +15,7 @@ const Column = ({
       default:
         classNames = `col-${classNames}`;
     }
-    return styles[classNames];
+    return classNames;
   };
 
   const generateClassList = () => {
@@ -31,7 +31,7 @@ const Column = ({
 
     // if no props have been supplied, default to auto size column "col"
     if (!col && !sm && !md && !lg && !xl && !xxl) {
-      const defaultStyle = styles.col;
+      const defaultStyle = 'col';
       classList.push(defaultStyle);
     }
 
@@ -41,9 +41,12 @@ const Column = ({
   const generatedClasses = generateClassList();
 
   return (
-    <div className={`${generatedClasses} ${className}`}>
-      {children}
-    </div>
+    <>
+      <style jsx>{styles}</style>
+      <div className={`${generatedClasses} ${className}`}>
+        {children}
+      </div>
+    </>
   );
 };
 

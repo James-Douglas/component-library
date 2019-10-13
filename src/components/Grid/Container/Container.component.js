@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Container.module.css';
+import styles from './styles';
 
 const Container = ({ children, className }) => (
-  <div className={`${styles.container} ${styles.fixed} ${className}`}>
-    {children}
-  </div>
+  <>
+    <style jsx>{styles}</style>
+    <div className={`container fixed ${className}`}>
+      {children}
+    </div>
+  </>
 );
 
 Container.propTypes = {

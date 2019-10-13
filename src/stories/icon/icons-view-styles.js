@@ -1,4 +1,6 @@
+import css from 'styled-jsx/css';
 
+export default css`
 .icon-wrap:first-child { 
   margin-top: 2rem;
 }
@@ -10,3 +12,4 @@
   align-items: center;
   margin-bottom: 2rem;
 }
+`;

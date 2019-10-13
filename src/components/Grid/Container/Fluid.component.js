@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Container.module.css';
+import styles from './styles';
 
 const FluidContainer = ({ children, className }) => (
-  <div className={`${styles.container} ${className}`}>
-    {children}
-  </div>
+  <>
+    <style jsx>{styles}</style>
+    <div className={`container ${className}`}>
+      {children}
+    </div>
+  </>
 );
 
 FluidContainer.propTypes = {
