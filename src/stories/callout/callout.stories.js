@@ -4,8 +4,8 @@ import { withKnobs } from '@storybook/addon-knobs';
 
 import Callout from '../../components/Callout/Callout.component';
 
-import Container from "../../components/Grid/Container/Container.component";
-import iconReadme from "../../components/Callout/callout.md";
+import Container from '../../components/Grid/Container/Container.component';
+import iconReadme from '../../components/Callout/callout.md';
 
 storiesOf('Callout', module)
   .addDecorator(withKnobs)

@@ -16,4 +16,3 @@ describe('Callout()', () => {
     expect(colloutLine).toHaveClass('bg-grey');
   });
 });
-
