@@ -16,7 +16,7 @@ const Header = ({ isSticky, stuck, number }) => {
       <FluidContainer>
         <div className="wrap">
           <Logo size={size} />
-          <Contact number={number} size={size} />
+          {number && <Contact number={number} size={size} />}
         </div>
       </FluidContainer>
     </header>

@@ -9,6 +9,11 @@ jest.mock('../../../hooks/useIsSticky', () => ({
 }));
 
 describe('StickyBar', () => {
+  it('renders correctly without props', () => {
+    const { queryByText } = render(<Header />);
+    const contactButton = queryByText('1800 000 000');
+    expect(contactButton).not.toBeInTheDocument();
+  });
   it('renders correctly with number prop', () => {
     const { getByText } = render(<Header number="1800 000 000" />);
     expect(getByText('1800 000 000')).toBeInTheDocument();
