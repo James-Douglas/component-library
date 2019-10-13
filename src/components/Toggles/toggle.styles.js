@@ -14,7 +14,7 @@ export default css`
     @apply text-light-blue fill-current;
   }
   .toggle-input {
-    @apply opacity-0 h-0 w-0;
+    @apply hidden opacity-0 h-0 w-0;
   }
   .toggle-input:invalid + label {
     @apply border-invalid text-invalid fill-current;

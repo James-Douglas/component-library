@@ -7,6 +7,7 @@ import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
+import useBreakpoint from '../../hooks/useBreakpoint';
 
 const styles = css`
 .fieldset {
@@ -57,10 +58,29 @@ export function getScreenReaderLabel(screenReaderLabel, label) {
   return screenReaderLabel;
 }
 
-export function renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd) {
+export function getContentColumnSize(forceFullWidth, breakpoint) {
+  if (forceFullWidth) {
+    return '12';
+  }
+  if (breakpoint === 'xxl' || breakpoint === 'xl') {
+    return '11';
+  }
+  return '10';
+}
+
+export function getTooltipColumnSize(breakpoint) {
+  if (breakpoint === 'xxl' || breakpoint === 'xl') {
+    return '1';
+  }
+  return '2';
+}
+
+export function renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd) {
+  const colSize = getTooltipColumnSize(breakpoint);
+
   if (!enableLabelTooltip && hasTooltip) {
     return (
-      <Column col="2">
+      <Column col={colSize}>
         <div className="tooltip-container">
           <Tooltip
             title={title}
@@ -83,6 +103,7 @@ const Fieldset = ({
   const [enableLabelTooltip, setEnableLabelTooltip] = useState(false);
   const [srLabel, setSrLabel] = useState(tooltip.screenReaderLabel);
   const desktop = useIsDesktop(false);
+  const breakpoint = useBreakpoint(false);
   const {
     title, body, boundingElementSelector, justifyEnd,
   } = tooltip;
@@ -100,15 +121,17 @@ const Fieldset = ({
     setSrLabel(getScreenReaderLabel(screenReaderLabel, label));
   }, [screenReaderLabel, label]);
 
+  const contentSize = getContentColumnSize(forceFullWidth, breakpoint);
+
   return (
     <div className="fieldset" jsx="true">
       <style jsx="true">{styles}</style>
       <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltip} forceFullWidth={forceFullWidth} />
       <Row>
-        <Column sm={forceFullWidth ? '12' : '10'} xs="12">
+        <Column sm={contentSize} xs="12">
           {children}
         </Column>
-        {renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd)}
+        {renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd)}
       </Row>
       <Row>
         <Column xs="12" sm="10">

@@ -46,10 +46,10 @@ describe('getScreenReaderLabel()', () => {
 describe('renderTooltip()', () => {
   const TooltipContainer = ({
     // eslint-disable-next-line react/prop-types
-    enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel,
+    enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel,
   }) => (
     <>
-      {renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel)}
+      {renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel)}
     </>
   );
 
@@ -64,7 +64,7 @@ describe('renderTooltip()', () => {
   });
 
   it('returns tooltip when applicable', () => {
-    const { getByText, container } = render(<TooltipContainer enableLabelTooltip={false} hasTooltip title="test tooltip" body="this is a test" srLabel="screen reader label" />);
+    const { getByText, container } = render(<TooltipContainer enableLabelTooltip={false} breakpoint="xl" hasTooltip title="test tooltip" body="this is a test" srLabel="screen reader label" />);
     expect(getByText('screen reader label')).toBeInTheDocument();
     expect(container.querySelector('.tooltip-container')).toBeInTheDocument();
   });
