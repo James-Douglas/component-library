@@ -19,7 +19,7 @@ storiesOf('Callout', module)
   ), { notes: iconReadme })
   .add('Callout warning', () => (
     <Container>
-      <Callout type="warning">
+      <Callout bgColourGrey>
         The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later.
       </Callout>
     </Container>

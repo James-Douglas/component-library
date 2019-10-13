@@ -4,9 +4,9 @@ import styles from './styles';
 
 const Callout = ({
   children,
-  type,
+  bgColourGrey,
 }) => (
-  <div className={`callout ${type}`}>
+  <div className={`callout ${bgColourGrey ? 'bg-grey' : ''}`}>
     <style jsx>{styles}</style>
     {children}
   </div>
@@ -18,12 +18,12 @@ Callout.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  type: PropTypes.oneOf(['info', 'warning']),
+  bgColourGrey: PropTypes.bool,
 };
 
 Callout.defaultProps = {
   children: 'message',
-  type: 'info',
+  bgColourGrey: false,
 };
 
 export default Callout;
