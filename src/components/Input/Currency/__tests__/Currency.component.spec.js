@@ -51,76 +51,65 @@ describe('Currency', () => {
     const currencyInput = container.querySelector('input');
     fireEvent.input(currencyInput, { target: { value: '2222222' } });
 
-
     expect(currencyInput.value).toEqual('2,222,222');
   });
 
-  xit('fires setValue with raw value', () => {
-    const { container, component } = render(Currency, { props: { id: 'test' } });
+  it('fires an additional function supplied as a prop', () => {
     const handler = jest.fn();
-    component.$on('setValue', handler);
+    const { container } = render(
+      <Currency
+        id="test-id"
+        handleChange={handler}
+      />,
+    );
 
-    const currencyElement = container.querySelector('input');
-    currencyElement.value = '3333';
-    currencyElement.dispatchEvent(new Event('input'));
+    const currencyInput = container.querySelector('input');
+    fireEvent.input(currencyInput, { target: { value: '2222222' } });
 
-    return flushPromises().then(() => {
-      jest.runAllTimers();
-      expect(handler).toHaveBeenCalled();
-      expect(handler.mock.calls.length).toBe(1);
-      expect(handler.mock.calls[0][0].detail).toBe(3333);
-    });
+    expect(handler).toHaveBeenCalled();
+    expect(handler.mock.calls.length).toBe(2);
   });
 
-  xit('removes disallowed characters', () => {
-    const { container, component } = render(Currency, { props: { id: 'test' } });
-    const handler = jest.fn();
-    component.$on('setValue', handler);
+  it('removes disallowed characters and formats the input', () => {
+    const { container } = render(
+      <Currency
+        id="test-id"
+        handleChange={() => {}}
+      />,
+    );
 
-    const currencyElement = container.querySelector('input');
-    currencyElement.value = '22222';
-    currencyElement.dispatchEvent(new Event('input'));
+    const currencyInput = container.querySelector('input');
+    fireEvent.input(currencyInput, { target: { value: '2v222222p1' } });
 
-    currencyElement.value = '22222f';
-    currencyElement.dispatchEvent(new Event('input'));
-
-    return flushPromises().then(() => {
-      jest.runAllTimers();
-      expect(currencyElement.value).toEqual('22,222');
-    });
+    expect(currencyInput.value).toEqual('22,222,221');
   });
 
-  xit('does not allow leading zeros', () => {
-    const { container, component } = render(Currency, { props: { id: 'test', amount: '222' } });
-    const handler = jest.fn();
-    component.$on('setValue', handler);
+  it('does not allow leading zeros', () => {
+    const { container } = render(
+      <Currency
+        id="test-id"
+        handleChange={() => {}}
+      />,
+    );
 
-    const currencyElement = container.querySelector('input');
-    currencyElement.value = '0222';
-    currencyElement.dispatchEvent(new Event('input'));
+    const currencyInput = container.querySelector('input');
+    fireEvent.input(currencyInput, { target: { value: '000000022' } });
 
-    return flushPromises().then(() => {
-      jest.runAllTimers();
-      expect(currencyElement.value).toEqual('222');
-      expect(handler.mock.calls.length).toBe(1);
-      expect(handler.mock.calls[0][0].detail).toBe(222);
-    });
+    expect(currencyInput.value).toEqual('22');
   });
 
-  xit('limits input to given maxLength', () => {
-    const { container, component } = render(Currency, { props: { id: 'test', amount: '222' } });
-    const handler = jest.fn();
-    component.$on('setValue', handler);
+  it('limits input to given maxLength', () => {
+    const { container } = render(
+      <Currency
+        id="test-id"
+        handleChange={() => {}}
+        maxlength={5}
+      />,
+    );
 
-    const currencyElement = container.querySelector('input');
-    currencyElement.value = '2222222222223';
-    currencyElement.dispatchEvent(new Event('input'));
+    const currencyInput = container.querySelector('input');
+    fireEvent.input(currencyInput, { target: { value: '22222222' } });
 
-    return flushPromises().then(() => {
-      jest.runAllTimers();
-      expect(currencyElement.value).toEqual('222,222,222,222');
-      expect(handler.mock.calls.length).toBe(1);
-      expect(handler.mock.calls[0][0].detail).toBe(222222222222);
-    });
+    expect(currencyInput.value).toEqual('22,222');
   });
 });

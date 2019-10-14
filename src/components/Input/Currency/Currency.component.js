@@ -82,7 +82,7 @@ CurrencyInput.propTypes = {
 };
 
 CurrencyInput.defaultProps = {
-  maxlength: '15',
+  maxlength: 15,
   prefillValue: '',
   placeholder: '',
   autocomplete: 'off',
