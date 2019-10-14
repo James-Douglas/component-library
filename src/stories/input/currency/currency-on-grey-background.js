@@ -8,35 +8,35 @@ const greyBackgroundView = () => {
     body: 'Grey background input view',
   };
 
-  const logValue = (value) => {
+  const logValue = (value, rawValue) => {
     // eslint-disable-next-line no-console
-    console.log(value);
+    console.warn('log value',value, rawValue);
   };
 
   return (
     <>
-      
+
       <div className="grey-background">
         <CurrencyInput
           id="default-id"
           placeholder="Placeholder one"
-          currencySymbol='$'
+          currencySymbol="$"
           bordered={false}
           required={false}
           label="AUD Currency Input"
           tooltip={tooltip}
           maxlength={5}
-          handleChange={(value) => logValue(value)}
+          handleChange={(value, rawValue) => logValue(value, rawValue)}
         />
         <CurrencyInput
           id="input-two"
           placeholder="Placeholder two"
-          currencySymbol='¥'
+          currencySymbol="¥"
           bordered={false}
           required={false}
           label="Yen Currency Input"
-          handleChange={(value) => logValue(value)}
-          prefillValue='22222'
+          handleChange={(value, rawValue) => logValue(value, rawValue)}
+          prefillValue="22222"
         />
       </div>
     </>

@@ -61,19 +61,20 @@ export const renderOptionalElement = (required) => {
 
 export const getInitialValue = (valueMasking, prefillValue) => {
   if (valueMasking && prefillValue) {
-    return valueMasking(prefillValue);
-  } else if( prefillValue) {
+    const { formattedValue } = valueMasking(prefillValue)
+    return formattedValue;
+  } if (prefillValue) {
     return prefillValue;
   }
-  
+
   return '';
-}
+};
 
 const Input = ({
   id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking,
 }) => {
-
   const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
+  const [rawValue, setRawValue] = useState('');
   const [isAutofill, setIsAutofill] = useState(!!prefillValue);
   const inputWrapElement = useRef(null);
 
@@ -86,16 +87,18 @@ const Input = ({
     setIsAutofill(false);
 
     if (valueMasking) {
-      const newValue = valueMasking(e.target.value);
-      setValue(newValue);
+      const { formattedValue, rawValue } = valueMasking(e.target.value);
+      setRawValue(rawValue)
+      setValue(formattedValue);
     } else {
       setValue(e.target.value);
     }
   };
 
   useEffect(() => {
-    handleChange(value);
-  }, [handleChange, value]);
+    console.warn('use effect raw value is:', rawValue)
+    handleChange(value, rawValue);
+  }, [handleChange, value, rawValue]);
 
   const toggleFocus = () => {
     const { current } = inputWrapElement;
@@ -108,7 +111,7 @@ const Input = ({
   const borderClass = `${bordered ? 'input-border' : ''}`;
   const invalidClass = `${invalid ? 'invalid' : ''}`;
   const disabledClass = `${disabled ? 'disabled' : ''}`;
-  
+
   return (
     <>
       <Fieldset label={label} tooltip={tooltip}>
@@ -159,6 +162,7 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  valueMasking: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
@@ -185,6 +189,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  valueMasking: () => {},
   type: 'text',
   placeholder: '',
   prefillValue: '',

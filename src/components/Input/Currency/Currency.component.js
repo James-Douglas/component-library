@@ -1,57 +1,98 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/Input/Input.component';
 
 const CurrencyInput = ({
-  id, label, prefillValue, handleChange, currencySymbol, placeholder, bordered, required, maxlength,
+  id, label, placeholder, prefillValue, handleChange, currencySymbol, bordered, required, disabled, invalid, autocomplete, tooltip, maxlength,
 }) => {
-
+  
+/* id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking, */
   const valueMasking = (val) => {
-
     if (val === '') {
       return '';
     }
 
-    let strippedChars = val.toString().replace(/[^0-9]+/g, '');
+    let formattedValue;
+    let rawValue = val.toString().replace(/[^0-9]+/g, '');
 
-    if (strippedChars.length > maxlength) {
-      strippedChars = strippedChars.substring(0, maxlength);
+    if (rawValue.length > maxlength) {
+      rawValue = rawValue.substring(0, maxlength);
     }
 
-    const parsed = parseInt(strippedChars);
+    const parsed = parseInt(rawValue, 10);
 
     if (parsed) {
-      strippedChars = parsed.toLocaleString();
+      formattedValue = parsed.toLocaleString();
+    } else {
+      formattedValue = '';
     }
-    
-    return strippedChars;
-  }
+
+    return {
+      formattedValue,
+      rawValue
+    }
+  };
 
   return (
     <>
-      <Input 
-        id={id} 
+      <Input
+        id={id}
         label={label}
-        type="tel" 
+        type="tel"
         handleChange={handleChange}
-        prefixContent={currencySymbol} 
+        prefixContent={currencySymbol}
         placeholder={placeholder}
         bordered={bordered}
         required={required}
         maxlength={maxlength}
         valueMasking={valueMasking}
         prefillValue={prefillValue}
+        disabled={disabled}
+        invalid={invalid}
+        autocomplete={autocomplete}
+        tooltip={tooltip}
       />
     </>
   );
 };
 
 CurrencyInput.propTypes = {
+  id: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  prefillValue: PropTypes.string,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  bordered: PropTypes.bool,
+  maxlength: PropTypes.number,
+  invalid: PropTypes.bool,
+  autocomplete: PropTypes.string,
+  currencySymbol: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
 
+  tooltip: PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    boundingElementSelector: PropTypes.string,
+    screenReaderLabel: PropTypes.string,
+  }),
 };
 
 CurrencyInput.defaultProps = {
-  maxlength: '15'
+  maxlength: '15',
+  prefillValue: '',
+  placeholder: '',
+  autocomplete: 'off',
+  currencySymbol: '',
+  required: true,
+  disabled: false,
+  bordered: true,
+  invalid: false,
+  label: '',
+  tooltip: {},
 };
 
 export default CurrencyInput;

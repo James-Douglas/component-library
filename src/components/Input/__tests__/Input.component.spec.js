@@ -154,10 +154,6 @@ describe('renderOptionalElement()', () => {
 /* Input.component
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-/*
-label, tooltip,
-*/
-
 describe('Input.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(<Input id="test-id" handleChange={() => {}} />);
