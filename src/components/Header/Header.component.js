@@ -26,12 +26,13 @@ const Header = ({ isSticky, stuck, number }) => {
 Header.propTypes = {
   isSticky: PropTypes.bool,
   stuck: PropTypes.bool,
-  number: PropTypes.string.isRequired,
+  number: PropTypes.string,
 };
 
 Header.defaultProps = {
   isSticky: false,
   stuck: false,
+  number: '',
 };
 
 
