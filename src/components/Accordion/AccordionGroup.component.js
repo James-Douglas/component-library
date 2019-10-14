@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-
-export function getInitialChildIndex(children) {
+export const getInitialChildIndex = (children) => {
   let initialChildIndex = null;
   // find first accordion to show
   const childrenArray = React.Children.toArray(children);
@@ -15,26 +14,27 @@ export function getInitialChildIndex(children) {
     }
   }
   return initialChildIndex;
-}
+};
 
+const AccordionGroupChildren = (children) => {
+  // null if all Accordions are closed or index of opened Accordion
+  const [childIndex, setChildIndex] = useState(() => getInitialChildIndex(children));
+  return React.Children.map(children, ((child, index) => React.cloneElement(child, {
+    show: childIndex === index,
+    onClickGroup: (isVisible) => {
+      setChildIndex(isVisible ? index : null);
+    },
+  })));
+};
 
 const AccordionGroup = ({
   children,
-}) => {
-  // null if all Accordions are closed or index of opened Accordion
-  const [childIndex, setChildIndex] = useState(() => getInitialChildIndex(children));
-  return (
-    <div className="accordion-group">
-      <style jsx>{styles}</style>
-      {React.Children.map(children, ((child, index) => React.cloneElement(child, {
-        show: childIndex === index,
-        onClickGroup: (isVisible) => {
-          setChildIndex(isVisible ? index : null);
-        },
-      })))}
-    </div>
-  );
-};
+}) => (
+  <div className="accordion-group">
+    <style jsx>{styles}</style>
+    {AccordionGroupChildren(children)}
+  </div>
+);
 
 AccordionGroup.propTypes = {
   children: PropTypes.oneOfType([

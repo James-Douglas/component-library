@@ -9,10 +9,15 @@ export default css`
 .accordion .accordion-body {
   @apply pt-16 pl-32 pb-24 pr-48 bg-white text-xl leading-normal text-xl;
   color: rgba(0,0,0,0.8);
-  display: block;
+  transform: translateY(0);
+  transform-origin: top;
+  transition: transform 0.3s;
+  height: auto;
 }
 .accordion.hide .accordion-body {
-  display: none;
+  transform: translateY(-100%);
+  height: 0;
+  padding: 0;
 }
 
 .accordion.hide {
