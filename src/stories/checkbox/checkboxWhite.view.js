@@ -8,7 +8,7 @@ import styles from './checkbox-view';
 const CheckboxWhiteView = () => (
   <>
     <style jsx>{styles}</style>
-    <div className="background">
+    <div className="background manor-rich-text">
       <div className="demo-container">
         <div className="centered">
           <Container>
