@@ -3,35 +3,25 @@ import css from 'styled-jsx/css';
 export default css`
 .accordion {
   transition: color 2s linear;
-  border-bottom: 2px solid #999999;
-  overflow: hidden;
+  @apply overflow-hidden border-b-2 border-grey-dark bg-white;
 }
 .accordion .accordion-body {
-  @apply pt-16 pl-32 pb-24 pr-48 bg-white text-xl leading-normal text-xl;
+  @apply pt-16 pl-32 pb-24 pr-48 bg-white text-xl leading-normal text-xl h-auto;
   color: rgba(0,0,0,0.8);
   transform: translateY(0);
   transform-origin: top;
   transition: transform 0.3s;
-  height: auto;
 }
 .accordion.hide .accordion-body {
   transform: translateY(-100%);
-  height: 0;
-  padding: 0;
+  @apply h-0 p-0;
 }
-
 .accordion.hide {
    border-bottom: 1px solid rgba(0,0,0,.1);
 }
-.accordion > * {
-  @apply bg-white;
-}
 .accordion-head {
-  @apply pt-24 pl-32 pb-24 pr-48 flex justify-between items-center text-base bg-white cursor-pointer text-2xl;
-  transition: font-size 0.5s; 
-  overflow: hidden;
-  z-index:2;
-  position: relative;
+  @apply pt-24 pl-32 pb-24 pr-48 flex justify-between items-center text-base bg-white cursor-pointer text-2xl relative overflow-hidden z-10;
+  transition: font-size 0.5s;
 }
 .accordion.hide .accordion-head  {
    @apply text-lg;
