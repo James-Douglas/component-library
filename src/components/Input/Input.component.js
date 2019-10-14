@@ -61,25 +61,27 @@ export const renderOptionalElement = (required) => {
 
 export const getInitialValue = (valueMasking, prefillValue) => {
   if (valueMasking && prefillValue) {
-    const { formattedValue } = valueMasking(prefillValue)
-    return formattedValue;
+    const { parsed } = valueMasking(prefillValue);
+    return parsed;
   } if (prefillValue) {
     return prefillValue;
   }
-
   return '';
 };
 
 const Input = ({
   id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking,
 }) => {
+  const [rawValue, setRawValue] = useState(prefillValue || '');
   const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
-  const [rawValue, setRawValue] = useState('');
   const [isAutofill, setIsAutofill] = useState(!!prefillValue);
   const inputWrapElement = useRef(null);
 
   const clearInput = () => {
     setValue('');
+    if (valueMasking) {
+      setRawValue('');
+    }
     setIsAutofill(false);
   };
 
@@ -87,18 +89,21 @@ const Input = ({
     setIsAutofill(false);
 
     if (valueMasking) {
-      const { formattedValue, rawValue } = valueMasking(e.target.value);
-      setRawValue(rawValue)
-      setValue(formattedValue);
+      const { raw, parsed } = valueMasking(e.target.value);
+      setRawValue(raw || '');
+      setValue(parsed || '');
     } else {
       setValue(e.target.value);
     }
   };
 
   useEffect(() => {
-    console.warn('use effect raw value is:', rawValue)
-    handleChange(value, rawValue);
-  }, [handleChange, value, rawValue]);
+    if (valueMasking) {
+      handleChange(value, rawValue);
+    } else {
+      handleChange(value);
+    }
+  }, [handleChange, value, rawValue, valueMasking]);
 
   const toggleFocus = () => {
     const { current } = inputWrapElement;
@@ -153,7 +158,6 @@ const Input = ({
             {renderOptionalElement(required)}
           </div>
         </div>
-
       </Fieldset>
     </>
   );
@@ -189,7 +193,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  valueMasking: () => {},
+  valueMasking: null,
   type: 'text',
   placeholder: '',
   prefillValue: '',

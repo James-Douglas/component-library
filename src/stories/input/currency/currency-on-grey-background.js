@@ -10,7 +10,8 @@ const greyBackgroundView = () => {
 
   const logValue = (value, rawValue) => {
     // eslint-disable-next-line no-console
-    console.warn('log value',value, rawValue);
+    console.warn('log value:', value);
+    console.warn('log rawValue:', rawValue);
   };
 
   return (

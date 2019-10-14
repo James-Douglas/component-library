@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Currency from '../Currency.component';
 
-/* 
+/*
 id, label, placeholder, prefillValue, handleChange, currencySymbol, bordered,
 required, disabled, invalid, autocomplete, tooltip, maxlength,
 */
@@ -15,15 +15,15 @@ describe('Currency', () => {
 
   it('renders with lots of props', () => {
     const { container } = render(
-      <Currency 
-        id="test-id" 
+      <Currency
+        id="test-id"
         label="label-test"
         placeholder="placeholder test"
         currencySymbol="$"
         maxlength={5}
         autocomplete="on"
-        handleChange={() => {}} 
-      />
+        handleChange={() => {}}
+      />,
     );
 
     const currencyInput = container.querySelector('input');
@@ -42,18 +42,17 @@ describe('Currency', () => {
 
   it('displays formatted input', () => {
     const { container } = render(
-      <Currency 
-        id="test-id" 
-        handleChange={() => {}} 
-      />
+      <Currency
+        id="test-id"
+        handleChange={() => {}}
+      />,
     );
 
     const currencyInput = container.querySelector('input');
     fireEvent.input(currencyInput, { target: { value: '2222222' } });
-    
+
 
     expect(currencyInput.value).toEqual('2,222,222');
-
   });
 
   xit('fires setValue with raw value', () => {

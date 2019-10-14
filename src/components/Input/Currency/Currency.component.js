@@ -5,32 +5,32 @@ import Input from 'components/Input/Input.component';
 const CurrencyInput = ({
   id, label, placeholder, prefillValue, handleChange, currencySymbol, bordered, required, disabled, invalid, autocomplete, tooltip, maxlength,
 }) => {
-  
 /* id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking, */
+
+
   const valueMasking = (val) => {
     if (val === '') {
       return '';
     }
 
-    let formattedValue;
-    let rawValue = val.toString().replace(/[^0-9]+/g, '');
+    let raw = val.toString().replace(/[^0-9]+/g, '');
 
-    if (rawValue.length > maxlength) {
-      rawValue = rawValue.substring(0, maxlength);
+    if (raw.length > maxlength) {
+      raw = raw.substring(0, maxlength);
     }
 
-    const parsed = parseInt(rawValue, 10);
+    let parsed = parseInt(raw, 10);
 
     if (parsed) {
-      formattedValue = parsed.toLocaleString();
+      parsed = parsed.toLocaleString();
     } else {
-      formattedValue = '';
+      parsed = raw;
     }
 
     return {
-      formattedValue,
-      rawValue
-    }
+      raw,
+      parsed,
+    };
   };
 
   return (
