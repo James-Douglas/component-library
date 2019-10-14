@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import Input from '../Input/Input.component';
-import Row from "../Grid/Row/Row.component";
-import Column from "../Grid/Column/Column.component";
-import Container from "../Grid/Container/Container.component";
+import Row from '../Grid/Row/Row.component';
+import Column from '../Grid/Column/Column.component';
+import Container from '../Grid/Container/Container.component';
 
 
 const Combo = ({
   value,
-  id
+  id,
 }) => {
   const linkTextString = "Can't find your address?";
   const onChange = (event) => {
-    console.log(event.target.value)
-  }
+    console.log(event.target.value);
+  };
   return (
 
     <Container>
