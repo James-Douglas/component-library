@@ -27,6 +27,7 @@ export default css`
   padding: 0 1.5rem;
 }
 .results-container {
+  min-height: 120px;
   background: #143D96;
   color: white;
   padding: 2rem;

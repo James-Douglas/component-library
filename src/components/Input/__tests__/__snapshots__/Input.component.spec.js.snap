@@ -1,32 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input.component renders with minimal props 1`] = `
-"<div class=\\"fieldset\\"><style></style><div class=\\"row \\"><style></style><div class=\\"label\\"><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\"></label></div></div><style>.row {
+"<div class=\\"fieldset\\"><style jsx=\\"true\\"></style><div class=\\"row \\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"label\\"><style></style><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\"></label></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\"><div class=\\"col-sm-10 \\"><style></style><div class=\\"input-container\\"><div class=\\"input-wrap  input-border  \\"><div class=\\"input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><style></style><div class=\\"input-container\\"><div class=\\"input-wrap  input-border  \\"><div class=\\"input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"
                   input-default
                   
-                \\" value=\\"\\"></div></div><div class=\\"supporting-elements\\"></div></div></div><style>.row {
+                \\" value=\\"\\"></div></div><div class=\\"supporting-elements\\"></div></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\"><div class=\\"col-sm-10 \\"><div class=\\"relative w-full\\"></div></div><style>.row {
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start -mt-24\\"></span></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
       </style></div></div>"
 `;
 
 exports[`Input.component renders with props 1`] = `
-"<div class=\\"fieldset\\"><style></style><div class=\\"row \\"><style></style><div class=\\"label\\"><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\">input label</label></div></div><style>.row {
+"<div class=\\"fieldset\\"><style jsx=\\"true\\"></style><div class=\\"row \\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"label\\"><style></style><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\">input label</label></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\"><div class=\\"col-sm-10 \\"><style></style><div class=\\"input-container\\"><div class=\\"input-wrap  input-border  \\"><div class=\\"input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><style></style><div class=\\"input-container\\"><div class=\\"input-wrap  input-border  \\"><div class=\\"input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"
                   input-default
                   
-                \\" value=\\"\\"></div></div><div class=\\"supporting-elements\\"></div></div></div><style>.row {
+                \\" value=\\"\\"></div></div><div class=\\"supporting-elements\\"></div></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\"><div class=\\"col-sm-10 \\"><div class=\\"relative w-full\\"></div></div><style>.row {
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start -mt-24\\"></span></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
       </style></div></div>"

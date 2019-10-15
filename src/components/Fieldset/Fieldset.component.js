@@ -7,6 +7,7 @@ import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
+import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const styles = css`
 .fieldset {
@@ -100,10 +101,16 @@ const Fieldset = ({
     setSrLabel(getScreenReaderLabel(screenReaderLabel, label));
   }, [screenReaderLabel, label]);
 
+  const tooltipOptions = tooltip;
+
+  if (!tooltipOptions.justifyEnd && desktop && enableLabelTooltip) {
+    tooltipOptions.justifyEnd = true;
+  }
+
   return (
-    <div className="fieldset" jsx="true">
+    <div className="fieldset">
       <style jsx="true">{styles}</style>
-      <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltip} forceFullWidth={forceFullWidth} />
+      <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} />
       <Row>
         <Column sm={forceFullWidth ? '12' : '10'} xs="12">
           {children}
@@ -112,8 +119,10 @@ const Fieldset = ({
       </Row>
       <Row>
         <Column xs="12" sm="10">
-          <div className="relative w-full">
-            {/* <FieldValidation message={validationMessage} /> */}
+          <div className="relative w-full h-16 mb-8">
+            <span className="absolute w-full justify-start -mt-24">
+              <FieldValidation message={validationMessage} />
+            </span>
             {supportingElements}
           </div>
         </Column>
@@ -122,7 +131,7 @@ const Fieldset = ({
   );
 };
 
-Fieldset.propTypes = {
+export const fieldsetPropTypes = {
   label: PropTypes.string,
   tooltip: PropTypes.shape(tooltipPropTypes),
   forceFullWidth: PropTypes.bool,
@@ -131,7 +140,7 @@ Fieldset.propTypes = {
   supportingElements: PropTypes.node,
 };
 
-Fieldset.defaultProps = {
+export const defaultFieldsetProps = {
   label: '',
   tooltip: {},
   forceFullWidth: false,
@@ -139,5 +148,9 @@ Fieldset.defaultProps = {
   children: [],
   supportingElements: [],
 };
+
+Fieldset.propTypes = fieldsetPropTypes;
+
+Fieldset.defaultProps = defaultFieldsetProps;
 
 export default Fieldset;
