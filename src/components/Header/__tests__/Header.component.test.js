@@ -10,9 +10,9 @@ jest.mock('../../../hooks/useIsSticky', () => ({
 
 describe('Header', () => {
   it('renders correctly without props', () => {
-    const { queryByText } = render(<Header />);
-    const contactButton = queryByText('1800 000 000');
-    expect(contactButton).not.toBeInTheDocument();
+    const { container } = render(<Header />);
+    const contactIcon = container.getAttribute('svg');
+    expect(contactIcon).not.toBeInTheDocument();
   });
   it('renders correctly with number prop', () => {
     const { getByText } = render(<Header number="1800 000 000" />);
