@@ -60,7 +60,7 @@ Accordion.defaultProps = {
   children: '',
   title: '',
   show: false,
-  size: 2,
+  size: 1.5,
   onClickGroup: null,
 };
 
