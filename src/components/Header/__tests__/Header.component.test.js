@@ -8,7 +8,7 @@ jest.mock('../../../hooks/useIsSticky', () => ({
   default: jest.fn(() => mockUseIsStickyValue),
 }));
 
-describe('StickyBar', () => {
+describe('Header', () => {
   it('renders correctly without props', () => {
     const { queryByText } = render(<Header />);
     const contactButton = queryByText('1800 000 000');
