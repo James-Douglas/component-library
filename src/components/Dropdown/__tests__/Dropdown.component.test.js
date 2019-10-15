@@ -1,9 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Dropdown from '../Dropdown.component';
-import CheckboxGroup from '../../Checkbox/CheckboxGroup.component';
-import Checkbox from '../../Checkbox/Checkbox.component';
-import Textarea from '../../Textarea/Textarea.component';
 
 describe('Dropdown', () => {
   const options = [
@@ -46,18 +43,18 @@ describe('Dropdown', () => {
     expect(dropdown).toHaveClass('manor-input-border');
   });
   it('renders with invalid props', () => {
-    const { container, getByText } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" invalid autofill jsx="true" />);
+    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" invalid autofill jsx="true" />);
     const dropdown = container.getElementsByTagName('select')[0];
     expect(dropdown).toHaveClass('invalid');
     expect(dropdown).toHaveClass('manor-prefilled');
   });
   it('renders with disabled attribute', () => {
-    const { container, getByText } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" disabled autofill jsx="true" />);
+    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" disabled autofill jsx="true" />);
     const dropdown = container.getElementsByTagName('select')[0];
     expect(dropdown).toHaveAttribute('disabled');
   });
   it('renders with required attribute', () => {
-    const { container, getByText } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" required autofill jsx="true" />);
+    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" required autofill jsx="true" />);
     const dropdown = container.getElementsByTagName('select')[0];
     expect(dropdown).toHaveAttribute('required');
   });

@@ -11,8 +11,11 @@ background - additional padding added for display purposes also. The developer
 will be expected to set bordered accordingly.
 */
 
-const tooltip = {
-  title: 'text area tooltip!',
+const fieldsetProps = {
+  label: 'Textarea demo',
+  tooltip: {
+    title: 'text area tooltip!',
+  },
 };
 
 const TextareaDemoView = ({
@@ -26,7 +29,6 @@ const TextareaDemoView = ({
   required,
   invalid,
   autofill,
-  hidden,
   rows,
   wrap,
   readonly,
@@ -38,6 +40,7 @@ const TextareaDemoView = ({
       <div className="add-padding-around-field-for-display-purposes">
 
         <Textarea
+          fieldsetProps={fieldsetProps}
           id={id}
           name={name}
           label={label}
@@ -48,13 +51,30 @@ const TextareaDemoView = ({
           required={required}
           invalid={invalid}
           autofill={autofill}
-          hidden={hidden}
           rows={rows}
           wrap={wrap}
           readonly={readonly}
           maxChars={maxChars}
           maxLength={maxLength}
-          tooltip={tooltip}
+        />
+
+        <Textarea
+          fieldsetProps={fieldsetProps}
+          id={id}
+          name={name}
+          label={label}
+          placeholder={placeholder}
+          value={value}
+          bordered={bordered}
+          disabled={disabled}
+          required={required}
+          invalid={invalid}
+          autofill={autofill}
+          rows={rows}
+          wrap={wrap}
+          readonly={readonly}
+          maxChars={maxChars}
+          maxLength={maxLength}
         />
       </div>
     </div>
@@ -73,7 +93,6 @@ TextareaDemoView.propTypes = {
   required: PropTypes.bool,
   invalid: PropTypes.bool,
   autofill: PropTypes.bool,
-  hidden: PropTypes.bool,
   rows: PropTypes.string,
   wrap: PropTypes.string,
   readonly: PropTypes.bool,
@@ -91,7 +110,6 @@ TextareaDemoView.defaultProps = {
   required: false,
   invalid: false,
   autofill: false,
-  hidden: false,
   rows: '',
   wrap: '',
   readonly: false,
