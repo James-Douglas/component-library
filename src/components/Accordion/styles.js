@@ -6,7 +6,7 @@ export default css`
   @apply overflow-hidden border-b-2 border-grey-dark bg-white;
 }
 .accordion .accordion-body {
-  @apply pt-16 pl-32 pb-24 pr-48 bg-white text-xl leading-normal text-xl h-auto;
+  @apply pt-16 pl-32 pb-24 pr-48 bg-white text-xl leading-normal text-base h-auto;
   color: rgba(0,0,0,0.8);
   transform: translateY(0);
   transform-origin: top;

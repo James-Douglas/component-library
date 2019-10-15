@@ -16,10 +16,12 @@ const Accordion = ({
   const arrowName = isVisible ? 'Top' : 'Bottom';
 
   const toggleTrueFalse = () => {
-    if (onClickGroup) {
-      onClickGroup(!isVisible);
-    }
-    return setIsVisible(!isVisible);
+    setTimeout(() => {
+      if (onClickGroup) {
+        onClickGroup(!isVisible);
+      }
+      return setIsVisible(!isVisible);
+    }, 1);
   };
 
   useEffect(() => {

@@ -18,19 +18,23 @@ describe('Accordion', () => {
     expect(accordionMain).toHaveAttribute('viewBox');
   });
   it('click on accordion head', () => {
+    jest.useFakeTimers();
     const { container } = render(<Accordion show />);
     const accordionHead = container.querySelector('.accordion-head');
-    fireEvent.click(accordionHead);
     const accordionMain = container.querySelector('.accordion');
+    fireEvent.click(accordionHead);
+    jest.runAllTimers();
     expect(accordionMain).toHaveClass('hide');
   });
 
   it('check onClickGroup function is called', () => {
+    jest.useFakeTimers();
     const onClickGroup = jest.fn();
     const { container } = render(<Accordion show onClickGroup={onClickGroup} />);
     const accordionHead = container.querySelector('.accordion-head');
     fireEvent.click(accordionHead);
     const accordionMain = container.querySelector('.accordion');
+    jest.runAllTimers();
     expect(accordionMain).toHaveClass('hide');
     expect(onClickGroup).toBeCalled();
   });

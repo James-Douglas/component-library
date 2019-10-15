@@ -32,7 +32,7 @@ const AccordionGroup = ({
 }) => (
   <div className="accordion-group">
     <style jsx>{styles}</style>
-    {AccordionGroupChildren(children)}
+    { AccordionGroupChildren(children) }
   </div>
 );
 

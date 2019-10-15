@@ -43,6 +43,7 @@ describe('Accordion', () => {
     expect(accordionGroup.length).toBe(3);
   });
   it(' accordion after click', () => {
+    jest.useFakeTimers();
     const mockTestClick = jest.fn();
     const { container } = render(
       <AccordionGroup>
@@ -62,9 +63,11 @@ describe('Accordion', () => {
     const accordionHead = container.querySelector('.accordion-head');
     expect(accordionMain).not.toHaveClass('hide');
     fireEvent.click(accordionHead);
+    jest.runAllTimers();
     expect(accordionMain).toHaveClass('hide');
   });
   it(' accordion after click opposite', () => {
+    jest.useFakeTimers();
     const mockTestClick = jest.fn();
     const { container } = render(
       <AccordionGroup>
@@ -84,6 +87,7 @@ describe('Accordion', () => {
     const accordionHead = container.querySelector('.accordion-head');
     expect(accordionMain).toHaveClass('hide');
     fireEvent.click(accordionHead);
+    jest.runAllTimers();
     expect(accordionMain).not.toHaveClass('hide');
   });
 });
