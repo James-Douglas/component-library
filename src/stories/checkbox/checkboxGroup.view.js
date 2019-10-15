@@ -45,7 +45,7 @@ const CheckboxGroupView = () => {
   return (
     <>
       <style jsx>{styles}</style>
-      <div className="grid-view">
+      <div className="grid-view manor-rich-text">
         <Container>
           <Row>
             <Column offset={2} col={10}>
