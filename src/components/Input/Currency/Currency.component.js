@@ -2,36 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/Input/Input.component';
 
+export const valueMasking = (val, maxlength) => {
+  if (val === '') {
+    return '';
+  }
+
+  let raw = val.toString().replace(/[^0-9]+/g, '');
+
+  if (raw.length > maxlength) {
+    raw = raw.substring(0, maxlength);
+  }
+
+  let parsed = parseInt(raw, 10);
+
+  if (parsed) {
+    parsed = parsed.toLocaleString();
+  } else {
+    parsed = raw;
+  }
+
+  return {
+    raw,
+    parsed,
+  };
+};
+
 const CurrencyInput = ({
   id, label, placeholder, prefillValue, handleChange, currencySymbol, bordered, required, disabled, invalid, autocomplete, tooltip, maxlength,
 }) => {
-/* id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking, */
-
-
-  const valueMasking = (val) => {
-    if (val === '') {
-      return '';
-    }
-
-    let raw = val.toString().replace(/[^0-9]+/g, '');
-
-    if (raw.length > maxlength) {
-      raw = raw.substring(0, maxlength);
-    }
-
-    let parsed = parseInt(raw, 10);
-
-    if (parsed) {
-      parsed = parsed.toLocaleString();
-    } else {
-      parsed = raw;
-    }
-
-    return {
-      raw,
-      parsed,
-    };
-  };
 
   return (
     <>
@@ -45,7 +43,7 @@ const CurrencyInput = ({
         bordered={bordered}
         required={required}
         maxlength={maxlength}
-        valueMasking={valueMasking}
+        valueMasking={(val) => valueMasking(val, maxlength)}
         prefillValue={prefillValue}
         disabled={disabled}
         invalid={invalid}
