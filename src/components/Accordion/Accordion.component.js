@@ -37,8 +37,8 @@ const Accordion = ({
       <div onClick={toggleTrueFalse} onKeyUp={toggleTrueFalse} role="button" tabIndex={0} className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`}>
         <FluidContainer>
           <Row>
-            <Column lg="11" md="8">{title}</Column>
-            <Column lg="1" md="3">
+            <Column col="9" lg="11">{title}</Column>
+            <Column col="3" lg="1">
               <div className="accordion-caret">
                 <Icon name={`arrow${arrowName}`} size={size} />
               </div>
@@ -49,7 +49,7 @@ const Accordion = ({
       <div className="accordion-body">
         <FluidContainer>
           <Row className="row-view">
-            <Column lg="11" md="8">{children}</Column>
+            <Column col="12">{children}</Column>
           </Row>
         </FluidContainer>
       </div>

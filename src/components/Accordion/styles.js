@@ -29,6 +29,9 @@ export default css`
 .accordion-caret {
    @apply flex items-center justify-end w-full;
 }
+.accordion.hide  .accordion-caret {
+  transform: rotate(180deg);
+}
 *:focus {
   outline: none;
 }
