@@ -4,8 +4,6 @@ import Icon from '../Icon/Icon.component';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
 
-/* Input will need to accept children for the custom combo */
-
 export const renderClearIcon = (value, clearInput, isAutofill, label) => {
   if (value.length) {
     return (
