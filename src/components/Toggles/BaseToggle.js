@@ -40,7 +40,10 @@ const BaseToggle = ({
     <span
       className="flex toggle"
       style={getInlineStyles(type, rectOptions)}
-      onClick={() => toggleElement.current.click()}
+      onClick={() => {
+        toggleElement.current.click();
+        toggleElement.current.focus();
+      }}
       ref={wrapperElement}
     >
       <style jsx>{styles}</style>
