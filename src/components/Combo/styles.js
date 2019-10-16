@@ -2,10 +2,10 @@ import css from 'styled-jsx/css';
 
 export default css`
 .combo-wrap{
-  @apply relative w-full;
+  @apply relative w-full text-black;
 }
 ul {
-  @apply bg-white shadow-md w-full mt-8 z-20;
+  @apply bg-white shadow-md w-full mt-8 z-20 text-black;
 }
 ul li {
   @apply text-base text-grey-darker cursor-pointer border border-solid border-transparent;

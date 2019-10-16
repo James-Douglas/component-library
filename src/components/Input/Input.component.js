@@ -60,7 +60,7 @@ export const renderOptionalElement = (required) => {
 };
 
 const Input = ({
-  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange,
+  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, toggleFocus,
 }) => {
   const [value, setValue] = useState(prefillValue || '');
   const [isAutofill, setIsAutofill] = useState(!!prefillValue);
@@ -75,16 +75,17 @@ const Input = ({
   const handleOnChange = (e) => {
     setIsAutofill(false);
     setValue(e.target.value);
+    handleChange(e.target.value);
   };
-
   useEffect(() => {
-    handleChange(value);
-  }, [handleChange, value]);
+    setValue(prefillValue);
+  }, [prefillValue]);
 
-  const toggleFocus = () => {
+  const toggleOnFocus = () => {
     const { current } = inputWrapElement;
     if (current) {
       current.classList.toggle('input-wrap-focus');
+      toggleFocus(current.classList.contains('input-wrap-focus'));
     }
   };
 
@@ -114,8 +115,8 @@ const Input = ({
                 value={value}
                 onChange={handleOnChange}
                 autoComplete={autocomplete}
-                onFocus={toggleFocus}
-                onBlur={toggleFocus}
+                onFocus={toggleOnFocus}
+                onBlur={toggleOnFocus}
                 className={`
                   input-default
                   ${isAutofill && !disabled ? 'manor-prefilled' : ''}
@@ -142,6 +143,7 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  toggleFocus: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
@@ -180,6 +182,7 @@ Input.defaultProps = {
   invalid: false,
   label: '',
   tooltip: {},
+  toggleFocus: () => {},
 };
 
 export default Input;
