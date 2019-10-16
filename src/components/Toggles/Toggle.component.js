@@ -43,7 +43,7 @@ export function getPictureToggleContent(pictureOptions, label) {
 export function getIconToggleContent(icon, iconSize, label) {
   return (
     <>
-      <div className="icon-toggle">
+      <div className="icon-toggle transition">
         <style jsx>{styles}</style>
         <Icon name={icon} size={iconSize} />
         <span className="icon-label">

@@ -8,11 +8,19 @@ export default css`
     @apply relative bg-white shadow-sm border cursor-pointer mx-8 mb-16 text-sm font-bold leading-normal;
   }
   .toggle-label {
-    @apply w-full cursor-pointer;;
+    @apply w-full cursor-pointer;
+    display: block;
+    position: relative;
   }
-  .toggle:hover {
+  .toggle-label:hover  {
+    @apply text-light-blue;
+  }
+  .icon-toggle:hover  {
     @apply text-light-blue fill-current;
   }
+  .toggle-input:checked icon-toggle {
+    @apply bg-dark-blue text-white fill-current shadow-none;
+  } 
   .toggle-input {
     @apply hidden opacity-0 h-0 w-0;
   }
@@ -26,7 +34,7 @@ export default css`
     @apply text-disabled border-disabled fill-current;
   }
   .toggle-input:checked + label {
-    @apply bg-dark-blue text-white fill-current shadow-none;
+    @apply bg-dark-blue text-white shadow-none;
   } 
   .toggle-input:checked + .autofill {
     @apply bg-prechecked text-black fill-current;
