@@ -59,27 +59,51 @@ export const renderOptionalElement = (required) => {
   return null;
 };
 
-const Input = ({
-  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange,
-}) => {
-  const [value, setValue] = useState(prefillValue || '');
-  const [isAutofill, setIsAutofill] = useState(!!prefillValue);
+export const getInitialValue = (valueMasking, prefillValue) => {
+  if (valueMasking && prefillValue) {
+    const { parsed } = valueMasking(prefillValue);
+    return parsed;
+  } if (prefillValue) {
+    return prefillValue;
+  }
+  return '';
+};
 
+const Input = ({
+  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking,
+}) => {
+  const [rawValue, setRawValue] = useState(prefillValue || '');
+  const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
+  const [isAutofill, setIsAutofill] = useState(!!prefillValue);
   const inputWrapElement = useRef(null);
 
   const clearInput = () => {
     setValue('');
+    if (valueMasking) {
+      setRawValue('');
+    }
     setIsAutofill(false);
   };
 
   const handleOnChange = (e) => {
     setIsAutofill(false);
-    setValue(e.target.value);
+
+    if (valueMasking) {
+      const { raw, parsed } = valueMasking(e.target.value);
+      setRawValue(raw || '');
+      setValue(parsed || '');
+    } else {
+      setValue(e.target.value);
+    }
   };
 
   useEffect(() => {
-    handleChange(value);
-  }, [handleChange, value]);
+    if (valueMasking) {
+      handleChange(value, rawValue);
+    } else {
+      handleChange(value);
+    }
+  }, [handleChange, value, rawValue, valueMasking]);
 
   const toggleFocus = () => {
     const { current } = inputWrapElement;
@@ -92,6 +116,7 @@ const Input = ({
   const borderClass = `${bordered ? 'input-border' : ''}`;
   const invalidClass = `${invalid ? 'invalid' : ''}`;
   const disabledClass = `${disabled ? 'disabled' : ''}`;
+
   return (
     <>
       <Fieldset label={label} tooltip={tooltip}>
@@ -133,7 +158,6 @@ const Input = ({
             {renderOptionalElement(required)}
           </div>
         </div>
-
       </Fieldset>
     </>
   );
@@ -142,6 +166,7 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  valueMasking: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
@@ -168,6 +193,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  valueMasking: null,
   type: 'text',
   placeholder: '',
   prefillValue: '',
