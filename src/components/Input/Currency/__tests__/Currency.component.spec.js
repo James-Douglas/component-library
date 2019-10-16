@@ -3,30 +3,29 @@ import { render, fireEvent } from '@testing-library/react';
 import Currency, { valueMasking } from '../Currency.component';
 
 describe('valueMasking()', () => {
-
   it('returns a raw value and a parsed value', () => {
-    const {raw, parsed} = valueMasking('2000', 15);
+    const { raw, parsed } = valueMasking('2000', 15);
 
     expect(raw).toEqual('2000');
     expect(parsed).toEqual('2,000');
   });
 
   it('removes disallowed characters and formats the input', () => {
-    const {raw, parsed} = valueMasking('2v222222p1', 15);
+    const { raw, parsed } = valueMasking('2v222222p1', 15);
 
     expect(raw).toEqual('22222221');
     expect(parsed).toEqual('22,222,221');
   });
 
   it('does not allow leading zeros', () => {
-    const {raw, parsed} = valueMasking('00000022222221', 15);
+    const { raw, parsed } = valueMasking('00000022222221', 15);
 
     expect(raw).toEqual('00000022222221');
     expect(parsed).toEqual('22,222,221');
   });
 
   it('limits input to given maxLength', () => {
-    const {raw, parsed} = valueMasking('2222222222222222222222222', 15);
+    const { raw, parsed } = valueMasking('2222222222222222222222222', 15);
 
     expect(raw).toEqual('222222222222222');
     expect(parsed).toEqual('222,222,222,222,222');
@@ -76,7 +75,7 @@ describe('Currency', () => {
     );
 
     const currencyInput = container.querySelector('input');
-    
+
     fireEvent.input(currencyInput, { target: { value: '2000000000' } });
     expect(currencyInput.value).toEqual('2,000,000,000');
 

@@ -29,30 +29,27 @@ export const valueMasking = (val, maxlength) => {
 
 const CurrencyInput = ({
   id, label, placeholder, prefillValue, handleChange, currencySymbol, bordered, required, disabled, invalid, autocomplete, tooltip, maxlength,
-}) => {
-
-  return (
-    <>
-      <Input
-        id={id}
-        label={label}
-        type="tel"
-        handleChange={handleChange}
-        prefixContent={currencySymbol}
-        placeholder={placeholder}
-        bordered={bordered}
-        required={required}
-        maxlength={maxlength}
-        valueMasking={(val) => valueMasking(val, maxlength)}
-        prefillValue={prefillValue}
-        disabled={disabled}
-        invalid={invalid}
-        autocomplete={autocomplete}
-        tooltip={tooltip}
-      />
-    </>
-  );
-};
+}) => (
+  <>
+    <Input
+      id={id}
+      label={label}
+      type="tel"
+      handleChange={handleChange}
+      prefixContent={currencySymbol}
+      placeholder={placeholder}
+      bordered={bordered}
+      required={required}
+      maxlength={maxlength}
+      valueMasking={(val) => valueMasking(val, maxlength)}
+      prefillValue={prefillValue}
+      disabled={disabled}
+      invalid={invalid}
+      autocomplete={autocomplete}
+      tooltip={tooltip}
+    />
+  </>
+);
 
 CurrencyInput.propTypes = {
   id: PropTypes.string.isRequired,
