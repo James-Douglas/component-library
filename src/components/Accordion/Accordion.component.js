@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import Icon from '../Icon/Icon.component';
+import Row from '../Grid/Row/Row.component';
+import Column from '../Grid/Column/Column.component';
+import FluidContainer from '../Grid/Container/Fluid.component';
 
 
 const Accordion = ({
@@ -29,16 +32,26 @@ const Accordion = ({
   }, [show]);
 
   return (
-    <div className={`accordion ${visibleClass}`}>
+    <div className={`accordion ${visibleClass}  manor-rich-text `}>
       <style jsx>{styles}</style>
-      <div className="accordion-head" onClick={toggleTrueFalse} onKeyUp={toggleTrueFalse} role="button" tabIndex={0}>
-        <span>
-          {title}
-        </span>
-        <span><Icon name={`arrow${arrowName}`} size={size} /></span>
+      <div onClick={toggleTrueFalse} onKeyUp={toggleTrueFalse} role="button" tabIndex={0} className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`}>
+        <FluidContainer>
+          <Row>
+            <Column lg="11" md="8">{title}</Column>
+            <Column lg="1" md="3">
+              <div className="accordion-caret">
+                <Icon name={`arrow${arrowName}`} size={size} />
+              </div>
+            </Column>
+          </Row>
+        </FluidContainer>
       </div>
       <div className="accordion-body">
-        <div className="accordion-body-wrap">{children}</div>
+        <FluidContainer>
+          <Row className="row-view">
+            <Column lg="11" md="8">{children}</Column>
+          </Row>
+        </FluidContainer>
       </div>
     </div>
   );

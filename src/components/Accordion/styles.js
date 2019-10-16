@@ -6,11 +6,11 @@ export default css`
   @apply overflow-hidden border-b-2 border-grey-dark bg-white;
 }
 .accordion .accordion-body {
-  @apply pt-16 pl-32 pb-24 pr-48 bg-white text-xl leading-normal text-base h-auto;
+  @apply pb-24 bg-white leading-normal h-auto m-0;
   color: rgba(0,0,0,0.8);
   transform: translateY(0);
   transform-origin: top;
-  transition: transform 0.3s;
+  transition: transform 0.25s;
 }
 .accordion.hide .accordion-body {
   transform: translateY(-100%);
@@ -20,14 +20,14 @@ export default css`
    border-bottom: 1px solid rgba(0,0,0,.1);
 }
 .accordion-head {
-  @apply pt-24 pl-32 pb-24 pr-48 flex justify-between items-center text-base bg-white cursor-pointer text-2xl relative overflow-hidden z-10;
-  transition: font-size 0.5s;
+  @apply pt-24 pb-24 bg-white cursor-pointer relative overflow-hidden z-10;
+  transition: font-size 0.25s;
 }
 .accordion.hide .accordion-head  {
-   @apply text-lg;
+   transition: font-size 0.2s;
 }
-.accordion-body {
-   @apply text-sm;
+.accordion-caret {
+   @apply flex items-center justify-end w-full;
 }
 *:focus {
   outline: none;

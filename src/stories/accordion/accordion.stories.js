@@ -4,13 +4,13 @@ import { withKnobs } from '@storybook/addon-knobs';
 import Accordion from '../../components/Accordion/Accordion.component';
 import AccordionGroup from '../../components/Accordion/AccordionGroup.component';
 import iconReadme from '../../components/Accordion/accordion.md';
-import Container from '../../components/Grid/Container/Container.component';
+import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
 storiesOf('Accordion', module)
   .addDecorator(withKnobs)
   .add('Default Accordion', () => (
-    <Container>
-      <div style={{ marginTop: '60px', backgroundColor: '#f9f9f9', padding: '30px' }}>
+    <FluidContainer>
+      <div>
         <Accordion title="What are the benefits of combining your electricity and gas bills?">
           <div>
             <p>
@@ -18,7 +18,7 @@ Car insurance protects you against financial loss for damages resulting from car
               events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
               of damage to cars, property, and even people.
             </p>
-            <h4 className="manor-h6">What does car insurance cover?</h4>
+            <h6 className="manor-h6">What does car insurance cover?</h6>
             <p>
 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -28,11 +28,11 @@ It can cover you if you cause personal injury in an accident or if you damage pr
           </div>
         </Accordion>
       </div>
-    </Container>
+    </FluidContainer>
   ), { notes: iconReadme })
   .add('Multiple Accordion', () => (
-    <Container>
-      <div style={{ marginTop: '60px', backgroundColor: '#f9f9f9', padding: '30px' }}>
+    <FluidContainer>
+      <div>
         <Accordion title="What are the benefits of combining your electricity and gas bills?">
           <div>
             <p>
@@ -40,7 +40,7 @@ Car insurance protects you against financial loss for damages resulting from car
               events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
               of damage to cars, property, and even people.
             </p>
-            <h4 className="manor-h6">What does car insurance cover?</h4>
+            <h6 className="manor-h6">What does car insurance cover?</h6>
             <p>
 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -56,7 +56,7 @@ Car insurance protects you against financial loss for damages resulting from car
               events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
               of damage to cars, property, and even people.
             </p>
-            <h4 className="manor-h6">What does car insurance cover?</h4>
+            <h6 className="manor-h6">What does car insurance cover?</h6>
             <p>
 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -72,7 +72,7 @@ Car insurance protects you against financial loss for damages resulting from car
               events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
               of damage to cars, property, and even people.
             </p>
-            <h4 className="manor-h6">What does car insurance cover?</h4>
+            <h6 className="manor-h6">What does car insurance cover?</h6>
             <p>
 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -82,11 +82,11 @@ It can cover you if you cause personal injury in an accident or if you damage pr
           </div>
         </Accordion>
       </div>
-    </Container>
+    </FluidContainer>
   ), { notes: iconReadme })
   .add('Accordion Group', () => (
-    <Container>
-      <div style={{ marginTop: '60px', backgroundColor: '#f9f9f9', padding: '30px' }}>
+    <FluidContainer>
+      <div>
         <AccordionGroup>
           <Accordion title="What are the benefits of combining your electricity and gas bills?">
             <div>
@@ -95,7 +95,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 className="manor-h6">What does car insurance cover?</h4>
+              <h6 className="manor-h6">What does car insurance cover?</h6>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -111,7 +111,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 className="manor-h6">What does car insurance cover?</h4>
+              <h6 className="manor-h6">What does car insurance cover?</h6>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -127,7 +127,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 className="manor-h6">What does car insurance cover?</h4>
+              <h6 className="manor-h6">What does car insurance cover?</h6>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -138,11 +138,11 @@ It can cover you if you cause personal injury in an accident or if you damage pr
           </Accordion>
         </AccordionGroup>
       </div>
-    </Container>
+    </FluidContainer>
   ), { notes: iconReadme })
   .add('Accordion Group2', () => (
-    <Container>
-      <div style={{ marginTop: '60px', backgroundColor: '#f9f9f9', padding: '30px' }}>
+    <FluidContainer>
+      <div>
         <AccordionGroup>
           <Accordion title="What are the benefits of combining your electricity and gas bills?">
             <div>
@@ -151,7 +151,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 className="manor-h6">What does car insurance cover?</h4>
+              <h6 className="manor-h6">What does car insurance cover?</h6>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -167,7 +167,7 @@ It can cover you if you cause personal injury in an accident or if you damage pr
                 events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
                 of damage to cars, property, and even people.
               </p>
-              <h4 className="manor-h6">What does car insurance cover?</h4>
+              <h6 className="manor-h6">What does car insurance cover?</h6>
               <p>
                 It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
@@ -178,5 +178,5 @@ It can cover you if you cause personal injury in an accident or if you damage pr
           </Accordion>
         </AccordionGroup>
       </div>
-    </Container>
+    </FluidContainer>
   ), { notes: iconReadme });
