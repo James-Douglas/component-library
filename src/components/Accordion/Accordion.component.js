@@ -15,8 +15,10 @@ const Accordion = ({
   onClickGroup,
 }) => {
   const [isVisible, setIsVisible] = useState(show);
+  const [isFocus, setIsFocus] = useState(false);
   const visibleClass = isVisible ? '' : 'hide';
   const arrowName = isVisible ? 'Top' : 'Bottom';
+
 
   const toggleTrueFalse = () => {
     setTimeout(() => {
@@ -27,16 +29,30 @@ const Accordion = ({
     }, 1);
   };
 
+  const toggleTrueFalseOnKey = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      toggleTrueFalse();
+    }
+  };
+
   useEffect(() => {
     setIsVisible(show);
   }, [show]);
 
+  const handleFocus = (event) => {
+    setIsFocus(true);
+  };
+  const handleBlur = (event) => {
+    setIsFocus(false);
+  };
+
   return (
-    <div className={`accordion ${visibleClass}  manor-rich-text `}>
+    <div className={`accordion ${visibleClass} ${isFocus ? 'on-focus' : 'on-blur'} manor-rich-text `} role="tablist" aria-label="Informattion tabs">
       <style jsx>{styles}</style>
-      <div onClick={toggleTrueFalse} onKeyUp={toggleTrueFalse} role="button" tabIndex={0} className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`}>
+      <div onClick={toggleTrueFalse} onKeyDown={(e) => toggleTrueFalseOnKey(e)} className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`} role="tab" aria-selected="true" tabIndex="0" onFocus={handleFocus} onBlur={handleBlur}>
         <FluidContainer>
-          <Row>
+          <Row className="header-outline">
             <Column col="9" lg="11">{title}</Column>
             <Column col="3" lg="1">
               <div className="accordion-caret">
@@ -46,7 +62,7 @@ const Accordion = ({
           </Row>
         </FluidContainer>
       </div>
-      <div className="accordion-body">
+      <div className="accordion-body" role="tabpanel" tabIndex="-1">
         <FluidContainer>
           <Row className="row-view">
             <Column col="12">{children}</Column>

@@ -32,7 +32,18 @@ export default css`
 .accordion.hide  .accordion-caret {
   transform: rotate(180deg);
 }
-*:focus {
-  outline: none;
+.accordion:focus, .accordion:active, .accordion:hover,
+.accordion-head:focus, .accordion-head:active, .accordion-head:hover,
+.accordion-body:focus, .accordion-body:active, .accordion-body:hover {
+  @apply outline-none;
 }
+.accordion-head:focus {
+  background: hsl(216, 94%, 94%);
+}
+.accordion:focus,
+.accordion.hide:focus,
+.accordion.on-focus,
+ :global(.accordion-head:focus .header-outline) {
+  border: 1px solid hsl(216, 94%, 73%);
+ }
 `;
