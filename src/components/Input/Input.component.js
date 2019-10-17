@@ -47,26 +47,15 @@ export const renderAffix = (affixType, affixContent, bordered, isAutofill, disab
   return null;
 };
 
-export const renderOptionalElement = (required) => {
-  if (!required) {
-    return (
-      <>
-        <span className="manor-subscript">Optional</span>
-      </>
-    );
-  }
-  return null;
-};
-
 export const getSupportingElements = (required) => {
   if (required) return null;
 
   return (
     <div className="supporting-elements">
       <style jsx>{styles}</style>
-      {renderOptionalElement(required)}
+      <span className="manor-subscript">Optional</span>
     </div>
-  )
+  );
 };
 
 export const getInitialValue = (valueMasking, prefillValue) => {
