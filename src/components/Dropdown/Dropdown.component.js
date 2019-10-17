@@ -10,11 +10,9 @@ export const getSupportingElements = (required) => {
     <div className="w-full">
       <div className="supporting-elements">
         <style jsx>{styles}</style>
-        {!required && (
-          <span className="manor-dropdown-optional-indicator manor-subscript">
-            OPTIONAL
-          </span>
-        )}
+        <span className="manor-dropdown-optional-indicator manor-subscript">
+          OPTIONAL
+        </span>
       </div>
     </div>
   );

@@ -1,6 +1,22 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Dropdown from '../Dropdown.component';
+import Dropdown, { getSupportingElements } from '../Dropdown.component';
+
+describe('getSupportingElements()', () => {
+  // eslint-disable-next-line react/prop-types
+  const SupportingElementsContainer = ({ required }) => (
+    <>
+      {getSupportingElements(required)}
+    </>
+  );
+  it('returns null when required is true', () => {
+    expect(getSupportingElements(true)).toBeNull();
+  });
+  it('returns OPTIONAL text when required is false', () => {
+    const { getByText, container } = render(<SupportingElementsContainer />);
+    expect(getByText('OPTIONAL')).toBeInTheDocument();
+  });
+});
 
 describe('Dropdown', () => {
   const options = [
