@@ -8,7 +8,8 @@ The CTM ToggleGroup component, wraps a given set of toggles.
   id={id}
   name={name}
   tooltip={tooltip}
-  handleChange={handleChange}  
+  handleChange={handleChange}
+  selectedValue={selectedValue}
 >
   <Toggle />
   <Toggle />
@@ -44,4 +45,7 @@ The ToggleGroup component accepts the following props:
     
 8. `rectOptions` *(optional) object*
     * Options object for rectangular toggles (see Toggle documentation)
+    
+9. `selectedValue` *(optional) string/number*
+    * Value of the currently selected toggle (use to pre-select)
     

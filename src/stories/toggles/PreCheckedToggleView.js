@@ -17,8 +17,8 @@ const PreCheckedToggleView = () => {
   return (
     <StoryTemplate>
       <div className="mb-32">
-        <ToggleGroup label="Pre-checked" id="toggleGroupG" name="toggleGroupF" tooltip={tooltip} onToggle={handleChange}>
-          <Toggle value="d" id="d" label="D" autofill />
+        <ToggleGroup label="Pre-checked" id="toggleGroupG" name="toggleGroupF" tooltip={tooltip} onToggle={handleChange} selectedValue="d">
+          <Toggle value="d" id="d" label="D" />
           <Toggle value="e" id="e" label="E" />
           <Toggle value="f" id="f" label="F" />
         </ToggleGroup>

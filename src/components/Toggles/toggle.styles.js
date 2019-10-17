@@ -10,7 +10,7 @@ export default css`
   .toggle-label {
     @apply w-full cursor-pointer block relative;
   }
-  .toggle-label:hover  {
+  .toggle-label:hover {
     @apply text-light-blue;
   }
   .icon-toggle:hover  {
@@ -22,7 +22,7 @@ export default css`
   .toggle-input {
     @apply opacity-0 h-0 w-0 absolute;
   }
-  .toggle-input:invalid + label {
+  .toggle-input.invalid + label {
     @apply border-invalid text-invalid fill-current;
   }
   .toggle-input:disabled + label:hover {
@@ -34,9 +34,10 @@ export default css`
   .toggle-input:checked + label {
     @apply bg-dark-blue text-white shadow-none;
   } 
-  .toggle-input:checked + .autofill {
-    @apply bg-prechecked text-black fill-current;
+  .toggle-input.invalid:checked + label {
+    @apply border-2 border-invalid text-invalid fill-current;
   }
+  
   .toggle-input:focus + label {
      box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }

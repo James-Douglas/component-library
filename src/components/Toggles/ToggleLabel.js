@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 import toggleStyles from './toggle.styles';
 
-const ToggleLabel = ({
-  autofill, dirty, id, children,
-}) => (
+const ToggleLabel = ({ id, children }) => (
   <>
     <style jsx>{toggleStyles}</style>
     <label
-      className={`toggle-label transition ${autofill && !dirty ? 'autofill' : ''}`}
+      className="toggle-label transition"
       htmlFor={id}
     >
       {children}
@@ -18,8 +16,6 @@ const ToggleLabel = ({
 );
 
 ToggleLabel.propTypes = {
-  autofill: PropTypes.bool.isRequired,
-  dirty: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.string,

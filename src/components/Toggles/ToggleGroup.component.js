@@ -25,7 +25,7 @@ export const getType = (children) => {
   return 'square';
 };
 
-export const getChildren = (children, type, dirty, name, selectedToggleValue, handleToggle, rectOptions) => (
+export const getChildren = (children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage) => (
   children.map((child, index) => {
     const key = `toggle-${child.props.id || index}`;
     const propsToAdd = {
@@ -34,7 +34,7 @@ export const getChildren = (children, type, dirty, name, selectedToggleValue, ha
       selectedValue: selectedToggleValue,
       onToggle: handleToggle,
       type,
-      dirty,
+      invalid: !!validationMessage && validationMessage.length > 0,
     };
     if (!child.props.id) propsToAdd.id = key;
     if (type === 'rectangle') propsToAdd.rectOptions = rectOptions;
@@ -46,11 +46,9 @@ const ToggleGroup = ({
   label, tooltip, forceFullWidth, validationMessage, id, name, onToggle, selectedValue, children, rectOptions,
 }) => {
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
-  const [dirty, setDirty] = useState();
   const type = getType(children);
   const handleToggle = (value) => {
     setSelectedToggleValue(value);
-    setDirty(true);
   };
 
   useDidUpdateEffect(onToggle, [selectedToggleValue], [onToggle, selectedToggleValue]);
@@ -64,7 +62,7 @@ const ToggleGroup = ({
     <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} validationMessage={validationMessage}>
       <style jsx>{styles}</style>
       <div className="toggle-group" id={id}>
-        {getChildren(children, type, dirty, name, selectedToggleValue, handleToggle, rectOptions)}
+        {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
       </div>
     </Fieldset>
   );

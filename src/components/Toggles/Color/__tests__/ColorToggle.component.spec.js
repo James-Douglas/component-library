@@ -56,10 +56,10 @@ describe('ColorToggle', () => {
 
   it('calls onToggle when change event fires', () => {
     const onToggleCb = jest.fn();
-    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" fontColor="white" onToggle={onToggleCb} />);
+    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" fontColor="white" onToggle={onToggleCb} />);
     const element = container.querySelector('.toggle');
     fireEvent.click(element);
     expect(onToggleCb).toHaveBeenCalled();
-    expect(onToggleCb.mock.calls[0][0]).toEqual({ id: 'test-a', value: '' });
+    expect(onToggleCb.mock.calls[0][0]).toEqual('ttt');
   });
 });

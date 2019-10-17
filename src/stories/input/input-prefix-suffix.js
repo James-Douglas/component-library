@@ -89,7 +89,6 @@ const prefixSuffixView = () => {
           disabled={false}
           suffixContent="suffix"
           invalid={false}
-          label="[Fieldset label] With suffix"
           handleChange={(value) => logValue(value)}
         />
       </div>
