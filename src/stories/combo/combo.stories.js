@@ -7,25 +7,21 @@ import fakeApiData from './jsonPlaceholder';
 
 const apiData = fakeApiData.map((obj) => obj.title);
 
-const changeStatus = () => {
-  alert('234');
-  return comboVisible = !comboVisible;
-}
 
 const renderLimit = 2;
-let comboVisible = true;
+const comboVisible = true;
 storiesOf('Combo', module)
   .add('Default Combo', () => (
     <div>
-    {comboVisible &&
+      {comboVisible
+    && (
     <Combo label="First Combo label" apiData={apiData} id="combo-id-first">
-      <a id="combo-link" onClick={changeStatus}>Can’t find your address? <span className="highlight svelte-17l10or">Please Enter Manually</span></a>
+      <a id="combo-link" href="https://www.comparethemarket.com.au/">Can’t find your address? <span className="highlight svelte-17l10or">Please Enter Manually</span></a>
     </Combo>
-    }
-      {!comboVisible &&
-        <div>dfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf</div>
-      }
-  </div>
+    )}
+      {!comboVisible
+        && <div>1</div>}
+    </div>
   ), { notes: iconReadme })
   .add('Default2 Combo', () => (
     <Combo label="Second Combo label" id="combo-id-second" placeholder="placeholder" bordered prefixContent="$" suffixContent="dol" disabled renderLimit={renderLimit} />

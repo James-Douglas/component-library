@@ -25,8 +25,6 @@ const Combo = ({
 }) => {
   const [listVisible, setListVisible] = useState(false);
   const [currentPrefillValue, setCurrentPrefillValue] = useState(prefillValue);
-  console.log('currentPrefillValue.length', currentPrefillValue.length)
-  console.log('characterMinimum', characterMinimum)
   const filteredValues = useMemo(
     () => {
       if (currentPrefillValue.length < characterMinimum) {
@@ -34,7 +32,7 @@ const Combo = ({
       }
       return apiData.filter((item) => item.includes(currentPrefillValue)).slice(0, renderLimit);
     },
-    [apiData, renderLimit, currentPrefillValue],
+    [currentPrefillValue, characterMinimum, apiData, renderLimit],
   );
   const filteredValuesRefs = useMemo(
     () => filteredValues.map((item) => React.createRef()),
@@ -92,11 +90,13 @@ const Combo = ({
           filteredValuesRefs[focusedRef + 1].current.focus();
         }
         break;
+      default:
+        break;
     }
-  }
+  };
 
   return (
-    <div onFocus={handelOnFocus} onBlur={handleOnBlur} onKeyDown={keyboardAccessibility}>
+    <div onFocus={handelOnFocus} onBlur={handleOnBlur} onKeyDown={keyboardAccessibility} role="listbox" tabIndex="0">
       <style jsx>{styles}</style>
       <Input
         id={id}
@@ -112,6 +112,7 @@ const Combo = ({
         autocomplete={autocomplete}
         handleChange={(value) => onChange(value)}
         tabIndex="0"
+        role="comboField"
       />
       <div className={`row-view section-hide ${!listVisible ? 'hidden' : ''}`} role="listbox" tabIndex="0">
         <Row>
