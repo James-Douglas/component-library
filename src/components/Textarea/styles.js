@@ -10,7 +10,6 @@ export default css`
 .manor-textarea-default {
   @apply flex w-256  pl-12 pr-36 block text-base border border-solid border-transparent;
   min-height: 4.4rem;
-  margin-bottom: 2.6rem;
 }
 .manor-textarea-default:focus,
 .manor-textarea-default:hover {
@@ -65,7 +64,6 @@ textarea[disabled] {
 }
 .supporting-elements {
   @apply flex justify-end;
-  margin-top: -1.8rem;
 }
 .manor-optional-indicator {
   margin-left: 1rem;

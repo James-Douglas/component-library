@@ -53,7 +53,7 @@ a > .btn-icon {
 .secondary.onDark {
   @apply bg-white border-transparent fill-current text-blue-aa;
 }
-[btnType='secondary']:hover[btnMode='onDark']:hover {
+.secondary.onDark:hover {
   @apply bg-white text-blue-aa-hover fill-current;
 }
 
@@ -75,7 +75,7 @@ a.text.onDark:hover {
 /* LINKS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a.link {
-  @apply shadow-none bg-transparent text-black underline fill-current;
+  @apply shadow-none bg-transparent text-black underline fill-current inline-block;
 }
 a.link.onDark {
   @apply text-white fill-current;

@@ -8,16 +8,18 @@ import Column from '../Grid/Column/Column.component';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import useBreakpoint from '../../hooks/useBreakpoint';
+import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const styles = css`
 .fieldset {
-  @apply w-full;
+  @apply w-full mb-24;
 }
 .tooltip-container {
   @apply flex items-center justify-center;
   min-height: 4.4rem;
 }
 `;
+
 
 /**
  * Determine whether a tooltip has been provided
@@ -81,6 +83,7 @@ export function renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title,
   if (!enableLabelTooltip && hasTooltip) {
     return (
       <Column col={colSize}>
+        <style jsx>{styles}</style>
         <div className="tooltip-container">
           <Tooltip
             title={title}
@@ -123,10 +126,16 @@ const Fieldset = ({
 
   const contentSize = getContentColumnSize(forceFullWidth, breakpoint);
 
+  const tooltipOptions = tooltip;
+
+  if (!tooltipOptions.justifyEnd && desktop && enableLabelTooltip) {
+    tooltipOptions.justifyEnd = true;
+  }
+
   return (
     <div className="fieldset" jsx="true">
       <style jsx="true">{styles}</style>
-      <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltip} forceFullWidth={forceFullWidth} />
+      <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} />
       <Row>
         <Column sm={contentSize} xs="12">
           {children}
@@ -134,9 +143,11 @@ const Fieldset = ({
         {renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd)}
       </Row>
       <Row>
-        <Column xs="12" sm="10">
-          <div className="relative w-full">
-            {/* <FieldValidation message={validationMessage} /> */}
+        <Column sm={contentSize} xs="12">
+          <div className="relative w-full h-16 mb-8">
+            <span className="absolute w-full justify-start">
+              <FieldValidation message={validationMessage} />
+            </span>
             {supportingElements}
           </div>
         </Column>

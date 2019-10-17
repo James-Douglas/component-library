@@ -43,9 +43,9 @@ export const getChildren = (children, type, dirty, name, selectedToggleId, handl
 );
 
 const ToggleGroup = ({
-  id, name, label, tooltip, onToggle, children, rectOptions,
+  label, tooltip, forceFullWidth, validationMessage, id, name, onToggle, selectedId, children, rectOptions,
 }) => {
-  const [selectedToggle, setSelectedToggle] = useState({});
+  const [selectedToggle, setSelectedToggle] = useState({ id: selectedId });
   const [dirty, setDirty] = useState();
   const type = getType(children);
   const handleToggle = (toggle) => {
@@ -61,7 +61,7 @@ const ToggleGroup = ({
   }
 
   return (
-    <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth>
+    <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} validationMessage={validationMessage}>
       <style jsx>{styles}</style>
       <div className="toggle-group" id={id}>
         {getChildren(children, type, dirty, name, selectedToggle.id, handleToggle, rectOptions)}
@@ -71,11 +71,14 @@ const ToggleGroup = ({
 };
 
 ToggleGroup.propTypes = {
-  label: PropTypes.string,
-  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   onToggle: PropTypes.func.isRequired,
+  label: PropTypes.string,
   tooltip: PropTypes.shape(tooltipPropTypes),
+  forceFullWidth: PropTypes.bool,
+  validationMessage: PropTypes.string,
+  id: PropTypes.string,
+  selectedId: PropTypes.string,
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -94,9 +97,12 @@ ToggleGroup.propTypes = {
 };
 
 ToggleGroup.defaultProps = {
-  label: null,
-  id: null,
+  label: '',
   tooltip: {},
+  forceFullWidth: true,
+  validationMessage: null,
+  id: null,
+  selectedId: null,
   rectOptions: {
     align: 'center',
     col: 1,

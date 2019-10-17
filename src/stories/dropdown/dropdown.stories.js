@@ -25,10 +25,10 @@ storiesOf('Dropdown', module)
       </div>
     </Container>
   ), { notes: iconReadme })
-  .add('Dropdown with invalid prop', () => (
+  .add('Dropdown with field validation', () => (
     <Container>
       <div style={{ marginTop: '40px' }}>
-        <Dropdown id="input-one" value="First" options={options} supportingElements forceFullWidth label="Dropdown Label" invalid defaultOption={defaultOption} />
+        <Dropdown id="input-one" value="First" options={options} supportingElements forceFullWidth label="Dropdown Label" validationMessage="Sorry, that's wrong." defaultOption={defaultOption} />
       </div>
     </Container>
   ), { notes: iconReadme })

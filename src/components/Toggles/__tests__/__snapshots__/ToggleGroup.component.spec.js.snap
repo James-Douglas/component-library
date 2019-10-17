@@ -7,7 +7,7 @@ exports[`ToggleGroup renders with minimal props 1`] = `
       </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-12 \\"><style></style><div class=\\"toggle-group\\"></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full\\"></div></div><style jsx=\\"true\\">.row {
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-12 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start\\"></span></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
       </style></div></div>"

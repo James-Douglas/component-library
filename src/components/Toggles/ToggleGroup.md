@@ -23,19 +23,25 @@ The ToggleGroup component accepts the following props:
 
 1. `name` *(required) string*
     * Name property to be passed to the toggles - required for radio buttons
+
+7. `onToggle` *(required) function*
+    * onChange handler function, called on select of a toggle with { id: <selected toggle id>, value: <selected toggle value> }
+
+2. `label` *(optional) string*
+    * Label for the ToggleGroup. Defaults to an empty string.
+
+3. `tooltip` *(optional) object*
+   * Tooltip object (see Tooltip documentation)
+       
+4. `forceFullWidth` *(optional) boolean* 
+   * Forces the ToggleGroup to expand to 12 columns (default true for ToggleGroup)
+
+5. `validationMessage` *(optional string)*
+    * Displays given validation message and invalid styles on the component when provided.  
     
-2. `id` *(optional) string*
+6. `id` *(optional) string*
     * Unique identifier for the toggle group
     
-3. `label` *(optional) string*
-    * Label for the ToggleGroup. Defaults to an empty string.
-    
-4. `tooltip` *(optional) object*
-    * Tooltip object (see Tooltip documentation)
-    
-5. `handleChange` *(optional) function*
-    * onChange handler function, called on select of a toggle with the id of that toggle 
-    
-6. `rectOptions` *(optional) object*
+8. `rectOptions` *(optional) object*
     * Options object for rectangular toggles (see Toggle documentation)
     
