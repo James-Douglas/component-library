@@ -10,11 +10,11 @@ const FooterLinkButtonView = () => (
     <style jsx>{styles}</style>
     <div className="background manor-rich-text">
       <p>On light backgrounds:</p>
-      <div className="lightbg">
+      <div className="lightbg centered">
         <Button id="text-btn01" btnType="footer-link" content="Compare the Market" href="#" target="_blank" />
       </div>
       <p>On dark backgrounds:</p>
-      <div className="darkbg-footer">
+      <div className="darkbg-footer centered">
         <Button id="text-btn01" btnType="footer-link" btnMode="onDark" content="Compare the Market" href="#" target="_blank" />
       </div>
       <Container>
