@@ -24,16 +24,16 @@ export function getInlineStyles(type, rectOptions) {
 }
 
 const BaseToggle = ({
-  id, type, value, name, selectedId, invalid, disabled, autofill, onToggle, rectOptions, children,
+  id, type, value, name, selectedValue, invalid, disabled, autofill, onToggle, rectOptions, children,
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
 
   const handleToggle = () => {
-    onToggle({ id, value });
+    onToggle(value);
   };
 
-  const isChecked = selectedId ? selectedId === id : autofill || false;
+  const isChecked = selectedValue === value ? true : autofill || false;
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
@@ -70,7 +70,7 @@ BaseToggle.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['square', 'rectangle', 'custom']).isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  selectedId: PropTypes.string,
+  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -87,7 +87,7 @@ BaseToggle.propTypes = {
 BaseToggle.defaultProps = {
   value: '',
   name: '',
-  selectedId: null,
+  selectedValue: null,
   invalid: false,
   disabled: false,
   autofill: false,

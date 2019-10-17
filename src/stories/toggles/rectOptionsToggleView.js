@@ -9,9 +9,9 @@ const RectOptionsToggleView = () => {
     title: 'test',
   };
 
-  const handleChange = (id, value, group) => {
+  const handleChange = (value) => {
     // eslint-disable-next-line no-console
-    console.log(`${group} group toggle selected, id: ${id}, value: ${value} `);
+    console.log(`toggle selected: ${value} `);
   };
 
   return (
@@ -21,7 +21,7 @@ const RectOptionsToggleView = () => {
           label="Rectangle with columns & height"
           name="toggleGroupE"
           tooltip={tooltip}
-          onToggle={({ id, value }) => handleChange(id, value, 'RECT_COLS_HEIGHT')}
+          onToggle={handleChange}
           rectOptions={{
             col: 4,
             height: 12,

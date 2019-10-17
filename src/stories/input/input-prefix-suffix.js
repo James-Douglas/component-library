@@ -53,7 +53,7 @@ const prefixSuffixView = () => {
       <div className="white-background">
         <Input
           label="[Fieldset label] With tooltip, prefix and suffix"
-          tooltip
+          tooltip={tooltip}
           id="input-one"
           placeholder="Placeholder one"
           type="text"

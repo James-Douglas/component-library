@@ -33,8 +33,8 @@ export function getDisplayBackgroundColor(backgroundColor) {
   return backgroundColor === 'white' ? 'ivory' : backgroundColor;
 }
 
-export function getAnimationStyle(id, selectedId, displayBackgroundColor) {
-  if (selectedId === id) {
+export function getAnimationStyle(value, selectedValue, displayBackgroundColor) {
+  if (selectedValue === value) {
     return {
       backgroundColor: displayBackgroundColor,
       height: '100%',
@@ -53,18 +53,18 @@ export function getDisplayLabel(label, backgroundColor) {
 }
 
 const ColorToggle = ({
-  id, label, backgroundColor, fontColor, value, name, selectedId, invalid, disabled, autofill, onToggle,
+  id, label, backgroundColor, fontColor, value, name, selectedValue, invalid, disabled, autofill, onToggle,
 }) => {
   const [dirty, setDirty] = useState(false);
   const handleToggle = () => {
     setDirty(true);
     if (onToggle) {
-      onToggle({ id, value });
+      onToggle(value);
     }
   };
 
   const displayBackgroundColor = getDisplayBackgroundColor(backgroundColor);
-  const animationStyle = getAnimationStyle(id, selectedId, displayBackgroundColor);
+  const animationStyle = getAnimationStyle(value, selectedValue, displayBackgroundColor);
   const displayLabel = getDisplayLabel(label, backgroundColor);
 
   return (
@@ -75,7 +75,7 @@ const ColorToggle = ({
         type="custom"
         value={value}
         name={name}
-        selectedId={selectedId}
+        selectedValue={selectedValue}
         invalid={invalid}
         disabled={disabled}
         autofill={autofill}
@@ -97,8 +97,8 @@ ColorToggle.propTypes = {
   label: PropTypes.string,
   backgroundColor: PropTypes.string.isRequired,
   fontColor: PropTypes.string,
-  value: PropTypes.string,
-  selectedId: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -111,7 +111,7 @@ ColorToggle.defaultProps = {
   label: null,
   fontColor: 'black',
   name: '',
-  selectedId: null,
+  selectedValue: null,
   invalid: false,
   disabled: false,
   autofill: false,

@@ -71,15 +71,15 @@ const ImageToggleView = () => {
     title: 'test',
   };
 
-  const handleChange = (id, value, group) => {
+  const handleChange = (value) => {
     // eslint-disable-next-line no-console
-    console.log(`${group} group toggle selected, id: ${id}, value: ${value} `);
+    console.log(`group toggle selected: ${value} `);
   };
 
   return (
     <StoryTemplate>
       <div className="mb-32">
-        <ToggleGroup label="Images" name="toggleGroupC" tooltip={tooltip} onToggle={({ id, value }) => handleChange(id, value, 'IMAGES')}>
+        <ToggleGroup label="Images" name="toggleGroupC" tooltip={tooltip} onToggle={handleChange}>
           {makes.map((make, i) => (
             <Toggle value={i} id={names[i]} key={`toggle-${names[i]}`} label={names[i]} pictureOptions={{ src: make, alt: `${names[i]} logo`, title: names[i] }} />
           ))}

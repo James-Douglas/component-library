@@ -13,7 +13,7 @@ describe('getSupportingElements()', () => {
     expect(getSupportingElements(true)).toBeNull();
   });
   it('returns OPTIONAL text when required is false', () => {
-    const { getByText, container } = render(<SupportingElementsContainer />);
+    const { getByText } = render(<SupportingElementsContainer />);
     expect(getByText('OPTIONAL')).toBeInTheDocument();
   });
 });

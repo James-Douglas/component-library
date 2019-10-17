@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Input, { renderClearIcon, renderAffix, renderOptionalElement, getSupportingElements } from '../Input.component';
+import Input, {
+  renderClearIcon, renderAffix, getSupportingElements,
+} from '../Input.component';
 
 const SvgUkFlag = () => (
   <svg width="30" height="21" xmlns="http://www.w3.org/2000/svg">

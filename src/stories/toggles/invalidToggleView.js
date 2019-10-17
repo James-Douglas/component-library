@@ -10,10 +10,10 @@ const InvalidToggleView = () => {
     title: 'test',
   };
 
-  const handleChange = (id, value, group) => {
+  const handleChange = (value) => {
     // eslint-disable-next-line no-console
-    console.log(`${group} group toggle selected, id: ${id}, value: ${value} `);
-    if (id === 'car') {
+    console.log(`$toggle selected: ${value} `);
+    if (value === 'Car') {
       setValidationMessage('Sorry, Car is not available');
     } else {
       setValidationMessage('');
@@ -23,7 +23,7 @@ const InvalidToggleView = () => {
   return (
     <StoryTemplate>
       <div className="mb-32">
-        <ToggleGroup label="Invalid (required)" name="invalid" selectedId="car" validationMessage={validationMessage} id="toggleGroupH" tooltip={tooltip} onToggle={({ id, value }) => handleChange(id, value, 'INVALID')}>
+        <ToggleGroup label="Invalid (required)" name="invalid" selectedId="car" validationMessage={validationMessage} id="toggleGroupH" tooltip={tooltip} onToggle={handleChange}>
           <Toggle value="health" id="health" label="Health " invalid />
           <Toggle value="car" id="car" label="Car" invalid />
           <Toggle value="energy" id="energy" label="Energy" invalid />

@@ -9,15 +9,15 @@ const ToggleView = () => {
     title: 'test',
   };
 
-  const handleChange = (id, value, group) => {
+  const handleChange = (value) => {
     // eslint-disable-next-line no-console
-    console.log(`${group} group toggle selected, id: ${id}, value: ${value} `);
+    console.log(`toggle selected: ${value} `);
   };
 
   return (
     <StoryTemplate>
       <div className="mb-32">
-        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={({ id, value }) => handleChange(id, value, 'DEFAULT')}>
+        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={handleChange}>
           <Toggle value="1" id="one" label="one" />
           <Toggle value="2" id="two" label="two" />
           <Toggle value="3" id="three" label="three" />
