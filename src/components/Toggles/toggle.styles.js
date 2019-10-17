@@ -8,9 +8,7 @@ export default css`
     @apply relative bg-white shadow-sm border cursor-pointer mx-8 mb-16 text-sm font-bold leading-normal;
   }
   .toggle-label {
-    @apply w-full cursor-pointer;
-    display: block;
-    position: relative;
+    @apply w-full cursor-pointer block relative;
   }
   .toggle-label:hover  {
     @apply text-light-blue;

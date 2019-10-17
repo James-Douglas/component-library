@@ -92,7 +92,7 @@ describe('Dropdown', () => {
     expect(getByText('First Item - Title')).toHaveAttribute('id');
   });
   it('renders with supportingElements props', () => {
-    const { getByText } = render(<Dropdown id="dropdown" options={options} label="Dropdown Label" defaultOption={defaultOptionWithTitle} jsx="true" supportingElements />);
+    const { getByText } = render(<Dropdown id="dropdown" options={options} label="Dropdown Label" defaultOption={defaultOptionWithTitle} jsx="true" />);
     expect(getByText('OPTIONAL')).toBeInTheDocument();
   });
 });

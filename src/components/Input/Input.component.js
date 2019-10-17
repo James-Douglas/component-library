@@ -58,12 +58,16 @@ export const renderOptionalElement = (required) => {
   return null;
 };
 
-export const getSupportingElements = (required) => (
-  <div className="supporting-elements">
-    <style jsx>{styles}</style>
-    {renderOptionalElement(required)}
-  </div>
-);
+export const getSupportingElements = (required) => {
+  if (required) return null;
+
+  return (
+    <div className="supporting-elements">
+      <style jsx>{styles}</style>
+      {renderOptionalElement(required)}
+    </div>
+  )
+};
 
 export const getInitialValue = (valueMasking, prefillValue) => {
   if (valueMasking && prefillValue) {

@@ -8,32 +8,9 @@ const prefixSuffixView = () => {
     console.log(value);
   };
 
-  const fieldsetPropsEmail = {
-    label: 'Your email address',
-    tooltip: {
-      title: 'Tooltip heading',
-      body: 'Prefix and suffix view',
-    },
-  };
-
-  const fieldsetPropsMobile = {
-    label: 'Your mobile number',
-    tooltip: {
-      title: 'Tooltip heading',
-      body: 'Prefix and suffix view',
-    },
-  };
-
-  const fieldsetPropsAge = {
-    label: 'Your age',
-    tooltip: {
-      title: 'Tooltip heading',
-      body: 'Prefix and suffix view',
-    },
-  };
-
-  const fieldsetPropsLong = {
-    label: 'This is an example of a longer question for an input type, to see how it floats on lower screen sizes',
+  const tooltip = {
+    title: 'tooltip heading',
+    body: 'tooltip body',
   };
 
   return (
@@ -41,7 +18,8 @@ const prefixSuffixView = () => {
       <style jsx>{styles}</style>
       <div className="white-background">
         <Input
-          fieldsetProps={fieldsetPropsEmail}
+          label="Your email address"
+          tooltip={tooltip}
           id="input-email"
           placeholder="example@email.com"
           type="email"
@@ -52,7 +30,8 @@ const prefixSuffixView = () => {
         />
 
         <Input
-          fieldsetProps={fieldsetPropsMobile}
+          label="Your mobile number"
+          tooltip={tooltip}
           id="input-mobile"
           placeholder="(04)x xxx xxxx"
           type="tel"
@@ -63,7 +42,8 @@ const prefixSuffixView = () => {
         />
 
         <Input
-          fieldsetProps={fieldsetPropsAge}
+          label="Your age"
+          tooltip={tooltip}
           id="input-age"
           placeholder="e.g 25"
           type="number"
@@ -74,7 +54,8 @@ const prefixSuffixView = () => {
         />
 
         <Input
-          fieldsetProps={fieldsetPropsLong}
+          label="This is an example of a longer question for an input type, to see how it floats on lower screen sizes"
+          tooltip={tooltip}
           id="input-long-label"
           placeholder="Placeholder value"
           type="text"

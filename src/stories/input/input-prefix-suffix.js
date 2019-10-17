@@ -47,25 +47,13 @@ const prefixSuffixView = () => {
     console.log(value);
   };
 
-  const fieldsetPropsA = {
-    label: '[Fieldset label] With tooltip, prefix and suffix',
-    tooltip,
-  };
-
-  const fieldsetPropsB = {
-    label: '[Fieldset label] With prefix',
-  };
-
-  const fieldsetPropsC = {
-    label: '[Fieldset label] With suffix',
-  };
-
   return (
     <>
       <style jsx>{styles}</style>
       <div className="white-background">
         <Input
-          fieldsetProps={fieldsetPropsA}
+          label="[Fieldset label] With tooltip, prefix and suffix"
+          tooltip
           id="input-one"
           placeholder="Placeholder one"
           type="text"
@@ -79,7 +67,7 @@ const prefixSuffixView = () => {
         />
 
         <Input
-          fieldsetProps={fieldsetPropsB}
+          label="[Fieldset label] With prefix"
           id="input-two"
           placeholder="Placeholder two"
           type="text"
@@ -92,7 +80,7 @@ const prefixSuffixView = () => {
         />
 
         <Input
-          fieldsetProps={fieldsetPropsC}
+          label="[Fieldset label] With suffix"
           id="input-three"
           placeholder="Placeholder three"
           type="text"

@@ -4,18 +4,21 @@ import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
-export const getSupportingElements = (required) => (
-  (
+export const getSupportingElements = (required) => {
+  if (required) return null;
+  return (
     <div className="w-full">
       <div className="supporting-elements">
         <style jsx>{styles}</style>
-        <span className="manor-dropdown-optional-indicator manor-subscript">
-          {!required && ('OPTIONAL')}
-        </span>
+        {!required && (
+          <span className="manor-dropdown-optional-indicator manor-subscript">
+            OPTIONAL
+          </span>
+        )}
       </div>
     </div>
-  )
-);
+  );
+};
 
 const Dropdown = ({
   label,

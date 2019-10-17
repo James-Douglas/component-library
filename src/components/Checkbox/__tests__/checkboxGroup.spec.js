@@ -3,10 +3,6 @@ import { render, fireEvent } from '@testing-library/react';
 import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
 
-const fieldsetProps = {
-  label: 'test',
-};
-
 describe('generateGroup', () => {
   // eslint-disable-next-line react/prop-types
   const GroupContainer = ({ colSize, children }) => (
@@ -40,7 +36,7 @@ describe('generateGroup', () => {
 describe('CheckboxGroup.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(
-      <CheckboxGroup fieldsetProps={fieldsetProps} groupId="test-group-id">
+      <CheckboxGroup label="test" groupId="test-group-id">
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
