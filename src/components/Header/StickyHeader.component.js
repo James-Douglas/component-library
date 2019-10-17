@@ -11,7 +11,10 @@ const StickyHeader = ({ number }) => {
 };
 
 StickyHeader.propTypes = {
-  number: PropTypes.string.isRequired,
+  number: PropTypes.string,
+};
+StickyHeader.defaultProps = {
+  number: '',
 };
 
 export default StickyHeader;

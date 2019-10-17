@@ -11,6 +11,7 @@ export default css`
 
 .input-default {
   @apply pl-12 block text-base border border-solid border-transparent;
+  border-width: 1px; /* IE 11 specific fix */
   height: 4.4rem;
   padding-right: 3.6rem;
 }
@@ -25,22 +26,27 @@ input::placeholder {
 
 .input-wrap {
   @apply flex border border-solid border-transparent;
+  border-width: 1px; /* IE 11 specific fix */
 }
 
 .input-wrap:hover:not(.disabled) {
   @apply border border-solid border-light-blue;
+  border-width: 1px; /* IE 11 specific fix */
 }
 
 .input-border {
   @apply border border-solid border-grey-light;
+  border-width: 1px; /* IE 11 specific fix */
 }
 
 .input-border-right {
   border-right-color: theme(colors.grey-light);
+  border-width: 1px; /* IE 11 specific fix */
 }
 
 .input-border-left {
   border-left-color: theme(colors.grey-light);
+  border-width: 1px; /* IE 11 specific fix */
 }
 
 input:focus, input:active, input:hover {
@@ -99,6 +105,7 @@ input[disabled] {
 
 .invalid {
   @apply border border-solid border-invalid;
+  border-width: 1px; /* IE 11 specific fix */
 }
 
 .prefix-no-border {
@@ -108,24 +115,26 @@ input[disabled] {
 .suffix-no-border {
   @apply bg-white border border-solid border-transparent;
 }
-
+.manor-prefilled {
+  @apply bg-prechecked;
+}
 .manor-prefilled-border {
   @apply border border-solid border-prechecked-darker;
+  border-width: 1px; /* IE 11 specific fix */
 }
 
 .input-wrap-focus {
   @apply border border-solid border-light-blue;
+  border-width: 1px; /* IE 11 specific fix */
 }
 
 .disabled {
   @apply opacity-50;
 }
 
-.manor-prefilled,
 .input-default:-webkit-autofill,
 .input-default:-webkit-autofill:hover,
 .input-default:-webkit-autofill:focus {
-  @apply bg-prechecked;
   -webkit-text-fill-color: theme(colors.black);
 }
 

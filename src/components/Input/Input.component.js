@@ -4,8 +4,6 @@ import Icon from '../Icon/Icon.component';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
 
-/* Input will need to accept children for the custom combo */
-
 export const renderClearIcon = (value, clearInput, isAutofill, label) => {
   if (value.length) {
     return (
@@ -59,10 +57,20 @@ export const renderOptionalElement = (required) => {
   return null;
 };
 
+export const getInitialValue = (valueMasking, prefillValue) => {
+  if (valueMasking && prefillValue) {
+    const { parsed } = valueMasking(prefillValue);
+    return parsed;
+  } if (prefillValue) {
+    return prefillValue;
+  }
+  return '';
+};
+
 const Input = ({
-  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, toggleFocus,
+  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking, toggleFocus,
 }) => {
-  const [value, setValue] = useState(prefillValue || '');
+  const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
   const [isAutofill, setIsAutofill] = useState(!!prefillValue);
 
   const inputWrapElement = useRef(null);
@@ -74,18 +82,31 @@ const Input = ({
 
   const handleOnChange = (e) => {
     setIsAutofill(false);
-    setValue(e.target.value);
-    handleChange(e.target.value);
+
+    if (valueMasking) {
+      const { raw, parsed } = valueMasking(e.target.value);
+      setValue(parsed || '');
+      handleChange(parsed, raw);
+    } else {
+      setValue(e.target.value);
+      handleChange(e.target.value);
+    }
   };
+
   useEffect(() => {
-    setValue(prefillValue);
-  }, [prefillValue]);
+    if (valueMasking) {
+      const { parsed } = valueMasking(prefillValue);
+      setValue(parsed || '');
+    } else {
+      setValue(prefillValue);
+    }
+  }, [prefillValue, valueMasking]);
 
   const toggleOnFocus = () => {
     const { current } = inputWrapElement;
     if (current) {
       current.classList.toggle('input-wrap-focus');
-      toggleFocus(current.classList.contains('input-wrap-focus'));
+      // toggleFocus(current.classList.contains('input-wrap-focus'));
     }
   };
 
@@ -93,6 +114,7 @@ const Input = ({
   const borderClass = `${bordered ? 'input-border' : ''}`;
   const invalidClass = `${invalid ? 'invalid' : ''}`;
   const disabledClass = `${disabled ? 'disabled' : ''}`;
+
   return (
     <>
       <Fieldset label={label} tooltip={tooltip}>
@@ -134,7 +156,6 @@ const Input = ({
             {renderOptionalElement(required)}
           </div>
         </div>
-
       </Fieldset>
     </>
   );
@@ -144,6 +165,7 @@ Input.propTypes = {
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   toggleFocus: PropTypes.func,
+  valueMasking: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
@@ -170,6 +192,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  valueMasking: null,
   type: 'text',
   placeholder: '',
   prefillValue: '',

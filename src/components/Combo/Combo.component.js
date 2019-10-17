@@ -4,7 +4,6 @@ import styles from './styles';
 import Input from '../Input/Input.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
-import Container from '../Grid/Container/Container.component';
 
 const Combo = ({
   id,
@@ -21,14 +20,27 @@ const Combo = ({
   disabled,
   characterMinimum,
   renderLimit,
+  forceFullWidth,
+  children,
 }) => {
-  const linkTextString = "Can't find your address?";
   const [listVisible, setListVisible] = useState(false);
   const [currentPrefillValue, setCurrentPrefillValue] = useState(prefillValue);
+  console.log('currentPrefillValue.length', currentPrefillValue.length)
+  console.log('characterMinimum', characterMinimum)
   const filteredValues = useMemo(
-    () => apiData.filter((item) => item.includes(currentPrefillValue)).slice(0, renderLimit),
+    () => {
+      if (currentPrefillValue.length < characterMinimum) {
+        return [];
+      }
+      return apiData.filter((item) => item.includes(currentPrefillValue)).slice(0, renderLimit);
+    },
     [apiData, renderLimit, currentPrefillValue],
   );
+  const filteredValuesRefs = useMemo(
+    () => filteredValues.map((item) => React.createRef()),
+    [filteredValues],
+  );
+  const [focusedRef, setFocusedRef] = useState(null);
 
   const handleSelectItem = (value) => {
     setCurrentPrefillValue(value);
@@ -37,21 +49,54 @@ const Combo = ({
 
   const onChange = (valueInput) => {
     setCurrentPrefillValue(valueInput);
-    if (valueInput.length > 1) {
-      setListVisible(true);
-    } else {
-      setListVisible(false);
-    }
+    setListVisible(!!valueInput.length);
   };
-
-  const onToggleFocus = (state) => {
-    if (!state) {
-      setTimeout(() => setListVisible(false), 250);
-    }
+  const handelOnFocus = (event) => {
+    setListVisible(!!currentPrefillValue.length);
   };
+  const handleOnBlur = (event) => {
+    setListVisible(false);
+  };
+  const keyboardAccessibility = (event) => {
+    switch (event.key) {
+      case 'Tab':
+        break;
+      case 'Escape':
+        setListVisible(false);
+        break;
+      case 'Enter':
+        setCurrentPrefillValue(event.target.innerHTML);
+        setListVisible(false);
+        break;
+      case 'ArrowUp':
+        if (focusedRef === 0) {
+          filteredValuesRefs[focusedRef].current.blur();
+          setFocusedRef(null);
+        } else if (focusedRef === null) {
+          setFocusedRef(0);
+          filteredValuesRefs[0].current.focus();
+        } else {
+          setFocusedRef(focusedRef - 1);
+          filteredValuesRefs[focusedRef - 1].current.focus();
+        }
+        break;
+      case 'ArrowDown':
+        if (focusedRef === filteredValues.length - 1) {
+          filteredValuesRefs[focusedRef].current.blur();
+          setFocusedRef(null);
+        } else if (focusedRef === null) {
+          setFocusedRef(0);
+          filteredValuesRefs[0].current.focus();
+        } else {
+          setFocusedRef(focusedRef + 1);
+          filteredValuesRefs[focusedRef + 1].current.focus();
+        }
+        break;
+    }
+  }
 
   return (
-    <Container>
+    <div onFocus={handelOnFocus} onBlur={handleOnBlur} onKeyDown={keyboardAccessibility}>
       <style jsx>{styles}</style>
       <Input
         id={id}
@@ -66,23 +111,31 @@ const Combo = ({
         suffixContent={suffixContent}
         autocomplete={autocomplete}
         handleChange={(value) => onChange(value)}
-        toggleFocus={(state) => onToggleFocus(state)}
+        tabIndex="0"
       />
-      <div className={`row-view section-hide ${!listVisible ? 'hidden' : ''}`} role="listbox">
+      <div className={`row-view section-hide ${!listVisible ? 'hidden' : ''}`} role="listbox" tabIndex="0">
         <Row>
-          <Column className="col-view" col="10">
+          <Column sm={forceFullWidth ? '12' : '10'} xs="12">
             <ul>
               {filteredValues.map((filteredValue, index) => (
-                <li tabIndex="0" className={`item-${index} item`} key={`option-${filteredValue}`} role="option" aria-selected={false} onClick={() => handleSelectItem(filteredValue)} onKeyDown={() => handleSelectItem(filteredValue)}>{filteredValue}</li>
+                <li
+                  tabIndex="0"
+                  className={`item-${index} item`}
+                  key={`option-${filteredValue}`}
+                  role="option"
+                  aria-selected={false}
+                  onMouseDown={() => handleSelectItem(filteredValue)}
+                  ref={filteredValuesRefs[index]}
+                >
+                  {filteredValue}
+                </li>
               ))}
-              <li className="item-manual-lookup item" role="option" aria-selected={false}>
-                {linkTextString}
-              </li>
+              {children && currentPrefillValue.length >= characterMinimum && <li className="item-manual-lookup item" role="option" aria-selected={false}>{children}</li>}
             </ul>
           </Column>
         </Row>
       </div>
-    </Container>
+    </div>
   );
 };
 
@@ -111,6 +164,12 @@ Combo.propTypes = {
   disabled: PropTypes.bool,
   characterMinimum: PropTypes.number,
   renderLimit: PropTypes.number,
+  forceFullWidth: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 Combo.defaultProps = {
@@ -119,15 +178,17 @@ Combo.defaultProps = {
   apiData: [],
   placeholder: '',
   invalid: false,
-  bordered: false,
+  bordered: true,
   required: false,
   disabled: false,
   prefillValue: '',
   prefixContent: '',
   suffixContent: '',
   autocomplete: 'off',
-  characterMinimum: 1,
+  characterMinimum: 3,
   renderLimit: 10,
+  forceFullWidth: false,
+  children: '',
 };
 
 export default Combo;

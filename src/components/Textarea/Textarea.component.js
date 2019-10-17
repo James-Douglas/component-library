@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import Fieldset from '../Fieldset/Fieldset.component';
+import Fieldset, { defaultFieldsetProps, fieldsetPropTypes } from '../Fieldset/Fieldset.component';
 
 import styles from './styles';
 
@@ -40,9 +40,9 @@ export function getRemainingCharsContent(maxChars, maxLength, id, textAreaRemain
 }
 
 const Textarea = ({
+  fieldsetProps,
   id,
   name,
-  label,
   placeholder,
   value,
   bordered,
@@ -50,14 +50,11 @@ const Textarea = ({
   required,
   invalid,
   autofill,
-  hidden,
   rows,
   wrap,
   readonly,
   maxChars,
   maxLength,
-  tooltip,
-  forceFullWidth,
   onChange,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
@@ -89,15 +86,40 @@ const Textarea = ({
     event.preventDefault();
     setIsDirty(true);
     setStateValue(event.target.value);
-    if (onChange) {
-      onChange(event);
-    }
   };
 
+  useEffect(() => {
+    if (onChange) {
+      onChange({ id, stateValue });
+    }
+  }, [onChange, id, stateValue]);
+
+  const {
+    label, tooltip, forceFullWidth, validationMessage,
+  } = fieldsetProps;
+
+  let validationMessageToDisplay = validationMessage;
+  if (charsExceed && !validationMessage) {
+    validationMessageToDisplay = 'Maximum characters exceeded';
+  }
+
+  const supportingElements = (
+    <div className="supporting-elements">
+      <style jsx>{styles}</style>
+      {getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)}
+      {getOptionalFieldContent(required, id, label)}
+    </div>
+  );
 
   return (
-    <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth}>
-      <div className={`manor-textarea-wrapper ${disabled ? 'disabled' : ''} ${hidden ? 'hidden' : ''} ${!bordered ? 'borderless-field' : ''} `}>
+    <Fieldset
+      label={label}
+      tooltip={tooltip}
+      forceFullWidth={forceFullWidth}
+      validationMessage={validationMessageToDisplay}
+      supportingElements={supportingElements}
+    >
+      <div className={`manor-textarea-wrapper ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
         <style jsx>{styles}</style>
         <div className={`pull-tab ${(autofill && !isDirty) ? 'manor-prefilled' : ''} ${disabled ? 'manor-disabled' : ''} `} />
 
@@ -118,19 +140,15 @@ const Textarea = ({
           aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
         />
 
-        <div className="supporting-elements">
-          {getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)}
-          {getOptionalFieldContent(required, id, label)}
-        </div>
       </div>
     </Fieldset>
   );
 };
 
 Textarea.propTypes = {
+  fieldsetProps: PropTypes.shape(fieldsetPropTypes),
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
-  label: PropTypes.string,
   value: PropTypes.string,
   placeholder: PropTypes.string,
   bordered: PropTypes.bool,
@@ -138,40 +156,29 @@ Textarea.propTypes = {
   required: PropTypes.bool,
   invalid: PropTypes.bool,
   autofill: PropTypes.bool,
-  hidden: PropTypes.bool,
   rows: PropTypes.string,
   wrap: PropTypes.string,
   readonly: PropTypes.bool,
   maxChars: PropTypes.string,
   maxLength: PropTypes.string,
-  tooltip: PropTypes.shape({
-    title: PropTypes.string,
-    body: PropTypes.string,
-    boundingElementSelector: PropTypes.string,
-    screenReaderLabel: PropTypes.string,
-  }),
-  forceFullWidth: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
 Textarea.defaultProps = {
+  fieldsetProps: defaultFieldsetProps,
   name: '',
   value: '',
-  label: '',
   placeholder: '',
   bordered: false,
   disabled: false,
   required: false,
   invalid: false,
   autofill: false,
-  hidden: false,
   rows: '',
   wrap: '',
   readonly: false,
   maxLength: '',
   maxChars: '',
-  tooltip: {},
-  forceFullWidth: false,
   onChange: null,
 };
 

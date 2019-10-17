@@ -31,6 +31,13 @@ ul li:focus {
   @apply underline;
 }
 .section-hide {
-  margin-top: -15px;
+  top: -55px;
 }
+.combo-wrap {
+  @apply relative
+}
+.row-view {
+  position: relative;
+}
+
 `;
