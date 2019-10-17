@@ -8,8 +8,6 @@ export default css`
   align-items: center;
   margin: 0 auto;
 }
-
-
 .flipH {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
