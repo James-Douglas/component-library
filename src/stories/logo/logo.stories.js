@@ -7,4 +7,4 @@ import logoReadme from '../../components/Logo/Logo.md';
 
 storiesOf('Logo', module)
   .addDecorator(withKnobs)
-  .add('Default', () => <Logo />, { notes: logoReadme });
+  .add('Default', () => <Logo size="large" />, { notes: logoReadme });

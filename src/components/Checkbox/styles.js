@@ -23,13 +23,13 @@ label {
 .manor-checkbox-input {
   @apply h-0 w-0 opacity-0 float-left;
 }
-.manor-checkbox-input:invalid + label > .manor-checkbox{
-  @apply border-invalid text-invalid fill-current;
+.manor-checkbox-invalid {
+  @apply border-2 border-invalid text-invalid fill-current;
 }
-.manor-checkbox-input:disabled + label > .manor-checkbox{
+.manor-checkbox-input:disabled + label > .manor-checkbox {
   @apply cursor-not-allowed;
 }
-.manor-checkbox-input:disabled + label > .manor-checkbox{
+.manor-checkbox-input:disabled + label > .manor-checkbox {
   @apply bg-grey-light border-none opacity-50;
 }
 .manor-checkbox-input:checked + label > .manor-checkbox {

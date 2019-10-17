@@ -4,6 +4,7 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
 ## Usage
 ~~~js
 <Textarea 
+    {fieldsetProps}
     {id}
     {name}
     {label}
@@ -14,50 +15,65 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
     {required}
     {invalid}
     {autofill}
-    {hidden}
     {rows}
     {wrap}
     {readonly}
     {maxLength}
     {maxChars}
+    {onChange}
 />
 ~~~
 
 ## Props
 The Textarea component also accepts the following props:
 
-1. `id` *(required) string*
+1. `fieldsetProps` *(optional) object*
+    * Props to be passed to the fieldset wrapping the text area. 
+    ```
+     {
+       label (optional) string - label for the component
+       tooltip: {
+         title - (optional) string - title for the tooltip 
+         body: (optional) string - body for the tooltip
+         boundingElementSelector (optional) string - container tooltip should be bound within
+         screenReaderLabel (optional) string - screen reader label for the tooltip icon
+       },
+       forceFullWidth (optional) bool - forces the component to use a full width layout (overrides design specifications), 
+           useful for components that aren't in a typical form (e.g. IMT widget)
+       validationMessage (optional) string - Validation error message
+       supportingElements (optional) node - supporting elements
+     }
+    ```
+        
+2. `id` *(required) string*
     * Unique id for the component. Required for the label to match the input.
     
-2. `name` *(optional) string*
+3. `name` *(optional) string*
     * Defines a name for the drop-down list
     
-3. `label` *(optional) string*
+4. `label` *(optional) string*
     * Label for the input, relies on id being passed in. Defaults to an empty string.
     
-4. `placeholder` *(optional) string*
+5. `placeholder` *(optional) string*
     * The placeholder text for the input. Defaults to an empty string.
     
-5. `value` *(optional) string*
+6. `value` *(optional) string*
     * Defines the current value of the textarea field.
     
-6. `bordered` *(optional) boolean*
+7. `bordered` *(optional) boolean*
     * The input field border style. Defaults to true.
     
-7. `disabled` *(optional) boolean*
+8. `disabled` *(optional) boolean*
     * Disables the button via a class on its wrapper, and an attribute on the input. Defaults to false.
     
-8. `required` *(optional) boolean*
+9. `required` *(optional) boolean*
     * Adds/removes a supporting element, `<sup>OPTIONAL</sup>` to show the field is optional. Defaults to false.
     
-9. `invalid` *(optional) boolean*
+10. `invalid` *(optional) boolean*
     * if true adds styles to denote if a field is invalid
     
-10. `autofill` *(optional) boolean*
+11. `autofill` *(optional) boolean*
     * Adds custom styling for prefilled elements. Defaults to false.
-    
-11. `hidden` *(optional) boolean*
-    * Hide or show an input. Adds `display: none;` defaults to false.
     
 12. `rows` *(optional) string (number)*
     * Specifies the height of the textarea (in lines). Default value is 2.
@@ -75,6 +91,10 @@ The Textarea component also accepts the following props:
          -  Note that the maxlength attribute physically limits users from adding more that the specified limit, this 
             means that if a user pastes 1000 chars into a text area that is limited to 500 chars then half of the 
             pasted text would be truncated without giving the user any useful feedback. *Use maxchars instead*
+
 16. `maxChars` *(optional) string (number)*
     * Specifies the maximum number of characters allowed in the text area - while providing useful feedback if the 
       limit is exceeded
+
+18. `onChange` *(optional) function*
+    * Called when the value of the text area changes. Function will be called with an object consisting of id and value of the text area.

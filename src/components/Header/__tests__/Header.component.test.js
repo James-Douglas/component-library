@@ -8,7 +8,12 @@ jest.mock('../../../hooks/useIsSticky', () => ({
   default: jest.fn(() => mockUseIsStickyValue),
 }));
 
-describe('StickyBar', () => {
+describe('Header', () => {
+  it('renders correctly without props', () => {
+    const { container } = render(<Header />);
+    const contactIcon = container.getAttribute('svg');
+    expect(contactIcon).not.toBeInTheDocument();
+  });
   it('renders correctly with number prop', () => {
     const { getByText } = render(<Header number="1800 000 000" />);
     expect(getByText('1800 000 000')).toBeInTheDocument();
