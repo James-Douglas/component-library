@@ -17,7 +17,6 @@ const prefixSuffixView = () => (
         placeholder="Invalid input example"
         type="text"
         bordered
-        disabled={false}
         invalid
         label="An invalid input"
         handleChange={(value) => logValue(value)}
@@ -29,7 +28,6 @@ const prefixSuffixView = () => (
         type="text"
         bordered
         disabled
-        invalid={false}
         label="A disabled input"
         handleChange={(value) => logValue(value)}
       />
@@ -40,8 +38,6 @@ const prefixSuffixView = () => (
         type="text"
         prefillValue="autofilled value"
         bordered
-        disabled={false}
-        invalid={false}
         label="Autofill styling example"
         handleChange={(value) => logValue(value)}
       />
@@ -52,12 +48,22 @@ const prefixSuffixView = () => (
         type="text"
         prefillValue="autofilled value"
         bordered
-        disabled={false}
-        invalid={false}
         prefixContent="$"
         suffixContent="?"
         label="Autofill styling example with affixes"
         handleChange={(value) => logValue(value)}
+      />
+
+      <Input
+        id="input-with-max-length"
+        placeholder="check the console"
+        type="text"
+        bordered
+        label="Maxlength (5) and blur/onfocus handlers"
+        handleChange={(value) => logValue(value)}
+        handleFocus={() => { console.warn('focused'); }}
+        handleBlur={() => { console.warn('blurred'); }}
+        maxlength="5"
       />
     </div>
   </>

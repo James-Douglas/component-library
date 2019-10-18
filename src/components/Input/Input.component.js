@@ -68,7 +68,24 @@ export const getInitialValue = (valueMasking, prefillValue) => {
 };
 
 const Input = ({
-  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking,
+  id,
+  type,
+  placeholder,
+  prefillValue,
+  required,
+  disabled,
+  bordered,
+  invalid,
+  prefixContent,
+  suffixContent,
+  label,
+  tooltip,
+  autocomplete,
+  maxlength,
+  handleChange,
+  handleFocus,
+  handleBlur,
+  valueMasking,
 }) => {
   const [rawValue, setRawValue] = useState(prefillValue || '');
   const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
@@ -102,6 +119,20 @@ const Input = ({
       handleChange(value);
     }
   }, [handleChange, value, rawValue, valueMasking]);
+
+  const onFocus = () => {
+    if (handleFocus) {
+      handleFocus();
+    }
+    toggleFocus();
+  };
+
+  const onBlur = () => {
+    if (handleBlur) {
+      handleBlur();
+    }
+    toggleFocus();
+  };
 
   const toggleFocus = () => {
     const { current } = inputWrapElement;
@@ -137,8 +168,9 @@ const Input = ({
                 value={value}
                 onChange={handleOnChange}
                 autoComplete={autocomplete}
-                onFocus={toggleFocus}
-                onBlur={toggleFocus}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                maxLength={maxlength}
                 className={`
                   input-default
                   ${isAutofill && !disabled ? 'manor-prefilled' : ''}
@@ -164,6 +196,7 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  maxlength: PropTypes.string,
   valueMasking: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,
@@ -173,6 +206,8 @@ Input.propTypes = {
   bordered: PropTypes.bool,
   invalid: PropTypes.bool,
   autocomplete: PropTypes.string,
+  handleFocus: PropTypes.func,
+  handleBlur: PropTypes.func,
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -192,12 +227,15 @@ Input.propTypes = {
 
 Input.defaultProps = {
   valueMasking: null,
+  maxlength: null,
   type: 'text',
   placeholder: '',
   prefillValue: '',
   prefixContent: '',
   suffixContent: '',
   autocomplete: 'off',
+  handleFocus: null,
+  handleBlur: null,
   required: true,
   disabled: false,
   bordered: true,
