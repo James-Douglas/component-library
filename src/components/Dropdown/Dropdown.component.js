@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import usePrefill from '../../hooks/usePrefill';
 
 export const getSupportingElements = (required) => {
   if (required) return null;
@@ -25,7 +26,7 @@ const Dropdown = ({
   validationMessage,
   id,
   name,
-  autofill,
+  prefillValue,
   bordered,
   disabled,
   required,
@@ -49,10 +50,10 @@ const Dropdown = ({
     return false;
   };
   const invalidClass = validationMessage && validationMessage.length ? 'invalid' : '';
-  const [isDirty, setIsDirty] = useState(!!value);
+  const [isDirty, setIsDirty] = useState(false);
   const [showDefaultStyle, setshowDefaultStyle] = useState(checkIfSelectedValueIsEqualToDefaultValue(value));
   const [stateValue, setStateValue] = useState(value);
-  const autofillClass = (autofill && !isDirty) ? 'manor-prefilled' : '';
+  const prefillClass = usePrefill(prefillValue, value, isDirty) ? 'manor-prefilled' : '';
   const borderedClass = bordered ? 'manor-input-border' : '';
   const showDefaultClass = showDefaultStyle ? 'manor-default-selected' : '';
   const handleChange = (event) => {
@@ -66,6 +67,7 @@ const Dropdown = ({
     }
   };
 
+  const selectValue = (prefillValue && prefillValue.length && !isDirty && !value.length) ? prefillValue : stateValue;
   return (
     <>
       <style jsx="true">{styles}</style>
@@ -73,11 +75,11 @@ const Dropdown = ({
         <select
           id={id}
           name={name}
-          className={`manor-dropdown ${invalidClass} ${autofillClass} ${borderedClass} ${showDefaultClass}`}
+          className={`manor-dropdown ${invalidClass} ${prefillClass} ${borderedClass} ${showDefaultClass}`}
           disabled={disabled}
           required={required}
           readOnly={readonly}
-          value={stateValue}
+          value={selectValue}
           onChange={handleChange}
         >
           {optionsModified.map((option) => (
@@ -105,7 +107,7 @@ Dropdown.propTypes = {
   validationMessage: PropTypes.string,
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
-  autofill: PropTypes.bool,
+  prefillValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   bordered: PropTypes.bool,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
@@ -136,7 +138,7 @@ Dropdown.defaultProps = {
   validationMessage: '',
   name: '',
   value: '',
-  autofill: false,
+  prefillValue: null,
   bordered: false,
   disabled: false,
   required: false,
