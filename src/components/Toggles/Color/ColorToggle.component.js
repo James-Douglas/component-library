@@ -19,11 +19,6 @@ const styles = css`
   .content {
     @apply z-20;
   }
-  .scoped-toggle.black :global(:hover),
-  .scoped-toggle.black :global(input:checked + label) {
-    @apply text-black;
-  }
-  .scoped-toggle.white :global(:hover),
   .scoped-toggle.white :global(input:checked + label) {
     @apply text-white;
   }
