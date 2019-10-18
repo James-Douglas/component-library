@@ -37,13 +37,9 @@ export default css`
 .accordion-body:focus, .accordion-body:active, .accordion-body:hover {
   @apply outline-none;
 }
-.accordion-head:focus {
-  background: hsl(216, 94%, 94%);
-}
 .accordion:focus,
 .accordion.hide:focus,
-.accordion.on-focus,
- :global(.accordion-head:focus .header-outline) {
-  border: 1px solid hsl(216, 94%, 73%);
+.accordion.on-focus {
+  border: 2px solid hsl(216, 90%, 73%);
  }
 `;

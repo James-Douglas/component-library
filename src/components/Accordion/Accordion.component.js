@@ -52,7 +52,7 @@ const Accordion = ({
       <style jsx>{styles}</style>
       <div onClick={toggleTrueFalse} onKeyDown={(e) => toggleTrueFalseOnKey(e)} className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`} role="tab" aria-selected="true" tabIndex="0" onFocus={handleFocus} onBlur={handleBlur}>
         <FluidContainer>
-          <Row className="header-outline">
+          <Row>
             <Column col="9" lg="11">{title}</Column>
             <Column col="3" lg="1">
               <div className="accordion-caret">
