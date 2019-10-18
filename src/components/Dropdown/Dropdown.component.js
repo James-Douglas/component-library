@@ -2,11 +2,29 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
+
+export const getSupportingElements = (required) => {
+  if (required) return null;
+  return (
+    <div className="w-full">
+      <div className="supporting-elements">
+        <style jsx>{styles}</style>
+        <span className="manor-dropdown-optional-indicator manor-subscript">
+          OPTIONAL
+        </span>
+      </div>
+    </div>
+  );
+};
 
 const Dropdown = ({
+  label,
+  tooltip,
+  forceFullWidth,
+  validationMessage,
   id,
   name,
-  invalid,
   autofill,
   bordered,
   disabled,
@@ -16,10 +34,6 @@ const Dropdown = ({
   value,
   onChange,
   defaultOption,
-  label,
-  tooltip,
-  forceFullWidth,
-  supportingElements,
 }) => {
   const optionsModified = defaultOption.hasDefaultOption ? [{
     value: defaultOption.value,
@@ -34,7 +48,7 @@ const Dropdown = ({
     }
     return false;
   };
-  const invalidClass = invalid ? 'invalid' : '';
+  const invalidClass = validationMessage && validationMessage.length ? 'invalid' : '';
   const [isDirty, setIsDirty] = useState(!!value);
   const [showDefaultStyle, setshowDefaultStyle] = useState(checkIfSelectedValueIsEqualToDefaultValue(value));
   const [stateValue, setStateValue] = useState(value);
@@ -55,7 +69,7 @@ const Dropdown = ({
   return (
     <>
       <style jsx="true">{styles}</style>
-      <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth}>
+      <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth} validationMessage={validationMessage} supportingElements={getSupportingElements(required)}>
         <select
           id={id}
           name={name}
@@ -80,24 +94,17 @@ const Dropdown = ({
           ))}
         </select>
       </Fieldset>
-      {supportingElements && (
-        <div className="w-full">
-          <div className="supporting-elements">
-            <span className="manor-dropdown-optional-indicator manor-subscript">
-              {!required && ('OPTIONAL')}
-            </span>
-          </div>
-        </div>
-      )}
     </>
   );
 };
 
 Dropdown.propTypes = {
-  id: PropTypes.string.isRequired,
   label: PropTypes.string,
+  tooltip: PropTypes.shape(tooltipPropTypes),
+  forceFullWidth: PropTypes.bool,
+  validationMessage: PropTypes.string,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string,
-  invalid: PropTypes.bool,
   autofill: PropTypes.bool,
   bordered: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -105,7 +112,6 @@ Dropdown.propTypes = {
   readonly: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  supportingElements: PropTypes.bool,
   defaultOption: PropTypes.shape({
     hasDefaultOption: PropTypes.bool.isRequired,
     value: PropTypes.string.isRequired,
@@ -121,28 +127,20 @@ Dropdown.propTypes = {
     hidden: PropTypes.bool,
     className: PropTypes.string,
   })),
-  tooltip: PropTypes.shape({
-    title: PropTypes.string,
-    body: PropTypes.string,
-    boundingElementSelector: PropTypes.string,
-    screenReaderLabel: PropTypes.string,
-  }),
-  forceFullWidth: PropTypes.bool,
 };
 
 Dropdown.defaultProps = {
   label: '',
-  name: '',
-  value: '',
   tooltip: {},
   forceFullWidth: false,
-  invalid: false,
+  validationMessage: '',
+  name: '',
+  value: '',
   autofill: false,
   bordered: false,
   disabled: false,
   required: false,
   readonly: false,
-  supportingElements: false,
   onChange: null,
   options: [],
   defaultOption: {},

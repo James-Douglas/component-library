@@ -18,7 +18,7 @@ const prefixSuffixView = () => (
         type="text"
         bordered
         disabled={false}
-        invalid
+        validationMessage="This is an invalid field"
         label="An invalid input"
         handleChange={(value) => logValue(value)}
       />

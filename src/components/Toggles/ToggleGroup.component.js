@@ -25,16 +25,16 @@ export const getType = (children) => {
   return 'square';
 };
 
-export const getChildren = (children, type, dirty, name, selectedToggleId, handleToggle, rectOptions) => (
+export const getChildren = (children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage) => (
   children.map((child, index) => {
     const key = `toggle-${child.props.id || index}`;
     const propsToAdd = {
       key,
       name,
-      selectedId: selectedToggleId,
+      selectedValue: selectedToggleValue,
       onToggle: handleToggle,
       type,
-      dirty,
+      invalid: !!validationMessage && validationMessage.length > 0,
     };
     if (!child.props.id) propsToAdd.id = key;
     if (type === 'rectangle') propsToAdd.rectOptions = rectOptions;
@@ -43,17 +43,15 @@ export const getChildren = (children, type, dirty, name, selectedToggleId, handl
 );
 
 const ToggleGroup = ({
-  id, name, label, tooltip, onToggle, children, rectOptions,
+  label, tooltip, forceFullWidth, validationMessage, id, name, onToggle, selectedValue, children, rectOptions,
 }) => {
-  const [selectedToggle, setSelectedToggle] = useState({});
-  const [dirty, setDirty] = useState();
+  const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
   const type = getType(children);
-  const handleToggle = (toggle) => {
-    setSelectedToggle({ id: toggle.id, value: toggle.value });
-    setDirty(true);
+  const handleToggle = (value) => {
+    setSelectedToggleValue(value);
   };
 
-  useDidUpdateEffect(onToggle, [selectedToggle], [onToggle, selectedToggle]);
+  useDidUpdateEffect(onToggle, [selectedToggleValue], [onToggle, selectedToggleValue]);
 
   const tooltipOptions = tooltip;
   if (tooltip) {
@@ -61,21 +59,24 @@ const ToggleGroup = ({
   }
 
   return (
-    <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth>
+    <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} validationMessage={validationMessage}>
       <style jsx>{styles}</style>
       <div className="toggle-group" id={id}>
-        {getChildren(children, type, dirty, name, selectedToggle.id, handleToggle, rectOptions)}
+        {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
       </div>
     </Fieldset>
   );
 };
 
 ToggleGroup.propTypes = {
-  label: PropTypes.string,
-  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   onToggle: PropTypes.func.isRequired,
+  label: PropTypes.string,
   tooltip: PropTypes.shape(tooltipPropTypes),
+  forceFullWidth: PropTypes.bool,
+  validationMessage: PropTypes.string,
+  id: PropTypes.string,
+  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -94,9 +95,12 @@ ToggleGroup.propTypes = {
 };
 
 ToggleGroup.defaultProps = {
-  label: null,
-  id: null,
+  label: '',
   tooltip: {},
+  forceFullWidth: true,
+  validationMessage: null,
+  id: null,
+  selectedValue: null,
   rectOptions: {
     align: 'center',
     col: 1,

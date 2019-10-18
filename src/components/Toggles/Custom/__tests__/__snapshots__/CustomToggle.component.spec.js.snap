@@ -7,7 +7,7 @@ exports[`CustomToggle renders with minimal props 1`] = `
   >
     <style />
     <input
-      class="toggle-input"
+      class="toggle-input "
       id="test-a"
       name=""
       tabindex="0"
@@ -16,7 +16,7 @@ exports[`CustomToggle renders with minimal props 1`] = `
     />
     <style />
     <label
-      class="toggle-label transition "
+      class="toggle-label transition"
       for="test-a"
     />
   </span>

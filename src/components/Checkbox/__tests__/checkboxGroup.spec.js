@@ -36,7 +36,7 @@ describe('generateGroup', () => {
 describe('CheckboxGroup.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id">
+      <CheckboxGroup label="test" groupId="test-group-id">
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
@@ -48,7 +48,7 @@ describe('CheckboxGroup.component', () => {
   it('renders with props', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleChange={mockTestClick}>
+      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5" handleChange={mockTestClick}>
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
@@ -70,7 +70,7 @@ describe('CheckboxGroup.component', () => {
   it('checks on click', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
@@ -88,7 +88,7 @@ describe('CheckboxGroup.component', () => {
   it('does not check when disabled', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check" disabled><p>A-3 check</p></Checkbox>

@@ -3,40 +3,52 @@ The CTM Dropdown component, which is essentially a styled HTML select and it's c
 
 ## Usage
 ~~~js
-<Dropdown {id} {name} {label} {value} {bordered} {invalid} {autofill} {disabled} {required} {defaultOption} {options} />
+<Dropdown {id} {name} {label} {value} {bordered} {validationMessage} {autofill} {disabled} {required} {defaultOption} {options} />
 ~~~
 
 ## Props
 The Dropdown component also accepts the following props:
 
-1. `id` *(optional) string*
+1. `label` *(optional) string*
+    * Label for the ToggleGroup. Defaults to an empty string.
+
+2. `tooltip` *(optional) object*
+   * Tooltip object (see Tooltip documentation)
+       
+3. `forceFullWidth` *(optional) boolean* 
+   * Forces the ToggleGroup to expand to 12 columns (default true for ToggleGroup)
+
+4. `validationMessage` *(optional string)*
+    * Displays given validation message and invalid styles on the component when provided.  
+
+5. `id` *(optional) string*
     * Specifies a unique id for an element
 
-2. `name` *(optional) string*
+6. `name` *(optional) string*
     * Defines a name for the drop-down list
 
-3. `label` *(optional) string*
+7. `label` *(optional) string*
     * Defines a field label text for the drop-down list
 
-4. `value` *(optional) string*
+8. `value` *(optional) string*
     * Defines the current value of the select field (Used to set selected value)
 
-5. `bordered` *(optional) boolean*
+9. `bordered` *(optional) boolean*
     * this is used to add the boarder style around the field (set to true if field used on a white background, omit if used on a grey background)
 
-6. `invalid` *(optional) boolean*
+10. `invalid` *(optional) boolean*
     * if true adds styles to denote if a field is invalid
     
-7. `autofill` *(optional) boolean*
+11. `autofill` *(optional) boolean*
     * denotes if a field has been pre-filled with data
     
-8. `disabled` *(optional) boolean*
+12. `disabled` *(optional) boolean*
     * Specifies that a drop-down list should be disabled
     
-9. `required` *(optional) boolean*
+13. `required` *(optional) boolean*
     * Specifies that the user is required to select a value before submitting the form
     
-10. `defaultOption` *(optional) JSON Object*
+14. `defaultOption` *(optional) JSON Object*
     * The `defaultOption` JSON Object accepts the following props:
         - 1. `hasDefaultOption` *(required) boolean*
             * include the default option ('Please Select...').
@@ -49,7 +61,7 @@ The Dropdown component also accepts the following props:
         - 5. `title` *(optional) string*
             
 
-11. `options` *(optional) Array of JSON Object/s*
+15. `options` *(optional) Array of JSON Object/s*
     * The `options` Array accepts JSON Objects as items, each item may contain the following props:
         - 1. `value` *(required)*
         - 2. `title` *(optional) string*

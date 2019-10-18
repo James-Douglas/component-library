@@ -1,6 +1,22 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Dropdown from '../Dropdown.component';
+import Dropdown, { getSupportingElements } from '../Dropdown.component';
+
+describe('getSupportingElements()', () => {
+  // eslint-disable-next-line react/prop-types
+  const SupportingElementsContainer = ({ required }) => (
+    <>
+      {getSupportingElements(required)}
+    </>
+  );
+  it('returns null when required is true', () => {
+    expect(getSupportingElements(true)).toBeNull();
+  });
+  it('returns OPTIONAL text when required is false', () => {
+    const { getByText } = render(<SupportingElementsContainer />);
+    expect(getByText('OPTIONAL')).toBeInTheDocument();
+  });
+});
 
 describe('Dropdown', () => {
   const options = [
@@ -42,8 +58,8 @@ describe('Dropdown', () => {
     // test border class
     expect(dropdown).toHaveClass('manor-input-border');
   });
-  it('renders with invalid props', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" invalid autofill jsx="true" />);
+  it('renders with field validation props', () => {
+    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" validationMessage="invalid" autofill jsx="true" />);
     const dropdown = container.getElementsByTagName('select')[0];
     expect(dropdown).toHaveClass('invalid');
     expect(dropdown).toHaveClass('manor-prefilled');
@@ -92,7 +108,7 @@ describe('Dropdown', () => {
     expect(getByText('First Item - Title')).toHaveAttribute('id');
   });
   it('renders with supportingElements props', () => {
-    const { getByText } = render(<Dropdown id="dropdown" options={options} label="Dropdown Label" defaultOption={defaultOptionWithTitle} jsx="true" supportingElements />);
+    const { getByText } = render(<Dropdown id="dropdown" options={options} label="Dropdown Label" defaultOption={defaultOptionWithTitle} jsx="true" />);
     expect(getByText('OPTIONAL')).toBeInTheDocument();
   });
 });
