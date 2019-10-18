@@ -6,6 +6,7 @@ export default css`
   }
   .toggle {
     @apply relative bg-white shadow-sm border cursor-pointer mx-8 mb-16 text-sm font-bold leading-normal;
+    min-width: 12.8rem;
   }
   .toggle-label {
     @apply w-full cursor-pointer block relative;
@@ -43,9 +44,11 @@ export default css`
   }
   .square-toggle {
     @apply flex justify-around items-center w-128 h-128 p-8 text-center;
+    min-height: 12.8rem;
   }
   .rect-toggle {
     @apply h-full flex p-16 items-center text-center;
+    min-height: 2.4rem;
   }
   .align-left {
     @apply justify-start;

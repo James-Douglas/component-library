@@ -63,7 +63,7 @@ textarea[disabled] {
   @apply w-full;
 }
 .supporting-elements {
-  @apply flex justify-end;
+  @apply flex justify-end pt-8;
 }
 .manor-optional-indicator {
   margin-left: 1rem;

@@ -34,7 +34,6 @@ const Dropdown = ({
   value,
   onChange,
   defaultOption,
-  supportingElements,
 }) => {
   const optionsModified = defaultOption.hasDefaultOption ? [{
     value: defaultOption.value,
@@ -113,7 +112,6 @@ Dropdown.propTypes = {
   readonly: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  supportingElements: PropTypes.bool,
   defaultOption: PropTypes.shape({
     hasDefaultOption: PropTypes.bool.isRequired,
     value: PropTypes.string.isRequired,
@@ -143,7 +141,6 @@ Dropdown.defaultProps = {
   disabled: false,
   required: false,
   readonly: false,
-  supportingElements: false,
   onChange: null,
   options: [],
   defaultOption: {},
