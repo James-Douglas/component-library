@@ -32,9 +32,9 @@ describe('Bar', () => {
   });
   it('should check styles', () => {
     const { container } = render(<Bar value="60" />);
-    const label = container.getElementsByClassName('label')[0];
+    const label = container.querySelector('.label');
     expect(label).toHaveStyle(`
-      marginLeft: 60vw;
+      margin-left: 60vw;
       right: 4.8rem;
     `);
   });
@@ -42,7 +42,7 @@ describe('Bar', () => {
     const { container } = render(<Bar value="6" />);
     const label = container.getElementsByClassName('label')[0];
     expect(label).toHaveStyle(`
-      marginLeft: 6vw;
+      margin-left: 6vw;
       right: 3.5rem;
     `);
   });

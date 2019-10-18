@@ -16,7 +16,7 @@ const Header = ({ isSticky, stuck, number }) => {
       <FluidContainer>
         <div className="wrap">
           <Logo size={size} />
-          <Contact number={number} size={size} />
+          {number && <Contact number={number} size={size} />}
         </div>
       </FluidContainer>
     </header>
@@ -26,12 +26,13 @@ const Header = ({ isSticky, stuck, number }) => {
 Header.propTypes = {
   isSticky: PropTypes.bool,
   stuck: PropTypes.bool,
-  number: PropTypes.string.isRequired,
+  number: PropTypes.string,
 };
 
 Header.defaultProps = {
   isSticky: false,
   stuck: false,
+  number: '',
 };
 
 

@@ -16,9 +16,6 @@ export default css`
 }
 .lightbg, .darkbg, .darkbg-footer  {
   padding: 5rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .darkbg {
   background: #001564;
@@ -31,5 +28,10 @@ export default css`
 }
 .footer-alignment {
   margin-bottom: 2rem;
+}
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 `;
