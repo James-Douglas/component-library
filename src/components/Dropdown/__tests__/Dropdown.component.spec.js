@@ -58,10 +58,9 @@ describe('Dropdown', () => {
     // test border class
     expect(dropdown).toHaveClass('manor-input-border');
   });
-  it('renders with field validation props', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" validationMessage="invalid" autofill jsx="true" />);
+  it('renders with field prefill props', () => {
+    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" validationMessage="invalid" prefillValue="First" jsx="true" />);
     const dropdown = container.getElementsByTagName('select')[0];
-    expect(dropdown).toHaveClass('invalid');
     expect(dropdown).toHaveClass('manor-prefilled');
   });
   it('renders with disabled attribute', () => {

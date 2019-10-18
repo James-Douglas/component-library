@@ -32,10 +32,10 @@ storiesOf('Dropdown', module)
       </div>
     </Container>
   ), { notes: iconReadme })
-  .add('Dropdown with autofill prop', () => (
+  .add('Dropdown with prefillValue prop', () => (
     <Container>
       <div style={{ marginTop: '40px' }}>
-        <Dropdown id="input-one" options={options} supportingElements forceFullWidth label="Dropdown Label" autofill bordered defaultOption={defaultOption} />
+        <Dropdown id="input-one" options={options} supportingElements forceFullWidth label="Dropdown Label" prefillValue="Second" bordered defaultOption={defaultOption} />
       </div>
     </Container>
   ), { notes: iconReadme });
