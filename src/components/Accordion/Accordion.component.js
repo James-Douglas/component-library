@@ -6,7 +6,6 @@ import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import FluidContainer from '../Grid/Container/Fluid.component';
 
-
 const Accordion = ({
   title,
   children,
@@ -30,7 +29,7 @@ const Accordion = ({
   };
 
   const toggleTrueFalseOnKey = (event) => {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 || event.keyCode === 32) {
       event.preventDefault();
       toggleTrueFalse();
     }
@@ -40,17 +39,26 @@ const Accordion = ({
     setIsVisible(show);
   }, [show]);
 
-  const handleFocus = (event) => {
+  const handleFocus = () => {
     setIsFocus(true);
   };
-  const handleBlur = (event) => {
+  const handleBlur = () => {
     setIsFocus(false);
   };
 
   return (
-    <div className={`accordion ${visibleClass} ${isFocus ? 'on-focus' : 'on-blur'} manor-rich-text `} role="tablist" aria-label="Informattion tabs">
+    <div className={`accordion ${visibleClass} ${isFocus ? 'on-focus' : 'on-blur'} manor-rich-text `} role="tablist" aria-label="Information tabs">
       <style jsx>{styles}</style>
-      <div onClick={toggleTrueFalse} onKeyDown={(e) => toggleTrueFalseOnKey(e)} className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`} role="tab" aria-selected="true" tabIndex="0" onFocus={handleFocus} onBlur={handleBlur}>
+      <div
+        onClick={toggleTrueFalse}
+        onKeyDown={toggleTrueFalseOnKey}
+        className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`}
+        role="tab"
+        aria-selected="true"
+        tabIndex="0"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
         <FluidContainer>
           <Row>
             <Column col="9" lg="11">{title}</Column>
@@ -62,7 +70,7 @@ const Accordion = ({
           </Row>
         </FluidContainer>
       </div>
-      <div className="accordion-body" role="tabpanel" tabIndex="-1">
+      <div className="accordion-body" role="tabpanel">
         <FluidContainer>
           <Row className="row-view">
             <Column col="12">{children}</Column>
