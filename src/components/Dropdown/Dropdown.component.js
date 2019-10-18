@@ -53,7 +53,8 @@ const Dropdown = ({
   const [isDirty, setIsDirty] = useState(false);
   const [showDefaultStyle, setshowDefaultStyle] = useState(checkIfSelectedValueIsEqualToDefaultValue(value));
   const [stateValue, setStateValue] = useState(value);
-  const prefillClass = usePrefill(prefillValue, value, isDirty) ? 'manor-prefilled' : '';
+  const isUsePrefill = usePrefill(prefillValue, value, isDirty);
+  const prefillClass = isUsePrefill ? 'manor-prefilled' : '';
   const borderedClass = bordered ? 'manor-input-border' : '';
   const showDefaultClass = showDefaultStyle ? 'manor-default-selected' : '';
   const handleChange = (event) => {
@@ -67,7 +68,7 @@ const Dropdown = ({
     }
   };
 
-  const selectValue = (prefillValue && prefillValue.length && !isDirty && !value.length) ? prefillValue : stateValue;
+  const selectValue = isUsePrefill ? prefillValue : stateValue;
   return (
     <>
       <style jsx="true">{styles}</style>

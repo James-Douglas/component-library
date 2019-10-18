@@ -23,7 +23,7 @@ describe('usePrefill', () => {
 
     expect(result.current).toBeTruthy();
 
-    rerender({value: 'something'});
+    rerender({ value: 'something' });
 
     expect(result.current).toBeFalsy();
   });
@@ -39,7 +39,7 @@ describe('usePrefill', () => {
 
     expect(result.current).toBeTruthy();
 
-    rerender({isDirty: true});
+    rerender({ isDirty: true });
 
     expect(result.current).toBeFalsy();
   });
