@@ -83,7 +83,7 @@ export function getToggleContent(icon, iconSize, pictureOptions, id, type, rectO
 }
 
 const Toggle = ({
-  id, type, label, value, name, selectedValue, isPrefill, invalid, disabled, onToggle, icon, iconSize, pictureOptions, rectOptions,
+  id, type, label, value, name, selectedValue, invalid, disabled, onToggle, icon, iconSize, pictureOptions, rectOptions,
 }) => {
   const handleToggle = () => {
     if (onToggle) {
@@ -102,7 +102,6 @@ const Toggle = ({
       disabled={disabled}
       onToggle={handleToggle}
       rectOptions={rectOptions}
-      isPrefill={isPrefill}
     >
       {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
     </BaseToggle>
@@ -116,7 +115,6 @@ Toggle.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   type: PropTypes.oneOf(['square', 'rectangle']),
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  isPrefill: PropTypes.bool,
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -140,7 +138,6 @@ Toggle.defaultProps = {
   name: '',
   type: 'square',
   selectedValue: null,
-  isPrefill: false,
   invalid: false,
   disabled: false,
   onToggle: null,

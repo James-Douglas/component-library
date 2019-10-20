@@ -41,9 +41,6 @@ export default css`
   .toggle-input:focus + label {
      box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }
-  .manor-prefilled:checked + label {
-    @apply bg-prechecked text-black;
-  }
   .square-toggle {
     @apply flex justify-around items-center w-128 h-128 p-8 text-center;
     min-height: 12.8rem;

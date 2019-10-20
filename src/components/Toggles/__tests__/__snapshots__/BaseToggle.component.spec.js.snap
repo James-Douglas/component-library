@@ -10,7 +10,6 @@ exports[`BaseToggle renders with minimal props 1`] = `
       class="
           toggle-input 
           
-          
         "
       id="test-square"
       name=""

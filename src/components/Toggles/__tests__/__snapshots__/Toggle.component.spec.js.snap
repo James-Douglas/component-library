@@ -4,6 +4,5 @@ exports[`Toggle renders with props 1`] = `
 "<span class=\\"flex toggle\\"><style></style><input tabindex=\\"0\\" class=\\"
           toggle-input 
           
-          
         \\" id=\\"test-id\\" type=\\"radio\\" name=\\"\\" value=\\"\\"><style></style><label class=\\"toggle-label transition\\" for=\\"test-id\\"><style></style><span class=\\"square-toggle\\"><style></style>test label</span></label></span>"
 `;

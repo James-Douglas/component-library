@@ -10,7 +10,6 @@ exports[`CustomToggle renders with minimal props 1`] = `
       class="
           toggle-input 
           
-          
         "
       id="test-a"
       name=""

@@ -4,6 +4,5 @@ exports[`ColorToggle renders with minimal props 1`] = `
 "<div class=\\"scoped-toggle black\\"><style></style><span class=\\"flex toggle\\"><style></style><input tabindex=\\"0\\" class=\\"
           toggle-input 
           
-          
         \\" id=\\"test-a\\" type=\\"radio\\" name=\\"\\" value=\\"\\"><style></style><label class=\\"toggle-label transition\\" for=\\"test-a\\"><span class=\\"colour-toggle\\"><span class=\\"content\\">Black</span><span class=\\"border-colour\\" style=\\"background-color: black;\\"></span></span></label></span></div>"
 `;
