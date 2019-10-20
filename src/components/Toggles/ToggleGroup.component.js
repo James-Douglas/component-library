@@ -5,6 +5,7 @@ import css from 'styled-jsx/css';
 import Fieldset from '../Fieldset/Fieldset.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
+import usePrefill from '../../hooks/usePrefill';
 
 const styles = css`
   .toggle-group {
@@ -25,13 +26,14 @@ export const getType = (children) => {
   return 'square';
 };
 
-export const getChildren = (children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage) => (
+export const getChildren = (children, type, name, selectedToggleValue, isUsePrefill, handleToggle, rectOptions, validationMessage) => (
   children.map((child, index) => {
     const key = `toggle-${child.props.id || index}`;
     const propsToAdd = {
       key,
       name,
       selectedValue: selectedToggleValue,
+      isPrefill: isUsePrefill,
       onToggle: handleToggle,
       type,
       invalid: !!validationMessage && validationMessage.length > 0,
@@ -43,11 +45,14 @@ export const getChildren = (children, type, name, selectedToggleValue, handleTog
 );
 
 const ToggleGroup = ({
-  label, tooltip, forceFullWidth, validationMessage, id, name, onToggle, selectedValue, children, rectOptions,
+  label, tooltip, forceFullWidth, validationMessage, id, prefillValue, name, onToggle, selectedValue, children, rectOptions,
 }) => {
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
+  const [isDirty, setIsDirty] = useState(false);
+  const isUsePrefill = usePrefill(prefillValue, selectedValue, isDirty);
   const type = getType(children);
   const handleToggle = (value) => {
+    setIsDirty(true);
     setSelectedToggleValue(value);
   };
 
@@ -58,11 +63,12 @@ const ToggleGroup = ({
     tooltipOptions.justifyEnd = true;
   }
 
+  const value = isUsePrefill ? prefillValue : selectedToggleValue;
   return (
     <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} validationMessage={validationMessage}>
       <style jsx>{styles}</style>
       <div className="toggle-group" id={id}>
-        {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
+        {getChildren(children, type, name, value, isUsePrefill, handleToggle, rectOptions, validationMessage)}
       </div>
     </Fieldset>
   );
@@ -76,6 +82,7 @@ ToggleGroup.propTypes = {
   forceFullWidth: PropTypes.bool,
   validationMessage: PropTypes.string,
   id: PropTypes.string,
+  prefillValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
@@ -100,6 +107,7 @@ ToggleGroup.defaultProps = {
   forceFullWidth: true,
   validationMessage: null,
   id: null,
+  prefillValue: null,
   selectedValue: null,
   rectOptions: {
     align: 'center',

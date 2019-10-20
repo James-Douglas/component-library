@@ -53,7 +53,7 @@ const Textarea = ({
   disabled,
   required,
   invalid,
-  autofill,
+  isPrefill,
   rows,
   wrap,
   readonly,
@@ -111,6 +111,8 @@ const Textarea = ({
     </div>
   );
 
+  const prefillStyles = isPrefill && !isDirty && !disabled ? 'manor-prefilled' : '';
+
   return (
     <Fieldset
       label={label}
@@ -119,9 +121,9 @@ const Textarea = ({
       validationMessage={validationMessageToDisplay}
       supportingElements={supportingElements}
     >
-      <div className={`manor-textarea-wrapper ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
+      <div className={`manor-textarea-wrapper ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
         <style jsx>{styles}</style>
-        <div className={`pull-tab ${(autofill && !isDirty) ? 'manor-prefilled' : ''} ${disabled ? 'manor-disabled' : ''} `} />
+        <div className={`pull-tab ${prefillStyles} ${disabled ? 'manor-disabled' : ''} `} />
 
         <textarea
           ref={textAreaElement}
@@ -136,7 +138,12 @@ const Textarea = ({
           wrap={wrap}
           readOnly={readonly}
           maxLength={maxLength}
-          className={`manor-textarea-default manor-body2 ${bordered ? 'manor-textarea-border' : ''}  ${(autofill && !isDirty) ? 'manor-prefilled' : ''}  ${invalid || (textAreaRemainChars < 0) ? 'invalid' : ''} `}
+          className={`
+            manor-textarea-default manor-body2 
+            ${bordered ? 'manor-textarea-border' : ''} 
+            ${prefillStyles} 
+            ${invalid || (textAreaRemainChars < 0) ? 'invalid' : ''}
+          `}
           aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
         />
 
@@ -158,7 +165,7 @@ Textarea.propTypes = {
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   invalid: PropTypes.bool,
-  autofill: PropTypes.bool,
+  isPrefill: PropTypes.bool,
   rows: PropTypes.string,
   wrap: PropTypes.string,
   readonly: PropTypes.bool,
@@ -179,7 +186,7 @@ Textarea.defaultProps = {
   disabled: false,
   required: false,
   invalid: false,
-  autofill: false,
+  isPrefill: false,
   rows: '',
   wrap: '',
   readonly: false,

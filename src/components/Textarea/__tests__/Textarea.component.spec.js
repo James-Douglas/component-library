@@ -176,7 +176,7 @@ describe('Textarea.component.js', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
-      autofill: true,
+      isPrefill: true,
       value: 'Hello World',
     };
 

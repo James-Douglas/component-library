@@ -34,7 +34,7 @@ describe('getChildren()', () => {
         id: 'a',
       },
     ]);
-    const result = getChildren(testChildren, 'square', 'test-group', null, didToggleCb, null);
+    const result = getChildren(testChildren, 'square', 'test-group', null, false, didToggleCb, null);
     const {
       name, id, selectedValue, onToggle, type,
     } = result[0].props;
@@ -52,7 +52,7 @@ describe('getChildren()', () => {
         label: 'test toggle a',
       },
     ]);
-    const result = getChildren(testChildren, 'square', 'test-group', null, didToggleCb, null);
+    const result = getChildren(testChildren, 'square', 'test-group', null, false, didToggleCb, null);
     const { id } = result[0].props;
     expect(id).toEqual('toggle-0');
   });
@@ -64,7 +64,7 @@ describe('getChildren()', () => {
         label: 'test toggle a',
       },
     ]);
-    const result = getChildren(testChildren, 'rectangle', 'test-group', null, didToggleCb, expectedRectOptions);
+    const result = getChildren(testChildren, 'rectangle', 'test-group', null, false, didToggleCb, expectedRectOptions);
     const { rectOptions } = result[0].props;
     expect(rectOptions).toEqual(expectedRectOptions);
   });
@@ -88,7 +88,7 @@ describe('ToggleGroup', () => {
     const toggleA = container.querySelector('#a');
     fireEvent.click(toggleA);
     expect(onToggleCb).toHaveBeenCalled();
-    expect(onToggleCb.mock.calls[0][0]).toEqual('a');
+    expect(onToggleCb.mock.calls[1][0]).toEqual('a');
   });
 
   it('adds justifyEnd property to tooltip when exists', () => {

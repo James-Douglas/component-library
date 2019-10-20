@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import ToggleGroup from '../../components/Toggles/ToggleGroup.component';
 import Toggle from '../../components/Toggles/Toggle.component';
 import StoryTemplate from '../storyTemplate';
 
 const ToggleView = () => {
+  const [selectedValue, setSelectedValue] = useState('1');
+
   const tooltip = {
     title: 'test',
   };
@@ -12,12 +14,13 @@ const ToggleView = () => {
   const handleChange = (value) => {
     // eslint-disable-next-line no-console
     console.log(`toggle selected: ${value} `);
+    setSelectedValue(value);
   };
 
   return (
     <StoryTemplate>
       <div className="mb-32">
-        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={handleChange}>
+        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={handleChange} selectedValue={selectedValue}>
           <Toggle value="1" id="one" label="one" />
           <Toggle value="2" id="two" label="two" />
           <Toggle value="3" id="three" label="three" />

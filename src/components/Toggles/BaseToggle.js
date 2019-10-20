@@ -24,7 +24,7 @@ export function getInlineStyles(type, rectOptions) {
 }
 
 const BaseToggle = ({
-  id, type, value, name, selectedValue, invalid, disabled, onToggle, rectOptions, children,
+  id, type, value, name, selectedValue, isPrefill, invalid, disabled, onToggle, rectOptions, children,
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
@@ -48,7 +48,11 @@ const BaseToggle = ({
       <input
         tabIndex={0}
         ref={toggleElement}
-        className={`toggle-input ${invalid ? 'invalid' : ''}`}
+        className={`
+          toggle-input 
+          ${invalid ? 'invalid' : ''}
+          ${isPrefill ? 'manor-prefilled' : ''}
+        `}
         id={id}
         type="radio"
         onChange={handleToggle}
@@ -68,6 +72,7 @@ BaseToggle.propTypes = {
   type: PropTypes.oneOf(['square', 'rectangle', 'custom']).isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isPrefill: PropTypes.bool,
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -83,6 +88,7 @@ BaseToggle.propTypes = {
 BaseToggle.defaultProps = {
   name: '',
   selectedValue: null,
+  isPrefill: false,
   invalid: false,
   disabled: false,
   rectOptions: {

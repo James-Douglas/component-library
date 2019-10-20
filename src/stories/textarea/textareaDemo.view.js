@@ -21,7 +21,7 @@ const TextareaDemoView = ({
   disabled,
   required,
   invalid,
-  autofill,
+  isPrefill,
   rows,
   wrap,
   readonly,
@@ -43,7 +43,7 @@ const TextareaDemoView = ({
           disabled={disabled}
           required={required}
           invalid={invalid}
-          autofill={autofill}
+          isPrefill={isPrefill}
           rows={rows}
           wrap={wrap}
           readonly={readonly}
@@ -62,7 +62,7 @@ const TextareaDemoView = ({
           disabled={disabled}
           required={required}
           invalid={invalid}
-          autofill={autofill}
+          isPrefill={isPrefill}
           rows={rows}
           wrap={wrap}
           readonly={readonly}
@@ -85,7 +85,7 @@ TextareaDemoView.propTypes = {
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   invalid: PropTypes.bool,
-  autofill: PropTypes.bool,
+  isPrefill: PropTypes.bool,
   rows: PropTypes.string,
   wrap: PropTypes.string,
   readonly: PropTypes.bool,
@@ -102,7 +102,7 @@ TextareaDemoView.defaultProps = {
   disabled: false,
   required: false,
   invalid: false,
-  autofill: false,
+  isPrefill: false,
   rows: '',
   wrap: '',
   readonly: false,

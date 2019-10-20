@@ -10,7 +10,7 @@ import ImageToggleView from './imageToggleView';
 import CustomToggleView from './customToggleView';
 import ColorToggleView from './colorToggleView';
 import InactiveToggleView from './inactiveToggleView';
-import PreCheckedToggleView from './PreCheckedToggleView';
+import PrefilledToggleView from './prefilledToggleView';
 import InvalidToggleView from './invalidToggleView';
 
 storiesOf('Toggles', module)
@@ -23,5 +23,5 @@ storiesOf('Toggles', module)
   .add('Custom (Medicare)', () => <CustomToggleView />, {})
   .add('Colors', () => <ColorToggleView />, {})
   .add('Inactive', () => <InactiveToggleView />, {})
-  .add('Pre-checked', () => <PreCheckedToggleView />, {})
+  .add('Pre-checked', () => <PrefilledToggleView />, {})
   .add('Invalid', () => <InvalidToggleView />, {});

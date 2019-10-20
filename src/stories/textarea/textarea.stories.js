@@ -19,7 +19,7 @@ storiesOf('Textarea', module)
     const disabled = boolean('Disabled', false);
     const required = boolean('Required', false);
     const invalid = boolean('Invalid', false);
-    const autofill = boolean('Autofill', false);
+    const isPrefill = boolean('Prefilled', false);
     const rows = text('Rows', '6'); // can be set via the css width property
     const wrap = select('Wrap', ['', 'hard', 'soft'], '');
     const readonly = boolean('Readonly', false);
@@ -37,7 +37,7 @@ storiesOf('Textarea', module)
         disabled={disabled}
         required={required}
         invalid={invalid}
-        autofill={autofill}
+        isPrefill={isPrefill}
         rows={rows}
         wrap={wrap}
         readonly={readonly}
@@ -56,7 +56,7 @@ storiesOf('Textarea', module)
     const disabled = boolean('Disabled', false);
     const required = boolean('Required', false);
     const invalid = boolean('Invalid', false);
-    const autofill = boolean('Autofill', false);
+    const isPrefill = boolean('Prefilled', false);
     const rows = text('Rows', '6'); // can be set via the css width property
     const wrap = select('Wrap', ['', 'hard', 'soft'], '');
     const readonly = boolean('Readonly', false);
@@ -74,7 +74,7 @@ storiesOf('Textarea', module)
         disabled={disabled}
         required={required}
         invalid={invalid}
-        autofill={autofill}
+        isPrefill={isPrefill}
         rows={rows}
         wrap={wrap}
         readonly={readonly}
