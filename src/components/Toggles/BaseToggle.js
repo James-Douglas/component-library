@@ -48,10 +48,7 @@ const BaseToggle = ({
       <input
         tabIndex={0}
         ref={toggleElement}
-        className={`
-          toggle-input 
-          ${invalid ? 'invalid' : ''}
-        `}
+        className={`toggle-input ${invalid ? 'invalid' : ''}`}
         id={id}
         type="radio"
         onChange={handleToggle}
