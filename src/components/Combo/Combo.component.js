@@ -5,12 +5,12 @@ import Input from '../Input/Input.component';
 import Button from '../Button/Button.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
-export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
+export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, handleBlueButtonMouseDown, filteredValuesRefs, listVisible) {
   return (
-    <div className={`row-view section-wrap-shadow ${!listVisible ? 'hidden' : ''}`}>
+    <div className={`row-view section-wrap-shadow mt-8 ${!listVisible || currentPrefillValue.length < characterMinimum ? 'hidden' : 'absolute'}`}>
       <style jsx>{styles}</style>
       {comboDataList(filteredValues, handleSelectItem, filteredValuesRefs)}
-      {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton)}
+      {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton, handleBlueButtonMouseDown)}
     </div>
   );
 }
@@ -37,7 +37,7 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
   );
 }
 
-export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton) {
+export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton, handleBlueButtonMouseDown) {
   return (
     <>
       <style jsx>{styles}</style>
@@ -51,6 +51,7 @@ export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, 
           disabled={false}
           href={linkHref}
           target="_blank"
+          handleOnMouseDown={handleBlueButtonMouseDown}
         />
       </div>
       )}
@@ -102,14 +103,23 @@ const Combo = ({
     setFocusedRef(null);
   };
 
+  const handleBlueButtonMouseDown = (event) => {
+    event.target.click();
+  };
+
+  const handleClearButtonMouseDown = (event) => {
+    event.preventDefault();
+    setListVisible(false);
+  };
+
   const onChange = (valueInput) => {
     setCurrentPrefillValue(valueInput);
     setListVisible(!!valueInput.length);
   };
-  const handelOnFocus = (event) => {
+  const handleOnFocus = () => {
     setListVisible(!!currentPrefillValue.length);
   };
-  const handleOnBlur = (event) => {
+  const handleOnBlur = () => {
     setListVisible(false);
   };
   const keyboardAccessibility = (event) => {
@@ -122,37 +132,43 @@ const Combo = ({
       case 'Enter':
         if (focusedRef !== null) {
           handleSelectItem(event.target.innerHTML);
+        } else {
+          event.target.getElementsByTagName('a')[0].click();
         }
         break;
       case 'ArrowUp':
-        if (!focusedRef) {
-          if (linkText && linkHref) {
-            setFocusedRef(filteredValues.length);
-            blueButton.current.focus();
+        if (currentPrefillValue.length >= characterMinimum) {
+          if (!focusedRef) {
+            if (linkText && linkHref) {
+              setFocusedRef(filteredValues.length);
+              blueButton.current.focus();
+            } else {
+              setFocusedRef(filteredValues.length - 1);
+              filteredValuesRefs[filteredValues.length - 1].current.focus();
+            }
           } else {
-            setFocusedRef(filteredValues.length - 1);
-            filteredValuesRefs[filteredValues.length - 1].current.focus();
+            setFocusedRef(focusedRef - 1);
+            filteredValuesRefs[focusedRef - 1].current.focus();
           }
-        } else {
-          setFocusedRef(focusedRef - 1);
-          filteredValuesRefs[focusedRef - 1].current.focus();
         }
         break;
       case 'ArrowDown':
-        if (focusedRef === filteredValues.length - 1) {
-          if (linkText && linkHref) {
-            setFocusedRef(null);
-            blueButton.current.focus();
-          } else {
+        if (currentPrefillValue.length >= characterMinimum) {
+          if (focusedRef === filteredValues.length - 1) {
+            if (linkText && linkHref) {
+              setFocusedRef(null);
+              blueButton.current.focus();
+            } else {
+              setFocusedRef(0);
+              filteredValuesRefs[0].current.focus();
+            }
+          } else if (focusedRef === null) {
             setFocusedRef(0);
             filteredValuesRefs[0].current.focus();
+          } else {
+            setFocusedRef(focusedRef + 1);
+            filteredValuesRefs[focusedRef + 1].current.focus();
           }
-        } else if (focusedRef === null) {
-          setFocusedRef(0);
-          filteredValuesRefs[0].current.focus();
-        } else {
-          setFocusedRef(focusedRef + 1);
-          filteredValuesRefs[focusedRef + 1].current.focus();
         }
         break;
       default:
@@ -161,7 +177,8 @@ const Combo = ({
   };
 
   return (
-    <div onFocus={handelOnFocus} onBlur={handleOnBlur} onKeyDown={keyboardAccessibility} role="listbox" aria-expanded="false" tabIndex="-1">
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    <div onKeyDown={keyboardAccessibility} className="w-full">
       <style jsx>{styles}</style>
       <Input
         id={id}
@@ -179,7 +196,19 @@ const Combo = ({
         handleChange={(value) => onChange(value)}
         tabIndex="0"
         role="comboField"
-        dataList={() => comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible)}
+        handleWrapperFocus={handleOnFocus}
+        handleWrapperBlur={handleOnBlur}
+        handleClearButtonMouseDown={handleClearButtonMouseDown}
+        dataList={() => comboDropdownList(linkText,
+          linkHref,
+          blueButton,
+          currentPrefillValue,
+          characterMinimum,
+          filteredValues,
+          handleSelectItem,
+          handleBlueButtonMouseDown,
+          filteredValuesRefs,
+          listVisible)}
       />
     </div>
   );

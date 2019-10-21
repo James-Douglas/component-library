@@ -28,13 +28,13 @@ const renderContent = (children) => {
 };
 
 const Checkbox = ({
-  id, 
-  icon, 
-  disabled, 
-  invalid, 
-  invertColour, 
-  handleChange, 
-  isSelected, 
+  id,
+  icon,
+  disabled,
+  invalid,
+  invertColour,
+  handleChange,
+  isSelected,
   children,
 }) => {
   const [value, toggle] = useToggleState(isSelected);
@@ -44,7 +44,7 @@ const Checkbox = ({
   };
 
   useEffect(() => {
-    handleChange({ id, value })
+    handleChange({ id, value });
   }, [handleChange, id, value]);
 
   return (

@@ -5,7 +5,7 @@ import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
-export const renderClearIcon = (value, clearInput, isAutofill, label) => {
+export const renderClearIcon = (value, clearInput, isAutofill, label, handleClearButtonMouseDown) => {
   if (value.length) {
     return (
       <>
@@ -13,6 +13,7 @@ export const renderClearIcon = (value, clearInput, isAutofill, label) => {
         <button
           type="button"
           onClick={clearInput}
+          onMouseDown={handleClearButtonMouseDown}
           className={`
           input-clear-button
           ${isAutofill ? 'darker' : 'lighter'}
@@ -87,6 +88,9 @@ const Input = ({
   handleChange,
   handleFocus,
   handleBlur,
+  handleWrapperFocus,
+  handleWrapperBlur,
+  handleClearButtonMouseDown,
   valueMasking,
   dataList,
 }) => {
@@ -129,12 +133,22 @@ const Input = ({
     }
     toggleFocus();
   };
+  const onWrapperFocus = () => {
+    if (handleWrapperFocus) {
+      handleWrapperFocus();
+    }
+  };
 
   const onBlur = () => {
     if (handleBlur) {
       handleBlur();
     }
     toggleFocus();
+  };
+  const onWrapperBlur = () => {
+    if (handleWrapperBlur) {
+      handleWrapperBlur();
+    }
   };
 
   const toggleFocus = () => {
@@ -152,39 +166,46 @@ const Input = ({
     <>
       <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth} validationMessage={validationMessage} supportingElements={getSupportingElements(required)}>
         <style jsx>{styles}</style>
-        <div className="input-container">
-          <div
-            ref={inputWrapElement}
-            className={`input-wrap ${prefillClass} ${borderClass} ${invalidClass} ${disabledClass}`}
-          >
+        <div
+          onFocus={onWrapperFocus}
+          onBlur={onWrapperBlur}
+          className="w-full"
+        >
+          <div className="input-container">
+            <div
+              ref={inputWrapElement}
+              className={`input-wrap ${prefillClass} ${borderClass} ${invalidClass} ${disabledClass}`}
+            >
 
-            {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
+              {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
 
-            <div className="input-clear-wrap">
-              <input
-                id={id}
-                name={id}
-                type={type}
-                placeholder={placeholder}
-                disabled={disabled}
-                value={value}
-                onChange={handleOnChange}
-                autoComplete={autocomplete}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                maxLength={maxlength}
-                className={`
-                  input-default
-                  ${isAutofill && !disabled ? 'manor-prefilled' : ''}
-                `}
-              />
+              <div className="input-clear-wrap">
+                <input
+                  id={id}
+                  name={id}
+                  type={type}
+                  placeholder={placeholder}
+                  disabled={disabled}
+                  value={value}
+                  onChange={handleOnChange}
+                  autoComplete={autocomplete}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  maxLength={maxlength}
+                  className={`
+                    input-default
+                    ${isAutofill && !disabled ? 'manor-prefilled' : ''}
+                  `}
+                />
 
-              {renderClearIcon(value, clearInput, isAutofill, label)}
+                {renderClearIcon(value, clearInput, isAutofill, label, handleClearButtonMouseDown)}
+
+              </div>
+              {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
 
             </div>
-            {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
+            {dataList && <div>{dataList()}</div>}
           </div>
-          {dataList && <div className={`list ${!required ? 'up-list' : ''}`}>{dataList()}</div>}
         </div>
       </Fieldset>
     </>
@@ -209,6 +230,9 @@ Input.propTypes = {
   autocomplete: PropTypes.string,
   handleFocus: PropTypes.func,
   handleBlur: PropTypes.func,
+  handleWrapperFocus: PropTypes.func,
+  handleWrapperBlur: PropTypes.func,
+  handleClearButtonMouseDown: PropTypes.func,
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -235,6 +259,9 @@ Input.defaultProps = {
   autocomplete: 'off',
   handleFocus: null,
   handleBlur: null,
+  handleWrapperFocus: null,
+  handleWrapperBlur: null,
+  handleClearButtonMouseDown: null,
   required: true,
   disabled: false,
   bordered: true,

@@ -141,11 +141,4 @@ input[disabled] {
 ::-ms-clear {
   display: none;
 }
-
-.list {
-  margin-top: -8px;
-}
-.list.up-list {
-  margin-top: -22px;
-}
 `;

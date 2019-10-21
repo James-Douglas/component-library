@@ -27,7 +27,7 @@ module.exports = {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'max-len': ["error", { "code": 200, "ignoreUrls": true, "ignoreComments": true, "ignoreStrings": true, "ignoreTemplateLiterals": true }],
-    'react/jsx-one-expression-per-line': 'off'
+    'react/jsx-one-expression-per-line': 'off',
   },
   settings: {
     "import/resolver": {

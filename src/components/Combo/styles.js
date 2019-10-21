@@ -7,8 +7,14 @@ export default css`
 ul {
   @apply mt-8 z-20 text-black;
 }
+.row-view {
+  @apply relative;
+}
 .section-wrap-shadow {
-  @apply bg-white shadow-md w-full;
+  @apply bg-white shadow-md w-full z-10;
+}
+.section-wrap-shadow.absolute {
+   @apply absolute;
 }
 ul li {
   @apply text-base text-grey-darker cursor-pointer border border-solid border-transparent;
@@ -43,11 +49,8 @@ ul li:focus {
 .combo-wrap {
   @apply relative
 }
-.row-view {
-  position: relative;
-}
+
 *:focus {
   outline: none;
 }
-
 `;

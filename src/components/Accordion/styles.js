@@ -40,6 +40,6 @@ export default css`
 .accordion:focus,
 .accordion.hide:focus,
 .accordion.on-focus {
-  border: 2px solid hsl(216, 90%, 73%);
+  border: 1px solid hsl(216, 90%, 73%);
  }
 `;
