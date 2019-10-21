@@ -301,4 +301,60 @@ describe('Input.component', () => {
     expect(clearValueCb.mock.calls[1][0]).toBe('test string');
     expect(clearValueCb.mock.calls[2][0]).toBe('');
   });
+
+  it('has a max length attribute', () => {
+    // https://github.com/testing-library/dom-testing-library/issues/332
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        maxlength="5"
+        handleChange={() => {}}
+      />,
+    );
+
+    const inputField = container.querySelector('#test-id');
+    const maxlength = inputField.getAttribute('maxlength');
+
+    expect(maxlength).toBe('5');
+  });
+
+  it('has a blur handler when passed in', () => {
+    const focusCb = jest.fn();
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        maxlength="5"
+        handleChange={() => {}}
+        handleFocus={focusCb}
+      />,
+    );
+
+    const inputField = container.querySelector('#test-id');
+    fireEvent.focus(inputField);
+    expect(focusCb.mock.calls.length).toBe(1);
+    expect(focusCb.mock.calls[0][0]).toBe(undefined);
+  });
+
+  it('has a blur handler when passed in', () => {
+    const blurCb = jest.fn();
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        maxlength="5"
+        handleChange={() => {}}
+        handleBlur={blurCb}
+      />,
+    );
+
+    const inputField = container.querySelector('#test-id');
+    fireEvent.blur(inputField);
+    expect(blurCb.mock.calls.length).toBe(1);
+    expect(blurCb.mock.calls[0][0]).toBe(undefined);
+  });
 });
