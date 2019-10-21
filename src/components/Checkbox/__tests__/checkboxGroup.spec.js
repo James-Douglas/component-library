@@ -85,6 +85,23 @@ describe('CheckboxGroup.component', () => {
     expect(chkA1Input.checked).toBe(true);
   });
 
+  it('accepts a prefill value', () => {
+    const { container } = render(
+      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5" >
+        <Checkbox id="A-1" icon="check" isSelected><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3" icon="check" isSelected><p>A-3 check</p></Checkbox>
+       </CheckboxGroup>,
+    );
+
+    const checkboxA1 = container.querySelector('#A-1');
+    const checkboxA2 = container.querySelector('#A-2');
+    const checkboxA3 = container.querySelector('#A-3');
+    expect(checkboxA1.checked).toBe(true);
+    expect(checkboxA2.checked).toBe(false);
+    expect(checkboxA3.checked).toBe(true);
+  });
+
   it('does not check when disabled', () => {
     const mockTestClick = jest.fn();
     const { container } = render(

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useToggleState from '../../hooks/useToggleState';
 import Icon from '../Icon/Icon.component';
 import styles from './styles';
-import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 
 export const renderIcon = (icon, value) => {
   if (value) {
@@ -29,7 +28,14 @@ const renderContent = (children) => {
 };
 
 const Checkbox = ({
-  id, icon, disabled, invalid, invertColour, handleChange, isSelected, children,
+  id, 
+  icon, 
+  disabled, 
+  invalid, 
+  invertColour, 
+  handleChange, 
+  isSelected, 
+  children,
 }) => {
   const [value, toggle] = useToggleState(isSelected);
 
@@ -37,7 +43,9 @@ const Checkbox = ({
     toggle(value);
   };
 
-  useDidUpdateEffect(handleChange, [{ id, value }], [handleChange, id, value]);
+  useEffect(() => {
+    handleChange({ id, value })
+  }, [handleChange, id, value]);
 
   return (
     <>

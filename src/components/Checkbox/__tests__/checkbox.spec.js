@@ -2,7 +2,6 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Checkbox, { renderIcon } from '../Checkbox.component';
 
-
 describe('renderIcon()', () => {
   // eslint-disable-next-line react/prop-types
   const IconContainer = ({ icon, toggle }) => (
@@ -59,6 +58,19 @@ describe('Checkbox.component', () => {
     expect(container.querySelector('#child-content')).toBeDefined();
     expect(container.getElementsByTagName('svg')).toBeDefined();
     expect(container.innerHTML).toMatchSnapshot();
+  });
+
+  it('accepts a prefill value', () => {
+    const { container } = render(
+      <Checkbox
+        id="test-id"
+        icon="check"
+        isSelected
+      ></Checkbox>,
+    );
+
+    const checkbox = container.querySelector('#test-id');
+    expect(checkbox.checked).toBe(true);
   });
 
   it('checks on click', () => {
