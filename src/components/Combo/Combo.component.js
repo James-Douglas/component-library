@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import Input from '../Input/Input.component';
 import Button from '../Button/Button.component';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
 export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
   return (
@@ -74,6 +75,7 @@ const Combo = ({
   renderLimit,
   linkText,
   linkHref,
+  tooltip,
 }) => {
   const [listVisible, setListVisible] = useState(false);
   const [currentPrefillValue, setCurrentPrefillValue] = useState(prefillValue);
@@ -163,6 +165,7 @@ const Combo = ({
       <style jsx>{styles}</style>
       <Input
         id={id}
+        tooltip={tooltip}
         placeholder={placeholder}
         label={label}
         prefillValue={currentPrefillValue}
@@ -208,6 +211,7 @@ Combo.propTypes = {
   renderLimit: PropTypes.number,
   linkText: PropTypes.string,
   linkHref: PropTypes.string,
+  tooltip: PropTypes.shape(tooltipPropTypes),
 };
 
 Combo.defaultProps = {
@@ -227,6 +231,7 @@ Combo.defaultProps = {
   renderLimit: 10,
   linkHref: '',
   linkText: '',
+  tooltip: {},
 };
 
 export default Combo;
