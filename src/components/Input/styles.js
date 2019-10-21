@@ -2,7 +2,7 @@ import css from 'styled-jsx/css';
 
 export default css`
 .input-container {
-  @apply relative mb-12;
+  @apply relative;
 }
 
 .input-default, .input-container {

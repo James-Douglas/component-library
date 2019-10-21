@@ -9,35 +9,27 @@ import Column from '../../components/Grid/Column/Column.component';
 const g1 = 'checkbox-group-a';
 const g2 = 'checkbox-group-b';
 
-const groupAFieldsetProps = {
-  label: 'Group A',
-  tooltip: {
-    title: 'Group A',
-    body: 'This is a tooltip for group A',
-  },
-};
 
-const groupBFieldsetProps = {
-  label: 'Group B',
-};
 const CheckboxGroupView = () => {
   const [checkboxGroupA, updateCheckboxGroupA] = useState([]);
   const [checkboxGroupB, updateCheckboxGroupB] = useState([]);
+  const [validationMessageGroupA, setValidationMessageGroupA] = useState('');
+  const [validationMessageGroupB, setValidationMessageGroupB] = useState('');
 
   const handleGroupSelection = (selectedCheckboxes, group) => {
     if (group === g1) {
       updateCheckboxGroupA(selectedCheckboxes);
       if (selectedCheckboxes.length) {
-        groupAFieldsetProps.validationMessage = 'Oops that doesn\'t seem right';
+        setValidationMessageGroupA('Oops that doesn\'t seem right');
       } else {
-        groupAFieldsetProps.validationMessage = null;
+        setValidationMessageGroupA(null);
       }
     } else {
       updateCheckboxGroupB(selectedCheckboxes);
       if (selectedCheckboxes.length) {
-        groupBFieldsetProps.validationMessage = 'Sorry, but selecting anything in this checkbox will trigger a validation message, for science!';
+        setValidationMessageGroupB('Sorry, but selecting anything in this checkbox will trigger a validation message, for science!');
       } else {
-        groupBFieldsetProps.validationMessage = null;
+        setValidationMessageGroupB(null);
       }
     }
   };
@@ -50,7 +42,9 @@ const CheckboxGroupView = () => {
           <Row>
             <Column offset={2} col={10}>
               <CheckboxGroup
-                fieldsetProps={groupAFieldsetProps}
+                label="Group A"
+                tooltip={{ title: 'Group A', body: 'This is a tooltip for group A' }}
+                validationMessage={validationMessageGroupA}
                 groupId={g1}
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
@@ -67,7 +61,8 @@ const CheckboxGroupView = () => {
           <Row>
             <Column offset={2} col={10}>
               <CheckboxGroup
-                fieldsetProps={groupBFieldsetProps}
+                label="Group B"
+                validationMessage={validationMessageGroupB}
                 groupId={g2}
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}

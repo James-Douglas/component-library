@@ -6,17 +6,24 @@ export default css`
   }
   .toggle {
     @apply relative bg-white shadow-sm border cursor-pointer mx-8 mb-16 text-sm font-bold leading-normal;
+    min-width: 12.8rem;
   }
   .toggle-label {
-    @apply w-full cursor-pointer;;
+    @apply w-full cursor-pointer block relative;
   }
-  .toggle:hover {
+  .toggle-label:hover {
+    @apply text-light-blue;
+  }
+  .icon-toggle:hover  {
     @apply text-light-blue fill-current;
   }
+  .toggle-input:checked icon-toggle {
+    @apply bg-dark-blue text-white fill-current shadow-none;
+  } 
   .toggle-input {
-    @apply opacity-0 h-0 w-0;
+    @apply opacity-0 h-0 w-0 absolute;
   }
-  .toggle-input:invalid + label {
+  .toggle-input.invalid + label {
     @apply border-invalid text-invalid fill-current;
   }
   .toggle-input:disabled + label:hover {
@@ -26,19 +33,22 @@ export default css`
     @apply text-disabled border-disabled fill-current;
   }
   .toggle-input:checked + label {
-    @apply bg-dark-blue text-white fill-current shadow-none;
+    @apply bg-dark-blue text-white shadow-none;
   } 
-  .toggle-input:checked + .autofill {
-    @apply bg-prechecked text-black fill-current;
+  .toggle-input.invalid:checked + label {
+    @apply border-2 border-invalid text-invalid fill-current;
   }
+  
   .toggle-input:focus + label {
      box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }
   .square-toggle {
     @apply flex justify-around items-center w-128 h-128 p-8 text-center;
+    min-height: 12.8rem;
   }
   .rect-toggle {
     @apply h-full flex p-16 items-center text-center;
+    min-height: 2.4rem;
   }
   .align-left {
     @apply justify-start;

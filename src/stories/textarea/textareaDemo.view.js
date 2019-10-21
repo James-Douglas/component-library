@@ -11,13 +11,6 @@ background - additional padding added for display purposes also. The developer
 will be expected to set bordered accordingly.
 */
 
-const fieldsetProps = {
-  label: 'Textarea demo',
-  tooltip: {
-    title: 'text area tooltip!',
-  },
-};
-
 const TextareaDemoView = ({
   id,
   name,
@@ -40,7 +33,7 @@ const TextareaDemoView = ({
       <div className="add-padding-around-field-for-display-purposes">
 
         <Textarea
-          fieldsetProps={fieldsetProps}
+          tooltip={{ title: 'text area tooltip!' }}
           id={id}
           name={name}
           label={label}
@@ -59,7 +52,7 @@ const TextareaDemoView = ({
         />
 
         <Textarea
-          fieldsetProps={fieldsetProps}
+          tooltip={{ title: 'text area tooltip!' }}
           id={id}
           name={name}
           label={label}

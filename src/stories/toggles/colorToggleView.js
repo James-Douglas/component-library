@@ -15,16 +15,16 @@ const ColorToggleView = () => {
     title: 'test',
   };
 
-  const handleChange = (id, value) => {
+  const handleChange = (value) => {
     // eslint-disable-next-line no-console
-    console.log(`TOGGLE SELECTED: ${id}, value: ${value} `);
+    console.log(`TOGGLE SELECTED: ${value} `);
   };
 
   return (
     <StoryTemplate background="grey">
       <div className="mb-32">
         <style jsx>{styles}</style>
-        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={({ id, value }) => handleChange(id, value)}>
+        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={handleChange}>
           <ColorToggle backgroundColor="pink" value="pink" id="pink" fontColor="white" />
           <ColorToggle backgroundColor="white" value="white" id="white" />
           <ColorToggle backgroundColor="silver" value="silver" id="silver" />

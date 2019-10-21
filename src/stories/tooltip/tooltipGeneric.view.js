@@ -4,7 +4,7 @@ import Tooltip from '../../components/Tooltip/Tooltip.component';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
-import styles from './styles';
+import StoryTemplate from '../storyTemplate';
 
 const TooltipGenericView = () => {
   const tooltipContentA = (
@@ -44,66 +44,63 @@ Quarterdeck tender heave to pillage stern lass list Blimey maroon walk the plank
   );
 
   return (
-    <>
-      <style jsx>{styles}</style>
-      <div className="background manor-rich-text">
-        <Container>
-          <Row>
-            <Column col="10">
-              <p>
+    <StoryTemplate background="grey">
+      <Container>
+        <Row>
+          <Column col="10">
+            <p>
                 Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tri-tip kielbasa landjaeger ham hock
                 chicken fatback pastrami turkey pork loin. Kevin prosciutto short ribs chicken strip steak picanha salami. Meatloaf
                 capicola spare ribs kielbasa fatback beef biltong chicken alcatra. Kielbasa landjaeger andouille tenderloin strip
                 steak beef shank, short ribs t-bone. Meatball pork loin turkey beef, tenderloin leberkas jerky frankfurter biltong
                 rump hamburger.
-              </p>
-            </Column>
-            <Column col="2">
-              <Tooltip title="test tooltip" body={tooltipContentA} />
-            </Column>
-          </Row>
-          <Row>
-            <Column col="10">
-              <p>
+            </p>
+          </Column>
+          <Column col="2">
+            <Tooltip title="test tooltip" body={tooltipContentA} />
+          </Column>
+        </Row>
+        <Row>
+          <Column col="10">
+            <p>
   Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tri-tip kielbasa landjaeger ham hock
                 chicken fatback pastrami turkey pork loin. Kevin prosciutto short ribs chicken strip steak picanha salami. Meatloaf
                 capicola spare ribs kielbasa fatback beef biltong chicken alcatra. Kielbasa landjaeger andouille tenderloin strip
                 steak beef shank, short ribs t-bone. Meatball pork loin turkey beef, tenderloin leberkas jerky frankfurter biltong
                 rump hamburger.
-              </p>
-            </Column>
-          </Row>
-          <Row>
-            <Column col="10">
-              <p>
+            </p>
+          </Column>
+        </Row>
+        <Row>
+          <Column col="10">
+            <p>
   Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tri-tip kielbasa landjaeger ham hock
                 chicken fatback pastrami turkey pork loin. Kevin prosciutto short ribs chicken strip steak picanha salami. Meatloaf
                 capicola spare ribs kielbasa fatback beef biltong chicken alcatra. Kielbasa landjaeger andouille tenderloin strip
                 steak beef shank, short ribs t-bone. Meatball pork loin turkey beef, tenderloin leberkas jerky frankfurter biltong
                 rump hamburger.
-              </p>
-            </Column>
-            <Column col="2">
-              <Tooltip title="test tooltip" body={tooltipContentB} />
-            </Column>
-          </Row>
-          <Row>
-            <Column col="10">
-              <p>
+            </p>
+          </Column>
+          <Column col="2">
+            <Tooltip title="test tooltip" body={tooltipContentB} />
+          </Column>
+        </Row>
+        <Row>
+          <Column col="10">
+            <p>
   Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tri-tip kielbasa landjaeger ham hock
                 chicken fatback pastrami turkey pork loin. Kevin prosciutto short ribs chicken strip steak picanha salami. Meatloaf
                 capicola spare ribs kielbasa fatback beef biltong chicken alcatra. Kielbasa landjaeger andouille tenderloin strip
                 steak beef shank, short ribs t-bone. Meatball pork loin turkey beef, tenderloin leberkas jerky frankfurter biltong
                 rump hamburger.
-              </p>
-            </Column>
-            <Column col="2">
-              <Tooltip title="test tooltip" body={tooltipContentC} />
-            </Column>
-          </Row>
-        </Container>
-      </div>
-    </>
+            </p>
+          </Column>
+          <Column col="2">
+            <Tooltip title="test tooltip" body={tooltipContentC} />
+          </Column>
+        </Row>
+      </Container>
+    </StoryTemplate>
   );
 };
 

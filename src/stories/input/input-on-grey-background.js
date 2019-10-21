@@ -18,22 +18,22 @@ const greyBackgroundView = () => {
       <style jsx>{styles}</style>
       <div className="grey-background">
         <Input
+          label="[Fieldset label] With tooltip"
+          tooltip={tooltip}
           id="default-id"
           placeholder="Placeholder one"
           type="text"
           bordered={false}
           required={false}
-          label="[Fieldset label] With tooltip"
-          tooltip={tooltip}
           handleChange={(value) => logValue(value)}
         />
         <Input
+          label="[Fieldset label] Without tooltip"
           id="input-two"
           placeholder="Placeholder two"
           type="text"
           bordered={false}
           required={false}
-          label="[Fieldset label] Without tooltip"
           handleChange={(value) => logValue(value)}
         />
       </div>

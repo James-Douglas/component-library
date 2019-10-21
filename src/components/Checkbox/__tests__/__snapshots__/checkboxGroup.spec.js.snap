@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup.component renders with minimal props 1`] = `
-"<div class=\\"fieldset\\"><style jsx=\\"true\\"></style><div class=\\"row \\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"label\\"><style></style><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\"></label></div></div><style jsx=\\"true\\">.row {
+"<div class=\\"fieldset\\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"row \\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"label\\"><style></style><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\">test</label></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-12 \\"><style jsx=\\"true\\"></style><div id=\\"test-group-id\\" class=\\"checkbox-group\\"><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-6 \\"><style></style><div class=\\"checkbox-wrap\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div id=\\"test-group-id\\" class=\\"checkbox-group\\"><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-6 \\"><style></style><div class=\\"checkbox-wrap\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"
             
             
           \\"><div class=\\"
@@ -31,17 +31,17 @@ exports[`CheckboxGroup.component renders with minimal props 1`] = `
       </style></div></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start -mt-24\\"></span></div></div><style jsx=\\"true\\">.row {
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start\\"></span></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
       </style></div></div>"
 `;
 
 exports[`CheckboxGroup.component renders with props 1`] = `
-"<div class=\\"fieldset\\"><style jsx=\\"true\\"></style><div class=\\"row \\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"label\\"><style></style><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\"></label></div></div><style jsx=\\"true\\">.row {
+"<div class=\\"fieldset\\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"row \\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"label\\"><style></style><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\"></label></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-12 \\"><style jsx=\\"true\\"></style><div id=\\"test-group-id\\" class=\\"checkbox-group\\"><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-5 \\"><style></style><div class=\\"checkbox-wrap\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div id=\\"test-group-id\\" class=\\"checkbox-group\\"><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-5 \\"><style></style><div class=\\"checkbox-wrap\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"manor-checkbox-input\\"><label for=\\"A-1\\" class=\\"
             
             
           \\"><div class=\\"
@@ -72,7 +72,7 @@ exports[`CheckboxGroup.component renders with props 1`] = `
       </style></div></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start -mt-24\\"></span></div></div><style jsx=\\"true\\">.row {
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start\\"></span></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
       </style></div></div>"

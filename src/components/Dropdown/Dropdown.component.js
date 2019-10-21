@@ -2,12 +2,31 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import usePrefill from '../../hooks/usePrefill';
+
+export const getSupportingElements = (required) => {
+  if (required) return null;
+  return (
+    <div className="w-full">
+      <div className="supporting-elements">
+        <style jsx>{styles}</style>
+        <span className="manor-dropdown-optional-indicator manor-subscript">
+          OPTIONAL
+        </span>
+      </div>
+    </div>
+  );
+};
 
 const Dropdown = ({
+  label,
+  tooltip,
+  forceFullWidth,
+  validationMessage,
   id,
   name,
-  invalid,
-  autofill,
+  prefillValue,
   bordered,
   disabled,
   required,
@@ -16,10 +35,6 @@ const Dropdown = ({
   value,
   onChange,
   defaultOption,
-  label,
-  tooltip,
-  forceFullWidth,
-  supportingElements,
 }) => {
   const optionsModified = defaultOption.hasDefaultOption ? [{
     value: defaultOption.value,
@@ -34,11 +49,12 @@ const Dropdown = ({
     }
     return false;
   };
-  const invalidClass = invalid ? 'invalid' : '';
-  const [isDirty, setIsDirty] = useState(!!value);
+  const invalidClass = validationMessage && validationMessage.length ? 'invalid' : '';
+  const [isDirty, setIsDirty] = useState(false);
   const [showDefaultStyle, setshowDefaultStyle] = useState(checkIfSelectedValueIsEqualToDefaultValue(value));
   const [stateValue, setStateValue] = useState(value);
-  const autofillClass = (autofill && !isDirty) ? 'manor-prefilled' : '';
+  const isUsePrefill = usePrefill(prefillValue, value, isDirty);
+  const prefillClass = isUsePrefill ? 'manor-prefilled' : '';
   const borderedClass = bordered ? 'manor-input-border' : '';
   const showDefaultClass = showDefaultStyle ? 'manor-default-selected' : '';
   const handleChange = (event) => {
@@ -52,18 +68,19 @@ const Dropdown = ({
     }
   };
 
+  const selectValue = isUsePrefill ? prefillValue : stateValue;
   return (
     <>
       <style jsx="true">{styles}</style>
-      <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth}>
+      <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth} validationMessage={validationMessage} supportingElements={getSupportingElements(required)}>
         <select
           id={id}
           name={name}
-          className={`manor-dropdown ${invalidClass} ${autofillClass} ${borderedClass} ${showDefaultClass}`}
+          className={`manor-dropdown ${invalidClass} ${prefillClass} ${borderedClass} ${showDefaultClass}`}
           disabled={disabled}
           required={required}
           readOnly={readonly}
-          value={stateValue}
+          value={selectValue}
           onChange={handleChange}
         >
           {optionsModified.map((option) => (
@@ -80,32 +97,24 @@ const Dropdown = ({
           ))}
         </select>
       </Fieldset>
-      {supportingElements && (
-        <div className="w-full">
-          <div className="supporting-elements">
-            <span className="manor-dropdown-optional-indicator manor-subscript">
-              {!required && ('OPTIONAL')}
-            </span>
-          </div>
-        </div>
-      )}
     </>
   );
 };
 
 Dropdown.propTypes = {
-  id: PropTypes.string.isRequired,
   label: PropTypes.string,
+  tooltip: PropTypes.shape(tooltipPropTypes),
+  forceFullWidth: PropTypes.bool,
+  validationMessage: PropTypes.string,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string,
-  invalid: PropTypes.bool,
-  autofill: PropTypes.bool,
+  prefillValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   bordered: PropTypes.bool,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   readonly: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  supportingElements: PropTypes.bool,
   defaultOption: PropTypes.shape({
     hasDefaultOption: PropTypes.bool.isRequired,
     value: PropTypes.string.isRequired,
@@ -121,28 +130,20 @@ Dropdown.propTypes = {
     hidden: PropTypes.bool,
     className: PropTypes.string,
   })),
-  tooltip: PropTypes.shape({
-    title: PropTypes.string,
-    body: PropTypes.string,
-    boundingElementSelector: PropTypes.string,
-    screenReaderLabel: PropTypes.string,
-  }),
-  forceFullWidth: PropTypes.bool,
 };
 
 Dropdown.defaultProps = {
   label: '',
-  name: '',
-  value: '',
   tooltip: {},
   forceFullWidth: false,
-  invalid: false,
-  autofill: false,
+  validationMessage: '',
+  name: '',
+  value: '',
+  prefillValue: null,
   bordered: false,
   disabled: false,
   required: false,
   readonly: false,
-  supportingElements: false,
   onChange: null,
   options: [],
   defaultOption: {},

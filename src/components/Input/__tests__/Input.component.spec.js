@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Input, { renderClearIcon, renderAffix, renderOptionalElement } from '../Input.component';
+import Input, {
+  renderClearIcon, renderAffix, getSupportingElements,
+} from '../Input.component';
 
 const SvgUkFlag = () => (
   <svg width="30" height="21" xmlns="http://www.w3.org/2000/svg">
@@ -126,28 +128,22 @@ describe('renderAffix()', () => {
   });
 });
 
-/* renderOptionalElement()
+/* getSupportingElements()
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-describe('renderOptionalElement()', () => {
+describe('getSupportingElements()', () => {
   // eslint-disable-next-line react/prop-types
-  const OptionalElementContainer = ({ required }) => (
+  const SupportElementsContainer = ({ required }) => (
     <>
-      {renderOptionalElement(required)}
+      {getSupportingElements(required)}
     </>
   );
-
-  it('does not render the optional text when required === true', () => {
-    const { container } = render(<OptionalElementContainer required />);
-
-    expect(container).toBeEmpty();
+  it('returns null when required true', () => {
+    expect(getSupportingElements(true)).toBeNull();
   });
-
-  it('does render the optional text when required === false', () => {
-    const { container } = render(<OptionalElementContainer required={false} />);
-
-    const optionalTxt = container.querySelector('.manor-subscript');
-    expect(optionalTxt).toBeInTheDocument();
+  it('returns Optional text when required false', () => {
+    const { getByText } = render(<SupportElementsContainer />);
+    expect(getByText('Optional')).toBeInTheDocument();
   });
 });
 
@@ -212,7 +208,7 @@ describe('Input.component', () => {
         id="test-id"
         type="text"
         placeholder="placeholder test"
-        invalid
+        validationMessage="invalid"
         handleChange={() => {}}
       />,
     );

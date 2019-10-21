@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import Fieldset, { defaultFieldsetProps, fieldsetPropTypes } from '../Fieldset/Fieldset.component';
+import Fieldset from '../Fieldset/Fieldset.component';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
 import styles from './styles';
 
@@ -40,7 +41,10 @@ export function getRemainingCharsContent(maxChars, maxLength, id, textAreaRemain
 }
 
 const Textarea = ({
-  fieldsetProps,
+  label,
+  tooltip,
+  forceFullWidth,
+  validationMessage,
   id,
   name,
   placeholder,
@@ -94,10 +98,6 @@ const Textarea = ({
     }
   }, [onChange, id, stateValue]);
 
-  const {
-    label, tooltip, forceFullWidth, validationMessage,
-  } = fieldsetProps;
-
   let validationMessageToDisplay = validationMessage;
   if (charsExceed && !validationMessage) {
     validationMessageToDisplay = 'Maximum characters exceeded';
@@ -146,8 +146,11 @@ const Textarea = ({
 };
 
 Textarea.propTypes = {
-  fieldsetProps: PropTypes.shape(fieldsetPropTypes),
   id: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  tooltip: PropTypes.shape(tooltipPropTypes),
+  forceFullWidth: PropTypes.bool,
+  validationMessage: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
   placeholder: PropTypes.string,
@@ -165,7 +168,10 @@ Textarea.propTypes = {
 };
 
 Textarea.defaultProps = {
-  fieldsetProps: defaultFieldsetProps,
+  label: '',
+  tooltip: {},
+  forceFullWidth: false,
+  validationMessage: null,
   name: '',
   value: '',
   placeholder: '',

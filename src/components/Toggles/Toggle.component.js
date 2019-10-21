@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import BaseToggle from './BaseToggle';
@@ -43,7 +43,7 @@ export function getPictureToggleContent(pictureOptions, label) {
 export function getIconToggleContent(icon, iconSize, label) {
   return (
     <>
-      <div className="icon-toggle">
+      <div className="icon-toggle transition">
         <style jsx>{styles}</style>
         <Icon name={icon} size={iconSize} />
         <span className="icon-label">
@@ -65,7 +65,7 @@ export function getTextToggleContent(type, rectOptions, label) {
   );
 }
 
-export function getToggleContent(icon, iconSize, pictureOptions, autofill, dirty, id, type, rectOptions, label) {
+export function getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label) {
   let content;
   if (pictureOptions) {
     content = getPictureToggleContent(pictureOptions, label);
@@ -75,7 +75,7 @@ export function getToggleContent(icon, iconSize, pictureOptions, autofill, dirty
     content = getTextToggleContent(type, rectOptions, label);
   }
   return (
-    <ToggleLabel dirty={dirty} autofill={autofill} id={id}>
+    <ToggleLabel id={id}>
       <style jsx>{styles}</style>
       {content}
     </ToggleLabel>
@@ -83,14 +83,11 @@ export function getToggleContent(icon, iconSize, pictureOptions, autofill, dirty
 }
 
 const Toggle = ({
-  id, type, label, value, name, selectedId, invalid, disabled, autofill, onToggle, icon, iconSize, pictureOptions, rectOptions,
+  id, type, label, value, name, selectedValue, invalid, disabled, onToggle, icon, iconSize, pictureOptions, rectOptions,
 }) => {
-  const [dirty, setDirty] = useState(false);
-
   const handleToggle = () => {
-    setDirty(true);
     if (onToggle) {
-      onToggle({ id, value });
+      onToggle(value);
     }
   };
 
@@ -100,14 +97,13 @@ const Toggle = ({
       type={type}
       value={value}
       name={name}
-      selectedId={selectedId}
+      selectedValue={selectedValue}
       invalid={invalid}
       disabled={disabled}
-      autofill={autofill}
       onToggle={handleToggle}
       rectOptions={rectOptions}
     >
-      {getToggleContent(icon, iconSize, pictureOptions, autofill, dirty, id, type, rectOptions, label)}
+      {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
     </BaseToggle>
   );
 };
@@ -116,13 +112,12 @@ const Toggle = ({
 Toggle.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   type: PropTypes.oneOf(['square', 'rectangle']),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  selectedId: PropTypes.string,
+  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
-  autofill: PropTypes.bool,
   onToggle: PropTypes.func,
   icon: PropTypes.string,
   iconSize: PropTypes.number,
@@ -140,13 +135,11 @@ Toggle.propTypes = {
 };
 
 Toggle.defaultProps = {
-  value: '',
   name: '',
   type: 'square',
-  selectedId: null,
+  selectedValue: null,
   invalid: false,
   disabled: false,
-  autofill: false,
   onToggle: null,
   icon: null,
   iconSize: 10,

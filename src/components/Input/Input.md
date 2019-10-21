@@ -13,7 +13,6 @@
     bordered
     disabled={false}
     required={false}
-    invalid={false}
     prefillValue=""
     prefixContent=""
     suffixContent=""
@@ -28,32 +27,49 @@ The Input component can be extended by the combo component //TODO, and accepts t
 
 1. `id` *(required) string*
     * Unique id for the component. Required.
-2. `type` *(optional) string*
+
+2. `tooltip` *(optional) object*
+    * Tooltip object (see Tooltip documentation)
+
+3. `forceFullWidth` *(optional) boolean* 
+   * Forces the ToggleGroup to expand to 12 columns (default true for ToggleGroup)
+
+4. `validationMessage` *(optional string)*
+    * Displays given validation message and invalid styles on the component when provided.  
+
+5. `type` *(optional) string*
     * Type of input (such as number, text, tel etc). Defaults to 'text'.
-3. `label` *(optional) string*
+
+6. `label` *(optional) string*
     * Label for the input, provided by the fieldset component. Defaults to an empty string.
-4. `tooltip` *(optional) object*
-    * Tooltip for the fieldset, provided by the fieldset component. Accepts title and body properties. Defaults to an empty obj.
-5. `placeholder` *(optional) string*
+
+7. `placeholder` *(optional) string*
     * The placeholder text for the input. Defaults to an empty string.
-6. `bordered` *(optional) boolean*
+
+8. `bordered` *(optional) boolean*
     * The input field border style. Defaults to true.
-7. `disabled` *(optional) boolean*
+
+9. `disabled` *(optional) boolean*
     * Disables the button via a class on its wrapper, and an attribute on the input. Defaults to false.
-8. `required` *(optional) boolean*
+
+10. `required` *(optional) boolean*
     * Adds/removes a supporting element, `<span>OPTIONAL</span>` to show the field is optional. Defaults to false.
-9. `invalid` *(optional) boolean*
-    * if true adds styles to denote if a field is invalid.
-10. `prefillValue` *(optional) string*
+
+11. `prefillValue` *(optional) string*
     * Adds prefill data to the input field and adds custom styling for prefilled inputs. Defaults to an empty string.
-11. `prefixContent` *(optional) string*
+
+12. `prefixContent` *(optional) string*
     * Adds a prefix to the input - can be supplied with another component (eg for an svg) which will be rendered. Defaults to false.
-12. `suffixContent` *(optional) string*
+
+13. `suffixContent` *(optional) string*
     * Adds a suffix to the input - can be supplied with another component (eg for an svg) which will be rendered. Defaults to false.
-13. `listId` *(optional) string* //TO DO
+
+14. `listId` *(optional) string* //TO DO
     * Exclusively for the Combo component datalist functionality. Links a datalist to the input field.
-14. `autocomplete` *(optional) string*
+
+15. `autocomplete` *(optional) string*
     * Turn the browsers implementation of autocompletion/memory of forms on or off. Defaults to 'off'.
-15. `handleChange` *(required) func*
+
+16. `handleChange` *(required) func*
     * Custom handler to attach to the input field - used to get the value of the field for example.
 

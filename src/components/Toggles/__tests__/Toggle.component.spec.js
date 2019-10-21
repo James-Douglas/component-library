@@ -95,7 +95,7 @@ describe('getToggleContent()', () => {
     icon, iconSize, pictureOptions, autofill, dirty, id, type, rectOptions, label,
   }) => (
     <>
-      {getToggleContent(icon, iconSize, pictureOptions, autofill, dirty, id, type, rectOptions, label)}
+      {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
     </>
   );
 
@@ -145,10 +145,10 @@ describe('Toggle', () => {
 
   it('calls handleChange on handleChange when provided', () => {
     const handleChangeCb = jest.fn();
-    const { container } = render(<Toggle label="test label" id="test-id" onToggle={handleChangeCb} />);
+    const { container } = render(<Toggle label="test label" id="test-id" value="test" onToggle={handleChangeCb} />);
     const element = container.querySelector('.toggle');
     fireEvent.click(element);
     expect(handleChangeCb).toHaveBeenCalled();
-    expect(handleChangeCb.mock.calls[0][0]).toEqual({ id: 'test-id', value: '' });
+    expect(handleChangeCb.mock.calls[0][0]).toEqual('test');
   });
 });
