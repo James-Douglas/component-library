@@ -10,7 +10,6 @@ export default css`
 .manor-textarea-default {
   @apply flex w-256  pl-12 pr-36 block text-base border border-solid border-transparent;
   min-height: 4.4rem;
-  margin-bottom: 2.6rem;
 }
 .manor-textarea-default:focus,
 .manor-textarea-default:hover {
@@ -64,8 +63,7 @@ textarea[disabled] {
   @apply w-full;
 }
 .supporting-elements {
-  @apply flex justify-end;
-  margin-top: -1.8rem;
+  @apply flex justify-end pt-8;
 }
 .manor-optional-indicator {
   margin-left: 1rem;
@@ -75,6 +73,9 @@ textarea[disabled] {
 }
 .max-chars-exceeded {
   @apply text-validation-text;
+}
+.manor-prefilled {
+  @apply bg-prechecked
 }
 
 /* **********************************************************************
@@ -104,11 +105,10 @@ textarea:not([disabled]):-webkit-autofill:focus {
 ************************************************************************* */
 textarea.manor-textarea-default::-webkit-scrollbar-track {
   @apply rounded-lg;
-  -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,0.3);
 }
 
 textarea.manor-textarea-default::-webkit-scrollbar {
-  @apply bg-white w-16;
+  @apply w-16;
 }
 
 textarea.manor-textarea-default::-webkit-scrollbar-thumb {
@@ -123,17 +123,17 @@ textarea.manor-textarea-default::-webkit-scrollbar-thumb {
   transparent);
 }
 
-textarea:not([disabled]).manor-textarea-default.manor-prefilled::-webkit-scrollbar,
-textarea:not([disabled]).manor-textarea-default:-webkit-autofill::-webkit-scrollbar,
-textarea:not([disabled]).manor-textarea-default:-webkit-autofill:hover::-webkit-scrollbar,
-textarea:not([disabled]).manor-textarea-default:-webkit-autofill:focus::-webkit-scrollbar {
+textarea.manor-textarea-default.manor-prefilled::-webkit-scrollbar,
+textarea.manor-textarea-default:-webkit-autofill::-webkit-scrollbar,
+textarea.manor-textarea-default:-webkit-autofill:hover::-webkit-scrollbar,
+textarea.manor-textarea-default:-webkit-autofill:focus::-webkit-scrollbar {
   @apply bg-prechecked;
 }
 
-textarea:not([disabled]).manor-textarea-default.manor-prefilled::-webkit-scrollbar-thumb,
-textarea:not([disabled]).manor-textarea-default:-webkit-autofill::-webkit-scrollbar-thumb,
-textarea:not([disabled]).manor-textarea-default:-webkit-autofill:hover::-webkit-scrollbar-thumb,
-textarea:not([disabled]).manor-textarea-default:-webkit-autofill:focus::-webkit-scrollbar-thumb {
+textarea.manor-textarea-default.manor-prefilled::-webkit-scrollbar-thumb,
+textarea.manor-textarea-default:-webkit-autofill::-webkit-scrollbar-thumb,
+textarea.manor-textarea-default:-webkit-autofill:hover::-webkit-scrollbar-thumb,
+textarea.manor-textarea-default:-webkit-autofill:focus::-webkit-scrollbar-thumb {
   @apply bg-prechecked;
   background-image: -webkit-linear-gradient(0deg,
   transparent 20%,
@@ -154,12 +154,12 @@ textarea:not([disabled]).manor-textarea-default:-webkit-autofill:focus::-webkit-
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-bottom: 12px solid transparent;
-  bottom: 28px;
+  bottom: 6px;
   right: 6px;
   -webkit-transform: rotate(-225deg);
 }
 
-.pull-tab:not(.manor-disabled).manor-prefilled {
+.pull-tab.manor-prefilled {
   border-top: 12px solid theme(colors.prechecked);
 }
 `;

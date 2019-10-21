@@ -1,6 +1,5 @@
 import React from 'react';
 import CurrencyInput from 'components/Input/Currency/Currency.component';
-/* import styles from './view-styles'; */
 
 const greyBackgroundView = () => {
   const tooltip = {
@@ -10,6 +9,9 @@ const greyBackgroundView = () => {
 
   const logValue = (value, rawValue) => {
     // eslint-disable-next-line no-console
+    console.warn('log value:', value);
+    // eslint-disable-next-line no-console
+    console.warn('log rawValue:', rawValue);
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import css from 'styled-jsx/css';
 
@@ -19,11 +19,6 @@ const styles = css`
   .content {
     @apply z-20;
   }
-  .scoped-toggle.black :global(:hover),
-  .scoped-toggle.black :global(input:checked + label) {
-    @apply text-black;
-  }
-  .scoped-toggle.white :global(:hover),
   .scoped-toggle.white :global(input:checked + label) {
     @apply text-white;
   }
@@ -33,8 +28,8 @@ export function getDisplayBackgroundColor(backgroundColor) {
   return backgroundColor === 'white' ? 'ivory' : backgroundColor;
 }
 
-export function getAnimationStyle(id, selectedId, displayBackgroundColor) {
-  if (selectedId === id) {
+export function getAnimationStyle(value, selectedValue, displayBackgroundColor) {
+  if (selectedValue === value) {
     return {
       backgroundColor: displayBackgroundColor,
       height: '100%',
@@ -53,18 +48,16 @@ export function getDisplayLabel(label, backgroundColor) {
 }
 
 const ColorToggle = ({
-  id, label, backgroundColor, fontColor, value, name, selectedId, invalid, disabled, autofill, onToggle,
+  id, label, backgroundColor, fontColor, value, name, selectedValue, invalid, disabled, onToggle,
 }) => {
-  const [dirty, setDirty] = useState(false);
   const handleToggle = () => {
-    setDirty(true);
     if (onToggle) {
-      onToggle({ id, value });
+      onToggle(value);
     }
   };
 
   const displayBackgroundColor = getDisplayBackgroundColor(backgroundColor);
-  const animationStyle = getAnimationStyle(id, selectedId, displayBackgroundColor);
+  const animationStyle = getAnimationStyle(value, selectedValue, displayBackgroundColor);
   const displayLabel = getDisplayLabel(label, backgroundColor);
 
   return (
@@ -75,13 +68,12 @@ const ColorToggle = ({
         type="custom"
         value={value}
         name={name}
-        selectedId={selectedId}
+        selectedValue={selectedValue}
         invalid={invalid}
         disabled={disabled}
-        autofill={autofill}
         onToggle={handleToggle}
       >
-        <ToggleLabel dirty={dirty} autofill={autofill} id={id}>
+        <ToggleLabel id={id}>
           <span className="colour-toggle">
             <span className="content">{displayLabel}</span>
             <span className="border-colour" style={animationStyle} />
@@ -94,27 +86,24 @@ const ColorToggle = ({
 
 ColorToggle.propTypes = {
   id: PropTypes.string.isRequired,
-  label: PropTypes.string,
   backgroundColor: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.string,
   fontColor: PropTypes.string,
-  value: PropTypes.string,
-  selectedId: PropTypes.string,
+  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
-  autofill: PropTypes.bool,
   onToggle: PropTypes.func,
 };
 
 ColorToggle.defaultProps = {
-  value: '',
   label: null,
   fontColor: 'black',
   name: '',
-  selectedId: null,
+  selectedValue: null,
   invalid: false,
   disabled: false,
-  autofill: false,
   onToggle: null,
 };
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import Fieldset, { defaultFieldsetProps, fieldsetPropTypes } from '../Fieldset/Fieldset.component';
+import Fieldset from '../Fieldset/Fieldset.component';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
 import styles from './styles';
 
@@ -40,7 +41,10 @@ export function getRemainingCharsContent(maxChars, maxLength, id, textAreaRemain
 }
 
 const Textarea = ({
-  fieldsetProps,
+  label,
+  tooltip,
+  forceFullWidth,
+  validationMessage,
   id,
   name,
   placeholder,
@@ -49,7 +53,7 @@ const Textarea = ({
   disabled,
   required,
   invalid,
-  autofill,
+  isPrefill,
   rows,
   wrap,
   readonly,
@@ -94,10 +98,6 @@ const Textarea = ({
     }
   }, [onChange, id, stateValue]);
 
-  const {
-    label, tooltip, forceFullWidth, validationMessage,
-  } = fieldsetProps;
-
   let validationMessageToDisplay = validationMessage;
   if (charsExceed && !validationMessage) {
     validationMessageToDisplay = 'Maximum characters exceeded';
@@ -111,6 +111,8 @@ const Textarea = ({
     </div>
   );
 
+  const prefillStyles = isPrefill && !isDirty && !disabled ? 'manor-prefilled' : '';
+
   return (
     <Fieldset
       label={label}
@@ -119,9 +121,9 @@ const Textarea = ({
       validationMessage={validationMessageToDisplay}
       supportingElements={supportingElements}
     >
-      <div className={`manor-textarea-wrapper ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
+      <div className={`manor-textarea-wrapper ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
         <style jsx>{styles}</style>
-        <div className={`pull-tab ${(autofill && !isDirty) ? 'manor-prefilled' : ''} ${disabled ? 'manor-disabled' : ''} `} />
+        <div className={`pull-tab ${prefillStyles} ${disabled ? 'manor-disabled' : ''} `} />
 
         <textarea
           ref={textAreaElement}
@@ -136,7 +138,12 @@ const Textarea = ({
           wrap={wrap}
           readOnly={readonly}
           maxLength={maxLength}
-          className={`manor-textarea-default manor-body2 ${bordered ? 'manor-textarea-border' : ''}  ${(autofill && !isDirty) ? 'manor-prefilled' : ''}  ${invalid || (textAreaRemainChars < 0) ? 'invalid' : ''} `}
+          className={`
+            manor-textarea-default manor-body2 
+            ${bordered ? 'manor-textarea-border' : ''} 
+            ${prefillStyles} 
+            ${invalid || (textAreaRemainChars < 0) ? 'invalid' : ''}
+          `}
           aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
         />
 
@@ -146,8 +153,11 @@ const Textarea = ({
 };
 
 Textarea.propTypes = {
-  fieldsetProps: PropTypes.shape(fieldsetPropTypes),
   id: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  tooltip: PropTypes.shape(tooltipPropTypes),
+  forceFullWidth: PropTypes.bool,
+  validationMessage: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
   placeholder: PropTypes.string,
@@ -155,7 +165,7 @@ Textarea.propTypes = {
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   invalid: PropTypes.bool,
-  autofill: PropTypes.bool,
+  isPrefill: PropTypes.bool,
   rows: PropTypes.string,
   wrap: PropTypes.string,
   readonly: PropTypes.bool,
@@ -165,7 +175,10 @@ Textarea.propTypes = {
 };
 
 Textarea.defaultProps = {
-  fieldsetProps: defaultFieldsetProps,
+  label: '',
+  tooltip: {},
+  forceFullWidth: false,
+  validationMessage: null,
   name: '',
   value: '',
   placeholder: '',
@@ -173,7 +186,7 @@ Textarea.defaultProps = {
   disabled: false,
   required: false,
   invalid: false,
-  autofill: false,
+  isPrefill: false,
   rows: '',
   wrap: '',
   readonly: false,

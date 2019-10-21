@@ -24,35 +24,35 @@ export function getInlineStyles(type, rectOptions) {
 }
 
 const BaseToggle = ({
-  id, type, value, name, selectedId, invalid, disabled, autofill, onToggle, rectOptions, children,
+  id, type, value, name, selectedValue, invalid, disabled, onToggle, rectOptions, children,
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
 
   const handleToggle = () => {
-    onToggle({ id, value });
+    onToggle(value);
   };
-
-  const isChecked = selectedId ? selectedId === id : autofill || false;
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <span
       className="flex toggle"
       style={getInlineStyles(type, rectOptions)}
-      onClick={() => toggleElement.current.click()}
+      onClick={() => {
+        toggleElement.current.click();
+        toggleElement.current.focus();
+      }}
       ref={wrapperElement}
     >
       <style jsx>{styles}</style>
       <input
         tabIndex={0}
         ref={toggleElement}
-        className="toggle-input"
+        className={`toggle-input ${invalid ? 'invalid' : ''}`}
         id={id}
         type="radio"
         onChange={handleToggle}
-        required={invalid}
-        checked={isChecked}
+        checked={selectedValue === value}
         disabled={disabled}
         name={name}
         value={value}
@@ -66,12 +66,11 @@ const BaseToggle = ({
 BaseToggle.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['square', 'rectangle', 'custom']).isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  selectedId: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
-  autofill: PropTypes.bool,
   onToggle: PropTypes.func.isRequired,
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
@@ -82,12 +81,10 @@ BaseToggle.propTypes = {
 };
 
 BaseToggle.defaultProps = {
-  value: '',
   name: '',
-  selectedId: null,
+  selectedValue: null,
   invalid: false,
   disabled: false,
-  autofill: false,
   rectOptions: {
     align: 'center',
     col: 1,

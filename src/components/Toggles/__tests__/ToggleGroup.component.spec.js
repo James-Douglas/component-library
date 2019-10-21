@@ -34,17 +34,16 @@ describe('getChildren()', () => {
         id: 'a',
       },
     ]);
-    const result = getChildren(testChildren, 'square', false, 'test-group', null, didToggleCb, null);
+    const result = getChildren(testChildren, 'square', 'test-group', null, didToggleCb, null);
     const {
-      name, id, selectedId, onToggle, type, dirty,
+      name, id, selectedValue, onToggle, type,
     } = result[0].props;
 
     expect(name).toEqual('test-group');
     expect(id).toEqual('a');
-    expect(selectedId).toEqual(null);
+    expect(selectedValue).toEqual(null);
     expect(onToggle).toEqual(didToggleCb);
     expect(type).toEqual('square');
-    expect(dirty).toEqual(false);
   });
 
   it('adds id if none provided', () => {
@@ -53,7 +52,7 @@ describe('getChildren()', () => {
         label: 'test toggle a',
       },
     ]);
-    const result = getChildren(testChildren, 'square', false, 'test-group', null, didToggleCb, null);
+    const result = getChildren(testChildren, 'square', 'test-group', null, didToggleCb, null);
     const { id } = result[0].props;
     expect(id).toEqual('toggle-0');
   });
@@ -65,7 +64,7 @@ describe('getChildren()', () => {
         label: 'test toggle a',
       },
     ]);
-    const result = getChildren(testChildren, 'rectangle', false, 'test-group', null, didToggleCb, expectedRectOptions);
+    const result = getChildren(testChildren, 'rectangle', 'test-group', null, didToggleCb, expectedRectOptions);
     const { rectOptions } = result[0].props;
     expect(rectOptions).toEqual(expectedRectOptions);
   });
@@ -82,14 +81,14 @@ describe('ToggleGroup', () => {
     const onToggleCb = jest.fn();
     const { container } = render(
       <ToggleGroup name="test-toggle-group-b" onToggle={onToggleCb}>
-        <Toggle label="test toggle a" id="a" />
-        <Toggle label="test toggle b" id="b" />
+        <Toggle label="test toggle a" value="a" id="a" />
+        <Toggle label="test toggle b" value="b" id="b" />
       </ToggleGroup>,
     );
     const toggleA = container.querySelector('#a');
     fireEvent.click(toggleA);
     expect(onToggleCb).toHaveBeenCalled();
-    expect(onToggleCb.mock.calls[0][0]).toEqual({ id: 'a', value: '' });
+    expect(onToggleCb.mock.calls[0][0]).toEqual('a');
   });
 
   it('adds justifyEnd property to tooltip when exists', () => {

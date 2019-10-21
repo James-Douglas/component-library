@@ -20,10 +20,10 @@ describe('CustomToggle', () => {
 
   it('calls onToggle onchange', () => {
     const onToggleCb = jest.fn();
-    const { container } = render(<CustomToggle id="test-c" onToggle={onToggleCb} />);
+    const { container } = render(<CustomToggle id="test-c" value="test-c" onToggle={onToggleCb} />);
     const toggle = container.querySelector('.toggle');
     fireEvent.click(toggle);
     expect(onToggleCb).toHaveBeenCalled();
-    expect(onToggleCb.mock.calls[0][0]).toEqual({ id: 'test-c', value: '' });
+    expect(onToggleCb.mock.calls[0][0]).toEqual('test-c');
   });
 });

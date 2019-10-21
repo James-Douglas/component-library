@@ -32,20 +32,16 @@ describe('BaseToggle', () => {
     const { container } = render(<BaseToggle type="square" id="test-square" />);
     expect(container).toMatchSnapshot();
   });
-  it('sets checked when autofill', () => {
-    const { container } = render(<BaseToggle type="square" id="test-autofill" autofill />);
-    expect(container.querySelector('.toggle-input')).toHaveAttribute('checked');
-  });
   it('sets checked when selectedId equals id', () => {
-    const { container } = render(<BaseToggle type="square" id="test-selected-id" selectedId="test-selected-id" autofill />);
+    const { container } = render(<BaseToggle type="square" id="test-selected-id" value="test" selectedValue="test" autofill />);
     expect(container.querySelector('.toggle-input')).toHaveAttribute('checked');
   });
   it('calls onToggle when toggled', () => {
     const onToggleCb = jest.fn();
-    const { container } = render(<BaseToggle type="square" id="test-square" onToggle={onToggleCb} />);
+    const { container } = render(<BaseToggle type="square" id="test-square" value="testt" onToggle={onToggleCb} />);
     const element = container.querySelector('.toggle');
     fireEvent.click(element);
     expect(onToggleCb).toHaveBeenCalled();
-    expect(onToggleCb.mock.calls[0][0]).toEqual({ id: 'test-square', value: '' });
+    expect(onToggleCb.mock.calls[0][0]).toEqual('testt');
   });
 });

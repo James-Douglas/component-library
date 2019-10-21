@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon.component';
 import Fieldset from '../Fieldset/Fieldset.component';
 import styles from './styles';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
 export const renderClearIcon = (value, clearInput, isAutofill, label) => {
   if (value.length) {
@@ -46,15 +47,15 @@ export const renderAffix = (affixType, affixContent, bordered, isAutofill, disab
   return null;
 };
 
-export const renderOptionalElement = (required) => {
-  if (!required) {
-    return (
-      <>
-        <span className="manor-subscript">Optional</span>
-      </>
-    );
-  }
-  return null;
+export const getSupportingElements = (required) => {
+  if (required) return null;
+
+  return (
+    <div className="supporting-elements">
+      <style jsx>{styles}</style>
+      <span className="manor-subscript">Optional</span>
+    </div>
+  );
 };
 
 export const getInitialValue = (valueMasking, prefillValue) => {
@@ -68,6 +69,10 @@ export const getInitialValue = (valueMasking, prefillValue) => {
 };
 
 const Input = ({
+  label,
+  tooltip,
+  forceFullWidth,
+  validationMessage,
   id,
   type,
   placeholder,
@@ -75,13 +80,13 @@ const Input = ({
   required,
   disabled,
   bordered,
-  invalid,
   prefixContent,
   suffixContent,
-  label,
-  tooltip,
   autocomplete,
+  maxlength,
   handleChange,
+  handleFocus,
+  handleBlur,
   valueMasking,
   dataList,
 }) => {
@@ -95,6 +100,7 @@ const Input = ({
     setValue('');
     handleChange('');
   };
+
   const handleOnChange = (e) => {
     setIsAutofill(false);
 
@@ -117,7 +123,21 @@ const Input = ({
     }
   }, [prefillValue, valueMasking]);
 
-  const toggleOnFocus = () => {
+  const onFocus = () => {
+    if (handleFocus) {
+      handleFocus();
+    }
+    toggleFocus();
+  };
+
+  const onBlur = () => {
+    if (handleBlur) {
+      handleBlur();
+    }
+    toggleFocus();
+  };
+
+  const toggleFocus = () => {
     const { current } = inputWrapElement;
     if (current) {
       current.classList.toggle('input-wrap-focus');
@@ -126,11 +146,11 @@ const Input = ({
 
   const prefillClass = `${isAutofill && !disabled ? 'manor-prefilled-border' : ''}`;
   const borderClass = `${bordered ? 'input-border' : ''}`;
-  const invalidClass = `${invalid ? 'invalid' : ''}`;
+  const invalidClass = `${validationMessage && validationMessage.length ? 'invalid' : ''}`;
   const disabledClass = `${disabled ? 'disabled' : ''}`;
   return (
     <>
-      <Fieldset label={label} tooltip={tooltip}>
+      <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth} validationMessage={validationMessage} supportingElements={getSupportingElements(required)}>
         <style jsx>{styles}</style>
         <div className="input-container">
           <div
@@ -150,8 +170,9 @@ const Input = ({
                 value={value}
                 onChange={handleOnChange}
                 autoComplete={autocomplete}
-                onFocus={toggleOnFocus}
-                onBlur={toggleOnFocus}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                maxLength={maxlength}
                 className={`
                   input-default
                   ${isAutofill && !disabled ? 'manor-prefilled' : ''}
@@ -161,13 +182,8 @@ const Input = ({
               {renderClearIcon(value, clearInput, isAutofill, label)}
 
             </div>
-
             {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
           </div>
-          <div className="supporting-elements">
-            {renderOptionalElement(required)}
-          </div>
-
           {dataList && <div className={`list ${!required ? 'up-list' : ''}`}>{dataList()}</div>}
         </div>
       </Fieldset>
@@ -176,8 +192,13 @@ const Input = ({
 };
 
 Input.propTypes = {
+  label: PropTypes.string,
+  tooltip: PropTypes.shape(tooltipPropTypes),
+  forceFullWidth: PropTypes.bool,
+  validationMessage: PropTypes.string,
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
+  maxlength: PropTypes.string,
   valueMasking: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,
@@ -185,8 +206,9 @@ Input.propTypes = {
   required: PropTypes.bool,
   disabled: PropTypes.bool,
   bordered: PropTypes.bool,
-  invalid: PropTypes.bool,
   autocomplete: PropTypes.string,
+  handleFocus: PropTypes.func,
+  handleBlur: PropTypes.func,
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -196,29 +218,26 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.node,
   ]),
-  label: PropTypes.string,
-  tooltip: PropTypes.shape({
-    title: PropTypes.string,
-    body: PropTypes.string,
-    boundingElementSelector: PropTypes.string,
-    screenReaderLabel: PropTypes.string,
-  }),
 };
 
 Input.defaultProps = {
+  label: '',
+  tooltip: {},
+  forceFullWidth: false,
+  validationMessage: null,
   valueMasking: null,
+  maxlength: null,
   type: 'text',
   placeholder: '',
   prefillValue: '',
   prefixContent: '',
   suffixContent: '',
   autocomplete: 'off',
+  handleFocus: null,
+  handleBlur: null,
   required: true,
   disabled: false,
   bordered: true,
-  invalid: false,
-  label: '',
-  tooltip: {},
   dataList: null,
 };
 

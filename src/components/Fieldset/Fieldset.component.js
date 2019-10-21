@@ -7,17 +7,19 @@ import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
+import useBreakpoint from '../../hooks/useBreakpoint';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const styles = css`
 .fieldset {
-  @apply w-full;
+  @apply w-full mb-24;
 }
 .tooltip-container {
   @apply flex items-center justify-center;
   min-height: 4.4rem;
 }
 `;
+
 
 /**
  * Determine whether a tooltip has been provided
@@ -58,10 +60,30 @@ export function getScreenReaderLabel(screenReaderLabel, label) {
   return screenReaderLabel;
 }
 
-export function renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd) {
+export function getContentColumnSize(forceFullWidth, breakpoint) {
+  if (forceFullWidth) {
+    return '12';
+  }
+  if (breakpoint === 'xxl' || breakpoint === 'xl') {
+    return '11';
+  }
+  return '10';
+}
+
+export function getTooltipColumnSize(breakpoint) {
+  if (breakpoint === 'xxl' || breakpoint === 'xl') {
+    return '1';
+  }
+  return '2';
+}
+
+export function renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd) {
+  const colSize = getTooltipColumnSize(breakpoint);
+
   if (!enableLabelTooltip && hasTooltip) {
     return (
-      <Column col="2">
+      <Column col={colSize}>
+        <style jsx>{styles}</style>
         <div className="tooltip-container">
           <Tooltip
             title={title}
@@ -84,6 +106,7 @@ const Fieldset = ({
   const [enableLabelTooltip, setEnableLabelTooltip] = useState(false);
   const [srLabel, setSrLabel] = useState(tooltip.screenReaderLabel);
   const desktop = useIsDesktop(false);
+  const breakpoint = useBreakpoint(false);
   const {
     title, body, boundingElementSelector, justifyEnd,
   } = tooltip;
@@ -101,6 +124,8 @@ const Fieldset = ({
     setSrLabel(getScreenReaderLabel(screenReaderLabel, label));
   }, [screenReaderLabel, label]);
 
+  const contentSize = getContentColumnSize(forceFullWidth, breakpoint);
+
   const tooltipOptions = tooltip;
 
   if (!tooltipOptions.justifyEnd && desktop && enableLabelTooltip) {
@@ -108,19 +133,19 @@ const Fieldset = ({
   }
 
   return (
-    <div className="fieldset">
+    <div className="fieldset" jsx="true">
       <style jsx="true">{styles}</style>
       <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} />
       <Row>
-        <Column sm={forceFullWidth ? '12' : '10'} xs="12">
+        <Column sm={contentSize} xs="12">
           {children}
         </Column>
-        {renderTooltip(enableLabelTooltip, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd)}
+        {renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd)}
       </Row>
       <Row>
-        <Column xs="12" sm="10">
+        <Column sm={contentSize} xs="12">
           <div className="relative w-full h-16 mb-8">
-            <span className="absolute w-full justify-start -mt-24">
+            <span className="absolute w-full justify-start">
               <FieldValidation message={validationMessage} />
             </span>
             {supportingElements}
@@ -131,7 +156,7 @@ const Fieldset = ({
   );
 };
 
-export const fieldsetPropTypes = {
+Fieldset.propTypes = {
   label: PropTypes.string,
   tooltip: PropTypes.shape(tooltipPropTypes),
   forceFullWidth: PropTypes.bool,
@@ -140,7 +165,7 @@ export const fieldsetPropTypes = {
   supportingElements: PropTypes.node,
 };
 
-export const defaultFieldsetProps = {
+Fieldset.defaultProps = {
   label: '',
   tooltip: {},
   forceFullWidth: false,
@@ -148,9 +173,5 @@ export const defaultFieldsetProps = {
   children: [],
   supportingElements: [],
 };
-
-Fieldset.propTypes = fieldsetPropTypes;
-
-Fieldset.defaultProps = defaultFieldsetProps;
 
 export default Fieldset;

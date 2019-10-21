@@ -6,7 +6,7 @@ export default css`
 }
 
 .tooltip-icon {
-  @apply flex items-center justify-center text-grey-light;
+  @apply flex items-center justify-center text-grey fill-current;
 }
 
 .tooltip-active {

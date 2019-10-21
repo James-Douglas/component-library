@@ -7,7 +7,7 @@ exports[`BaseToggle renders with minimal props 1`] = `
   >
     <style />
     <input
-      class="toggle-input"
+      class="toggle-input "
       id="test-square"
       name=""
       tabindex="0"
