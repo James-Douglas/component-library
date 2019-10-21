@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Row from '../Grid/Row/Row.component';
@@ -37,7 +37,9 @@ const CheckboxGroup = ({
     }
   };
 
-  useDidUpdateEffect(handleChange, [selectedCheckboxes], [handleChange, selectedCheckboxes]);
+  useEffect(() => {
+    handleChange(selectedCheckboxes);
+  }, [handleChange, selectedCheckboxes]);
 
   return (
     <Fieldset

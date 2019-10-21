@@ -68,11 +68,11 @@ const CheckboxGroupView = () => {
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
               >
                 <Checkbox id="B-1" icon="check">B-1 check</Checkbox>
-                <Checkbox id="B-2" icon="check">B-2 check</Checkbox>
+                <Checkbox id="B-2" icon="check" isSelected>B-2 check</Checkbox>
                 <Checkbox id="B-3" icon="check">B-3 check</Checkbox>
-                <Checkbox id="B-4" icon="check">B-4 check</Checkbox>
+                <Checkbox id="B-4" icon="check" isSelected>B-4 check</Checkbox>
                 <Checkbox id="B-5" icon="check">B-5 check</Checkbox>
-                <Checkbox id="B-6" icon="check">B-6 check</Checkbox>
+                <Checkbox id="B-6" icon="check" isSelected>B-6 check</Checkbox>
               </CheckboxGroup>
             </Column>
           </Row>

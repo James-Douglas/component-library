@@ -29,9 +29,9 @@ const renderContent = (children) => {
 };
 
 const Checkbox = ({
-  id, icon, disabled, invalid, invertColour, handleChange, children,
+  id, icon, disabled, invalid, invertColour, handleChange, isSelected, children,
 }) => {
-  const [value, toggle] = useToggleState(false);
+  const [value, toggle] = useToggleState(isSelected);
 
   const toggleEventHandler = () => {
     toggle(value);
@@ -81,6 +81,7 @@ Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
   icon: PropTypes.string,
   disabled: PropTypes.bool,
+  isSelected: PropTypes.bool,
   invalid: PropTypes.bool,
   invertColour: PropTypes.bool,
   handleChange: PropTypes.func,
@@ -94,6 +95,7 @@ Checkbox.propTypes = {
 Checkbox.defaultProps = {
   icon: 'check',
   disabled: false,
+  isSelected: false,
   invalid: false,
   invertColour: false,
   handleChange: () => { },
