@@ -5,11 +5,11 @@ export default css`
     transition : all 200ms ease-out;
   }
   .toggle {
-    @apply relative bg-white shadow-sm border cursor-pointer mx-8 mb-16 text-sm font-bold leading-normal;
+    @apply relative bg-white shadow-sm  cursor-pointer mx-8 mb-16 text-sm font-bold leading-normal;
     min-width: 12.8rem;
   }
   .toggle-label {
-    @apply w-full cursor-pointer block relative;
+    @apply w-full border cursor-pointer block relative;
   }
   .toggle-label:hover {
     @apply text-light-blue;
@@ -38,7 +38,6 @@ export default css`
   .toggle-input.invalid:checked + label {
     @apply border-2 border-invalid text-invalid fill-current;
   }
-  
   .toggle-input:focus + label {
      box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }

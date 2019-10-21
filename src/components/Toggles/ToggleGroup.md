@@ -22,30 +22,33 @@ The CTM ToggleGroup component, wraps a given set of toggles.
 ## Props
 The ToggleGroup component accepts the following props:
 
-1. `name` *(required) string*
+- `name` *(required) string*
     * Name property to be passed to the toggles - required for radio buttons
 
-7. `onToggle` *(required) function*
+- `onToggle` *(required) function*
     * onChange handler function, called on select of a toggle with { id: <selected toggle id>, value: <selected toggle value> }
 
-2. `label` *(optional) string*
+- `label` *(optional) string*
     * Label for the ToggleGroup. Defaults to an empty string.
 
-3. `tooltip` *(optional) object*
+- `tooltip` *(optional) object*
    * Tooltip object (see Tooltip documentation)
        
-4. `forceFullWidth` *(optional) boolean* 
+- `forceFullWidth` *(optional) boolean* 
    * Forces the ToggleGroup to expand to 12 columns (default true for ToggleGroup)
 
-5. `validationMessage` *(optional string)*
+- `validationMessage` *(optional string)*
     * Displays given validation message and invalid styles on the component when provided.  
     
-6. `id` *(optional) string*
+- `id` *(optional) string*
     * Unique identifier for the toggle group
     
-8. `rectOptions` *(optional) object*
+- `rectOptions` *(optional) object*
     * Options object for rectangular toggles (see Toggle documentation)
     
-9. `selectedValue` *(optional) string/number*
+- `selectedValue` *(optional) string/number*
     * Value of the currently selected toggle (use to pre-select)
+    
+- `previllValue` *(optional) string/number*
+    * Use to prefill a value & apply similar to browsers autocomplete functionality (e.g. auto-populated from a prior journey)
     

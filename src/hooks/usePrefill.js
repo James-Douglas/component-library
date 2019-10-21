@@ -4,7 +4,7 @@ export default function usePrefill(prefillValue, value, isDirty) {
   const [isUsePrefill, setIsUsePrefill] = useState(false);
 
   useEffect(() => {
-    setIsUsePrefill(prefillValue && prefillValue.length && !isDirty && !value.length);
+    setIsUsePrefill(prefillValue && prefillValue.length && !isDirty && (!value || !value.length));
   }, [prefillValue, value, isDirty]);
 
   return isUsePrefill;
