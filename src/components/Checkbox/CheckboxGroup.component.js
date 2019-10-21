@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
-import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 import Fieldset from '../Fieldset/Fieldset.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
@@ -22,7 +21,14 @@ export const generateGroup = (colSize, children, callback) => {
 };
 
 const CheckboxGroup = ({
-  label, tooltip, forceFullWidth, validationMessage, groupId, colSize, handleChange, children,
+  label, 
+  tooltip, 
+  forceFullWidth, 
+  validationMessage, 
+  groupId, 
+  colSize, 
+  handleChange, 
+  children,
 }) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
@@ -37,7 +43,9 @@ const CheckboxGroup = ({
     }
   };
 
-  useDidUpdateEffect(handleChange, [selectedCheckboxes], [handleChange, selectedCheckboxes]);
+  useEffect(() => {
+    handleChange(selectedCheckboxes);
+  }, [handleChange, selectedCheckboxes]);
 
   return (
     <Fieldset

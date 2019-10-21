@@ -14,7 +14,7 @@ const CheckboxWhiteView = () => (
           <Container>
             <Row>
               <Column col="1">
-                <Checkbox id="chk1" />
+                <Checkbox id="chk1" isSelected handleChange={(value) => {console.warn(value)}}/>
               </Column>
               <Column>
                 <div className="content">
