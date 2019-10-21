@@ -142,4 +142,10 @@ input[disabled] {
   display: none;
 }
 
+.list {
+  margin-top: -8px;
+}
+.list.up-list {
+  margin-top: -22px;
+}
 `;

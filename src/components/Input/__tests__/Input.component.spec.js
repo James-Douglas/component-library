@@ -41,7 +41,6 @@ describe('renderClearIcon()', () => {
 
   it('does not render an clearIcon if the value.length is over 0', () => {
     const { container } = render(<ClearIconContainer value="" />);
-
     expect(container).toBeEmpty();
   });
 
@@ -297,7 +296,7 @@ describe('Input.component', () => {
     fireEvent.click(clearBtn);
     expect(inputField.value).toBe('');
 
-    expect(clearValueCb.mock.calls.length).toBe(1);
+    expect(clearValueCb.mock.calls.length).toBe(2);
     expect(clearValueCb.mock.calls[0][0]).toBe('test string');
   });
 });

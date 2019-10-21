@@ -2,8 +2,60 @@ import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import Input from '../Input/Input.component';
-import Row from '../Grid/Row/Row.component';
-import Column from '../Grid/Column/Column.component';
+import Button from '../Button/Button.component';
+
+export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
+  return (
+    <div className={`row-view section-wrap-shadow ${!listVisible ? 'hidden' : ''}`}>
+      <style jsx>{styles}</style>
+      {comboDataList(filteredValues, handleSelectItem, filteredValuesRefs)}
+      {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton)}
+    </div>
+  );
+}
+
+export function comboDataList(filteredValues, handleSelectItem, filteredValuesRefs) {
+  return (
+    <ul>
+      <style jsx>{styles}</style>
+      {filteredValues.map((filteredValue, index) => (
+        <li
+          tabIndex="0"
+          className={`item-${index} item`}
+          key={`option-${filteredValue}`}
+          role="option"
+          data-type="list"
+          aria-selected={false}
+          onMouseDown={() => handleSelectItem(filteredValue)}
+          ref={filteredValuesRefs[index]}
+        >
+          {filteredValue}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton) {
+  return (
+    <>
+      <style jsx>{styles}</style>
+      {linkText && linkHref && currentPrefillValue.length >= characterMinimum
+      && (
+      <div className="item-manual-lookup item" ref={blueButton} tabIndex="0" role="option" aria-selected={false}>
+        <Button
+          id="text-btn01"
+          btnType="text"
+          content={linkText}
+          disabled={false}
+          href={linkHref}
+          target="_blank"
+        />
+      </div>
+      )}
+    </>
+  );
+}
 
 const Combo = ({
   id,
@@ -20,11 +72,12 @@ const Combo = ({
   disabled,
   characterMinimum,
   renderLimit,
-  forceFullWidth,
-  children,
+  linkText,
+  linkHref,
 }) => {
   const [listVisible, setListVisible] = useState(false);
   const [currentPrefillValue, setCurrentPrefillValue] = useState(prefillValue);
+  const blueButton = React.createRef();
   const filteredValues = useMemo(
     () => {
       if (currentPrefillValue.length < characterMinimum) {
@@ -38,11 +91,13 @@ const Combo = ({
     () => filteredValues.map((item) => React.createRef()),
     [filteredValues],
   );
+
   const [focusedRef, setFocusedRef] = useState(null);
 
   const handleSelectItem = (value) => {
     setCurrentPrefillValue(value);
     setListVisible(false);
+    setFocusedRef(null);
   };
 
   const onChange = (valueInput) => {
@@ -63,16 +118,19 @@ const Combo = ({
         setListVisible(false);
         break;
       case 'Enter':
-        setCurrentPrefillValue(event.target.innerHTML);
-        setListVisible(false);
+        if (focusedRef !== null) {
+          handleSelectItem(event.target.innerHTML);
+        }
         break;
       case 'ArrowUp':
-        if (focusedRef === 0) {
-          filteredValuesRefs[focusedRef].current.blur();
-          setFocusedRef(null);
-        } else if (focusedRef === null) {
-          setFocusedRef(0);
-          filteredValuesRefs[0].current.focus();
+        if (!focusedRef) {
+          if (linkText && linkHref) {
+            setFocusedRef(filteredValues.length);
+            blueButton.current.focus();
+          } else {
+            setFocusedRef(filteredValues.length - 1);
+            filteredValuesRefs[filteredValues.length - 1].current.focus();
+          }
         } else {
           setFocusedRef(focusedRef - 1);
           filteredValuesRefs[focusedRef - 1].current.focus();
@@ -80,8 +138,13 @@ const Combo = ({
         break;
       case 'ArrowDown':
         if (focusedRef === filteredValues.length - 1) {
-          filteredValuesRefs[focusedRef].current.blur();
-          setFocusedRef(null);
+          if (linkText && linkHref) {
+            setFocusedRef(null);
+            blueButton.current.focus();
+          } else {
+            setFocusedRef(0);
+            filteredValuesRefs[0].current.focus();
+          }
         } else if (focusedRef === null) {
           setFocusedRef(0);
           filteredValuesRefs[0].current.focus();
@@ -96,7 +159,7 @@ const Combo = ({
   };
 
   return (
-    <div onFocus={handelOnFocus} onBlur={handleOnBlur} onKeyDown={keyboardAccessibility} role="listbox" tabIndex="0">
+    <div onFocus={handelOnFocus} onBlur={handleOnBlur} onKeyDown={keyboardAccessibility} role="listbox" aria-expanded="false" tabIndex="-1">
       <style jsx>{styles}</style>
       <Input
         id={id}
@@ -113,29 +176,8 @@ const Combo = ({
         handleChange={(value) => onChange(value)}
         tabIndex="0"
         role="comboField"
+        dataList={() => comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible)}
       />
-      <div className={`row-view section-hide ${!listVisible ? 'hidden' : ''}`} role="listbox" tabIndex="0">
-        <Row>
-          <Column sm={forceFullWidth ? '12' : '10'} xs="12">
-            <ul>
-              {filteredValues.map((filteredValue, index) => (
-                <li
-                  tabIndex="0"
-                  className={`item-${index} item`}
-                  key={`option-${filteredValue}`}
-                  role="option"
-                  aria-selected={false}
-                  onMouseDown={() => handleSelectItem(filteredValue)}
-                  ref={filteredValuesRefs[index]}
-                >
-                  {filteredValue}
-                </li>
-              ))}
-              {children && currentPrefillValue.length >= characterMinimum && <li className="item-manual-lookup item" role="option" aria-selected={false}>{children}</li>}
-            </ul>
-          </Column>
-        </Row>
-      </div>
     </div>
   );
 };
@@ -143,14 +185,13 @@ const Combo = ({
 Combo.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
-  apiData: PropTypes.arrayOf(PropTypes.oneOf([
+  apiData: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.array,
     PropTypes.node,
-  ])),
+  ]),
   placeholder: PropTypes.string,
   invalid: PropTypes.bool,
-  prefillValue: PropTypes.bool,
+  prefillValue: PropTypes.string,
   bordered: PropTypes.bool,
   autocomplete: PropTypes.string,
   prefixContent: PropTypes.oneOfType([
@@ -165,12 +206,8 @@ Combo.propTypes = {
   disabled: PropTypes.bool,
   characterMinimum: PropTypes.number,
   renderLimit: PropTypes.number,
-  forceFullWidth: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
+  linkText: PropTypes.string,
+  linkHref: PropTypes.string,
 };
 
 Combo.defaultProps = {
@@ -188,8 +225,8 @@ Combo.defaultProps = {
   autocomplete: 'off',
   characterMinimum: 3,
   renderLimit: 10,
-  forceFullWidth: false,
-  children: '',
+  linkHref: '',
+  linkText: '',
 };
 
 export default Combo;

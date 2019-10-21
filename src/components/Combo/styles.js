@@ -5,7 +5,10 @@ export default css`
   @apply relative w-full text-black;
 }
 ul {
-  @apply bg-white shadow-md w-full mt-8 z-20 text-black;
+  @apply mt-8 z-20 text-black;
+}
+.section-wrap-shadow {
+  @apply bg-white shadow-md w-full;
 }
 ul li {
   @apply text-base text-grey-darker cursor-pointer border border-solid border-transparent;
@@ -22,7 +25,13 @@ ul li:focus {
   @apply border border-solid border-light-blue;
 }
 .item-manual-lookup {
-  @apply justify-around pt-8 bg-off-white text-center;
+  @apply justify-around pt-8 pb-8 bg-off-white text-center;
+  border: 1px solid transparent
+ 
+}
+.item-manual-lookup:focus {
+  @apply border border-solid border-light-blue;
+  border-width: 1px; /* IE 11 specific fix */
 }
 .manual-lookup:hover {
   @apply bg-off-white;
@@ -30,14 +39,15 @@ ul li:focus {
 :global(.highlight) {
   @apply underline;
 }
-.section-hide {
-  top: -55px;
-}
+
 .combo-wrap {
   @apply relative
 }
 .row-view {
   position: relative;
+}
+*:focus {
+  outline: none;
 }
 
 `;

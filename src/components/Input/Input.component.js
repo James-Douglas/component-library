@@ -68,7 +68,22 @@ export const getInitialValue = (valueMasking, prefillValue) => {
 };
 
 const Input = ({
-  id, type, placeholder, prefillValue, required, disabled, bordered, invalid, prefixContent, suffixContent, label, tooltip, autocomplete, handleChange, valueMasking, toggleFocus,
+  id,
+  type,
+  placeholder,
+  prefillValue,
+  required,
+  disabled,
+  bordered,
+  invalid,
+  prefixContent,
+  suffixContent,
+  label,
+  tooltip,
+  autocomplete,
+  handleChange,
+  valueMasking,
+  dataList,
 }) => {
   const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
   const [isAutofill, setIsAutofill] = useState(!!prefillValue);
@@ -76,10 +91,10 @@ const Input = ({
   const inputWrapElement = useRef(null);
 
   const clearInput = () => {
-    setValue('');
     setIsAutofill(false);
+    setValue('');
+    handleChange('');
   };
-
   const handleOnChange = (e) => {
     setIsAutofill(false);
 
@@ -106,7 +121,6 @@ const Input = ({
     const { current } = inputWrapElement;
     if (current) {
       current.classList.toggle('input-wrap-focus');
-      // toggleFocus(current.classList.contains('input-wrap-focus'));
     }
   };
 
@@ -114,7 +128,6 @@ const Input = ({
   const borderClass = `${bordered ? 'input-border' : ''}`;
   const invalidClass = `${invalid ? 'invalid' : ''}`;
   const disabledClass = `${disabled ? 'disabled' : ''}`;
-
   return (
     <>
       <Fieldset label={label} tooltip={tooltip}>
@@ -150,11 +163,12 @@ const Input = ({
             </div>
 
             {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
-
           </div>
           <div className="supporting-elements">
             {renderOptionalElement(required)}
           </div>
+
+          {dataList && <div className={`list ${!required ? 'up-list' : ''}`}>{dataList()}</div>}
         </div>
       </Fieldset>
     </>
@@ -164,7 +178,6 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  toggleFocus: PropTypes.func,
   valueMasking: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,
@@ -178,6 +191,7 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.node,
   ]),
+  dataList: PropTypes.func,
   suffixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -205,7 +219,7 @@ Input.defaultProps = {
   invalid: false,
   label: '',
   tooltip: {},
-  toggleFocus: () => {},
+  dataList: null,
 };
 
 export default Input;

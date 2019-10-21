@@ -9,19 +9,9 @@ const apiData = fakeApiData.map((obj) => obj.title);
 
 
 const renderLimit = 2;
-const comboVisible = true;
 storiesOf('Combo', module)
   .add('Default Combo', () => (
-    <div>
-      {comboVisible
-    && (
-    <Combo label="First Combo label" apiData={apiData} id="combo-id-first">
-      <a id="combo-link" href="https://www.comparethemarket.com.au/">Can’t find your address? <span className="highlight svelte-17l10or">Please Enter Manually</span></a>
-    </Combo>
-    )}
-      {!comboVisible
-        && <div>1</div>}
-    </div>
+    <Combo label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} />
   ), { notes: iconReadme })
   .add('Default2 Combo', () => (
     <Combo label="Second Combo label" id="combo-id-second" placeholder="placeholder" bordered prefixContent="$" suffixContent="dol" disabled renderLimit={renderLimit} />
