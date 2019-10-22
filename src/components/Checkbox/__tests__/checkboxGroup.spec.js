@@ -87,11 +87,11 @@ describe('CheckboxGroup.component', () => {
 
   it('accepts a prefill value', () => {
     const { container } = render(
-      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5" >
+      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5">
         <Checkbox id="A-1" icon="check" isSelected><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check" isSelected><p>A-3 check</p></Checkbox>
-       </CheckboxGroup>,
+      </CheckboxGroup>,
     );
 
     const checkboxA1 = container.querySelector('#A-1');

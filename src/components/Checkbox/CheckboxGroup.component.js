@@ -21,13 +21,13 @@ export const generateGroup = (colSize, children, callback) => {
 };
 
 const CheckboxGroup = ({
-  label, 
-  tooltip, 
-  forceFullWidth, 
-  validationMessage, 
-  groupId, 
-  colSize, 
-  handleChange, 
+  label,
+  tooltip,
+  forceFullWidth,
+  validationMessage,
+  groupId,
+  colSize,
+  handleChange,
   children,
 }) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
