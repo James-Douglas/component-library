@@ -5,12 +5,12 @@ import Input from '../Input/Input.component';
 import Button from '../Button/Button.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
-export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, handleBlueButtonMouseDown, filteredValuesRefs, listVisible) {
+export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
   return (
     <div className={`row-view section-wrap-shadow mt-8 ${!listVisible || currentPrefillValue.length < characterMinimum ? 'hidden' : 'absolute'}`}>
       <style jsx>{styles}</style>
       {comboDataList(filteredValues, handleSelectItem, filteredValuesRefs)}
-      {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton, handleBlueButtonMouseDown)}
+      {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton)}
     </div>
   );
 }
@@ -37,23 +37,22 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
   );
 }
 
-export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton, handleBlueButtonMouseDown) {
+export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton) {
   return (
     <>
       <style jsx>{styles}</style>
       {linkText && linkHref && currentPrefillValue.length >= characterMinimum
       && (
-      <div className="item-manual-lookup item" ref={blueButton} tabIndex="0" role="option" aria-selected={false}>
-        <Button
-          id="text-btn01"
-          btnType="text"
-          content={linkText}
-          disabled={false}
-          href={linkHref}
-          target="_blank"
-          handleOnMouseDown={handleBlueButtonMouseDown}
-        />
-      </div>
+        <div className="item-manual-lookup item" ref={blueButton} tabIndex="0" role="option" aria-selected={false}>
+          <Button
+            id="text-btn01"
+            btnType="text"
+            content={linkText}
+            disabled={false}
+            href={linkHref}
+            target="_blank"
+          />
+        </div>
       )}
     </>
   );
@@ -103,26 +102,29 @@ const Combo = ({
     setFocusedRef(null);
   };
 
-  const handleBlueButtonMouseDown = (event) => {
-    event.target.click();
-  };
-
-  const handleClearButtonMouseDown = (event) => {
-    event.preventDefault();
-    setListVisible(false);
-  };
-
   const onChange = (valueInput) => {
     setCurrentPrefillValue(valueInput);
     setListVisible(!!valueInput.length);
   };
-  const handleOnFocus = () => {
+
+  const handelOnFocus = (event) => {
+    if (
+      // ignore tooltip icon
+      event.target.getAttribute('role') === 'tooltip'
+      // ignore clear button
+      || event.target.tagName === 'BUTTON'
+    ) {
+      return;
+    }
     setListVisible(!!currentPrefillValue.length);
   };
-  const handleOnBlur = () => {
-    setListVisible(false);
+  const handleOnBlur = (event) => {
+    if (!(blueButton.current && blueButton.current.contains(event.relatedTarget))) {
+      setListVisible(false);
+    }
   };
   const keyboardAccessibility = (event) => {
+    const closestLink = event.target.getElementsByTagName('a')[0];
     switch (event.key) {
       case 'Tab':
         break;
@@ -132,15 +134,29 @@ const Combo = ({
       case 'Enter':
         if (focusedRef !== null) {
           handleSelectItem(event.target.innerHTML);
-        } else {
-          event.target.getElementsByTagName('a')[0].click();
+        } else if (closestLink) {
+          closestLink.focus();
+          closestLink.click();
         }
         break;
       case 'ArrowUp':
         if (currentPrefillValue.length >= characterMinimum) {
-          if (!focusedRef) {
+          if (focusedRef === null) {
             if (linkText && linkHref) {
-              setFocusedRef(filteredValues.length);
+              if (document.activeElement === blueButton.current) {
+                setFocusedRef(filteredValues.length - 1);
+                filteredValuesRefs[filteredValues.length - 1].current.focus();
+              } else {
+                setFocusedRef(null);
+                blueButton.current.focus();
+              }
+            } else {
+              setFocusedRef(filteredValues.length - 1);
+              filteredValuesRefs[filteredValues.length - 1].current.focus();
+            }
+          } else if (focusedRef === 0) {
+            if (linkText && linkHref) {
+              setFocusedRef(null);
               blueButton.current.focus();
             } else {
               setFocusedRef(filteredValues.length - 1);
@@ -178,7 +194,12 @@ const Combo = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div onKeyDown={keyboardAccessibility} className="w-full">
+    <div
+      onFocus={handelOnFocus}
+      onBlur={handleOnBlur}
+      onKeyDown={keyboardAccessibility}
+      className="w-full"
+    >
       <style jsx>{styles}</style>
       <Input
         id={id}
@@ -196,9 +217,6 @@ const Combo = ({
         handleChange={(value) => onChange(value)}
         tabIndex="0"
         role="comboField"
-        handleWrapperFocus={handleOnFocus}
-        handleWrapperBlur={handleOnBlur}
-        handleClearButtonMouseDown={handleClearButtonMouseDown}
         dataList={() => comboDropdownList(linkText,
           linkHref,
           blueButton,
@@ -206,7 +224,6 @@ const Combo = ({
           characterMinimum,
           filteredValues,
           handleSelectItem,
-          handleBlueButtonMouseDown,
           filteredValuesRefs,
           listVisible)}
       />

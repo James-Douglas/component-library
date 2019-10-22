@@ -16,12 +16,18 @@ ul {
 .section-wrap-shadow.absolute {
    @apply absolute;
 }
+.section-wrap-shadow {
+  @apply bg-white shadow-md w-full z-10;
+}
+.section-wrap-shadow.absolute {
+   @apply absolute;
+}
 ul li {
   @apply text-base text-grey-darker cursor-pointer border border-solid border-transparent;
   padding: 0.7rem 1.1rem;
   transition: background-color 0.4s ease;
 }
-ul li:nth-last-child(2) {
+ul li:nth-last-child(1) {
   @apply pb-20;
 }
 ul li:hover {
