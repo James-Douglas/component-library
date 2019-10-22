@@ -13,7 +13,7 @@ const Contact = ({ number, size }) => {
     <div>
       <style jsx>{styles}</style>
       <a className={`contact ${size} ${mobileClassName}`} href={`tel:${number}`} target="link-target">
-        <span className="mx-4"><Icon name="contact" size={2} /></span>
+        <span className="mx-4"><Icon name="contact" iconSize={2} /></span>
         { mobileLabel }
       </a>
       <iframe title="link iframe" name="link-target" className="link-iframe" />

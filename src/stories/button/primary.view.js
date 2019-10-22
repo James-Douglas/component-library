@@ -18,9 +18,9 @@ const PrimaryButtonView = () => {
       <style jsx>{styles}</style>
       <div className="background">
         <div className="container">
-          <Button id="primary-btn01" btnType="primary" btnSize="md" content={content} disabled={false} handleClick={logClick} />
-          <Button id="primary-btn02" btnType="primary" btnSize="md" content={content} icon="info" disabled={false} handleClick={logClick} />
-          <Button id="primary-btn03" btnType="primary" btnSize="md" content={content} icon="info" iconAlignRight disabled={false} handleClick={logClick} />
+          <Button id="primary-btn01" type="primary" size="md" content={content} disabled={false} handleClick={logClick} />
+          <Button id="primary-btn02" type="primary" size="md" content={content} icon="info" disabled={false} handleClick={logClick} />
+          <Button id="primary-btn03" type="primary" size="md" content={content} icon="info" iconAlignRight disabled={false} handleClick={logClick} />
         </div>
       </div>
     </>
