@@ -7,8 +7,13 @@ export default css`
   transition : all 200ms ease-out;
 }
 .manor-button {
-  @apply shadow-sm flex items-center justify-center rounded-lg px-24 py-12 mb-16 font-bold text-lg capitalize;
+  @apply shadow-sm flex items-center justify-center rounded-lg px-24 py-12 mb-16 font-bold text-lg capitalize border border-solid border-transparent;
+  border-width: 2px; /* IE 11 specific fix */;
   min-height: 5.4rem;
+}
+.manor-button:focus {
+  outline: none;
+  box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
 }
 .btn-icon {
   @apply pointer-events-none;
