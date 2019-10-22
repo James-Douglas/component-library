@@ -14,6 +14,7 @@ const CheckboxWhiteView = () => (
           <Container>
             <Row>
               <Column col="1">
+                {/* eslint-disable-next-line no-console */}
                 <Checkbox id="chk1" isSelected handleChange={(value) => { console.warn(value); }} />
               </Column>
               <Column>
