@@ -44,16 +44,4 @@ storiesOf('Combo', module)
         </Row>
       </Container>
     </div>
-  ), { notes: iconReadme })
-  .add('Default3 Combo', () => (
-    <div className="mt-54 w-full">
-      <Container>
-        <Row className="row-view">
-          <Column className="col-view" />
-          <Column className="col-view" col="10">
-            <Combo label="Second Combo label" id="combo-id-second" placeholder="placeholder" prefillValue="prefillValue" autocomplete="off" required renderLimit={renderLimit} />
-          </Column>
-        </Row>
-      </Container>
-    </div>
   ), { notes: iconReadme });
