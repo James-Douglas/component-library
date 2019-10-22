@@ -14,7 +14,7 @@ Basic icon component, uses svg tags and paths
 
 ## Props
 
-`name` *(required) string*
+1. `name` *(required) string*
     * The name of the icon to be displayed.
 2. `flipH` *(optional) boolean*
 	* Flip the icon horizontally.
