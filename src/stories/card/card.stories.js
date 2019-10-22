@@ -44,13 +44,13 @@ const cards = [
 
 storiesOf('Card', module)
   .addDecorator(withKnobs)
-  .add('Single card', () => <Container><Card id='test-card-id'>this is a test</Card></Container>, {})
+  .add('Single card', () => <Container><Card id="test-card-id">this is a test</Card></Container>, {})
   .add('Card Group', () => {
     const cols = number('Cols', 1, {
       range: true, min: 1, max: 6, step: 1,
     });
     return (
-      <CardGroup cols={cols} id={'test a'}>
+      <CardGroup cols={cols} id="test a">
         {/* eslint-disable-next-line react/jsx-key */}
         {cards.map((card) => <Card id={`card-${card}`} key={`card-${card}-kay`}><div className="flex w-full h-full items-center justify-center"><h2>{card}</h2></div></Card>)}
       </CardGroup>
