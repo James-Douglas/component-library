@@ -8,24 +8,24 @@ const AllIconsView = () => (
   <>
     <style jsx>{iconStyles}</style>
     <div className="icon-wrap">
-      <ManorIcon name="contact" iconSize={6} />
-      <ManorIcon name="contact" iconSize={4} />
-      <ManorIcon name="contact" iconSize={2} />
+      <ManorIcon name="contact" size={6} />
+      <ManorIcon name="contact" size={4} />
+      <ManorIcon name="contact" size={2} />
     </div>
     <div className="icon-wrap">
-      <ManorIcon name="check" iconSize={6} />
-      <ManorIcon name="check" iconSize={4} />
-      <ManorIcon name="check" iconSize={2} />
+      <ManorIcon name="check" size={6} />
+      <ManorIcon name="check" size={4} />
+      <ManorIcon name="check" size={2} />
     </div>
     <div className="icon-wrap">
-      <ManorIcon name="close" iconSize={6} />
-      <ManorIcon name="close" iconSize={4} />
-      <ManorIcon name="close" iconSize={2} />
+      <ManorIcon name="close" size={6} />
+      <ManorIcon name="close" size={4} />
+      <ManorIcon name="close" size={2} />
     </div>
     <div className="icon-wrap">
-      <ManorIcon name="closeCircle" iconSize={6} />
-      <ManorIcon name="closeCircle" iconSize={4} />
-      <ManorIcon name="closeCircle" iconSize={2} />
+      <ManorIcon name="closeCircle" size={6} />
+      <ManorIcon name="closeCircle" size={4} />
+      <ManorIcon name="closeCircle" size={2} />
     </div>
   </>
 );
