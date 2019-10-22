@@ -66,7 +66,7 @@ describe('Checkbox.component', () => {
         id="test-id"
         icon="check"
         isSelected
-      ></Checkbox>,
+      />,
     );
 
     const checkbox = container.querySelector('#test-id');

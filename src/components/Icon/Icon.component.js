@@ -4,13 +4,13 @@ import icons from './icons';
 import styles from './styles';
 
 const Icon = ({
-  size, flipV, flipH, name,
+  iconSize, flipV, flipH, name,
 }) => {
   const icon = icons[name] || { viewBox: '', paths: [] };
   const { viewBox } = icon;
   const inlineStyles = {
-    width: `${size}rem`,
-    height: `${size}rem`,
+    width: `${iconSize}rem`,
+    height: `${iconSize}rem`,
   };
 
   return (
@@ -39,13 +39,13 @@ const Icon = ({
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.number,
+  iconSize: PropTypes.number,
   flipV: PropTypes.bool,
   flipH: PropTypes.bool,
 };
 
 Icon.defaultProps = {
-  size: 10,
+  iconSize: 10,
   flipV: false,
   flipH: false,
 };

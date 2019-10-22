@@ -27,12 +27,12 @@ const SecondaryButtonView = () => {
       <style jsx>{styles}</style>
       <div className="background">
         <div className="container">
-          <Button id="secondary-btn01" btnType="secondary" btnSize="md" content={btn01Content} disabled={false} />
-          <Button id="secondary-btn02" btnType="secondary" btnMode="onDark" btnSize="md" content={btn01Content} disabled={false} />
-          <Button id="secondary-btn03" btnType="secondary" btnSize="sm" content={btn02Content} disabled={false} />
-          <Button id="secondary-btn04" btnType="secondary" btnMode="onDark" btnSize="sm" content={btn02Content} disabled={false} />
-          <Button id="secondary-icon01" btnType="secondary" btnSize="sm" content={btn03Content} icon={icon} disabled={false} />
-          <Button id="secondary-icon02" btnType="secondary" btnMode="onDark" btnSize="sm" content={btn03Content} icon={icon} disabled={false} />
+          <Button id="secondary-btn01" type="secondary" size="md" content={btn01Content} disabled={false} />
+          <Button id="secondary-btn02" type="secondary" onDark size="md" content={btn01Content} disabled={false} />
+          <Button id="secondary-btn03" type="secondary" size="sm" content={btn02Content} disabled={false} />
+          <Button id="secondary-btn04" type="secondary" onDark size="sm" content={btn02Content} disabled={false} />
+          <Button id="secondary-icon01" type="secondary" size="sm" content={btn03Content} icon={icon} disabled={false} />
+          <Button id="secondary-icon02" type="secondary" onDark size="sm" content={btn03Content} icon={icon} disabled={false} />
         </div>
       </div>
     </>
