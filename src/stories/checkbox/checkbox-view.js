@@ -18,7 +18,6 @@ export default css`
   background: white;
   padding: 50px;
 }
-
 .grid-view {
   height: 100vh;
   justify-content: center;

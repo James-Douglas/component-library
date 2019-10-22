@@ -64,7 +64,7 @@ const Accordion = ({
             <Column col="9" lg="11">{title}</Column>
             <Column col="3" lg="1">
               <div className="accordion-caret">
-                <Icon name={`arrow${arrowName}`} iconSize={iconSize} />
+                <Icon name={`arrow${arrowName}`} size={iconSize} />
               </div>
             </Column>
           </Row>

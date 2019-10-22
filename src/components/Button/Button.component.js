@@ -14,7 +14,7 @@ const Button = ({
         <>
           <style jsx>{styles}</style>
           <div className="btn-icon">
-            <Icon name={icon} iconSize={iconSize} />
+            <Icon name={icon} size={iconSize} />
           </div>
           {content}
         </>

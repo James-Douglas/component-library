@@ -85,13 +85,13 @@ const CheckboxGroupView = () => {
                     <>
                       <p className="results">
                         {g1}
-                  :
+                        :
                         {' '}
                         {checkboxGroupA.map((checkbox) => checkbox.id).join(', ')}
                       </p>
                       <p className="results">
                         {g2}
-                  :
+                        :
                         {' '}
                         {checkboxGroupB.map((checkbox) => checkbox.id).join(', ')}
                       </p>
