@@ -4,7 +4,7 @@ import Icon from '../Icon/Icon.component';
 import styles from './styles';
 
 const Button = ({
-  id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel, handleClick, handleOnMouseDown,
+  id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel, handleClick,
 }) => {
   const isInlineBlock = href && btnType !== 'footer-link' ? 'inline-block' : '';
 
@@ -32,7 +32,6 @@ const Button = ({
         <style jsx>{styles}</style>
         <Tag
           onClick={handleClick}
-          onMouseDown={handleOnMouseDown}
           id={id}
           className={`
             manor-rich-text 
@@ -81,7 +80,6 @@ Button.propTypes = {
   target: PropTypes.string,
   rel: PropTypes.string,
   handleClick: PropTypes.func,
-  handleOnMouseDown: PropTypes.func,
 };
 
 Button.defaultProps = {
@@ -97,7 +95,6 @@ Button.defaultProps = {
   target: '#',
   rel: '',
   handleClick: () => {},
-  handleOnMouseDown: () => {},
 };
 
 export default Button;
