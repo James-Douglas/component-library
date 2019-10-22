@@ -13,7 +13,7 @@ const apiData = fakeApiData.map((obj) => obj.title);
 
 const renderLimit = 2;
 storiesOf('Combo', module)
-  .add('Default Combo', () => (
+  .add('Custom  Dropdown', () => (
     <div className="mt-54 w-full">
       <Container>
         <Row className="row-view">
@@ -33,7 +33,7 @@ storiesOf('Combo', module)
       </Container>
     </div>
   ), { notes: iconReadme })
-  .add('Default2 Combo', () => (
+  .add('Custom  Dropdown Disabled', () => (
     <div className="mt-54 w-full">
       <Container>
         <Row className="row-view">
