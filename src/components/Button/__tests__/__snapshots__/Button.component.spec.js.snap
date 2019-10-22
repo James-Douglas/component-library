@@ -57,7 +57,7 @@ exports[`Button renders with props 1`] = `
            
         "
           enable-background="0 -4 44 44"
-          style="width: 10rem; height: 10rem;"
+          style="width: 2rem; height: 2rem;"
           version="1.1"
           viewBox="0 -4 44 44"
           x="0px"

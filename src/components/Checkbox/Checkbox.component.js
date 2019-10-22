@@ -28,15 +28,15 @@ const renderContent = (children) => {
 };
 
 const Checkbox = ({
-                    id,
-                    icon,
-                    disabled,
-                    invalid,
-                    invertColour,
-                    handleChange,
-                    isSelected,
-                    children,
-                  }) => {
+  id,
+  icon,
+  disabled,
+  invalid,
+  invertColour,
+  handleChange,
+  isSelected,
+  children,
+}) => {
   const [value, toggle] = useToggleState(isSelected);
 
   const toggleEventHandler = () => {
