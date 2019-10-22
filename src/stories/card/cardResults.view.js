@@ -11,7 +11,7 @@ import Button from '../../components/Button/Button.component';
 const CardResultsView = ({ background }) => (
   <StoryTemplate background={background}>
     <CardGroup id="test" cols={1}>
-      <Card>
+      <Card id="a">
         <Container>
           <div style={{ padding: '3rem 0rem', width: '100%' }}>
             <Row>
@@ -60,7 +60,7 @@ const CardResultsView = ({ background }) => (
           </div>
         </Container>
       </Card>
-      <Card>
+      <Card id="b">
         <Container>
           <div style={{ padding: '3rem 0rem', width: '100%' }}>
             <Row>
@@ -109,7 +109,7 @@ const CardResultsView = ({ background }) => (
           </div>
         </Container>
       </Card>
-      <Card>
+      <Card id="c">
         <Container>
           <div style={{ padding: '3rem 0rem', width: '100%' }}>
             <Row>

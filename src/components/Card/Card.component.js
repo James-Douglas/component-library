@@ -10,14 +10,15 @@ const styles = css`
   }
 `;
 
-const Card = ({ children }) => (
-  <div className="card">
+const Card = ({ id, children }) => (
+  <div className="card" id={id}>
     <style jsx>{styles}</style>
     {children}
   </div>
 );
 
 Card.propTypes = {
+  id: PropTypes.string.isRequired,
   children: PropTypes.node,
 };
 
