@@ -1,6 +1,6 @@
 {
-  "name": "@comparethemarketau/manor",
-  "version": "0.0.0",
+  "name": "@comparethemarketau/manor-ctm",
+  "version": "0.1.0",
   "dependencies": {
     "@craco/craco": "^5.5.0",
     "@tippy.js/react": "^2.2.3",
