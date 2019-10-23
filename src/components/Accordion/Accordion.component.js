@@ -10,7 +10,7 @@ const Accordion = ({
   title,
   children,
   show,
-  size,
+  iconSize,
   onClickGroup,
 }) => {
   const [isVisible, setIsVisible] = useState(show);
@@ -64,7 +64,7 @@ const Accordion = ({
             <Column col="9" lg="11">{title}</Column>
             <Column col="3" lg="1">
               <div className="accordion-caret">
-                <Icon name={`arrow${arrowName}`} size={size} />
+                <Icon name={`arrow${arrowName}`} size={iconSize} />
               </div>
             </Column>
           </Row>
@@ -89,7 +89,7 @@ Accordion.propTypes = {
   ]),
   title: PropTypes.node,
   show: PropTypes.bool,
-  size: PropTypes.number,
+  iconSize: PropTypes.number,
   onClickGroup: PropTypes.func,
 };
 
@@ -97,7 +97,7 @@ Accordion.defaultProps = {
   children: '',
   title: '',
   show: false,
-  size: 1.5,
+  iconSize: 1.5,
   onClickGroup: null,
 };
 

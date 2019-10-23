@@ -46,7 +46,7 @@ export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, 
         <div className="item-manual-lookup item" ref={blueButton} tabIndex="0" role="option" aria-selected={false}>
           <Button
             id="text-btn01"
-            btnType="text"
+            type="text"
             content={linkText}
             disabled={false}
             href={linkHref}

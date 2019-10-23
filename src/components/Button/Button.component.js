@@ -4,9 +4,9 @@ import Icon from '../Icon/Icon.component';
 import styles from './styles';
 
 const Button = ({
-  id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel, handleClick,
+  id, type, onDark, size, content, disabled, icon, iconSize, iconAlignRight, href, target, rel, handleClick,
 }) => {
-  const isInlineBlock = href && btnType !== 'footer-link' ? 'inline-block' : '';
+  const isInlineBlock = href && type !== 'footer-link' ? 'inline-block' : '';
 
   const renderContent = () => {
     if (icon) {
@@ -14,7 +14,7 @@ const Button = ({
         <>
           <style jsx>{styles}</style>
           <div className="btn-icon">
-            <Icon name={icon} size={size} />
+            <Icon name={icon} size={iconSize} />
           </div>
           {content}
         </>
@@ -24,7 +24,7 @@ const Button = ({
   };
 
   const renderButton = () => {
-    const isButton = btnType === 'primary' || btnType === 'secondary';
+    const isButton = type === 'primary' || type === 'secondary';
     const Tag = isButton ? 'button' : 'a';
 
     return (
@@ -35,10 +35,10 @@ const Button = ({
           id={id}
           className={`
             manor-rich-text 
-            ${btnSize}
-            ${btnType}
+            ${size}
+            ${type}
             ${isButton ? 'manor-button' : 'manor-button-link'} 
-            ${btnMode ? `${btnMode}` : ''}
+            ${onDark ? 'onDark' : ''}
             ${content === '' ? 'center' : ''}
             ${iconAlignRight ? 'align-right' : ''}
           `}
@@ -65,13 +65,13 @@ const Button = ({
 
 Button.propTypes = {
   id: PropTypes.string.isRequired,
-  btnType: PropTypes.string,
-  btnMode: PropTypes.string,
-  btnSize: PropTypes.string,
+  type: PropTypes.string,
+  onDark: PropTypes.bool,
+  size: PropTypes.string,
   content: PropTypes.string,
   disabled: PropTypes.bool,
   icon: PropTypes.string,
-  size: PropTypes.oneOfType([
+  iconSize: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
@@ -83,13 +83,13 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  btnType: 'primary',
-  btnMode: '',
-  btnSize: 'md',
+  type: 'primary',
+  onDark: false,
+  size: 'md',
   content: '',
   disabled: false,
   icon: '',
-  size: 2,
+  iconSize: 2,
   iconAlignRight: false,
   href: '',
   target: '#',

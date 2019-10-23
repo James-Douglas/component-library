@@ -26,7 +26,6 @@ storiesOf('Combo', module)
               linkHref="https://www.comparethemarket.com.au/"
               linkText="Can’t find your address?"
               required={false}
-              prefillValue="sec"
               tooltip={{ title: 'Combo component' }}
             />
           </Column>
