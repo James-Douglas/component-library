@@ -8,13 +8,15 @@ import Contact from './Contact/Contact.component';
 
 const Header = ({ isSticky, stuck, number }) => {
   const size = stuck ? 'small' : 'large';
+  const stuckClass = stuck ? 'stuck' : '';
+  const stickyClass = isSticky ? 'sticky' : '';
   return (
-    <header className={`${isSticky ? 'sticky' : ''}  ${stuck ? 'stuck' : ''}`}>
+    <header className={`${stickyClass} ${stuckClass}`}>
       <style jsx>{styles}</style>
       <FluidContainer>
         <div className="wrap">
           <Logo size={size} />
-          <Contact number={number} size={size} />
+          {number && <Contact number={number} size={size} />}
         </div>
       </FluidContainer>
     </header>
@@ -24,12 +26,13 @@ const Header = ({ isSticky, stuck, number }) => {
 Header.propTypes = {
   isSticky: PropTypes.bool,
   stuck: PropTypes.bool,
-  number: PropTypes.string.isRequired,
+  number: PropTypes.string,
 };
 
 Header.defaultProps = {
   isSticky: false,
   stuck: false,
+  number: '',
 };
 
 

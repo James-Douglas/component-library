@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import Header from '../../components/Header/Header.component';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
+import iconReadme from '../../components/Header/Header.md';
 
 storiesOf('Header', module)
   .addDecorator(withKnobs)
@@ -115,4 +116,4 @@ storiesOf('Header', module)
         </div>
       </FluidContainer>
     </div>
-  ));
+  ), { notes: iconReadme });

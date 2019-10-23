@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleLabel renders with minimal props 1`] = `
+<div>
+  <style />
+  <label
+    class="toggle-label transition"
+    for="test"
+  />
+</div>
+`;

@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Tippy from '@tippy.js/react';
 
+import useIsDesktop from 'hooks/useIsDesktop';
+import useUnmountEffect from 'hooks/useUnmountEffect';
 import Icon from '../Icon/Icon.component';
-import useIsDesktop from '../../hooks/useIsDesktop';
 import throttle from '../../utils/throttle';
-import useUnmountEffect from '../../hooks/useUnmountEffect';
 import styles from './styles';
 
 /**
@@ -70,10 +70,10 @@ export function getContent(title, body) {
 }
 
 const Tooltip = ({
-  title, body, boundingElementSelector, screenReaderLabel,
+  title, body, boundingElementSelector, screenReaderLabel, justifyEnd,
 }) => {
   const [pinned, setPinned] = useState(false);
-  const desktop = useIsDesktop();
+  const desktop = useIsDesktop(false);
   const [tippyInstance, setTippyInstance] = useState(null);
   const [tippyVisible, setTippyVisible] = useState(false);
   const tooltipElement = useRef(null);
@@ -147,8 +147,14 @@ const Tooltip = ({
     }
   };
 
+  let wrapperClass;
+  if (justifyEnd) {
+    wrapperClass = 'justify-end';
+  } else {
+    wrapperClass = desktop ? 'justify-center' : 'justify-end';
+  }
   return (
-    <div className={`tooltip-wrapper ${desktop ? 'justify-center' : 'justify-end'}`}>
+    <div className={`tooltip-wrapper ${wrapperClass}`}>
       <style jsx>{styles}</style>
       <Tippy
         content={getContent(title, body)}
@@ -192,7 +198,7 @@ const Tooltip = ({
   );
 };
 
-Tooltip.propTypes = {
+export const tooltipPropTypes = {
   title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -203,13 +209,17 @@ Tooltip.propTypes = {
     PropTypes.array,
     PropTypes.object,
   ]),
+  justifyEnd: PropTypes.bool,
   boundingElementSelector: PropTypes.string,
   screenReaderLabel: PropTypes.string,
 };
 
+Tooltip.propTypes = tooltipPropTypes;
+
 Tooltip.defaultProps = {
   title: '',
   body: '',
+  justifyEnd: false,
   boundingElementSelector: null,
   screenReaderLabel: '',
 };

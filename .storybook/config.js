@@ -1,8 +1,10 @@
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
-import { addParameters, configure } from '@storybook/react';
+import '@storybook/addon-console';
+import { addDecorator, addParameters } from '@storybook/react';
+import { withConsole } from '@storybook/addon-console';
 import { create } from '@storybook/theming';
-import '../src/index.css'
+import '../src/index.css';
+
+addDecorator(function (storyFn, context) { return withConsole()(storyFn)(context)});
 
 addParameters({
   options: {
@@ -16,5 +18,4 @@ addParameters({
   }
 });
 
-// automatically import all files ending in *.stories.js
-configure(require.context('../src/stories', true, /\.stories\.js$/), module);
+import '../src/stories';

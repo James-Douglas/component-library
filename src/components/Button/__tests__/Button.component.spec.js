@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Button from '../Button.component';
 
-/* id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel */
 describe('Button', () => {
   it('renders correctly with minimal props', () => {
     const { container } = render(<Button id="test-id" />);
@@ -10,7 +9,7 @@ describe('Button', () => {
   });
 
   it('renders with props', () => {
-    const { container, getByText } = render(<Button id="test-id" btnType="primary" btnMode="onDark" btnSize="md" content="test content" disabled icon="check" iconAlignRight />);
+    const { container, getByText } = render(<Button id="test-id" type="primary" onDark size="md" content="test content" disabled icon="check" iconAlignRight />);
 
     const btn = container.querySelector('#test-id');
     const icon = btn.querySelector('.btn-icon');
@@ -25,7 +24,7 @@ describe('Button', () => {
   });
 
   it('renders a primary button when the prop is supplied', () => {
-    const { container } = render(<Button id="test-id" btnType="primary" content="test thing" />);
+    const { container } = render(<Button id="test-id" type="primary" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
 
@@ -33,7 +32,7 @@ describe('Button', () => {
   });
 
   it('renders a secondary button in mode = onDark, when the props are supplied', () => {
-    const { container } = render(<Button id="test-id" btnType="secondary" btnMode="onDark" content="test thing" />);
+    const { container } = render(<Button id="test-id" type="secondary" onDark content="test thing" />);
 
     const btn = container.querySelector('#test-id');
 
@@ -43,7 +42,7 @@ describe('Button', () => {
   });
 
   it('renders a text button with an icon when specified', () => {
-    const { container } = render(<Button id="test-id" btnType="text" icon="check" content="test thing" />);
+    const { container } = render(<Button id="test-id" type="text" icon="check" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
     const icon = container.querySelector('.btn-icon').classList[0];
@@ -56,7 +55,7 @@ describe('Button', () => {
   });
 
   it('renders a link button (a href) when specified', () => {
-    const { container } = render(<Button id="test-id" btnType="link" href="#" content="test thing" />);
+    const { container } = render(<Button id="test-id" type="link" href="#" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
 
@@ -66,7 +65,7 @@ describe('Button', () => {
   });
 
   it('renders a footer link (a href) when specified', () => {
-    const { container } = render(<Button id="test-id" btnType="footer-link" href="#" content="test thing" />);
+    const { container } = render(<Button id="test-id" type="footer-link" href="#" content="test thing" />);
 
     const btn = container.querySelector('#test-id');
 

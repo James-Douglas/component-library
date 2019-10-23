@@ -21,8 +21,7 @@ const TextareaDemoView = ({
   disabled,
   required,
   invalid,
-  autofill,
-  hidden,
+  isPrefill,
   rows,
   wrap,
   readonly,
@@ -34,6 +33,7 @@ const TextareaDemoView = ({
       <div className="add-padding-around-field-for-display-purposes">
 
         <Textarea
+          tooltip={{ title: 'text area tooltip!' }}
           id={id}
           name={name}
           label={label}
@@ -43,8 +43,26 @@ const TextareaDemoView = ({
           disabled={disabled}
           required={required}
           invalid={invalid}
-          autofill={autofill}
-          hidden={hidden}
+          isPrefill={isPrefill}
+          rows={rows}
+          wrap={wrap}
+          readonly={readonly}
+          maxChars={maxChars}
+          maxLength={maxLength}
+        />
+
+        <Textarea
+          tooltip={{ title: 'text area tooltip!' }}
+          id={id}
+          name={name}
+          label={label}
+          placeholder={placeholder}
+          value={value}
+          bordered={bordered}
+          disabled={disabled}
+          required={required}
+          invalid={invalid}
+          isPrefill={isPrefill}
           rows={rows}
           wrap={wrap}
           readonly={readonly}
@@ -67,8 +85,7 @@ TextareaDemoView.propTypes = {
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   invalid: PropTypes.bool,
-  autofill: PropTypes.bool,
-  hidden: PropTypes.bool,
+  isPrefill: PropTypes.bool,
   rows: PropTypes.string,
   wrap: PropTypes.string,
   readonly: PropTypes.bool,
@@ -85,8 +102,7 @@ TextareaDemoView.defaultProps = {
   disabled: false,
   required: false,
   invalid: false,
-  autofill: false,
-  hidden: false,
+  isPrefill: false,
   rows: '',
   wrap: '',
   readonly: false,

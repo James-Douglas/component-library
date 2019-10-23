@@ -5,50 +5,10 @@ import {
 } from '@storybook/addon-knobs';
 
 import TextareaReadme from '../../components/Textarea/textarea.md';
-import TextareaView from './textarea.view';
 import TextareaDemoView from './textareaDemo.view';
 
 storiesOf('Textarea', module)
   .addDecorator(withKnobs)
-  .add('Default', () => {
-    const id = text('ID', 'input-one');
-    const name = text('Name', 'input-one');
-    const label = text('Label', '[Fieldset label]');
-    const placeholder = text('Placeholder', 'Placeholder Text');
-    const TextareaValue = text('Value', '');
-    const bordered = boolean('Bordered', true);
-    const disabled = boolean('Disabled', false);
-    const required = boolean('Required', false);
-    const invalid = boolean('Invalid', false);
-    const autofill = boolean('Autofill', false);
-    const hidden = boolean('Hidden', false);
-    const rows = text('Rows', ''); // can be set via the css width property
-    const wrap = select('Wrap', ['', 'hard', 'soft'], '');
-    const readonly = boolean('Readonly', false);
-    const maxLength = text('Maxlength', '');
-    const maxChars = text('Maxchars', '500');
-
-    return (
-      <TextareaView
-        id={id}
-        name={name}
-        label={label}
-        placeholder={placeholder}
-        value={TextareaValue}
-        bordered={bordered}
-        disabled={disabled}
-        required={required}
-        invalid={invalid}
-        autofill={autofill}
-        hidden={hidden}
-        rows={rows}
-        wrap={wrap}
-        readonly={readonly}
-        maxLength={maxLength}
-        maxChars={maxChars}
-      />
-    );
-  }, { notes: TextareaReadme })
   .add('demo', () => {
     const id = text('ID', 'input-one');
     const name = text('Name', 'input-one');
@@ -59,8 +19,7 @@ storiesOf('Textarea', module)
     const disabled = boolean('Disabled', false);
     const required = boolean('Required', false);
     const invalid = boolean('Invalid', false);
-    const autofill = boolean('Autofill', false);
-    const hidden = boolean('Hidden', false);
+    const isPrefill = boolean('Prefilled', false);
     const rows = text('Rows', '6'); // can be set via the css width property
     const wrap = select('Wrap', ['', 'hard', 'soft'], '');
     const readonly = boolean('Readonly', false);
@@ -78,8 +37,7 @@ storiesOf('Textarea', module)
         disabled={disabled}
         required={required}
         invalid={invalid}
-        autofill={autofill}
-        hidden={hidden}
+        isPrefill={isPrefill}
         rows={rows}
         wrap={wrap}
         readonly={readonly}
@@ -98,8 +56,7 @@ storiesOf('Textarea', module)
     const disabled = boolean('Disabled', false);
     const required = boolean('Required', false);
     const invalid = boolean('Invalid', false);
-    const autofill = boolean('Autofill', false);
-    const hidden = boolean('Hidden', false);
+    const isPrefill = boolean('Prefilled', false);
     const rows = text('Rows', '6'); // can be set via the css width property
     const wrap = select('Wrap', ['', 'hard', 'soft'], '');
     const readonly = boolean('Readonly', false);
@@ -117,8 +74,7 @@ storiesOf('Textarea', module)
         disabled={disabled}
         required={required}
         invalid={invalid}
-        autofill={autofill}
-        hidden={hidden}
+        isPrefill={isPrefill}
         rows={rows}
         wrap={wrap}
         readonly={readonly}

@@ -4,7 +4,7 @@ import Tooltip from '../../components/Tooltip/Tooltip.component';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
-import './tooltip.view.css';
+import StoryTemplate from '../storyTemplate';
 
 const TooltipFiltersView = () => {
   const tooltipContentA = (
@@ -32,12 +32,6 @@ const TooltipFiltersView = () => {
 
   );
 
-  const backgroundStyle = {
-    background: '#ffffff',
-    height: '200vh',
-    padding: '25px',
-  };
-
   const filterContainerStyle = {
     width: '100%',
     border: '1px solid lightgrey',
@@ -51,7 +45,7 @@ const TooltipFiltersView = () => {
   };
 
   return (
-    <div className="manor-rich-text" style={backgroundStyle}>
+    <StoryTemplate>
       <Container>
         <Row>
           <Column col="3">
@@ -118,7 +112,7 @@ Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tr
           </Column>
         </Row>
       </Container>
-    </div>
+    </StoryTemplate>
   );
 };
 

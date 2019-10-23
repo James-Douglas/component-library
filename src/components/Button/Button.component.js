@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon.component';
-import styles from './Button.module.css';
+import styles from './styles';
 
 const Button = ({
-  id, btnType, btnMode, btnSize, content, disabled, icon, size, iconAlignRight, href, target, rel, handleClick,
+  id, type, onDark, size, content, disabled, icon, iconSize, iconAlignRight, href, target, rel, handleClick,
 }) => {
-  const isInlineBlock = href && btnType !== 'footer-link' ? 'inline-block' : '';
+  const isInlineBlock = href && type !== 'footer-link' ? 'inline-block' : '';
 
   const renderContent = () => {
     if (icon) {
       return (
         <>
-          <div className={`${styles['btn-icon']}`}>
-            <Icon name={icon} size={size} />
+          <style jsx>{styles}</style>
+          <div className="btn-icon">
+            <Icon name={icon} size={iconSize} />
           </div>
           {content}
         </>
@@ -23,49 +24,54 @@ const Button = ({
   };
 
   const renderButton = () => {
-    const isButton = btnType === 'primary' || btnType === 'secondary';
+    const isButton = type === 'primary' || type === 'secondary';
     const Tag = isButton ? 'button' : 'a';
 
     return (
-      <Tag
-        onClick={handleClick}
-        id={id}
-        className={`
-          manor-rich-text
-          ${styles[`${isButton ? 'manor-button' : 'manor-button-link'}`]} 
-          ${styles[btnSize]}
-          ${styles[btnType]}
-          ${btnMode ? `${styles[btnMode]}` : ''}
-          ${content === '' ? styles.center : ''}
-          ${iconAlignRight ? `${styles['align-right']}` : ''}
-        `}
-        disabled={disabled}
-        href={isButton ? null : href}
-        target={isButton ? null : target}
-        rel={isButton ? null : rel}
-      >
-        {renderContent()}
-      </Tag>
+      <>
+        <style jsx>{styles}</style>
+        <Tag
+          onClick={handleClick}
+          id={id}
+          className={`
+            manor-rich-text 
+            ${size}
+            ${type}
+            ${isButton ? 'manor-button' : 'manor-button-link'} 
+            ${onDark ? 'onDark' : ''}
+            ${content === '' ? 'center' : ''}
+            ${iconAlignRight ? 'align-right' : ''}
+          `}
+          disabled={disabled}
+          href={isButton ? null : href}
+          target={isButton ? null : target}
+          rel={isButton ? null : rel}
+        >
+          {renderContent()}
+        </Tag>
+      </>
     );
   };
 
-
   return (
-    <span className={`manor-button-wrap ${isInlineBlock}`}>
-      {renderButton()}
-    </span>
+    <>
+      <style jsx>{styles}</style>
+      <span className={`manor-button-wrap ${isInlineBlock}`}>
+        {renderButton()}
+      </span>
+    </>
   );
 };
 
 Button.propTypes = {
   id: PropTypes.string.isRequired,
-  btnType: PropTypes.string,
-  btnMode: PropTypes.string,
-  btnSize: PropTypes.string,
+  type: PropTypes.string,
+  onDark: PropTypes.bool,
+  size: PropTypes.string,
   content: PropTypes.string,
   disabled: PropTypes.bool,
   icon: PropTypes.string,
-  size: PropTypes.oneOfType([
+  iconSize: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
@@ -77,13 +83,13 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  btnType: 'primary',
-  btnMode: '',
-  btnSize: 'md',
+  type: 'primary',
+  onDark: false,
+  size: 'md',
   content: '',
   disabled: false,
   icon: '',
-  size: 2,
+  iconSize: 2,
   iconAlignRight: false,
   href: '',
   target: '#',

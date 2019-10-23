@@ -22,7 +22,6 @@ const TextareaView = ({
   required,
   invalid,
   autofill,
-  hidden,
   rows,
   wrap,
   readonly,
@@ -42,7 +41,6 @@ const TextareaView = ({
         required={required}
         invalid={invalid}
         autofill={autofill}
-        hidden={hidden}
         rows={rows}
         wrap={wrap}
         readonly={readonly}
@@ -66,7 +64,6 @@ TextareaView.propTypes = {
   required: PropTypes.bool,
   invalid: PropTypes.bool,
   autofill: PropTypes.bool,
-  hidden: PropTypes.bool,
   rows: PropTypes.string,
   wrap: PropTypes.string,
   readonly: PropTypes.bool,
@@ -84,7 +81,6 @@ TextareaView.defaultProps = {
   required: false,
   invalid: false,
   autofill: false,
-  hidden: false,
   rows: '',
   wrap: '',
   readonly: false,

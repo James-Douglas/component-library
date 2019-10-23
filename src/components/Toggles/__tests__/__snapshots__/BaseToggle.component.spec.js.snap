@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseToggle renders with minimal props 1`] = `
+<div>
+  <span
+    class="flex toggle"
+  >
+    <style />
+    <input
+      class="toggle-input "
+      id="test-square"
+      name=""
+      tabindex="0"
+      type="radio"
+      value=""
+    />
+  </span>
+</div>
+`;
