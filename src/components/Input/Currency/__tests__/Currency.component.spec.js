@@ -114,9 +114,8 @@ describe('Currency', () => {
     fireEvent.input(currencyInput, { target: { value: '2222222' } });
 
     expect(handler).toHaveBeenCalled();
-    expect(handler.mock.calls.length).toBe(2);
-    expect(handler.mock.calls[0][0]).toBe('');
-    expect(handler.mock.calls[1][0]).toBe('2,222,222');
+    expect(handler.mock.calls.length).toBe(1);
+    expect(handler.mock.calls[0][0]).toBe('2,222,222');
   });
 
   it('removes disallowed characters and formats the input', () => {

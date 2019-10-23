@@ -141,5 +141,4 @@ input[disabled] {
 ::-ms-clear {
   display: none;
 }
-
 `;

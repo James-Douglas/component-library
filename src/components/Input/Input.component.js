@@ -88,18 +88,17 @@ const Input = ({
   handleFocus,
   handleBlur,
   valueMasking,
+  dataList,
 }) => {
-  const [rawValue, setRawValue] = useState(prefillValue || '');
   const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
   const [isAutofill, setIsAutofill] = useState(!!prefillValue);
+
   const inputWrapElement = useRef(null);
 
   const clearInput = () => {
-    setValue('');
-    if (valueMasking) {
-      setRawValue('');
-    }
     setIsAutofill(false);
+    setValue('');
+    handleChange('');
   };
 
   const handleOnChange = (e) => {
@@ -107,20 +106,22 @@ const Input = ({
 
     if (valueMasking) {
       const { raw, parsed } = valueMasking(e.target.value);
-      setRawValue(raw || '');
       setValue(parsed || '');
+      handleChange(parsed, raw);
     } else {
       setValue(e.target.value);
+      handleChange(e.target.value);
     }
   };
 
   useEffect(() => {
     if (valueMasking) {
-      handleChange(value, rawValue);
+      const { parsed } = valueMasking(prefillValue);
+      setValue(parsed || '');
     } else {
-      handleChange(value);
+      setValue(prefillValue);
     }
-  }, [handleChange, value, rawValue, valueMasking]);
+  }, [prefillValue, valueMasking]);
 
   const onFocus = () => {
     if (handleFocus) {
@@ -147,16 +148,12 @@ const Input = ({
   const borderClass = `${bordered ? 'input-border' : ''}`;
   const invalidClass = `${validationMessage && validationMessage.length ? 'invalid' : ''}`;
   const disabledClass = `${disabled ? 'disabled' : ''}`;
-
   return (
     <>
       <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth} validationMessage={validationMessage} supportingElements={getSupportingElements(required)}>
         <style jsx>{styles}</style>
         <div className="input-container">
-          <div
-            ref={inputWrapElement}
-            className={`input-wrap ${prefillClass} ${borderClass} ${invalidClass} ${disabledClass}`}
-          >
+          <div ref={inputWrapElement} className={`input-wrap ${prefillClass} ${borderClass} ${invalidClass} ${disabledClass}`}>
 
             {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
 
@@ -187,6 +184,8 @@ const Input = ({
 
           </div>
 
+          {dataList && <div>{dataList()}</div>}
+
         </div>
       </Fieldset>
     </>
@@ -200,7 +199,7 @@ Input.propTypes = {
   validationMessage: PropTypes.string,
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  maxlength: PropTypes.string,
+  maxlength: PropTypes.number,
   valueMasking: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,
@@ -215,6 +214,7 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.node,
   ]),
+  dataList: PropTypes.func,
   suffixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
@@ -239,6 +239,7 @@ Input.defaultProps = {
   required: true,
   disabled: false,
   bordered: true,
+  dataList: null,
 };
 
 export default Input;

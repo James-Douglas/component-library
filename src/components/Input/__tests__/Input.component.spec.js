@@ -43,7 +43,6 @@ describe('renderClearIcon()', () => {
 
   it('does not render an clearIcon if the value.length is over 0', () => {
     const { container } = render(<ClearIconContainer value="" />);
-
     expect(container).toBeEmpty();
   });
 
@@ -259,22 +258,19 @@ describe('Input.component', () => {
   });
 
   it('accepts a prefill value and renders with prefill styling', () => {
-    let val;
     const { container } = render(
       <Input
         id="test-id"
         type="text"
         placeholder="placeholder test"
         prefillValue="autofilled value test"
-        handleChange={(value) => { val = value; }}
       />,
     );
-
-    const inputField = container.querySelector('#test-id');
+    const inputField = document.getElementById('test-id');
     const inputWrap = container.querySelector('.input-wrap');
     expect(inputField).toHaveClass('manor-prefilled');
     expect(inputWrap).toHaveClass('manor-prefilled-border');
-    expect(val).toBe('autofilled value test');
+    expect(inputField.value).toBe('autofilled value test');
   });
 
   it('clears the input on click of the clear button', () => {
@@ -296,10 +292,8 @@ describe('Input.component', () => {
     fireEvent.click(clearBtn);
     expect(inputField.value).toBe('');
 
-    expect(clearValueCb.mock.calls.length).toBe(3);
-    expect(clearValueCb.mock.calls[0][0]).toBe('');
-    expect(clearValueCb.mock.calls[1][0]).toBe('test string');
-    expect(clearValueCb.mock.calls[2][0]).toBe('');
+    expect(clearValueCb.mock.calls.length).toBe(2);
+    expect(clearValueCb.mock.calls[0][0]).toBe('test string');
   });
 
   it('has a max length attribute', () => {
