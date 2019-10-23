@@ -159,7 +159,6 @@ describe('Combo', () => {
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusNItem = container.getElementsByTagName('li')[2];
     expect(focusNItem).toHaveFocus();
-
   });
   it('accessibility - arrow up and continue focus on blue button', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
@@ -184,7 +183,6 @@ describe('Combo', () => {
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const BlueButtonFocusItemAgain = container.querySelector('.item-manual-lookup');
     expect(BlueButtonFocusItemAgain).toHaveFocus();
-
   });
   it('accessibility - arrow down then  click enter', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);

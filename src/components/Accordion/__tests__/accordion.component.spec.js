@@ -43,7 +43,7 @@ describe('Accordion', () => {
     const { container } = render(
       <Accordion title="Accordion title">
         <div><p>Accordion content</p></div>
-      </Accordion>
+      </Accordion>,
     );
     const accordionHead = container.querySelector('.accordion-head');
     const accordion = container.querySelector('.accordion');
@@ -51,6 +51,5 @@ describe('Accordion', () => {
     accordionHead.focus();
     fireEvent.keyDown(accordionHead, { key: 'Enter', code: 13 });
     expect(accordion).toHaveClass('on-focus');
-
   });
 });
