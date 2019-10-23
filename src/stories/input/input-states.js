@@ -2,8 +2,9 @@ import React from 'react';
 import Input from '../../components/Input/Input.component';
 import styles from './view-styles';
 
+/* eslint-disable no-console */
+
 const logValue = (value) => {
-  // eslint-disable-next-line no-console
   console.log(value);
 };
 

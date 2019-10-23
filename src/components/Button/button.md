@@ -3,13 +3,13 @@
 ~~~js
 <Button
 	id={"unique-id"}
-	btnType={"primary"}
-	btnMode={"onDark"}
-	btnSize={"md"}
+	type={"primary"}
+	onDark={true}
+	size={"md"}
 	content={"button content string"}
 	disabled={false}
 	icon={"check"}
-	size={"2"}
+	iconSize={"2"}
 	iconAlignRight={true}
 	href={"#"}
 	target={"_blank"}
@@ -21,15 +21,15 @@
 ## Props
 The button can be styled with an icon, configurable for design approved modes. These are: `primary`, `Secondary`, `text`, `link` and `footer-link`. `secondary`, `text` and `link`. All have an `onDark` mode for dark backgrounds apart from `primary`.
 
-When `text`, `link` and `footer-link` and supplied as a `btnType`, the html structure with be rendered as an `<a>` element, with removed padding/button styling.
+When `text`, `link` and `footer-link` are supplied as a `type`, the html structure with be rendered as an `<a>` element, with removed padding/button styling.
 
 1. `id` *(required) string*
     * The button ID.
-2. `btnType` *(optional) string*
+2. `type` *(optional) string*
 	  * Defines the type of button to be used, applied as a class. Defaults to `primary`. Other types are `secondary`, `text`, `link` and `footer-link`.
-3. `btnMode` *(optional) string*
-    * Defines the mode to be in. Can be changed to `onDark` which changes the buttons for `secondary`, `text`, `link` and `footer-link`. `primary` does not have a `onDark` mode.
-4. `btnSize` *(optional) string*
+3. `onDark` *(optional) bool*
+    * Defines the mode of the button. Change to `true` for `secondary`, `text`, `link` and `footer-link` to enable the dark mode. `primary` does not have a `onDark` mode.
+4. `size` *(optional) string*
 	  * Defines the size of button to be used, `sm`, `md` and `lg`. Defaults to `md`.
 5. `content` *(required) string*
     * The button text. Can render html if required.
@@ -37,7 +37,7 @@ When `text`, `link` and `footer-link` and supplied as a `btnType`, the html stru
 	  * Defines if the button is disabled or not. Defaults to false.
 7. `icon` *(optional) string*
     * The icon to be supplied with the button. Defaults to none.
-8. `size` *(optional) string*
+8. `iconSize` *(optional) string*
     * The icon sizing. Defaults to '2'
 9. `iconAlignRight` *(optional) boolean*
     * Shift the icon to the right, content to the left. Defaults to false.

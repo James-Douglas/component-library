@@ -5,7 +5,7 @@ Basic icon component, uses svg tags and paths
 
 ~~~js
 <Icon 
-  name={'info'}
+  name="info"
   flipH={false}
   flipV={false}
   size={2}
@@ -22,4 +22,3 @@ Basic icon component, uses svg tags and paths
 	* Flip the icon horizontally.
 - `flipV` *(optional) string*
 	* Flip the icon vertically
-
