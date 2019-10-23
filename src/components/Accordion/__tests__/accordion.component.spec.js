@@ -38,4 +38,19 @@ describe('Accordion', () => {
     expect(accordionMain).toHaveClass('hide');
     expect(onClickGroup).toBeCalled();
   });
+
+  it('works correctly on click', () => {
+    const { container } = render(
+      <Accordion title="Accordion title">
+        <div><p>Accordion content</p></div>
+      </Accordion>
+    );
+    const accordionHead = container.querySelector('.accordion-head');
+    const accordion = container.querySelector('.accordion');
+    fireEvent.keyDown(accordion, { key: 'Tab', code: 9 });
+    accordionHead.focus();
+    fireEvent.keyDown(accordionHead, { key: 'Enter', code: 13 });
+    expect(accordion).toHaveClass('on-focus');
+
+  });
 });

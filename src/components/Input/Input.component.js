@@ -199,7 +199,7 @@ Input.propTypes = {
   validationMessage: PropTypes.string,
   id: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  maxlength: PropTypes.string,
+  maxlength: PropTypes.number,
   valueMasking: PropTypes.func,
   prefillValue: PropTypes.string,
   type: PropTypes.string,

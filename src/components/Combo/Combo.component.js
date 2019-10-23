@@ -107,7 +107,7 @@ const Combo = ({
     setListVisible(!!valueInput.length);
   };
 
-  const handelOnFocus = (event) => {
+  const handleOnFocus = (event) => {
     if (
       // ignore tooltip icon
       event.target.getAttribute('role') === 'tooltip'
@@ -195,7 +195,7 @@ const Combo = ({
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
-      onFocus={handelOnFocus}
+      onFocus={handleOnFocus}
       onBlur={handleOnBlur}
       onKeyDown={keyboardAccessibility}
       className="w-full"
