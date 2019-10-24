@@ -21,12 +21,6 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
-nvm install 10.16.3
-if [ "$?" -ne 0 ]; then
-  echo "Failed to install required version of node - 10.16.3"
-  exit 1
-fi
-
 yarn
 if [ "$?" -ne 0 ]; then
   echo "ERROR - yarn failed"
