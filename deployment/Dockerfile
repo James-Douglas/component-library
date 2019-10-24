@@ -1,7 +1,7 @@
 #-----------------------------------------------------#
 # BUILD
 #-----------------------------------------------------#
-FROM node:10.15.1-alpine as build
+FROM node:8.16.2-alpine as build
 
 ARG NEXUS_EMAIL
 ENV NEXUS_EMAIL=${NEXUS_EMAIL}
