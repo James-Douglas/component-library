@@ -59,9 +59,6 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
-# debugging code
-ls -lah
-
 npx semantic-release
 if [ "$?" -ne 0 ]; then
   echo "ERROR - release failed"
