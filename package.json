@@ -47,7 +47,7 @@
     }
   },
   "publishConfig": {
-    "registry": "https://nexus.comparethemarket.com.au/repository/npm-all/",
+    "registry": "https://nexus.comparethemarket.com.au/repository/platform-packages/",
     "access": "public",
     "tag": "latest"
   },
