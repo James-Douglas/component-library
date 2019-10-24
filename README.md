@@ -8,4 +8,4 @@ Desigin system component library for CTM
 - `yarn build` - runs the build
 
 ## Releasing
-Releasing is done by Bamboo using the semantic-release package. to trigger a release of the manor library you must merge a feature branch to Master
+Releasing is done by Bamboo using the semantic-release package. To trigger a release of the manor library you must merge a feature branch to Master
