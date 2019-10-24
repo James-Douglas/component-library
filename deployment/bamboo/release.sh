@@ -1,54 +1,45 @@
 #!/bin/bash
-export NVM_DIR="/home/ec2-user/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+set -e
+export NEXUS_EMAIL=$bamboo_nexus_fe_email
+export NEXUS_TOKEN=$bamboo_nexus_fe_password
 
-## a utility function for debug messages
-exe() { printf "$@" ; $@ ; }
-
-exe "git remote set-url origin https://github.com/comparethemarketau/manor-react.git"
+git remote set-url origin https://github.com/comparethemarketau/manor-react.git
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not set git remote"
   exit 1
 fi
 
-exe "git fetch"
+git fetch origin
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not fetch git"
   exit 1
 fi
 
-exe "git tag -l"
+git tag -l
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not fetch git"
   exit 1
 fi
 
-exe "nvm install 10 && nvm use 10"
-if [ "$?" -ne 0 ]; then
-  echo "ERROR - Could not set the node version"
-  exit 1
-fi
-
-exe "yarn"
+yarn
 if [ "$?" -ne 0 ]; then
   echo "ERROR - yarn failed"
   exit 1
 fi
 
-exe "yarn test:ci"
+yarn test:ci
 if [ "$?" -ne 0 ]; then
   echo "ERROR - tests failed"
   exit 1
 fi
 
-exe "yarn lint"
+yarn lint
 if [ "$?" -ne 0 ]; then
   echo "ERROR - linting failed"
   exit 1
 fi
 
-exe "yarn build"
+yarn build
 if [ "$?" -ne 0 ]; then
   echo "ERROR - yarn build failed"
   exit 1
@@ -61,7 +52,7 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
-exe "npx semantic-release"
+npx semantic-release
 if [ "$?" -ne 0 ]; then
   echo "ERROR - release failed"
   exit 1
