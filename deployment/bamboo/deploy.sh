@@ -25,6 +25,11 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
+kubectl describe deploy/manor-deployment
+if [ "$?" -ne 0 ]; then
+  echo "ERROR - describe failed"
+  exit 1
+fi
 
 kubectl rollout status deployment/manor-deployment --watch
 if [ "$?" -ne 0 ]; then
