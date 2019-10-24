@@ -6,7 +6,7 @@ export DOCKER_TAG="${bamboo_planRepository_revision}"
 echo "-------------------------------------"
 echo "Generated manifest:"
 echo "-------------------------------------"
-envsubst < ./deployment/k8s/manor.yml | cat
+envsubst < ./manor.yml | cat
 echo "-------------------------------------"
 echo "/Generated manifest"
 echo "-------------------------------------"
@@ -19,7 +19,7 @@ if [ "$?" -ne 0 ]; then
 fi
 
 
-envsubst < ./deployment/k8s/manor.yml | kubectl apply -f -
+envsubst < ./manor.yml | kubectl apply -f -
 if [ "$?" -ne 0 ]; then
   echo "ERROR - could not apply kubernetes context"
   exit 1
