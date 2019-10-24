@@ -3,6 +3,12 @@ set -e
 export NEXUS_EMAIL=$bamboo_nexus_fe_email
 export NEXUS_TOKEN=$bamboo_nexus_fe_password
 
+nvm use 8.16.0
+if [ "$?" -ne 0 ]; then
+  echo "ERROR - Could not set correct nvm version"
+  exit 1
+fi
+
 git remote set-url origin https://github.com/comparethemarketau/manor-react.git
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not set git remote"
