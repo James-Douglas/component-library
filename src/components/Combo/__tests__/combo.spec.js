@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, prettyDOM } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import Combo from '../Combo.component';
 
 const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fugiat veniam minus', 'et presentation tempora', 'xfque dfsdf', 'presentation dfsdf que ffgddfg', 'presentation dfsdf que'];

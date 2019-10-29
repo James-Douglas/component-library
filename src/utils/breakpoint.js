@@ -1,23 +1,21 @@
-import screens from '../../config/screens';
-
-const breakpoints = Object.assign(
-  {},
-  ...Object.keys(screens)
-    .map((key) => ({ [key]: parseInt(screens[key].substring(0, screens[key].length - 2), 10) })),
-);
+import breakpoints from '../../config/screens';
 
 function getBreakpoint() {
   const width = window.innerWidth;
 
   if (width < breakpoints.xs) {
     return 'xs';
-  } if (width < breakpoints.sm) {
+  }
+  if (width < breakpoints.sm) {
     return 'sm';
-  } if (width < breakpoints.md) {
+  }
+  if (width < breakpoints.md) {
     return 'md';
-  } if (width < breakpoints.lg) {
+  }
+  if (width < breakpoints.lg) {
     return 'lg';
-  } if (width < breakpoints.xl) {
+  }
+  if (width < breakpoints.xl) {
     return 'xl';
   }
 

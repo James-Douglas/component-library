@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ProgressIcon from '../Icon.component';
+import ProgressIcon from '../ProgressIcon.component';
 
 describe('ProgressIcon', () => {
   it('renders correctly without props', () => {

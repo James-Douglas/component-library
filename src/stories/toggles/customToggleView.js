@@ -6,10 +6,10 @@ import Picture from '../../components/Picture/Picture.component';
 import CustomToggle from '../../components/Toggles/Custom/CustomToggle.component';
 import StoryTemplate from '../storyTemplate';
 
-import DEFAULT from '../../../assets/images/medicare-cards/default.jpg';
-import INTERIM from '../../../assets/images/medicare-cards/interim.jpg';
-import RECIPROCAL from '../../../assets/images/medicare-cards/reciprocal.jpg';
-import OTHER from '../../../assets/images/medicare-cards/other.png';
+import DEFAULT from '../../images/medicare-cards/default.jpg';
+import INTERIM from '../../images/medicare-cards/interim.jpg';
+import RECIPROCAL from '../../images/medicare-cards/reciprocal.jpg';
+import OTHER from '../../images/medicare-cards/other.png';
 
 const styles = css`
  .picture-container {

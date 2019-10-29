@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import css from 'styled-jsx/css';
+import placeholder from 'images/placeholder.png';
 
 const styles = css`
 picture {
@@ -42,7 +43,7 @@ Picture.propTypes = {
 
 Picture.defaultProps = {
   // eslint-disable-next-line global-require
-  src: require('../../../assets/images/placeholder.png'),
+  src: placeholder,
   srcsets: [],
   alt: 'a placeholder image',
   title: 'a placeholder title',

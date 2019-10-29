@@ -4,13 +4,13 @@ exports[`Currency renders with minimal props 1`] = `
 "<div class=\\"fieldset\\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"row \\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"label\\"><style></style><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\"></label></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><style></style><div class=\\"input-container\\"><div class=\\"input-wrap  input-border  \\"><div class=\\"input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-11 \\"><style></style><div class=\\"input-container\\"><div class=\\"input-wrap  input-border  \\"><div class=\\"input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"
                   input-default
                   
                 \\" value=\\"\\"></div></div></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start\\"></span></div></div><style jsx=\\"true\\">.row {
+      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-11 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start\\"></span></div></div><style jsx=\\"true\\">.row {
         @apply flex flex-wrap -mx-16;
       }
       </style></div></div>"

@@ -4,24 +4,24 @@ import ToggleGroup from '../../components/Toggles/ToggleGroup.component';
 import Toggle from '../../components/Toggles/Toggle.component';
 import StoryTemplate from '../storyTemplate';
 
-import AUDI from '../../../assets/images/car-makes/AUDI.png';
-import BMW from '../../../assets/images/car-makes/BMW.png';
-import FORD from '../../../assets/images/car-makes/FORD.png';
-import HOLD from '../../../assets/images/car-makes/HOLD.png';
-import HOND from '../../../assets/images/car-makes/HOND.png';
-import HYUN from '../../../assets/images/car-makes/HYUN.png';
-import ISUZ from '../../../assets/images/car-makes/ISUZ.png';
-import JEEP from '../../../assets/images/car-makes/JEEP.png';
-import KIA from '../../../assets/images/car-makes/KIA.png';
-import LAND from '../../../assets/images/car-makes/LAND.png';
-import MAZD from '../../../assets/images/car-makes/MAZD.png';
-import MERC from '../../../assets/images/car-makes/MERC.png';
-import MITS from '../../../assets/images/car-makes/MITS.png';
-import NISS from '../../../assets/images/car-makes/NISS.png';
-import SUBA from '../../../assets/images/car-makes/SUBA.png';
-import SUZU from '../../../assets/images/car-makes/SUZU.png';
-import TOYO from '../../../assets/images/car-makes/TOYO.png';
-import VOLK from '../../../assets/images/car-makes/VOLK.png';
+import AUDI from '../../images/car-makes/AUDI.png';
+import BMW from '../../images/car-makes/BMW.png';
+import FORD from '../../images/car-makes/FORD.png';
+import HOLD from '../../images/car-makes/HOLD.png';
+import HOND from '../../images/car-makes/HOND.png';
+import HYUN from '../../images/car-makes/HYUN.png';
+import ISUZ from '../../images/car-makes/ISUZ.png';
+import JEEP from '../../images/car-makes/JEEP.png';
+import KIA from '../../images/car-makes/KIA.png';
+import LAND from '../../images/car-makes/LAND.png';
+import MAZD from '../../images/car-makes/MAZD.png';
+import MERC from '../../images/car-makes/MERC.png';
+import MITS from '../../images/car-makes/MITS.png';
+import NISS from '../../images/car-makes/NISS.png';
+import SUBA from '../../images/car-makes/SUBA.png';
+import SUZU from '../../images/car-makes/SUZU.png';
+import TOYO from '../../images/car-makes/TOYO.png';
+import VOLK from '../../images/car-makes/VOLK.png';
 
 const names = [
   'Audi',

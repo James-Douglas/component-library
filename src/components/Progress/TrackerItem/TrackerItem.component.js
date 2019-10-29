@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ProgressIcon from '../Icon/Icon.component';
+import ProgressIcon from '../ProgressIcon/ProgressIcon.component';
 import styles from '../Tracker/styles';
 
 const TrackerItem = ({

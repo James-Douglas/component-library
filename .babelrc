@@ -1,41 +1,38 @@
 {
-    "presets": [
-        [
-            "@babel/preset-env",
-            {
-                "targets": {
-                    "ie": "11"
-                }
-            }
-        ]
-    ],
-    "env": {
-        "production": {
-            "plugins": [
-                [
-                    "styled-jsx/babel",
-                    {
-                        "plugins": [
-                            "styled-jsx-plugin-postcss"
-                        ]
-                    }
-                ]
-            ]
-        },
-        "development": {
-            "plugins": [
-                [
-                    "styled-jsx/babel",
-                    {
-                        "plugins": [
-                            "styled-jsx-plugin-postcss"
-                        ]
-                    }
-                ]
-            ]
-        },
-        "test": {
-            "plugins": []
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "ie": "11"
         }
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        [
+          "styled-jsx/babel",
+          {
+            "plugins": ["styled-jsx-plugin-postcss"]
+          }
+        ]
+      ]
+    },
+    "development": {
+      "plugins": [
+        [
+          "styled-jsx/babel",
+          {
+            "plugins": ["styled-jsx-plugin-postcss"]
+          }
+        ]
+      ]
+    },
+    "test": {
+      "plugins": ["@babel/plugin-transform-runtime"]
     }
+  }
 }
