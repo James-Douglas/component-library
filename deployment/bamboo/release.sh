@@ -1,10 +1,7 @@
 #!/bin/bash
 set -e
-export NEXUS_EMAIL=$bamboo_nexus_fe_email
-export NEXUS_TOKEN=$bamboo_nexus_fe_password
-
 source ~/.nvm/nvm.sh
-nvm use
+nvm use v10.16.3
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not set nvm version specified in .nvmrc"
   exit 1
@@ -49,13 +46,6 @@ fi
 yarn build
 if [ "$?" -ne 0 ]; then
   echo "ERROR - yarn build failed"
-  exit 1
-fi
-
-update() { echo "email=${NEXUS_EMAIL}" >> .npmrc && echo "_auth=${NEXUS_TOKEN}" >> .npmrc ; }
-update
-if [ "$?" -ne 0 ]; then
-  echo "ERROR - npmrc update failed"
   exit 1
 fi
 
