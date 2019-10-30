@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 source ~/.nvm/nvm.sh
+NPM_TOKEN=${bamboo_nexus_fe_token_password}
+
+nvm install v10.16.3
 nvm use v10.16.3
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not set nvm version specified in .nvmrc"
