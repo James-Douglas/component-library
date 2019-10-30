@@ -1,11 +1,7 @@
 #!/bin/bash
 set -e
 source ~/.nvm/nvm.sh
-echo "first variable" >> test.txt
-echo $bamboo.nexus_fe_token_password >> test.txt
-echo "second variable" >> test.txt
-echo $bamboo_nexus_fe_token_password >> test.txt
-NPM_TOKEN=$bamboo.nexus_fe_token_password
+NPM_TOKEN=${bamboo_nexus_fe_token_password}
 
 nvm install v10.16.3
 nvm use v10.16.3
