@@ -6,7 +6,7 @@ export NEXUS_TOKEN=$bamboo_nexus_fe_password
 source ~/.nvm/nvm.sh
 nvm use
 if [ "$?" -ne 0 ]; then
-  echo "ERROR - Could not set correct nvm version"
+  echo "ERROR - Could not set nvm version specified in .nvmrc"
   exit 1
 fi
 
@@ -56,6 +56,13 @@ update() { echo "email=${NEXUS_EMAIL}" >> .npmrc && echo "_auth=${NEXUS_TOKEN}" 
 update
 if [ "$?" -ne 0 ]; then
   echo "ERROR - npmrc update failed"
+  exit 1
+fi
+
+# switch node versions so we can deploy
+nvm use 8.16.0
+if [ "$?" -ne 0 ]; then
+  echo "ERROR - Could not set nvm version to 8.16.0"
   exit 1
 fi
 
