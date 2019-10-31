@@ -8,25 +8,27 @@ import postcss from "rollup-plugin-postcss";
 import filesize from "rollup-plugin-filesize";
 import localResolve from "rollup-plugin-local-resolve";
 import includePaths from "rollup-plugin-includepaths";
-import smartAsset from "rollup-plugin-smart-asset"
-import ignoreImport from 'rollup-plugin-ignore-import';
+import smartAsset from "rollup-plugin-smart-asset";
+import ignoreImport from "rollup-plugin-ignore-import";
 
 const ouputDir = "lib";
 
 const rmdir = function(dir) {
-  const list = fs.readdirSync(dir);
-  for(let i = 0; i < list.length; i++) {
-    const filename = path.join(dir, list[i]);
-    const stat = fs.statSync(filename);
+  if (fs.existsSync(dir)) {
+    const list = fs.readdirSync(dir);
+    for (let i = 0; i < list.length; i++) {
+      const filename = path.join(dir, list[i]);
+      const stat = fs.statSync(filename);
 
-    if (filename == "." || filename == "..") {
-    } else if (stat.isDirectory()) {
-      rmdir(filename);
-    } else {
-      fs.unlinkSync(filename);
+      if (filename == "." || filename == "..") {
+      } else if (stat.isDirectory()) {
+        rmdir(filename);
+      } else {
+        fs.unlinkSync(filename);
+      }
     }
+    fs.rmdirSync(dir);
   }
-  fs.rmdirSync(dir);
 };
 
 rmdir(ouputDir);
@@ -65,7 +67,7 @@ const makeFileConfig = componentPath => {
         browser: true
       }),
       smartAsset({
-        url: 'copy',
+        url: "copy",
         keepImport: true
       }),
       babel({ exclude: "node_modules/**" }),
@@ -89,7 +91,7 @@ const buildLibrary = () => {
     output: [
       {
         file: `${ouputDir}/index.js`,
-        format: "cjs",
+        format: "cjs"
       }
     ],
     external: id => /^react|styled-jsx/.test(id),
@@ -103,7 +105,7 @@ const buildLibrary = () => {
       }),
       // prevent duplication of images in component files and /lib
       ignoreImport({
-        extensions: ['.svg', '.png', '.jpg', '.jpeg'],
+        extensions: [".svg", ".png", ".jpg", ".jpeg"]
       }),
       babel({ exclude: "node_modules/**" }),
       commonjs(),
