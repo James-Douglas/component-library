@@ -7,11 +7,29 @@ import commonjs from "rollup-plugin-commonjs";
 import postcss from "rollup-plugin-postcss";
 import filesize from "rollup-plugin-filesize";
 import localResolve from "rollup-plugin-local-resolve";
-import url from "rollup-plugin-url";
 import includePaths from "rollup-plugin-includepaths";
-import pkg from "./package.json";
+import smartAsset from "rollup-plugin-smart-asset"
+import ignoreImport from 'rollup-plugin-ignore-import';
 
 const ouputDir = "lib";
+
+const rmdir = function(dir) {
+  const list = fs.readdirSync(dir);
+  for(let i = 0; i < list.length; i++) {
+    const filename = path.join(dir, list[i]);
+    const stat = fs.statSync(filename);
+
+    if (filename == "." || filename == "..") {
+    } else if (stat.isDirectory()) {
+      rmdir(filename);
+    } else {
+      fs.unlinkSync(filename);
+    }
+  }
+  fs.rmdirSync(dir);
+};
+
+rmdir(ouputDir);
 
 const makeComponentIndex = components => {
   let paths = components.map(f => {
@@ -37,24 +55,21 @@ const makeFileConfig = componentPath => {
         exports: "named"
       }
     ],
-    external: [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.devDependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {})
-    ],
+    external: id => /^react|styled-jsx/.test(id),
 
     plugins: [
-      postcss({ extract: true }),
-      babel({ exclude: "node_modules/**" }),
+      postcss(),
       includePaths({ paths: ["src", "config"] }),
       localResolve(),
-      commonjs(),
       resolve({
         browser: true
       }),
-      url({
-        publicPath: "assets"
+      smartAsset({
+        url: 'copy',
+        keepImport: true
       }),
+      babel({ exclude: "node_modules/**" }),
+      commonjs(),
       filesize()
     ]
   };
@@ -75,27 +90,23 @@ const buildLibrary = () => {
       {
         file: `${ouputDir}/index.js`,
         format: "cjs",
-        exports: "named"
       }
     ],
-    external: [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.devDependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {})
-    ],
+    external: id => /^react|styled-jsx/.test(id),
 
     plugins: [
       postcss({ extract: `${ouputDir}/styles.css` }),
-      babel({ exclude: "node_modules/**" }),
       includePaths({ paths: ["src", "config"] }),
       localResolve(),
-      commonjs(),
       resolve({
         browser: true
       }),
-      url({
-        publicPath: "assets"
+      // prevent duplication of images in component files and /lib
+      ignoreImport({
+        extensions: ['.svg', '.png', '.jpg', '.jpeg'],
       }),
+      babel({ exclude: "node_modules/**" }),
+      commonjs(),
       filesize()
     ]
   });

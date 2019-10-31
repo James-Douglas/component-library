@@ -4,6 +4,7 @@ import css from 'styled-jsx/css';
 import Picture from '../Picture/Picture.component';
 import logoMobile from '../../images/ctm-logo-mobile.svg';
 import logoDesktop from '../../images/ctm-logo-desktop.svg';
+import screens from '../../../config/screens';
 
 const styles = css`
   .logo {
@@ -50,6 +51,7 @@ Logo.defaultProps = {
   srcsets: [
     {
       srcset: logoDesktop,
+      media: `(min-width: ${screens.md})`,
     },
     {
       srcset: logoMobile,
