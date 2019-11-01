@@ -1,4 +1,6 @@
-import breakpoints from '../../config/screens';
+import screens from '../../config/screens';
+
+const breakpoints = Object.assign({}, ...Object.keys(screens).map(key => ({ [key]: parseInt(screens[key].substring(0, screens[key].length - 2), 10) })));
 
 function getBreakpoint() {
   const width = window.innerWidth;
