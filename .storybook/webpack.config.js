@@ -12,7 +12,17 @@ module.exports = async ({ config }) => {
         loaders: [{
             loader: 'babel-loader',
             options: {
-                "presets": ["@babel/preset-env"],
+                "presets": [
+                    [
+                        "@babel/preset-env",
+                        {
+                            "targets": {
+                                "ie": "11"
+                            }
+                        }
+                    ],
+                    "@babel/preset-react"
+                ],
                 "plugins": [
                     [
                         "styled-jsx/babel",
