@@ -1,12 +1,10 @@
 #-----------------------------------------------------#
 # BUILD
 #-----------------------------------------------------#
-FROM node:8.16.2-alpine as build
+FROM node:10.17.0-alpine as build
 
-ARG NEXUS_EMAIL
-ENV NEXUS_EMAIL=${NEXUS_EMAIL}
-ARG NEXUS_TOKEN
-ENV NEXUS_TOKEN=${NEXUS_TOKEN}
+ARG bamboo_nexus_fe_token_password
+ENV bamboo_nexus_fe_token_password=${bamboo_nexus_fe_token_password}
 
 WORKDIR /usr/src/app
 COPY . /usr/src/app
