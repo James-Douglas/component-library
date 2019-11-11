@@ -1,0 +1,37 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, object, select } from '@storybook/addon-knobs';
+
+import Logo from '../../components/Logo/Logo.component';
+import logoMobile from '../../images/ctm-logo-mobile.svg';
+import logoDesktop from '../../images/ctm-logo-desktop.svg';
+
+<Meta title="Components|Logo" component={Logo} />
+
+# Logo
+
+<Preview>
+  <Story name="logo">
+    <Logo size="large"/>
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={Logo} />
+
+<Story name="logo with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const size = select('size', ['small', 'large'], 'large');
+    const src = text('src', '');
+    const srcsets = object('srcsets', [
+      {
+        srcset: logoDesktop,
+        media: '(min-width: 768px)'
+      },
+      {
+        srcset: logoMobile
+      }
+    ]);
+    return <Logo size={size} src={src} srcsets={srcsets}/>
+  }}
+</Story>

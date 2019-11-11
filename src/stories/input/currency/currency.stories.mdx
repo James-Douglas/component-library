@@ -1,0 +1,72 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
+
+import Currency from '../../../components/Input/Currency/Currency.component';
+
+<Meta title="Components|Input/Currency" component={Currency} />
+
+# Currency
+
+<Preview>
+  <Story name="currency">
+    <Currency
+      label="Currency input"
+      id="currency-input-one"
+      tooltip={{title: 'currency demo'}}
+      placeholder="12345"
+      currencySymbol="$"
+      bordered
+      required={false}
+      disabled={false}
+      invalid={false}
+      handleChange={() => {}}
+      disableFieldset
+    />
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={Currency} />
+
+<Story name="currency with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const label = text('label', 'Currency demo');
+    const tooltip = object('tooltip', {
+      title: 'input tooltip',
+      body: 'this is a tooltip for the input component',
+      justifyEnd: false,
+      screenReaderLabel: 'input screenReaderLabel'
+    });
+    const forceFullWidth = boolean('forceFullWidth', false);
+    const validationMessage = text('validationMessage', '');
+    const maxLength = number('maxLength', 25);
+    const value = text('value', '');
+    const prefillValue = text('prefillValue', '1');
+    const placeholder = text('placeholder', '12345');
+    const required = boolean('required', false);
+    const disabled = boolean('disabled', false);
+    const bordered = boolean('bordered', true);
+    const disableFieldset = boolean('disableFieldset', true);
+    const currencySymbol = text('currencySymbol', '$');
+    return (
+      <Currency
+        label={label}
+        id="currency-input-one"
+        tooltip={tooltip}
+        forceFullWidth={forceFullWidth}
+        validationMessage={validationMessage}
+        maxLength={maxLength}
+        value={value}
+        prefillValue={prefillValue}
+        placeholder={placeholder}
+        currencySymbol={currencySymbol}
+        bordered={bordered}
+        required={required}
+        disabled={disabled}
+        handleChange={() => {}}
+        disableFieldset
+      />
+    )
+  }}
+</Story>

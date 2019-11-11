@@ -157,11 +157,29 @@ const Fieldset = ({
 };
 
 Fieldset.propTypes = {
+  /**
+   * The label for the field element
+   */
   label: PropTypes.string,
+  /**
+   * Tooltip object (see Tooltip documentation)
+   */
   tooltip: PropTypes.shape(tooltipPropTypes),
+  /**
+   * Forces the ToggleGroup to expand to 12 columns (default true for ToggleGroup)
+   */
   forceFullWidth: PropTypes.bool,
+  /**
+   * Displays given validation message and invalid styles on the component when provided.
+   */
   validationMessage: PropTypes.string,
+  /**
+   * The component to be placed in the fieldset
+   */
   children: PropTypes.node,
+  /**
+   * Supporting elements to be added below the component in the fieldset (e.g. "OPTIONAL" text)
+   */
   supportingElements: PropTypes.node,
 };
 

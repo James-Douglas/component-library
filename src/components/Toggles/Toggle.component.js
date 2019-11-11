@@ -110,23 +110,62 @@ const Toggle = ({
 
 
 Toggle.propTypes = {
+  /**
+   * Unique identifier for the toggle
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * Label for the toggle
+   */
   label: PropTypes.string.isRequired,
+  /**
+   * The value to be applied to the input field.
+   */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  /**
+   * The type of toggle to render
+   */
   type: PropTypes.oneOf(['square', 'rectangle']),
+  /**
+   * The value of the currently selected (toggled on) toggle.
+   */
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * The name to be applied to the input field.
+   */
   name: PropTypes.string,
+  /**
+   * Applies invalid styling when true.
+   */
   invalid: PropTypes.bool,
+  /**
+   * Disables the toggle when true.
+   */
   disabled: PropTypes.bool,
+  /**
+   * Handler function called when a toggle is toggled on (called with object: { id, value } of the toggle).
+   */
   onToggle: PropTypes.func,
+  /**
+   * Name of the icon to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).
+   */
   icon: PropTypes.string,
+  /**
+   * Size of the icon to be rendered on the toggle.
+   */
   iconSize: PropTypes.number,
+  /**
+   *  Options object for rendering a picture on a toggle, attributes match those of the Picture component.
+   */
   pictureOptions: PropTypes.shape({
     src: PropTypes.string,
     srcsets: PropTypes.arrayOf(PropTypes.string),
     alt: PropTypes.string,
     title: PropTypes.string,
   }),
+  /**
+   * Options object for rendering rectangular toggles]
+   */
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),

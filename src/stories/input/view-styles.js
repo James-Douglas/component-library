@@ -1,8 +1,6 @@
 import css from 'styled-jsx/css';
 
 export default css`
-
-
 .grey-background, .white-background {
   padding: 5em;
   height: 100vh;

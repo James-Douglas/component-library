@@ -5,6 +5,7 @@ import Fieldset from '../Fieldset/Fieldset.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
 import styles from './styles';
+import UseFieldset from '../../hooks/useFieldset';
 
 export function getRemainingLimit(value, charLimit) {
   return value ? charLimit - value.length : charLimit;
@@ -52,7 +53,6 @@ const Textarea = ({
   bordered,
   disabled,
   required,
-  invalid,
   isPrefill,
   rows,
   wrap,
@@ -60,6 +60,7 @@ const Textarea = ({
   maxChars,
   maxLength,
   onChange,
+  disableFieldset,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [charsExceed, setCharsExceed] = useState(false);
@@ -114,7 +115,8 @@ const Textarea = ({
   const prefillStyles = isPrefill && !isDirty && !disabled ? 'manor-prefilled' : '';
 
   return (
-    <Fieldset
+    <UseFieldset
+      disableFieldset={disableFieldset}
       label={label}
       tooltip={tooltip}
       forceFullWidth={forceFullWidth}
@@ -123,7 +125,7 @@ const Textarea = ({
     >
       <div className={`manor-textarea-wrapper ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
         <style jsx>{styles}</style>
-        <div className={`pull-tab ${prefillStyles} ${disabled ? 'manor-disabled' : ''} `} />
+        {disableFieldset && <div className={`pull-tab ${prefillStyles} ${disabled ? 'manor-disabled' : ''} `} />}
 
         <textarea
           ref={textAreaElement}
@@ -142,35 +144,98 @@ const Textarea = ({
             manor-textarea-default manor-body2 
             ${bordered ? 'manor-textarea-border' : ''} 
             ${prefillStyles} 
-            ${invalid || (textAreaRemainChars < 0) ? 'invalid' : ''}
+            ${validationMessage && validationMessage.length || (textAreaRemainChars < 0) ? 'invalid' : ''}
           `}
           aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
         />
 
       </div>
-    </Fieldset>
+    </UseFieldset>
   );
 };
 
 Textarea.propTypes = {
+  /**
+   * Unique id for the component. Required for the label to match the input.
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * Label for the Textarea.
+   */
   label: PropTypes.string,
+  /**
+   * Tooltip object (see Tooltip documentation)
+   */
   tooltip: PropTypes.shape(tooltipPropTypes),
+  /**
+   * Forces the Textarea to expand to 12 columns
+   */
   forceFullWidth: PropTypes.bool,
+  /**
+   * Displays given validation message and invalid styles on the component when provided.
+   */
   validationMessage: PropTypes.string,
+  /**
+   * Defines a name for the texarea list
+   */
   name: PropTypes.string,
+  /**
+   * Defines the current value of the textarea field.
+   */
   value: PropTypes.string,
+  /**
+   * The placeholder text for the input.
+   */
   placeholder: PropTypes.string,
+  /**
+   * The input field border style.
+   */
   bordered: PropTypes.bool,
+  /**
+   * Disables the button via a class on its wrapper, and an attribute on the input.
+   */
   disabled: PropTypes.bool,
+  /**
+   * Adds/removes a supporting element, `<sup>OPTIONAL</sup>` to show the field is optional.
+   */
   required: PropTypes.bool,
-  invalid: PropTypes.bool,
+  /**
+   * Adds custom styling for prefilled elements.
+   */
   isPrefill: PropTypes.bool,
+  /**
+   * Specifies the height of the textarea (in lines).
+   */
   rows: PropTypes.string,
-  wrap: PropTypes.string,
+  /**
+   * Specifies how the text in a textarea is to be wrapped when submitted in a form.
+   * `hard` - specifies that the Text present in the textarea will not be wrapped after submitting the form.
+   * `soft` - specifies that the Text in a textarea is wraps when submitting the form.
+   */
+  wrap: PropTypes.oneOf(['hard', 'soft']),
+  /**
+   * Specifies that a textarea should be read-only.
+   */
   readonly: PropTypes.bool,
+  /**
+   * Specifies the maximum number of characters allowed in the text area.
+   -  Note that the maxlength attribute physically limits users from adding more that the specified limit, this
+   means that if a user pastes 1000 chars into a text area that is limited to 500 chars then half of the
+   pasted text would be truncated without giving the user any useful feedback. *Use maxchars instead*
+   */
   maxChars: PropTypes.string,
+  /**
+   * Specifies fieldset wrap component.
+   */
+  disableFieldset: PropTypes.bool,
+  /**
+   * Specifies the maximum number of characters allowed in the text area - while providing useful feedback if the
+   limit is exceeded
+   */
   maxLength: PropTypes.string,
+  /**
+   * Called when the value of the text area changes. Function will be called with an object consisting of id and value of the text area.
+   */
   onChange: PropTypes.func,
 };
 
@@ -185,7 +250,6 @@ Textarea.defaultProps = {
   bordered: false,
   disabled: false,
   required: false,
-  invalid: false,
   isPrefill: false,
   rows: '',
   wrap: '',
@@ -193,6 +257,7 @@ Textarea.defaultProps = {
   maxLength: '',
   maxChars: '',
   onChange: null,
+  disableFieldset: false,
 };
 
 export default Textarea;

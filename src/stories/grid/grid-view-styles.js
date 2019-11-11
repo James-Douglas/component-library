@@ -2,7 +2,6 @@ import css from 'styled-jsx/css';
 
 export default css.global`
 .grid-view {
-  height: 100vh;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -25,5 +24,8 @@ p {
   align-items: center;
   font-weight: bold;
   font-size: 1.5rem;
+}
+.icon-close {
+  @apply ml-32 mt-32
 }
 `;

@@ -1,10 +1,6 @@
-import '@storybook/addon-console';
-import { addDecorator, addParameters } from '@storybook/react';
-import { withConsole } from '@storybook/addon-console';
+import { addParameters } from '@storybook/react';
 import { create } from '@storybook/theming';
 import '../src/index.css';
-
-addDecorator(function (storyFn, context) { return withConsole()(storyFn)(context)});
 
 addParameters({
   options: {
@@ -15,6 +11,7 @@ addParameters({
     isFullscreen: false,
     panelPosition: 'right',
     showPanel: true,
+    storySort: (a, b) => a[1].id.localeCompare(b[1].id)
   }
 });
 

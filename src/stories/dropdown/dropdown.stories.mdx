@@ -1,0 +1,123 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select, array, object } from '@storybook/addon-knobs';
+import Dropdown from '../../components/Dropdown/Dropdown.component';
+import fieldValidation from './flag.png';
+
+<Meta title="Components|Dropdown" component={Dropdown} />
+
+# Dropdown
+
+The CTM Dropdown component, which is essentially a styled HTML select and it's child options - does not support multi
+select (another component will handle multi select).
+
+<Preview>
+  <Story name="dropdown">
+    {() => {
+      const options = [
+        { value: 'Default', title: 'Default Item - Title', defaultOption: true},
+        { value: 'First', title: 'First Item - Title', className: 'test-class'},
+        { value: 'Second', title: 'Second Item - Title'},
+        { value: 'Third', title: 'Third Item - Title', disabled: true }
+      ];
+      return (
+        <Dropdown
+          id="input-one"
+          options={options}
+          supportingElements
+          forceFullWidth
+          label="Dropdown Label"
+          bordered
+          disableFieldset
+        />
+      );
+    }}
+  </Story>
+</Preview>
+
+## Dropdown with Prefix
+
+The CTM Dropdown component, which is essentially a styled HTML select and it's child options - does not support multi
+select (another component will handle multi select).
+
+<Preview>
+  <Story name="Dropdown with PrefixContent">
+    {() => {
+      const options = [
+        { value: 'First', title: 'First Item - Title' },
+        { value: 'Second', title: 'Second Item - Title' },
+        { value: 'Third', title: 'Third Item - Title', disabled: true }
+      ];
+      return (
+        <div className="max-w-md p-12 bg-grey-lighter rounded-lg manor-rich-text ">
+          <Dropdown
+            id="input-one"
+            options={options}
+            supportingElements
+            forceFullWidth
+            label="From currency"
+            bordered={false}
+            defaultOption={defaultOption}
+            required
+            prefixContent="$"
+            disableFieldset
+          />
+          <Dropdown
+            id="input-one"
+            options={options}
+            supportingElements
+            forceFullWidth
+            label="From currency"
+            bordered={false}
+            defaultOption={defaultOption}
+            required
+            disableFieldset
+            prefixContent={<img src={fieldValidation} className="w-20" />}
+          />
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+## Dropdown with props
+<Props of={Dropdown} />
+
+<Story name="dropdown with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const label = text('label', 'Dropdown example');
+    const forceFullWidth = boolean('forceFullWidth', false);
+    const tooltip = object('tooltip', {
+      title: 'dropdown tooltip',
+      body: 'this is a tooltip for the dropdown component',
+      justifyEnd: false,
+      screenReaderLabel: 'dropdown screenReaderLabel'
+    });
+    const validationMessage = text('validationMessage', '');
+    const prefillValue = text('prefillValue', '');
+    const bordered = boolean('bordered', true);
+    const disabled = boolean('disabled', false);
+    const required = boolean('required', true);
+    const readOnly = boolean('readOnly', false);
+    const options = [
+      object('first option', { value: 'First', title: 'First Item - Title' }),
+      object('second option', { value: 'Second', title: 'Second Item - Title' }),
+      object('third option', { value: 'Third', title: 'Third Item - Title', disabled: true })
+    ];
+    return (
+      <Dropdown
+        id="input-one"
+        label={label}
+        forceFullWidth={forceFullWidth}
+        options={options}
+        tooltip={tooltip}
+        validationMessage={validationMessage}
+        prefillValue={prefillValue}
+        bordered={bordered}
+        disabled={disabled}
+        required={required}
+        readOnly={readOnly}
+        disableFieldset
+      />
+    );
+  }}
+</Story>

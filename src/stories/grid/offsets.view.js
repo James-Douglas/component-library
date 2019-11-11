@@ -28,6 +28,17 @@ const ResponsiveView = () => (
             <Column className="col-view" col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
             <Column className="col-view" col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
           </Row>
+          <Row className="row-view">
+            <h1>Breakpoint specific offsets</h1>
+          </Row>
+          <Row className="row-view">
+            <Column className="col-view" col="2" offsetSm={1}>col=&apos;2&apos; offsetSm=&apos;1&apos;</Column>
+            <Column className="col-view" col="2" offsetSm={1}>col=&apos;2&apos; offsetSm=&apos;1&apos;</Column>
+          </Row>
+          <Row className="row-view">
+            <Column className="col-view" col="2" offsetSm={1} offsetMd={3}>col=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+            <Column className="col-view" col="2" offsetSm={1} offsetMd={3}>col=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+          </Row>
         </div>
       </Container>
     </div>

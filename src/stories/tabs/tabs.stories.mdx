@@ -1,0 +1,92 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs } from '@storybook/addon-knobs';
+
+import Tabs from 'components/Tabs/Tabs.component';
+import TabButton from 'components/Tabs/TabButton.component';
+import TabPanel from 'components/Tabs/TabPanel.component';
+import Container from 'components/Grid/Container/Container.component';
+import Row from 'components/Grid/Row/Row.component';
+import Column from 'components/Grid/Column/Column.component';
+import Dropdown from 'components/Dropdown/Dropdown.component';
+import Button from 'components/Button/Button.component';
+
+<Meta title="Components|Tabs" components={[Tabs, TabButton, TabPanel]} />
+
+# Tabs
+
+Todo:
+  * write content
+  * add storybook knobs
+
+
+<Preview>
+  <Story name="tabs">
+    <Tabs startingTab="refine-results-1" bordered>
+      <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
+      <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
+      <TabPanel name="refine-results-1">
+        <div className="bg-off-white p-16">
+          <p>Tab one content</p>
+        </div>
+      </TabPanel>
+      <TabPanel name="edit-details-1">
+        <div className="bg-off-white p-16">
+          <p>Tab two content</p>
+        </div>
+      </TabPanel>
+    </Tabs>
+  </Story>
+</Preview>
+
+### Props - Tabs
+<Props of={Tabs} />
+
+### Props - TabButton
+<Props of={TabButton} />
+
+### Props - TabPanel
+<Props of={TabPanel} />
+
+<Story name="tabs demo" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const options = [
+      { value: 'First', title: 'First Item - Title' },
+      { value: 'Second', title: 'Second Item - Title' },
+      { value: 'Third', title: 'Third Item - Title' },
+    ];
+    const defaultOption = {
+      hasDefaultOption: true,
+      value: 'default',
+      disabled: false,
+      hidden: false,
+    };
+    return (
+      <Container>
+        <Row>
+          <Column offset="1" col="8">
+            <Tabs startingTab="refine-results-1" bordered bordered minHeight="500px">
+              <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
+              <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
+              <TabPanel name="refine-results-1">
+                <div className="custom-bg bg-grey-lighter p-24 -mb-16">
+                  <Dropdown id="input-one" value="First" options={options} supportingElements required forceFullWidth label="Dropdown Label" defaultOption={defaultOption} />
+                </div>
+                <div className="bg-white p-24 ">
+                  <p>View Type</p>
+                  <Button id="secondary-btn01" btnType="secondary" btnSize="md" content="button 1" disabled={false} />
+                  <Button id="secondary-btn02" btnType="secondary" btnMode="onDark" btnSize="md" content="button 2" disabled={false} />
+                </div>
+              </TabPanel>
+              <TabPanel name="edit-details-1">
+                <div className="bg-white p-24">
+                  <p>Tab two content</p>
+                  <p>stuff</p>
+                </div>
+              </TabPanel>
+            </Tabs>
+          </Column>
+        </Row>
+      </Container>
+    );
+  }}
+</Story>

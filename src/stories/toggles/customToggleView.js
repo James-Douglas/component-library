@@ -4,7 +4,6 @@ import css from 'styled-jsx/css';
 import ToggleGroup from '../../components/Toggles/ToggleGroup.component';
 import Picture from '../../components/Picture/Picture.component';
 import CustomToggle from '../../components/Toggles/Custom/CustomToggle.component';
-import StoryTemplate from '../storyTemplate';
 
 import DEFAULT from '../../images/medicare-cards/default.jpg';
 import INTERIM from '../../images/medicare-cards/interim.jpg';
@@ -55,85 +54,82 @@ const CustomToggleView = () => {
   };
 
   return (
-    <StoryTemplate background="grey">
-      <div className="mb-32">
-        <style jsx>{styles}</style>
-        <ToggleGroup label="Default" name="toggleGroupA" tooltip={tooltip} onToggle={handleChange}>
-          <CustomToggle
-            name="image"
-            id="green"
-            value="green"
-          >
-            <div className="medicare-toggle">
-              <div className="picture-container">
-                <Picture
-                  src={DEFAULT}
-                  srcsets={[{ srcset: DEFAULT }]}
-                />
-              </div>
-              <div className="label-container">
-                <strong>Green</strong>
-              </div>
+    <div className="mb-32">
+      <style jsx>{styles}</style>
+      <ToggleGroup label="Medicare toggles" name="toggleGroupA" tooltip={tooltip} onToggle={handleChange} disableFieldset>
+        <CustomToggle
+          name="image"
+          id="green"
+          value="green"
+        >
+          <div className="medicare-toggle">
+            <div className="picture-container">
+              <Picture
+                src={DEFAULT}
+                srcsets={[{ srcset: DEFAULT }]}
+              />
             </div>
+            <div className="label-container">
+              <strong>Green</strong>
+            </div>
+          </div>
 
-          </CustomToggle>
-          <CustomToggle
-            name="image"
-            id="blue"
-            value="blue"
-          >
-            <div className="medicare-toggle">
-              <div className="picture-container">
-                <Picture
-                  src={INTERIM}
-                  srcsets={[{ srcset: INTERIM }]}
-                />
-              </div>
-              <div className="label-container">
-                <strong>Blue</strong>
-                <span>(Interim)</span>
-              </div>
+        </CustomToggle>
+        <CustomToggle
+          name="image"
+          id="blue"
+          value="blue"
+        >
+          <div className="medicare-toggle">
+            <div className="picture-container">
+              <Picture
+                src={INTERIM}
+                srcsets={[{ srcset: INTERIM }]}
+              />
             </div>
-          </CustomToggle>
-          <CustomToggle
-            name="image"
-            id="yellow"
-            value="yellow"
-          >
-            <div className="medicare-toggle">
-              <div className="picture-container">
-                <Picture
-                  src={RECIPROCAL}
-                  srcsets={[{ srcset: RECIPROCAL }]}
-                />
-              </div>
-              <div className="label-container">
-                <strong>Green/Yellow</strong>
-                <span>(Reciprocal - Visitor)</span>
-              </div>
+            <div className="label-container">
+              <strong>Blue</strong>
+              <span>(Interim)</span>
             </div>
-          </CustomToggle>
-          <CustomToggle
-            name="image"
-            id="other"
-            value="other"
-          >
-            <div className="medicare-toggle">
-              <div className="other-container">
-                <Picture
-                  src={OTHER}
-                  srcsets={[{ srcset: OTHER }]}
-                />
-              </div>
-              <div className="label-container">
-                <strong>Other</strong>
-              </div>
+          </div>
+        </CustomToggle>
+        <CustomToggle
+          name="image"
+          id="yellow"
+          value="yellow"
+        >
+          <div className="medicare-toggle">
+            <div className="picture-container">
+              <Picture
+                src={RECIPROCAL}
+                srcsets={[{ srcset: RECIPROCAL }]}
+              />
             </div>
-          </CustomToggle>
-        </ToggleGroup>
-      </div>
-
-    </StoryTemplate>
+            <div className="label-container">
+              <strong>Green/Yellow</strong>
+              <span>(Reciprocal - Visitor)</span>
+            </div>
+          </div>
+        </CustomToggle>
+        <CustomToggle
+          name="image"
+          id="other"
+          value="other"
+        >
+          <div className="medicare-toggle">
+            <div className="other-container">
+              <Picture
+                src={OTHER}
+                srcsets={[{ srcset: OTHER }]}
+              />
+            </div>
+            <div className="label-container">
+              <strong>Other</strong>
+            </div>
+          </div>
+        </CustomToggle>
+      </ToggleGroup>
+    </div>
   );
 };
 

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from 'styled-jsx/css';
 
-import Fieldset from '../Fieldset/Fieldset.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
+import UseFieldset from '../../hooks/useFieldset';
 
 const styles = css`
   .toggle-group {
@@ -43,7 +43,17 @@ export const getChildren = (children, type, name, selectedToggleValue, handleTog
 );
 
 const ToggleGroup = ({
-  label, tooltip, forceFullWidth, validationMessage, id, name, onToggle, selectedValue, children, rectOptions,
+  label,
+  tooltip,
+  forceFullWidth,
+  validationMessage,
+  id,
+  name,
+  onToggle,
+  selectedValue,
+  children,
+  rectOptions,
+  disableFieldset,
 }) => {
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
   const type = getType(children);
@@ -59,29 +69,63 @@ const ToggleGroup = ({
   }
 
   return (
-    <Fieldset label={label} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} validationMessage={validationMessage}>
+    <UseFieldset
+      disableFieldset={disableFieldset}
+      label={label}
+      tooltip={tooltipOptions}
+      forceFullWidth={forceFullWidth}
+      validationMessage={validationMessage}
+    >
       <style jsx>{styles}</style>
       <div className="toggle-group" id={id}>
         {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
       </div>
-    </Fieldset>
+    </UseFieldset>
   );
 };
 
 ToggleGroup.propTypes = {
+  /**
+   * Name property to be passed to the toggles - required for the underlying radio buttons
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * onChange handler function, called on select of a toggle with { id: <selected toggle id>, value: <selected toggle value> }
+   */
   onToggle: PropTypes.func.isRequired,
+  /**
+   * Label for the ToggleGroup.
+   */
   label: PropTypes.string,
+  /**
+   * Tooltip object (see Tooltip documentation)
+   */
   tooltip: PropTypes.shape(tooltipPropTypes),
+  /**
+   * Forces the ToggleGroup to expand to 12 columns (default true for ToggleGroup)
+   */
   forceFullWidth: PropTypes.bool,
+  /**
+   * Displays given validation message and invalid styles on the component when provided.
+   */
   validationMessage: PropTypes.string,
+  /**
+   * Unique identifier for the toggle group
+   */
   id: PropTypes.string,
+  /**
+   * Value of the currently selected toggle (use to pre-select)
+   */
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Options object for rectangular toggles (see Toggle documentation)
+   */
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     height: PropTypes.number,
   }),
+  disableFieldset: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -107,6 +151,7 @@ ToggleGroup.defaultProps = {
     height: 8,
   },
   children: [],
+  disableFieldset: false,
 };
 
 export default ToggleGroup;

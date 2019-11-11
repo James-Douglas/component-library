@@ -28,6 +28,7 @@ const whiteBackgroundView = () => {
           disabled={false}
           invalid={false}
           handleChange={(value) => logValue(value)}
+          disableFieldset
         />
 
         <Input
@@ -40,6 +41,7 @@ const whiteBackgroundView = () => {
           disabled={false}
           invalid={false}
           handleChange={(value) => logValue(value)}
+          disableFieldset
         />
       </div>
 

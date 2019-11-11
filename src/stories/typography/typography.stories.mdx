@@ -1,0 +1,280 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs|Typography" />
+
+# CTM Typography Guidelines
+
+Typography styles can be applied by
+
+* Applying the specific class to an individual element
+* Apply .manor-rich-text a container element, which will apply styles to tags (e.g. h1 will have appropriate styling),
+  however this will not extend to classes such as `manor-body2` or where there isn't a matching HTML tag (e.g. microcopy).
+
+
+## Headings
+
+The following classes are available for styling headings and can be applied at the element level or by
+applying the 'manor-rich-text' class to ancestor element.
+
+### h1 (.manor-h1)
+Use case: Homepage
+``
+<Preview>
+  <Story name="h1">
+    <span className="manor-h1">Compare The Market</span>
+  </Story>
+</Preview>
+
+### h2 (.manor-h2)
+Use case: Homepage, Landing pages, Journey Headings
+
+<Preview>
+  <Story name="h2">
+    <span className="manor-h2">Compare The Market</span>
+  </Story>
+</Preview>
+
+### h3 (.manor-h3)
+Use case: Homepage, Landing pages, Journey Headings
+
+<Preview>
+  <Story name="h3">
+    <span className="manor-h3">Compare The Market</span>
+  </Story>
+</Preview>
+
+### h4 (.manor-h4)
+Use case: Homepage, Landing pages, Journey Headings
+
+<Preview>
+  <Story name="h4">
+    <span className="manor-h4">Compare The Market</span>
+  </Story>
+</Preview>
+
+### h5 (.manor-h5)
+Use case: Homepage, Landing pages, Journey Headings
+
+<Preview>
+  <Story name="h5">
+    <span className="manor-h5">Compare The Market</span>
+  </Story>
+</Preview>
+
+### h6 (.manor-h6)
+Use case: Homepage, Landing pages, Journey Headings
+
+<Preview>
+  <Story name="h6">
+    <span className="manor-h6">Compare The Market</span>
+  </Story>
+</Preview>
+
+## Subtitles
+
+The following classes are available for styling Subtitles and can only be applied via adding a class at the element level.
+
+### subtitle (.manor-subtitle1)
+Use case: Homepage, Landing pages, Journey Headings
+
+<Preview>
+  <Story name="subtitle1">
+    <span className="manor-subtitle1">Compare The Market</span>
+  </Story>
+</Preview>
+
+
+### subtitle2 (.manor-subtitle2)
+Use case: Homepage, Landing pages, Journey Headings
+
+<Preview>
+  <Story name="subtitle2">
+    <span className="manor-subtitle2">Compare The Market</span>
+  </Story>
+</Preview>
+
+## Body text
+The following classes are available for styling bodies and can only be applied via adding a class at the element level.
+
+### body1 (.manor-body1)
+Use case: Tooltips, input fields, drop downs, combo fields, Text fields
+
+<Preview>
+  <Story name="body1">
+    <span className="manor-body1">Compare The Market</span>
+  </Story>
+</Preview>
+
+### body2 (.manor-body2)
+Use case: Secondary text (extra information) e.g. tooltips
+
+<Preview>
+  <Story name="body2">
+    <span className="manor-body2">Compare The Market</span>
+  </Story>
+</Preview>
+
+## Buttons
+The following classes are available for styling Button and can only be applied via adding a class at the element level.
+
+### button1 (.manor-button1)
+Use case: CTA (red routes)
+
+<Preview>
+  <Story name="button1">
+    <span className="manor-button2">Compare The Market</span>
+  </Story>
+</Preview>
+
+### button2 (.manor-button2)
+Use case: Other Buttons
+
+<Preview>
+  <Story name="button2">
+    <span className="manor-button2">Compare The Market</span>
+  </Story>
+</Preview>
+
+## Links
+The following classes are available for styling links and can be applied at the element level or by
+applying the 'manor-rich-text' class to ancestor element.
+
+### link (.manor-link)
+
+<Preview>
+  <Story name="link">
+    <span className="manor-link">Compare The Market</span>
+  </Story>
+</Preview>
+
+
+## Microcopy class
+The following class is available for styling Microcopy and can only be applied via adding a class at the element level.
+
+### .manor-microcopy
+Use case: Captions, Terms and Conditions
+
+<Preview>
+  <Story name="microcopy">
+    <span className="manor-microcopy">Compare The Market</span>
+  </Story>
+</Preview>
+
+## Lists
+
+The following classes are available for styling lists and can be applied at the element level or by
+applying the 'manor-rich-text' class to ancestor element.
+
+### .manor-ul
+Use case: Unordered Lists
+
+<Preview>
+  <Story name="unordered lists">
+    <ul className="manor-ul">
+      <li className="manor-li">item a</li>
+      <li className="manor-li-last-item">item b</li>
+    </ul>
+  </Story>
+</Preview>
+
+### .manor-ol
+Use case: Ordered Lists
+
+<Preview>
+  <Story name="ordered lists">
+    <ol className="manor-ol">
+      <li className="manor-li">item a</li>
+      <li className="manor-li-last-item">item b</li>
+    </ol>
+  </Story>
+</Preview>
+
+### .manor-li
+Use case: List Items - adds padding after each item
+
+### .manor-li-last-item
+Use case: Last child List Items - removes padding from last list item
+
+### .manor-nested-list
+Use case: nested lists - removes margin from bottom of nested list
+
+<Preview>
+  <Story name="nested list">
+    <ul className="manor-ul">
+      <li className="manor-li">item a</li>
+      <li className="manor-li">
+        <ul className="manor-ol manor-nested-list">
+          <li className="manor-li">1</li>
+          <li className="manor-li">2</li>
+          <li className="manor-li-last-item">3</li>
+        </ul>
+      </li>
+      <li className="manor-li-last-item">item c</li>
+    </ul>
+  </Story>
+</Preview>
+
+
+
+## Overline / Underline classes
+The following class is available for styling overline / subscript text and can only be applied via adding a class at the element level.
+
+### .manor-overline
+Use case: Marketing purposes, e.g. overline over title
+
+<Preview>
+  <Story name="overline">
+    <span className="manor-overline">Compare The Market</span>
+  </Story>
+</Preview>
+
+### .manor-subscript
+Use case: Field requirement 'Optional'
+
+<Preview>
+  <Story name="subscript">
+    <span className="manor-subscript">Compare The Market</span>
+  </Story>
+</Preview>
+
+## Placeholder class
+The following class is available for styling placeholders and can only be applied via adding a class at the element level.
+
+### .manor-placeholder
+Use case: placeholder information form-fields
+
+<Preview>
+  <Story name="placeholder">
+    <span className="manor-placeholder">Compare The Market</span>
+  </Story>
+</Preview>
+
+## Spacing classes
+The following classes are available for dynamic styling for spacing and currently can only be applied via adding a class at the element level.
+
+### .manor-header-spacing
+Use case: Add to first element on the page after the Page header / tracker / progress bar
+
+<Preview>
+  <Story name="spacing-header">
+    <span className="manor-header-spacing">Compare The Market</span>
+  </Story>
+</Preview>
+
+### .manor-heading-spacing
+Use case: Add to h1 element to provide a buffer between it and an element below it
+
+<Preview>
+  <Story name="spacing-heading">
+    <span className="manor-heading-spacing">Compare The Market</span>
+  </Story>
+</Preview>
+
+### .manor-label-spacing
+Use case: Add to label element to provide a buffer between it and a form input element of some description below it
+
+<Preview>
+  <Story name="spacing-label">
+    <span className="manor-label-spacing">Compare The Market</span>
+  </Story>
+</Preview>

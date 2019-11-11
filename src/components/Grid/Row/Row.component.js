@@ -14,6 +14,9 @@ const Row = ({ children, className }) => (
 );
 
 Row.propTypes = {
+  /**
+   * Classes to be applied to the row element
+   */
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,

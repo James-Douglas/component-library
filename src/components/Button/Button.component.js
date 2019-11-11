@@ -24,7 +24,7 @@ const Button = ({
   };
 
   const renderButton = () => {
-    const isButton = type === 'primary' || type === 'secondary';
+    const isButton = type === 'primary' || type === 'secondary' || type === 'tertiary';
     const Tag = isButton ? 'button' : 'a';
 
     return (
@@ -64,21 +64,62 @@ const Button = ({
 };
 
 Button.propTypes = {
+  /**
+   * Unique identifier for the button
+   */
   id: PropTypes.string.isRequired,
-  type: PropTypes.string,
+  /**
+   * Defines the type of button to be used, applied as a class. Defaults to `primary`, other valid types are `secondary`,
+   * `text`, `link`, and `footer-link`
+   */
+  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'text', 'link', 'footer-link']),
+  /**
+   * Defines the mode of the button. Change to `true` for `secondary`, `text`, `link` and `footer-link` to enable the
+   * dark mode. `primary` does not have a `onDark` mode.
+   */
   onDark: PropTypes.bool,
+  /**
+   * Defines the size of button to be used, `sm`, `md` and `lg`. Defaults to `md`.
+   */
   size: PropTypes.string,
+  /**
+   * The button text. Can render html if required.
+   */
   content: PropTypes.string,
+  /**
+   * Defines if the button is disabled or not. Defaults to false.
+   */
   disabled: PropTypes.bool,
+  /**
+   * The icon to be supplied with the button. Defaults to none.
+   */
   icon: PropTypes.string,
+  /**
+   * The icon sizing. Defaults to '2'
+   */
   iconSize: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
+  /**
+   * Shift the icon to the right, content to the left. Defaults to false.
+   */
   iconAlignRight: PropTypes.bool,
+  /**
+   * Defines the `<a>` link. Defaults to `#`.
+   */
   href: PropTypes.string,
+  /**
+   * Defines if the `<a>` should have a target attribute.
+   */
   target: PropTypes.string,
+  /**
+   * Specifies the rel, for example "nofollow" can be supplied
+   */
   rel: PropTypes.string,
+  /**
+   * Pass the button a custom click function
+   */
   handleClick: PropTypes.func,
 };
 

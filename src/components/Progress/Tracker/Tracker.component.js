@@ -44,7 +44,6 @@ export function processTrackerItems(steps, isDesktop) {
 
 
 const Tracker = ({
-  value,
   steps,
   isSticky,
   stuck,
@@ -52,6 +51,8 @@ const Tracker = ({
   const stickyClass = isSticky ? 'sticky' : '';
   const stuckClass = stuck ? 'stuck' : '';
   const isDesktop = useIsDesktop();
+  const activeProperty = steps.findIndex((element) => element.active);
+  const value = (activeProperty === -1) ? 100 : ((activeProperty + 1) / steps.length) * 100;
   return (
     <div className={`progress-container ${stickyClass} ${stuckClass}`}>
       <style jsx>{styles}</style>
@@ -67,10 +68,6 @@ const Tracker = ({
 
 
 Tracker.propTypes = {
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
   steps: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
@@ -82,7 +79,6 @@ Tracker.propTypes = {
 };
 
 Tracker.defaultProps = {
-  value: 70,
   steps: [{ label: 'About You', url: '#label' }],
   isSticky: false,
   stuck: false,

@@ -86,13 +86,38 @@ const Checkbox = ({
 };
 
 Checkbox.propTypes = {
+  /**
+   * The checkbox ID. This is required, as it informs the label and the value of the checkbox.
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * Defines the icon needed for the checkbox.
+   */
   icon: PropTypes.string,
+  /**
+   * Defines if the checkbox is disabled or not.
+   */
   disabled: PropTypes.bool,
+  /**
+   * Defines the checkbox checked state.
+   */
   isSelected: PropTypes.bool,
+  /**
+   * Defines the invalid state for the checkbox which applies appropriate styles.
+   */
   invalid: PropTypes.bool,
+  /**
+   * Changes the color of the checked state - blue bg, white tick, or white bg, blue tick.
+   */
   invertColour: PropTypes.bool,
+  /**
+   * Called on change with { id, value }.
+   */
   handleChange: PropTypes.func,
+  /**
+   * Defines the associated content for the checkbox, used by the wrapper component, `<CheckboxGroup/>`.
+   * Not required for the singular checkbox.
+   */
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,

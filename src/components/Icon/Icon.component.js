@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import icons from './icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { ctmIcons, faIcons } from './icons';
 import styles from './styles';
 
-const Icon = ({
-  size, flipV, flipH, name,
-}) => {
-  const icon = icons[name] || { viewBox: '', paths: [] };
+const renderCtmIcon = (icon, size, flipV, flipH) => {
   const { viewBox } = icon;
   const inlineStyles = {
     width: `${size}rem`,
@@ -37,10 +36,55 @@ const Icon = ({
   );
 };
 
+const renderFaIcon = (icon, size, flipV, flipH) => {
+  const inlineStyles = {
+    fontSize: `${size}rem`,
+  };
+
+  let flip;
+  if (flipV && flipH) {
+    flip = 'both';
+  } else if (flipV) {
+    flip = 'vertical';
+  } else if (flipH) {
+    flip = 'horizontal';
+  }
+
+  return (
+    <FontAwesomeIcon icon={icon} style={inlineStyles} flip={flip} />
+  );
+};
+
+const Icon = ({
+  size, flipV, flipH, name,
+}) => {
+  const ctmIcon = ctmIcons[name];
+  const faIcon = faIcons[name];
+  if (ctmIcon) {
+    return renderCtmIcon(ctmIcon, size, flipV, flipH);
+  }
+  if (faIcon) {
+    return renderFaIcon(faIcon, size, flipV, flipH);
+  }
+  return null;
+};
+
 Icon.propTypes = {
+  /**
+   * Name of the icon to be rendered
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * Size of the icon (rem)
+   */
   size: PropTypes.number,
+  /**
+   * Flips the icon vertically
+   */
   flipV: PropTypes.bool,
+  /**
+   * Flips the icon horizontally
+   */
   flipH: PropTypes.bool,
 };
 

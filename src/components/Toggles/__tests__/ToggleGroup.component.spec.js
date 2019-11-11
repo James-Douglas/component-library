@@ -95,7 +95,7 @@ describe('ToggleGroup', () => {
     const handleChangeCb = jest.fn();
     const tooltip = { title: 'test' };
     const { container } = render(
-      <ToggleGroup name="test-toggle-group-b" onToggle={handleChangeCb} tooltip={tooltip}>
+      <ToggleGroup name="test-toggle-group-b" onToggle={handleChangeCb} tooltip={tooltip} disableFieldset>
         <Toggle label="test toggle a" id="a" />
         <Toggle label="test toggle b" id="b" />
       </ToggleGroup>,

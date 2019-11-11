@@ -63,6 +63,7 @@ const prefixSuffixView = () => {
           prefixContent={<SvgUkFlag />}
           suffixContent={<SvgAusFlag />}
           invalid={false}
+          disableFieldset
           handleChange={(value) => logValue(value)}
         />
 
@@ -76,6 +77,7 @@ const prefixSuffixView = () => {
           disabled={false}
           prefixContent="prefix"
           invalid={false}
+          disableFieldset
           handleChange={(value) => logValue(value)}
         />
 
@@ -89,6 +91,7 @@ const prefixSuffixView = () => {
           disabled={false}
           suffixContent="suffix"
           invalid={false}
+          disableFieldset
           handleChange={(value) => logValue(value)}
         />
       </div>

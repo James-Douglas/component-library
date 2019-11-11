@@ -1,0 +1,20 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+
+import FeatureList from '../../components/FeatureList/FeatureList.component';
+
+<Meta title="Components|FeatureList" component={FeatureList} />
+
+# FeatureList
+
+Renders a list of features/benefits
+
+<Preview>
+  <Story name="feature list">
+    <FeatureList features={['Visa Debit', 'Paywave', 'Apple Pay']} />
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={FeatureList} />

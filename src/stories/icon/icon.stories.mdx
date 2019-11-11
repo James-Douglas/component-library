@@ -1,0 +1,90 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
+import Icon from '../../components/Icon/Icon.component.js';
+import { ctmIcons, faIcons } from '../../components/Icon/icons';
+
+<Meta title="Components|Icon" component={Icon} />
+
+# Icon
+
+Icon component, we use a mixture of inhouse designed icons and FontAwesome icons.
+
+<Preview>
+  <Story name="icon">
+    <Icon name="contact" size={2}/>
+  </Story>
+</Preview>
+
+## Available icons
+### CTM Icons
+<Preview>
+  <Story name="available icons - CTM">
+    {() => {
+      const renderIcons = () => {
+        return Object.keys(ctmIcons).map((icon) => {
+         return (
+           <div className="w-64 h-64 flex flex-col items-center justify-center mx-20">
+             <Icon name={icon} size={2} />
+             <span className="manor-subtitle1 pt-8">{icon}</span>
+           </div>
+         )
+       })
+      }
+      return (
+        <div className="flex flex-wrap">
+          {renderIcons()}
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+### FontAwesome Icons
+<Preview>
+  <Story name="available icons - font awesome">
+    {() => {
+      const renderIcons = () => {
+        return Object.keys(faIcons).map((icon) => {
+         return (
+           <div className="w-64 h-64 flex flex-col items-center justify-center mx-20">
+             <Icon name={icon} size={2} />
+             <span className="manor-subtitle1 pt-8">{icon}</span>
+           </div>
+         )
+       })
+      }
+      return (
+        <div className="flex flex-wrap">
+          {renderIcons()}
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={Icon} />
+
+<Story name="icon with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const name = select('name', Object.keys(ctmIcons), 'contact');
+    const size = number('size', 2);
+    const flipV = boolean('flipV', false);
+    const flipH = boolean('flipH', false);
+    return (
+      <Icon name={name} size={size} flipV={flipV} flipH={flipH} />
+    )
+  }}
+</Story>
+
+## Adding icons
+
+### CTM icons
+
+For icons that have been developed in house, you will need to extract the paths and the viewBox from the .svg file and add them
+to `src/components/Icon/icons.js`.
+
+### FontAwesome icons
+
+For FontAwesome icons simply import and export them within `src/components/Icon/icons.js` as per the other examples.

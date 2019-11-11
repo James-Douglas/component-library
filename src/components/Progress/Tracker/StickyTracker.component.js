@@ -4,20 +4,15 @@ import useIsSticky from '../../../hooks/useIsSticky';
 import Tracker from './Tracker.component';
 
 const StickyTracker = ({
-  value,
   steps,
 }) => {
   const isStuck = useIsSticky(60);
   return (
-    <Tracker value={value} steps={steps} isSticky={isStuck} stuck={isStuck} />
+    <Tracker steps={steps} isSticky={isStuck} stuck={isStuck} />
   );
 };
 
 StickyTracker.propTypes = {
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
   steps: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
@@ -27,7 +22,6 @@ StickyTracker.propTypes = {
 };
 
 StickyTracker.defaultProps = {
-  value: 70,
   steps: [{ label: 'About You', url: '#label' }],
 };
 

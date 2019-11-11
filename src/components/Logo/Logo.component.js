@@ -35,8 +35,17 @@ const Logo = ({ size, src, srcsets }) => (
 );
 
 Logo.propTypes = {
-  size: PropTypes.string,
+  /**
+   * Size of the logo (small = 3.2rem, large = 4.4rem)
+   */
+  size: PropTypes.oneOf(['small', 'large']),
+  /**
+   * src attribute for the underlying Picture component
+   */
   src: PropTypes.string,
+  /**
+   * srcsets attribute for the underlying Picture component
+   */
   srcsets: PropTypes.arrayOf(
     PropTypes.shape({
       srcset: PropTypes.string,
@@ -46,7 +55,7 @@ Logo.propTypes = {
 };
 
 Logo.defaultProps = {
-  size: '',
+  size: 'large',
   src: logoDesktop,
   srcsets: [
     {

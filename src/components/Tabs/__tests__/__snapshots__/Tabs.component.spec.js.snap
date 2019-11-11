@@ -1,0 +1,368 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabButton renders a TabButton 1`] = `
+<div>
+  <style />
+  <button
+    class="
+    tab-button
+    manor-h6
+    
+  "
+    type="button"
+  >
+    <p>
+      Refine Results
+    </p>
+  </button>
+</div>
+`;
+
+exports[`TabButton renders multuple TabButtons 1`] = `
+<div>
+  <style />
+  <button
+    class="
+    tab-button
+    manor-h6
+    
+  "
+    type="button"
+  >
+    <p>
+      Refine Results1
+    </p>
+  </button>
+  <style />
+  <button
+    class="
+    tab-button
+    manor-h6
+    
+  "
+    type="button"
+  >
+    <p>
+      Refine Results2
+    </p>
+  </button>
+</div>
+`;
+
+exports[`TabPanel renders a TabPanel 1`] = `
+<div>
+  <style />
+  <div
+    class="
+    tab-panel
+    hidden
+    
+  "
+  >
+    <p>
+      View Type
+    </p>
+  </div>
+</div>
+`;
+
+exports[`TabPanel renders additional classNames 1`] = `
+<div>
+  <style />
+  <div
+    class="
+    tab-panel
+    hidden
+    test classes
+  "
+  >
+    <p>
+      test1
+    </p>
+  </div>
+  <style />
+  <div
+    class="
+    tab-panel
+    hidden
+    another-class
+  "
+  >
+    <p>
+      test2
+    </p>
+  </div>
+</div>
+`;
+
+exports[`TabPanel renders multiple TabPanels 1`] = `
+<div>
+  <style />
+  <div
+    class="
+    tab-panel
+    hidden
+    
+  "
+  >
+    <p>
+      test1
+    </p>
+  </div>
+  <style />
+  <div
+    class="
+    tab-panel
+    hidden
+    
+  "
+  >
+    <p>
+      test2
+    </p>
+  </div>
+  <style />
+  <div
+    class="
+    tab-panel
+    hidden
+    
+  "
+  >
+    <p>
+      test3
+    </p>
+  </div>
+  <style />
+  <div
+    class="
+    tab-panel
+    hidden
+    
+  "
+  >
+    <p>
+      test4
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Tabs renders a border 1`] = `
+<div>
+  <style />
+  <div
+    class="
+    tabs-container manor-rich-text
+    tab-border
+    
+  "
+    style="min-height: initial;"
+  >
+    <style />
+    <div
+      class="tab-button-wrap"
+    >
+      <style />
+      <button
+        class="
+    tab-button
+    manor-h6
+    active
+  "
+        type="button"
+      >
+        <p>
+          Refine Results
+        </p>
+      </button>
+      <style />
+      <button
+        class="
+    tab-button
+    manor-h6
+    
+  "
+        type="button"
+      >
+        <p>
+          Edit Details
+        </p>
+      </button>
+    </div>
+    <style />
+    <div
+      class="
+    tab-panel
+    
+    
+  "
+    >
+      <p>
+        View Type
+      </p>
+    </div>
+    <style />
+    <div
+      class="
+    tab-panel
+    hidden
+    
+  "
+    >
+      <p>
+        Tab two content
+      </p>
+      <p>
+        stuff
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tabs renders additional classNames 1`] = `
+<div>
+  <style />
+  <div
+    class="
+    tabs-container manor-rich-text
+    
+    test classes
+  "
+    style="min-height: initial;"
+  >
+    <style />
+    <div
+      class="tab-button-wrap"
+    >
+      <style />
+      <button
+        class="
+    tab-button
+    manor-h6
+    active
+  "
+        type="button"
+      >
+        <p>
+          Refine Results
+        </p>
+      </button>
+      <style />
+      <button
+        class="
+    tab-button
+    manor-h6
+    
+  "
+        type="button"
+      >
+        <p>
+          Edit Details
+        </p>
+      </button>
+    </div>
+    <style />
+    <div
+      class="
+    tab-panel
+    
+    
+  "
+    >
+      <p>
+        View Type
+      </p>
+    </div>
+    <style />
+    <div
+      class="
+    tab-panel
+    hidden
+    
+  "
+    >
+      <p>
+        Tab two content
+      </p>
+      <p>
+        stuff
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tabs renders correctly with minimal props 1`] = `
+<div>
+  <style />
+  <div
+    class="
+    tabs-container manor-rich-text
+    
+    
+  "
+    style="min-height: initial;"
+  >
+    <style />
+    <div
+      class="tab-button-wrap"
+    >
+      <style />
+      <button
+        class="
+    tab-button
+    manor-h6
+    active
+  "
+        type="button"
+      >
+        <p>
+          Refine Results
+        </p>
+      </button>
+      <style />
+      <button
+        class="
+    tab-button
+    manor-h6
+    
+  "
+        type="button"
+      >
+        <p>
+          Edit Details
+        </p>
+      </button>
+    </div>
+    <style />
+    <div
+      class="
+    tab-panel
+    
+    
+  "
+    >
+      <p>
+        View Type
+      </p>
+    </div>
+    <style />
+    <div
+      class="
+    tab-panel
+    hidden
+    
+  "
+    >
+      <p>
+        Tab two content
+      </p>
+      <p>
+        stuff
+      </p>
+    </div>
+  </div>
+</div>
+`;

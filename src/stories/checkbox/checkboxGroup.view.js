@@ -48,6 +48,7 @@ const CheckboxGroupView = () => {
                 groupId={g1}
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
+                disableFieldset
               >
                 <Checkbox id="A-1" icon="check">A-1 check</Checkbox>
                 <Checkbox id="A-2" icon="check">A-2 check</Checkbox>
@@ -66,6 +67,7 @@ const CheckboxGroupView = () => {
                 groupId={g2}
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
+                disableFieldset
               >
                 <Checkbox id="B-1" icon="check">B-1 check</Checkbox>
                 <Checkbox id="B-2" icon="check" isSelected>B-2 check</Checkbox>

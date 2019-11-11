@@ -27,10 +27,31 @@ const TextareaDemoView = ({
   readonly,
   maxChars,
   maxLength,
+  disableFieldset,
 }) => (
   <>
     <div className={`${!bordered ? 'grey-background' : ''} `}>
       <div className="add-padding-around-field-for-display-purposes">
+        <Textarea
+          tooltip={{ title: 'text area tooltip!' }}
+          id={id}
+          name={name}
+          label={label}
+          placeholder={placeholder}
+          value={value}
+          bordered={bordered}
+          disabled={disabled}
+          required={required}
+          invalid={invalid}
+          isPrefill={isPrefill}
+          rows={rows}
+          wrap={wrap}
+          readonly={readonly}
+          maxChars={maxChars}
+          maxLength={maxLength}
+          disableFieldset={disableFieldset}
+        />
+        <p>Textarea without fieldset parameter</p>
 
         <Textarea
           tooltip={{ title: 'text area tooltip!' }}
@@ -49,26 +70,9 @@ const TextareaDemoView = ({
           readonly={readonly}
           maxChars={maxChars}
           maxLength={maxLength}
+          disableFieldset={disableFieldset}
         />
 
-        <Textarea
-          tooltip={{ title: 'text area tooltip!' }}
-          id={id}
-          name={name}
-          label={label}
-          placeholder={placeholder}
-          value={value}
-          bordered={bordered}
-          disabled={disabled}
-          required={required}
-          invalid={invalid}
-          isPrefill={isPrefill}
-          rows={rows}
-          wrap={wrap}
-          readonly={readonly}
-          maxChars={maxChars}
-          maxLength={maxLength}
-        />
       </div>
     </div>
     <div className="scrollable w-auto" />
@@ -91,6 +95,7 @@ TextareaDemoView.propTypes = {
   readonly: PropTypes.bool,
   maxChars: PropTypes.string,
   maxLength: PropTypes.string,
+  disableFieldset: PropTypes.bool,
 };
 
 TextareaDemoView.defaultProps = {
@@ -108,6 +113,7 @@ TextareaDemoView.defaultProps = {
   readonly: false,
   maxLength: '',
   maxChars: '',
+  disableFieldset: false,
 };
 
 export default TextareaDemoView;

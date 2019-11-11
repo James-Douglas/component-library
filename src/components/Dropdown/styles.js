@@ -33,7 +33,7 @@ Select Field
    TODO: SVG images to be stored as assets or vars in tailwind - will be fixed up after SVG tech spike
 ************************************************************************* */
 .manor-dropdown {
-  @apply text-black font-normal max-w-full rounded-none border border-solid border-transparent text-base bg-white shadow-none m-0 relative appearance-none w-full leading-tighter;
+  @apply text-black font-normal max-w-full border border-solid border-transparent rounded-none text-base bg-white shadow-none m-0 relative appearance-none w-full leading-tighter;
   height: 4.4rem;
   padding: .88rem 2.24rem 0.8rem 1.2rem;
   box-sizing: border-box;
@@ -205,5 +205,23 @@ select.manor-default-selected:-webkit-autofill:focus {
  @apply italic;
   -webkit-text-fill-color: theme('colors.disabled-text');
 }
-
+.prefix-right {
+  @apply flex justify-center h-full bg-white items-center px-8; 
+  min-width: 4rem;
+}
+.with-prefix-field {
+  @apply flex h-full border border-solid border-transparent;
+}
+.outline-select,
+.with-prefix-field:hover,
+.with-prefix-field:focus {
+   @apply border border-solid border-light-blue;
+}
+.outline-select *,
+.with-prefix-field:hover select,
+.with-prefix-field:focus select {
+  @apply flex border border-solid border-transparent;
+  border-width: 1px; /* IE 11 specific fix */
+  outline: none;
+ }
 `;

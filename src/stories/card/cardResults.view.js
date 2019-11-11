@@ -85,7 +85,7 @@ const CardResultsView = ({ background }) => {
               display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center',
             }}
             >
-              <Button id="a" btnType="primary" content="Go to site" />
+              <Button id="a" type="primary" content="Go to site" />
             </div>
           </Row>
           <Row>
@@ -93,7 +93,7 @@ const CardResultsView = ({ background }) => {
               display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center',
             }}
             >
-              <Button id="a" btnType="link" content="More info" />
+              <Button id="a" type="link" content="More info" />
             </div>
           </Row>
         </div>
@@ -144,8 +144,8 @@ const CardResultsView = ({ background }) => {
                 display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
               }}
               >
-                <Button id="a" btnType="primary" content="Go to site" />
-                <Button id="a" btnType="link" content="More info" />
+                <Button id="a" type="primary" content="Go to site" />
+                <Button id="a" type="link" content="More info" />
               </div>
             </Column>
           </Row>
@@ -159,7 +159,7 @@ const CardResultsView = ({ background }) => {
       <Container>
         <Row>
           <Column offset={10} col={2}>
-            <Button id="toggle-button" btnType="secondary" content={`Toggle ${isGrid ? 'List' : 'Grid'}`} handleClick={toggleView} />
+            <Button id="toggle-button" type="secondary" content={`Toggle ${isGrid ? 'List' : 'Grid'}`} handleClick={toggleView} />
           </Column>
         </Row>
         <CardGroup id="test" cols={isGrid ? 3 : 1}>

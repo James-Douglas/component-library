@@ -8,6 +8,24 @@ html {
     font-size: 62.5%;     /* 62.5% of 16px (typical default browser font-size) is 10px. Therefore 1.6rem = 16px */
 }
 
+@media all and (min-width: 1200px){
+    html {
+        zoom: 110%;
+    }
+}
+
+@media all and (min-width: 1900px){
+    html {
+        zoom: 115%;
+    }
+}
+
+@media all and (min-width: 2560px){
+    html {
+        zoom: 120%;
+    }
+}
+
 body {
     margin: 0;
     font-family: SourceSansPro, Helvetica, Arial;
@@ -39,4 +57,8 @@ body {
     url('../assets/fonts/sourcesanspro-bold-webfont.woff') format('woff');
     font-weight: 700;
     font-style: normal;
+}
+
+ul {
+    list-style-type: ;
 }

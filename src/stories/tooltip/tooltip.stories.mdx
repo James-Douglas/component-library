@@ -1,0 +1,25 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Tooltip from '../../components/Tooltip/Tooltip.component';
+import TooltipFilters from './tooltipFilters.view';
+
+<Meta title="Components|Tooltip" component={Tooltip} />
+
+# Tooltip
+
+The Tooltip component is used to display additional information on hover over the tooltip icon.
+
+Form components will typically expose a tooltip prop, internally a Fieldset handles
+tooltip positioning.
+
+<Preview>
+  <Story name="tooltip">
+    <Tooltip title="tooltip title" body="tooltip body" />
+  </Story>
+</Preview>
+
+### Props
+<Props of={Tooltip} />
+
+<Story name="tooltip demo sidebar" parameters={{ docs: { disable: true } }}>
+  <TooltipFilters />
+</Story>

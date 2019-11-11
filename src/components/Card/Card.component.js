@@ -18,7 +18,13 @@ const Card = ({ id, children }) => (
 );
 
 Card.propTypes = {
+  /**
+   * Unique identifier for the card
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * Card content
+   */
   children: PropTypes.node,
 };
 

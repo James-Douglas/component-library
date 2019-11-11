@@ -48,7 +48,7 @@ const TooltipFiltersView = () => {
     <StoryTemplate>
       <Container>
         <Row>
-          <Column col="3">
+          <Column col="4">
             <div id="filter-container" style={filterContainerStyle}>
               <Container>
                 <Row>
@@ -62,7 +62,7 @@ const TooltipFiltersView = () => {
               </Container>
             </div>
           </Column>
-          <Column col="9">
+          <Column col="8">
             <Container>
               <Row>
                 <Column col="12">

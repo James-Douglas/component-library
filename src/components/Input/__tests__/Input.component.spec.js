@@ -165,6 +165,7 @@ describe('Input.component', () => {
         label="input label"
         autocomplete="on"
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -193,6 +194,7 @@ describe('Input.component', () => {
         placeholder="placeholder test"
         bordered={false}
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -209,6 +211,7 @@ describe('Input.component', () => {
         placeholder="placeholder test"
         validationMessage="invalid"
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -226,6 +229,7 @@ describe('Input.component', () => {
         prefixContent="$"
         suffixContent="?"
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -245,6 +249,7 @@ describe('Input.component', () => {
         type="text"
         placeholder="placeholder test"
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -264,6 +269,7 @@ describe('Input.component', () => {
         type="text"
         placeholder="placeholder test"
         prefillValue="autofilled value test"
+        disableFieldset
       />,
     );
     const inputField = document.getElementById('test-id');
@@ -281,6 +287,7 @@ describe('Input.component', () => {
         type="text"
         placeholder="placeholder test"
         handleChange={clearValueCb}
+        disableFieldset
       />,
     );
 
@@ -305,6 +312,7 @@ describe('Input.component', () => {
         placeholder="placeholder test"
         maxlength="5"
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -324,6 +332,7 @@ describe('Input.component', () => {
         maxlength="5"
         handleChange={() => {}}
         handleFocus={focusCb}
+        disableFieldset
       />,
     );
 
@@ -343,6 +352,7 @@ describe('Input.component', () => {
         maxlength="5"
         handleChange={() => {}}
         handleBlur={blurCb}
+        disableFieldset
       />,
     );
 

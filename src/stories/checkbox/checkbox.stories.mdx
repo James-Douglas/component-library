@@ -1,0 +1,36 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Checkbox from '../../components/Checkbox/Checkbox.component';
+import CheckboxGroup from '../../components/Checkbox/CheckboxGroup.component';
+import CheckboxGroupView from './checkboxGroup.view';
+
+<Meta title="Components|Checkbox" component={Checkbox} />
+
+# Checkbox
+
+Manor exposes both a Checkbox component and a CheckboxGroup component, the latter to be used when grouping a number
+of checkboxes together.
+
+<Preview>
+  <Story name="checkbox">
+    <CheckboxGroup label="example" groupId="groupId" colSize="6" disableFieldset>
+      <Checkbox id="A-1" icon="check">A-1 check</Checkbox>
+      <Checkbox id="A-2" icon="check">A-2 check</Checkbox>
+      <Checkbox id="A-3" icon="check">A-3 check</Checkbox>
+      <Checkbox id="A-4" icon="check">A-4 check</Checkbox>
+      <Checkbox id="A-5" icon="check">A-5 check</Checkbox>
+      <Checkbox id="A-6" icon="check">A-6 check</Checkbox>
+    </CheckboxGroup>
+  </Story>
+</Preview>
+
+<Story name="checkbox group view" parameters={{ docs: { disable: true } }}>
+  <CheckboxGroupView />
+</Story>
+
+### Props (Checkbox)
+
+<Props of={Checkbox} />
+
+### Props (CheckboxGroup)
+
+<Props of={CheckboxGroup} />

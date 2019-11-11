@@ -26,6 +26,7 @@ const greyBackgroundView = () => {
           bordered={false}
           required={false}
           handleChange={(value) => logValue(value)}
+          disableFieldset
         />
         <Input
           label="[Fieldset label] Without tooltip"
@@ -35,6 +36,7 @@ const greyBackgroundView = () => {
           bordered={false}
           required={false}
           handleChange={(value) => logValue(value)}
+          disableFieldset
         />
       </div>
     </>

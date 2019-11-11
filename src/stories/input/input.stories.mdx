@@ -1,0 +1,98 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
+
+import Input from '../../components/Input/Input.component';
+import GreyBackgroundView from './input-on-grey-background';
+import WhiteBackgroundView from './input-on-white-background';
+import PrefixSuffix from './input-prefix-suffix';
+import InputTypes from './input-types';
+import InputStates from './input-states';
+
+<Meta title="Components|Input" component={Input} />
+
+# Input
+
+<Preview>
+  <Story name="input">
+    <Input
+      label="[Fieldset label] With tooltip"
+      id="input-one"
+      tooltip={{title: 'input demo'}}
+      placeholder="Placeholder one"
+      type="text"
+      bordered
+      required={false}
+      disabled={false}
+      invalid={false}
+      handleChange={() => {}}
+      disableFieldset
+    />
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={Input} />
+
+<Story name="input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const label = text('label', 'input demo');
+    const tooltip = object('tooltip', {
+      title: 'input tooltip',
+      body: 'this is a tooltip for the input component',
+      justifyEnd: false,
+      screenReaderLabel: 'input screenReaderLabel'
+    });
+    const forceFullWidth = boolean('forceFullWidth', false);
+    const validationMessage = text('validationMessage', '');
+    const maxLength = number('maxLength', 25);
+    const value = text('value', '');
+    const prefillValue = text('prefillValue', 'prefilled');
+    const type = text('type', 'text');
+    const placeholder = text('placeholder', 'input demo');
+    const required = boolean('required', false);
+    const disabled = boolean('disabled', false);
+    const bordered = boolean('bordered', true);
+    const prefixContent = text('prefixContent', '');
+    const suffixContent = text('suffixContent', '');
+    return (
+      <Input
+        label={label}
+        tooltip={tooltip}
+        forceFullWidth={forceFullWidth}
+        validationMessage={validationMessage}
+        maxLength={maxLength}
+        value={value}
+        prefillValue={prefillValue}
+        type={type}
+        placeholder={placeholder}
+        required={required}
+        disabled={disabled}
+        bordered={bordered}
+        prefixContent={prefixContent}
+        suffixContent={suffixContent}
+        disableFieldset
+      />
+    );
+  }}
+</Story>
+
+<Story name="input grey background"  parameters={{ docs: { disable: true } }}>
+  <GreyBackgroundView />
+</Story>
+
+<Story name="input white background"  parameters={{ docs: { disable: true } }}>
+  <WhiteBackgroundView />
+</Story>
+
+<Story name="input prefix-suffix"  parameters={{ docs: { disable: true } }}>
+  <PrefixSuffix />
+</Story>
+
+<Story name="input types"  parameters={{ docs: { disable: true } }}>
+  <InputTypes />
+</Story>
+
+<Story name="input states"  parameters={{ docs: { disable: true } }}>
+  <InputStates />
+</Story>

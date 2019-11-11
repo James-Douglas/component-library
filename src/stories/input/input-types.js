@@ -26,6 +26,7 @@ const prefixSuffixView = () => {
           bordered
           disabled={false}
           invalid={false}
+          disableFieldset
           handleChange={(value) => logValue(value)}
         />
 
@@ -38,6 +39,7 @@ const prefixSuffixView = () => {
           bordered
           disabled={false}
           invalid={false}
+          disableFieldset
           handleChange={(value) => logValue(value)}
         />
 
@@ -50,6 +52,7 @@ const prefixSuffixView = () => {
           bordered
           disabled={false}
           invalid={false}
+          disableFieldset
           handleChange={(value) => logValue(value)}
         />
 
@@ -62,6 +65,7 @@ const prefixSuffixView = () => {
           bordered
           disabled={false}
           invalid={false}
+          disableFieldset
           handleChange={(value) => logValue(value)}
         />
       </div>

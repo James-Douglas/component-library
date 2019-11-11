@@ -12,6 +12,9 @@ const Container = ({ children, className }) => (
 );
 
 Container.propTypes = {
+  /**
+   * Classes to be applied to the container element
+   */
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,

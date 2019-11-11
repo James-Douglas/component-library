@@ -41,6 +41,16 @@ describe('Button', () => {
     expect(btn.classList).toContain('onDark');
   });
 
+  it('renders a tertiary button when the prop is supplied', () => {
+    const { container } = render(<Button id="test-id" type="tertiary" content="test thing" />);
+
+    const btn = container.querySelector('#test-id');
+
+    expect(btn.classList).toContain('tertiary');
+    expect(btn.classList).not.toContain('primary');
+    expect(btn.classList).not.toContain('onDark');
+  });
+
   it('renders a text button with an icon when specified', () => {
     const { container } = render(<Button id="test-id" type="text" icon="check" content="test thing" />);
 

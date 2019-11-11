@@ -1,0 +1,50 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import Tablelvl2Context from '../Table/Tablelvl2Context';
+import styles from '../Table/styles';
+
+const tablelvl2 = {
+  variant: 'body',
+};
+
+const TableBody = ({
+  component,
+  children,
+  className,
+}) => {
+  const Component = component || 'tbody';
+  return (
+    <Tablelvl2Context.Provider value={tablelvl2}>
+      <style jsx>{styles}</style>
+      <Component className={`root-table-body ${className}`}>{children}</Component>
+    </Tablelvl2Context.Provider>
+  );
+};
+
+
+TableBody.propTypes = {
+  /**
+   *  'td' contents.
+   */
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  /**
+   * Extend the styles applied to the component.
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.elementType,
+};
+TableBody.defaultProps = {
+  className: '',
+  children: '',
+  component: '',
+};
+
+export default TableBody;

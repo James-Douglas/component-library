@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders with minimal props 1`] = `
+"<div class=\\"footer-container\\"><style></style><style></style><div class=\\"container \\"><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-md-12 col-xl-10 offset-xl-1 \\"><div class=\\"footer-bar\\"><div class=\\"footer-bar-contents\\"><div class=\\"manor-body2\\">© 2019 Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926</div><div class=\\"scroll-top-icon fill-current\\"><svg aria-hidden=\\"true\\" focusable=\\"false\\" data-prefix=\\"fas\\" data-icon=\\"angle-up\\" class=\\"svg-inline--fa fa-angle-up fa-w-10 \\" role=\\"img\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 320 512\\" style=\\"font-size: 2rem;\\"><path fill=\\"currentColor\\" d=\\"M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z\\"></path></svg></div></div></div></div><style jsx=\\"true\\">.row {
+        @apply flex flex-wrap -mx-16;
+      }
+      </style></div></div></div>"
+`;

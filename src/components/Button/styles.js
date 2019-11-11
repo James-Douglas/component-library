@@ -62,6 +62,24 @@ a > .btn-icon {
   @apply bg-white text-blue-aa-hover fill-current;
 }
 
+/* TERTIARY BUTTONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.tertiary {
+  @apply bg-midnight-blue py-4 text-white rounded-none font-normal text-sm;
+  fill: theme(colors.white);
+  min-height: 2.8rem;
+}
+.tertiary:hover {
+  @apply text-blue-aa-dark-hover fill-current;
+}
+/* onDark */
+.tertiary.onDark {
+  @apply bg-white border border-solid border-midnight-blue text-blue-aa;
+}
+.tertiary.onDark:hover {
+  @apply border-solid border-blue-aa-hover fill-current text-blue-aa-hover;
+}
+
 /* TEXT BUTTONS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a.text {

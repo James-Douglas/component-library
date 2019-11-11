@@ -29,9 +29,6 @@ export default css`
 .accordion-caret {
    @apply flex items-center justify-end w-full;
 }
-.accordion.hide  .accordion-caret {
-  transform: rotate(180deg);
-}
 .accordion:focus, .accordion:active, .accordion:hover,
 .accordion-head:focus, .accordion-head:active, .accordion-head:hover,
 .accordion-body:focus, .accordion-body:active, .accordion-body:hover {

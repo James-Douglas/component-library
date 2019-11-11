@@ -1,12 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon.component';
-import Fieldset from '../Fieldset/Fieldset.component';
+import UseFieldset from '../../hooks/useFieldset';
 import styles from './styles';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import usePrefill from '../../hooks/usePrefill';
 
 export const renderClearIcon = (value, clearInput, isAutofill, label) => {
-  if (value.length) {
+  if (value && value.length) {
     return (
       <>
         <style jsx>{styles}</style>
@@ -58,11 +59,17 @@ export const getSupportingElements = (required) => {
   );
 };
 
-export const getInitialValue = (valueMasking, prefillValue) => {
-  if (valueMasking && prefillValue) {
-    const { parsed } = valueMasking(prefillValue);
-    return parsed;
-  } if (prefillValue) {
+export const getInitialValue = (valueMasking, value, prefillValue) => {
+  if (valueMasking && value && value.length) {
+    return valueMasking(value);
+  }
+  if (valueMasking && prefillValue && prefillValue.length) {
+    return valueMasking(prefillValue);
+  }
+  if (value) {
+    return value;
+  }
+  if (prefillValue) {
     return prefillValue;
   }
   return '';
@@ -76,6 +83,7 @@ const Input = ({
   id,
   type,
   placeholder,
+  value,
   prefillValue,
   required,
   disabled,
@@ -89,39 +97,46 @@ const Input = ({
   handleBlur,
   valueMasking,
   dataList,
+  disableFieldset,
 }) => {
-  const [value, setValue] = useState(getInitialValue(valueMasking, prefillValue));
-  const [isAutofill, setIsAutofill] = useState(!!prefillValue);
-
+  const [internalValue, setInternalValue] = useState(getInitialValue(valueMasking, value, prefillValue));
+  const [isDirty, setIsDirty] = useState(false);
+  const isAutofill = usePrefill(prefillValue, value, isDirty);
   const inputWrapElement = useRef(null);
 
   const clearInput = () => {
-    setIsAutofill(false);
-    setValue('');
+    setIsDirty(true);
+    setInternalValue('');
     handleChange('');
   };
 
   const handleOnChange = (e) => {
-    setIsAutofill(false);
+    setIsDirty(true);
 
     if (valueMasking) {
       const { raw, parsed } = valueMasking(e.target.value);
-      setValue(parsed || '');
+      setInternalValue(parsed || '');
       handleChange(parsed, raw);
     } else {
-      setValue(e.target.value);
+      setInternalValue(e.target.value);
       handleChange(e.target.value);
     }
   };
 
   useEffect(() => {
-    if (valueMasking) {
-      const { parsed } = valueMasking(prefillValue);
-      setValue(parsed || '');
-    } else {
-      setValue(prefillValue);
+    let valueToUse = '';
+    if (value && value.length) {
+      valueToUse = value;
+    } else if (prefillValue && prefillValue.length) {
+      valueToUse = prefillValue;
     }
-  }, [prefillValue, valueMasking]);
+    if (valueMasking) {
+      const { parsed } = valueMasking(valueToUse);
+      setInternalValue(parsed);
+    } else {
+      setInternalValue(valueToUse);
+    }
+  }, [prefillValue, value, valueMasking]);
 
   const onFocus = () => {
     if (handleFocus) {
@@ -148,9 +163,17 @@ const Input = ({
   const borderClass = `${bordered ? 'input-border' : ''}`;
   const invalidClass = `${validationMessage && validationMessage.length ? 'invalid' : ''}`;
   const disabledClass = `${disabled ? 'disabled' : ''}`;
+
   return (
     <>
-      <Fieldset label={label} tooltip={tooltip} forceFullWidth={forceFullWidth} validationMessage={validationMessage} supportingElements={getSupportingElements(required)}>
+      <UseFieldset
+        disableFieldset={disableFieldset}
+        label={label}
+        tooltip={tooltip}
+        forceFullWidth={forceFullWidth}
+        validationMessage={validationMessage}
+        supportingElements={getSupportingElements(required)}
+      >
         <style jsx>{styles}</style>
         <div className="input-container">
           <div ref={inputWrapElement} className={`input-wrap ${prefillClass} ${borderClass} ${invalidClass} ${disabledClass}`}>
@@ -164,7 +187,7 @@ const Input = ({
                 type={type}
                 placeholder={placeholder}
                 disabled={disabled}
-                value={value}
+                value={internalValue}
                 onChange={handleOnChange}
                 autoComplete={autocomplete}
                 onFocus={onFocus}
@@ -176,7 +199,7 @@ const Input = ({
                 `}
               />
 
-              {renderClearIcon(value, clearInput, isAutofill, label)}
+              {renderClearIcon(internalValue, clearInput, isAutofill, label)}
 
             </div>
 
@@ -187,38 +210,106 @@ const Input = ({
           {dataList && <div>{dataList()}</div>}
 
         </div>
-      </Fieldset>
+      </UseFieldset>
     </>
   );
 };
 
 Input.propTypes = {
-  label: PropTypes.string,
-  tooltip: PropTypes.shape(tooltipPropTypes),
-  forceFullWidth: PropTypes.bool,
-  validationMessage: PropTypes.string,
+  /**
+   * Unique id for the component. Required.
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * Custom handler to attach to the input field - used to get the value of the field for example.
+   */
   handleChange: PropTypes.func.isRequired,
+  /**
+   * Label for the input
+   */
+  label: PropTypes.string,
+  /**
+   * Tooltip object (see Tooltip documentation)
+   */
+  tooltip: PropTypes.shape(tooltipPropTypes),
+  /**
+   * Forces the ToggleGroup to expand to 12 columns
+   */
+  forceFullWidth: PropTypes.bool,
+  /**
+   * Displays given validation message and invalid styles on the component when provided.
+   */
+  validationMessage: PropTypes.string,
+  /**
+   * Maximum length for the input element
+   */
   maxlength: PropTypes.number,
+  /**
+   * Function called with the value to apply an input mask
+   */
   valueMasking: PropTypes.func,
+  /**
+   * Sets the value of the input
+   */
+  value: PropTypes.string,
+  /**
+   * Prefills the input and applies browser autocomplete styles
+   */
   prefillValue: PropTypes.string,
+  /**
+   * Type of input (such as number, text, tel etc).
+   */
   type: PropTypes.string,
+  /**
+   * The placeholder text for the input.
+   */
   placeholder: PropTypes.string,
+  /**
+   * Adds/removes a supporting element, `<span>OPTIONAL</span>` to show the field is optional.
+   */
   required: PropTypes.bool,
+  /**
+   * Disables the button via a class on its wrapper, and an attribute on the input.
+   */
   disabled: PropTypes.bool,
+  /**
+   * The input field border style.
+   */
   bordered: PropTypes.bool,
+  /**
+   * Turn the browsers implementation of autocompletion/memory of forms on or off.
+   */
   autocomplete: PropTypes.string,
+  /**
+   * Function called when the input gains focus
+   */
   handleFocus: PropTypes.func,
+  /**
+   * Function called when input loses focus
+   */
   handleBlur: PropTypes.func,
+  /**
+   * Content to be displayed as a prefix for the input
+   */
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
-  dataList: PropTypes.func,
+  /**
+   * Content to be displayed as  suffix for the input
+   */
   suffixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
+  /**
+   * Used for the combo component, this is the list of options that is displayed on input.
+   */
+  dataList: PropTypes.func,
+  /**
+   * Used for disableFieldset wrap component.
+   */
+  disableFieldset: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -230,6 +321,7 @@ Input.defaultProps = {
   maxlength: null,
   type: 'text',
   placeholder: '',
+  value: '',
   prefillValue: '',
   prefixContent: '',
   suffixContent: '',
@@ -240,6 +332,7 @@ Input.defaultProps = {
   disabled: false,
   bordered: true,
   dataList: null,
+  disableFieldset: false,
 };
 
 export default Input;

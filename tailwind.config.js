@@ -1086,9 +1086,6 @@ module.exports = {
                | Class name: .manor-label-spacing
                |   Use case:
                |
-               | Class name: .manor-toggle-to-toggle
-               |   Use case:
-               |
                | Class name: .manor-p-to-p
                |   Use case: paragraph spacing   TODO!! - also see related spacing within richText
                |
@@ -1117,11 +1114,6 @@ module.exports = {
             labelSpacing: {
                 marginBottom: theme('spacing.8'),           //  8px
             },
-
-            toggleToToggle: {
-                marginBottom: theme('spacing.16'),          //  16px
-            },
-
 
             /* todo these names will be changed - still working through spacing with nina */
             spacing24: {

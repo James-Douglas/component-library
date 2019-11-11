@@ -49,6 +49,7 @@ describe('Currency', () => {
         maxlength={5}
         autocomplete="on"
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -70,6 +71,7 @@ describe('Currency', () => {
     const { container } = render(
       <Currency
         id="test-id"
+        disableFieldset
         handleChange={() => {}}
       />,
     );
@@ -107,6 +109,7 @@ describe('Currency', () => {
       <Currency
         id="test-id"
         handleChange={handler}
+        disableFieldset
       />,
     );
 
@@ -123,6 +126,7 @@ describe('Currency', () => {
       <Currency
         id="test-id"
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -137,6 +141,7 @@ describe('Currency', () => {
       <Currency
         id="test-id"
         handleChange={() => {}}
+        disableFieldset
       />,
     );
 
@@ -152,6 +157,7 @@ describe('Currency', () => {
         id="test-id"
         handleChange={() => {}}
         maxlength={5}
+        disableFieldset
       />,
     );
 

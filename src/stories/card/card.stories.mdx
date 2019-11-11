@@ -1,0 +1,122 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+import Card from '../../components/Card/Card.component.js';
+import CardGroup from '../../components/Card/CardGroup.component.js';
+import CardResultsView from './cardResults.view';
+
+<Meta title="Components|Cards" component={Card} />
+
+# Card
+
+Cards contains content & actions about a single subject. Manor includes both a Card component and a CardGroup component,
+which can be used to compose a group of cards.
+
+<Preview>
+  <Story name="card">
+    <Card>
+      <div className="flex items-center justify-center w-full">
+        card content
+      </div>
+    </Card>
+  </Story>
+</Preview>
+
+### Card props
+<Props of={Card} />
+
+## Card group
+
+<Preview>
+  <Story name="card group">
+    <CardGroup>
+      <Card>
+        <div className="flex items-center justify-center w-full">
+          Card A
+        </div>
+      </Card>
+      <Card>
+        <div className="flex items-center justify-center w-full">
+          Card B
+        </div>
+      </Card>
+    </CardGroup>
+  </Story>
+</Preview>
+
+### CardGroup props
+<Props of={CardGroup} />
+
+<Story name="card with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const id = text('id', 'test');
+    const cols = select('cols', [1,2,3,4,5,6,7,8,9,10,11,12], 1);
+    return (
+      <CardGroup id={id} cols={cols}>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card A
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card B
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card C
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card D
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card E
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card F
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card G
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card H
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card I
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card J
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card K
+          </div>
+        </Card>
+        <Card>
+          <div className="flex items-center justify-center w-full">
+            Card L
+          </div>
+        </Card>
+      </CardGroup>
+    )
+  }}
+</Story>
+
+<Story name="mock results" parameters={{ docs: { disable: true } }}>
+  <CardResultsView />
+</Story>

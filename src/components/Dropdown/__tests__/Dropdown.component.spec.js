@@ -20,27 +20,15 @@ describe('getSupportingElements()', () => {
 
 describe('Dropdown', () => {
   const options = [
+    { value: 'Default', title: 'Default Item - Title', defaultOption: true },
     { value: 'First', title: 'First Item - Title' },
-    { value: 'Second', title: 'Second Item - Title' },
+    { value: 'Second', title: 'Second Item - Title', class: 'test-class' },
     { value: 'Third', title: 'Third Item - Title', disabled: true },
   ];
-  const defaultOption = {
-    hasDefaultOption: true,
-    value: 'default',
-    disabled: false,
-    hidden: false,
-  };
-  const defaultOptionWithTitle = {
-    hasDefaultOption: true,
-    value: 'default',
-    disabled: false,
-    hidden: false,
-    title: 'Please choose',
-  };
   it('renders with minimal props', () => {
     // const mockTestClick = jest.fn();
     const selectedValue = 'Second';
-    const { container, getByText } = render(<Dropdown id="dropdown-one" value={selectedValue} options={options} label="Dropdown Label" bordered jsx="true" />);
+    const { container, getByText } = render(<Dropdown id="dropdown-one" value={selectedValue} options={options} label="Dropdown Label" bordered jsx="true" disableFieldset />);
     // test label
     expect(getByText('Dropdown Label')).toBeInTheDocument();
     // test options count
@@ -74,7 +62,7 @@ describe('Dropdown', () => {
     expect(dropdown).toHaveAttribute('required');
   });
   it('renders with handleClick', () => {
-    const selectedValue = 'Second';
+    const selectedValue = 'First';
     const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" jsx="true" />);
     const dropdown = container.getElementsByTagName('select')[0];
     dropdown.value = selectedValue;
@@ -82,32 +70,37 @@ describe('Dropdown', () => {
     expect(dropdown.value).toBe(selectedValue);
   });
   it('renders  with defaultOptions', () => {
-    const { container, getByText } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" defaultOption={defaultOption} jsx="true" />);
+    const { container, getByText } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" jsx="true" />);
     const dropdownOptions = container.getElementsByTagName('option');
     const dropdownOptionsCount = dropdownOptions.length;
-    expect(getByText('Please Select...')).toBeInTheDocument();
-    expect(dropdownOptionsCount).toBe(options.length + 1);
-  });
-  it('renders  with defaultOptionWithTitle', () => {
-    const { getByText } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" defaultOption={defaultOptionWithTitle} jsx="true" />);
-    expect(getByText('Please choose')).toBeInTheDocument();
+    expect(getByText('Default Item - Title')).toBeInTheDocument();
+    expect(dropdownOptionsCount).toBe(options.length);
   });
   it('on input, set value func is called', () => {
     const getValueCb = jest.fn();
-    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" defaultOption={defaultOption} onChange={getValueCb} jsx="true" />);
+    const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" onChange={getValueCb} jsx="true" />);
 
     const dropdownField = container.querySelector('select');
-    fireEvent.change(dropdownField, { target: { value: 'default' } });
+    fireEvent.change(dropdownField, { target: { value: 'Default' } });
 
-    expect(dropdownField).toHaveValue('default');
+    expect(dropdownField).toHaveValue('Default');
     expect(getValueCb).toBeCalled();
   });
   it('renders  option with id', () => {
-    const { getByText } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" defaultOption={defaultOptionWithTitle} jsx="true" />);
+    const { getByText } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" jsx="true" />);
     expect(getByText('First Item - Title')).toHaveAttribute('id');
   });
   it('renders with supportingElements props', () => {
-    const { getByText } = render(<Dropdown id="dropdown" options={options} label="Dropdown Label" defaultOption={defaultOptionWithTitle} jsx="true" />);
+    const { getByText } = render(<Dropdown id="dropdown" options={options} label="Dropdown Label" jsx="true" disableFieldset />);
     expect(getByText('OPTIONAL')).toBeInTheDocument();
+  });
+  it('renders correct when focus and blur', () => {
+    const { container } = render(<Dropdown id="dropdown" options={options} label="Dropdown Label" jsx="true" prefixContent="$" />);
+    const prefixFieldWrap = container.querySelector('.with-prefix-field');
+    const selectField = container.querySelector('select');
+    selectField.focus();
+    expect(prefixFieldWrap).toHaveClass('outline-select');
+    selectField.blur();
+    expect(prefixFieldWrap).not.toHaveClass('outline-select');
   });
 });

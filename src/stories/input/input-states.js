@@ -19,6 +19,7 @@ const prefixSuffixView = () => (
         type="text"
         bordered
         disabled={false}
+        disableFieldset
         validationMessage="This is an invalid field"
         label="An invalid input"
         handleChange={(value) => logValue(value)}
@@ -30,6 +31,7 @@ const prefixSuffixView = () => (
         type="text"
         bordered
         disabled
+        disableFieldset
         label="A disabled input"
         handleChange={(value) => logValue(value)}
       />
@@ -40,6 +42,7 @@ const prefixSuffixView = () => (
         type="text"
         prefillValue="autofilled value"
         bordered
+        disableFieldset
         label="Autofill styling example"
         handleChange={(value) => logValue(value)}
       />
@@ -50,6 +53,7 @@ const prefixSuffixView = () => (
         type="text"
         prefillValue="autofilled value"
         bordered
+        disableFieldset
         prefixContent="$"
         suffixContent="?"
         label="Autofill styling example with affixes"
@@ -61,6 +65,7 @@ const prefixSuffixView = () => (
         placeholder="check the console"
         type="text"
         bordered
+        disableFieldset
         label="Maxlength (5) and blur/onfocus handlers"
         handleChange={(value) => logValue(value)}
         handleFocus={() => { console.warn('focused'); }}

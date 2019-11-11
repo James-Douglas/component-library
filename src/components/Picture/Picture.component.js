@@ -32,17 +32,28 @@ const Picture = ({
 );
 
 Picture.propTypes = {
+  /**
+   * src attribute for the img tag
+   */
   src: PropTypes.string,
+  /**
+   * srcsets attribute for the picture tag
+   */
   srcsets: PropTypes.arrayOf(PropTypes.shape({
     srcset: PropTypes.string,
     media: PropTypes.string,
   })),
+  /**
+   * alt text
+   */
   alt: PropTypes.string,
+  /**
+   * title text
+   */
   title: PropTypes.string,
 };
 
 Picture.defaultProps = {
-  // eslint-disable-next-line global-require
   src: placeholder,
   srcsets: [],
   alt: 'a placeholder image',

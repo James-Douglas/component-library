@@ -1,0 +1,83 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
+import Combo from '../../components/Combo/Combo.component.js';
+import fakeApiData from './jsonPlaceholder';
+
+<Meta title="Components|Combo" component={Combo} />
+
+# Combo
+
+Combo is an extension of the Input component.
+
+<Preview>
+  <Story name="combo preview" height="250px">
+  {() => {
+    const apiData = fakeApiData.map((obj) => obj.title);
+    return (
+      <Card>
+        <Combo
+          label="Example Combo label"
+          apiData={apiData}
+          id="combo-id-first"
+          value="ser"
+          linkHref="https://www.comparethemarket.com.au/"
+          linkText="Can’t find your address?"
+          required={false}
+          renderLimit={3}
+          tooltip={{ title: 'Combo component' }}
+        />
+      </Card>
+    );
+  }}
+  </Story>
+</Preview>
+
+<Story name="combo with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const apiData = fakeApiData.map((obj) => obj.title);
+    const id = text('id', 'combo-demo');
+    const label = text('label', 'Example Combo');
+    const value = text('value', '');
+    const placeholder = text('placeholder', 'Placeholder');
+    const required = boolean('required', true);
+    const disabled = boolean('disabled', false);
+    const bordered = boolean('bordered', true);
+    const validationMessage = text('validationMessage', '');
+    const prefillValue = text('prefillValue', '');
+    const autoComplete = text('autoComplete', 'off');
+    const prefixContent = text('prefix', '');
+    const suffixContent = text('suffix', '');
+    const renderLimit = number('renderLimit', 10);
+    const characterMinimum = number('characterMinimum', 1);
+    const tooltip = object('Tooltip', { title: 'Combo component' });
+    const linkHref = text('linkHref', 'https://www.comparethemarket.com.au/');
+    const linkText = text('linkText', 'Can’t find your address?')
+    return (
+      <Card>
+        <Combo
+          id={id}
+          label={label}
+          value={value}
+          placeholder={placeholder}
+          required={required}
+          disabled={disabled}
+          bordered={bordered}
+          validationMessage={validationMessage}
+          prefillValue={prefillValue}
+          autoComplete={autoComplete}
+          prefixContent={prefixContent}
+          suffixContent={suffixContent}
+          characterMinimum={characterMinimum}
+          renderLimit={renderLimit}
+          apiData={apiData}
+          linkHref={linkHref}
+          linkText={linkText}
+          tooltip={tooltip}
+        />
+      </Card>
+    );
+  }}
+</Story>
+
+### Combo props
+<Props of={Combo} />

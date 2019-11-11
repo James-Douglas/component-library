@@ -1,0 +1,24 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, boolean} from '@storybook/addon-knobs';
+import Callout from '../../components/Callout/Callout.component';
+
+<Meta title="Components|Callout" component={Callout} />
+
+# Callout
+
+<Preview>
+  <Story name="callout">
+    <Callout>text goes here</Callout>
+  </Story>
+</Preview>
+
+<Props of={Callout} />
+
+<Story name="callout with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+    {() => {
+      const bg = boolean('bgColorGrey', false);
+      return (
+        <Callout bgColorGrey={bg}>text goes here</Callout>
+      );
+    }}
+  </Story>

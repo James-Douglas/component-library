@@ -5,26 +5,25 @@ export default css`
   @apply relative w-full text-black;
 }
 ul {
-  @apply mt-8 z-20 text-black;
+  @apply mt-8 z-30 text-black;
 }
 .row-view {
   @apply relative;
 }
 .section-wrap-shadow {
-  @apply bg-white shadow-md w-full z-10;
+  @apply bg-white shadow-md w-full z-20;
 }
 .section-wrap-shadow.absolute {
    @apply absolute;
 }
 .section-wrap-shadow {
-  @apply bg-white shadow-md w-full z-10;
+  @apply bg-white shadow-md w-full z-20;
 }
 .section-wrap-shadow.absolute {
    @apply absolute;
 }
 ul li {
-  @apply text-base text-grey-darker cursor-pointer border border-solid border-transparent;
-  padding: 0.7rem 1.1rem;
+  @apply text-base list-none text-grey-darker cursor-pointer border border-solid border-transparent  py-8 px-12;
   transition: background-color 0.4s ease;
 }
 ul li:nth-last-child(1) {

@@ -23,11 +23,20 @@ const Bar = ({
 
 
 Bar.propTypes = {
+  /**
+   * Percentage completed (0 - 100)
+   */
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
+  /**
+   * Determines if the bar should be sticky
+   */
   isSticky: PropTypes.bool,
+  /**
+   * Determines if the bar is in the stuck state
+   */
   stuck: PropTypes.bool,
 };
 

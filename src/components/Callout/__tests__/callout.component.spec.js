@@ -11,7 +11,7 @@ describe('Callout()', () => {
     expect(getByText('The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later.')).toBeInTheDocument();
   });
   it('Callout renders with bg props', () => {
-    const { container } = render(<Callout bgColourGrey>The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later.</Callout>);
+    const { container } = render(<Callout bgColorGrey>The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later.</Callout>);
     const colloutLine = container.querySelector('.callout');
     expect(colloutLine).toHaveClass('bg-grey');
   });

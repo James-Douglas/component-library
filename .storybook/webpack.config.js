@@ -36,19 +36,7 @@ module.exports = async ({ config }) => {
             }
         }],
         include: path.resolve(__dirname, '../src')
-    })
-
-    // config.module.rules.push({
-    //     test: /\.js$/,
-    //     loaders: [{
-    //         loader: 'eslint-loader',
-    //         options: {
-    //             emitError: true,
-    //             failOnError: true
-    //         },
-    //     }],
-    //     include: path.resolve(__dirname, '../src'),
-    // })
+    });
 
     return config;
 };

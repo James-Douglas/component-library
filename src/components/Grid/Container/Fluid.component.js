@@ -12,6 +12,9 @@ const FluidContainer = ({ children, className }) => (
 );
 
 FluidContainer.propTypes = {
+  /**
+   * Classes to be applied to the FluidContainer element
+   */
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,

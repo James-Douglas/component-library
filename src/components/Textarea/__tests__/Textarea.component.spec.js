@@ -75,7 +75,7 @@ describe('getRemainingCharsContent()', () => {
 
 describe('Textarea.component.js', () => {
   it('renders with id prop', () => {
-    const { container } = render(<Textarea label="test" id="blah" />);
+    const { container } = render(<Textarea label="test" id="blah" disableFieldset />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
@@ -89,13 +89,13 @@ describe('Textarea.component.js', () => {
       bordered: true,
       disabled: false,
       required: false,
-      invalid: false,
       autofill: false,
       rows: '',
       wrap: '',
       readonly: false,
       maxlength: '',
       maxchars: '',
+      disableFieldset: true,
     };
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
@@ -104,7 +104,7 @@ describe('Textarea.component.js', () => {
 
   it('on input, set value func is called', () => {
     const getValueCb = jest.fn();
-    const { container } = render(<Textarea label="test" id="input-id" onChange={getValueCb} />);
+    const { container } = render(<Textarea label="test" id="input-id" onChange={getValueCb} disableFieldset />);
 
     const textareaField = container.querySelector('textarea');
     fireEvent.change(textareaField, { target: { value: 'thing' } });
@@ -123,6 +123,7 @@ describe('Textarea.component.js', () => {
       name: 'textarea-name',
       label: 'this is a test',
       bordered: true,
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -140,6 +141,7 @@ describe('Textarea.component.js', () => {
       id: 'textarea-id',
       label: 'this is a test',
       bordered: false,
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -160,8 +162,9 @@ describe('Textarea.component.js', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
-      invalid: true,
+      validationMessage: 'invalid',
       value: 'Hello World',
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -178,6 +181,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       isPrefill: true,
       value: 'Hello World',
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -193,6 +197,7 @@ describe('Textarea.component.js', () => {
       id: 'textarea-id',
       label: 'this is a test',
       required: true,
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -209,6 +214,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       disabled: true,
       value: 'helloworld',
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -226,6 +232,7 @@ describe('Textarea.component.js', () => {
       name: 'thisisatest',
       value: '',
       disabled: true,
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -242,6 +249,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       name: 'thisisatest',
       disabled: true,
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -292,6 +300,7 @@ describe('Textarea.component.js', () => {
       id: 'textarea-id',
       label: 'this is a test',
       value: 'Hello World',
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -308,6 +317,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: 'Hello World',
       disabled: true,
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -327,6 +337,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: '',
       maxLength: '7',
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -346,6 +357,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: 'hello',
       maxLength: '7',
+      disableFieldset: true,
     };
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
@@ -376,6 +388,7 @@ describe('Textarea.component.js', () => {
       value: 'helloworld',
       maxLength: '7',
       autofill: true,
+      disableFieldset: true,
     };
 
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -397,6 +410,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: '',
       maxChars: '7',
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -415,6 +429,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: 'hello',
       maxChars: '7',
+      disableFieldset: true,
     };
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
@@ -445,6 +460,7 @@ describe('Textarea.component.js', () => {
       value: 'helloworld',
       maxChars: '7',
       autofill: true,
+      disableFieldset: true,
     };
 
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -465,6 +481,7 @@ describe('Textarea.component.js', () => {
       id: 'textarea-id',
       label: 'this is a test',
       value: 'helloworld',
+      disableFieldset: true,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */

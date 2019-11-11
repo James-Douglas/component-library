@@ -1,104 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
-import Icon from '../Icon/Icon.component';
-import Row from '../Grid/Row/Row.component';
-import Column from '../Grid/Column/Column.component';
-import FluidContainer from '../Grid/Container/Fluid.component';
+import AccordionPanel from './AccordionPanel.component';
+
+export const getInitialChildIndex = (children) => {
+  let initialChildIndex = null;
+  // find first accordion to show
+  const childrenArray = React.Children.toArray(children);
+  // eslint-disable-next-line no-unused-vars
+  for (const [index, child] of childrenArray.entries()) {
+    if (child.props.show === true) {
+      initialChildIndex = index;
+      break;
+    }
+  }
+  return initialChildIndex;
+};
+
+const AccordionGroupChildren = (children) => {
+  // null if all Accordions are closed or index of opened Accordion
+  const [childIndex, setChildIndex] = useState(() => getInitialChildIndex(children));
+  return React.Children.map(children, ((child, index) => React.cloneElement(child, {
+    show: childIndex === index,
+    onClickGroup: (isVisible) => {
+      setChildIndex(isVisible ? index : null);
+    },
+  })));
+};
 
 const Accordion = ({
-  title,
   children,
-  show,
-  iconSize,
-  onClickGroup,
-}) => {
-  const [isVisible, setIsVisible] = useState(show);
-  const [isFocus, setIsFocus] = useState(false);
-  const visibleClass = isVisible ? '' : 'hide';
-  const arrowName = isVisible ? 'Top' : 'Bottom';
-
-
-  const toggleTrueFalse = () => {
-    setTimeout(() => {
-      if (onClickGroup) {
-        onClickGroup(!isVisible);
-      }
-      return setIsVisible(!isVisible);
-    }, 1);
-  };
-
-  const toggleTrueFalseOnKey = (event) => {
-    if (event.keyCode === 13 || event.keyCode === 32) {
-      event.preventDefault();
-      toggleTrueFalse();
-    }
-  };
-
-  useEffect(() => {
-    setIsVisible(show);
-  }, [show]);
-
-  const handleFocus = () => {
-    setIsFocus(true);
-  };
-  const handleBlur = () => {
-    setIsFocus(false);
-  };
-
-  return (
-    <div className={`accordion ${visibleClass} ${isFocus ? 'on-focus' : 'on-blur'} manor-rich-text `} role="tablist" aria-label="Information tabs">
-      <style jsx>{styles}</style>
-      <div
-        onClick={toggleTrueFalse}
-        onKeyDown={toggleTrueFalseOnKey}
-        className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`}
-        role="tab"
-        aria-selected="true"
-        tabIndex="0"
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      >
-        <FluidContainer>
-          <Row>
-            <Column col="9" lg="11">{title}</Column>
-            <Column col="3" lg="1">
-              <div className="accordion-caret">
-                <Icon name={`arrow${arrowName}`} size={iconSize} />
-              </div>
-            </Column>
-          </Row>
-        </FluidContainer>
-      </div>
-      <div className="accordion-body" role="tabpanel">
-        <FluidContainer>
-          <Row className="row-view">
-            <Column col="12">{children}</Column>
-          </Row>
-        </FluidContainer>
-      </div>
-    </div>
-  );
-};
+}) => (
+  <div className="accordion-group">
+    <style jsx>{styles}</style>
+    { AccordionGroupChildren(children) }
+  </div>
+);
 
 Accordion.propTypes = {
+  /**
+   * Accordion components to be added to the AccordionGroup
+   */
   children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  title: PropTypes.node,
-  show: PropTypes.bool,
-  iconSize: PropTypes.number,
-  onClickGroup: PropTypes.func,
-};
-
-Accordion.defaultProps = {
-  children: '',
-  title: '',
-  show: false,
-  iconSize: 1.5,
-  onClickGroup: null,
+    PropTypes.shape({
+      type: PropTypes.oneOf([AccordionPanel]),
+    }),
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.oneOf([AccordionPanel]),
+      }),
+    ),
+  ]).isRequired,
 };
 
 export default Accordion;
