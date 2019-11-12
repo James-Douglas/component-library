@@ -57,6 +57,7 @@ import InputStates from './input-states';
     const suffixContent = text('suffixContent', '');
     return (
       <Input
+        id="input-props"
         label={label}
         tooltip={tooltip}
         forceFullWidth={forceFullWidth}
@@ -67,6 +68,7 @@ import InputStates from './input-states';
         type={type}
         placeholder={placeholder}
         required={required}
+        handleChange={() => {}}
         disabled={disabled}
         bordered={bordered}
         prefixContent={prefixContent}

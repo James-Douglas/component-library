@@ -57,28 +57,28 @@ input[disabled] {
   @apply bg-white cursor-not-allowed;
 }
 
-.lighter {
-  fill: theme(colors.grey-light);
-}
-
-.darker {
-  fill: theme(colors.grey-dark);
-}
-
 .input-clear-wrap {
   @apply relative w-full;
   min-height: 4.4rem;
 }
 
 .input-clear-button {
-  @apply absolute w-40 h-40;
+  @apply absolute w-40 h-40 text-grey-light;
   right: 0.2rem;
   top: 0.2rem;
   transition: .2s ease-in-out all;
 }
 
 .input-clear-button:hover {
-  fill: theme(colors.light-blue);
+  @apply text-light-blue
+}
+
+.lighter {
+  @apply text-grey-light;
+}
+
+.darker {
+  @apply text-grey-dark;
 }
 
 .supporting-elements {

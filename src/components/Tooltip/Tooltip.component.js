@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Tippy from '@tippy.js/react';
+import { animateFill } from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/dist/backdrop.css';
+import 'tippy.js/animations/scale.css';
+import 'tippy.js/animations/shift-away.css';
 
 import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
@@ -89,7 +94,7 @@ const Tooltip = ({
 
   const setPlacementAndDynamicStyles = () => {
     const containerWidth = calculateTooltipWidth(tooltipElement.current, boundingElement.current);
-    tippyInstance.set({
+    tippyInstance.setProps({
       placement: getTippyPlacement(desktop, containerWidth),
     });
   };
@@ -161,6 +166,7 @@ const Tooltip = ({
         theme="manor"
         interactive
         animateFill
+        plugins={[animateFill]}
         arrow={desktop}
         distance={desktop ? 5 : 0}
         animation="scale"

@@ -5,7 +5,7 @@ import { tooltipPropTypes } from '../../Tooltip/Tooltip.component';
 
 export const valueMasking = (val, maxlength) => {
   if (val === '') {
-    return '';
+    return { raw: '', parsed: '' };
   }
 
   let raw = val.toString().replace(/[^0-9]+/g, '');

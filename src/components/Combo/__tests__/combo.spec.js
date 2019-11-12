@@ -6,21 +6,32 @@ const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fu
 
 describe('Combo', () => {
   it('renders correct number options', () => {
-    const { container } = render(<Combo prefillValue="que" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} />);
+    const { container } = render(<Combo prefillValue="que" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} disableFieldset />);
     const list = container.getElementsByTagName('li');
     expect(list.length).toBe(3);
   });
 
   it('renders no options', () => {
-    const { container } = render(<Combo prefillValue="nope" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} />);
+    const { container } = render(<Combo prefillValue="nope" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} disableFieldset />);
     const list = container.getElementsByTagName('li');
     expect(list.length).toBe(0);
   });
 
   it('renders correct changed characterMinimum', () => {
-    const { container } = render(<Combo prefillValue="pres" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(<Combo prefillValue="pres" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset />);
     const list = container.getElementsByTagName('li')[0];
     expect(list).toBeUndefined();
+  });
+
+  it('renders correct with current label param disableFieldset is enabled', () => {
+    const { getByText } = render(<Combo prefillValue="pres" label="First label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset />);
+    expect(getByText('First label')).toBeInTheDocument();
+  });
+
+  it('renders correct with current label param disableFieldset is disabled', () => {
+    const { container } = render(<Combo prefillValue="pres" label="First label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset={false} />);
+    const label = container.querySelector('label');
+    expect(label).not.toBeInTheDocument();
   });
 
   it('renders correct opposite characterMinimum and visibility list', () => {
@@ -160,6 +171,15 @@ describe('Combo', () => {
     expect(wrapList).toHaveClass('hidden');
   });
 
+  it('accessibility - Check arrowDown condition when length more', () => {
+    const { container, getByText } = render(<Combo prefillValue="pre" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
+    fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
+    const focusItem = container.getElementsByTagName('li')[0];
+    expect(focusItem).not.toBeDefined();
+  });
+
   it('accessibility - goes up by list and exit', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
     const inputField = container.querySelector('#combo-id-first');
@@ -181,6 +201,15 @@ describe('Combo', () => {
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusNItem = container.getElementsByTagName('li')[2];
     expect(focusNItem).toHaveFocus();
+  });
+
+  it('accessibility - ArrowUp maxLength condition', () => {
+    const { container } = render(<Combo prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
+    fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
+    const focusItem = container.getElementsByTagName('li')[0];
+    expect(focusItem).not.toBeDefined();
   });
 
   it('accessibility - arrow up and continue focus on blue button', () => {
@@ -224,7 +253,6 @@ describe('Combo', () => {
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const BlueButtonFocusItemAgain = container.querySelector('.item-manual-lookup');
-
     fireEvent.keyDown(BlueButtonFocusItemAgain, { key: 'Enter', code: 13 });
     BlueButtonFocusItemAgain.focus();
   });
@@ -233,15 +261,20 @@ describe('Combo', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} tooltip={{ title: 'Combo component' }} />);
     const inputField = container.querySelector('input');
     const clearButton = container.querySelector('.input-clear-button');
-
     inputField.focus();
-
     fireEvent.keyDown(inputField, { key: 'Tab', code: 9 });
     clearButton.focus();
     expect(clearButton).toHaveFocus();
-
     fireEvent.keyDown(inputField, { key: 'Tab', code: 9 });
     clearButton.focus();
     expect(clearButton).toHaveFocus();
+  });
+
+  it('accessibility - default case ', () => {
+    const { container, getByText } = render(<Combo prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const inputField = container.querySelector('input');
+    inputField.focus();
+    fireEvent.keyDown(inputField, { key: 'e', code: 69 });
+    expect(getByText('et presentation tempora')).toBeInTheDocument();
   });
 });
