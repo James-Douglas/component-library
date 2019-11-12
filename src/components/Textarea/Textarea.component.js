@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-
-import Fieldset from '../Fieldset/Fieldset.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
 import styles from './styles';
@@ -144,7 +142,7 @@ const Textarea = ({
             manor-textarea-default manor-body2 
             ${bordered ? 'manor-textarea-border' : ''} 
             ${prefillStyles} 
-            ${validationMessage && validationMessage.length || (textAreaRemainChars < 0) ? 'invalid' : ''}
+            ${(validationMessage && validationMessage.length) || (textAreaRemainChars < 0) ? 'invalid' : ''}
           `}
           aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
         />

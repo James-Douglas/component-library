@@ -172,7 +172,7 @@ describe('Combo', () => {
   });
 
   it('accessibility - Check arrowDown condition when length more', () => {
-    const { container, getByText } = render(<Combo prefillValue="pre" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const { container } = render(<Combo prefillValue="pre" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
