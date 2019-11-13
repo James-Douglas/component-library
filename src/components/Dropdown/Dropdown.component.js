@@ -30,7 +30,7 @@ export const selectField = (
   handleChange,
   handleFocus,
   handleBlur,
-  optionsModified,
+  options,
 ) => (
   <>
     <style jsx="true">{styles}</style>
@@ -38,7 +38,7 @@ export const selectField = (
       id={id}
       name={name}
       className={selectClass}
-      disabled={disabled}
+      disabled={options[0] ? disabled : true}
       required={required}
       readOnly={readonly}
       value={selectValue}
@@ -46,7 +46,7 @@ export const selectField = (
       onFocus={handleFocus}
       onBlur={handleBlur}
     >
-      {optionsModified.map((option) => (
+      {options.map((option) => (
         <option
           key={option.value}
           value={option.value}
@@ -103,8 +103,16 @@ const Dropdown = ({
   const borderedClass = bordered ? 'manor-input-border' : '';
   const selectValue = isUsePrefill ? prefillValue : stateValue;
   const valueOption = options.find((i) => i.value === selectValue);
-  const [showDefaultStyle, setshowDefaultStyle] = useState(valueOption ? !!valueOption.defaultOption : !!options[0].defaultOption);
 
+  let defineValueOption;
+  if (valueOption) {
+    defineValueOption = !!valueOption.defaultOption;
+  } else if (options[0]) {
+    defineValueOption = !!options[0].defaultOption;
+  } else {
+    defineValueOption = false;
+  }
+  const [showDefaultStyle, setshowDefaultStyle] = useState(defineValueOption);
   const showDefaultClass = showDefaultStyle ? 'manor-default-selected' : '';
 
   const selectClass = `manor-dropdown

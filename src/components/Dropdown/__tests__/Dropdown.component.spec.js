@@ -51,6 +51,13 @@ describe('Dropdown', () => {
     const dropdown = container.getElementsByTagName('select')[0];
     expect(dropdown).toHaveClass('manor-prefilled');
   });
+
+  it('renders with empty options', () => {
+    const { container } = render(<Dropdown id="dropdown-one" options={[]} label="Dropdown Label" validationMessage="invalid" prefillValue="First" jsx="true" />);
+    const dropdown = container.getElementsByTagName('select')[0];
+    expect(dropdown).toHaveAttribute('disabled');
+  });
+
   it('renders with disabled attribute', () => {
     const { container } = render(<Dropdown id="dropdown-one" options={options} label="Dropdown Label" disabled autofill jsx="true" />);
     const dropdown = container.getElementsByTagName('select')[0];
