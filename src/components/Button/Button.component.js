@@ -4,7 +4,20 @@ import Icon from '../Icon/Icon.component';
 import styles from './styles';
 
 const Button = ({
-  id, type, onDark, size, content, disabled, icon, iconSize, iconAlignRight, href, target, rel, handleClick,
+  id,
+  type,
+  onDark,
+  size,
+  content,
+  disabled,
+  icon,
+  iconSize,
+  iconAlignRight,
+  href,
+  target,
+  rel,
+  handleClick,
+  tagType,
 }) => {
   const isInlineBlock = href && type !== 'footer-link' ? 'inline-block' : '';
 
@@ -42,6 +55,7 @@ const Button = ({
             ${content === '' ? 'center' : ''}
             ${iconAlignRight ? 'align-right' : ''}
           `}
+          type={isButton ? tagType : null}
           disabled={disabled}
           href={isButton ? null : href}
           target={isButton ? null : target}
@@ -72,7 +86,14 @@ Button.propTypes = {
    * Defines the type of button to be used, applied as a class. Defaults to `primary`, other valid types are `secondary`,
    * `text`, `link`, and `footer-link`
    */
-  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'text', 'link', 'footer-link']),
+  type: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'tertiary',
+    'text',
+    'link',
+    'footer-link',
+  ]),
   /**
    * Defines the mode of the button. Change to `true` for `secondary`, `text`, `link` and `footer-link` to enable the
    * dark mode. `primary` does not have a `onDark` mode.
@@ -97,10 +118,7 @@ Button.propTypes = {
   /**
    * The icon sizing. Defaults to '2'
    */
-  iconSize: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  iconSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * Shift the icon to the right, content to the left. Defaults to false.
    */
@@ -117,6 +135,10 @@ Button.propTypes = {
    * Specifies the rel, for example "nofollow" can be supplied
    */
   rel: PropTypes.string,
+  /**
+   * Specifies the type attribute to add to a button tag
+   */
+  tagType: PropTypes.string,
   /**
    * Pass the button a custom click function
    */
@@ -135,6 +157,7 @@ Button.defaultProps = {
   href: '',
   target: '#',
   rel: '',
+  tagType: '',
   handleClick: () => {},
 };
 

@@ -18,6 +18,7 @@ exports[`Button renders correctly with minimal props 1`] = `
             
           "
       id="test-id"
+      type=""
     >
       
     </button>
@@ -44,6 +45,7 @@ exports[`Button renders with props 1`] = `
           "
       disabled=""
       id="test-id"
+      type=""
     >
       <style />
       <div
