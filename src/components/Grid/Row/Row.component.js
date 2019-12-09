@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const StyledRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1.6rem;
+  margin-right: -1.6rem;
+`;
 
 const Row = ({ children, className }) => (
-  <div className={`row ${className}`} jsx="true">
+  <StyledRow className={`row ${className}`}>
     {children}
-    <style jsx="true">
-      {`.row {
-        @apply flex flex-wrap -mx-16;
-      }
-      `}
-    </style>
-  </div>
+  </StyledRow>
 );
 
 Row.propTypes = {

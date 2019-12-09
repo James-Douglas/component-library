@@ -64,21 +64,21 @@ Todo:
       <Container>
         <Row>
           <Column offset="1" col="8">
-            <Tabs startingTab="refine-results-1" bordered bordered minHeight="500px">
+            <Tabs startingTab="refine-results-1" bordered minHeight="500px">
               <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
               <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
               <TabPanel name="refine-results-1">
-                <div className="custom-bg bg-grey-lighter p-24 -mb-16">
+                <div className="custom-bg bg-grey-lighter p-24 -mb-16" style={{background: '#f3f3f3', padding: '2.4rem'}}>
                   <Dropdown id="input-one" value="First" options={options} supportingElements required forceFullWidth label="Dropdown Label" defaultOption={defaultOption} />
                 </div>
-                <div className="bg-white p-24 ">
+                <div style={{background: '#FFFFFF', padding: '2.4rem'}}>
                   <p>View Type</p>
-                  <Button id="secondary-btn01" btnType="secondary" btnSize="md" content="button 1" disabled={false} />
-                  <Button id="secondary-btn02" btnType="secondary" btnMode="onDark" btnSize="md" content="button 2" disabled={false} />
+                  <Button id="secondary-btn01" variant="secondary" btnSize="md" content="button 1" disabled={false} />
+                  <Button id="secondary-btn02" variant="secondary" btnMode="onDark" btnSize="md" content="button 2" disabled={false} />
                 </div>
               </TabPanel>
               <TabPanel name="edit-details-1">
-                <div className="bg-white p-24">
+                <div style={{background: '#FFFFFF', padding: '2.4rem'}}>
                   <p>Tab two content</p>
                   <p>stuff</p>
                 </div>

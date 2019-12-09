@@ -1,14 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import styled from 'styled-components';
+
+const StyledContainer = styled.div`
+  width: 100%;
+  margin: auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  max-width: 190rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
 
 const Container = ({ children, className }) => (
-  <>
-    <style jsx>{styles}</style>
-    <div className={`container fixed ${className}`}>
-      {children}
-    </div>
-  </>
+  <StyledContainer className={`container fixed ${className}`}>
+    {children}
+  </StyledContainer>
 );
 
 Container.propTypes = {

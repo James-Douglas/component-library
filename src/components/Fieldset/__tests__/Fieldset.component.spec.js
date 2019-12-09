@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import 'jest-styled-components';
 
 import Fieldset, {
   hasTooltipContent, shouldEnableLabelTooltip, getScreenReaderLabel, renderTooltip,
@@ -66,7 +67,8 @@ describe('renderTooltip()', () => {
   it('returns tooltip when applicable', () => {
     const { getByText, container } = render(<TooltipContainer enableLabelTooltip={false} breakpoint="xl" hasTooltip title="test tooltip" body="this is a test" srLabel="screen reader label" />);
     expect(getByText('screen reader label')).toBeInTheDocument();
-    expect(container.querySelector('.tooltip-container')).toBeInTheDocument();
+    const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
+    expect(tooltipTriggerElement).toBeInTheDocument();
   });
 });
 
@@ -98,19 +100,15 @@ describe('Fieldset', () => {
 
   it('renders with tooltip on desktop', () => {
     const { container } = render(<Fieldset tooltip={tooltip} />);
-    const tooltipContainer = container.querySelector('.tooltip-container');
-    expect(tooltipContainer).toBeInTheDocument();
+    const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
+    expect(tooltipTriggerElement).toBeInTheDocument();
   });
 
   it('renders with tooltip on mobile', () => {
     mockUseIsDesktopValue = false;
-
     const { container } = render(<Fieldset tooltip={tooltip} />);
-    const tooltipContainer = container.querySelector('.tooltip-container');
-    expect(tooltipContainer).not.toBeInTheDocument();
-
-    const tooltipWrapper = container.querySelector('.tooltip-wrapper');
-    expect(tooltipWrapper).toBeInTheDocument();
+    const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
+    expect(tooltipTriggerElement).toBeInTheDocument();
   });
 
   it('always renders tooltip in label when forceFullWidth is true', () => {
@@ -118,7 +116,7 @@ describe('Fieldset', () => {
     const tooltipContainer = container.querySelector('.tooltip-container');
     expect(tooltipContainer).not.toBeInTheDocument();
 
-    const tooltipWrapper = container.querySelector('.tooltip-wrapper');
+    const tooltipWrapper = document.body.querySelector('[role="tooltip"]');
     expect(tooltipWrapper).toBeInTheDocument();
   });
 });

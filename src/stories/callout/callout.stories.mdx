@@ -1,6 +1,10 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, boolean} from '@storybook/addon-knobs';
 import Callout from '../../components/Callout/Callout.component';
+import FluidContainer from '../../components/Grid/Container/Fluid.component';
+import Row from '../../components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
+
 
 <Meta title="Components|Callout" component={Callout} />
 
@@ -8,7 +12,13 @@ import Callout from '../../components/Callout/Callout.component';
 
 <Preview>
   <Story name="callout">
-    <Callout>text goes here</Callout>
+    <FluidContainer>
+      <Row>
+        <Column>
+          <Callout>The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later.</Callout>
+        </Column>
+      </Row>
+    </FluidContainer>
   </Story>
 </Preview>
 
@@ -16,9 +26,16 @@ import Callout from '../../components/Callout/Callout.component';
 
 <Story name="callout with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
     {() => {
-      const bg = boolean('bgColorGrey', false);
+      const bg = boolean('bgColorGrey', true);
       return (
-        <Callout bgColorGrey={bg}>text goes here</Callout>
+        <FluidContainer>
+          <Row>
+            <Column>
+              <Callout bgColorGrey={bg}>The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later.</Callout>
+            </Column>
+          </Row>
+        </FluidContainer>
       );
     }}
   </Story>
+

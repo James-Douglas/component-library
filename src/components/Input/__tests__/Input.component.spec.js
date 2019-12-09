@@ -1,5 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import 'jest-styled-components';
+import { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Input, {
   renderClearIcon, renderAffix, getSupportingElements,
 } from '../Input.component';
@@ -36,9 +39,9 @@ describe('renderClearIcon()', () => {
     // eslint-disable-next-line react/prop-types
     value, clearInput, isAutofill, label,
   }) => (
-    <>
+    <ThemeProvider theme={getTheme()}>
       {renderClearIcon(value, clearInput, isAutofill, label)}
-    </>
+    </ThemeProvider>
   );
 
   it('does not render an clearIcon if the value.length is over 0', () => {
@@ -63,9 +66,9 @@ describe('renderAffix()', () => {
     // eslint-disable-next-line react/prop-types
     affixType, affixContent, bordered, isAutofill, disabled,
   }) => (
-    <>
+    <ThemeProvider theme={getTheme()}>
       {renderAffix(affixType, affixContent, bordered, isAutofill, disabled)}
-    </>
+    </ThemeProvider>
   );
 
   it('does not render a prefix or suffix if its not supplied', () => {
@@ -75,55 +78,38 @@ describe('renderAffix()', () => {
   });
 
   it('renders a prefix when supplied', () => {
-    const { container } = render(<AffixContainer affixType="prefix" affixContent="?" bordered />);
-
-    const prefix = container.querySelector('.prefix');
-    const suffix = container.querySelector('.suffix');
-
-    expect(suffix).toBe(null);
-    expect(prefix).toBeInTheDocument();
+    const { getByText } = render(<AffixContainer affixType="prefix" affixContent="?" bordered />);
+    expect(getByText('?')).toBeInTheDocument();
   });
 
   it('renders a suffix when supplied', () => {
-    const { container } = render(<AffixContainer affixType="suffix" affixContent="?" bordered />);
+    const { getByText } = render(<AffixContainer affixType="suffix" affixContent="?!" bordered />);
 
-    const prefix = container.querySelector('.prefix');
-    const suffix = container.querySelector('.suffix');
-
-    expect(prefix).toBe(null);
-    expect(suffix).toBeInTheDocument();
+    expect(getByText('?!')).toBeInTheDocument();
   });
 
-  it('renders a suffix when supplied with additional styling for autofill and border', () => {
-    const { container } = render(<AffixContainer affixType="prefix" affixContent="?" bordered={false} isAutofill disabled={false} />);
+  it('renders a suffix when supplied with additional styling for autofill ', () => {
+    const { container } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill disabled={false} />);
 
-    const prefix = container.querySelector('.prefix');
-    const border = container.querySelector('.prefix-no-border');
-    const prefill = container.querySelector('.manor-prefilled');
+    const element = container.querySelector('span');
 
-    expect(prefix).toBeInTheDocument();
-    expect(border).toBeInTheDocument();
-    expect(prefill).toBeInTheDocument();
+    expect(element).toHaveStyleRule('background', '#F0E599');
   });
 
   it('does not render the additional stlying for autofill if its disabled', () => {
-    const { container } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill bordered disabled />);
+    const { container, getByText } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill disabled />);
 
-    const prefix = container.querySelector('.prefix');
-    const prefill = container.querySelector('.manor-prefilled');
+    const prefix = getByText('?');
+    const element = container.querySelector('span');
 
     expect(prefix).toBeInTheDocument();
-    expect(prefill).toBe(null);
+    expect(element).not.toHaveStyleRule('background', '#F0E599');
   });
 
   it('can render a component via prop', () => {
     const { container } = render(<AffixContainer affixType="suffix" bordered affixContent={<SvgUkFlag />} />);
 
-    const prefix = container.querySelector('.suffix');
-    const prefill = container.querySelector('.manor-prefilled');
-
-    expect(prefix).toBeInTheDocument();
-    expect(prefill).toBe(null);
+    expect(container.querySelector('svg')).toBeInTheDocument();
   });
 });
 
@@ -133,9 +119,9 @@ describe('renderAffix()', () => {
 describe('getSupportingElements()', () => {
   // eslint-disable-next-line react/prop-types
   const SupportElementsContainer = ({ required }) => (
-    <>
+    <ThemeProvider theme={getTheme()}>
       {getSupportingElements(required)}
-    </>
+    </ThemeProvider>
   );
   it('returns null when required true', () => {
     expect(getSupportingElements(true)).toBeNull();
@@ -165,7 +151,6 @@ describe('Input.component', () => {
         label="input label"
         autocomplete="on"
         handleChange={() => {}}
-        disableFieldset
       />,
     );
 
@@ -173,14 +158,14 @@ describe('Input.component', () => {
     const label = container.querySelector('label');
     const placeholder = input.getAttribute('placeholder');
     const autocomplete = input.getAttribute('autocomplete');
-    const inputBorder = container.querySelector('.input-border');
+    const inputWrap = container.querySelector('.input-wrap');
     const fieldSet = container.querySelector('.fieldset');
     const inputInvalid = container.querySelector('.invalid');
 
     expect(label.textContent).toBe('input label');
     expect(placeholder).toBe('placeholder test');
     expect(autocomplete).toBe('on');
-    expect(inputBorder).toBeInTheDocument();
+    expect(inputWrap).toHaveStyleRule('border', '1px solid #DDDDDD');
     expect(fieldSet).toBeInTheDocument();
     expect(inputInvalid).toBe(null);
     expect(container.innerHTML).toMatchSnapshot();
@@ -194,13 +179,13 @@ describe('Input.component', () => {
         placeholder="placeholder test"
         bordered={false}
         handleChange={() => {}}
-        disableFieldset
       />,
     );
 
-    const inputBorder = container.querySelector('.input-border');
+    const inputWrap = container.querySelector('.input-wrap');
 
-    expect(inputBorder).toBe(null);
+    expect(inputWrap).not.toHaveStyleRule('border', '1px solid #DDDDDD');
+    expect(inputWrap).toHaveStyleRule('border', '1px solid transparent');
   });
 
   it('renders an invalid input', () => {
@@ -211,17 +196,15 @@ describe('Input.component', () => {
         placeholder="placeholder test"
         validationMessage="invalid"
         handleChange={() => {}}
-        disableFieldset
       />,
     );
 
-    const inputInvalid = container.querySelector('.invalid');
-
-    expect(inputInvalid).toBeInTheDocument();
+    const inputWrap = container.querySelector('.input-wrap');
+    expect(inputWrap).toHaveStyleRule('border', '1px solid #EF425E');
   });
 
   it('renders an a prefix and a suffix', () => {
-    const { container } = render(
+    const { getByText } = render(
       <Input
         id="test-id"
         type="text"
@@ -229,17 +212,14 @@ describe('Input.component', () => {
         prefixContent="$"
         suffixContent="?"
         handleChange={() => {}}
-        disableFieldset
       />,
     );
 
-    const prefix = container.querySelector('.prefix');
-    const suffix = container.querySelector('.suffix');
+    const prefix = getByText('$');
+    const suffix = getByText('?');
 
     expect(prefix).toBeInTheDocument();
-    expect(prefix.textContent).toBe('$');
     expect(suffix).toBeInTheDocument();
-    expect(suffix.textContent).toBe('?');
   });
 
   it('adds focus styles on focus and removes on blur', () => {
@@ -249,17 +229,17 @@ describe('Input.component', () => {
         type="text"
         placeholder="placeholder test"
         handleChange={() => {}}
-        disableFieldset
       />,
     );
-
-    const inputField = container.querySelector('#test-id');
+    const inputField = container.querySelector('input');
     const inputWrap = container.querySelector('.input-wrap');
 
     inputField.focus();
-    expect(inputWrap).toHaveClass('input-wrap-focus');
+    expect(inputWrap).toHaveStyleRule('border: 1px solid #1780F3');
+    expect(inputWrap).not.toHaveStyleRule('border: 1px solid #DDDDDD');
     inputField.blur();
-    expect(inputWrap).not.toHaveClass('input-wrap-focus');
+    expect(inputWrap).not.toHaveStyleRule('border: 1px solid #1780F3');
+    expect(inputWrap).toHaveStyleRule('border: 1px solid #DDDDDD');
   });
 
   it('accepts a prefill value and renders with prefill styling', () => {
@@ -269,14 +249,16 @@ describe('Input.component', () => {
         type="text"
         placeholder="placeholder test"
         prefillValue="autofilled value test"
-        disableFieldset
+        handleChange={() => {}}
       />,
     );
-    const inputField = document.getElementById('test-id');
+
+    const inputField = container.querySelector('input');
     const inputWrap = container.querySelector('.input-wrap');
-    expect(inputField).toHaveClass('manor-prefilled');
-    expect(inputWrap).toHaveClass('manor-prefilled-border');
+
+    expect(inputWrap).toHaveStyleRule('background: #C39600');
     expect(inputField.value).toBe('autofilled value test');
+    expect(inputWrap).toHaveStyleRule('border: 1px solid #DDDDDD');
   });
 
   it('clears the input on click of the clear button', () => {
@@ -287,7 +269,6 @@ describe('Input.component', () => {
         type="text"
         placeholder="placeholder test"
         handleChange={clearValueCb}
-        disableFieldset
       />,
     );
 
@@ -310,9 +291,8 @@ describe('Input.component', () => {
         id="test-id"
         type="text"
         placeholder="placeholder test"
-        maxlength="5"
+        maxlength={5}
         handleChange={() => {}}
-        disableFieldset
       />,
     );
 
@@ -329,10 +309,9 @@ describe('Input.component', () => {
         id="test-id"
         type="text"
         placeholder="placeholder test"
-        maxlength="5"
+        maxlength={5}
         handleChange={() => {}}
         handleFocus={focusCb}
-        disableFieldset
       />,
     );
 
@@ -349,10 +328,9 @@ describe('Input.component', () => {
         id="test-id"
         type="text"
         placeholder="placeholder test"
-        maxlength="5"
+        maxlength={5}
         handleChange={() => {}}
         handleBlur={blurCb}
-        disableFieldset
       />,
     );
 

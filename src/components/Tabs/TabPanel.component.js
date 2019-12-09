@@ -1,23 +1,29 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 import TabsContext from './TabsContext';
-import styles from './styles';
+
+const StyledPanel = styled.div`
+  margin-top: 0;
+  height: 100%;
+  ${(props) => props.activeTab !== props.name && css`
+    display: none;
+  `}
+`;
 
 const TabPanel = ({ name, className, children }) => {
   const tabContext = useContext(TabsContext);
 
   const classNames = `
     tab-panel
-    ${tabContext.activeTab === name ? '' : 'hidden'}
     ${className || ''}
   `;
 
   return (
     <>
-      <style jsx>{styles}</style>
-      <div className={classNames}>
+      <StyledPanel className={classNames} activeTab={tabContext.activeTab} name={name}>
         {children}
-      </div>
+      </StyledPanel>
     </>
   );
 };

@@ -22,16 +22,6 @@ module.exports = async ({ config }) => {
                         }
                     ],
                     "@babel/preset-react"
-                ],
-                "plugins": [
-                    [
-                        "styled-jsx/babel",
-                        {
-                            "plugins": [
-                                "styled-jsx-plugin-postcss"
-                            ]
-                        }
-                    ]
                 ]
             }
         }],

@@ -1,22 +1,23 @@
-import css from 'styled-jsx/css';
+import styled from 'styled-components';
+import Row from '../../components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
 
-export default css.global`
-.grid-view {
+export const StyledGrid = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 0 1.5rem;
-}
-p {
-  font-size: 1.6rem;
-}
-.row-view {
+  padding: 2rem 1.5rem;
+`;
+
+export const StyledRow = styled(Row)`
   margin-bottom: 2rem;
-  border: 0.1rem dashed lightblue;
-}
-.col-view {
-  border: 0.1rem solid #1c3e94;
+  border: 1px dashed ${(props) => props.theme.colors.blueLighter};
+  justify-content: ${(props) => props.justify}
+`;
+
+export const StyledCol = styled(Column)`
+  border: 1px solid ${(props) => props.theme.colors.primary};
   background: rgba(28, 62, 148, 0.2);
   height: 10rem;
   display: flex;
@@ -24,8 +25,9 @@ p {
   align-items: center;
   font-weight: bold;
   font-size: 1.5rem;
-}
-.icon-close {
-  @apply ml-32 mt-32
-}
+`;
+
+export const StyledIcon = styled.div`
+  margin-left: 3.2rem;
+  margin-top: 3.2rem;
 `;

@@ -1,6 +1,184 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import styled, { css } from 'styled-components';
+import screens from '../../../../config/screens';
+
+// for col='sm' or col='md' etc
+const colDefault = css`
+  flex-basis: 0%; 
+  flex-grow: 1; 
+  max-width: 100%;
+`;
+// for sm='auto' or md='auto' etc
+const colAuto = css`
+  flex: 0 0 auto; 
+  width: auto; 
+  max-width: 100%;
+`;
+
+const getPercentage = (value) => {
+  const parsed = parseInt(value, 10);
+  return `${(100 / 12) * parsed}%`;
+};
+const media = [
+  { col: 'sm', minWidth: screens.sm },
+  { col: 'md', minWidth: screens.md },
+  { col: 'lg', minWidth: screens.lg },
+  { col: 'xl', minWidth: screens.xl },
+  { col: 'xxl', minWidth: screens.xxl },
+];
+
+const StyledColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  
+  ${({ col, baseOffset }) => {
+    let colStyles = '';
+    if (parseInt(col, 10) > 0) {
+      colStyles += `
+        flex: ${getPercentage(col)}; 
+        max-width: ${getPercentage(col)};  
+      `;
+    }
+
+    if (baseOffset) {
+      colStyles += `
+        margin-left: ${getPercentage(baseOffset)}
+      `;
+    }
+
+    media.forEach((oneMedia) => {
+      if (col === oneMedia.col) {
+        colStyles += `@media (min-width: ${oneMedia.minWidth}) { 
+          ${colDefault}
+        }`;
+      }
+    });
+
+    return colStyles;
+  }}
+
+  @media (min-width: ${screens.sm}) {
+    ${({ sm, offsetSm }) => {
+    let colStyles = '';
+
+    if (sm === 'auto') {
+      return `${colAuto}`;
+    }
+
+    if (sm) {
+      colStyles += `
+          flex: ${getPercentage(sm)}; 
+          max-width: ${getPercentage(sm)};
+        `;
+    }
+
+    if (offsetSm) {
+      colStyles += `margin-left: ${getPercentage(offsetSm)}`;
+    }
+    return colStyles;
+  }}
+  }
+
+  @media (min-width: ${screens.md}) {
+    ${({ md, offsetMd }) => {
+    let colStyles = '';
+
+    if (md === 'auto') {
+      return `${colAuto}`;
+    }
+
+    if (md) {
+      colStyles += `
+          flex: ${getPercentage(md)}; 
+          max-width: ${getPercentage(md)};
+        `;
+    }
+
+    if (offsetMd) {
+      colStyles += `margin-left: ${getPercentage(offsetMd)}`;
+    }
+    return colStyles;
+  }}
+  }
+
+  @media (min-width: ${screens.lg}) {
+    ${({ lg, offsetLg }) => {
+    let colStyles = '';
+
+    if (lg === 'auto') {
+      return `${colAuto}`;
+    }
+
+    if (lg) {
+      colStyles += `
+          flex: ${getPercentage(lg)}; 
+          max-width: ${getPercentage(lg)};
+        `;
+    }
+
+    if (offsetLg) {
+      colStyles += `margin-left: ${getPercentage(offsetLg)}`;
+    }
+    return colStyles;
+  }}
+  }
+
+  @media (min-width: ${screens.xl}) {
+    ${({ xl, offsetXl }) => {
+    let colStyles = '';
+
+    if (xl === 'auto') {
+      return `${colAuto}`;
+    }
+
+    if (xl) {
+      colStyles += `
+          flex: ${getPercentage(xl)}; 
+          max-width: ${getPercentage(xl)};
+        `;
+    }
+
+    if (offsetXl) {
+      colStyles += `margin-left: ${getPercentage(offsetXl)}`;
+    }
+    return colStyles;
+  }}
+  }
+
+  @media (min-width: ${screens.xxl}) {
+    ${({ xxl, offsetXxl }) => {
+    let colStyles = '';
+
+    if (xxl === 'auto') {
+      return `${colAuto}`;
+    }
+
+    if (xxl) {
+      colStyles += `
+          flex: ${getPercentage(xxl)}; 
+          max-width: ${getPercentage(xxl)};
+        `;
+    }
+
+    if (offsetXxl) {
+      colStyles += `margin-left: ${getPercentage(offsetXxl)}`;
+    }
+    return colStyles;
+  }}
+  }
+
+  ${(props) => !props.col && !props.sm && !props.md && !props.lg && !props.xl && !props.xxl && css`
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0%;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  `}
+`;
 
 const Column = ({
   col,
@@ -17,55 +195,27 @@ const Column = ({
   offsetXxl,
   children,
   className,
-}) => {
-  const generateClass = (prop, value) => {
-    const classNames = `${prop}-${value}`;
-
-    if (prop.includes('offset')) {
-      if (prop.length > 6) {
-        return `offset-${prop.substr(6).toLowerCase()}-${value}`;
-      }
-      return `${prop}-${value}`;
-    }
-
-    if (prop !== 'col') {
-      return `col-${classNames}`;
-    }
-
-    return classNames;
-  };
-
-  const generateClassList = () => {
-    const classList = [];
-
-    [{ col }, { sm }, { md }, { lg }, { xl }, { xxl }, { offset }, { offsetSm }, { offsetMd }, { offsetLg }, { offsetXl }, { offsetXxl }].forEach((val) => {
-      const prop = Object.keys(val)[0];
-      const value = Object.values(val)[0];
-      if (value) {
-        classList.push(generateClass(prop, value));
-      }
-    });
-
-    // if no props have been supplied, default to auto size column "col"
-    if (!col && !sm && !md && !lg && !xl && !xxl) {
-      const defaultStyle = 'col';
-      classList.push(defaultStyle);
-    }
-
-    return classList.join(' ');
-  };
-
-  const generatedClasses = generateClassList();
-
-  return (
-    <>
-      <style jsx>{styles}</style>
-      <div className={`${generatedClasses} ${className}`}>
-        {children}
-      </div>
-    </>
-  );
-};
+}) => (
+  <StyledColumn
+    col={col}
+    sm={sm}
+    md={md}
+    lg={lg}
+    xl={xl}
+    xxl={xxl}
+    baseOffset={offset}
+    offsetSm={offsetSm}
+    offsetMd={offsetMd}
+    offsetLg={offsetLg}
+    offsetXl={offsetXl}
+    offsetXxl={offsetXxl}
+    className={`
+        ${className}
+      `}
+  >
+    {children}
+  </StyledColumn>
+);
 
 Column.propTypes = {
   /**

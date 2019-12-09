@@ -4,7 +4,7 @@ import Card from '../Card.component';
 
 describe('Card', () => {
   it('renders', () => {
-    const { container } = render(<Card />);
+    const { container } = render(<Card id="card-one" />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 });

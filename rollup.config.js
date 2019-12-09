@@ -10,6 +10,7 @@ import localResolve from "rollup-plugin-local-resolve";
 import includePaths from "rollup-plugin-includepaths";
 import smartAsset from "rollup-plugin-smart-asset";
 import ignoreImport from "rollup-plugin-ignore-import";
+import copy from "rollup-plugin-copy";
 
 const ouputDir = "lib";
 
@@ -40,7 +41,6 @@ const makeComponentIndex = components => {
     const componentName = fileName.replace(".component.js", "");
     return `export { default as ${componentName} } from "./${importDir}";`;
   });
-  paths = ['import "../index.css"\n'].concat(paths);
   fs.writeFileSync("src/components/index.js", paths.join("\n"));
 };
 
@@ -57,7 +57,7 @@ const makeFileConfig = componentPath => {
         exports: "named"
       }
     ],
-    external: id => /^react|styled-jsx/.test(id),
+    external: id => /^react/.test(id),
 
     plugins: [
       postcss(),
@@ -94,11 +94,16 @@ const buildLibrary = () => {
         format: "cjs"
       }
     ],
-    external: id => /^react|styled-jsx/.test(id),
+    external: id => /^react/.test(id),
 
     plugins: [
       postcss({ extract: `${ouputDir}/styles.css` }),
       includePaths({ paths: ["src", "config"] }),
+      copy({
+        targets: [
+          { src: 'src/themes/ctm.theme.js', dest: 'lib'},
+        ]
+      }),
       localResolve(),
       resolve({
         browser: true
@@ -112,6 +117,7 @@ const buildLibrary = () => {
       filesize()
     ]
   });
+
   // send this back to rollup for the build
   return config;
 };

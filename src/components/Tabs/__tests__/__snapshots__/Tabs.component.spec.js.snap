@@ -2,13 +2,12 @@
 
 exports[`TabButton renders a TabButton 1`] = `
 <div>
-  <style />
   <button
-    class="
+    class="sc-bdVaJa jfItwV 
     tab-button
-    manor-h6
     
   "
+    name="test"
     type="button"
   >
     <p>
@@ -20,26 +19,24 @@ exports[`TabButton renders a TabButton 1`] = `
 
 exports[`TabButton renders multuple TabButtons 1`] = `
 <div>
-  <style />
   <button
-    class="
+    class="sc-bdVaJa jfItwV 
     tab-button
-    manor-h6
     
   "
+    name="test1"
     type="button"
   >
     <p>
       Refine Results1
     </p>
   </button>
-  <style />
   <button
-    class="
+    class="sc-bdVaJa jfItwV 
     tab-button
-    manor-h6
     
   "
+    name="test2"
     type="button"
   >
     <p>
@@ -51,13 +48,12 @@ exports[`TabButton renders multuple TabButtons 1`] = `
 
 exports[`TabPanel renders a TabPanel 1`] = `
 <div>
-  <style />
   <div
-    class="
+    class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     
   "
+    name="tab-panel-test"
   >
     <p>
       View Type
@@ -68,25 +64,23 @@ exports[`TabPanel renders a TabPanel 1`] = `
 
 exports[`TabPanel renders additional classNames 1`] = `
 <div>
-  <style />
   <div
-    class="
+    class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     test classes
   "
+    name="tab-panel-test1"
   >
     <p>
       test1
     </p>
   </div>
-  <style />
   <div
-    class="
+    class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     another-class
   "
+    name="tab-panel-test2"
   >
     <p>
       test2
@@ -97,49 +91,45 @@ exports[`TabPanel renders additional classNames 1`] = `
 
 exports[`TabPanel renders multiple TabPanels 1`] = `
 <div>
-  <style />
   <div
-    class="
+    class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     
   "
+    name="tab-panel-test1"
   >
     <p>
       test1
     </p>
   </div>
-  <style />
   <div
-    class="
+    class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     
   "
+    name="tab-panel-test2"
   >
     <p>
       test2
     </p>
   </div>
-  <style />
   <div
-    class="
+    class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     
   "
+    name="tab-panel-test3"
   >
     <p>
       test3
     </p>
   </div>
-  <style />
   <div
-    class="
+    class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     
   "
+    name="tab-panel-test4"
   >
     <p>
       test4
@@ -150,39 +140,34 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
 
 exports[`Tabs renders a border 1`] = `
 <div>
-  <style />
   <div
-    class="
+    class="sc-bwzfXH jMoURj 
     tabs-container manor-rich-text
-    tab-border
     
   "
     style="min-height: initial;"
   >
-    <style />
     <div
-      class="tab-button-wrap"
+      class="sc-htpNat cenArB tab-button-wrap"
     >
-      <style />
       <button
-        class="
+        class="sc-bdVaJa haLBYI 
     tab-button
-    manor-h6
     active
   "
+        name="refine-results-1"
         type="button"
       >
         <p>
           Refine Results
         </p>
       </button>
-      <style />
       <button
-        class="
+        class="sc-bdVaJa jfItwV 
     tab-button
-    manor-h6
     
   "
+        name="edit-details-1"
         type="button"
       >
         <p>
@@ -190,25 +175,23 @@ exports[`Tabs renders a border 1`] = `
         </p>
       </button>
     </div>
-    <style />
     <div
-      class="
+      class="sc-bxivhb bTQvRW 
     tab-panel
     
-    
   "
+      name="refine-results-1"
     >
       <p>
         View Type
       </p>
     </div>
-    <style />
     <div
-      class="
+      class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     
   "
+      name="edit-details-1"
     >
       <p>
         Tab two content
@@ -223,39 +206,34 @@ exports[`Tabs renders a border 1`] = `
 
 exports[`Tabs renders additional classNames 1`] = `
 <div>
-  <style />
   <div
-    class="
+    class="sc-bwzfXH jMoURj 
     tabs-container manor-rich-text
-    
     test classes
   "
     style="min-height: initial;"
   >
-    <style />
     <div
-      class="tab-button-wrap"
+      class="sc-htpNat cenArB tab-button-wrap"
     >
-      <style />
       <button
-        class="
+        class="sc-bdVaJa haLBYI 
     tab-button
-    manor-h6
     active
   "
+        name="refine-results-1"
         type="button"
       >
         <p>
           Refine Results
         </p>
       </button>
-      <style />
       <button
-        class="
+        class="sc-bdVaJa jfItwV 
     tab-button
-    manor-h6
     
   "
+        name="edit-details-1"
         type="button"
       >
         <p>
@@ -263,25 +241,23 @@ exports[`Tabs renders additional classNames 1`] = `
         </p>
       </button>
     </div>
-    <style />
     <div
-      class="
+      class="sc-bxivhb bTQvRW 
     tab-panel
     
-    
   "
+      name="refine-results-1"
     >
       <p>
         View Type
       </p>
     </div>
-    <style />
     <div
-      class="
+      class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     
   "
+      name="edit-details-1"
     >
       <p>
         Tab two content
@@ -296,39 +272,34 @@ exports[`Tabs renders additional classNames 1`] = `
 
 exports[`Tabs renders correctly with minimal props 1`] = `
 <div>
-  <style />
   <div
-    class="
+    class="sc-bwzfXH jMoURj 
     tabs-container manor-rich-text
-    
     
   "
     style="min-height: initial;"
   >
-    <style />
     <div
-      class="tab-button-wrap"
+      class="sc-htpNat cenArB tab-button-wrap"
     >
-      <style />
       <button
-        class="
+        class="sc-bdVaJa haLBYI 
     tab-button
-    manor-h6
     active
   "
+        name="refine-results-1"
         type="button"
       >
         <p>
           Refine Results
         </p>
       </button>
-      <style />
       <button
-        class="
+        class="sc-bdVaJa jfItwV 
     tab-button
-    manor-h6
     
   "
+        name="edit-details-1"
         type="button"
       >
         <p>
@@ -336,25 +307,23 @@ exports[`Tabs renders correctly with minimal props 1`] = `
         </p>
       </button>
     </div>
-    <style />
     <div
-      class="
+      class="sc-bxivhb bTQvRW 
     tab-panel
     
-    
   "
+      name="refine-results-1"
     >
       <p>
         View Type
       </p>
     </div>
-    <style />
     <div
-      class="
+      class="sc-bxivhb zckvt 
     tab-panel
-    hidden
     
   "
+      name="edit-details-1"
     >
       <p>
         Tab two content

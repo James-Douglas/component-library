@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Textarea from '../../components/Textarea/Textarea.component';
-import './textarea.css';
 
-/*
-Note: That the Textarea field background color is transparent, the bordered parameter is used
-in situations where the field is to be displayed on a grey background, for display purpose
-the bordered var is used in this mock to change between a grey or white
-background - additional padding added for display purposes also. The developer
-will be expected to set bordered accordingly.
-*/
+const StyledView = styled.div`
+  padding: 2rem;
+`;
+
+const StyledBackground = styled.div`
+  height: 100vh;
+  background: ${(props) => (props.bordered ? '' : `${props.theme.colors.greyLighter}`)};
+`;
 
 const TextareaDemoView = ({
   id,
@@ -20,7 +22,6 @@ const TextareaDemoView = ({
   bordered,
   disabled,
   required,
-  invalid,
   isPrefill,
   rows,
   wrap,
@@ -29,9 +30,11 @@ const TextareaDemoView = ({
   maxLength,
   disableFieldset,
 }) => (
-  <>
-    <div className={`${!bordered ? 'grey-background' : ''} `}>
-      <div className="add-padding-around-field-for-display-purposes">
+  <ThemeProvider theme={getTheme()}>
+    <StyledBackground
+      bordered={bordered}
+    >
+      <StyledView>
         <Textarea
           tooltip={{ title: 'text area tooltip!' }}
           id={id}
@@ -42,7 +45,6 @@ const TextareaDemoView = ({
           bordered={bordered}
           disabled={disabled}
           required={required}
-          invalid={invalid}
           isPrefill={isPrefill}
           rows={rows}
           wrap={wrap}
@@ -51,32 +53,10 @@ const TextareaDemoView = ({
           maxLength={maxLength}
           disableFieldset={disableFieldset}
         />
-        <p>Textarea without fieldset parameter</p>
+      </StyledView>
+    </StyledBackground>
 
-        <Textarea
-          tooltip={{ title: 'text area tooltip!' }}
-          id={id}
-          name={name}
-          label={label}
-          placeholder={placeholder}
-          value={value}
-          bordered={bordered}
-          disabled={disabled}
-          required={required}
-          invalid={invalid}
-          isPrefill={isPrefill}
-          rows={rows}
-          wrap={wrap}
-          readonly={readonly}
-          maxChars={maxChars}
-          maxLength={maxLength}
-          disableFieldset={disableFieldset}
-        />
-
-      </div>
-    </div>
-    <div className="scrollable w-auto" />
-  </>
+  </ThemeProvider>
 );
 
 TextareaDemoView.propTypes = {
@@ -88,7 +68,6 @@ TextareaDemoView.propTypes = {
   bordered: PropTypes.bool,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
-  invalid: PropTypes.bool,
   isPrefill: PropTypes.bool,
   rows: PropTypes.string,
   wrap: PropTypes.string,
@@ -106,7 +85,6 @@ TextareaDemoView.defaultProps = {
   bordered: false,
   disabled: false,
   required: false,
-  invalid: false,
   isPrefill: false,
   rows: '',
   wrap: '',

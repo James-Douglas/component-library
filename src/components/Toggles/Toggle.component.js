@@ -1,67 +1,103 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import styled, { css, ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import BaseToggle from './BaseToggle';
 import ToggleLabel from './ToggleLabel';
 import Icon from '../Icon/Icon.component';
-import styles from './toggle.styles';
 import Picture from '../Picture/Picture.component';
 
-export function getAlignment({ align }) {
-  return align ? `align-${align}` : '';
-}
+const StyledTextToggleContent = styled.div`
+  height: 100%;
+  display: flex;
+  padding: ${(props) => props.theme.spacing['16']}; 
+  align-items: center;
+  text-align: center;
+  min-height: 2.4rem;
+   ${(props) => props.rectOptions && props.rectOptions.align && css`
+    justify-content: ${props.rectOptions.align};
+  `}
+  ${(props) => props.type === 'square' && css`
+    justify-content: space-around;
+    width: ${props.theme.spacing['128']}; 
+    height: ${props.theme.spacing['128']}; 
+    min-height: 12.8rem;
+    padding: ${props.theme.spacing['8']};
+  `}
+`;
 
-export function getTypeClasses(type, rectOptions) {
-  return type === 'square' ? 'square-toggle' : `rect-toggle ${getAlignment(rectOptions)}`;
-}
+const StyledIconToggleContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: ${(props) => props.theme.spacing['128']}; 
+  height: ${(props) => props.theme.spacing['128']}; 
+  transition : all 200ms ease-out;
+`;
+const StyledImageToggle = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  
+  width: ${(props) => props.theme.spacing['128']}; 
+  height: ${(props) => props.theme.spacing['128']};  
+`;
+const StyledIconContent = styled.div`
+  padding-top: ${(props) => props.theme.spacing['32']}; 
+`;
+
+const StyledPicture = styled.div`
+   width: ${(props) => props.theme.spacing['48']};
+   height: ${(props) => props.theme.spacing['48']};
+   text-align: center;
+`;
 
 export function getPictureToggleContent(pictureOptions, label) {
   const {
-    src, srcsets, alt, title,
+    src,
+    srcsets,
+    alt,
+    title,
   } = pictureOptions;
   return (
-    <>
-      <style jsx>{styles}</style>
-      <div className="image-toggle">
-        <span className="picture-size">
+    <ThemeProvider theme={getTheme()}>
+      <StyledImageToggle>
+        <StyledPicture>
           <Picture
             src={src}
             srcsets={srcsets}
             alt={alt}
             title={title}
           />
-        </span>
-        <span>
-          {label}
-        </span>
-      </div>
-    </>
+        </StyledPicture>
+        <span>{label}</span>
+      </StyledImageToggle>
+    </ThemeProvider>
   );
 }
 
 
 export function getIconToggleContent(icon, iconSize, label) {
   return (
-    <>
-      <div className="icon-toggle transition">
-        <style jsx>{styles}</style>
+    <ThemeProvider theme={getTheme()}>
+      <StyledIconToggleContent>
         <Icon name={icon} size={iconSize} />
-        <span className="icon-label">
-          {label}
-        </span>
-      </div>
-    </>
+        <StyledIconContent>{label}</StyledIconContent>
+      </StyledIconToggleContent>
+    </ThemeProvider>
   );
 }
 
 export function getTextToggleContent(type, rectOptions, label) {
   return (
-    <>
-      <span className={getTypeClasses(type, rectOptions)}>
-        <style jsx>{styles}</style>
+    <ThemeProvider theme={getTheme()}>
+      <StyledTextToggleContent type={type} rectOptions={rectOptions}>
         {label}
-      </span>
-    </>
+      </StyledTextToggleContent>
+    </ThemeProvider>
   );
 }
 
@@ -76,35 +112,47 @@ export function getToggleContent(icon, iconSize, pictureOptions, id, type, rectO
   }
   return (
     <ToggleLabel id={id}>
-      <style jsx>{styles}</style>
       {content}
     </ToggleLabel>
   );
 }
 
 const Toggle = ({
-  id, type, label, value, name, selectedValue, invalid, disabled, onToggle, icon, iconSize, pictureOptions, rectOptions,
+  id,
+  type,
+  label,
+  value,
+  name,
+  selectedValue,
+  invalid,
+  disabled,
+  onToggle,
+  icon,
+  iconSize,
+  pictureOptions,
+  rectOptions,
 }) => {
   const handleToggle = () => {
     if (onToggle) {
       onToggle(value);
     }
   };
-
   return (
-    <BaseToggle
-      id={id}
-      type={type}
-      value={value}
-      name={name}
-      selectedValue={selectedValue}
-      invalid={invalid}
-      disabled={disabled}
-      onToggle={handleToggle}
-      rectOptions={rectOptions}
-    >
-      {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
-    </BaseToggle>
+    <ThemeProvider theme={getTheme()}>
+      <BaseToggle
+        id={id}
+        type={type}
+        value={value}
+        name={name}
+        selectedValue={selectedValue}
+        invalid={invalid}
+        disabled={disabled}
+        onToggle={handleToggle}
+        rectOptions={rectOptions}
+      >
+        {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
+      </BaseToggle>
+    </ThemeProvider>
   );
 };
 
@@ -159,7 +207,10 @@ Toggle.propTypes = {
    */
   pictureOptions: PropTypes.shape({
     src: PropTypes.string,
-    srcsets: PropTypes.arrayOf(PropTypes.string),
+    srcsets: PropTypes.arrayOf(PropTypes.shape({
+      srcset: PropTypes.string,
+      media: PropTypes.string,
+    })),
     alt: PropTypes.string,
     title: PropTypes.string,
   }),

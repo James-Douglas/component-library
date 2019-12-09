@@ -1,21 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Card from './Card.component';
+
+const StyledCardGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin: ${(props) => `0 -${props.theme.spacing['4']}`};
+`;
+
+const StyledCardGroupChildren = styled.div`
+  padding-right: ${(props) => props.theme.spacing['8']};
+  padding-left: ${(props) => props.theme.spacing['8']};
+`;
 
 const getChildren = (children, cols, id) => {
   const childStyles = { width: cols === 1 ? '100%' : `${100 / cols}%` };
   return children.map((child) => (
     // eslint-disable-next-line react/no-array-index-key
-    <div className="px-4" style={childStyles} key={`card-group-${id}-${child.props.id}`}>
+    <StyledCardGroupChildren id={`card-group-${id}`} style={childStyles} key={`card-group-${id}-${child.props.id}`}>
       {child}
-    </div>
+    </StyledCardGroupChildren>
   ));
 };
 
 const CardGroup = ({ cols, children, id }) => (
-  <div className="flex w-full flex-wrap justify-start -mx-4">
-    {getChildren(children, cols, id)}
-  </div>
+  <ThemeProvider theme={getTheme()}>
+    <StyledCardGroup>
+      {getChildren(children, cols, id)}
+    </StyledCardGroup>
+  </ThemeProvider>
 );
 
 CardGroup.propTypes = {

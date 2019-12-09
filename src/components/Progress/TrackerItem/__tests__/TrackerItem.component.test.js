@@ -14,9 +14,4 @@ describe('TrackerItem', () => {
     const { getByText } = render(<TrackerItem mobile={mockUseIsDesktopValue} index={4} label="About you" />);
     expect(getByText('About you')).toBeInTheDocument();
   });
-  it('renders correctly with label depending from mobile version', () => {
-    mockUseIsDesktopValue = false;
-    const { container } = render(<TrackerItem mobile={mockUseIsDesktopValue} index={4} label="About you" />);
-    expect(container.firstChild).toBeEmpty();
-  });
 });

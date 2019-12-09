@@ -13,7 +13,7 @@ which can be used to compose a group of cards.
 
 <Preview>
   <Story name="card">
-    <Card>
+    <Card id='mdx-card'>
       <div className="flex items-center justify-center w-full">
         card content
       </div>
@@ -28,13 +28,13 @@ which can be used to compose a group of cards.
 
 <Preview>
   <Story name="card group">
-    <CardGroup>
-      <Card>
+    <CardGroup id='mdx-card-group'>
+      <Card id='mdx-card-1'>
         <div className="flex items-center justify-center w-full">
           Card A
         </div>
       </Card>
-      <Card>
+      <Card id='mdx-card-2'>
         <div className="flex items-center justify-center w-full">
           Card B
         </div>
@@ -52,62 +52,62 @@ which can be used to compose a group of cards.
     const cols = select('cols', [1,2,3,4,5,6,7,8,9,10,11,12], 1);
     return (
       <CardGroup id={id} cols={cols}>
-        <Card>
+        <Card id='card-a'>
           <div className="flex items-center justify-center w-full">
             Card A
           </div>
         </Card>
-        <Card>
+        <Card id='card-b'>
           <div className="flex items-center justify-center w-full">
             Card B
           </div>
         </Card>
-        <Card>
+        <Card id='card-c'>
           <div className="flex items-center justify-center w-full">
             Card C
           </div>
         </Card>
-        <Card>
+        <Card id='card-d'>
           <div className="flex items-center justify-center w-full">
             Card D
           </div>
         </Card>
-        <Card>
+        <Card id='card-e'>
           <div className="flex items-center justify-center w-full">
             Card E
           </div>
         </Card>
-        <Card>
+        <Card id='card-f'>
           <div className="flex items-center justify-center w-full">
             Card F
           </div>
         </Card>
-        <Card>
+        <Card id='card-g'>
           <div className="flex items-center justify-center w-full">
             Card G
           </div>
         </Card>
-        <Card>
+        <Card id='card-h'>
           <div className="flex items-center justify-center w-full">
             Card H
           </div>
         </Card>
-        <Card>
+        <Card id='card-i'>
           <div className="flex items-center justify-center w-full">
             Card I
           </div>
         </Card>
-        <Card>
+        <Card id='card-j'>
           <div className="flex items-center justify-center w-full">
             Card J
           </div>
         </Card>
-        <Card>
+        <Card id='card-k'>
           <div className="flex items-center justify-center w-full">
             Card K
           </div>
         </Card>
-        <Card>
+        <Card id='card-l'>
           <div className="flex items-center justify-center w-full">
             Card L
           </div>

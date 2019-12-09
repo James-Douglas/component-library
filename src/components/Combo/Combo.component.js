@@ -1,28 +1,69 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Input from '../Input/Input.component';
 import Button from '../Button/Button.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
+
+const StyledDropdownList = styled.div`
+  position: ${(props) => (props.position === 'absolute' ? 'absolute' : 'relative')}; 
+  width: 100%;
+  display:  ${(props) => (props.position === 'hidden' ? 'none' : 'block')}; 
+  z-index: ${(props) => (props.theme.zIndex[20])}; 
+  background: ${(props) => (props.theme.colors.white)};  
+  box-shadow: ${(props) => (props.theme.boxShadow.md)};  
+  margin-top: ${(props) => (props.theme.spacing[8])};
+  &:focus {
+    outline: none;
+  }
+`;
+
 export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
   return (
-    <div className={`row-view section-wrap-shadow mt-8 ${!listVisible || currentPrefillValue.length < characterMinimum ? 'hidden' : 'absolute'}`}>
-      <style jsx>{styles}</style>
+    <StyledDropdownList position={`${!listVisible || currentPrefillValue.length < characterMinimum ? 'hidden' : 'absolute'}`} role="listwrap">
       {comboDataList(filteredValues, handleSelectItem, filteredValuesRefs)}
       {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton)}
-    </div>
+    </StyledDropdownList>
   );
 }
 
+const StyledList = styled.ul`
+  width: '100%';
+  padding: 0;
+  margin-top: ${(props) => (props.theme.spacing[8])};  
+  z-index: ${(props) => (props.theme.zIndex[30])}; 
+  color: ${(props) => (props.theme.colors.black)}; 
+`;
+
+const StyledListItem = styled.li`
+  list-style-type: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding:  ${(props) => `${props.theme.spacing[8]} ${props.theme.spacing[12]}`};  
+  font-size: ${(props) => (props.theme.fontSize.base)}; 
+  color: ${(props) => (props.theme.colors.greyDarker)}; 
+  transition: background-color 0.4s ease;
+  &:nth-last-child(1) {
+    padding-bottom:  ${(props) => props.theme.spacing[20]};  
+  }
+  &:hover {
+    background: ${(props) => props.theme.colors.greyLighter}; 
+  }
+  &:focus {
+    outline: none;
+    border: ${(props) => `1px solid ${props.theme.colors.blueLight}`};
+  }
+`;
+
+
 export function comboDataList(filteredValues, handleSelectItem, filteredValuesRefs) {
   return (
-    <ul>
-      <style jsx>{styles}</style>
+    <StyledList>
       {filteredValues.map((filteredValue, index) => (
-        <li
+        <StyledListItem
           tabIndex="0"
-          className={`item-${index} item`}
           key={`option-${filteredValue}`}
           role="option"
           data-type="list"
@@ -31,32 +72,54 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
           ref={filteredValuesRefs[index]}
         >
           {filteredValue}
-        </li>
+        </StyledListItem>
       ))}
-    </ul>
+    </StyledList>
   );
 }
+
+const StyledButtonWrap = styled.div`
+  justify-content: space-around;
+  text-align: center;
+  border: 1px solid transparent;
+  padding:  ${(props) => `${props.theme.spacing[8]} 0`};  
+  background: ${(props) => (props.theme.colors.whiteLight)};
+  &:focus {
+    outline: none;
+    border: ${(props) => (`1px solid ${props.theme.colors.blueLight}`)};  
+    border-width: 1px; /* IE 11 specific fix */ 
+  }
+  &:hover {
+    background: ${(props) => (props.theme.colors.whiteLight)};  
+  }
+  font-size: ${(props) => props.theme.fontSize.base};
+`;
 
 export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton) {
   return (
     <>
-      <style jsx>{styles}</style>
       {linkText && linkHref && currentPrefillValue.length >= characterMinimum
       && (
-        <div className="item-manual-lookup item" ref={blueButton} tabIndex="0" role="option" aria-selected={false}>
+        <StyledButtonWrap ref={blueButton} tabIndex="0" role="buttonOption" aria-selected={false}>
           <Button
             id="text-btn01"
-            type="text"
+            variant="text"
             content={linkText}
             disabled={false}
             href={linkHref}
             target="_blank"
           />
-        </div>
+        </StyledButtonWrap>
       )}
     </>
   );
 }
+
+
+const StyledDiv = styled.div`
+  width: '100%';
+`;
+
 
 const Combo = ({
   id,
@@ -198,42 +261,42 @@ const Combo = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div
-      onFocus={handleOnFocus}
-      onBlur={handleOnBlur}
-      onKeyDown={keyboardAccessibility}
-      className="w-full"
-    >
-      <style jsx>{styles}</style>
-      <Input
-        id={id}
-        tooltip={tooltip}
-        placeholder={placeholder}
-        label={label}
-        value={currentValue}
-        prefillValue={prefillValue}
-        bordered={bordered}
-        required={required}
-        disabled={disabled}
-        validationMessage={validationMessage}
-        prefixContent={prefixContent}
-        suffixContent={suffixContent}
-        autocomplete={autocomplete}
-        handleChange={onChange}
-        tabIndex="0"
-        role="comboField"
-        disableFieldset={disableFieldset}
-        dataList={() => comboDropdownList(linkText,
-          linkHref,
-          blueButton,
-          currentValue,
-          characterMinimum,
-          filteredValues,
-          handleSelectItem,
-          filteredValuesRefs,
-          listVisible)}
-      />
-    </div>
+    <ThemeProvider theme={getTheme()}>
+      <StyledDiv
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
+        onKeyDown={keyboardAccessibility}
+      >
+        <Input
+          id={id}
+          tooltip={tooltip}
+          placeholder={placeholder}
+          label={label}
+          value={currentValue}
+          prefillValue={prefillValue}
+          bordered={bordered}
+          required={required}
+          disabled={disabled}
+          validationMessage={validationMessage}
+          prefixContent={prefixContent}
+          suffixContent={suffixContent}
+          autocomplete={autocomplete}
+          handleChange={onChange}
+          tabIndex="0"
+          role="comboField"
+          disableFieldset={disableFieldset}
+          dataList={() => comboDropdownList(linkText,
+            linkHref,
+            blueButton,
+            currentValue,
+            characterMinimum,
+            filteredValues,
+            handleSelectItem,
+            filteredValuesRefs,
+            listVisible)}
+        />
+      </StyledDiv>
+    </ThemeProvider>
   );
 };
 

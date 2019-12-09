@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 
-import styles from './styles';
 import TableContext from './TableContext';
+
+const StyledComponent = styled.div`
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+`;
 
 const Table = ({
   className,
@@ -19,8 +27,16 @@ const Table = ({
 
   return (
     <TableContext.Provider value={table}>
-      <style jsx>{styles}</style>
-      <Component className={`root-table ${className}`} aria-label={ariaLabel} aria-describedby={ariaDescribedby}>{children}</Component>
+      <ThemeProvider theme={getTheme()}>
+        <StyledComponent
+          as={Component}
+          className={className}
+          aria-label={ariaLabel}
+          aria-describedby={ariaDescribedby}
+        >
+          {children || null}
+        </StyledComponent>
+      </ThemeProvider>
     </TableContext.Provider>
   );
 };

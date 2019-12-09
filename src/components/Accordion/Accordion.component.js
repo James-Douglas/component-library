@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
 import AccordionPanel from './AccordionPanel.component';
 
 export const getInitialChildIndex = (children) => {
@@ -31,10 +30,9 @@ const AccordionGroupChildren = (children) => {
 const Accordion = ({
   children,
 }) => (
-  <div className="accordion-group">
-    <style jsx>{styles}</style>
+  <>
     { AccordionGroupChildren(children) }
-  </div>
+  </>
 );
 
 Accordion.propTypes = {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
-
+import styled, { createGlobalStyle } from 'styled-components';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
@@ -10,16 +9,31 @@ import Label from '../Label/Label.component';
 import useBreakpoint from '../../hooks/useBreakpoint';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 
-const styles = css`
-.fieldset {
-  @apply w-full mb-24;
-}
-.tooltip-container {
-  @apply flex items-center justify-center;
-  min-height: 4.4rem;
-}
+const GlobalStyle = createGlobalStyle`
+  .fieldset {
+    width: 100%;
+    margin-bottom: 2.4rem;
+  }
 `;
 
+const StyledTooltipContainer = styled.div`
+  min-height: 4.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledValidationWrap = styled.div`
+  position: relative;
+  width: 100%;
+  height: 4rem;
+`;
+
+const StyledValidationMessage = styled.div`
+  position: absolute;
+  width: 100%;
+  justify-content: flex-start;
+`;
 
 /**
  * Determine whether a tooltip has been provided
@@ -83,8 +97,7 @@ export function renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title,
   if (!enableLabelTooltip && hasTooltip) {
     return (
       <Column col={colSize}>
-        <style jsx>{styles}</style>
-        <div className="tooltip-container">
+        <StyledTooltipContainer>
           <Tooltip
             title={title}
             body={body}
@@ -92,7 +105,7 @@ export function renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title,
             screenReaderLabel={srLabel}
             justifyEnd={justifyEnd}
           />
-        </div>
+        </StyledTooltipContainer>
       </Column>
     );
   }
@@ -133,8 +146,8 @@ const Fieldset = ({
   }
 
   return (
-    <div className="fieldset" jsx="true">
-      <style jsx="true">{styles}</style>
+    <div className="fieldset">
+      <GlobalStyle />
       <Label text={label} tooltipEnabled={enableLabelTooltip} tooltip={tooltipOptions} forceFullWidth={forceFullWidth} />
       <Row>
         <Column sm={contentSize} xs="12">
@@ -144,12 +157,10 @@ const Fieldset = ({
       </Row>
       <Row>
         <Column sm={contentSize} xs="12">
-          <div className="relative w-full h-16 mb-8">
-            <span className="absolute w-full justify-start">
-              <FieldValidation message={validationMessage} />
-            </span>
+          <StyledValidationWrap>
+            <StyledValidationMessage><FieldValidation message={validationMessage} /></StyledValidationMessage>
             {supportingElements}
-          </div>
+          </StyledValidationWrap>
         </Column>
       </Row>
     </div>

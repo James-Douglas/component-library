@@ -2,13 +2,15 @@
 
 exports[`Picture renders correctly without props 1`] = `
 <div>
-  <picture>
+  <picture
+    class="sc-bdVaJa dGIfxd"
+  >
     <img
       alt="a placeholder image"
+      class="sc-bwzfXH cYZGgc"
       src="placeholder.png"
       title="a placeholder title"
     />
-    <style />
   </picture>
 </div>
 `;

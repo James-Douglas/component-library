@@ -13,7 +13,6 @@ describe('generateGroup', () => {
 
   it('does not render children if there are none', () => {
     const { container } = render(<GroupContainer />);
-
     expect(container).toBeEmpty();
   });
 
@@ -25,10 +24,11 @@ describe('generateGroup', () => {
       </GroupContainer>,
     );
 
-    const cols = container.querySelectorAll('.col-6');
-
-    expect(cols).toBeDefined();
-    expect(cols.length).toBe(2);
+    const allLabel = container.querySelectorAll('label');
+    const content = container.querySelectorAll('.checkbox-content');
+    expect(content).toBeDefined();
+    expect(allLabel.length).toBe(2);
+    expect(content.length).toBe(2);
     expect(container.innerHTML).toMatchSnapshot();
   });
 });
@@ -47,8 +47,8 @@ describe('CheckboxGroup.component', () => {
 
   it('renders with props', () => {
     const mockTestClick = jest.fn();
-    const { container } = render(
-      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5" handleChange={mockTestClick}>
+    const { container, getByText } = render(
+      <CheckboxGroup groupId="test-group-id" colSize="5" handleChange={mockTestClick} disableFieldset>
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
@@ -57,10 +57,12 @@ describe('CheckboxGroup.component', () => {
 
     const checkboxGroup = container.querySelector('#test-group-id');
     const chkA1 = container.querySelector('label[for="A-1"]');
-
+    const label = container.querySelector('label');
+    const chkA1Style = label.firstChild;
     fireEvent.click(chkA1, { button: 0 });
 
     expect(checkboxGroup.id).toBe('test-group-id');
+    expect(chkA1Style).toHaveStyle('background: #001443'); // darkBlue from theme.js
     expect(chkA1.getAttribute('disabled')).toBe(null);
     expect(chkA1.getElementsByTagName('svg')).toBeDefined();
     expect(mockTestClick).toHaveBeenCalled();
@@ -70,7 +72,7 @@ describe('CheckboxGroup.component', () => {
   it('checks on click', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
@@ -87,7 +89,7 @@ describe('CheckboxGroup.component', () => {
 
   it('accepts a prefill value', () => {
     const { container } = render(
-      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5">
+      <CheckboxGroup groupId="test-group-id" colSize="5">
         <Checkbox id="A-1" icon="check" isSelected><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check" isSelected><p>A-3 check</p></Checkbox>
@@ -105,7 +107,7 @@ describe('CheckboxGroup.component', () => {
   it('does not check when disabled', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup fieldsetProps groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" icon="check" disabled><p>A-3 check</p></Checkbox>

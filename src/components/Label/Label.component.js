@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
-
+import styled from 'styled-components';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 
-const styles = css`
-.label {
-    @apply flex items-end pb-8 w-full;
-  }
+const StyledLabelWrap = styled.div`
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.8rem;
+  width: 100%;
+`;
+
+const StyledLabel = styled.label`
+  font-size: 1.6rem;
+  width: 100%;
 `;
 
 const Label = ({
-  forId, text, tooltip, tooltipEnabled, forceFullWidth,
+  forId, text, tooltip, tooltipEnabled,
 }) => {
   const [hasTooltip, setHasTooltip] = useState(true);
   useEffect(() => {
@@ -41,15 +46,14 @@ const Label = ({
   };
   return (
     <Row>
-      <style jsx="true">{styles}</style>
-      <div className="label">
+      <StyledLabelWrap className="label">
         <Column col={hasTooltip ? '10' : '12'}>
-          <label htmlFor={forId} className="manor-body1 manor-spacing-label-to-field w-full">
+          <StyledLabel htmlFor={forId}>
             {text}
-          </label>
+          </StyledLabel>
         </Column>
         {renderTooltip()}
-      </div>
+      </StyledLabelWrap>
     </Row>
   );
 };
@@ -59,7 +63,6 @@ Label.propTypes = {
   text: PropTypes.string,
   tooltip: PropTypes.shape(tooltipPropTypes),
   tooltipEnabled: PropTypes.bool,
-  forceFullWidth: PropTypes.bool,
 };
 
 Label.defaultProps = {
@@ -67,7 +70,6 @@ Label.defaultProps = {
   text: '',
   tooltip: {},
   tooltipEnabled: false,
-  forceFullWidth: false,
 };
 
 export default Label;

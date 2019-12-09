@@ -1,12 +1,206 @@
 import React from 'react';
+import styled, { ThemeProvider, css } from 'styled-components';
 import PropTypes from 'prop-types';
+import getTheme from 'utils/getTheme';
 import Icon from '../Icon/Icon.component';
-import styles from './styles';
+
+/* ICONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+const StyledIcon = styled.div`
+  pointer-events: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: inherit;
+`;
+
+/* BUTTONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+const StyledButtonWrap = styled.span`
+ ${(props) => props.isInlineBlock && css`
+    display: inline-block;
+  `}
+`;
+
+const StyledButton = styled.button`
+  box-shadow: ${(props) => props.theme.boxShadow.sm};
+  display: ${(props) => (props.content === '' ? 'block' : 'flex')}; // does this work?
+  align-items: center;
+  justify-content: center;
+  border-radius: ${(props) => props.theme.borderRadius.lg};
+  padding-right: ${(props) => props.theme.spacing[24]};
+  padding-left: ${(props) => props.theme.spacing[24]};
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  margin-bottom: ${(props) => props.theme.spacing[16]};
+  font-size: ${(props) => props.theme.fontSize.lg};
+  text-transform: Capitalize;
+  border: 2px solid transparent;
+  min-height: 5.4rem;
+  transition : all 200ms ease-out;
+  font-weight: ${(props) => props.theme.fontWeight.bold};
+  line-height: ${(props) => props.theme.lineHeight.relaxed};
+
+  :focus {
+    outline: none;
+    box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
+  }
+  ${(props) => props.iconAlignRight && css`
+    flex-direction: row-reverse;
+  `}
+  ${(props) => props.variant === 'primary' && css`
+    background: ${props.theme.colors.secondaryDarker};
+    color: ${props.theme.colors.white};
+    fill: ${props.theme.colors.white};
+    :hover {
+      background: ${props.theme.colors.secondaryDark};
+    }
+  `}
+  ${(props) => props.variant === 'secondary' && css`
+    background: ${props.theme.colors.white};
+    border: 1px solid ${props.theme.colors.primaryAA};
+    font-weight: ${props.theme.fontWeight.semibold};
+    color: ${props.theme.colors.primaryAA};
+    fill: ${props.theme.colors.primaryAA};
+    min-height: 4.4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    :hover {
+      border: 1px solid ${props.theme.colors.primaryLight};
+      fill: ${props.theme.colors.primaryLight};
+      color: ${props.theme.colors.primaryLight};
+    }
+  `}
+  ${(props) => (props.variant === 'secondary' && props.darkMode) && css`
+    border: 1px solid transparent;
+    :hover {
+      border: 1px solid transparent;
+    }
+  `}
+  ${(props) => props.variant === 'tertiary' && css`
+    background ${props.theme.colors.blueDark};
+    color: ${props.theme.colors.white};
+    fill: ${props.theme.colors.white};
+    font-weight: ${props.theme.fontWeight.normal};
+    font-size: ${props.theme.fontSize.sm};
+    border-radius: 0;
+    min-height: 2.8rem;
+    :hover {
+      color: ${props.theme.colors.blueLighter};
+      fill: ${props.theme.colors.blueLighter};
+    }
+  `}
+  ${(props) => (props.variant === 'tertiary' && props.darkMode) && css`
+    background ${props.theme.colors.white};
+    border: 1px solid ${props.theme.colors.blueDark};
+    color: ${props.theme.colors.blueDark};
+    fill: ${props.theme.colors.blueDark};
+    :hover {
+      border-color: ${props.theme.colors.primaryLight};
+      fill: ${props.theme.colors.primaryLight};
+    }
+  `}
+
+  ${(props) => props.size === 'lg' && css`
+    width: 100%;
+    min-width: 16rem;
+  `}
+  ${(props) => props.size === 'md' && css`
+    min-width: 16rem;
+    padding-top: ${props.theme.spacing['4']};
+    padding-bottom: ${props.theme.spacing['4']};
+  `}
+  ${(props) => props.size === 'sm' && css`
+    max-width: 12rem;
+    min-height: 3.6rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    font-weight: ${props.theme.fontWeight.bold};
+    font-size: ${props.theme.fontSize.xs};
+  `}
+`;
+
+/* LINK BUTTONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+const StyledAnchor = styled.a`
+  display: flex;
+  text-transform: Capitalize;
+  transition : all 200ms ease-out;
+  color: ${(props) => props.theme.colors.black};
+  fill: ${(props) => props.theme.colors.black};
+  font-weight: ${(props) => props.theme.fontWeight.normal};
+  font-size: ${(props) => props.theme.fontSize.base};
+  line-height: ${(props) => props.theme.lineHeight.relaxed};
+  > ${StyledIcon} & {
+    padding-right: 1rem; // this might not work
+    padding-top: 0.2rem;
+  }
+  ${(props) => props.iconAlignRight && css`
+    flex-direction: row-reverse;
+  `}
+  ${(props) => props.variant === 'text' && css`
+    text-decoration: none !important; // manor-rich-text-a is the reason for !important - do we need manor-rich-text-a?
+    font-weight: ${props.theme.fontWeight.semibold} !important;
+    :hover {
+      color: ${props.theme.colors.primaryLight} !important;
+      fill: ${props.theme.colors.primaryLight};
+    }
+  `}
+  ${(props) => (props.variant === 'text' && props.darkMode) && css`
+    color: ${props.theme.colors.white} !important; //manor rich text again
+    fill: ${props.theme.colors.white};
+    :hover {
+      color: ${props.theme.colors.blueLighter} !important; //manor rich text again
+      fill: ${props.theme.colors.blueLighter};
+    }
+  `}
+  ${(props) => props.variant === 'link' && css`
+    background: transparent;
+    text-transform: underline;
+    display: inline-block;
+    font-weight: ${props.theme.fontWeight.semibold} !important;
+    :hover {
+      color: ${props.theme.colors.primaryLight};
+      fill: ${props.theme.colors.primaryLight};
+    }
+  `}
+  ${(props) => (props.variant === 'link' && props.darkMode) && css`
+    color: ${props.theme.colors.white};
+    fill: ${props.theme.colors.white};
+    :hover {
+      color: ${props.theme.colors.blueLighter} !important;
+      fill: ${props.theme.colors.blueLighter} !important;
+    }
+  `}
+  ${(props) => props.variant === 'footer-link' && css`
+    font-size: ${props.theme.fontSize.sm} !important;
+    font-weight: ${props.theme.fontWeight.semibold} !important;
+    text-decoration: none !important;
+    display: block;
+    margin-bottom: 1rem;
+    :hover {
+      color: ${props.theme.colors.black} !important;
+      text-decoration: underline !important;
+    }
+  `}
+  ${(props) => (props.variant === 'footer-link' && props.darkMode) && css`
+    color: ${props.theme.colors.white};
+    fill: ${props.theme.colors.white};
+    :hover {
+      color: ${props.theme.colors.white} !important;
+    }
+  `}
+`;
+
+/* BUTTON COMPONENT
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 const Button = ({
   id,
-  type,
-  onDark,
+  variant,
+  darkMode,
   size,
   content,
   disabled,
@@ -19,16 +213,13 @@ const Button = ({
   handleClick,
   tagType,
 }) => {
-  const isInlineBlock = href && type !== 'footer-link' ? 'inline-block' : '';
-
   const renderContent = () => {
     if (icon) {
       return (
         <>
-          <style jsx>{styles}</style>
-          <div className="btn-icon">
+          <StyledIcon>
             <Icon name={icon} size={iconSize} />
-          </div>
+          </StyledIcon>
           {content}
         </>
       );
@@ -37,43 +228,33 @@ const Button = ({
   };
 
   const renderButton = () => {
-    const isButton = type === 'primary' || type === 'secondary' || type === 'tertiary';
-    const Tag = isButton ? 'button' : 'a';
+    const isButton = ['primary', 'secondary', 'tertiary'].includes(variant);
+    const Tag = isButton ? StyledButton : StyledAnchor;
 
     return (
-      <>
-        <style jsx>{styles}</style>
+      <ThemeProvider theme={getTheme()}>
         <Tag
           onClick={handleClick}
           id={id}
-          className={`
-            manor-rich-text 
-            ${size}
-            ${type}
-            ${isButton ? 'manor-button' : 'manor-button-link'} 
-            ${onDark ? 'onDark' : ''}
-            ${content === '' ? 'center' : ''}
-            ${iconAlignRight ? 'align-right' : ''}
-          `}
-          type={isButton ? tagType : null}
+          variant={variant}
+          iconAlignRight={iconAlignRight}
+          darkMode={darkMode}
+          size={size}
           disabled={disabled}
           href={isButton ? null : href}
           target={isButton ? null : target}
           rel={isButton ? null : rel}
+          type={isButton ? tagType : null}
         >
           {renderContent()}
         </Tag>
-      </>
+      </ThemeProvider>
     );
   };
-
   return (
-    <>
-      <style jsx>{styles}</style>
-      <span className={`manor-button-wrap ${isInlineBlock}`}>
-        {renderButton()}
-      </span>
-    </>
+    <StyledButtonWrap isInlineBlock={href && variant !== 'footer-link'}>
+      {renderButton()}
+    </StyledButtonWrap>
   );
 };
 
@@ -86,19 +267,12 @@ Button.propTypes = {
    * Defines the type of button to be used, applied as a class. Defaults to `primary`, other valid types are `secondary`,
    * `text`, `link`, and `footer-link`
    */
-  type: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'tertiary',
-    'text',
-    'link',
-    'footer-link',
-  ]),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'text', 'link', 'footer-link']),
   /**
    * Defines the mode of the button. Change to `true` for `secondary`, `text`, `link` and `footer-link` to enable the
-   * dark mode. `primary` does not have a `onDark` mode.
+   * dark mode. `primary` does not have a `darkMode`.
    */
-  onDark: PropTypes.bool,
+  darkMode: PropTypes.bool,
   /**
    * Defines the size of button to be used, `sm`, `md` and `lg`. Defaults to `md`.
    */
@@ -146,8 +320,8 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  type: 'primary',
-  onDark: false,
+  variant: 'primary',
+  darkMode: false,
   size: 'md',
   content: '',
   disabled: false,

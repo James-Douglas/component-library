@@ -44,6 +44,13 @@ const TooltipFiltersView = () => {
     minHeight: '3.4rem',
   };
 
+  const alignTooltip = {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    display: 'flex',
+  };
+
   return (
     <StoryTemplate>
       <Container>
@@ -56,7 +63,9 @@ const TooltipFiltersView = () => {
                     <input style={inputStyle} />
                   </Column>
                   <Column col="2">
-                    <Tooltip title="test tooltip" body={tooltipContentA} boundingElementSelector="#filter-container" />
+                    <div style={alignTooltip}>
+                      <Tooltip title="test tooltip" body={tooltipContentA} boundingElementSelector="#filter-container" />
+                    </div>
                   </Column>
                 </Row>
               </Container>

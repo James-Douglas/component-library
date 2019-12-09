@@ -1,17 +1,10 @@
-import css from 'styled-jsx/css';
+import styled from 'styled-components';
 
-export default css`
-.grey-background, .white-background {
+const StyledBackground = styled.div`
   padding: 5em;
   height: 100vh;
   width: 100vw;
-}
-
-.grey-background {
-  background: #F3F3F3;
-}
-
-.white-background {
-  background: #FFFFFF;
-}
+  background: ${(props) => (props.color === 'grey' ? '#F3F3F3' : '#FFFFFF')};
 `;
+
+export default StyledBackground;

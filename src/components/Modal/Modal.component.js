@@ -1,8 +1,90 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styled, { ThemeProvider, keyframes } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import PropTypes from 'prop-types';
 import Icon from '../Icon/Icon.component';
-import styles from './styles';
+
+const StyledAlignment = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+`;
+
+const animateIn = keyframes`
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const StyledModal = styled.div`
+  background: ${(props) => props.theme.colors.white};
+  box-shadow: ${(props) => props.theme.boxShadow.lg};
+  z-index: ${(props) => props.theme.zIndex[50]};
+  width: ${(props) => {
+    const { size } = props;
+    if (size === 'lg') {
+      return '66.666667%';
+    } if (size === 'md') {
+      return '50%';
+    }
+    return '33.333333%';
+  }};
+  min-height: 30rem;
+  height: auto;
+  pointer-events: auto;
+  position: relative;
+  animation-name: ${animateIn};
+  animation-duration: .3s;
+`;
+
+const StyledCloseIcon = styled.div`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+`;
+
+const StyledContent = styled.div`
+  padding: 4rem;
+  margin-top: 2rem;
+`;
+
+/* Workaround for storybook not rendering props when ReactDOM.createPortal is used https://github.com/storybookjs/storybook/issues/8435 */
+const RenderedModal = ({
+  visible, id, classNames, size, close, handleClose, children,
+}) => (
+  ReactDOM.createPortal(
+    <>
+      {visible
+      && (
+        <>
+          <ThemeProvider theme={getTheme()}>
+            <StyledAlignment>
+              <StyledModal id={id} className={classNames} size={size}>
+                <StyledCloseIcon className="icon-close" onClick={close} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false"><Icon name="close" size={2} /></StyledCloseIcon>
+                <StyledContent className="content">
+                  {children}
+                </StyledContent>
+              </StyledModal>
+            </StyledAlignment>
+          </ThemeProvider>
+        </>
+      )}
+    </>,
+    document.body,
+  )
+);
 
 const Modal = ({
   id, visible, handleClose, size, className, children,
@@ -14,30 +96,15 @@ const Modal = ({
   };
 
   const classNames = `
-    modal
     manor-rich-text
     ${size}
     ${className}
   `;
 
-  return ReactDOM.createPortal(
-    <>
-      {visible
-        && (
-          <>
-            <style jsx>{styles}</style>
-            <div className="modal-alignment">
-              <div id={id} className={classNames}>
-                <div className="icon-close" onClick={close} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false"><Icon name="close" size={2} /></div>
-                <div className="content">
-                  {children}
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-    </>,
-    document.body,
+  return (
+    <RenderedModal visible={visible} id={id} classNames={classNames} size={size} close={close} handleClose={handleClose}>
+      {children}
+    </RenderedModal>
   );
 };
 

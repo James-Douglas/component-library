@@ -1,10 +1,30 @@
 import React, { useState } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import CheckboxGroup from '../../components/Checkbox/CheckboxGroup.component';
 import Checkbox from '../../components/Checkbox/Checkbox.component';
-import styles from './checkbox-view';
 import Column from '../../components/Grid/Column/Column.component';
+
+const StyledGridView = styled.div`
+  height: 100vh;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+  font-size: ${(props) => props.theme.fontSize.base}
+  line-height: ${(props) => props.theme.lineHeight.relaxed}
+  font-weight: ${(props) => props.theme.fontWeight.normal};
+`;
+
+const StyledResults = styled.div`
+  min-height: 120px;
+  width: 100%;
+  background: #143D96;
+  color: white;
+  padding: 2rem;
+`;
 
 const g1 = 'checkbox-group-a';
 const g2 = 'checkbox-group-b';
@@ -35,9 +55,9 @@ const CheckboxGroupView = () => {
   };
 
   return (
-    <>
-      <style jsx>{styles}</style>
-      <div className="grid-view manor-rich-text">
+    <ThemeProvider theme={getTheme()}>
+
+      <StyledGridView>
         <Container>
           <Row>
             <Column offset={2} col={10}>
@@ -48,7 +68,6 @@ const CheckboxGroupView = () => {
                 groupId={g1}
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
-                disableFieldset
               >
                 <Checkbox id="A-1" icon="check">A-1 check</Checkbox>
                 <Checkbox id="A-2" icon="check">A-2 check</Checkbox>
@@ -67,7 +86,6 @@ const CheckboxGroupView = () => {
                 groupId={g2}
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
-                disableFieldset
               >
                 <Checkbox id="B-1" icon="check">B-1 check</Checkbox>
                 <Checkbox id="B-2" icon="check" isSelected>B-2 check</Checkbox>
@@ -81,17 +99,17 @@ const CheckboxGroupView = () => {
 
           <Row>
             <Column offset={2} col={10}>
-              <div className="w-full results-container">
+              <StyledResults>
                 {checkboxGroupA.length || checkboxGroupB.length
                   ? (
                     <>
-                      <p className="results">
+                      <p>
                         {g1}
                         :
                         {' '}
                         {checkboxGroupA.map((checkbox) => checkbox.id).join(', ')}
                       </p>
-                      <p className="results">
+                      <p>
                         {g2}
                         :
                         {' '}
@@ -99,14 +117,13 @@ const CheckboxGroupView = () => {
                       </p>
                     </>
                   )
-                  : <p className="results">Nothing selected</p>}
-              </div>
+                  : <p>Nothing selected</p>}
+              </StyledResults>
             </Column>
           </Row>
-
         </Container>
-      </div>
-    </>
+      </StyledGridView>
+    </ThemeProvider>
   );
 };
 

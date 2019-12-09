@@ -2,6 +2,7 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
 import Accordion from '../../components/Accordion/Accordion.component.js';
 import AccordionPanel from '../../components/Accordion/AccordionPanel.component.js';
+import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
 <Meta title="Components|Accordion" component={Accordion} />
 
@@ -12,44 +13,9 @@ comprise of the Accordion component which takes AccordionPanel components as chi
 
 <Preview>
   <Story name="accordion" decorators={[withKnobs]}>
-    <Accordion>
-      <AccordionPanel title="What are the benefits of combining your electricity and gas bills?">
-        <div>
-          <p>
-            Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
-            events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
-            of damage to cars, property, and even people.
-          </p>
-          <h6 className="manor-h6">What does car insurance cover?</h6>
-          <p>
-            It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
-             you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
-             vehicle as a result of collisions, fire, theft, and weather events. Most policies will vary in coverage (and
-             price), which is why it’s important to review your options carefully.
-           </p>
-         </div>
-      </AccordionPanel>
-      <AccordionPanel title="Can I switch energy providers?">
-        <div>
-          <p>tml
-            If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
-            able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
-            electricity and gas comparison service. Just enter a few details about your property and power usage to
-            compare electricity and gas plans that are suitable for you.
-          </p>
-        </div>
-      </AccordionPanel>
-    </Accordion>
-  </Story>
-</Preview>
-
-<Story name="accordion with props" decorators={[withKnobs]} parameters={{ docs: { disable: true }, knobs: { escapeHTML: false}  }}>
-  {() => {
-    const title1 = text('First panel title', 'What are the benefits of combining your electricity and gas bills?')
-    const title2 = text('Second panel title', 'Can I switch energy providers?');
-    return (
+     <FluidContainer>
       <Accordion>
-        <AccordionPanel title={title1}>
+        <AccordionPanel title="What are the benefits of combining your electricity and gas bills?" iconSize={2}>
           <div>
             <p>
               Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
@@ -65,7 +31,44 @@ comprise of the Accordion component which takes AccordionPanel components as chi
              </p>
            </div>
         </AccordionPanel>
-        <AccordionPanel title={title2}>
+        <AccordionPanel title="Can I switch energy providers?" iconSize={2}>
+          <div>
+            <p>tml
+              If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+              able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+              electricity and gas comparison service. Just enter a few details about your property and power usage to
+              compare electricity and gas plans that are suitable for you.
+            </p>
+          </div>
+        </AccordionPanel>
+      </Accordion>
+    </FluidContainer>
+  </Story>
+</Preview>
+
+<Story name="accordion with props" decorators={[withKnobs]} parameters={{ docs: { disable: true }, knobs: { escapeHTML: false}  }}>
+  {() => {
+    const title1 = text('First panel title', 'What are the benefits of combining your electricity and gas bills?')
+    const title2 = text('Second panel title', 'Can I switch energy providers?');
+    return (
+      <Accordion>
+        <AccordionPanel title={title1} iconSize={2}>
+          <div>
+            <p>
+              Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
+              events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
+              of damage to cars, property, and even people.
+            </p>
+            <h6 className="manor-h6">What does car insurance cover?</h6>
+            <p>
+              It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
+               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
+               vehicle as a result of collisions, fire, theft, and weather events. Most policies will vary in coverage (and
+               price), which is why it’s important to review your options carefully.
+             </p>
+           </div>
+        </AccordionPanel>
+        <AccordionPanel title={title2} iconSize={2}>
            <div>
               <p>
                 If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be

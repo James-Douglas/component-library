@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import 'jest-styled-components';
 import Fluid from '../Fluid.component';
 
 describe('Container', () => {
@@ -8,14 +9,28 @@ describe('Container', () => {
     expect(container).toMatchSnapshot();
   });
 
+  it('renders children', () => {
+    const { container } = render(
+      <Fluid>
+        <div className="child-content">test</div>
+      </Fluid>,
+    );
+
+    const childContent = container.querySelector('.child-content');
+    expect(container).toMatchSnapshot();
+    expect(childContent).toBeInTheDocument();
+  });
+
   it('has a container class by default and NO fixed class', () => {
     const { container } = render(<Fluid />);
 
-    const fluid = container.querySelector('.container');
+    const containerComponent = container.querySelector('.container');
 
     expect(container).toMatchSnapshot();
-    expect(fluid).toBeDefined();
-    expect(fluid.classList[1]).toBeUndefined();
+    expect(containerComponent).toBeDefined();
+    expect(containerComponent.classList[1]).not.toBe('fixed');
+    expect(containerComponent).toHaveStyleRule('padding-left', '1.6rem');
+    expect(containerComponent).not.toHaveStyleRule('max-width', '72rem');
   });
 
   it('allows additional classes to be passed through', () => {

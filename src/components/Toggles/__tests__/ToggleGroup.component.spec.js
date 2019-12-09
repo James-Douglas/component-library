@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import ToggleGroup, { getType, getChildren } from '../ToggleGroup.component';
 import Toggle from '../Toggle.component';
+import 'jest-styled-components';
 
 describe('getType()', () => {
   it('returns square when all labels have length <= 25 chars', () => {
@@ -24,7 +25,8 @@ describe('getType()', () => {
 });
 
 describe('getChildren()', () => {
-  const getTestChildren = (data) => data.map((child) => React.createElement(<Toggle />, { ...child }));
+  let tempID = 'temp-id';
+  const getTestChildren = (data) => data.map((child) => React.cloneElement(<Toggle id={tempID} label="test-label" value="test-value" />, { ...child }));
   const didToggleCb = jest.fn();
 
   it('returns cloned children with base props added', () => {
@@ -32,14 +34,16 @@ describe('getChildren()', () => {
       {
         label: 'test toggle a',
         id: 'a',
+        value: 'val-a',
       },
     ]);
     const result = getChildren(testChildren, 'square', 'test-group', null, didToggleCb, null);
     const {
-      name, id, selectedValue, onToggle, type,
+      name, id, selectedValue, onToggle, type, value,
     } = result[0].props;
 
     expect(name).toEqual('test-group');
+    expect(value).toEqual('val-a');
     expect(id).toEqual('a');
     expect(selectedValue).toEqual(null);
     expect(onToggle).toEqual(didToggleCb);
@@ -47,6 +51,7 @@ describe('getChildren()', () => {
   });
 
   it('adds id if none provided', () => {
+    tempID = '';
     const testChildren = getTestChildren([
       {
         label: 'test toggle a',
@@ -73,7 +78,10 @@ describe('getChildren()', () => {
 
 describe('ToggleGroup', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<ToggleGroup name="test-toggle-group" onToggle={() => {}} />);
+    const { container } = render(<ToggleGroup
+      name="test-toggle-group"
+      onToggle={() => {}}
+    />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
@@ -95,13 +103,12 @@ describe('ToggleGroup', () => {
     const handleChangeCb = jest.fn();
     const tooltip = { title: 'test' };
     const { container } = render(
-      <ToggleGroup name="test-toggle-group-b" onToggle={handleChangeCb} tooltip={tooltip} disableFieldset>
-        <Toggle label="test toggle a" id="a" />
-        <Toggle label="test toggle b" id="b" />
+      <ToggleGroup name="test-toggle-group-b" onToggle={handleChangeCb} tooltip={tooltip}>
+        <Toggle label="test toggle a" id="a" value="val-1" />
+        <Toggle label="test toggle b" id="b" value="val-2" />
       </ToggleGroup>,
     );
-
-    const tooltipWrapper = container.querySelector('.tooltip-wrapper');
-    expect(tooltipWrapper).toHaveClass('justify-end');
+    const tooltipWrapper = container.querySelector('[role="tooltip"]');
+    expect(tooltipWrapper.parentNode).toHaveStyleRule('justify-content', 'flex-end');
   });
 });

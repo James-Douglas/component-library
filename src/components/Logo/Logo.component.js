@@ -1,27 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
+import styled, { css } from 'styled-components';
 import Picture from '../Picture/Picture.component';
 import logoMobile from '../../images/ctm-logo-mobile.svg';
 import logoDesktop from '../../images/ctm-logo-desktop.svg';
 import screens from '../../../config/screens';
 
-const styles = css`
-  .logo {
-    transition: all 200ms ease;
-  }
+const StyledLogo = styled.div`
+  transition: all 200ms ease;
 
-  .logo.large {
+  ${(props) => props.size === 'large' && css`
     height: 4.4rem; /* 44px */
-  }
+  `}
 
-  .logo.small {
+  ${(props) => props.size === 'small' && css`
     height: 3.2rem; /* 32px */
-  }
+  `}
 `;
 
 const Logo = ({ size, src, srcsets }) => (
-  <div className={`logo ${size}`} id="logo">
+  <StyledLogo size={size} id="logo">
     <a href="https://www.comparethemarket.com.au">
       <Picture
         src={src}
@@ -30,8 +28,7 @@ const Logo = ({ size, src, srcsets }) => (
         title="Compare The Market Australia"
       />
     </a>
-    <style jsx>{styles}</style>
-  </div>
+  </StyledLogo>
 );
 
 Logo.propTypes = {

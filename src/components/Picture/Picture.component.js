@@ -1,24 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
+import styled from 'styled-components';
 import placeholder from 'images/placeholder.png';
 
-const styles = css`
-picture {
+const StyledPicture = styled.picture`
   height: 100%;
-}
+`;
 
-img {
+const StyledImg = styled.img`
   height: 100%;
   object-fit: contain;
   object-position: left;
-}
 `;
 
 const Picture = ({
   src, srcsets, alt, title,
 }) => (
-  <picture>
+  <StyledPicture>
     {srcsets.map((source) => (
       <source
         srcSet={source.srcset}
@@ -26,9 +24,8 @@ const Picture = ({
         key={source.srcset}
       />
     ))}
-    <img src={src} alt={alt} title={title} />
-    <style jsx>{styles}</style>
-  </picture>
+    <StyledImg src={src} alt={alt} title={title} />
+  </StyledPicture>
 );
 
 Picture.propTypes = {

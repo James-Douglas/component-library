@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import 'jest-styled-components';
 import BaseToggle, { getInlineStyles } from '../BaseToggle';
 
 describe('getInlineStyles()', () => {
@@ -29,17 +30,17 @@ describe('getInlineStyles()', () => {
 
 describe('BaseToggle', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<BaseToggle type="square" id="test-square" />);
+    const { container } = render(<BaseToggle type="square" id="test-square" value="test" onToggle={() => {}} />);
     expect(container).toMatchSnapshot();
   });
   it('sets checked when selectedId equals id', () => {
-    const { container } = render(<BaseToggle type="square" id="test-selected-id" value="test" selectedValue="test" autofill />);
-    expect(container.querySelector('.toggle-input')).toHaveAttribute('checked');
+    const { container } = render(<BaseToggle type="square" id="test-selected-id" value="test" selectedValue="test" autofill onToggle={() => {}} />);
+    expect(container.querySelector('input')).toHaveAttribute('checked');
   });
   it('calls onToggle when toggled', () => {
     const onToggleCb = jest.fn();
     const { container } = render(<BaseToggle type="square" id="test-square" value="testt" onToggle={onToggleCb} />);
-    const element = container.querySelector('.toggle');
+    const element = container.firstChild;
     fireEvent.click(element);
     expect(onToggleCb).toHaveBeenCalled();
     expect(onToggleCb.mock.calls[0][0]).toEqual('testt');

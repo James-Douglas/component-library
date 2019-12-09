@@ -40,7 +40,7 @@ describe('Currency', () => {
   });
 
   it('renders with lots of props', () => {
-    const { container } = render(
+    const { container, getByText } = render(
       <Currency
         id="test-id"
         label="label-test"
@@ -49,7 +49,6 @@ describe('Currency', () => {
         maxlength={5}
         autocomplete="on"
         handleChange={() => {}}
-        disableFieldset
       />,
     );
 
@@ -57,13 +56,12 @@ describe('Currency', () => {
     const id = currencyInput.getAttribute('id');
     const label = container.querySelector('label');
     const placeholder = currencyInput.getAttribute('placeholder');
-    const prefix = container.querySelector('.prefix');
     const autocomplete = currencyInput.getAttribute('autocomplete');
 
     expect(id).toBe('test-id');
     expect(label.textContent).toBe('label-test');
     expect(placeholder).toBe('placeholder test');
-    expect(prefix.textContent).toBe('$');
+    expect(getByText('$')).toBeInTheDocument();
     expect(autocomplete).toBe('on');
   });
 

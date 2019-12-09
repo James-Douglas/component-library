@@ -1,20 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 
-const styles = css`
-  .field-validation {
-    @apply bg-validation-background text-validation-text absolute z-10 mt-8 px-8 py-4;
-  }
+const StyledFieldValidation = styled.div`
+  position: absolute;
+  background: ${(props) => props.theme.colors.validationBackground};
+  color: ${(props) => props.theme.colors.validationText};
+  z-index: ${(props) => props.theme.zIndex['10']};
+  margin-top: ${(props) => props.theme.spacing['8']}; 
+  padding: ${(props) => `${props.theme.spacing['4']} ${props.theme.spacing['8']}`};
+`;
+
+const StyledMessage = styled.p`
+  margin: 0;
 `;
 
 const FieldValidation = ({ message }) => {
   if (!message || !message.length) return null;
   return (
-    <div className="field-validation manor-body1">
-      <style jsx>{styles}</style>
-      {message}
-    </div>
+    <ThemeProvider theme={getTheme()}>
+      <StyledFieldValidation>
+        <StyledMessage>{message}</StyledMessage>
+      </StyledFieldValidation>
+    </ThemeProvider>
   );
 };
 

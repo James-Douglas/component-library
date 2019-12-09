@@ -11,7 +11,7 @@ const UseFieldset = ({
   forceFullWidth,
   validationMessage,
   supportingElements,
-}) => (disableFieldset
+}) => (!disableFieldset
   ? (
     <Fieldset
       label={label}

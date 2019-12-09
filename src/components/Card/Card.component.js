@@ -1,20 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 
-const styles = css`
-  .card {
-    @apply flex bg-white shadow-progress border mx-4 mb-16 w-full;
-    min-width: 8rem;
-    min-height: 8rem;
-  }
+const StyledCard = styled.div`
+  display: flex;
+  width: 100%;
+  min-width: 8rem;
+  min-height: 8rem;
+  background: ${(props) => props.theme.colors.white}; 
+  box-shadow: ${(props) => props.theme.boxShadow.progress}; 
+  border: ${(props) => `1px solid ${props.theme.colors.greyLight}`};   
+  margin: ${(props) => `${props.theme.spacing['4']} ${props.theme.spacing['4']} ${props.theme.spacing['16']}`};
 `;
 
+
 const Card = ({ id, children }) => (
-  <div className="card" id={id}>
-    <style jsx>{styles}</style>
-    {children}
-  </div>
+  <ThemeProvider theme={getTheme()}>
+    <StyledCard id={id}>
+      {children}
+    </StyledCard>
+  </ThemeProvider>
 );
 
 Card.propTypes = {

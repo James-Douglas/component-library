@@ -13,23 +13,10 @@
   "env": {
     "production": {
       "plugins": [
-        [
-          "styled-jsx/babel",
-          {
-            "plugins": ["styled-jsx-plugin-postcss"]
-          }
-        ]
       ]
     },
     "development": {
-      "plugins": [
-        [
-          "styled-jsx/babel",
-          {
-            "plugins": ["styled-jsx-plugin-postcss"]
-          }
-        ]
-      ]
+      "plugins": ["babel-plugin-styled-components"]
     },
     "test": {
       "plugins": ["@babel/plugin-transform-runtime"]

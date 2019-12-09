@@ -1,9 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { ctmIcons, faIcons } from './icons';
-import styles from './styles';
+
+const StyledIcon = styled.svg`
+  width: 1.6rem;
+  height: 1.6rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  ${(props) => props.flipH && css`
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+  `}
+  ${(props) => props.flipV && css`
+    -moz-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+    filter: FlipV;
+    -ms-filter: "FlipV";
+  `}
+`;
 
 const renderCtmIcon = (icon, size, flipV, flipH) => {
   const { viewBox } = icon;
@@ -14,24 +37,21 @@ const renderCtmIcon = (icon, size, flipV, flipH) => {
 
   return (
     <>
-      <style jsx>{styles}</style>
-      <svg
+      <StyledIcon
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
         y="0px"
         enableBackground={`${viewBox}`}
-        className={` 
-          icon
-          ${flipV ? 'flipV' : ''} 
-          ${flipH ? 'flipH' : ''} 
-        `}
+        className="icon"
         viewBox={viewBox}
+        flipV={flipV}
+        flipH={flipH}
         style={inlineStyles}
       >
         {/* eslint-disable-next-line react/no-array-index-key */}
         {icon.paths.map((path, i) => <path d={path} key={i} />)}
-      </svg>
+      </StyledIcon>
     </>
   );
 };

@@ -55,7 +55,7 @@ const CheckboxGroup = ({
       validationMessage={validationMessage}
       forceFullWidth={forceFullWidth}
     >
-      <div id={groupId} className="checkbox-group">
+      <div id={groupId}>
         <Row>
           {generateGroup(colSize, children, handleCheckboxClick)}
         </Row>

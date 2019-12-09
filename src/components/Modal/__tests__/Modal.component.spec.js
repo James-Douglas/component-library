@@ -2,10 +2,9 @@ import React from 'react';
 import {
   render, fireEvent,
 } from '@testing-library/react';
-
+import 'jest-styled-components';
 import Input from 'components/Input/Input.component';
 import Modal from '../Modal.component';
-
 
 /* Modal
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -14,7 +13,6 @@ describe('Modal', () => {
   it('renders with minimal props', () => {
     const { baseElement } = render(<Modal id="test-modal" visible />);
     const modal = baseElement.querySelector('#test-modal');
-
     expect(modal).toBeInTheDocument();
     expect(modal).toMatchSnapshot();
   });
@@ -25,6 +23,7 @@ describe('Modal', () => {
 
     expect(modal).not.toBeInTheDocument();
   });
+
 
   it('renders children and renders other components', () => {
     const { baseElement } = render(
@@ -55,10 +54,30 @@ describe('Modal', () => {
     expect(closeCb).toHaveBeenCalled();
   });
 
-  it('modifies the size via size prop', () => {
+  it('modifies the size of the modal to large ', () => {
+    const { baseElement } = render(<Modal id="test-modal" visible size="lg" />);
+    const sizeClass = baseElement.querySelector('.lg');
+    const modal = baseElement.querySelector('#test-modal');
+
+    expect(modal).toHaveStyleRule('width', '66.666667%');
+    expect(sizeClass).toBeInTheDocument();
+  });
+
+  it('modifies the size of the modal to medium ', () => {
     const { baseElement } = render(<Modal id="test-modal" visible size="md" />);
     const sizeClass = baseElement.querySelector('.md');
+    const modal = baseElement.querySelector('#test-modal');
 
+    expect(modal).toHaveStyleRule('width', '50%');
+    expect(sizeClass).toBeInTheDocument();
+  });
+
+  it('modifies the size of the modal to small ', () => {
+    const { baseElement } = render(<Modal id="test-modal" visible size="sm" />);
+    const sizeClass = baseElement.querySelector('.sm');
+    const modal = baseElement.querySelector('#test-modal');
+
+    expect(modal).toHaveStyleRule('width', '33.333333%');
     expect(sizeClass).toBeInTheDocument();
   });
 

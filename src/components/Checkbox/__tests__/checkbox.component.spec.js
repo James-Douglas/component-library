@@ -12,15 +12,12 @@ describe('renderIcon()', () => {
 
   it('does not render an icon if toggle condition is not met', () => {
     const { container } = render(<IconContainer toggle={false} />);
-
     expect(container).toBeEmpty();
   });
 
   it('renders an icon when params are set (icon name and toggle is true)', () => {
     const { container } = render(<IconContainer icon="check" toggle />);
-
     const svg = container.querySelector('svg');
-
     expect(svg).toBeDefined();
     expect(container.innerHTML).toMatchSnapshot();
   });
@@ -48,12 +45,35 @@ describe('Checkbox.component', () => {
 
     const checkbox = container.querySelector('#test-id');
     const label = container.querySelector('label');
-    const labelStyle = container.querySelector('.manor-checkbox');
+    const labelStyle = label.firstChild;
 
     fireEvent.click(label, { button: 0 });
 
     expect(mockTestClick).toHaveBeenCalled();
-    expect(labelStyle.classList).toContain('inverted');
+    expect(labelStyle).toHaveStyle('background: #FFFFFF');
+    expect(checkbox.getAttribute('disabled')).toBe(null);
+    expect(container.querySelector('#child-content')).toBeDefined();
+    expect(container.getElementsByTagName('svg')).toBeDefined();
+    expect(container.innerHTML).toMatchSnapshot();
+  });
+
+  it('renders an invalid state', () => {
+    const { container } = render(
+      <Checkbox
+        id="test-id"
+        icon="check"
+        invalid
+      >
+        <p>child content</p>
+      </Checkbox>,
+    );
+
+    const checkbox = container.querySelector('#test-id');
+    const label = container.querySelector('label');
+    const labelStyle = label.firstChild;
+    fireEvent.click(label, { button: 0 });
+
+    expect(labelStyle).toHaveStyle('border-color: #EF425E');
     expect(checkbox.getAttribute('disabled')).toBe(null);
     expect(container.querySelector('#child-content')).toBeDefined();
     expect(container.getElementsByTagName('svg')).toBeDefined();

@@ -1,28 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Toggle, {
-  getAlignment, getTypeClasses, getPictureToggleContent, getIconToggleContent, getTextToggleContent, getToggleContent,
+  getPictureToggleContent, getIconToggleContent, getTextToggleContent, getToggleContent,
 } from '../Toggle.component';
+import 'jest-styled-components';
 
-describe('getAlignment()', () => {
-  it('returns empty string when no alignment option given', () => {
-    expect(getAlignment({})).toEqual('');
-  });
-
-  it('returns align class when alignment given', () => {
-    expect(getAlignment({ align: 'right' })).toEqual('align-right');
-  });
-});
-
-describe('getTypeClasses()', () => {
-  it('returns square-toggle when type is square', () => {
-    expect(getTypeClasses('square', {})).toEqual('square-toggle');
-  });
-
-  it('returns rect-toggle when type is rectangle', () => {
-    expect(getTypeClasses('rectangle', { align: 'right' })).toEqual('rect-toggle align-right');
-  });
-});
 
 describe('getPictureToggleContent()', () => {
   // eslint-disable-next-line react/prop-types
@@ -74,7 +56,8 @@ describe('getTextToggleContent()', () => {
   it('returns square content', () => {
     const { getByText, container } = render(<TextToggleContentContainer type="square" label="test square" />);
     expect(getByText('test square')).toBeInTheDocument();
-    expect(container.querySelector('.square-toggle')).toBeInTheDocument();
+    const squareToggle = container.firstChild;
+    expect(squareToggle).toHaveStyleRule('height', '12.8rem');
   });
 
   it('returns rectangle content', () => {
@@ -83,9 +66,9 @@ describe('getTextToggleContent()', () => {
     };
     const { getByText, container } = render(<TextToggleContentContainer type="rectangle" rectOptions={rectOptions} label="test rectangle" />);
     expect(getByText('test rectangle')).toBeInTheDocument();
-    const wrapper = container.querySelector('.rect-toggle');
-    expect(wrapper).toBeInTheDocument();
-    expect(wrapper).toHaveClass('align-left');
+    const squareToggle = container.firstChild;
+    expect(squareToggle).toHaveStyleRule('text-align', 'center');
+    expect(squareToggle).toHaveStyleRule('align-items', 'center');
   });
 });
 
@@ -105,7 +88,7 @@ describe('getToggleContent()', () => {
       alt: 'test alt',
       title: 'test title',
     };
-    const { getByText, container } = render(<ToggleContentContainer pictureOptions={pictureOptions} label="test picture" />);
+    const { getByText, container } = render(<ToggleContentContainer id="test" pictureOptions={pictureOptions} label="test picture" />);
     expect(getByText('test picture')).toBeInTheDocument();
     const img = container.querySelector('img');
     expect(img).toHaveAttribute('src', '/test/test.jpg');
@@ -114,39 +97,39 @@ describe('getToggleContent()', () => {
   });
 
   it('returns icon content when icon provided', () => {
-    const { getByText, container } = render(<ToggleContentContainer icon="info" iconSize={4} label="test" />);
+    const { getByText, container } = render(<ToggleContentContainer id="test" icon="info" iconSize={4} label="test" />);
     expect(getByText('test')).toBeInTheDocument();
     expect(container.querySelector('.icon')).toBeInTheDocument();
   });
 
   it('returns (square) text content when no picture or icon provided', () => {
-    const { getByText, container } = render(<ToggleContentContainer type="square" label="test square" />);
+    const { getByText, container } = render(<ToggleContentContainer id="test" type="square" label="test square" />);
     expect(getByText('test square')).toBeInTheDocument();
-    expect(container.querySelector('.square-toggle')).toBeInTheDocument();
+    const squareToggle = container.querySelector('[type="square"]');
+    expect(squareToggle).toHaveStyleRule('text-align', 'center');
   });
 
   it('returns (rect) text content when no picture or icon provided', () => {
     const rectOptions = {
       align: 'left',
     };
-    const { getByText, container } = render(<ToggleContentContainer type="rectangle" rectOptions={rectOptions} label="test rectangle" />);
+    const { getByText, container } = render(<ToggleContentContainer id="test" type="rectangle" rectOptions={rectOptions} label="test rectangle" />);
     expect(getByText('test rectangle')).toBeInTheDocument();
-    const wrapper = container.querySelector('.rect-toggle');
-    expect(wrapper).toBeInTheDocument();
-    expect(wrapper).toHaveClass('align-left');
+    const squareToggle = container.querySelector('[type="rectangle"]');
+    expect(squareToggle).toHaveStyleRule('justify-content', 'left');
   });
 });
 
 describe('Toggle', () => {
   it('renders with props', () => {
-    const { container } = render(<Toggle label="test label" id="test-id" />);
+    const { container } = render(<Toggle label="test label" id="test-id" value="test" />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('calls handleChange on handleChange when provided', () => {
     const handleChangeCb = jest.fn();
     const { container } = render(<Toggle label="test label" id="test-id" value="test" onToggle={handleChangeCb} />);
-    const element = container.querySelector('.toggle');
+    const element = container.firstChild;
     fireEvent.click(element);
     expect(handleChangeCb).toHaveBeenCalled();
     expect(handleChangeCb.mock.calls[0][0]).toEqual('test');

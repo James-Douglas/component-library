@@ -9,6 +9,7 @@ import TableBody from '../../components/Table/TableBody/TableBody.component';
 import Column from '../../components/Grid/Column/Column.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Container from '../../components/Grid/Container/Container.component';
+import FluidContainer from '../../components/Grid/Container/Fluid.component';
 import Separator from '../../components/Separator/Separator.component';
 
 <Meta title="Components|Table" component={Table} />
@@ -19,28 +20,36 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
 
 <Preview>
   <Story name="table">
-    <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
-      <TableHead>
-        <TableRow>
-          TableHeader
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell align="left" component="th" padding="none">Fees</TableCell>
-          <TableCell align="left">$39/year</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell align="left" component="th" padding="none">Rate</TableCell>
-          <TableCell align="left">3.78%</TableCell>
-        </TableRow>
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          TableFooter
-        </TableRow>
-      </TableFooter>
-    </Table>
+    <FluidContainer>
+      <Row>
+        <Column>
+          <div style={{fontSize: '1.6rem'}}>
+            <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
+              <TableHead>
+                <TableRow>
+                  <TableCell colspan={2}>TableHeader</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell align="left" component="th">Fees</TableCell>
+                  <TableCell align="left">$39/year</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="left" component="th">Rate</TableCell>
+                  <TableCell align="left">3.78%</TableCell>
+                </TableRow>
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                 <TableCell colspan={2}>TableFooter</TableCell>
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </div>
+       </Column>
+      </Row>
+    </FluidContainer>
   </Story>
 </Preview>
 
@@ -68,107 +77,57 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
 
 <Props of={TableFooter} />
 
-<Story name="table demo">
+<Story name="table demo" parameters={{ docs: { disable: true } }}>
   {() => {
-    const tablesList = [
-      { title: 'Interest rate', value: '12.1%' },
-      { title: 'Comparison rate', value: '7.54%' },
-      { title: 'Min deposit', value: '$5,000' },
-      { title: 'Max deposit', value: '$50,000' },
+    const tablesList1 = [
+      { title: 'Interest rate 1', value: '12.1%' },
+      { title: 'Comparison rate 1', value: '7.54%' },
+      { title: 'Min deposit 1', value: '$5,000' },
+      { title: 'Max deposit 1', value: '$50,000' },
       {
-        title: 'Interest paid',
+        title: 'Interest paid 1',
         value: 'Weekly, fortnightly',
       }];
     const tablesList2 = [
-      { title: 'Interest rate2', value: '12.1%' },
-      { title: 'Comparison rate2', value: '7.54%' },
-      { title: 'Min deposit2', value: '$5,000' },
-      { title: 'Max deposit2', value: '$50,000' },
+      { title: 'Interest rate 2', value: '12.1%' },
+      { title: 'Comparison rate 2', value: '7.54%' },
+      { title: 'Min deposit 2', value: '$5,000' },
+      { title: 'Max deposit 2', value: '$50,000' },
       {
-        title: 'Interest paid2',
+        title: 'Interest paid 2',
         value: 'Weekly, fortnightly',
       }];
     const tablesList3 = [
-      { title: 'Interest rate3', value: '12.1%' },
-      { title: 'Comparison rate3', value: '7.54%' },
-      { title: 'Min deposit3', value: '$5,000' },
-      { title: 'Max deposit3', value: '$50,000' },
+      { title: 'Interest rate 3', value: '12.1%' },
+      { title: 'Comparison rate 3', value: '7.54%' },
+      { title: 'Min deposit 3', value: '$5,000' },
+      { title: 'Max deposit 3', value: '$50,000' },
       {
-        title: 'Interest paid3',
+        title: 'Interest paid 3',
         value: 'Weekly, fortnightly',
       }];
     return (
-      <div className="mt-40 w-full manor-rich-text">
+      <div style={{fontSize: '1.6rem', width: '100%', marginTop: '1rem' }}>
         <Container>
           <Row className="row-view">
             <Column col="4" sm="12" md="4">
               <Container>
                 <Row className="row-view">
                   <Column col="11">
-                    <div className="manor-rich-text">
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
-                          <TableBody>
-                            {tablesList.map((item) => (
-                              <TableRow key={item.title}>
-                                <TableCell align="left" component="th" padding="none">
-                                  <Column className="col-view" col="7">
-                                    <Row>
-                                      <Column className="col-auto"><Row><strong>{item.title}</strong></Row></Column>
-                                    </Row>
-                                  </Column>
-                                </TableCell>
-                                <TableCell align="left">{item.value}</TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                      </div>
-                    </div>
+                    <p className="manor-subtitle2 mb-20">Description</p>
+                    <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
+                      <TableBody>
+                        {tablesList1.map((item) => (
+                          <TableRow key={item.title}>
+                            <TableCell align="left" component="th" padding="none">
+                              <strong>{item.title}</strong>
+                            </TableCell>
+                            <TableCell align="left">{item.value}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                    <Separator />
                   </Column>
                   <Column col="1" className="items-baseline"><Separator type="vertical" /></Column>
                 </Row>
@@ -178,66 +137,20 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
               <Container>
                 <Row className="row-view">
                   <Column col="11">
-                    <div className="manor-rich-text">
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
-                          <TableBody>
-                            {tablesList2.map((item) => (
-                              <TableRow key={item.title}>
-                                <TableCell align="left" component="th" padding="none">
-                                  <strong>{item.title}</strong>
-                                </TableCell>
-                                <TableCell align="left">{item.value}</TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                      </div>
-                    </div>
+                    <p className="manor-subtitle2 mb-20">Description</p>
+                    <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
+                      <TableBody>
+                        {tablesList2.map((item) => (
+                          <TableRow key={item.title}>
+                            <TableCell align="left" component="th" padding="none">
+                              <strong>{item.title}</strong>
+                            </TableCell>
+                            <TableCell align="left">{item.value}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                    <Separator />
                   </Column>
                   <Column col="1" className="items-baseline"><Separator type="vertical" /></Column>
                 </Row>
@@ -247,73 +160,26 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
               <Container>
                 <Row className="row-view">
                   <Column col="11">
-                    <div className="manor-rich-text">
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <p>Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee |
-                          Based on your risk profile you will receive a tailored rate between 6.45% and 18.56%. $299
-                          Application fee
-                        </p>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                        <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
-                          <TableBody>
-                            {tablesList3.map((item) => (
-                              <TableRow key={item.title}>
-                                <TableCell align="left" component="th" padding="none">
-                                  <strong>{item.title}</strong>
-                                  {item.tootlipTitle
-                                    ? (
-                                      <Tooltip title={item.tootlipTitle} body={item.tootlipBody ? item.tootlipBody : ''} />
-                                    )
-                                    : ''}
-                                </TableCell>
-                                <TableCell align="left">{item.value}</TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
-                        <Separator />
-                      </div>
-                      <div>
-                        <p className="manor-subtitle2 mb-20">Description</p>
-                      </div>
-                    </div>
+                    <p className="manor-subtitle2 mb-20">Description</p>
+                    <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
+                      <TableBody>
+                        {tablesList3.map((item) => (
+                          <TableRow key={item.title} hover>
+                            <TableCell align="left" component="th" padding="none">
+                              <strong>{item.title}</strong>
+                              {item.tootlipTitle
+                                ? (
+                                  <Tooltip title={item.tootlipTitle} body={item.tootlipBody ? item.tootlipBody : ''} />
+                                )
+                                : ''}
+                            </TableCell>
+                            <TableCell align="left">{item.value}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                    <Separator />
                   </Column>
-                  <Column col="1" />
                 </Row>
               </Container>
             </Column>

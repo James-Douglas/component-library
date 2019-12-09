@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import 'jest-styled-components';
 import Bar from '../Bar.component';
 
 describe('Bar', () => {
@@ -13,12 +14,7 @@ describe('Bar', () => {
   });
   it('should check scroll and add isSticky and stuck props', () => {
     const { container } = render(<Bar value="60" isSticky stuck />);
-    expect(container.firstChild).toHaveClass('stuck', 'sticky');
-  });
-  it('should check progress classes', () => {
-    const { container } = render(<Bar value={100} />);
-    const list = container.getElementsByTagName('progress')[0];
-    expect(list).toHaveClass('complete');
+    expect(container.firstChild).toHaveStyleRule('position', 'fixed');
   });
   it('should check progress value', () => {
     const { container } = render(<Bar value={100} />);
@@ -26,22 +22,19 @@ describe('Bar', () => {
     expect(list).toHaveAttribute('value', '100');
   });
   it('should check label styles', () => {
-    const { container } = render(<Bar value="60" backwards />);
-    const label = container.getElementsByClassName('label')[0];
-    expect(label).not.toHaveClass('forwards');
+    const { getByText } = render(<Bar value="60" />);
+    expect(getByText('60%')).toHaveStyleRule('right', '4.8rem');
   });
   it('should check styles', () => {
-    const { container } = render(<Bar value="60" />);
-    const label = container.querySelector('.label');
-    expect(label).toHaveStyle(`
-      margin-left: 60vw;
-      right: 4.8rem;
-    `);
+    const { getByText } = render(<Bar value="60" />);
+    expect(getByText('60%')).toHaveStyle(`
+     margin-left: 60vw;
+     right: 4.8rem;
+   `);
   });
   it('should check styles for value less than 10', () => {
-    const { container } = render(<Bar value="6" />);
-    const label = container.getElementsByClassName('label')[0];
-    expect(label).toHaveStyle(`
+    const { getByText } = render(<Bar value="6" />);
+    expect(getByText('6%')).toHaveStyle(`
       margin-left: 6vw;
       right: 3.5rem;
     `);

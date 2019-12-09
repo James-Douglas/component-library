@@ -45,5 +45,31 @@ For icons that have been developed in house, you will need to extract the paths 
 to `src/components/Icon/icons.js`.
 
 ### FontAwesome icons
-
 For FontAwesome icons simply import and export them within `src/components/Icon/icons.js` as per the other examples.
+
+## Whitelabeling
+Whitelabeling can be achieved via themes and Manor has been developed with this capability. 
+
+### Adding a theme
+
+Add the theme file in `src/themes` and the export to `src/themes/index`. It's recommended to copy the contents of the CTM
+theme file (remember to rename the object) and then override values where necessary.
+
+Update the `getTheme` function (`src/utils/getTheme.js`) - importing your new theme and checking `process.env.MANOR_THEME`
+for your theme name.
+
+Finally, so that the theme can be referenced within applications, add an entry for the new theme in the copy() section
+of the rollup config, as below:
+
+```
+copy({
+        targets: [
+          { src: 'src/themes/ctm.theme.js', dest: 'lib'},
+          { src: 'src/themes/choosi.theme.js', dest: 'lib'}
+        ]
+      }),
+```
+
+### Using a theme
+
+Simply set the `process.env.MANOR_THEME` to your theme name when running your app.

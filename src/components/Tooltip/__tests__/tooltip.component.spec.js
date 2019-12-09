@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import 'jest-styled-components';
 import Tooltip, { calculateTooltipWidth, getTippyPlacement, getContent } from '../Tooltip.component';
 
 describe('calculateTooltipWidth()', () => {
@@ -104,21 +105,21 @@ describe('Tooltip', () => {
 
   it('renders tooltip correctly', () => {
     const { container, getByText } = render(<Tooltip body="test tooltip content" />);
-    const tooltipTriggerElement = container.querySelector('.tooltip-icon');
+    const tooltipTriggerElement = container.querySelector('.icon');
     fireEvent.click(tooltipTriggerElement);
     expect(getByText('test tooltip content')).toBeInTheDocument();
   });
 
   it('renders with justify-end class when justifyEnd is true', () => {
     const { container } = render(<Tooltip body="test tooltip content" justifyEnd />);
-    expect(container.querySelector('.tooltip-wrapper')).toHaveClass('justify-end');
+    const tooltipWrapper = container.firstChild;
+    expect(tooltipWrapper).toHaveStyleRule('justify-content', 'flex-end');
   });
 
   it('dismisses tooltip on escape key', async () => {
     render(<Tooltip body="test tooltip content" />);
-    const tooltipTriggerElement = document.body.querySelector('.tooltip-icon');
+    const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
-
     const tooltipElement = document.body.querySelector('.tippy-popper');
     expect(tooltipElement).toBeInTheDocument();
 
@@ -127,9 +128,9 @@ describe('Tooltip', () => {
   });
 
   it('dismisses tooltip on click outside', () => {
-    const { container } = render(<Tooltip body="test tooltip content" />);
+    render(<Tooltip body="test tooltip content" />);
 
-    const tooltipTriggerElement = container.querySelector('.tooltip-icon');
+    const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
 
     const tooltipElement = document.body.querySelector('.tippy-popper');
@@ -140,9 +141,9 @@ describe('Tooltip', () => {
   });
 
   it('dismisses tooltip on blur', () => {
-    const { container } = render(<Tooltip body="test tooltip content" />);
+    render(<Tooltip body="test tooltip content" />);
 
-    const tooltipTriggerElement = container.querySelector('.tooltip-icon');
+    const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
 
     const tooltipElement = document.body.querySelector('.tippy-popper');
@@ -161,10 +162,10 @@ describe('Tooltip', () => {
 
     const { container } = render(<Tooltip body="test tooltip content" boundingElementSelector="#test-container" />);
 
-    const tooltipTriggerElement = container.querySelector('.tooltip-icon');
+    const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
 
-    const tooltipElement = document.body.querySelector('.tippy-popper');
+    const tooltipElement = container.querySelector('.tippy-popper');
     // eslint-disable-next-line no-underscore-dangle
     expect(tooltipElement._tippy.props.placement).toEqual('bottom-end');
   });

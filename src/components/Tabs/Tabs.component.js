@@ -1,8 +1,24 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider, css } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import TabButton from './TabButton.component';
 import TabsContext from './TabsContext';
-import styles from './styles';
+
+const StyledTabsContainer = styled.div`
+  width: 100%;
+  min-width: 18rem;
+  box-shadow: ${(props) => props.theme.boxShadow.sm};
+  ${(props) => props.bordered && css`
+    border: 1px solid ${props.theme.colors.greyLight};
+  `}
+`;
+
+const StyledTabButtonWrap = styled.div`
+  display: flex;
+  color: ${(props) => props.theme.colors.primaryAA};
+  background: ${(props) => props.theme.colors.white};
+`;
 
 export const renderChildren = (children) => {
   const tabButton = [];
@@ -14,11 +30,11 @@ export const renderChildren = (children) => {
 
   return (
     <>
-      <style jsx>{styles}</style>
-      <div className="tab-button-wrap">
-        {tabButton}
-      </div>
-
+      <ThemeProvider theme={getTheme()}>
+        <StyledTabButtonWrap className="tab-button-wrap">
+          {tabButton}
+        </StyledTabButtonWrap>
+      </ThemeProvider>
       {rest}
     </>
   );
@@ -31,16 +47,16 @@ const Tabs = ({
   const tabProviderValue = { activeTab, changeTab };
   const classNames = `
     tabs-container manor-rich-text
-    ${bordered ? 'tab-border' : ''}
     ${className || ''}
   `;
 
   return (
     <TabsContext.Provider value={tabProviderValue}>
-      <style jsx>{styles}</style>
-      <div className={classNames} style={{ minHeight: `${minHeight}` }}>
-        {renderChildren(children)}
-      </div>
+      <ThemeProvider theme={getTheme()}>
+        <StyledTabsContainer className={classNames} bordered style={{ minHeight: `${minHeight}` }}>
+          {renderChildren(children)}
+        </StyledTabsContainer>
+      </ThemeProvider>
     </TabsContext.Provider>
   );
 };

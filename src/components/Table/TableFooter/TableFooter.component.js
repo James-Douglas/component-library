@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import styles from '../Table/styles';
 
 const tablelvl2 = {
   variant: 'footer',
 };
+
+const StyledComponent = styled.div`
+  display: table-cell;
+  vertical-align: inherit;
+`;
 
 const TableFooter = ({
   component,
@@ -15,8 +21,14 @@ const TableFooter = ({
   const Component = component || 'tfoot';
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <style jsx>{styles}</style>
-      <Component className={`root-table-footer ${className}`}>{children}</Component>
+      <ThemeProvider theme={getTheme()}>
+        <StyledComponent
+          as={Component}
+          className={className}
+        >
+          {children || null}
+        </StyledComponent>
+      </ThemeProvider>
     </Tablelvl2Context.Provider>
   );
 };

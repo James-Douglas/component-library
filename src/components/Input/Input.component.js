@@ -1,48 +1,159 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider, css } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Icon from '../Icon/Icon.component';
 import UseFieldset from '../../hooks/useFieldset';
-import styles from './styles';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import usePrefill from '../../hooks/usePrefill';
+
+const StyledClearIcon = styled.button`
+  position: absolute;
+  top: 0.3rem;
+  right: 0.2rem;
+  width: 4rem;
+  height: 4rem;
+  transition: .2s ease-in-out all;
+  :hover {
+    color: ${(props) => props.theme.colors.blueLight}
+  }
+  color: ${(props) => {
+    let color;
+    if (props.isAutofill) {
+      color = `${props.theme.colors.greyDark}`;
+    } else {
+      color = `${props.theme.colors.greyLight}`;
+    }
+    return color;
+  }};
+`;
+
+const StyledAffix = styled.span`
+  font-weight: ${(props) => props.theme.fontWeight.bold};
+  font-size: ${(props) => props.theme.fontSize.base};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.4rem;
+  height: 4.4rem;
+  padding-right: ${(props) => (props.affixType === 'prefix' ? '0.5rem' : '')};
+  padding-left: ${(props) => (props.affixType === 'suffix' ? '0.5rem' : '')};
+
+  ${(props) => (!props.bordered && props.affixType) && css`
+    background: ${props.theme.colors.white};
+  `}
+  ${(props) => (props.isAutofill && !props.disabled) && css`
+    background: ${props.theme.colors.prechecked};
+  `}
+`;
+
+const StyledSupportingElements = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-top: 0.8rem;
+`;
+
+const StyledInputContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const StyledInputWrap = styled.div`
+  display: flex;
+  border: 1px solid transparent;
+  :hover:not(.disabled) {
+    border: 1px solid ${(props) => props.theme.colors.blueLight};
+  }
+  input::placeholder {
+    font-style: italic;
+    font-size: ${(props) => props.theme.fontSize.base};
+    color: ${(props) => props.theme.colors.grey};
+  }
+  [disabled] {
+    background ${(props) => props.theme.colors.white};
+  }
+
+  ${(props) => props.bordered && css`
+    border: 1px solid ${props.theme.colors.greyLight};
+  `}
+
+  ${(props) => (props.bordered && props.isAutofill && !props.disabled) && css`
+    border: 1px solid ${props.theme.colors.precheckedDarker};
+  `}
+
+  ${(props) => (props.validationMessage && props.validationMessage.length) && css`
+    border: 1px solid ${props.theme.colors.invalid};
+  `}
+
+  ${(props) => (props.disabled) && css`
+    opacity: 0.5;
+  `}
+`;
+
+const StyledInputClearWrap = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 4.4rem;
+`;
+
+const StyledInput = styled.input`
+  padding-left: 1.2rem;
+  padding-right: 3.6rem;
+  display: block;
+  width: 100%;
+  font-size: ${(props) => props.theme.fontSize.base};
+  border: 1px solid transparent;
+  height: 4.4rem;
+  :webkit-autofill,
+  -webkit-autofill:hover,
+  -webkit-autofill:focus {
+    -webkit-text-fill-color: ${(props) => props.theme.colors.black};
+  }
+  ::-ms-clear {
+    display: none;
+  }
+  :focus,
+  :active,
+  :hover {
+    outline: 0;
+  }
+
+  ${(props) => props.isAutofill && !props.disabled && css`
+    background: ${props.theme.colors.prechecked}
+  `}
+  `;
 
 export const renderClearIcon = (value, clearInput, isAutofill, label) => {
   if (value && value.length) {
     return (
-      <>
-        <style jsx>{styles}</style>
-        <button
-          type="button"
-          onClick={clearInput}
-          className={`
+      <StyledClearIcon
+        isAutofill={isAutofill}
+        type="button"
+        onClick={clearInput}
+        className={`
           input-clear-button
-          ${isAutofill ? 'darker' : 'lighter'}
         `}
-        >
-          <div className="sr-only">Clears the{label}{' '}field.</div>
-          <Icon name="closeCircle" size={1.6} />
-        </button>
-      </>
+      >
+        <div className="sr-only">Clears the{label}{' '}field.</div>
+        <Icon name="closeCircle" size={1.6} />
+      </StyledClearIcon>
     );
   }
   return null;
 };
 
 export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled) => {
-  const affixTypeClass = `${affixType === 'prefix' ? 'prefix' : 'suffix'}`;
-  const borderClass = `${!bordered && affixType ? `${affixType}-no-border` : ''}`;
-  const prefillClass = `${isAutofill && !disabled ? 'manor-prefilled' : ''}`;
-
   if (affixType && affixContent) {
     return (
-      <>
-        <style jsx>{styles}</style>
-        <span className={`${affixTypeClass} ${borderClass} ${prefillClass}
-        `}
-        >
-          {affixContent}
-        </span>
-      </>
+      <StyledAffix
+        affixType={affixType}
+        bordered={bordered}
+        isAutofill={isAutofill}
+        disabled={disabled}
+      >
+        {affixContent}
+      </StyledAffix>
     );
   }
   return null;
@@ -52,10 +163,9 @@ export const getSupportingElements = (required) => {
   if (required) return null;
 
   return (
-    <div className="supporting-elements">
-      <style jsx>{styles}</style>
-      <span className="manor-subscript">Optional</span>
-    </div>
+    <StyledSupportingElements className="supporting-elements">
+      <span className="subscript">Optional</span>
+    </StyledSupportingElements>
   );
 };
 
@@ -103,6 +213,7 @@ const Input = ({
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const inputWrapElement = useRef(null);
+  const theme = getTheme();
 
   const clearInput = () => {
     setIsDirty(true);
@@ -139,30 +250,27 @@ const Input = ({
   }, [prefillValue, value, valueMasking]);
 
   const onFocus = () => {
+    const { current } = inputWrapElement;
+
     if (handleFocus) {
       handleFocus();
     }
-    toggleFocus();
+    current.setAttribute('style', `border: 1px solid ${theme.colors.blueLight}`);
   };
 
   const onBlur = () => {
+    const { current } = inputWrapElement;
     if (handleBlur) {
       handleBlur();
     }
-    toggleFocus();
-  };
-
-  const toggleFocus = () => {
-    const { current } = inputWrapElement;
-    if (current) {
-      current.classList.toggle('input-wrap-focus');
+    if (bordered && isAutofill) {
+      current.setAttribute('style', `border: 1px solid ${theme.colors.precheckedDarker}`);
+    } else if (bordered) {
+      current.setAttribute('style', `border: 1px solid ${theme.colors.greyLight}`);
+    } else {
+      current.setAttribute('style', 'border: 1px solid transparent');
     }
   };
-
-  const prefillClass = `${isAutofill && !disabled ? 'manor-prefilled-border' : ''}`;
-  const borderClass = `${bordered ? 'input-border' : ''}`;
-  const invalidClass = `${validationMessage && validationMessage.length ? 'invalid' : ''}`;
-  const disabledClass = `${disabled ? 'disabled' : ''}`;
 
   return (
     <>
@@ -174,42 +282,53 @@ const Input = ({
         validationMessage={validationMessage}
         supportingElements={getSupportingElements(required)}
       >
-        <style jsx>{styles}</style>
-        <div className="input-container">
-          <div ref={inputWrapElement} className={`input-wrap ${prefillClass} ${borderClass} ${invalidClass} ${disabledClass}`}>
+        <ThemeProvider theme={theme}>
 
-            {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
+          <StyledInputContainer className="input-container">
+            <StyledInputWrap
+              ref={inputWrapElement}
+              isAutofill={isAutofill}
+              disabled={disabled}
+              bordered={bordered}
+              validationMessage={validationMessage}
+              className={`
+                input-wrap 
+              `}
+            >
 
-            <div className="input-clear-wrap">
-              <input
-                id={id}
-                name={id}
-                type={type}
-                placeholder={placeholder}
-                disabled={disabled}
-                value={internalValue}
-                onChange={handleOnChange}
-                autoComplete={autocomplete}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                maxLength={maxlength}
-                className={`
-                  input-default
-                  ${isAutofill && !disabled ? 'manor-prefilled' : ''}
-                `}
-              />
+              {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
 
-              {renderClearIcon(internalValue, clearInput, isAutofill, label)}
+              <StyledInputClearWrap className="input-clear-wrap">
+                <StyledInput
+                  id={id}
+                  name={id}
+                  type={type}
+                  placeholder={placeholder}
+                  disabled={disabled}
+                  value={internalValue}
+                  onChange={handleOnChange}
+                  autoComplete={autocomplete}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  maxLength={maxlength}
+                  isAutofill={isAutofill}
+                  className={`
+                    input-default
+                  `}
+                />
 
-            </div>
+                {renderClearIcon(internalValue, clearInput, isAutofill, label)}
 
-            {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
+              </StyledInputClearWrap>
 
-          </div>
+              {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
 
-          {dataList && <div>{dataList()}</div>}
+            </StyledInputWrap>
 
-        </div>
+            {dataList && <div>{dataList()}</div>}
+
+          </StyledInputContainer>
+        </ThemeProvider>
       </UseFieldset>
     </>
   );

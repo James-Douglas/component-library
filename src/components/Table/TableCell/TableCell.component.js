@@ -1,31 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import TableContext from '../Table/TableContext';
-import styles from '../Table/styles';
 
+const StyledComponent = styled.div`
+  display: table-cell;
+  text-align: ${(props) => props.align}; 
+  vertical-align: ${(props) => props.valign}; 
+  padding: ${(props) => {
+    const { padding } = props;
+    if (padding === 'checkbox' || padding === 'medium') {
+      return props.theme.spacing['8'];
+    }
+    if (props.padding === 'small') {
+      return props.theme.spacing['4'];
+    }
+    return 'none';
+  }
+};
+`;
 
 const TableCell = ({
   className,
   component,
   children,
   align,
+  valign,
   colspan,
   rowspan,
   padding,
 }) => {
   const table = React.useContext(TableContext);
   const tablelvl2 = React.useContext(Tablelvl2Context);
-  const alignClass = (align && align !== 'inherit') ? `text-${align}` : '';
-  const paddingFromTable = table.size && table.size === 'small' ? 'table-padding-small' : 'table-padding-medium';
-  let paddingCell;
-  if (padding === 'checkbox') {
-    paddingCell = 'padding-checkbox';
-  } else if (padding === 'none') {
-    paddingCell = 'padding-none';
-  } else {
-    paddingCell = null;
-  }
 
   let Component;
   if (component) {
@@ -38,8 +46,19 @@ const TableCell = ({
 
   return (
     <>
-      <style jsx>{styles}</style>
-      <Component className={`root-table-cell ${paddingCell} ${paddingFromTable} ${alignClass} ${className}`} colSpan={colspan} rowSpan={rowspan}>{children}</Component>
+      <ThemeProvider theme={getTheme()}>
+        <StyledComponent
+          as={Component}
+          padding={padding || table.size}
+          valign={valign}
+          align={align}
+          className={className}
+          colSpan={colspan}
+          rowSpan={rowspan}
+        >
+          {children || null}
+        </StyledComponent>
+      </ThemeProvider>
     </>
   );
 };
@@ -85,6 +104,10 @@ TableCell.propTypes = {
    * This attribute contains 'default', 'checkbox', 'none'
    */
   padding: PropTypes.oneOf(['checkbox', 'none']),
+  /**
+   * This attribute specifies the vertical alignment of the content in a cell.
+   */
+  valign: PropTypes.oneOf(['top', 'middle', 'bottom', 'baseline']),
 };
 TableCell.defaultProps = {
   children: '',
@@ -94,6 +117,7 @@ TableCell.defaultProps = {
   className: null,
   component: '',
   padding: null,
+  valign: 'top',
 };
 
 export default TableCell;

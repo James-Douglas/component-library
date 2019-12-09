@@ -1,23 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import useIsDesktop from 'hooks/useIsDesktop';
-import styles from './styles';
 import Icon from '../../Icon/Icon.component';
 
+const StyledContact = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${(props) => props.theme.colors.greyDarkest};
+  transition: all 200ms ease;
+  font-size: ${(props) => {
+    const { size, isDesktop } = props;
+    let fontSize;
+    if (size === 'small' && !isDesktop) {
+      fontSize = props.theme.fontSize.sm;
+    } else if (size === 'large' && !isDesktop) {
+      fontSize = props.theme.fontSize.lg;
+    } else if (size === 'small') {
+      fontSize = props.theme.fontSize.base;
+    } else {
+      fontSize = props.theme.fontSize.xl;
+    }
+    return fontSize;
+  }};
+  
+  &:hover {
+   color: ${(props) => props.theme.colors.link};
+   fill: #164AD9;
+  }
+`;
+
+const StylesdIframe = styled.iframe`
+  position: absolute;
+  visibility: hidden;
+`;
+
+const StyledIconWrap = styled.span`
+  display: flex;
+  margin-left: ${(props) => props.theme.spacing[4]};
+  margin-right: ${(props) => props.theme.spacing[4]};
+`;
 
 const Contact = ({ number, size }) => {
   const isDesktop = useIsDesktop();
   const mobileLabel = isDesktop ? number : 'Need help?';
-  const mobileClassName = !isDesktop ? 'mobile' : '';
   return (
-    <div>
-      <style jsx>{styles}</style>
-      <a className={`contact ${size} ${mobileClassName}`} href={`tel:${number}`} target="link-target">
-        <span className="mx-4"><Icon name="contact" size={2} /></span>
+    <ThemeProvider theme={getTheme()}>
+      <StyledContact isDesktop={isDesktop} size={size} href={`tel:${number}`} target="link-target">
+        <StyledIconWrap><Icon name="contact" size={2} /></StyledIconWrap>
         { mobileLabel }
-      </a>
-      <iframe title="link iframe" name="link-target" className="link-iframe" />
-    </div>
+      </StyledContact>
+      <StylesdIframe title="link iframe" name="link-target" />
+    </ThemeProvider>
   );
 };
 

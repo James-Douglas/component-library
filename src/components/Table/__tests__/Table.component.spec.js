@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Table from '../Table/Table.component';
+import 'jest-styled-components';
 import TableBody from '../TableBody/TableBody.component';
 import TableRow from '../TableRow/TableRow.component';
 import TableHead from '../TableHead/TableHead.component';
@@ -12,7 +13,7 @@ describe('Table', () => {
     const { container } = render(<Table />);
     const table = container.getElementsByTagName('table')[0];
     expect(table).toBeInTheDocument();
-    expect(table).toHaveClass('root-table');
+    expect(table).toHaveStyleRule('display', 'table');
   });
   it('renders correctly Table tbody', () => {
     const { container } = render(
@@ -35,10 +36,10 @@ describe('Table', () => {
     );
     const row = container.getElementsByTagName('tr')[0];
     const cell = container.getElementsByTagName('td')[0];
-    expect(cell).toHaveClass('text-left');
+    expect(cell).toHaveStyleRule('text-align', 'left');
     expect(row).toBeInTheDocument();
     expect(cell).toBeInTheDocument();
-    expect(cell).toHaveClass('padding-none');
+    expect(cell).toHaveStyleRule('padding', 'none');
   });
   it('renders correctly Table thead and th', () => {
     const { container } = render(
@@ -54,7 +55,7 @@ describe('Table', () => {
     const tableth = container.getElementsByTagName('th')[0];
     expect(tablehead).toBeInTheDocument();
     expect(tableth).toBeInTheDocument();
-    expect(tableth).toHaveClass('padding-checkbox');
+    expect(tableth).toHaveStyleRule('padding', '0.8rem');
   });
   it('renders correctly Table tfoot', () => {
     const { container } = render(
@@ -93,7 +94,7 @@ describe('Table', () => {
     );
     const tableth = container.getElementsByTagName('th')[0];
     expect(tableth).toBeInTheDocument();
-    expect(tableth).toHaveClass('table-padding-medium');
+    expect(tableth).toHaveStyleRule('padding', '0.8rem');
   });
   it('renders correctly with another structure html', () => {
     const { container } = render(
@@ -109,6 +110,43 @@ describe('Table', () => {
     expect(gettabledt).toBeInTheDocument();
     expect(tabledt.length).toBe(2);
   });
+  it('renders correctly with div instead of table', () => {
+    const { container } = render(
+      <Table component="div" />,
+    );
+    const div = container.getElementsByTagName('div')[0];
+    const divElement = container.getElementsByTagName('div');
+    expect(div).toBeInTheDocument();
+    expect(divElement.length).toBe(1);
+  });
+  it('renders correctly with div instead of table and thead', () => {
+    const { container } = render(
+      <Table component="div">
+        <TableHead component="div" />
+      </Table>,
+    );
+    const div = container.getElementsByTagName('div')[0];
+    const divElement = container.getElementsByTagName('div');
+    expect(div).toBeInTheDocument();
+    expect(divElement.length).toBe(2);
+  });
+  it('renders correctly with component tags', () => {
+    const { container } = render(
+      <Table component="table">
+        <TableHead component="thead">
+          <TableRow hover>
+            <TableCell component="th">Heading</TableCell>
+          </TableRow>
+        </TableHead>
+      </Table>,
+    );
+    const table = container.getElementsByTagName('table')[0];
+    const thead = container.getElementsByTagName('thead')[0];
+    expect(table).toBeInTheDocument();
+    expect(thead).toBeInTheDocument();
+  });
+
+
   it('renders correctly Table tr with hover', () => {
     const { container } = render(
       <Table size="small">
@@ -121,10 +159,9 @@ describe('Table', () => {
     );
     const row = container.getElementsByTagName('tr')[0];
     const tableth = container.getElementsByTagName('th')[0];
-    expect(row).toHaveClass('root-table-row-hover');
-    expect(row).toHaveClass('root-table-row');
+    expect(row).toHaveStyleRule('display', 'table-row');
     expect(row).toBeInTheDocument();
-    expect(tableth).toHaveClass('table-padding-small');
+    expect(tableth).toHaveStyleRule('padding', '0.4rem');
   });
 
   it('renders correctly with diffirent structure html', () => {
@@ -167,7 +204,7 @@ describe('Table', () => {
     );
     const tablehead = container.getElementsByTagName('thead')[0];
     expect(tablehead).toBeInTheDocument();
-    expect(tablehead).toHaveClass('root-table-head');
+    expect(tablehead).toHaveStyleRule('display', 'table-row-group');
     expect(getByText('White cold drink')).toBeInTheDocument();
   });
 });

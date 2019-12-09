@@ -1,37 +1,511 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Column adds "col" class by default if no props are supplied 1`] = `
+exports[`Column adds default styles to col if no props are passed 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  -ms-flex-preferred-size: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
 <div>
-  <style />
   <div
-    class="col "
+    class="c0 
+        
+      "
   />
 </div>
 `;
 
 exports[`Column allows additional classes to be passed through 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  -ms-flex-preferred-size: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
 <div>
-  <style />
   <div
-    class="col test-class"
+    class="c0 
+        test-class
+      "
   />
 </div>
 `;
 
-exports[`Column breakpoint column classes get applied as intended 1`] = `
+exports[`Column defines an offset when supplied 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  margin-left: 8.333333333333334%;
+  -ms-flex-preferred-size: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
 <div>
-  <style />
   <div
-    class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1 offset-1 "
+    class="c0 
+        
+      "
   />
+</div>
+`;
+
+exports[`Column defines col size when supplied 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  -webkit-flex: 41.66666666666667%;
+  -ms-flex: 41.66666666666667%;
+  flex: 41.66666666666667%;
+  max-width: 41.66666666666667%;
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
+  />
+</div>
+`;
+
+exports[`Column renders children 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  -ms-flex-preferred-size: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
+  >
+    <div
+      class="child-content"
+    >
+      test
+    </div>
+  </div>
 </div>
 `;
 
 exports[`Column renders correctly without props 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  -ms-flex-preferred-size: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
 <div>
-  <style />
   <div
-    class="col "
+    class="c0 
+        
+      "
+  />
+</div>
+`;
+
+exports[`Column resizes offsets on breakpoint 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  -ms-flex-preferred-size: 0;
+  -webkit-flex-basis: 0%;
+  -ms-flex-preferred-size: 0%;
+  flex-basis: 0%;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    margin-left: 66.66666666666667%;
+  }
+}
+
+@media (min-width:992px) {
+  .c0 {
+    margin-left: 58.333333333333336%;
+  }
+}
+
+@media (min-width:1200px) {
+  .c0 {
+    margin-left: 50%;
+  }
+}
+
+@media (min-width:1900px) {
+  .c0 {
+    margin-left: 41.66666666666667%;
+  }
+}
+
+@media (min-width:2560px) {
+  .c0 {
+    margin-left: 33.333333333333336%;
+  }
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
+  />
+</div>
+`;
+
+exports[`Column resizes on breakpoint 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    -webkit-flex: 66.66666666666667%;
+    -ms-flex: 66.66666666666667%;
+    flex: 66.66666666666667%;
+    max-width: 66.66666666666667%;
+  }
+}
+
+@media (min-width:992px) {
+  .c0 {
+    -webkit-flex: 58.333333333333336%;
+    -ms-flex: 58.333333333333336%;
+    flex: 58.333333333333336%;
+    max-width: 58.333333333333336%;
+  }
+}
+
+@media (min-width:1200px) {
+  .c0 {
+    -webkit-flex: 50%;
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width:1900px) {
+  .c0 {
+    -webkit-flex: 41.66666666666667%;
+    -ms-flex: 41.66666666666667%;
+    flex: 41.66666666666667%;
+    max-width: 41.66666666666667%;
+  }
+}
+
+@media (min-width:2560px) {
+  .c0 {
+    -webkit-flex: 33.333333333333336%;
+    -ms-flex: 33.333333333333336%;
+    flex: 33.333333333333336%;
+    max-width: 33.333333333333336%;
+  }
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
+  />
+</div>
+`;
+
+exports[`Column stacks at breakpoint lg 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media (min-width:1200px) {
+  .c0 {
+    -webkit-flex-basis: 0%;
+    -ms-flex-preferred-size: 0%;
+    flex-basis: 0%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
+  />
+</div>
+`;
+
+exports[`Column stacks at breakpoint md 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media (min-width:992px) {
+  .c0 {
+    -webkit-flex-basis: 0%;
+    -ms-flex-preferred-size: 0%;
+    flex-basis: 0%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
+  />
+</div>
+`;
+
+exports[`Column stacks at breakpoint sm 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    -webkit-flex-basis: 0%;
+    -ms-flex-preferred-size: 0%;
+    flex-basis: 0%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
+  />
+</div>
+`;
+
+exports[`Column stacks at breakpoint xl 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media (min-width:1900px) {
+  .c0 {
+    -webkit-flex-basis: 0%;
+    -ms-flex-preferred-size: 0%;
+    flex-basis: 0%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
+  />
+</div>
+`;
+
+exports[`Column stacks at breakpoint xxl 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+@media (min-width:2560px) {
+  .c0 {
+    -webkit-flex-basis: 0%;
+    -ms-flex-preferred-size: 0%;
+    flex-basis: 0%;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
+<div>
+  <div
+    class="c0 
+        
+      "
   />
 </div>
 `;

@@ -2,6 +2,9 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
 import Combo from '../../components/Combo/Combo.component.js';
 import fakeApiData from './jsonPlaceholder';
+import FluidContainer from '../../components/Grid/Container/Fluid.component';
+import Row from '../../components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
 
 <Meta title="Components|Combo" component={Combo} />
 
@@ -14,20 +17,23 @@ Combo is an extension of the Input component.
   {() => {
     const apiData = fakeApiData.map((obj) => obj.title);
     return (
-      <Card>
-        <Combo
-          label="Example Combo label"
-          apiData={apiData}
-          id="combo-id-first"
-          value="ser"
-          linkHref="https://www.comparethemarket.com.au/"
-          linkText="Can’t find your address?"
-          required={false}
-          renderLimit={3}
-          tooltip={{ title: 'Combo component' }}
-          disableFieldset
-        />
-      </Card>
+       <FluidContainer>
+           <Row>
+             <Column>
+                <Combo
+                  label="Example Combo label"
+                  apiData={apiData}
+                  id="combo-id-first"
+                  value="ser"
+                  linkHref="https://www.comparethemarket.com.au/"
+                  linkText="Can’t find your address?"
+                  required={false}
+                  renderLimit={3}
+                  tooltip={{ title: 'Combo component' }}
+                />
+            </Column>
+          </Row>
+       </FluidContainer>
     );
   }}
   </Story>
@@ -54,29 +60,32 @@ Combo is an extension of the Input component.
     const linkHref = text('linkHref', 'https://www.comparethemarket.com.au/');
     const linkText = text('linkText', 'Can’t find your address?')
     return (
-      <Card>
-        <Combo
-          id={id}
-          label={label}
-          value={value}
-          placeholder={placeholder}
-          required={required}
-          disabled={disabled}
-          bordered={bordered}
-          validationMessage={validationMessage}
-          prefillValue={prefillValue}
-          autoComplete={autoComplete}
-          prefixContent={prefixContent}
-          suffixContent={suffixContent}
-          characterMinimum={characterMinimum}
-          renderLimit={renderLimit}
-          apiData={apiData}
-          linkHref={linkHref}
-          linkText={linkText}
-          tooltip={tooltip}
-          disableFieldset
-        />
-      </Card>
+      <FluidContainer>
+        <Row>
+          <Column>
+            <Combo
+              id={id}
+              label={label}
+              value={value}
+              placeholder={placeholder}
+              required={required}
+              disabled={disabled}
+              bordered={bordered}
+              validationMessage={validationMessage}
+              prefillValue={prefillValue}
+              autoComplete={autoComplete}
+              prefixContent={prefixContent}
+              suffixContent={suffixContent}
+              characterMinimum={characterMinimum}
+              renderLimit={renderLimit}
+              apiData={apiData}
+              linkHref={linkHref}
+              linkText={linkText}
+              tooltip={tooltip}
+            />
+          </Column>
+        </Row>
+      </FluidContainer>
     );
   }}
 </Story>

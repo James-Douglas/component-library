@@ -1,6 +1,11 @@
-import { addParameters } from '@storybook/react';
+import { addParameters, addDecorator } from '@storybook/react';
 import { create } from '@storybook/theming';
-import '../src/index.css';
+import GlobalDecorator from "./themeDecorator";
+import { withA11y } from '@storybook/addon-a11y';
+import '../src/stories';
+
+addDecorator(GlobalDecorator);
+addDecorator(withA11y);
 
 addParameters({
   options: {
@@ -11,8 +16,8 @@ addParameters({
     isFullscreen: false,
     panelPosition: 'right',
     showPanel: true,
-    storySort: (a, b) => a[1].id.localeCompare(b[1].id)
+    storySort: function(a, b) { a[1].id.localeCompare(b[1].id)}
   }
 });
 
-import '../src/stories';
+

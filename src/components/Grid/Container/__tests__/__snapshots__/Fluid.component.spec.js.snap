@@ -1,28 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Container allows additional classes to be passed through 1`] = `
+.c0 {
+  width: 100%;
+  margin: auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
 <div>
-  <style />
   <div
-    class="container test-class"
+    class="c0 container test-class"
   />
 </div>
 `;
 
 exports[`Container has a container class by default and NO fixed class 1`] = `
+.c0 {
+  width: 100%;
+  margin: auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
 <div>
-  <style />
   <div
-    class="container "
+    class="c0 container "
   />
 </div>
 `;
 
-exports[`Container renders correctly without props 1`] = `
+exports[`Container renders children 1`] = `
+.c0 {
+  width: 100%;
+  margin: auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
 <div>
-  <style />
   <div
-    class="container "
+    class="c0 container "
+  >
+    <div
+      class="child-content"
+    >
+      test
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Container renders correctly without props 1`] = `
+.c0 {
+  width: 100%;
+  margin: auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+<div>
+  <div
+    class="c0 container "
   />
 </div>
 `;

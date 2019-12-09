@@ -1,14 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Fieldset renders without props 1`] = `
-"<div class=\\"fieldset\\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"row \\" jsx=\\"true\\"><style jsx=\\"true\\"></style><div class=\\"label\\"><style></style><div class=\\"col-12 \\"><label class=\\"manor-body1 manor-spacing-label-to-field w-full\\"></label></div></div><style jsx=\\"true\\">.row {
-        @apply flex flex-wrap -mx-16;
-      }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"></div><style jsx=\\"true\\">.row {
-        @apply flex flex-wrap -mx-16;
-      }
-      </style></div><div class=\\"row \\" jsx=\\"true\\"><style></style><div class=\\"col-sm-10 \\"><div class=\\"relative w-full h-16 mb-8\\"><span class=\\"absolute w-full justify-start\\"></span></div></div><style jsx=\\"true\\">.row {
-        @apply flex flex-wrap -mx-16;
-      }
-      </style></div></div>"
+"<div class=\\"fieldset\\"><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-EHOje ieBshd label\\"><div class=\\"sc-bwzfXH foJowY 
+        
+      \\"><label class=\\"sc-bZQynM hFJVkI\\"></label></div></div></div><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-bwzfXH fuOwOZ 
+        
+      \\"></div></div><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-bwzfXH fuOwOZ 
+        
+      \\"><div class=\\"sc-iwsKbI kKTqkq\\"><div class=\\"sc-gZMcBi kjbvYA\\"></div></div></div></div></div>"
 `;

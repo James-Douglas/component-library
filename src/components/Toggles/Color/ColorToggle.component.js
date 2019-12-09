@@ -1,26 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
-
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 
-const styles = css`
- .colour-toggle {
-    @apply w-128 h-128 flex justify-around flex-col items-center;
+const StyledColourToggle = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  width: ${(props) => props.theme.spacing['128']}; 
+  height: ${(props) => props.theme.spacing['128']};
+  &:hover i {
+    pointer-events: none;
+    height: 100%;
   }
-  .border-colour {
-    @apply absolute z-10 bottom-0 left-0 h-12 w-full;
-    transition: all 0.3s ease;
-  }
-  .colour-toggle:hover .border-colour {
-    @apply pointer-events-none h-full;
-  }
-  .content {
-    @apply z-20;
-  }
-  .scoped-toggle.white :global(input:checked + label) {
-    @apply text-white;
+`;
+
+const StyledBorderColour = styled.i`
+  font-style: normal;
+  position: absolute;
+  z-index: ${(props) => (props.theme.zIndex['10'])}; 
+  bottom: 0;
+  left: 0;
+  height: ${(props) => (props.theme.spacing['12'])}; 
+  width: 100%;
+  transition: all 0.3s ease;
+`;
+
+const StyledContent = styled.span`
+  z-index: ${(props) => (props.theme.zIndex['20'])}; 
+`;
+
+const GlobalStyle = createGlobalStyle`
+  .scoped-toggle.white input:checked + label {
+    color: white; 
   }
 `;
 
@@ -61,26 +76,28 @@ const ColorToggle = ({
   const displayLabel = getDisplayLabel(label, backgroundColor);
 
   return (
-    <div className={`scoped-toggle ${fontColor}`}>
-      <style jsx>{styles}</style>
-      <BaseToggle
-        id={id}
-        type="custom"
-        value={value}
-        name={name}
-        selectedValue={selectedValue}
-        invalid={invalid}
-        disabled={disabled}
-        onToggle={handleToggle}
-      >
-        <ToggleLabel id={id}>
-          <span className="colour-toggle">
-            <span className="content">{displayLabel}</span>
-            <span className="border-colour" style={animationStyle} />
-          </span>
-        </ToggleLabel>
-      </BaseToggle>
-    </div>
+    <ThemeProvider theme={getTheme()}>
+      <GlobalStyle />
+      <div className={`scoped-toggle ${fontColor}`}>
+        <BaseToggle
+          id={id}
+          type="custom"
+          value={value}
+          name={name}
+          selectedValue={selectedValue}
+          invalid={invalid}
+          disabled={disabled}
+          onToggle={handleToggle}
+        >
+          <ToggleLabel id={id}>
+            <StyledColourToggle>
+              <StyledContent>{displayLabel}</StyledContent>
+              <StyledBorderColour style={animationStyle} />
+            </StyledColourToggle>
+          </ToggleLabel>
+        </BaseToggle>
+      </div>
+    </ThemeProvider>
   );
 };
 

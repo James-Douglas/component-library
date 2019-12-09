@@ -4,15 +4,10 @@ import Overlay from 'components/Overlay/Overlay.component';
 import Button from 'components/Button/Button.component';
 import Checkbox from 'components/Checkbox/Checkbox.component';
 import Input from 'components/Input/Input.component';
-import css from 'styled-jsx/css';
-import Row from '../../components/Grid/Row/Row.component';
-import Column from '../../components/Grid/Column/Column.component';
-
-const styles = css`
-  .view-style {
-    @apply h-screen w-screen mt-64;
-  }
-`;
+import Table from '../../components/Table/Table/Table.component';
+import TableBody from '../../components/Table/TableBody/TableBody.component';
+import TableRow from '../../components/Table/TableRow/TableRow.component';
+import TableCell from '../../components/Table/TableCell/TableCell.component';
 
 const ModalView = () => {
   const [m1Visible, setM1Visible] = useState(false);
@@ -35,33 +30,30 @@ const ModalView = () => {
 
   return (
     <>
-      <style jsx>{styles}</style>
-
       {(m1Visible || m2Visible) && <Overlay opacityLevel={0.3} onClose={closeModals} />}
-      <Button id="demo-1-btn" type="secondary" handleClick={m1Open} content="Modal one" />
-      <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="md">
+      <Button id="demo-1-btn" variant="secondary" handleClick={m1Open} content="Modal one" />
+      <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="lg">
         <h2>Email Results</h2>
         &nbsp;
         <p>Access these search results later from any device</p>
         &nbsp;
         <Input id="modal-input" label="Email address" placeholder="Enter your email address" handleChange={() => {}} />
-
-        <Row>
-          <Column col="1">
-            <Checkbox id="chk1" />
-          </Column>
-          <Column>
-            <div className="content">
-              <p>I would like to receive emails about great deals on Compare the Market in the future. If you change your mind, you can unsubscribe at any time.</p>
-            </div>
-          </Column>
-
-        </Row>
         &nbsp;
-        <Button id="modal-email" type="primary" content="Send Email" size="lg" />
+
+
+        <Table ariaLabel="Receive emails" size="small" ariaDescribedby="IDREF">
+          <TableBody>
+            <TableRow>
+              <TableCell align="left" valign="baseline" padding="none"><Checkbox id="chk1" /></TableCell>
+              <TableCell align="left" valign="middle"><p>I would like to receive emails about great deals on Compare the Market in the future. If you change your mind, you can unsubscribe at any time.</p></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+        &nbsp;
+        <Button id="modal-email" variant="primary" content="Send Email" size="lg" />
       </Modal>
 
-      <Button id="demo-2-btn" type="secondary" handleClick={m2Open} content="Modal two" />
+      <Button id="demo-2-btn" variant="secondary" handleClick={m2Open} content="Modal two" />
 
       <Modal id="demo-2" visible={m2Visible} handleClose={closeModals} size="sm">
         <h2>Another modal</h2>

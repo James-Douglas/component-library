@@ -1,18 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
+
+
+const StyledCallout = styled.div`
+  font-size:  ${(props) => props.theme.fontSize.base};
+  font-weight: ${(props) => props.theme.fontWeight.normal};
+  line-height: ${(props) => props.theme.lineHeight.tight};
+  border-left: ${(props) => `4px solid ${props.theme.colors.blueDark}`};
+  padding: ${(props) => `${props.theme.spacing['12']} ${props.theme.spacing['20']}`};
+  background: ${(props) => (props.bgColorGrey ? props.theme.colors.greyLighter : props.theme.colors.white)}; 
+`;
 
 const Callout = ({
   children,
   bgColorGrey,
 }) => (
-  <div className={`callout ${bgColorGrey ? 'bg-grey' : ''}`}>
-    <style jsx>{styles}</style>
-    {children}
-  </div>
+  <ThemeProvider theme={getTheme()}>
+    <StyledCallout bgColorGrey={bgColorGrey}>
+      {children}
+    </StyledCallout>
+  </ThemeProvider>
 );
-
 Callout.propTypes = {
+  /**
+   * Band background color
+   */
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,

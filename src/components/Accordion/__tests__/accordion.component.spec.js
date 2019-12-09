@@ -1,5 +1,6 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
+import 'jest-styled-components';
 import AccordionPanel from '../AccordionPanel.component';
 import Accordion from '../Accordion.component';
 
@@ -59,12 +60,14 @@ describe('Accordion', () => {
         </AccordionPanel>
       </Accordion>,
     );
-    const accordionMain = container.querySelector('.accordion');
-    const accordionHead = container.querySelector('.accordion-head');
-    expect(accordionMain).not.toHaveClass('hide');
+    const accordion = container.querySelector('[role="tablist"]');
+    const accordionHead = container.querySelector('[role="tab"]');
+    expect(accordion).toHaveStyleRule('border-bottom', '2px solid #999999');
     fireEvent.click(accordionHead);
-    jest.runAllTimers();
-    expect(accordionMain).toHaveClass('hide');
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(accordion).toHaveStyleRule('border-bottom', '1px solid rgba(0,0,0,.1)');
   });
   it(' accordion after click opposite', () => {
     jest.useFakeTimers();
@@ -83,11 +86,13 @@ describe('Accordion', () => {
         </AccordionPanel>
       </Accordion>,
     );
-    const accordionMain = container.querySelector('.accordion');
-    const accordionHead = container.querySelector('.accordion-head');
-    expect(accordionMain).toHaveClass('hide');
+    const accordion = container.querySelector('[role="tablist"]');
+    const accordionHead = container.querySelector('[role="tab"]');
+    expect(accordion).toHaveStyleRule('border-bottom', '1px solid rgba(0,0,0,.1)');
     fireEvent.click(accordionHead);
-    jest.runAllTimers();
-    expect(accordionMain).not.toHaveClass('hide');
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(accordion).toHaveStyleRule('border-bottom', '2px solid #999999');
   });
 });

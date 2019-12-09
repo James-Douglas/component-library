@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import styled, { createGlobalStyle, css, ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import PropTypes from 'prop-types';
 import Tippy from '@tippy.js/react';
 import { animateFill } from 'tippy.js';
@@ -11,7 +13,57 @@ import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
 import Icon from '../Icon/Icon.component';
 import throttle from '../../utils/throttle';
-import styles from './styles';
+
+const StyledTooltipWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  justify-content: ${(props) => (props.desktop ? 'center' : 'flex-end')}; 
+  ${(props) => props.justifyEnd && css`
+    justify-content: flex-end;
+  `}
+`;
+
+const StyledTooltipIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:  ${(props) => props.theme.colors.grey}; 
+  fill: currentColor;
+   ${(props) => props.pinned && css`
+    fill: currentColor;
+    color: rgba(51, 51, 51, 0.97) !important;
+  `}
+  ${(props) => props.tippyVisible && !props.pinned && css`
+    color:  ${props.theme.colors.blueLight}; 
+  `}
+`;
+
+const GlobalStyle = createGlobalStyle`
+  .manor-tooltip-content {
+    text-align: left;
+    padding: 2rem;
+  }
+  .tippy-tooltip.manor-theme[data-animatefill] {
+    background-color: rgba(51, 51, 51, 0.97) !important;
+    box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.1);
+  }
+  @media screen and (min-width: 769px) {
+    .tippy-tooltip.manor-theme {
+      max-width: 28rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    :global(.tippy-popper) {
+      right: 0;
+      left: 0;
+    }
+    :global(.tippy-tooltip) {
+      max-width: none !important;
+    }
+  }
+`;
 
 /**
  * Calculates the width of the tooltip when there is a boundingElement & we're in a "small"
@@ -68,14 +120,18 @@ export function getTippyPlacement(desktop, containerWidth) {
 export function getContent(title, body) {
   return (
     <div className="manor-tooltip-content">
-      {title ? <div className="manor-subtitle2">{title}</div> : ''}
-      {body ? <div className="manor-body2">{body}</div> : ''}
+      {title ? <p className="subtitle-2">{title}</p> : ''}
+      {body ? <p>{body}</p> : ''}
     </div>
   );
 }
 
 const Tooltip = ({
-  title, body, boundingElementSelector, screenReaderLabel, justifyEnd,
+  title,
+  body,
+  boundingElementSelector,
+  screenReaderLabel,
+  justifyEnd,
 }) => {
   const [pinned, setPinned] = useState(false);
   const desktop = useIsDesktop(false);
@@ -152,55 +208,52 @@ const Tooltip = ({
     }
   };
 
-  let wrapperClass;
-  if (justifyEnd) {
-    wrapperClass = 'justify-end';
-  } else {
-    wrapperClass = desktop ? 'justify-center' : 'justify-end';
-  }
+
   return (
-    <div className={`tooltip-wrapper ${wrapperClass}`}>
-      <style jsx>{styles}</style>
-      <Tippy
-        content={getContent(title, body)}
-        theme="manor"
-        interactive
-        animateFill
-        plugins={[animateFill]}
-        arrow={desktop}
-        distance={desktop ? 5 : 0}
-        animation="scale"
-        duration={[150, 75]}
-        hideOnClick={false}
-        trigger="manual"
-        onCreate={(instance) => setTippyInstance(instance)}
-        onShow={onTippyShow}
-        visible={tippyVisible}
-        maxWidth={calculateTooltipWidth(tooltipElement.current, boundingElement.current)}
-      >
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-        <div
-          role="tooltip"
-          ref={tooltipElement}
-          className={`tooltip-icon ${pinned ? 'tooltip-pinned' : ''} ${tippyVisible && !pinned ? 'tooltip-active' : ''}`}
-          onClick={pinTooltip}
-          onKeyDown={handleKeyPress}
-          onFocus={showTooltip}
-          onBlur={hideTooltip}
-          onMouseEnter={showTooltip}
-          onMouseLeave={() => {
-            if (!pinned) {
-              hideTooltip();
-            }
-          }}
+    <ThemeProvider theme={getTheme()}>
+      <StyledTooltipWrapper justifyEnd={justifyEnd} desktop={desktop}>
+        <GlobalStyle />
+        <Tippy
+          content={getContent(title, body)}
+          theme="manor"
+          interactive
+          animateFill
+          plugins={[animateFill]}
+          arrow={desktop}
+          distance={desktop ? 5 : 0}
+          animation="scale"
+          duration={[150, 75]}
+          hideOnClick={false}
+          trigger="manual"
+          onCreate={(instance) => setTippyInstance(instance)}
+          onShow={onTippyShow}
+          visible={tippyVisible}
+          maxWidth={calculateTooltipWidth(tooltipElement.current, boundingElement.current)}
         >
-          <>
-            <span className="sr-only">{screenReaderLabel}</span>
-            <Icon name="info" size={desktop ? 2.4 : 3.5} />
-          </>
-        </div>
-      </Tippy>
-    </div>
+          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+          <StyledTooltipIcon
+            role="tooltip"
+            ref={tooltipElement}
+            pinned={pinned}
+            onClick={pinTooltip}
+            onKeyDown={handleKeyPress}
+            onFocus={showTooltip}
+            onBlur={hideTooltip}
+            onMouseEnter={showTooltip}
+            onMouseLeave={() => {
+              if (!pinned) {
+                hideTooltip();
+              }
+            }}
+          >
+            <>
+              <span className="sr-only">{screenReaderLabel}</span>
+              <Icon name="info" size={desktop ? 2.4 : 3.5} />
+            </>
+          </StyledTooltipIcon>
+        </Tippy>
+      </StyledTooltipWrapper>
+    </ThemeProvider>
   );
 };
 

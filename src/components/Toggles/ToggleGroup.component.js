@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
-
+import styled from 'styled-components';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 import UseFieldset from '../../hooks/useFieldset';
 
-const styles = css`
-  .toggle-group {
-    @apply w-full flex flex-wrap justify-start;
-  }
+const StyledToggleGroup = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 `;
 
 export const getType = (children) => {
@@ -76,10 +76,9 @@ const ToggleGroup = ({
       forceFullWidth={forceFullWidth}
       validationMessage={validationMessage}
     >
-      <style jsx>{styles}</style>
-      <div className="toggle-group" id={id}>
+      <StyledToggleGroup id={id}>
         {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
-      </div>
+      </StyledToggleGroup>
     </UseFieldset>
   );
 };

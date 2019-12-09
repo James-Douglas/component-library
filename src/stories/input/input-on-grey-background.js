@@ -1,8 +1,8 @@
 import React from 'react';
 import Input from '../../components/Input/Input.component';
-import styles from './view-styles';
+import StyledBackground from './view-styles';
 
-const greyBackgroundView = () => {
+const GreyBackgroundView = () => {
   const tooltip = {
     title: 'Tooltip heading',
     body: 'Grey background input view',
@@ -14,33 +14,28 @@ const greyBackgroundView = () => {
   };
 
   return (
-    <>
-      <style jsx>{styles}</style>
-      <div className="grey-background">
-        <Input
-          label="[Fieldset label] With tooltip"
-          tooltip={tooltip}
-          id="default-id"
-          placeholder="Placeholder one"
-          type="text"
-          bordered={false}
-          required={false}
-          handleChange={(value) => logValue(value)}
-          disableFieldset
-        />
-        <Input
-          label="[Fieldset label] Without tooltip"
-          id="input-two"
-          placeholder="Placeholder two"
-          type="text"
-          bordered={false}
-          required={false}
-          handleChange={(value) => logValue(value)}
-          disableFieldset
-        />
-      </div>
-    </>
+    <StyledBackground color="grey">
+      <Input
+        label="[Fieldset label] With tooltip"
+        tooltip={tooltip}
+        id="default-id"
+        placeholder="Placeholder one"
+        type="text"
+        bordered={false}
+        required={false}
+        handleChange={(value) => logValue(value)}
+      />
+      <Input
+        label="[Fieldset label] Without tooltip"
+        id="input-two"
+        placeholder="Placeholder two"
+        type="text"
+        bordered={false}
+        required={false}
+        handleChange={(value) => logValue(value)}
+      />
+    </StyledBackground>
   );
 };
 
-export default greyBackgroundView;
+export default GreyBackgroundView;

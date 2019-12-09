@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import styled from 'styled-components';
+
+const StyledContainer = styled.div`
+  width: 100%;
+  margin: auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+`;
 
 const FluidContainer = ({ children, className }) => (
-  <>
-    <style jsx>{styles}</style>
-    <div className={`container ${className}`}>
-      {children}
-    </div>
-  </>
+  <StyledContainer className={`container ${className}`}>
+    {children}
+  </StyledContainer>
 );
 
 FluidContainer.propTypes = {

@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import styles from '../Table/styles';
 
 const tablelvl2 = {
   variant: 'body',
 };
 
+const StyledComponent = styled.div`
+  display: table-row-group;
+`;
 const TableBody = ({
   component,
   children,
@@ -15,8 +19,14 @@ const TableBody = ({
   const Component = component || 'tbody';
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <style jsx>{styles}</style>
-      <Component className={`root-table-body ${className}`}>{children}</Component>
+      <ThemeProvider theme={getTheme()}>
+        <StyledComponent
+          as={Component}
+          className={className}
+        >
+          {children || null}
+        </StyledComponent>
+      </ThemeProvider>
     </Tablelvl2Context.Provider>
   );
 };

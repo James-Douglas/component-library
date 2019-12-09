@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import CardGroup from '../../components/Card/CardGroup.component';
 import Card from '../../components/Card/Card.component';
 import Container from '../../components/Grid/Container/Container.component';
@@ -35,6 +36,20 @@ const cardData = [
   },
 ];
 
+
+const StyledManorOverline = styled.span`
+  line-height: 1.4;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #787673;
+`;
+
+const StyledHeadingSmall = styled.h5`
+  margin: 0;
+`;
+
 // eslint-disable-next-line react/prop-types
 const CardResultsView = ({ background }) => {
   const [isGrid, setIsGrid] = useState(false);
@@ -53,7 +68,7 @@ const CardResultsView = ({ background }) => {
               display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem',
             }}
             >
-              <h5>{card.name}</h5>
+              <StyledHeadingSmall>{card.name}</StyledHeadingSmall>
             </div>
           </Row>
           <Row>
@@ -65,16 +80,16 @@ const CardResultsView = ({ background }) => {
             </Column>
           </Row>
           <Row>
-            <Column col={6}><span className="manor-overline">Advertised rate</span></Column>
-            <Column col={6}><span className="manor-overline">Comparison rate</span></Column>
+            <Column col={6}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
+            <Column col={6}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
           </Row>
           <Row>
             <Column col={6}><p>{card.advRate}</p></Column>
             <Column col={6}><p>{card.compRate}</p></Column>
           </Row>
           <Row>
-            <Column col={6}><span className="manor-overline">Fees</span></Column>
-            <Column col={6}><span className="manor-overline">Repayments</span></Column>
+            <Column col={6}><StyledManorOverline>Fees</StyledManorOverline></Column>
+            <Column col={6}><StyledManorOverline>Repayments</StyledManorOverline></Column>
           </Row>
           <Row>
             <Column col={6}><p>{card.fees}</p></Column>
@@ -85,7 +100,7 @@ const CardResultsView = ({ background }) => {
               display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center',
             }}
             >
-              <Button id="a" type="primary" content="Go to site" />
+              <Button id="a" variant="primary" content="Go to site" />
             </div>
           </Row>
           <Row>
@@ -93,7 +108,7 @@ const CardResultsView = ({ background }) => {
               display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center',
             }}
             >
-              <Button id="a" type="link" content="More info" />
+              <Button id="b" variant="primary" content="More info" />
             </div>
           </Row>
         </div>
@@ -110,11 +125,11 @@ const CardResultsView = ({ background }) => {
             <Column col={9}>
               <Container>
                 <Row>
-                  <Column col={4}><h5>{card.name}</h5></Column>
-                  <Column col={2}><span className="manor-overline">Advertised rate</span></Column>
-                  <Column col={2}><span className="manor-overline">Comparison rate</span></Column>
-                  <Column col={2}><span className="manor-overline">Fees</span></Column>
-                  <Column col={2}><span className="manor-overline">Repayments</span></Column>
+                  <Column col={4}><StyledHeadingSmall>{card.name}</StyledHeadingSmall></Column>
+                  <Column col={2}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
+                  <Column col={2}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
+                  <Column col={2}><StyledManorOverline>Fees</StyledManorOverline></Column>
+                  <Column col={2}><StyledManorOverline>Repayments</StyledManorOverline></Column>
                 </Row>
                 <Row>
                   <Column col={4}>
@@ -144,8 +159,8 @@ const CardResultsView = ({ background }) => {
                 display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
               }}
               >
-                <Button id="a" type="primary" content="Go to site" />
-                <Button id="a" type="link" content="More info" />
+                <Button id="a" variant="primary" content="Go to site" />
+                <Button id="a" variant="primary" content="More info" />
               </div>
             </Column>
           </Row>
@@ -159,7 +174,7 @@ const CardResultsView = ({ background }) => {
       <Container>
         <Row>
           <Column offset={10} col={2}>
-            <Button id="toggle-button" type="secondary" content={`Toggle ${isGrid ? 'List' : 'Grid'}`} handleClick={toggleView} />
+            <Button id="toggle-button" variant="secondary" content={`Toggle ${isGrid ? 'List' : 'Grid'}`} handleClick={toggleView} />
           </Column>
         </Row>
         <CardGroup id="test" cols={isGrid ? 3 : 1}>

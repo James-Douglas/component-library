@@ -1,23 +1,9 @@
 import React from 'react';
-import css from 'styled-jsx/css';
-
 import Footer from '../../components/Footer/Footer.component';
 import StickyHeader from '../../components/Header/StickyHeader.component';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
-
-const styles = css`
-  html {
-    @apply h-full;
-  }
-  body {
-    @apply h-full;
-  }
-  #root {
-    @apply h-full;
-  }
-`;
 
 const disclaimerText = `Exchange rates displayed are updated daily at approximately 4:15 pm (AEST) and consequently are 
   indicative only. If you decide to proceed with this provider, they will provide you with a final rate at the point of 
@@ -41,7 +27,6 @@ const FooterView = () => {
   document.querySelector('#root').style.height = '100%';
   return (
     <div style={{ height: '100%' }}>
-      <style jsx>{styles}</style>
       <StickyHeader number="1800 123 456" />
       <FluidContainer>
         <Row>

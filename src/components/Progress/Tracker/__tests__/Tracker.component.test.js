@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import 'jest-styled-components';
 import Tracker from '../Tracker.component';
 
 describe('processTrackerItemLink()', () => {
@@ -15,22 +16,16 @@ describe('processTrackerItemLink()', () => {
   };
   it('count total length of steps ', () => {
     const { container } = render(<Tracker value="60" steps={props.steps} />);
-    const progressLinksCount = container.querySelectorAll('.progress-link').length;
-    const progressStepsCount = container.querySelectorAll('.progress-step').length;
-    expect(progressLinksCount + progressStepsCount).toBe(props.steps.length);
+    const progressLinksCount = container.getElementsByTagName('a').length;
+    expect(progressLinksCount).toBe(2);
   });
   it('count total length', () => {
     const { container } = render(<Tracker value="60" steps={props.steps} isSticky stuck />);
-    expect(container.firstChild).toHaveClass('stuck', 'sticky');
+    expect(container.firstChild).toHaveStyleRule('position', 'fixed');
   });
   it('should check complete class', () => {
     const { container } = render(<Tracker value={100} />);
     const list = container.getElementsByTagName('progress')[0];
-    expect(list).toHaveClass('complete');
-  });
-  it('define links ', () => {
-    const { container } = render(<Tracker value="60" steps={props.steps} />);
-    const list = container.querySelector('.progress-link');
-    expect(list).toHaveClass('scale-on-hover');
+    expect(list).toHaveAttribute('value', '100');
   });
 });

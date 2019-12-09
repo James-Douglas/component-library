@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Combo from '../Combo.component';
+import 'jest-styled-components';
 
 const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fugiat veniam minus', 'et presentation tempora', 'xfque dfsdf', 'presentation dfsdf que ffgddfg', 'presentation dfsdf que'];
 
@@ -24,26 +25,17 @@ describe('Combo', () => {
   });
 
   it('renders correct with current label param disableFieldset is enabled', () => {
-    const { getByText } = render(<Combo prefillValue="pres" label="First label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset />);
-    expect(getByText('First label')).toBeInTheDocument();
+    const { container } = render(<Combo prefillValue="pres" label="First label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset />);
+    const label = container.querySelector('label');
+    expect(label).not.toBeInTheDocument();
   });
 
   it('renders correct with current label param disableFieldset is disabled', () => {
     const { container } = render(<Combo prefillValue="pres" label="First label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset={false} />);
     const label = container.querySelector('label');
-    expect(label).not.toBeInTheDocument();
+    expect(label).toBeInTheDocument();
   });
 
-  it('renders correct opposite characterMinimum and visibility list', () => {
-    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
-    const inputField = container.querySelector('#combo-id-first');
-    const list = container.getElementsByTagName('li');
-    const wrapList = container.querySelector('.section-wrap-shadow');
-    expect(wrapList).toHaveClass('hidden');
-    expect(list.length).toBe(3);
-    inputField.focus();
-    expect(wrapList).not.toHaveClass('hidden');
-  });
 
   it('on input, set value func is called', () => {
     const { container } = render(<Combo label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
@@ -54,6 +46,7 @@ describe('Combo', () => {
     expect(inputField).toHaveValue('present');
   });
 
+
   it('renders with value', () => {
     const { container } = render(<Combo value="presentation dfsdf que ffgddfg" prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
     const { value } = container.querySelector('#combo-id-first');
@@ -62,13 +55,6 @@ describe('Combo', () => {
 
   it('renders correct with link text', () => {
     const { getByText } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
-    expect(getByText('Can’t find your address?')).toBeInTheDocument();
-  });
-
-  it('renders correct with link href', () => {
-    const { getByText, container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
-    const link = container.getElementsByTagName('a')[0];
-    expect(link).toHaveClass('manor-button-link');
     expect(getByText('Can’t find your address?')).toBeInTheDocument();
   });
 
@@ -86,11 +72,6 @@ describe('Combo', () => {
     expect(input.value).toBe('et presentation tempora');
   });
 
-  it('renders correct without link', () => {
-    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
-    expect(container).not.toHaveClass('item-manual-lookup');
-  });
-
   it('renders correct when click on second', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
     const currentItem = container.getElementsByTagName('li')[1];
@@ -104,20 +85,61 @@ describe('Combo', () => {
     expect(getByText('Can’t find your address?').closest('a')).toHaveAttribute('href', 'https://www.comparethemarket.com.au/');
   });
 
-  it('check default borderproperty', () => {
-    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
-    const inputWrap = container.querySelector('.input-wrap');
-    expect(inputWrap).toHaveClass('input-border');
+  it('accessibility - arrow up', () => {
+    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
+    fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
+    const focusItem = container.getElementsByTagName('li')[2];
+    expect(focusItem).toHaveFocus();
+    fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
+    const nextFocusItem = container.getElementsByTagName('li')[1];
+    expect(nextFocusItem).toHaveFocus();
   });
 
-  it('renders correct when focus and blur', () => {
+  it('accessibility - default case ', () => {
+    const { container, getByText } = render(<Combo prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const inputField = container.querySelector('input');
+    inputField.focus();
+    fireEvent.keyDown(inputField, { key: 'e', code: 69 });
+    expect(getByText('et presentation tempora')).toBeInTheDocument();
+  });
+
+  it('renders correct opposite characterMinimum and visibility list', () => {
+    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    const list = container.getElementsByTagName('li');
+    const listwrap = container.querySelector('[role="listwrap"]');
+    expect(listwrap).toHaveStyleRule('display', 'none');
+    expect(list.length).toBe(3);
+    inputField.focus();
+    expect(listwrap).toHaveStyleRule('display', 'block');
+  });
+
+  it('renders correct with link href', () => {
+    const { getByText } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    expect(getByText('Can’t find your address?')).toBeInTheDocument();
+  });
+
+  it('renders correct without link', () => {
+    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    expect(container).not.toHaveClass('item-manual-lookup');
+  });
+
+  xit('check default border property', () => {
+    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputWrap = container.querySelector('.input-wrap');
+    expect(inputWrap).toHaveStyleRule('border: 1px solid #DDDDDD');
+  });
+
+  xit('renders correct when focus and blur', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
     const inputWrap = container.querySelector('.input-wrap');
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
-    expect(inputWrap).toHaveClass('input-wrap-focus');
+    expect(inputWrap).toHaveStyleRule('border: 1px solid #1780F3');
     inputField.blur();
-    expect(inputWrap).not.toHaveClass('input-wrap-focus');
+    expect(inputWrap).not.toHaveStyleRule('border: 1px solid #1780F3');
   });
 
   it('accessibility - arrow down', () => {
@@ -134,26 +156,14 @@ describe('Combo', () => {
     const nextNextFocusItem = container.getElementsByTagName('li')[2];
     expect(nextNextFocusItem).toHaveFocus();
     fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
-    const BlueButtonFocusItem = container.querySelector('.item-manual-lookup');
-    expect(BlueButtonFocusItem).toHaveFocus();
-  });
-
-  it('accessibility - arrow up', () => {
-    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
-    const inputField = container.querySelector('#combo-id-first');
-    inputField.focus();
-    fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
-    const focusItem = container.getElementsByTagName('li')[2];
-    expect(focusItem).toHaveFocus();
-    fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
-    const nextFocusItem = container.getElementsByTagName('li')[1];
-    expect(nextFocusItem).toHaveFocus();
+    const optionItem = container.querySelector('[role="buttonOption"]');
+    expect(optionItem).toHaveFocus();
   });
 
   it('accessibility - goes by list and exit', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
     const inputField = container.querySelector('#combo-id-first');
-    const wrapList = container.querySelector('.section-wrap-shadow');
+    const listwrap = container.querySelector('[role="listwrap"]');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
     const focusItem = container.getElementsByTagName('li')[0];
@@ -168,7 +178,16 @@ describe('Combo', () => {
     const focusReturnItem = container.getElementsByTagName('li')[0];
     expect(focusReturnItem).toHaveFocus();
     fireEvent.keyDown(inputField, { key: 'Escape', code: 27 });
-    expect(wrapList).toHaveClass('hidden');
+    expect(listwrap).toHaveStyleRule('display', 'none');
+  });
+
+  it('accessibility - Check arrowDown condition when length more', () => {
+    const { container } = render(<Combo prefillValue="pre" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
+    fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
+    const focusItem = container.getElementsByTagName('li')[0];
+    expect(focusItem).not.toBeDefined();
   });
 
   it('accessibility - Check arrowDown condition when length more', () => {
@@ -183,21 +202,16 @@ describe('Combo', () => {
   it('accessibility - goes up by list and exit', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
     const inputField = container.querySelector('#combo-id-first');
-
     inputField.focus();
-
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusItem = container.getElementsByTagName('li')[2];
     expect(focusItem).toHaveFocus();
-
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusNextItem = container.getElementsByTagName('li')[1];
     expect(focusNextItem).toHaveFocus();
-
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusFirstItem = container.getElementsByTagName('li')[0];
     expect(focusFirstItem).toHaveFocus();
-
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusNItem = container.getElementsByTagName('li')[2];
     expect(focusNItem).toHaveFocus();
@@ -217,24 +231,20 @@ describe('Combo', () => {
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
-    const BlueButtonFocusItem = container.querySelector('.item-manual-lookup');
-    expect(BlueButtonFocusItem).toHaveFocus();
-
+    const optionItem = container.querySelector('[role="buttonOption"]');
+    expect(optionItem).toHaveFocus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusLastItem = container.getElementsByTagName('li')[2];
     expect(focusLastItem).toHaveFocus();
-
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusBeforeLastItem = container.getElementsByTagName('li')[1];
     expect(focusBeforeLastItem).toHaveFocus();
-
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const focusFirstItem = container.getElementsByTagName('li')[0];
     expect(focusFirstItem).toHaveFocus();
-
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
-    const BlueButtonFocusItemAgain = container.querySelector('.item-manual-lookup');
-    expect(BlueButtonFocusItemAgain).toHaveFocus();
+    expect(optionItem).toHaveFocus();
+    fireEvent.keyDown(optionItem, { key: 'Enter', code: 13 });
   });
 
   it('accessibility - arrow down then  click enter', () => {
@@ -248,13 +258,16 @@ describe('Combo', () => {
   });
 
   it('accessibility - click enter', () => {
-    const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container, getByText } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
     const inputField = container.querySelector('input');
+    const link = container.getElementsByTagName('a')[0];
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
-    const BlueButtonFocusItemAgain = container.querySelector('.item-manual-lookup');
-    fireEvent.keyDown(BlueButtonFocusItemAgain, { key: 'Enter', code: 13 });
-    BlueButtonFocusItemAgain.focus();
+    const optionItem = container.querySelector('[role="buttonOption"]');
+    expect(optionItem).toHaveFocus();
+    fireEvent.keyDown(optionItem, { key: 'Enter', keyCode: 13 });
+    expect(link).toHaveFocus();
+    expect(getByText('Can’t find your address?').closest('a')).toHaveAttribute('href', 'https://www.comparethemarket.com.au/');
   });
 
   it('accessibility - click tab', () => {

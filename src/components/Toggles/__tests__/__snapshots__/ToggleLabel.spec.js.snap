@@ -2,10 +2,17 @@
 
 exports[`ToggleLabel renders with minimal props 1`] = `
 <div>
-  <style />
   <label
-    class="toggle-label transition"
+    class="sc-bdVaJa iJXLfn"
     for="test"
-  />
+  >
+    <div
+      class="sc-bwzfXH fndIbp"
+    >
+      <div>
+        child content
+      </div>
+    </div>
+  </label>
 </div>
 `;

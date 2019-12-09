@@ -1,25 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../Table/styles';
-import Tablelvl2Context from '../Table/Tablelvl2Context';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 
-
+const StyledComponent = styled.div`
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  &:hover {
+    background: ${(props) => (props.hover ? props.theme.colors.greyLighter : 'none')}; 
+  }
+`;
 const TableRow = ({
   className,
   component,
   hover,
   children,
 }) => {
-  const tablelvl2 = React.useContext(Tablelvl2Context);
-  const tableHead = tablelvl2 && tablelvl2.variant === 'head' ? 'head' : '';
-  const tableFoot = tablelvl2 && tablelvl2.variant === 'footer' ? 'footer' : '';
-  const hoverClass = hover ? 'root-table-row-hover' : '';
   const Component = component || 'tr';
   return (
-    <>
-      <style jsx>{styles}</style>
-      <Component className={`root-table-row ${tableHead} ${tableFoot} ${hoverClass} ${className}`}>{children}</Component>
-    </>
+    <ThemeProvider theme={getTheme()}>
+      <StyledComponent
+        as={Component}
+        hover={hover}
+        className={className}
+      >
+        {children || null}
+      </StyledComponent>
+    </ThemeProvider>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../components/Input/Input.component';
-import styles from './view-styles';
+import StyledBackground from './view-styles';
 
 const prefixSuffixView = () => {
   const tooltip = {
@@ -48,55 +48,48 @@ const prefixSuffixView = () => {
   };
 
   return (
-    <>
-      <style jsx>{styles}</style>
-      <div className="white-background">
-        <Input
-          label="[Fieldset label] With tooltip, prefix and suffix"
-          tooltip={tooltip}
-          id="input-one"
-          placeholder="Placeholder one"
-          type="text"
-          bordered
-          required={false}
-          disabled={false}
-          prefixContent={<SvgUkFlag />}
-          suffixContent={<SvgAusFlag />}
-          invalid={false}
-          disableFieldset
-          handleChange={(value) => logValue(value)}
-        />
+    <StyledBackground color="white">
+      <Input
+        label="[Fieldset label] With tooltip, prefix and suffix"
+        tooltip={tooltip}
+        id="input-one"
+        placeholder="Placeholder one"
+        type="text"
+        bordered
+        required={false}
+        disabled={false}
+        prefixContent={<SvgUkFlag />}
+        suffixContent={<SvgAusFlag />}
+        invalid={false}
+        handleChange={(value) => logValue(value)}
+      />
 
-        <Input
-          label="[Fieldset label] With prefix"
-          id="input-two"
-          placeholder="Placeholder two"
-          type="text"
-          bordered
-          required={false}
-          disabled={false}
-          prefixContent="prefix"
-          invalid={false}
-          disableFieldset
-          handleChange={(value) => logValue(value)}
-        />
+      <Input
+        label="[Fieldset label] With prefix"
+        id="input-two"
+        placeholder="Placeholder two"
+        type="text"
+        bordered
+        required={false}
+        disabled={false}
+        prefixContent="prefix"
+        invalid={false}
+        handleChange={(value) => logValue(value)}
+      />
 
-        <Input
-          label="[Fieldset label] With suffix"
-          id="input-three"
-          placeholder="Placeholder three"
-          type="text"
-          bordered
-          required={false}
-          disabled={false}
-          suffixContent="suffix"
-          invalid={false}
-          disableFieldset
-          handleChange={(value) => logValue(value)}
-        />
-      </div>
-
-    </>
+      <Input
+        label="[Fieldset label] With suffix"
+        id="input-three"
+        placeholder="Placeholder three"
+        type="text"
+        bordered
+        required={false}
+        disabled={false}
+        suffixContent="suffix"
+        invalid={false}
+        handleChange={(value) => logValue(value)}
+      />
+    </StyledBackground>
   );
 };
 

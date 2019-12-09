@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../components/Input/Input.component';
-import styles from './view-styles';
+import StyledBackground from './view-styles';
 
 const whiteBackgroundView = () => {
   const tooltip = {
@@ -14,38 +14,32 @@ const whiteBackgroundView = () => {
   };
 
   return (
-    <>
-      <style jsx>{styles}</style>
-      <div className="white-background">
-        <Input
-          label="[Fieldset label] With tooltip"
-          tooltip={tooltip}
-          id="input-one"
-          placeholder="Placeholder one"
-          type="text"
-          bordered
-          required={false}
-          disabled={false}
-          invalid={false}
-          handleChange={(value) => logValue(value)}
-          disableFieldset
-        />
+    <StyledBackground color="white">
+      <Input
+        label="[Fieldset label] With tooltip"
+        tooltip={tooltip}
+        id="input-one"
+        placeholder="Placeholder one"
+        type="text"
+        bordered
+        required={false}
+        disabled={false}
+        invalid={false}
+        handleChange={(value) => logValue(value)}
+      />
 
-        <Input
-          label="[Fieldset label] Without tooltip'"
-          id="input-two"
-          placeholder="Placeholder two"
-          type="text"
-          bordered
-          required={false}
-          disabled={false}
-          invalid={false}
-          handleChange={(value) => logValue(value)}
-          disableFieldset
-        />
-      </div>
-
-    </>
+      <Input
+        label="[Fieldset label] Without tooltip'"
+        id="input-two"
+        placeholder="Placeholder two"
+        type="text"
+        bordered
+        required={false}
+        disabled={false}
+        invalid={false}
+        handleChange={(value) => logValue(value)}
+      />
+    </StyledBackground>
   );
 };
 

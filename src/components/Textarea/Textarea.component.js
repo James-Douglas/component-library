@@ -1,9 +1,59 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider, css } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-
-import styles from './styles';
 import UseFieldset from '../../hooks/useFieldset';
+
+const StyledOptionalIndicator = styled.span`
+  margin-left: 1rem;
+`;
+
+const StyledmaxlengthIndicator = styled.span`
+  margin-left: 0.4rem;
+`;
+
+const StyledSupportingElements = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.8rem;
+`;
+
+const StyledTextAreaWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const StyledTextArea = styled.textarea`
+  width: 100%;
+  display: block;
+  padding: 1.6rem;
+  border: 1px solid transparent;
+  min-height: 4.4rem;
+  font-size: ${(props) => props.theme.fontSize.base};
+  ::placeholder {
+    font-size: ${(props) => props.theme.fontSize.base};
+    font-style: italic;
+    color: ${(props) => props.theme.colors.grey};
+  }
+  ${(props) => props.bordered && css`
+    border: 1px solid ${props.theme.colors.greyLight};
+  `}
+  ${(props) => (props.isPrefill && !props.isDirty && !props.disabled) && css`
+    background: ${props.theme.colors.prechecked};
+    border: 1px solid ${props.theme.colors.prechecked};
+  `}
+  ${(props) => (props.validation || props.textAreaRemainChars < 0) && css`
+    border: 1px solid ${props.theme.colors.invalid};
+  `}
+  :focus,
+  :hover {
+    border: 1px solid ${(props) => props.theme.colors.blueLight};
+  }
+  ${(props) => props.disabled && css`
+    opacity: 0.5;
+  `}
+`;
 
 export function getRemainingLimit(value, charLimit) {
   return value ? charLimit - value.length : charLimit;
@@ -12,13 +62,12 @@ export function getRemainingLimit(value, charLimit) {
 export function getOptionalFieldContent(required, id, label) {
   if (!required) {
     return (
-      <span className="manor-optional-indicator manor-subscript" id={`${id}-optional-indicator`}>
-        <style jsx>{styles}</style>
+      <StyledOptionalIndicator className="subscript" id={`${id}-optional-indicator`}>
         <span className="sr-only">
           {`The ${label} field is `}
         </span>
           Optional
-      </span>
+      </StyledOptionalIndicator>
     );
   }
   return null;
@@ -27,13 +76,16 @@ export function getOptionalFieldContent(required, id, label) {
 export function getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label) {
   if (maxChars || maxLength) {
     return (
-      <span id={`${id}-maxlength-indicator`} className={`manor-maxlength-indicator manor-subscript ${textAreaRemainChars < 0 ? 'max-chars-exceeded' : ''} `}>
-        <style jsx>{styles}</style>
+      <StyledmaxlengthIndicator
+        id={`${id}-maxlength-indicator`}
+        textAreaRemainChars={textAreaRemainChars}
+        className={`manor-maxlength-indicator subscript ${textAreaRemainChars < 0 ? 'max-chars-exceeded' : ''} `}
+      >
         <span className="sr-only">
           {`${textAreaRemainChars && textAreaRemainChars < 0 ? ' Exceeded character limit' : ' Remaining allowed characters'} for the ${label} field `}
         </span>
         {textAreaRemainChars}
-      </span>
+      </StyledmaxlengthIndicator>
     );
   }
   return null;
@@ -98,57 +150,64 @@ const Textarea = ({
   }, [onChange, id, stateValue]);
 
   let validationMessageToDisplay = validationMessage;
+
   if (charsExceed && !validationMessage) {
     validationMessageToDisplay = 'Maximum characters exceeded';
   }
 
   const supportingElements = (
-    <div className="supporting-elements">
-      <style jsx>{styles}</style>
+    <StyledSupportingElements className="supporting-elements">
       {getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)}
       {getOptionalFieldContent(required, id, label)}
-    </div>
+    </StyledSupportingElements>
   );
 
   const prefillStyles = isPrefill && !isDirty && !disabled ? 'manor-prefilled' : '';
+  const validation = validationMessage && validationMessage.length;
 
   return (
-    <UseFieldset
-      disableFieldset={disableFieldset}
-      label={label}
-      tooltip={tooltip}
-      forceFullWidth={forceFullWidth}
-      validationMessage={validationMessageToDisplay}
-      supportingElements={supportingElements}
-    >
-      <div className={`manor-textarea-wrapper ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
-        <style jsx>{styles}</style>
-        {disableFieldset && <div className={`pull-tab ${prefillStyles} ${disabled ? 'manor-disabled' : ''} `} />}
+    <ThemeProvider theme={getTheme()}>
+      <UseFieldset
+        disableFieldset={disableFieldset}
+        label={label}
+        tooltip={tooltip}
+        forceFullWidth={forceFullWidth}
+        validationMessage={validationMessageToDisplay}
+        supportingElements={supportingElements}
+      >
+        <StyledTextAreaWrapper className={`manor-textarea-wrapper ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
 
-        <textarea
-          ref={textAreaElement}
-          value={stateValue}
-          onChange={handleChange}
-          id={id}
-          name={name}
-          placeholder={placeholder}
-          disabled={disabled}
-          required={required}
-          rows={rows}
-          wrap={wrap}
-          readOnly={readonly}
-          maxLength={maxLength}
-          className={`
-            manor-textarea-default manor-body2 
-            ${bordered ? 'manor-textarea-border' : ''} 
-            ${prefillStyles} 
-            ${(validationMessage && validationMessage.length) || (textAreaRemainChars < 0) ? 'invalid' : ''}
-          `}
-          aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
-        />
+          <StyledTextArea
+            ref={textAreaElement}
+            value={stateValue}
+            onChange={handleChange}
+            id={id}
+            name={name}
+            placeholder={placeholder}
+            disabled={disabled}
+            required={required}
+            rows={rows}
+            wrap={wrap}
+            readOnly={readonly}
+            maxLength={maxLength}
+            isPrefill={isPrefill}
+            isDirty={isDirty}
+            validation={validation}
+            validationMessage={validationMessage}
+            textAreaRemainChars={textAreaRemainChars}
+            bordered={bordered}
+            className={`
+              manor-textarea-default manor-body2 
+              ${bordered ? 'manor-textarea-border' : ''} 
+              ${prefillStyles} 
+              ${validation || (textAreaRemainChars < 0) ? 'invalid' : ''}
+            `}
+            aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
+          />
 
-      </div>
-    </UseFieldset>
+        </StyledTextAreaWrapper>
+      </UseFieldset>
+    </ThemeProvider>
   );
 };
 
@@ -250,7 +309,7 @@ Textarea.defaultProps = {
   required: false,
   isPrefill: false,
   rows: '',
-  wrap: '',
+  wrap: 'soft',
   readonly: false,
   maxLength: '',
   maxChars: '',

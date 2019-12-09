@@ -2,6 +2,7 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, select, array, object } from '@storybook/addon-knobs';
 import Dropdown from '../../components/Dropdown/Dropdown.component';
 import fieldValidation from './flag.png';
+import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
 <Meta title="Components|Dropdown" component={Dropdown} />
 
@@ -20,15 +21,20 @@ select (another component will handle multi select).
         { value: 'Third', title: 'Third Item - Title', disabled: true }
       ];
       return (
-        <Dropdown
-          id="input-one"
-          options={options}
-          supportingElements
-          forceFullWidth
-          label="Dropdown Label"
-          bordered
-          disableFieldset
-        />
+        <FluidContainer>
+          <Row>
+            <Column>
+               <Dropdown
+               id="input-one"
+               options={options}
+               supportingElements
+               forceFullWidth
+               label="Dropdown Label"
+               bordered
+             />
+          </Column>
+        </Row>
+      </FluidContainer>
       );
     }}
   </Story>
@@ -48,30 +54,34 @@ select (another component will handle multi select).
         { value: 'Third', title: 'Third Item - Title', disabled: true }
       ];
       return (
-        <div className="max-w-md p-12 bg-grey-lighter rounded-lg manor-rich-text ">
-          <Dropdown
-            id="input-one"
-            options={options}
-            supportingElements
-            forceFullWidth
-            label="From currency"
-            bordered={false}
-            required
-            prefixContent="$"
-            disableFieldset
-          />
-          <Dropdown
-            id="input-one"
-            options={options}
-            supportingElements
-            forceFullWidth
-            label="From currency"
-            bordered={false}
-            required
-            disableFieldset
-            prefixContent={<img src={fieldValidation} className="w-20" />}
-          />
-        </div>
+        <FluidContainer>
+           <Row>
+              <Column>
+                <div style={{backgroundColor: '#f3f3f3', padding: '1.2rem', borderRadius: '0.8rem', maxWidth: '64rem', fontWeight: '400', fontSize: '1.6rem', lineHeight: '1.625'}}>
+                  <Dropdown
+                    id="input-one"
+                    options={options}
+                    supportingElements
+                    forceFullWidth
+                    label="From currency"
+                    bordered={false}
+                    required
+                    prefixContent="$"
+                  />
+                  <Dropdown
+                    id="input-one"
+                    options={options}
+                    supportingElements
+                    forceFullWidth
+                    label="From currency"
+                    bordered={false}
+                    required
+                    prefixContent={<img src={fieldValidation} className="w-20" />}
+                  />
+                </div>
+              </Column>
+            </Row>
+         </FluidContainer>
       );
     }}
   </Story>
@@ -102,20 +112,25 @@ select (another component will handle multi select).
       object('third option', { value: 'Third', title: 'Third Item - Title', disabled: true })
     ];
     return (
-      <Dropdown
-        id="input-one"
-        label={label}
-        forceFullWidth={forceFullWidth}
-        options={options}
-        tooltip={tooltip}
-        validationMessage={validationMessage}
-        prefillValue={prefillValue}
-        bordered={bordered}
-        disabled={disabled}
-        required={required}
-        readOnly={readOnly}
-        disableFieldset
-      />
+       <FluidContainer>
+         <Row>
+            <Column>
+              <Dropdown
+                id="input-one"
+                label={label}
+                forceFullWidth={forceFullWidth}
+                options={options}
+                tooltip={tooltip}
+                validationMessage={validationMessage}
+                prefillValue={prefillValue}
+                bordered={bordered}
+                disabled={disabled}
+                required={required}
+                readOnly={readOnly}
+              />
+            </Column>
+           </Row>
+       </FluidContainer>
     );
   }}
 </Story>

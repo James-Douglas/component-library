@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../Table/styles';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 const tablelvl2 = {
   variant: 'head',
 };
+
+const StyledComponent = styled.div`
+  display: table-row-group;
+`;
 
 const TableHead = ({
   className,
@@ -15,8 +20,14 @@ const TableHead = ({
   const Component = component || 'thead';
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <style jsx>{styles}</style>
-      <Component className={`root-table-head ${className}`}>{children}</Component>
+      <ThemeProvider theme={getTheme()}>
+        <StyledComponent
+          as={Component}
+          className={className}
+        >
+          {children || null}
+        </StyledComponent>
+      </ThemeProvider>
     </Tablelvl2Context.Provider>
   );
 };

@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardGroup renders with minimal props 1`] = `"<div class=\\"flex w-full flex-wrap justify-start -mx-4\\"></div>"`;
+exports[`CardGroup renders with minimal props 1`] = `"<div class=\\"sc-bwzfXH eXuFVT\\"></div>"`;

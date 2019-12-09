@@ -3,6 +3,7 @@ import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs
 import Button from '../../components/Button/Button.component';
 import Icon from '../../components/Icon/Icon.component';
 import Container from '../../components/Grid/Container/Container.component';
+import FluidContainer from '../../components/Grid/Container/Fluid.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 
@@ -11,71 +12,94 @@ import Column from '../../components/Grid/Column/Column.component';
 # Button
 
 The button can be styled with an icon, configurable for design approved modes. These are: `primary`, `secondary`,
-`text`, `link` and `footer-link`. `secondary`, `text` and `link`. All have an `onDark` mode for dark backgrounds apart
+`text`, `link` and `footer-link`. `secondary`, `text` and `link`. All have an `darkMode` mode for dark backgrounds apart
 from `primary`.
 
-When `text`, `link` and `footer-link` are supplied as a `type`, the html structure with be rendered as an `<a>` element,
+When `text`, `link` and `footer-link` are supplied as a `variant`, the html structure with be rendered as an `<a>` element,
 with removed padding/button styling.
 
 ## Primary
 <Preview>
   <Story name="primary button">
-    <div className="flex flex-col items-center">
-      <Button id="primary-btn01" type="primary" size="md" content="compare the market"  />
-      <Button id="primary-btn02" type="primary" size="md" content="compare the market" icon="info"  />
-      <Button id="primary-btn03" type="primary" size="md" content="compare the market" icon="info" iconAlignRight  />
-    </div>
+    <FluidContainer>
+      <Row>
+        <Column>
+          <div style={{display: 'flex', 	flexDirection: 'column', 	alignItems: 'center'}}>
+            <Button id="primary-btn01" variant="primary" size="md" content="compare the market"  />
+            <Button id="primary-btn02" variant="primary" size="md" content="compare the market" icon="info"  />
+            <Button id="primary-btn03" variant="primary" size="md" content="compare the market" icon="info" iconAlignRight  />
+          </div>
+        </Column>
+      </Row>
+    </FluidContainer>
   </Story>
 </Preview>
 
 ## Secondary
 <Preview>
   <Story name="secondary button">
-    <div className="flex flex-col items-center">
-      <Button id="secondary-btn01" type="secondary" size="md" content="compare the market"  />
-      <Button id="secondary-btn02" type="secondary" onDark size="md" content="compare the market"  />
-      <Button id="secondary-btn03" type="secondary" size="sm" content="add bill"  />
-      <Button id="secondary-btn04" type="secondary" onDark size="sm" content="add bill"  />
-      <Button id="secondary-icon01" type="secondary" size="sm" content="edit details"/>
-      <Button id="secondary-icon02" type="secondary" onDark size="sm" content="edit details"/>
-    </div>
+    <FluidContainer>
+      <Row>
+        <Column>
+          <div style={{display: 'flex', 	flexDirection: 'column', 	alignItems: 'center'}}>
+            <Button id="secondary-btn01" variant="secondary" size="md" content="compare the market"  />
+            <Button id="secondary-btn02" variant="secondary" darkMode size="md" content="compare the market"  />
+            <Button id="secondary-btn03" variant="secondary" size="sm" content="add bill"  />
+            <Button id="secondary-btn04" variant="secondary" darkMode size="sm" content="add bill"  />
+            <Button id="secondary-icon01" variant="secondary" size="sm" content="edit details"/>
+            <Button id="secondary-icon02" variant="secondary" darkMode size="sm" content="edit details"/>
+          </div>
+        </Column>
+      </Row>
+    </FluidContainer>
   </Story>
 </Preview>
 
 ## Tertiary
 <Preview>
   <Story name="tertiary button">
-    <div className="flex flex-col items-center">
-      <Button id="tertiary-btn01" type="tertiary" size="lg" content="compare the market" />
-      <Button id="tertiary-btn01" type="tertiary" onDark size="md" content="compare the market" />
-    </div>
+    <FluidContainer>
+      <Row>
+        <Column>
+          <div style={{display: 'flex', 	flexDirection: 'column', 	alignItems: 'center'}}>
+            <Button id="tertiary-btn01" variant="tertiary" size="md" content="compare the market" />
+            <Button id="tertiary-btn01" variant="tertiary" darkMode size="md" content="compare the market" />
+          </div>
+        </Column>
+      </Row>
+    </FluidContainer>
   </Story>
 </Preview>
 
 ## Text
-
 <Preview>
   <Story name="text button">
-    <div className="manor-rich-text">
-      <p>On light backgrounds:</p>
-      <div className="flex flex-col items-center justify-center">
-        <div className="m-16">
-          <Button id="text-btn01" type="text" content="Compare the Market" icon="info" href="#" target="_blank" />
-        </div>
-        <div className="m-16">
-          <Button id="text-btn01" type="text" content="Compare the Market" icon="info" iconAlignRight href="#" target="_blank" />
-        </div>
-      </div>
-      <p>On dark backgrounds:</p>
-      <div className="bg-midnight-blue flex flex-col items-center justify-center">
-        <div className="m-16">
-          <Button id="text-btn02" type="text" onDark content="Compare the Market" icon="info" href="#" target="_blank" />
-        </div>
-        <div className="m-16">
-          <Button id="text-btn02" type="text" onDark content="Compare the Market" icon="info" iconAlignRight href="#" target="_blank" />
-        </div>
-      </div>
-    </div>
+    <FluidContainer>
+      <Row>
+        <Column>
+          <div  style={{fontWeight: '400',  fontSize: '1.6rem',  lineHeight: '1.625'}}>
+            <p>On light backgrounds:</p>
+            <div style={{display: 'flex', 	flexDirection: 'column', 	alignItems: 'center'}}>
+              <div style={{margin: '1.5rem'}}>
+                <Button id="text-btn01" variant="text" content="Compare the Market" icon="info" href="#" target="_blank" />
+              </div>
+              <div style={{margin: '1.5rem'}}>
+                <Button id="text-btn01" variant="text" content="Compare the Market" icon="info" iconAlignRight href="#" target="_blank" />
+              </div>
+            </div>
+            <p>On dark backgrounds:</p>
+            <div style={{display: 'flex', backgroundColor: '#001545',	flexDirection: 'column', 	alignItems: 'center', justifyContent: 'center'}}>
+             <div style={{margin: '1.5rem'}}>
+                <Button id="text-btn02" variant="text" darkMode content="Compare the Market" icon="info" href="#" target="_blank" />
+              </div>
+              <div style={{margin: '1.5rem'}}>
+                <Button id="text-btn02" variant="text" darkMode content="Compare the Market" icon="info" iconAlignRight href="#" target="_blank" />
+              </div>
+            </div>
+          </div>
+        </Column>
+      </Row>
+    </FluidContainer>
   </Story>
 </Preview>
 
@@ -83,26 +107,32 @@ with removed padding/button styling.
 
 <Preview>
   <Story name="link button">
-    <div className="manor-rich-text">
-      <p>On light backgrounds:</p>
-      <div className="flex flex-col items-center justify-center p-24">
-        <Button id="text-btn01" type="link" content="Compare the Market" href="#" target="_blank" />
-      </div>
-      <p>On dark backgrounds:</p>
-      <div className="bg-midnight-blue flex flex-col items-center justify-center p-24">
-        <Button id="text-btn02" type="link" onDark content="Compare the Market" href="#" target="_blank" />
-      </div>
-      <div className="flex flex-col items-center justify-center">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. &nbsp;
-          <Button id="text-btn02" type="link" content="Compare the Market" href="#" target="_blank" />
-          . Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. &nbsp;
-          <Button id="text-btn02" type="link" content="Compare the Market" href="#" target="_blank" />
-          . Duis aute irure dolor in reprehenderit.
-        </p>
-      </div>
-    </div>
+    <FluidContainer>
+      <Row>
+        <Column>
+          <div  style={{fontWeight: '400',  fontSize: '1.6rem',  lineHeight: '1.625'}}>
+            <p>On light backgrounds:</p>
+            <div style={{display: 'flex', padding: '2.4rem', flexDirection: 'column', 	alignItems: 'center', justifyContent: 'center'}}>
+              <Button id="text-btn01" variant="link" content="Compare the Market" href="#" target="_blank" />
+            </div>
+            <p>On dark backgrounds:</p>
+            <div style={{display: 'flex', backgroundColor: '#001545', padding: '2.4rem', backgroundColor: '#001545',	flexDirection: 'column', 	alignItems: 'center', justifyContent: 'center'}}>
+              <Button id="text-btn02" variant="link" darkMode content="Compare the Market" href="#" target="_blank" />
+            </div>
+            <div style={{display: 'flex',	flexDirection: 'column', 	alignItems: 'center', justifyContent: 'center'}}>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. &nbsp;
+                <Button id="text-btn02" variant="link" content="Compare the Market" href="#" target="_blank" />
+                . Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. &nbsp;
+                <Button id="text-btn02" variant="link" content="Compare the Market" href="#" target="_blank" />
+                . Duis aute irure dolor in reprehenderit.
+              </p>
+            </div>
+          </div>
+       </Column>
+      </Row>
+    </FluidContainer>
   </Story>
 </Preview>
 
@@ -110,53 +140,67 @@ with removed padding/button styling.
 
 <Preview>
   <Story name="footer link">
-    <div className="background manor-rich-text">
-      <p>On light backgrounds:</p>
-      <div className="lightbg p-12">
-        <Button id="text-btn01" type="footer-link" content="Compare the Market" href="#" target="_blank" />
-      </div>
-      <p>On dark backgrounds:</p>
-      <div className="bg-grey-darkest p-12">
-        <Button id="text-btn01" type="footer-link" onDark content="Compare the Market" href="#" target="_blank" />
-      </div>
-      <p>Footer example:</p>
-      <Container className="bg-grey-darkest p-12">
-        <Row>
-          <Column>
-            <div>
-              <Button id="button-f1" type="footer-link" onDark content="About us" href="#" target="_blank" />
-              <Button id="button-f2" type="footer-link" onDark content="Testimonials" href="#" target="_blank" />
-              <Button id="button-f3" type="footer-link" onDark content="Privacy policy" href="#" target="_blank" />
-              <Button id="button-f4" type="footer-link" onDark content="Credit guide" href="#" target="_blank" />
+    <FluidContainer>
+      <Row>
+        <Column>
+          <div style={{fontWeight: '400',  fontSize: '1.6rem',  lineHeight: '1.625'}}>
+            <div style={{padding: '0 1.2rem'}}>
+              <p>On light backgrounds:</p>
+              <div style={{padding: '1.2rem'}}>
+                <Button id="text-btn01" variant="footer-link" content="Compare the Market" href="#" target="_blank" />
+              </div>
             </div>
-          </Column>
-          <Column>
-            <div>
-              <Button id="button-f5" type="footer-link" onDark content="Media centre" href="#" target="_blank" />
-              <Button id="button-f6" type="footer-link" onDark content="Contact us" href="#" target="_blank" />
-              <Button id="button-f7" type="footer-link" onDark content="Website terms of use" href="#" target="_blank" />
-              <Button id="button-f8" type="footer-link" onDark content="Competition terms and conditions" href="#" target="_blank" />
+            <div style={{padding: '1.2rem'}}>
+              <p>On dark backgrounds:</p>
+              <div style={{padding: '1.2rem',  backgroundColor: '#333333'}}>
+                <Button id="text-btn01" variant="footer-link" darkMode content="Compare the Market" href="#" target="_blank" />
+              </div>
             </div>
-          </Column>
-          <Column>
-            <div>
-              <Button id="button-f5" type="footer-link" onDark content="Blog" href="#" target="_blank" />
-              <Button id="button-f6" type="footer-link" onDark content="Products" href="#" target="_blank" />
-              <Button id="button-f7" type="footer-link" onDark content="Careers" href="#" target="_blank" />
-              <Button id="button-f8" type="footer-link" onDark content="Financial services guide" href="#" target="_blank" />
-            </div>
-          </Column>
-          <Column>
-            <div>
-              <Button id="button-f5" type="footer-link" onDark content="Who we compare" href="#" target="_blank" />
-              <Button id="button-f6" type="footer-link" onDark content="Sitemap" href="#" target="_blank" />
-              <Button id="button-f7" type="footer-link" onDark content="Website terms of use" href="#" target="_blank" />
-              <Button id="button-f8" type="footer-link" onDark content="Financial services guide - life insurance products" href="#" target="_blank" />
-            </div>
-          </Column>
-        </Row>
-      </Container>
-    </div>
+            <div style={{padding: '1.2rem'}}>
+              <p>Footer example:</p>
+              <div style={{padding: '1.2rem',  backgroundColor: '#333333'}}>
+                <Container>
+                  <Row>
+                    <Column>
+                      <div>
+                        <Button id="button-f1" variant="footer-link" darkMode content="About us" href="#" target="_blank" />
+                        <Button id="button-f2" variant="footer-link" darkMode content="Testimonials" href="#" target="_blank" />
+                        <Button id="button-f3" variant="footer-link" darkMode content="Privacy policy" href="#" target="_blank" />
+                        <Button id="button-f4" variant="footer-link" darkMode content="Credit guide" href="#" target="_blank" />
+                      </div>
+                    </Column>
+                    <Column>
+                      <div>
+                        <Button id="button-f5" variant="footer-link" darkMode content="Media centre" href="#" target="_blank" />
+                        <Button id="button-f6" variant="footer-link" darkMode content="Contact us" href="#" target="_blank" />
+                        <Button id="button-f7" variant="footer-link" darkMode content="Website terms of use" href="#" target="_blank" />
+                        <Button id="button-f8" variant="footer-link" darkMode content="Competition terms and conditions" href="#" target="_blank" />
+                      </div>
+                    </Column>
+                    <Column>
+                      <div>
+                        <Button id="button-f5" variant="footer-link" darkMode content="Blog" href="#" target="_blank" />
+                        <Button id="button-f6" variant="footer-link" darkMode content="Products" href="#" target="_blank" />
+                        <Button id="button-f7" variant="footer-link" darkMode content="Careers" href="#" target="_blank" />
+                        <Button id="button-f8" variant="footer-link" darkMode content="Financial services guide" href="#" target="_blank" />
+                      </div>
+                    </Column>
+                    <Column>
+                      <div>
+                        <Button id="button-f5" variant="footer-link" darkMode content="Who we compare" href="#" target="_blank" />
+                        <Button id="button-f6" variant="footer-link" darkMode content="Sitemap" href="#" target="_blank" />
+                        <Button id="button-f7" variant="footer-link" darkMode content="Website terms of use" href="#" target="_blank" />
+                        <Button id="button-f8" variant="footer-link" darkMode content="Financial services guide - life insurance products" href="#" target="_blank" />
+                      </div>
+                    </Column>
+                  </Row>
+                </Container>
+               </div>
+             </div>
+          </div>
+        </Column>
+      </Row>
+    </FluidContainer>
   </Story>
 </Preview>
 
@@ -167,8 +211,8 @@ with removed padding/button styling.
 <Story name="button with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const id = text('id', 'btn1');
-    const type = select('type', ['primary', 'secondary', 'text', 'link', 'footer-link'], 'primary');
-    const onDark = boolean('onDark', false);
+    const variant = select('variant', ['primary', 'secondary', 'text', 'link', 'footer-link'], 'primary');
+    const darkMode = boolean('darkMode', false);
     const size = select('size', ['sm', 'md', 'lg'], 'md');
     const content = text('content', 'compare the market');
     const disabled = boolean('disabled',  false);
@@ -181,8 +225,8 @@ with removed padding/button styling.
     return (
       <Button
         id={id}
-        type={type}
-        onDark={onDark}
+        variant={variant}
+        darkMode={darkMode}
         size={size}
         content={content}
         disabled={disabled}

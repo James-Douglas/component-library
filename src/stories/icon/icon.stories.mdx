@@ -23,15 +23,15 @@ Icon component, we use a mixture of inhouse designed icons and FontAwesome icons
       const renderIcons = () => {
         return Object.keys(ctmIcons).map((icon) => {
          return (
-           <div className="w-64 h-64 flex flex-col items-center justify-center mx-20">
+           <div style={{display: 'flex', width: '6.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
              <Icon name={icon} size={2} />
-             <span className="manor-subtitle1 pt-8">{icon}</span>
+             <span className="subtitle-1" style={{paddingTop: '0.8rem'}}>{icon}</span>
            </div>
          )
        })
       }
       return (
-        <div className="flex flex-wrap">
+        <div style={{display: 'flex', flexWrap: 'wrap'}}>
           {renderIcons()}
         </div>
       );
@@ -46,15 +46,15 @@ Icon component, we use a mixture of inhouse designed icons and FontAwesome icons
       const renderIcons = () => {
         return Object.keys(faIcons).map((icon) => {
          return (
-           <div className="w-64 h-64 flex flex-col items-center justify-center mx-20">
+           <div style={{display: 'flex', width: '6.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
              <Icon name={icon} size={2} />
-             <span className="manor-subtitle1 pt-8">{icon}</span>
+             <span className="subtitle-1" style={{paddingTop: '0.8rem'}}>{icon}</span>
            </div>
          )
        })
       }
       return (
-        <div className="flex flex-wrap">
+        <div style={{display: 'flex', flexWrap: 'wrap'}}>
           {renderIcons()}
         </div>
       );

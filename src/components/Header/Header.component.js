@@ -1,31 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import Logo from '../Logo/Logo.component';
-
 import FluidContainer from '../Grid/Container/Fluid.component';
 import Contact from './Contact/Contact.component';
 
+const StyledHeader = styled.header`
+  display: flex;
+  width: 100%;
+  background: ${(props) => (props.theme.colors.white)}; 
+  z-index: ${(props) => (props.theme.zIndex[50])}; 
+  height: ${(props) => (props.stuck ? '4.4rem' : '6rem')}; 
+  transition: ${(props) => (props.stuck ? 'all 200ms ease' : 'none')}; 
+  box-shadow: ${(props) => (props.stuck ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : 'none')};
+  position: ${(props) => (props.isSticky ? 'fixed' : 'inherit')}; 
+  top: ${(props) => (props.isSticky ? '0' : 'inherit')};
+`;
+
+const StyledLogoWrap = styled.header`
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;  
+`;
+
 const Header = ({ isSticky, stuck, number }) => {
   const size = stuck ? 'small' : 'large';
-  const stuckClass = stuck ? 'stuck' : '';
-  const stickyClass = isSticky ? 'sticky' : '';
   return (
-    <header className={`${stickyClass} ${stuckClass}`}>
-      <style jsx>{styles}</style>
-      <FluidContainer>
-        <div className="wrap">
-          <Logo size={size} />
-          {number && <Contact number={number} size={size} />}
-        </div>
-      </FluidContainer>
-    </header>
+    <ThemeProvider theme={getTheme()}>
+      <StyledHeader stuck={stuck} isSticky={isSticky}>
+        <FluidContainer>
+          <StyledLogoWrap>
+            <Logo size={size} />
+            {number && <Contact number={number} size={size} />}
+          </StyledLogoWrap>
+        </FluidContainer>
+      </StyledHeader>
+    </ThemeProvider>
   );
 };
 
 Header.propTypes = {
+  /**
+   * Defines if the header is sticky via boolean
+   */
   isSticky: PropTypes.bool,
+  /**
+   * Defines the sizing of the logo and number depending on the stuck prop
+   */
   stuck: PropTypes.bool,
+  /**
+   * Defines if the header displays a number on the right handside
+   */
   number: PropTypes.string,
 };
 
@@ -34,6 +62,5 @@ Header.defaultProps = {
   stuck: false,
   number: '',
 };
-
 
 export default Header;

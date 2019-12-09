@@ -12,7 +12,7 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
 
 <Preview>
   <Story name="textarea">
-    <TextArea bordered />
+    <TextArea id='demo' bordered />
   </Story>
 </Preview>
 
@@ -26,34 +26,32 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
     const bordered = boolean('Bordered', true);
     const disabled = boolean('Disabled', false);
     const required = boolean('Required', false);
-    const invalid = boolean('Invalid', false);
     const isPrefill = boolean('Prefilled', false);
     const rows = text('Rows', '6'); // can be set via the css width property
-    const wrap = select('Wrap', ['', 'hard', 'soft'], '');
+    const wrap = select('Wrap', ['hard', 'soft'], 'soft');
     const readonly = boolean('Readonly', false);
     const maxLength = text('Maxlength', '');
     const maxChars = text('Maxchars', '500');
-    const disableFieldset = boolean('disableFieldset', true);
+    const disableFieldset = boolean('disableFieldset', false);
     return (
-          <TextareaDemoView
-            id={id}
-            name={name}
-            label={label}
-            placeholder={placeholder}
-            value={TextareaValue}
-            bordered={bordered}
-            disabled={disabled}
-            required={required}
-            invalid={invalid}
-            isPrefill={isPrefill}
-            rows={rows}
-            wrap={wrap}
-            readonly={readonly}
-            maxLength={maxLength}
-            maxChars={maxChars}
-            disableFieldset={disableFieldset}
-          />
-        );
+      <TextareaDemoView
+        id={id}
+        name={name}
+        label={label}
+        placeholder={placeholder}
+        value={TextareaValue}
+        bordered={bordered}
+        disabled={disabled}
+        required={required}
+        isPrefill={isPrefill}
+        rows={rows}
+        wrap={wrap}
+        readonly={readonly}
+        maxLength={maxLength}
+        maxChars={maxChars}
+        disableFieldset={disableFieldset}
+      />
+    );
   }}
 </Story>
 

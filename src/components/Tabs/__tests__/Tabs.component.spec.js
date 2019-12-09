@@ -33,9 +33,10 @@ describe('renderChildren', () => {
         </RenderChildrenContainer>
       </TabsContext.Provider>,
     );
+    const btnWrap = container.querySelector('.tab-button-wrap');
 
-    const wrap = container.querySelector('.tab-button-wrap');
-    expect(wrap.children).toHaveLength(2); // style tag and tab button
+    expect(btnWrap.children).toHaveLength(1); // tab button
+    expect(container.children).toHaveLength(2); // tab panel and btn wrap
   });
 });
 
@@ -84,9 +85,9 @@ describe('Tabs', () => {
     fireEvent.click(tabBtns[1], { button: 0 });
 
     expect(tabBtns[0]).not.toHaveClass('active');
-    expect(tabPanels[0]).toHaveClass('hidden');
+    expect(tabPanels[0]).toHaveStyle('display: none');
     expect(tabBtns[1]).toHaveClass('active');
-    expect(tabPanels[1]).not.toHaveClass('hidden');
+    expect(tabPanels[1]).not.toHaveStyle('display: none');
   });
 
   it('accepts a clickHandler on the buttons', () => {
@@ -128,7 +129,7 @@ describe('Tabs', () => {
 
     const tabsContainer = container.querySelector('.tabs-container');
 
-    expect(tabsContainer).toHaveClass('tab-border');
+    expect(tabsContainer).toHaveStyle('border: 1px solid #DDDDDD'); // greyLight from theme.js
     expect(container).toMatchSnapshot();
   });
 

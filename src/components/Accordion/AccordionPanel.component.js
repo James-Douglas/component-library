@@ -1,10 +1,68 @@
 import React, { useState, useEffect } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import getTheme from 'utils/getTheme';
 import Icon from '../Icon/Icon.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import FluidContainer from '../Grid/Container/Fluid.component';
+
+const StyledAccordionPanel = styled.div`
+  overflow: hidden;
+  border: ${(props) => (props.isFocus ? `1px solid ${props.theme.colors.primaryLight}` : '1px solid transparent')};
+  border-bottom: ${(props) => {
+    const { isFocus, isVisible } = props;
+    let borderBottom;
+    if ((isVisible && isFocus) || (!isVisible && isFocus)) {
+      borderBottom = `1px solid ${props.theme.colors.primaryLight}`;
+    } else if (isVisible && !isFocus) {
+      borderBottom = `2px solid ${props.theme.colors.greyDark}`;
+    } else {
+      borderBottom = '1px solid rgba(0,0,0,.1)';
+    }
+    return borderBottom;
+  }};
+  background: ${(props) => props.theme.colors.white}; 
+  transition: color 2s linear;
+  &:focus,
+  &:active,  
+  &:hover {
+    outline: 0;
+  }
+`;
+
+const StyledAccordionBody = styled.div`
+  line-height: ${(props) => props.theme.lineHeight.normal};
+  margin: ${(props) => props.theme.spacing['0']}; 
+  background: ${(props) => props.theme.colors.white}; 
+  color: rgba(0,0,0,0.8);
+  transform-origin: top;
+  transition: transform 0.25s;
+  transform: ${(props) => (props.isVisible ? 'translateY(0)' : 'translateY(-100%)')}; 
+  height:  ${(props) => (props.isVisible ? 'auto' : 0)};                   
+  padding: ${(props) => (props.isVisible ? `0 0 ${props.theme.spacing['40']}` : 0)};
+  &:focus,
+  &:active,  
+  &:hover {
+    outline: 0;
+  }
+`;
+
+const StyledAccordionHead = styled.div`
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: ${(props) => (props.theme.colors.white)}; 
+  z-index: ${(props) => (props.theme.zIndex[10])}; 
+  transition: font-size 0.25s;
+  padding: ${(props) => (`${props.theme.spacing['24']} 0`)};
+  font-size: ${(props) => (props.isVisible ? props.theme.fontSize['2xl'] : props.theme.fontSize.xl)}; 
+  &:focus,
+  &:active,  
+  &:hover {
+    outline: 0;
+  }
+`;
 
 const AccordionPanel = ({
   title,
@@ -15,9 +73,7 @@ const AccordionPanel = ({
 }) => {
   const [isVisible, setIsVisible] = useState(show);
   const [isFocus, setIsFocus] = useState(false);
-  const visibleClass = isVisible ? '' : 'hide';
   const angleName = isVisible ? 'Up' : 'Down';
-
 
   const toggleTrueFalse = () => {
     setTimeout(() => {
@@ -47,35 +103,36 @@ const AccordionPanel = ({
   };
 
   return (
-    <div className={`accordion ${visibleClass} ${isFocus ? 'on-focus' : 'on-blur'} manor-rich-text `} role="tablist" aria-label="Information tabs">
-      <style jsx>{styles}</style>
-      <div
-        onClick={toggleTrueFalse}
-        onKeyDown={toggleTrueFalseOnKey}
-        className={`accordion-head ${visibleClass ? 'manor-h5' : 'manor-h4'}`}
-        role="tab"
-        aria-selected="true"
-        tabIndex="0"
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      >
-        <FluidContainer>
-          <Row>
-            <Column col="9" lg="11">{title}</Column>
-            <Column col="3" lg="1">
-              <Icon name={`angle${angleName}`} size={iconSize} />
-            </Column>
-          </Row>
-        </FluidContainer>
-      </div>
-      <div className="accordion-body" role="tabpanel">
-        <FluidContainer>
-          <Row className="row-view">
-            <Column col="12">{children}</Column>
-          </Row>
-        </FluidContainer>
-      </div>
-    </div>
+    <ThemeProvider theme={getTheme()}>
+      <StyledAccordionPanel isVisible={isVisible} isFocus={isFocus} className="manor-rich-text" role="tablist" aria-label="Information tabs">
+        <StyledAccordionHead
+          isVisible={isVisible}
+          onClick={toggleTrueFalse}
+          onKeyDown={toggleTrueFalseOnKey}
+          role="tab"
+          aria-selected="true"
+          tabIndex="0"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        >
+          <FluidContainer>
+            <Row>
+              <Column col="9" lg="11">{title}</Column>
+              <Column col="3" lg="1">
+                <Icon name={`angle${angleName}`} size={iconSize} />
+              </Column>
+            </Row>
+          </FluidContainer>
+        </StyledAccordionHead>
+        <StyledAccordionBody isVisible={isVisible} role="tabpanel">
+          <FluidContainer>
+            <Row className="row-view">
+              <Column col="12">{children}</Column>
+            </Row>
+          </FluidContainer>
+        </StyledAccordionBody>
+      </StyledAccordionPanel>
+    </ThemeProvider>
   );
 };
 

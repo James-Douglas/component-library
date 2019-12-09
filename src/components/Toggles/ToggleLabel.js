@@ -1,18 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 
-import toggleStyles from './toggle.styles';
+const StyledToggleLabel = styled.label`
+  width: 100%;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  transition : all 200ms ease-out;
+  &:hover {
+    color: ${(props) => props.theme.colors.blueLight};
+  }
+`;
+
+const StyledContent = styled.div`
+  font-weight: ${(props) => props.theme.fontWeight.bold};
+  font-size: ${(props) => props.theme.fontSize.sm};
+  margin-bottom: 0;
+`;
 
 const ToggleLabel = ({ id, children }) => (
-  <>
-    <style jsx>{toggleStyles}</style>
-    <label
-      className="toggle-label transition"
-      htmlFor={id}
-    >
-      {children}
-    </label>
-  </>
+  <ThemeProvider theme={getTheme()}>
+    <StyledToggleLabel htmlFor={id}>
+      <StyledContent>{children}</StyledContent>
+    </StyledToggleLabel>
+  </ThemeProvider>
 );
 
 ToggleLabel.propTypes = {

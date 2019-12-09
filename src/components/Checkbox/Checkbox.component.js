@@ -1,8 +1,77 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled, { ThemeProvider, css } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import useToggleState from '../../hooks/useToggleState';
 import Icon from '../Icon/Icon.component';
-import styles from './styles';
+
+const StyledHiddenInput = styled.input`
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+const StyledWrap = styled.div`
+  margin-bottom: 1.2rem;
+  min-width: 3rem;
+`;
+
+const StyledLabel = styled.label`
+  display: flex;
+  cursor: pointer;
+  margin-top: 0.4rem;
+  ${(props) => props.children[1] === null && css`
+    position: absolute;
+  `}
+  ${(props) => props.disabled && css`
+    cursor: not-allowed;
+  `};
+`;
+
+const StyledCheckbox = styled.div`
+  border: 1px solid ${(props) => props.theme.colors.blueDark};
+  background: ${(props) => (props.checked ? `${props.theme.colors.blueDark}` : `${props.theme.colors.white}`)};
+  color: ${(props) => props.theme.colors.white};
+  min-width: 2.4rem;
+  height: 2.4rem;
+  pointer-events: none;
+  border-radius: 0.2rem;
+  padding: 1px;
+
+  ${StyledHiddenInput}:focus + label & {
+    box-shadow: 0 0 0 1px rgba(0, 123, 255, .5);
+  }
+
+  ${(props) => props.invertColour && css`
+    background: ${props.theme.colors.white};
+    color: ${props.theme.colors.blueDark};
+  `}
+
+  ${(props) => props.invalid && css`
+    border: 1px solid ${props.theme.colors.invalid};
+  `}
+
+  ${(props) => props.disabled && css`
+    pointer-events: none;
+    background: ${props.theme.colors.greyLight};
+    border: 1px solid transparent;
+    color: ${props.theme.colors.blueDark};
+    opacity: 0.5;
+  `}
+`;
+
+const StyledContent = styled.div`
+  margin: 0 0 0 1rem;
+  pointer-evemts: none;
+  font-size: ${(props) => props.theme.fontSize.base};
+`;
 
 export const renderIcon = (icon, value) => {
   if (value) {
@@ -17,10 +86,9 @@ const renderContent = (children) => {
   if (children) {
     return (
       <>
-        <style jsx>{styles}</style>
-        <div className="checkbox-content no-margin">
+        <StyledContent className="checkbox-content">
           {children}
-        </div>
+        </StyledContent>
       </>
     );
   }
@@ -49,38 +117,32 @@ const Checkbox = ({
 
   return (
     <>
-      <style jsx>{styles}</style>
-      <div className="checkbox-wrap">
-        <input
-          id={id}
-          name={id}
-          type="checkbox"
-          disabled={disabled}
-          onChange={toggleEventHandler}
-          checked={value}
-          className="manor-checkbox-input"
-        />
-
-        <label
-          htmlFor={id}
-          className={`
-            ${disabled ? 'disabled' : ''}
-            ${children ? '' : 'ap alignment'}
-          `}
-        >
-          <div className={`
-            manor-checkbox 
-            ${invertColour ? 'inverted' : ''}
-            ${invalid ? 'manor-checkbox-invalid' : ''}
-          `}
+      <ThemeProvider theme={getTheme()}>
+        <StyledWrap>
+          <StyledHiddenInput
+            id={id}
+            name={id}
+            type="checkbox"
+            disabled={disabled}
+            onChange={toggleEventHandler}
+            checked={value}
+          />
+          <StyledLabel
+            disabled={disabled}
+            htmlFor={id}
           >
-            {renderIcon(icon, value)}
-          </div>
-
-          {renderContent(children)}
-
-        </label>
-      </div>
+            <StyledCheckbox
+              invertColour={invertColour}
+              checked={value}
+              disabled={disabled}
+              invalid={invalid}
+            >
+              {renderIcon(icon, value)}
+            </StyledCheckbox>
+            {renderContent(children)}
+          </StyledLabel>
+        </StyledWrap>
+      </ThemeProvider>
     </>
   );
 };

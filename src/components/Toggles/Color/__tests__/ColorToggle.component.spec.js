@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import ColorToggle, { getDisplayBackgroundColor, getAnimationStyle, getDisplayLabel } from '../ColorToggle.component';
+import 'jest-styled-components';
 
 describe('getDisplayBackgroundColor()', () => {
   it('returns background color for non-white', () => {
@@ -39,7 +40,7 @@ describe('getDisplayLabel', () => {
 
 describe('ColorToggle', () => {
   it('renders with minimal props', () => {
-    const { getByText, container } = render(<ColorToggle backgroundColor="black" id="test-a" />);
+    const { getByText, container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" />);
     expect(container.innerHTML).toMatchSnapshot();
     expect(getByText('Black')).toBeInTheDocument();
     const wrapper = container.querySelector('.scoped-toggle');
@@ -50,14 +51,14 @@ describe('ColorToggle', () => {
   });
 
   it('applies fontColor when provided', () => {
-    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" fontColor="white" />);
+    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" fontColor="white" />);
     expect(container.querySelector('.scoped-toggle')).toHaveClass('white');
   });
 
   it('calls onToggle when change event fires', () => {
     const onToggleCb = jest.fn();
     const { container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" fontColor="white" onToggle={onToggleCb} />);
-    const element = container.querySelector('.toggle');
+    const element = container.querySelector('input');
     fireEvent.click(element);
     expect(onToggleCb).toHaveBeenCalled();
     expect(onToggleCb.mock.calls[0][0]).toEqual('ttt');

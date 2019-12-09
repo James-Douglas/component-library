@@ -1,36 +1,43 @@
 import React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import PropTypes from 'prop-types';
-import css from 'styled-jsx/css';
 import Icon from '../Icon/Icon.component';
 
-const styles = css`
-  .manor-feature-list {
-    @apply ml-0;
-  }
-  
-  .feature-list-item {
-    @apply flex mb-4;
-  }
-  
-  .feature-list-item-icon {
-    @apply flex flex-col justify-center text-green-aa fill-current;
-  }
-  
-  .feature-list-item-text {
-    @apply ml-8;
-  }
+const StyledFeatureList = styled.ul`
+  margin-left: 0;
+`;
+
+const StyledListItem = styled.li`
+  display: flex;
+  margin-bottom: ${(props) => props.theme.spacing[4]}
+`;
+
+const StyledFeatureListItemIcon = styled.span`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: ${(props) => props.theme.colors.secondaryDarker};
+`;
+
+const StyledFeatureListItemText = styled.span`
+  margin-left: ${(props) => props.theme.spacing[8]};
+  font-weight: ${(props) => props.theme.fontWeight.normal};
+  line-height: ${(props) => props.theme.lineHeight.snug};
+  font-size: ${(props) => props.theme.fontSize.base};
 `;
 
 const FeatureList = ({ features }) => (
-  <ul className="manor-feature-list">
-    <style jsx>{styles}</style>
-    {features.map((feature) => (
-      <li key={feature} className="feature-list-item">
-        <span className="feature-list-item-icon"><Icon name="check" size={1} /></span>
-        <span className="feature-list-item-text manor-body1">{feature}</span>
-      </li>
-    ))}
-  </ul>
+  <ThemeProvider theme={getTheme()}>
+    <StyledFeatureList>
+      {features.map((feature) => (
+        <StyledListItem key={feature}>
+          <StyledFeatureListItemIcon><Icon name="check" size={1} /></StyledFeatureListItemIcon>
+          <StyledFeatureListItemText>{feature}</StyledFeatureListItemText>
+        </StyledListItem>
+      ))}
+    </StyledFeatureList>
+  </ThemeProvider>
 );
 
 FeatureList.propTypes = {
