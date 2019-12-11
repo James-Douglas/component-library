@@ -73,3 +73,4 @@ copy({
 ### Using a theme
 
 Simply set the `process.env.MANOR_THEME` to your theme name when running your app.
+
