@@ -31,7 +31,7 @@ const Label = ({
     } = tooltip;
     if (hasTooltip && tooltipEnabled) {
       return (
-        <Column col="2">
+        <Column cols="2">
           <Tooltip
             title={title}
             body={body}
@@ -47,7 +47,7 @@ const Label = ({
   return (
     <Row>
       <StyledLabelWrap className="label">
-        <Column col={hasTooltip ? '10' : '12'}>
+        <Column cols={hasTooltip ? '10' : '12'}>
           <StyledLabel htmlFor={forId}>
             {text}
           </StyledLabel>

@@ -29,18 +29,18 @@ The grid also uses a 12 column based system, which is built on top of flexbox te
     <ThemeProvider theme={getTheme()}>
       <Container>
         <Row>
-          <Column>Col-1</Column>
-          <Column>Col-2</Column>
-          <Column>Col-3</Column>
-          <Column>Col-4</Column>
-          <Column>Col-5</Column>
-          <Column>Col-6</Column>
-          <Column>Col-7</Column>
-          <Column>Col-8</Column>
-          <Column>Col-9</Column>
-          <Column>Col-10</Column>
-          <Column>Col-11</Column>
-          <Column>Col-12</Column>
+          <Column valign="center" halign="center">Cols-1</Column>
+          <Column valign="center" halign="center">Cols-2</Column>
+          <Column valign="center" halign="center">Cols-3</Column>
+          <Column valign="center" halign="center">Cols-4</Column>
+          <Column valign="center" halign="center">Cols-5</Column>
+          <Column valign="center" halign="center">Cols-6</Column>
+          <Column valign="center" halign="center">Cols-7</Column>
+          <Column valign="center" halign="center">Cols-8</Column>
+          <Column valign="center" halign="center">Cols-9</Column>
+          <Column valign="center" halign="center">Cols-10</Column>
+          <Column valign="center" halign="center">Cols-11</Column>
+          <Column valign="center" halign="center">Cols-12</Column>
         </Row>
       </Container>
     </ThemeProvider>
@@ -60,18 +60,18 @@ Two different types of containers, the main container and fluid container. This 
     <ThemeProvider theme={getTheme()}>
       <FluidContainer>
         <Row>
-          <Column>Col-1</Column>
-          <Column>Col-2</Column>
-          <Column>Col-3</Column>
-          <Column>Col-4</Column>
-          <Column>Col-5</Column>
-          <Column>Col-6</Column>
-          <Column>Col-7</Column>
-          <Column>Col-8</Column>
-          <Column>Col-9</Column>
-          <Column>Col-10</Column>
-          <Column>Col-11</Column>
-          <Column>Col-12</Column>
+          <Column valign="center" halign="center">Cols-1</Column>
+          <Column valign="center" halign="center">Cols-2</Column>
+          <Column valign="center" halign="center">Cols-3</Column>
+          <Column valign="center" halign="center">Cols-4</Column>
+          <Column valign="center" halign="center">Cols-5</Column>
+          <Column valign="center" halign="center">Cols-6</Column>
+          <Column valign="center" halign="center">Cols-7</Column>
+          <Column valign="center" halign="center">Cols-8</Column>
+          <Column valign="center" halign="center">Cols-9</Column>
+          <Column valign="center" halign="center">Cols-10</Column>
+          <Column valign="center" halign="center">Cols-11</Column>
+          <Column valign="center" halign="center">Cols-12</Column>
         </Row>
       </FluidContainer>
     </ThemeProvider>
@@ -96,24 +96,24 @@ Horizontal alignment
     <ThemeProvider theme={getTheme()}>
       <Container>
         <Row>
-          <Column col="4">col=&apos;4&apos;</Column>
-          <Column col="4">col=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
         </Row>
         <Row justify="center">
-          <Column col="4">col=&apos;4&apos;</Column>
-          <Column col="4">col=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
         </Row>
         <Row justify="flex-end">
-          <Column col="4">col=&apos;4&apos;</Column>
-          <Column col="4">col=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
         </Row>
         <Row justify="space-around">
-          <Column col="4">col=&apos;4&apos;</Column>
-          <Column col="4">col=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
         </Row>
         <Row justify="space-between">
-          <Column col="4">col=&apos;4&apos;</Column>
-          <Column col="4">col=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
+          <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
         </Row>
       </Container>
     </ThemeProvider>
@@ -148,31 +148,31 @@ above it (e.g., .col-sm-4 applies to small, medium, large, and extra large devic
         <p>For example, here are two grid layouts that apply to every device and viewport, from xs to xl. Add any number of unit-less className for each breakpoint you need and every column will be the same width.</p>
         <Container>
           <Row>
-            <Column>1 of 2</Column>
-            <Column>2 of 2</Column>
+            <Column valign="center" halign="center">1 of 2</Column>
+            <Column valign="center" halign="center">2 of 2</Column>
           </Row>
           <Row>
-            <Column>1 of 3</Column>
-            <Column>2 of 3</Column>
-            <Column>3 of 3</Column>
+            <Column valign="center" halign="center">1 of 3</Column>
+            <Column valign="center" halign="center">2 of 3</Column>
+            <Column valign="center" halign="center">3 of 3</Column>
           </Row>
         </Container>
         <h5 style={{ margin: '0' }}>Setting one column width</h5>
         <p>Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it.  Note that the other columns will resize no matter the width of the center column.</p>
         <Container>
           <Row>
-            <Column>1 of 3</Column>
-            <Column col="6">2 of 3 (wider col=&apos;6&apos;)</Column>
-            <Column>3 of 3</Column>
+            <Column valign="center" halign="center">1 of 3</Column>
+            <Column valign="center" cols="6" halign="center">2 of 3 (wider cols=&apos;6&apos;)</Column>
+            <Column valign="center" halign="center">3 of 3</Column>
           </Row>
         </Container>
         <h5 style={{ margin: '0' }}>Variable width content</h5>
         <p>Use [breakpoint]==&apos;auto=&apos; props to size columns based on the natural width of their content.</p>
         <Container>
           <Row className="justify-center">
-            <Column>col</Column>
-            <Column md="auto">Variable width content (md=&apos;auto&apos;) add some more text to increase width</Column>
-            <Column>col</Column>
+            <Column valign="center" halign="center">cols</Column>
+            <Column valign="center" halign="center" md="auto">Variable width content (md=&apos;auto&apos;) add some more text to increase width</Column>
+            <Column valign="center" halign="center">cols</Column>
           </Row>
         </Container>
       </StyledGrid>
@@ -187,39 +187,39 @@ above it (e.g., .col-sm-4 applies to small, medium, large, and extra large devic
     <ThemeProvider theme={getTheme()}>
       <StyledGrid className="grid-view manor-rich-text">
         <h5 style={{ margin: '0' }}>Responsive Columns</h5>
-        <p>For grids that are the same from the smallest of devices to the largest, use the col=[value]. Specify a numbered class when you need a particularly sized Column; otherwise, feel free to omit all props (auto calculation).</p>
+        <p>For grids that are the same from the smallest of devices to the largest, use the cols=[value]. Specify a numbered class when you need a particularly sized Column; otherwise, feel free to omit all props (auto calculation).</p>
         <Container>
           <Row>
-            <Column>col</Column>
-            <Column>col</Column>
-            <Column>col</Column>
-            <Column>col</Column>
+            <Column valign="center" halign="center">cols</Column>
+            <Column valign="center" halign="center">cols</Column>
+            <Column valign="center" halign="center">cols</Column>
+            <Column valign="center" halign="center">cols</Column>
           </Row>
           <Row>
-            <Column>col=&apos;8&apos;</Column>
-            <Column col="4">col=&apos;4&apos;</Column>
+            <Column valign="center" halign="center">cols=&apos;8&apos;</Column>
+            <Column cols="4" valign="center" halign="center">cols=&apos;4&apos;</Column>
           </Row>
         </Container>
         <h5 style={{ margin: '0' }}>Stacked to horizontal</h5>
-          <p>Using a single set of col=sm or sm=[value] props, you can create a basic grid system that starts out stacked before becoming horizontal with at the small breakpoint (sm).</p>
+          <p>Using a single set of cols=sm or sm=[value] props, you can create a basic grid system that starts out stacked before becoming horizontal with at the small breakpoint (sm).</p>
         <Container>
           <Row>
-            <Column sm="8">sm=&apos;8&apos;</Column>
-            <Column sm="4">sm=&apos;4&apos;</Column>
+            <Column sm="8" valign="center" halign="center">sm=&apos;8&apos;</Column>
+            <Column sm="4" valign="center" halign="center">sm=&apos;4&apos;</Column>
           </Row>
           <Row>
-            <Column col="sm">col=&apos;sm&apos;</Column>
-            <Column col="sm">col=&apos;sm&apos;</Column>
-            <Column col="sm">col=&apos;sm&apos;</Column>
+            <Column col="sm" valign="center" halign="center">cols=&apos;sm&apos;</Column>
+            <Column col="sm" valign="center" halign="center">cols=&apos;sm&apos;</Column>
+            <Column col="sm" valign="center" halign="center">cols=&apos;sm&apos;</Column>
           </Row>
         </Container>
           <h5 style={{ margin: '0' }}>Mix and match</h5>
           <p>Don’t want your Columns to simply stack in some grid tiers? Use a combination of different className for each tier as needed. See the example below for a better idea of how it all works.</p>
         <Container>
           <Row>
-            <Column sm="4" lg="2">sm=&apos;4&apos; lg=&apos;2&apos;</Column>
-            <Column sm="4" lg="2">sm=&apos;4&apos; lg=&apos;2&apos;</Column>
-            <Column sm="4" lg="8">sm=&apos;4&apos; lg=&apos;8&apos;</Column>
+            <Column sm="4" lg="2" valign="center" halign="center">sm=&apos;4&apos; lg=&apos;2&apos;</Column>
+            <Column sm="4" lg="2" valign="center" halign="center">sm=&apos;4&apos; lg=&apos;2&apos;</Column>
+            <Column sm="4" lg="8" valign="center" halign="center">sm=&apos;4&apos; lg=&apos;8&apos;</Column>
           </Row>
         </Container>
       </StyledGrid>
@@ -235,34 +235,34 @@ above it (e.g., .col-sm-4 applies to small, medium, large, and extra large devic
       <h5 style={{margin: '0'}}>Column offsets</h5>
       <Container>
         <Row>
-          <Column col="4" offset="4">col=&apos;4&apos; offset=&apos;4&apos;</Column>
+          <Column cols="4" offset="4" valign="center" halign="center">cols=&apos;4&apos; offset=&apos;4&apos;</Column>
         </Row>
         <Row>
-          <Column col="3" offset="2">col=&apos;3&apos; offset=&apos;2&apos;</Column>
-          <Column col="3" offset="2">col=&apos;3&apos; offset=&apos;2&apos;</Column>
+          <Column cols="3" offset="2" valign="center" halign="center">cols=&apos;3&apos; offset=&apos;2&apos;</Column>
+          <Column cols="3" offset="2" valign="center" halign="center">cols=&apos;3&apos; offset=&apos;2&apos;</Column>
         </Row>
         <Row>
-          <Column col="1">col=&apos;1&apos;</Column>
-          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
-          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
-          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
-          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
-          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column cols="1" valign="center">cols=&apos;1&apos;</Column>
+          <Column cols="1" offset="1" valign="center" halign="center">cols=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column cols="1" offset="1" valign="center" halign="center">cols=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column cols="1" offset="1" valign="center" halign="center">cols=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column cols="1" offset="1" valign="center" halign="center">cols=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column cols="1" offset="1" valign="center" halign="center">cols=&apos;1&apos; offset=&apos;1&apos;</Column>
         </Row>
       </Container>
       <h5 style={{margin: '0'}}>Breakpoint specific offsets</h5>
       <Container>
         <Row>
-          <Column col="2" offsetSm={1}>col=&apos;2&apos; offsetSm=&apos;1&apos;</Column>
-          <Column col="2" offsetSm={1}>col=&apos;2&apos; offsetSm=&apos;1&apos;</Column>
+          <Column cols="2" offsetSm={1} valign="center" halign="center">cols=&apos;2&apos; offsetSm=&apos;1&apos;</Column>
+          <Column cols="2" offsetSm={1} valign="center" halign="center">cols=&apos;2&apos; offsetSm=&apos;1&apos;</Column>
         </Row>
         <Row>
-          <Column col="2" offsetSm={1} offsetMd={3}>col=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
-          <Column col="2" offsetSm={1} offsetMd={3}>col=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+          <Column cols="2" offsetSm={1} offsetMd={3} valign="center" halign="center">cols=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+          <Column cols="2" offsetSm={1} offsetMd={3} valign="center" halign="center">cols=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
         </Row>
         <Row>
-          <Column offsetSm={1} offsetMd={3}>offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
-          <Column offsetSm={1} offsetMd={3}>offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+          <Column offsetSm={1} offsetMd={3} valign="center" halign="center">offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+          <Column offsetSm={1} offsetMd={3} valign="center" halign="center">offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
         </Row>
       </Container>
     </ThemeProvider>

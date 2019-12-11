@@ -68,7 +68,7 @@ const CardResultsView = ({ background }) => {
             </div>
           </Row>
           <Row>
-            <Column offset={2} col={8}>
+            <Column offset={2} cols={8}>
               <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                   et dolore magna aliqua.
@@ -76,23 +76,23 @@ const CardResultsView = ({ background }) => {
             </Column>
           </Row>
           <Row>
-            <Column offset={2} col={4}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
-            <Column col={4}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
+            <Column offset={2} cols={4}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
+            <Column cols={4}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
           </Row>
           <Row>
-            <Column offset={2} col={4}><p>{card.advRate}</p></Column>
-            <Column col={4}><p>{card.compRate}</p></Column>
+            <Column offset={2} cols={4}><p>{card.advRate}</p></Column>
+            <Column cols={4}><p>{card.compRate}</p></Column>
           </Row>
           <Row>
-            <Column offset={2} col={4}><StyledManorOverline>Fees</StyledManorOverline></Column>
-            <Column col={4}><StyledManorOverline>Repayments</StyledManorOverline></Column>
+            <Column offset={2} cols={4}><StyledManorOverline>Fees</StyledManorOverline></Column>
+            <Column cols={4}><StyledManorOverline>Repayments</StyledManorOverline></Column>
           </Row>
           <Row>
-            <Column offset={2} col={4}><p>{card.fees}</p></Column>
-            <Column col={4}><p>{card.repayments}</p></Column>
+            <Column offset={2} cols={4}><p>{card.fees}</p></Column>
+            <Column cols={4}><p>{card.repayments}</p></Column>
           </Row>
           <Row>
-            <Column offset={2} col={8}>
+            <Column offset={2} cols={8}>
               <div style={{
                 display: 'flex', width: '100%', justifyContent: 'left', alignItems: 'center', marginTop: '2rem',
               }}
@@ -102,7 +102,7 @@ const CardResultsView = ({ background }) => {
             </Column>
           </Row>
           <Row>
-            <Column offset={2} col={8}>
+            <Column offset={2} cols={8}>
               <div style={{
                 display: 'flex', width: '100%', justifyContent: 'left', alignItems: 'center',
               }}
@@ -122,39 +122,39 @@ const CardResultsView = ({ background }) => {
       <Container>
         <div style={{ padding: '3rem 0rem', width: '100%', fontSize: '1.4rem' }}>
           <Row>
-            <Column col={9}>
+            <Column cols={9}>
               <Container>
                 <Row>
-                  <Column col={4}><h6>{card.name}</h6></Column>
-                  <Column col={2}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
-                  <Column col={2}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
-                  <Column col={2}><StyledManorOverline>Fees</StyledManorOverline></Column>
-                  <Column col={2}><StyledManorOverline>Repayments</StyledManorOverline></Column>
+                  <Column cols={4}><h6>{card.name}</h6></Column>
+                  <Column cols={2}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
+                  <Column cols={2}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
+                  <Column cols={2}><StyledManorOverline>Fees</StyledManorOverline></Column>
+                  <Column cols={2}><StyledManorOverline>Repayments</StyledManorOverline></Column>
                 </Row>
                 <Row>
-                  <Column col={4}>
+                  <Column cols={4}>
                     <p style={{ paddingRight: '7rem' }}>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                       et dolore magna aliqua.
                     </p>
                   </Column>
-                  <Column col={2}>
+                  <Column cols={2}>
                     <p>{card.advRate}</p>
                   </Column>
-                  <Column col={2}>
+                  <Column cols={2}>
                     <p>{card.compRate}</p>
                   </Column>
-                  <Column col={2}>
+                  <Column cols={2}>
                     <p>{card.fees}</p>
                   </Column>
-                  <Column col={2}>
+                  <Column cols={2}>
                     <p>{card.repayments}</p>
                   </Column>
                 </Row>
 
               </Container>
             </Column>
-            <Column col={3}>
+            <Column cols={3}>
               <div style={{
                 display: 'flex', flexDirection: 'column', justifyContent: 'left', alignItems: 'center', marginTop: '2rem',
               }}
@@ -173,7 +173,7 @@ const CardResultsView = ({ background }) => {
     <StoryTemplate background={background}>
       <Container>
         <Row>
-          <Column offset={10} col={2}>
+          <Column offset={10} cols={2}>
             <Button id="toggle-button" variant="secondary" content={`Toggle ${isGrid ? 'List' : 'Grid'}`} handleClick={toggleView} />
           </Column>
         </Row>

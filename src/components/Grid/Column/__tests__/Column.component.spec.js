@@ -35,7 +35,7 @@ describe('Column', () => {
   });
 
   it('defines col size when supplied', () => {
-    const { container } = render(<Column col={5} />);
+    const { container } = render(<Column cols={5} />);
 
     const column = container.getElementsByTagName('div')[0];
 
@@ -102,7 +102,7 @@ describe('Column', () => {
   });
 
   it('stacks at breakpoint sm', () => {
-    const { container } = render(<Column col="sm" />);
+    const { container } = render(<Column cols="sm" />);
 
     const column = container.getElementsByTagName('div')[0];
 
@@ -116,7 +116,7 @@ describe('Column', () => {
   });
 
   it('stacks at breakpoint md', () => {
-    const { container } = render(<Column col="md" />);
+    const { container } = render(<Column cols="md" />);
 
     const column = container.getElementsByTagName('div')[0];
 
@@ -130,7 +130,7 @@ describe('Column', () => {
   });
 
   it('stacks at breakpoint lg', () => {
-    const { container } = render(<Column col="lg" />);
+    const { container } = render(<Column cols="lg" />);
 
     const column = container.getElementsByTagName('div')[0];
 
@@ -144,7 +144,7 @@ describe('Column', () => {
   });
 
   it('stacks at breakpoint xl', () => {
-    const { container } = render(<Column col="xl" />);
+    const { container } = render(<Column cols="xl" />);
 
     const column = container.getElementsByTagName('div')[0];
 
@@ -158,7 +158,7 @@ describe('Column', () => {
   });
 
   it('stacks at breakpoint xxl', () => {
-    const { container } = render(<Column col="xxl" />);
+    const { container } = render(<Column cols="xxl" />);
 
     const column = container.getElementsByTagName('div')[0];
 

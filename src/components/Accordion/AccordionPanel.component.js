@@ -117,8 +117,8 @@ const AccordionPanel = ({
         >
           <FluidContainer>
             <Row>
-              <Column col="11">{title}</Column>
-              <Column col="1">
+              <Column cols="11">{title}</Column>
+              <Column cols="1">
                 <Icon name={`angle${angleName}`} size={iconSize} />
               </Column>
             </Row>
@@ -127,7 +127,7 @@ const AccordionPanel = ({
         <StyledAccordionBody isVisible={isVisible} role="tabpanel">
           <FluidContainer>
             <Row className="row-view">
-              <Column col="12">{children}</Column>
+              <Column cols="12">{children}</Column>
             </Row>
           </FluidContainer>
         </StyledAccordionBody>

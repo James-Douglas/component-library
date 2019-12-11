@@ -55,14 +55,14 @@ const TooltipFiltersView = () => {
     <StoryTemplate>
       <Container>
         <Row>
-          <Column col="4">
+          <Column cols="4">
             <div id="filter-container" style={filterContainerStyle}>
               <Container>
                 <Row>
-                  <Column col="10">
+                  <Column cols="10">
                     <input style={inputStyle} />
                   </Column>
-                  <Column col="2">
+                  <Column cols="2">
                     <div style={alignTooltip}>
                       <Tooltip title="test tooltip" body={tooltipContentA} boundingElementSelector="#filter-container" />
                     </div>
@@ -71,10 +71,10 @@ const TooltipFiltersView = () => {
               </Container>
             </div>
           </Column>
-          <Column col="8">
+          <Column cols="8">
             <Container>
               <Row>
-                <Column col="12">
+                <Column cols="12">
                   <p>
 Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tri-tip kielbasa landjaeger ham hock
                     chicken fatback pastrami turkey pork loin. Kevin prosciutto short ribs chicken strip steak picanha salami. Meatloaf
@@ -85,7 +85,7 @@ Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tr
                 </Column>
               </Row>
               <Row>
-                <Column col="12">
+                <Column cols="12">
                   <p>
 Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tri-tip kielbasa landjaeger ham hock
                     chicken fatback pastrami turkey pork loin. Kevin prosciutto short ribs chicken strip steak picanha salami. Meatloaf
@@ -96,7 +96,7 @@ Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tr
                 </Column>
               </Row>
               <Row>
-                <Column col="12">
+                <Column cols="12">
                   <p>
 Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tri-tip kielbasa landjaeger ham hock
                     chicken fatback pastrami turkey pork loin. Kevin prosciutto short ribs chicken strip steak picanha salami. Meatloaf
@@ -107,7 +107,7 @@ Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tr
                 </Column>
               </Row>
               <Row>
-                <Column col="12">
+                <Column cols="12">
                   <p>
 Bacon ipsum dolor amet short loin strip steak t-bone, andouille biltong bacon tri-tip kielbasa landjaeger ham hock
                     chicken fatback pastrami turkey pork loin. Kevin prosciutto short ribs chicken strip steak picanha salami. Meatloaf

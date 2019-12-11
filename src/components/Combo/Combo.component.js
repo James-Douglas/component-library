@@ -30,7 +30,7 @@ export function comboDropdownList(linkText, linkHref, blueButton, currentPrefill
 }
 
 const StyledList = styled.ul`
-  width: '100%';
+  width:  100%;
   padding: 0;
   margin-top: ${(props) => (props.theme.spacing[8])};  
   z-index: ${(props) => (props.theme.zIndex[30])}; 
@@ -117,7 +117,7 @@ export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, 
 
 
 const StyledDiv = styled.div`
-  width: '100%';
+  width: 100%;
 `;
 
 

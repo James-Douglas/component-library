@@ -60,7 +60,7 @@ const CheckboxGroupView = () => {
       <StyledGridView>
         <Container>
           <Row>
-            <Column offset={2} col={10}>
+            <Column offset={2} cols={10}>
               <CheckboxGroup
                 label="Group A"
                 tooltip={{ title: 'Group A', body: 'This is a tooltip for group A' }}
@@ -79,7 +79,7 @@ const CheckboxGroupView = () => {
             </Column>
           </Row>
           <Row>
-            <Column offset={2} col={10}>
+            <Column offset={2} cols={10}>
               <CheckboxGroup
                 label="Group B"
                 validationMessage={validationMessageGroupB}
@@ -98,7 +98,7 @@ const CheckboxGroupView = () => {
           </Row>
 
           <Row>
-            <Column offset={2} col={10}>
+            <Column offset={2} cols={10}>
               <StyledResults>
                 {checkboxGroupA.length || checkboxGroupB.length
                   ? (

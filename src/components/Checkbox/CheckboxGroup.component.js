@@ -10,7 +10,7 @@ export const generateGroup = (colSize, children, callback) => {
     return children.map((child) => {
       const component = React.cloneElement(child, { handleChange: callback });
       return (
-        <Column col={colSize} key={`key-${child.props.id}`}>
+        <Column cols={colSize} key={`key-${child.props.id}`}>
           {component}
         </Column>
       );

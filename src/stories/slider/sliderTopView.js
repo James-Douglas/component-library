@@ -59,10 +59,10 @@ const SliderTop = () => {
           <StyledSliderContent>
             <Container className="mt-24">
               <Row>
-                <Column col="12" sm="12" md="12">
+                <Column cols="12" sm="12" md="12">
                   <Container>
                     <Row className="row-view">
-                      <Column col="12">
+                      <Column cols="12">
                         <div className="manor-rich-text">
                           <StyledSliderInner>
                             <h4>Compare Personal Loans</h4>
@@ -87,7 +87,7 @@ const SliderTop = () => {
                       </Column>
                     </Row>
                     <Row>
-                      <Column col="12" className="items-baseline"><Separator type="vertical" /></Column>
+                      <Column cols="12" className="items-baseline"><Separator type="vertical" /></Column>
                     </Row>
                   </Container>
                 </Column>
@@ -99,7 +99,7 @@ const SliderTop = () => {
         <StyledBar />
         <Container>
           <Row className="row-view">
-            <Column col="4" sm="12" md="4" offset="4">
+            <Column cols="4" sm="12" md="4" offset="4">
               <StyledCard>
                 <h5>Term Deposit Name</h5>
                 <p>It has survived not only five centuries, but also the leap into electronic typesetting,
@@ -108,7 +108,7 @@ const SliderTop = () => {
                 <div style={{ marginTop: '4.8rem' }}>
                   <Container>
                     <Row className="row-view">
-                      <Column col="5">
+                      <Column cols="5">
                         <p style={{ color: '#818181' }}>Interest rate</p>
                         <div style={{ margin: 'auto' }}>
                           <Container>
@@ -119,8 +119,8 @@ const SliderTop = () => {
                           </Container>
                         </div>
                       </Column>
-                      <Column col="2" className="items-center"><Separator type="vertical" /></Column>
-                      <Column col="5"><p style={{ color: '#818181' }}>Term</p> <h4>2 months</h4></Column>
+                      <Column cols="2" className="items-center"><Separator type="vertical" /></Column>
+                      <Column cols="5"><p style={{ color: '#818181' }}>Term</p> <h4>2 months</h4></Column>
                     </Row>
                   </Container>
                 </div>

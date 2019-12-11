@@ -13,7 +13,7 @@ export const StyledGrid = styled.div`
 export const StyledRow = styled(Row)`
   margin-bottom: 2rem;
   border: 1px dashed ${(props) => props.theme.colors.blueLighter};
-  justify-content: ${(props) => props.justify}
+  justify-content: ${(props) => props.justify};
 `;
 
 export const StyledCol = styled(Column)`
@@ -21,8 +21,6 @@ export const StyledCol = styled(Column)`
   background: rgba(28, 62, 148, 0.2);
   height: 10rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
   font-weight: bold;
   font-size: 1.5rem;
 `;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import screens from '../../../../config/screens';
 
-// for col='sm' or col='md' etc
+// for cols='sm' or cols='md' etc
 const colDefault = css`
   flex-basis: 0%; 
   flex-grow: 1; 
@@ -34,13 +34,15 @@ const StyledColumn = styled.div`
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
+  align-items: ${(props) => props.valign};
+  justify-content: ${(props) => props.halign};
   
-  ${({ col, baseOffset }) => {
+  ${({ cols, baseOffset }) => {
     let colStyles = '';
-    if (parseInt(col, 10) > 0) {
+    if (parseInt(cols, 10) > 0) {
       colStyles += `
-        flex: ${getPercentage(col)}; 
-        max-width: ${getPercentage(col)};  
+        flex: ${getPercentage(cols)}; 
+        max-width: ${getPercentage(cols)};  
       `;
     }
 
@@ -51,7 +53,7 @@ const StyledColumn = styled.div`
     }
 
     media.forEach((oneMedia) => {
-      if (col === oneMedia.col) {
+      if (cols === oneMedia.col) {
         colStyles += `@media (min-width: ${oneMedia.minWidth}) { 
           ${colDefault}
         }`;
@@ -171,7 +173,7 @@ const StyledColumn = styled.div`
   }}
   }
 
-  ${(props) => !props.col && !props.sm && !props.md && !props.lg && !props.xl && !props.xxl && css`
+  ${(props) => !props.cols && !props.sm && !props.md && !props.lg && !props.xl && !props.xxl && css`
     -ms-flex-preferred-size: 0;
     flex-basis: 0%;
     -ms-flex-positive: 1;
@@ -181,7 +183,7 @@ const StyledColumn = styled.div`
 `;
 
 const Column = ({
-  col,
+  cols,
   sm,
   md,
   lg,
@@ -195,9 +197,11 @@ const Column = ({
   offsetXxl,
   children,
   className,
+  valign,
+  halign,
 }) => (
   <StyledColumn
-    col={col}
+    cols={cols}
     sm={sm}
     md={md}
     lg={lg}
@@ -209,6 +213,8 @@ const Column = ({
     offsetLg={offsetLg}
     offsetXl={offsetXl}
     offsetXxl={offsetXxl}
+    valign={valign}
+    halign={halign}
     className={`
         ${className}
       `}
@@ -225,7 +231,7 @@ Column.propTypes = {
   /**
    * Width in columns (across all breakpoints where a specific width [sm, md, lg, xl, xxl] has not been given)
    */
-  col: PropTypes.oneOfType([
+  cols: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
@@ -310,11 +316,19 @@ Column.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  /**
+   * The align-items property is related to CSS layout.
+   */
+  valign: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'baseline', 'stretch']),
+  /**
+   * The justify-content property is related to CSS layout.
+   */
+  halign: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'initial', 'inherit']),
 };
 
 Column.defaultProps = {
   className: '',
-  col: 0,
+  cols: 0,
   sm: 0,
   md: 0,
   lg: 0,
@@ -327,6 +341,8 @@ Column.defaultProps = {
   offsetXl: 0,
   offsetXxl: 0,
   children: [],
+  valign: 'flex-start',
+  halign: 'flex-start',
 };
 
 export default Column;

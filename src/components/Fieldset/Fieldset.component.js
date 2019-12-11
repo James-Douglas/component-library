@@ -92,7 +92,7 @@ export function renderTooltip(enableLabelTooltip, desktop, hasTooltip, title, bo
 
   if (!enableLabelTooltip && hasTooltip) {
     return (
-      <Column col={colSize}>
+      <Column cols={colSize}>
         <StyledTooltipContainer>
           <Tooltip
             title={title}
