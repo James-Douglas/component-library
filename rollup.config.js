@@ -12,6 +12,7 @@ import smartAsset from "rollup-plugin-smart-asset";
 import ignoreImport from "rollup-plugin-ignore-import";
 import copy from "rollup-plugin-copy";
 import url from 'rollup-plugin-url';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const ouputDir = "lib";
 
@@ -61,6 +62,7 @@ const makeFileConfig = componentPath => {
     external: id => /^react/.test(id),
 
     plugins: [
+      peerDepsExternal(),
       postcss(),
       includePaths({ paths: ["src", "config"] }),
       url({
@@ -105,6 +107,7 @@ const buildLibrary = () => {
     external: id => /^react/.test(id),
 
     plugins: [
+      peerDepsExternal(),
       postcss({ extract: `${ouputDir}/styles.css` }),
       includePaths({ paths: ["src", "config"] }),
       url({

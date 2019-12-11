@@ -146,6 +146,7 @@
     "rollup-plugin-local-resolve": "^1.0.7",
     "rollup-plugin-node-externals": "^2.1.1",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-smart-asset": "^2.0.0",
     "rollup-plugin-url": "^3.0.1",
