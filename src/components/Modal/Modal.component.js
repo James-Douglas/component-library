@@ -53,11 +53,11 @@ const StyledCloseIcon = styled.div`
   position: absolute;
   top: 2rem;
   right: 2rem;
+  cursor: pointer;
 `;
 
 const StyledContent = styled.div`
   padding: 4rem;
-  margin-top: 2rem;
 `;
 
 /* Workaround for storybook not rendering props when ReactDOM.createPortal is used https://github.com/storybookjs/storybook/issues/8435 */

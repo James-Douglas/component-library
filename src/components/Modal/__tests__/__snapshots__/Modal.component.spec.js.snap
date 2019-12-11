@@ -20,11 +20,11 @@ exports[`Modal renders with minimal props 1`] = `
   position: absolute;
   top: 2rem;
   right: 2rem;
+  cursor: pointer;
 }
 
 .c2 {
   padding: 4rem;
-  margin-top: 2rem;
 }
 
 <div

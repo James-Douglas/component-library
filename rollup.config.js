@@ -11,6 +11,7 @@ import includePaths from "rollup-plugin-includepaths";
 import smartAsset from "rollup-plugin-smart-asset";
 import ignoreImport from "rollup-plugin-ignore-import";
 import copy from "rollup-plugin-copy";
+import url from 'rollup-plugin-url';
 
 const ouputDir = "lib";
 
@@ -62,6 +63,13 @@ const makeFileConfig = componentPath => {
     plugins: [
       postcss(),
       includePaths({ paths: ["src", "config"] }),
+      url({
+        // by default, rollup-plugin-url will not handle font files
+        include: ['**/*.woff', '**/*.woff2', '**/*.eot', '**/*.ttf'],
+        // setting infinite limit will ensure that the files
+        // are always bundled with the code, not copied to /dist
+        limit: Infinity,
+      }),
       localResolve(),
       resolve({
         browser: true
@@ -99,6 +107,13 @@ const buildLibrary = () => {
     plugins: [
       postcss({ extract: `${ouputDir}/styles.css` }),
       includePaths({ paths: ["src", "config"] }),
+      url({
+        // by default, rollup-plugin-url will not handle font files
+        include: ['**/*.woff', '**/*.woff2', '**/*.eot', '**/*.ttf'],
+        // setting infinite limit will ensure that the files
+        // are always bundled with the code, not copied to /dist
+        limit: Infinity,
+      }),
       copy({
         targets: [
           { src: 'src/themes/ctm.theme.js', dest: 'lib'},

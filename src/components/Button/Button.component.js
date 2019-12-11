@@ -9,8 +9,6 @@ import Icon from '../Icon/Icon.component';
 
 const StyledIcon = styled.div`
   pointer-events: none;
-  padding-left: 1rem;
-  padding-right: 1rem;
   display: inherit;
 `;
 
@@ -29,10 +27,7 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: ${(props) => props.theme.borderRadius.lg};
-  padding-right: ${(props) => props.theme.spacing[24]};
-  padding-left: ${(props) => props.theme.spacing[24]};
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
+  padding: 1.2rem ${(props) => props.theme.spacing[24]};
   margin-bottom: ${(props) => props.theme.spacing[16]};
   font-size: ${(props) => props.theme.fontSize.lg};
   text-transform: Capitalize;
@@ -41,13 +36,19 @@ const StyledButton = styled.button`
   transition : all 200ms ease-out;
   font-weight: ${(props) => props.theme.fontWeight.bold};
   line-height: ${(props) => props.theme.lineHeight.relaxed};
-
+  > ${StyledIcon} {
+    padding-right: ${(props) => props.theme.spacing[12]};
+  }
   :focus {
     outline: none;
     box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }
   ${(props) => props.iconAlignRight && css`
     flex-direction: row-reverse;
+    > ${StyledIcon} {
+      padding-right: 0;
+      padding-left: ${props.theme.spacing[12]};
+    }
   `}
   ${(props) => props.variant === 'primary' && css`
     background: ${props.theme.colors.secondaryDarker};
@@ -133,26 +134,31 @@ const StyledAnchor = styled.a`
   font-weight: ${(props) => props.theme.fontWeight.normal};
   font-size: ${(props) => props.theme.fontSize.base};
   line-height: ${(props) => props.theme.lineHeight.relaxed};
-  > ${StyledIcon} & {
-    padding-right: 1rem; // this might not work
+  > ${StyledIcon} {
+    padding-left: 0;
+    padding-right: ${(props) => props.theme.spacing[12]};
     padding-top: 0.2rem;
   }
   ${(props) => props.iconAlignRight && css`
     flex-direction: row-reverse;
+    > ${StyledIcon} {
+      padding-right: 0;
+      padding-left: ${props.theme.spacing[12]};
+    }
   `}
   ${(props) => props.variant === 'text' && css`
-    text-decoration: none !important; // manor-rich-text-a is the reason for !important - do we need manor-rich-text-a?
-    font-weight: ${props.theme.fontWeight.semibold} !important;
+    text-decoration: none;
+    font-weight: ${props.theme.fontWeight.semibold};
     :hover {
-      color: ${props.theme.colors.primaryLight} !important;
+      color: ${props.theme.colors.primaryLight};
       fill: ${props.theme.colors.primaryLight};
     }
   `}
   ${(props) => (props.variant === 'text' && props.darkMode) && css`
-    color: ${props.theme.colors.white} !important; //manor rich text again
+    color: ${props.theme.colors.white};
     fill: ${props.theme.colors.white};
     :hover {
-      color: ${props.theme.colors.blueLighter} !important; //manor rich text again
+      color: ${props.theme.colors.blueLighter};
       fill: ${props.theme.colors.blueLighter};
     }
   `}
@@ -160,7 +166,7 @@ const StyledAnchor = styled.a`
     background: transparent;
     text-transform: underline;
     display: inline-block;
-    font-weight: ${props.theme.fontWeight.semibold} !important;
+    font-weight: ${props.theme.fontWeight.semibold};
     :hover {
       color: ${props.theme.colors.primaryLight};
       fill: ${props.theme.colors.primaryLight};
@@ -170,26 +176,26 @@ const StyledAnchor = styled.a`
     color: ${props.theme.colors.white};
     fill: ${props.theme.colors.white};
     :hover {
-      color: ${props.theme.colors.blueLighter} !important;
-      fill: ${props.theme.colors.blueLighter} !important;
+      color: ${props.theme.colors.blueLighter};
+      fill: ${props.theme.colors.blueLighter};
     }
   `}
   ${(props) => props.variant === 'footer-link' && css`
-    font-size: ${props.theme.fontSize.sm} !important;
-    font-weight: ${props.theme.fontWeight.semibold} !important;
-    text-decoration: none !important;
+    font-size: ${props.theme.fontSize.sm};
+    font-weight: ${props.theme.fontWeight.semibold};
+    text-decoration: none;
     display: block;
     margin-bottom: 1rem;
     :hover {
-      color: ${props.theme.colors.black} !important;
-      text-decoration: underline !important;
+      color: ${props.theme.colors.black};
+      text-decoration: underline;
     }
   `}
   ${(props) => (props.variant === 'footer-link' && props.darkMode) && css`
     color: ${props.theme.colors.white};
     fill: ${props.theme.colors.white};
     :hover {
-      color: ${props.theme.colors.white} !important;
+      color: ${props.theme.colors.white};
     }
   `}
 `;

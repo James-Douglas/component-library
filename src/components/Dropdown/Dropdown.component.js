@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, ThemeProvider, createGlobalStyle } from 'styled-components';
+import styled, { css, ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import usePrefill from '../../hooks/usePrefill';
@@ -10,16 +10,15 @@ const StyledSupportingElements = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  padding-top:  ${(props) => props.theme.spacing['8']};
+  padding-top: ${(props) => props.theme.spacing['8']};
 `;
 
 const StyledFullWidth = styled.div`
   width: 100%;
 `;
 
-const GlobalStyle = createGlobalStyle`
-  .manor-subscript {
-    line-height: ${(props) => props.theme.lineHeight.snug};
+const StyledRequiredStatus = styled.div`
+   line-height: ${(props) => props.theme.lineHeight.snug};
     font-family: SourceSansPro, Arial, sans-serif;
     font-size: ${(props) => props.theme.fontSize['2xs']};
     letter-spacing: 0.15rem;
@@ -194,27 +193,27 @@ const StyledSelect = styled.select`
     }
   `}
   ${(props) => props.bordered && css`
-    border: ${`1px solid ${props.theme.colors.greyLightest}`};
+    border: ${`1px solid ${props.theme.colors.greyLight}`};
     &:disabled:focus {
-      border: ${`1px solid ${props.theme.colors.greyLightest}`};
+      border: ${`1px solid ${props.theme.colors.greyLight}`};
     }
     &[aria-disabled=true]:focus {
-      border: ${`1px solid ${props.theme.colors.greyLightest}`};
+      border: ${`1px solid ${props.theme.colors.greyLight}`};
     }
     &:disabled:hover {
-      border: ${`1px solid ${props.theme.colors.greyLightest}`};
+      border: ${`1px solid ${props.theme.colors.greyLight}`};
     }
     &[aria-disabled=true]:hover {
-      border: ${`1px solid ${props.theme.colors.greyLightest}`};
+      border: ${`1px solid ${props.theme.colors.greyLight}`};
     }
     &:disabled {
-      background-image: ${`url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%231780F3%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.greyLightest}) 0%, theme(${props.theme.colors.greyLightest}) 100%)`};
-      border: ${`1px solid ${props.theme.colors.greyLightest}`};
+      background-image: ${`url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%231780F3%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.greyLight}) 0%, theme(${props.theme.colors.greyLight}) 100%)`};
+      border: ${`1px solid ${props.theme.colors.greyLight}`};
       opacity: 0.5;
     }
     &[aria-disabled=true] {
-      background-image: ${`url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%231780F3%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.greyLightest}) 0%, theme(${props.theme.colors.greyLightest}) 100%)`};
-      border: ${`1px solid ${props.theme.colors.greyLightest}`};
+      background-image: ${`url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%231780F3%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.greyLight}) 0%, theme(${props.theme.colors.greyLight}) 100%)`};
+      border: ${`1px solid ${props.theme.colors.greyLight}`};
       opacity: 0.5;
     }
   `}
@@ -227,7 +226,7 @@ export const getSupportingElements = (required) => {
     <ThemeProvider theme={getTheme()}>
       <StyledFullWidth>
         <StyledSupportingElements>
-          <div className="manor-subscript">OPTIONAL</div>
+          <StyledRequiredStatus>OPTIONAL</StyledRequiredStatus>
         </StyledSupportingElements>
       </StyledFullWidth>
     </ThemeProvider>
@@ -253,7 +252,6 @@ export const selectField = (
   className,
 ) => (
   <ThemeProvider theme={getTheme()}>
-    <GlobalStyle />
     <StyledSelect
       id={id}
       name={name}

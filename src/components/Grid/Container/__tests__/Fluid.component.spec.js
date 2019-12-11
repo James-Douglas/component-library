@@ -24,11 +24,10 @@ describe('Container', () => {
   it('has a container class by default and NO fixed class', () => {
     const { container } = render(<Fluid />);
 
-    const containerComponent = container.querySelector('.container');
+    const containerComponent = container.firstChild;
 
     expect(container).toMatchSnapshot();
     expect(containerComponent).toBeDefined();
-    expect(containerComponent.classList[1]).not.toBe('fixed');
     expect(containerComponent).toHaveStyleRule('padding-left', '1.6rem');
     expect(containerComponent).not.toHaveStyleRule('max-width', '72rem');
   });

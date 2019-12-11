@@ -46,7 +46,7 @@ Icon component, we use a mixture of inhouse designed icons and FontAwesome icons
       const renderIcons = () => {
         return Object.keys(faIcons).map((icon) => {
          return (
-           <div style={{display: 'flex', width: '6.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+           <div key={icon} style={{display: 'flex', width: '6.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
              <Icon name={icon} size={2} />
              <span className="subtitle-1" style={{paddingTop: '0.8rem'}}>{icon}</span>
            </div>

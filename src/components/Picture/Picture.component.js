@@ -9,6 +9,7 @@ const StyledPicture = styled.picture`
 
 const StyledImg = styled.img`
   height: 100%;
+  max-width: 100%;
   object-fit: contain;
   object-position: left;
 `;

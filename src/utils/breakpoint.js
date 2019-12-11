@@ -5,23 +5,22 @@ const breakpoints = Object.assign({}, ...Object.keys(screens).map((key) => ({ [k
 function getBreakpoint() {
   const width = window.innerWidth;
 
-  if (width < breakpoints.xs) {
-    return 'xs';
+  if (width > breakpoints.xl) {
+    return 'xxl';
   }
-  if (width < breakpoints.sm) {
-    return 'sm';
-  }
-  if (width < breakpoints.md) {
-    return 'md';
-  }
-  if (width < breakpoints.lg) {
-    return 'lg';
-  }
-  if (width < breakpoints.xl) {
+  if (width > breakpoints.lg) {
     return 'xl';
   }
-
-  return 'xxl';
+  if (width > breakpoints.md) {
+    return 'lg';
+  }
+  if (width > breakpoints.sm) {
+    return 'md';
+  }
+  if (width > breakpoints.xs) {
+    return 'sm';
+  }
+  return 'xs';
 }
 function isDesktop(breakpoint = getBreakpoint()) {
   return ['md', 'lg', 'xl', 'xxl'].includes(breakpoint);

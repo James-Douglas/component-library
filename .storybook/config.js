@@ -1,10 +1,8 @@
 import { addParameters, addDecorator } from '@storybook/react';
 import { create } from '@storybook/theming';
-import GlobalDecorator from "./themeDecorator";
 import { withA11y } from '@storybook/addon-a11y';
 import '../src/stories';
 
-addDecorator(GlobalDecorator);
 addDecorator(withA11y);
 
 addParameters({

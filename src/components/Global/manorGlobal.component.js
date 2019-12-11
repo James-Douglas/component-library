@@ -3,14 +3,14 @@ import { css, createGlobalStyle, ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import screens from '../../../config/screens';
 
-const SourceSansProSrc = require('../../fonts/sourcesanspro-regular-webfont.woff2');
-const SourceSansProUrl = require('../../fonts/sourcesanspro-regular-webfont.woff');
+import SourceSansProSrc from '../../fonts/sourcesanspro-regular-webfont.woff2';
+import SourceSansProUrl from '../../fonts/sourcesanspro-regular-webfont.woff';
 
-const SourceSansProSemiBoldSrc = require('../../fonts/sourcesanspro-semibold-webfont.woff2');
-const SourceSansProSemiBoldUrl = require('../../fonts/sourcesanspro-semibold-webfont.woff');
+import SourceSansProSemiBoldSrc from '../../fonts/sourcesanspro-semibold-webfont.woff2';
+import SourceSansProSemiBoldUrl from '../../fonts/sourcesanspro-semibold-webfont.woff';
 
-const SourceSansProBoldSrc = require('../../fonts/sourcesanspro-bold-webfont.woff2');
-const SourceSansProBoldUrl = require('../../fonts/sourcesanspro-bold-webfont.woff');
+import SourceSansProBoldSrc from '../../fonts/sourcesanspro-bold-webfont.woff2';
+import SourceSansProBoldUrl from '../../fonts/sourcesanspro-bold-webfont.woff';
 
 export const manor = css`
   @font-face {
@@ -52,28 +52,34 @@ export const manor = css`
   h1 {
     line-height: ${(props) => props.theme.lineHeight.tighter};
     font-size: ${(props) => props.theme.fontSize['4xl']};
+    margin:  ${(props) => `0 0 ${props.theme.spacing['24']}`};
   }
   h2 {
     line-height: ${(props) => props.theme.lineHeight.tighter};
     font-size: ${(props) => props.theme.fontSize['4xl']};
+    margin:  ${(props) => `0 0 ${props.theme.spacing['20']}`};
   }
   h3 {
     line-height: ${(props) => props.theme.lineHeight.tighter};
     font-size: ${(props) => props.theme.fontSize['2xl']};
+    margin:  ${(props) => `0 0 ${props.theme.spacing['16']}`};
   } 
   h4 {
     line-height: ${(props) => props.theme.lineHeight.snug};
     font-size: ${(props) => props.theme.fontSize.lg};
+    margin:  ${(props) => `0 0 ${props.theme.spacing['16']}`};
   }  
    
   h5 {
     line-height: ${(props) => props.theme.lineHeight.snug};
     font-size: ${(props) => props.theme.fontSize.xl};
+    margin:  ${(props) => `0 0 ${props.theme.spacing['16']}`};
   }   
   h6 {
     font-weight: ${(props) => props.theme.fontWeight.bold};
     line-height: ${(props) => props.theme.lineHeight.snug};
     font-size: ${(props) => props.theme.fontSize.base};
+    margin:  ${(props) => `0 0 ${props.theme.spacing['12']}`};
   }   
   p {
     line-height: ${(props) => props.theme.lineHeight.snug};

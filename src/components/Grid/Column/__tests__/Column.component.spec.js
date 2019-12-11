@@ -60,20 +60,21 @@ describe('Column', () => {
     const column = container.getElementsByTagName('div')[0];
 
     expect(container).toMatchSnapshot();
+
     expect(column).toHaveStyleRule('flex', '66.66666666666667%', {
-      media: `(min-width:${screens.sm})`,
+      media: `(min-width:${screens.xs})`,
     });
     expect(column).toHaveStyleRule('flex', '58.333333333333336%', {
-      media: `(min-width:${screens.md})`,
+      media: `(min-width:${screens.sm})`,
     });
     expect(column).toHaveStyleRule('flex', '50%', {
-      media: `(min-width:${screens.lg})`,
+      media: `(min-width:${screens.md})`,
     });
     expect(column).toHaveStyleRule('flex', '41.66666666666667%', {
-      media: `(min-width:${screens.xl})`,
+      media: `(min-width:${screens.lg})`,
     });
     expect(column).toHaveStyleRule('flex', '33.333333333333336%', {
-      media: `(min-width:${screens.xxl})`,
+      media: `(min-width:${screens.xl})`,
     });
   });
 
@@ -84,19 +85,19 @@ describe('Column', () => {
 
     expect(container).toMatchSnapshot();
     expect(column).toHaveStyleRule('margin-left', '66.66666666666667%', {
-      media: `(min-width:${screens.sm})`,
+      media: `(min-width:${screens.xs})`,
     });
     expect(column).toHaveStyleRule('margin-left', '58.333333333333336%', {
-      media: `(min-width:${screens.md})`,
+      media: `(min-width:${screens.sm})`,
     });
     expect(column).toHaveStyleRule('margin-left', '50%', {
-      media: `(min-width:${screens.lg})`,
+      media: `(min-width:${screens.md})`,
     });
     expect(column).toHaveStyleRule('margin-left', '41.66666666666667%', {
-      media: `(min-width:${screens.xl})`,
+      media: `(min-width:${screens.lg})`,
     });
     expect(column).toHaveStyleRule('margin-left', '33.333333333333336%', {
-      media: `(min-width:${screens.xxl})`,
+      media: `(min-width:${screens.xl})`,
     });
   });
 

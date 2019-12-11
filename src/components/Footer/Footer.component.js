@@ -9,7 +9,7 @@ import FluidContainer from '../Grid/Container/Fluid.component';
 
 const StyledFooterContainer = styled.div`
   width: 100%;
-  background: ${(props) => props.theme.colors.greyLight}; 
+  background: ${(props) => props.theme.colors.greyLighterAA}; 
   flex-grow: 1;
   flex-shrink: 0;
 `;

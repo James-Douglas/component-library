@@ -61,7 +61,7 @@ const StyledColumn = styled.div`
     return colStyles;
   }}
 
-  @media (min-width: ${screens.sm}) {
+  @media (min-width: ${screens.xs}) {
     ${({ sm, offsetSm }) => {
     let colStyles = '';
 
@@ -83,7 +83,7 @@ const StyledColumn = styled.div`
   }}
   }
 
-  @media (min-width: ${screens.md}) {
+  @media (min-width: ${screens.sm}) {
     ${({ md, offsetMd }) => {
     let colStyles = '';
 
@@ -105,7 +105,7 @@ const StyledColumn = styled.div`
   }}
   }
 
-  @media (min-width: ${screens.lg}) {
+  @media (min-width: ${screens.md}) {
     ${({ lg, offsetLg }) => {
     let colStyles = '';
 
@@ -127,7 +127,7 @@ const StyledColumn = styled.div`
   }}
   }
 
-  @media (min-width: ${screens.xl}) {
+  @media (min-width: ${screens.lg}) {
     ${({ xl, offsetXl }) => {
     let colStyles = '';
 
@@ -149,7 +149,7 @@ const StyledColumn = styled.div`
   }}
   }
 
-  @media (min-width: ${screens.xxl}) {
+  @media (min-width: ${screens.xl}) {
     ${({ xxl, offsetXxl }) => {
     let colStyles = '';
 

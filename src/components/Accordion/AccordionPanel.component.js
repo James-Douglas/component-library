@@ -117,8 +117,8 @@ const AccordionPanel = ({
         >
           <FluidContainer>
             <Row>
-              <Column col="9" lg="11">{title}</Column>
-              <Column col="3" lg="1">
+              <Column col="11">{title}</Column>
+              <Column col="1">
                 <Icon name={`angle${angleName}`} size={iconSize} />
               </Column>
             </Row>

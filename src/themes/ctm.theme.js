@@ -19,7 +19,6 @@ const ctmTheme = {
     white: '#FFFFFF',
     black: '#000000',
     grey: '#AAAAAA',
-    greyLightest: '#E0DBD9',
     greyLighter: '#F8F8F8',
     greyLighterAA: '#F3F3F3',
     greyLight: '#DDDDDD',

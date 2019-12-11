@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Fieldset renders without props 1`] = `
-"<div class=\\"fieldset\\"><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-EHOje ieBshd label\\"><div class=\\"sc-bwzfXH foJowY 
+"<div class=\\"fieldset\\"><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-EHOje ieBshd label\\"><div class=\\"sc-bwzfXH eJgWNP 
         
-      \\"><label class=\\"sc-bZQynM hFJVkI\\"></label></div></div></div><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-bwzfXH fuOwOZ 
+      \\"><label class=\\"sc-bZQynM hFJVkI\\"></label></div></div></div><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-bwzfXH ipttKw 
         
-      \\"></div></div><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-bwzfXH fuOwOZ 
+      \\"></div></div><div class=\\"sc-bdVaJa fjijQK row \\"><div class=\\"sc-bwzfXH ipttKw 
         
       \\"><div class=\\"sc-iwsKbI kKTqkq\\"><div class=\\"sc-gZMcBi kjbvYA\\"></div></div></div></div></div>"
 `;

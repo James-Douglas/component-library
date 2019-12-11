@@ -36,6 +36,9 @@ const StyledLabel = styled.label`
 `;
 
 const StyledCheckbox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid ${(props) => props.theme.colors.blueDark};
   background: ${(props) => (props.checked ? `${props.theme.colors.blueDark}` : `${props.theme.colors.white}`)};
   color: ${(props) => props.theme.colors.white};
@@ -76,7 +79,7 @@ const StyledContent = styled.div`
 export const renderIcon = (icon, value) => {
   if (value) {
     return (
-      <Icon name={icon} size={2} />
+      <Icon name={icon} size={1.4} />
     );
   }
   return null;

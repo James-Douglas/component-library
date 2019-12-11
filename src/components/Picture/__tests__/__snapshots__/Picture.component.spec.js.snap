@@ -7,7 +7,7 @@ exports[`Picture renders correctly without props 1`] = `
   >
     <img
       alt="a placeholder image"
-      class="sc-bwzfXH cYZGgc"
+      class="sc-bwzfXH cQRnjt"
       src="placeholder.png"
       title="a placeholder title"
     />

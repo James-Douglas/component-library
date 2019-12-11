@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ToggleGroup renders with minimal props 1`] = `
-"<div class=\\"fieldset\\"><div class=\\"sc-bxivhb iQzwat row \\"><div class=\\"sc-EHOje ieBshd label\\"><div class=\\"sc-ifAKCX cRMGQM 
+"<div class=\\"fieldset\\"><div class=\\"sc-bxivhb iQzwat row \\"><div class=\\"sc-EHOje ieBshd label\\"><div class=\\"sc-ifAKCX khfhyV 
         
-      \\"><label class=\\"sc-bZQynM hFJVkI\\"></label></div></div></div><div class=\\"sc-bxivhb iQzwat row \\"><div class=\\"sc-ifAKCX iMCYcT 
+      \\"><label class=\\"sc-bZQynM hFJVkI\\"></label></div></div></div><div class=\\"sc-bxivhb iQzwat row \\"><div class=\\"sc-ifAKCX ePFlFa 
         
-      \\"><div class=\\"sc-gqjmRU QCmsC\\"></div></div></div><div class=\\"sc-bxivhb iQzwat row \\"><div class=\\"sc-ifAKCX iMCYcT 
+      \\"><div class=\\"sc-gqjmRU QCmsC\\"></div></div></div><div class=\\"sc-bxivhb iQzwat row \\"><div class=\\"sc-ifAKCX ePFlFa 
         
       \\"><div class=\\"sc-iwsKbI kKTqkq\\"><div class=\\"sc-gZMcBi kjbvYA\\"></div></div></div></div></div>"
 `;

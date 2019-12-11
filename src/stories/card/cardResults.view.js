@@ -42,13 +42,9 @@ const StyledManorOverline = styled.span`
   font-size: 1rem;
   letter-spacing: 0.15rem;
   font-weight: 600;
-  text-transform: uppercase;
   color: #787673;
 `;
 
-const StyledHeadingSmall = styled.h5`
-  margin: 0;
-`;
 
 // eslint-disable-next-line react/prop-types
 const CardResultsView = ({ background }) => {
@@ -62,54 +58,58 @@ const CardResultsView = ({ background }) => {
     // eslint-disable-next-line react/no-array-index-key
     <Card id={card.id} key={`card-${i}`}>
       <Container>
-        <div style={{ padding: '3rem 0rem', width: '100%' }}>
+        <div style={{ padding: '3rem 0rem', width: '100%', fontSize: '1.4rem' }}>
           <Row>
             <div style={{
               display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem',
             }}
             >
-              <StyledHeadingSmall>{card.name}</StyledHeadingSmall>
+              <h6>{card.name}</h6>
             </div>
           </Row>
           <Row>
             <Column offset={2} col={8}>
-              <p className="manor-body1">
+              <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                   et dolore magna aliqua.
               </p>
             </Column>
           </Row>
           <Row>
-            <Column col={6}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
-            <Column col={6}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
+            <Column offset={2} col={4}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
+            <Column col={4}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
           </Row>
           <Row>
-            <Column col={6}><p>{card.advRate}</p></Column>
-            <Column col={6}><p>{card.compRate}</p></Column>
+            <Column offset={2} col={4}><p>{card.advRate}</p></Column>
+            <Column col={4}><p>{card.compRate}</p></Column>
           </Row>
           <Row>
-            <Column col={6}><StyledManorOverline>Fees</StyledManorOverline></Column>
-            <Column col={6}><StyledManorOverline>Repayments</StyledManorOverline></Column>
+            <Column offset={2} col={4}><StyledManorOverline>Fees</StyledManorOverline></Column>
+            <Column col={4}><StyledManorOverline>Repayments</StyledManorOverline></Column>
           </Row>
           <Row>
-            <Column col={6}><p>{card.fees}</p></Column>
-            <Column col={6}><p>{card.repayments}</p></Column>
+            <Column offset={2} col={4}><p>{card.fees}</p></Column>
+            <Column col={4}><p>{card.repayments}</p></Column>
           </Row>
           <Row>
-            <div style={{
-              display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center',
-            }}
-            >
-              <Button id="a" variant="primary" content="Go to site" />
-            </div>
+            <Column offset={2} col={8}>
+              <div style={{
+                display: 'flex', width: '100%', justifyContent: 'left', alignItems: 'center', marginTop: '2rem',
+              }}
+              >
+                <Button id="a" variant="primary" content="Go to site" />
+              </div>
+            </Column>
           </Row>
           <Row>
-            <div style={{
-              display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center',
-            }}
-            >
-              <Button id="b" variant="primary" content="More info" />
-            </div>
+            <Column offset={2} col={8}>
+              <div style={{
+                display: 'flex', width: '100%', justifyContent: 'left', alignItems: 'center',
+              }}
+              >
+                <Button id="b" variant="primary" content="More info" />
+              </div>
+            </Column>
           </Row>
         </div>
       </Container>
@@ -120,12 +120,12 @@ const CardResultsView = ({ background }) => {
     // eslint-disable-next-line react/no-array-index-key
     <Card id={card.id} key={`card-${i}`}>
       <Container>
-        <div style={{ padding: '3rem 0rem', width: '100%' }}>
+        <div style={{ padding: '3rem 0rem', width: '100%', fontSize: '1.4rem' }}>
           <Row>
             <Column col={9}>
               <Container>
                 <Row>
-                  <Column col={4}><StyledHeadingSmall>{card.name}</StyledHeadingSmall></Column>
+                  <Column col={4}><h6>{card.name}</h6></Column>
                   <Column col={2}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
                   <Column col={2}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
                   <Column col={2}><StyledManorOverline>Fees</StyledManorOverline></Column>
@@ -133,7 +133,7 @@ const CardResultsView = ({ background }) => {
                 </Row>
                 <Row>
                   <Column col={4}>
-                    <p className="manor-body1">
+                    <p style={{ paddingRight: '7rem' }}>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                       et dolore magna aliqua.
                     </p>
@@ -156,7 +156,7 @@ const CardResultsView = ({ background }) => {
             </Column>
             <Column col={3}>
               <div style={{
-                display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+                display: 'flex', flexDirection: 'column', justifyContent: 'left', alignItems: 'center', marginTop: '2rem',
               }}
               >
                 <Button id="a" variant="primary" content="Go to site" />

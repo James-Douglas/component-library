@@ -6,12 +6,13 @@ import getTheme from 'utils/getTheme';
 const StyledCard = styled.div`
   display: flex;
   width: 100%;
-  min-width: 8rem;
-  min-height: 8rem;
+  min-width: ${(props) => props.theme.spacing['80']};
+  min-height: ${(props) => props.theme.spacing['80']};
   background: ${(props) => props.theme.colors.white}; 
   box-shadow: ${(props) => props.theme.boxShadow.progress}; 
   border: ${(props) => `1px solid ${props.theme.colors.greyLight}`};   
   margin: ${(props) => `${props.theme.spacing['4']} ${props.theme.spacing['4']} ${props.theme.spacing['16']}`};
+  padding: ${(props) => props.theme.spacing['16']}; 
 `;
 
 

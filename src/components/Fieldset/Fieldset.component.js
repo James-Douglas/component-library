@@ -6,7 +6,6 @@ import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
-import useBreakpoint from '../../hooks/useBreakpoint';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const GlobalStyle = createGlobalStyle`
@@ -74,25 +73,22 @@ export function getScreenReaderLabel(screenReaderLabel, label) {
   return screenReaderLabel;
 }
 
-export function getContentColumnSize(forceFullWidth, breakpoint) {
+export function getContentColumnSize(forceFullWidth, desktop) {
   if (forceFullWidth) {
     return '12';
   }
-  if (breakpoint === 'xxl' || breakpoint === 'xl') {
+  if (desktop) {
     return '11';
   }
-  return '10';
+  return '12';
 }
 
-export function getTooltipColumnSize(breakpoint) {
-  if (breakpoint === 'xxl' || breakpoint === 'xl') {
-    return '1';
-  }
-  return '2';
+export function getTooltipColumnSize(desktop) {
+  return desktop ? '1' : '2';
 }
 
-export function renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd) {
-  const colSize = getTooltipColumnSize(breakpoint);
+export function renderTooltip(enableLabelTooltip, desktop, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd) {
+  const colSize = getTooltipColumnSize(desktop);
 
   if (!enableLabelTooltip && hasTooltip) {
     return (
@@ -119,7 +115,6 @@ const Fieldset = ({
   const [enableLabelTooltip, setEnableLabelTooltip] = useState(false);
   const [srLabel, setSrLabel] = useState(tooltip.screenReaderLabel);
   const desktop = useIsDesktop(false);
-  const breakpoint = useBreakpoint(false);
   const {
     title, body, boundingElementSelector, justifyEnd,
   } = tooltip;
@@ -137,13 +132,10 @@ const Fieldset = ({
     setSrLabel(getScreenReaderLabel(screenReaderLabel, label));
   }, [screenReaderLabel, label]);
 
-  const contentSize = getContentColumnSize(forceFullWidth, breakpoint);
+  const contentSize = getContentColumnSize(forceFullWidth, desktop);
 
   const tooltipOptions = tooltip;
-
-  if (!tooltipOptions.justifyEnd && desktop && enableLabelTooltip) {
-    tooltipOptions.justifyEnd = true;
-  }
+  tooltipOptions.justifyEnd = !tooltipOptions.justifyEnd && desktop && enableLabelTooltip;
 
   return (
     <div className="fieldset">
@@ -153,7 +145,7 @@ const Fieldset = ({
         <Column sm={contentSize} xs="12">
           {children}
         </Column>
-        {renderTooltip(enableLabelTooltip, breakpoint, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd)}
+        {renderTooltip(enableLabelTooltip, desktop, hasTooltip, title, body, boundingElementSelector, srLabel, justifyEnd)}
       </Row>
       <Row>
         <Column sm={contentSize} xs="12">

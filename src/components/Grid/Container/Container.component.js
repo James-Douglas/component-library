@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
 `;
 
 const Container = ({ children, className }) => (
-  <StyledContainer className={`container fixed ${className}`}>
+  <StyledContainer className={className}>
     {children}
   </StyledContainer>
 );

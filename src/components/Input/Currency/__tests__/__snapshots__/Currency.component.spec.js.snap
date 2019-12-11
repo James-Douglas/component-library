@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Currency renders with minimal props 1`] = `
-"<div class=\\"fieldset\\"><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-EHOje ieBshd label\\"><div class=\\"sc-htpNat vZrdB 
+"<div class=\\"fieldset\\"><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-EHOje ieBshd label\\"><div class=\\"sc-htpNat ikmFuU 
         
-      \\"><label class=\\"sc-bZQynM hFJVkI\\"></label></div></div></div><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-htpNat dEkrpu 
+      \\"><label class=\\"sc-bZQynM hFJVkI\\"></label></div></div></div><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-htpNat kdnSLA 
         
       \\"><div class=\\"sc-fjdhpX dybFtm input-container\\"><div class=\\"sc-jzJRlG ecmhww 
                 input-wrap 
               \\"><div class=\\"sc-cSHVUG QByXw input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-kAzzGY lbaeFc 
                     input-default
-                  \\" value=\\"\\"></div></div></div></div></div><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-htpNat dEkrpu 
+                  \\" value=\\"\\"></div></div></div></div></div><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-htpNat kdnSLA 
         
       \\"><div class=\\"sc-iwsKbI kKTqkq\\"><div class=\\"sc-gZMcBi kjbvYA\\"></div></div></div></div></div>"
 `;

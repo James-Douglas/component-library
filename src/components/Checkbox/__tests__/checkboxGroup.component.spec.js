@@ -47,7 +47,7 @@ describe('CheckboxGroup.component', () => {
 
   it('renders with props', () => {
     const mockTestClick = jest.fn();
-    const { container, getByText } = render(
+    const { container } = render(
       <CheckboxGroup groupId="test-group-id" colSize="5" handleChange={mockTestClick} disableFieldset>
         <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>

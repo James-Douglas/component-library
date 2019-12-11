@@ -4,8 +4,10 @@ import styled, { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import Container from '../../components/Grid/Container/Container.component';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
-import Row from '../../components/Grid/Row/Row.component';
-import Column from '../../components/Grid/Column/Column.component';
+import {default as RealRow} from '../../components/Grid/Row/Row.component';
+import {default as RealCol} from '../../components/Grid/Column/Column.component';
+
+import { StyledRow as Row, StyledCol as Column } from './grid-view-styles.js'
 
 <Meta title="Components|Grid" />
 
@@ -24,43 +26,24 @@ margins to keep centred.
 The grid also uses a 12 column based system, which is built on top of flexbox technology.
 <Preview>
   <Story name="container">
-   {() => {
-    const StyledRow = styled(Row)`
-     margin-bottom: 2rem;
-     border: 1px dashed ${(props) => props.theme.colors.blueLighter};
-     justify-content: ${(props) => props.justify}
-    `;
-    const StyledCol = styled(Column)`
-     border: 1px solid ${(props) => props.theme.colors.primary};
-     background: rgba(28, 62, 148, 0.2);
-     height: 10rem;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     font-weight: bold;
-     font-size: 1.5rem;
-   `;
-    return (
-      <ThemeProvider theme={getTheme()}>
-          <Container>
-            <StyledRow>
-              <StyledCol>Col-1</StyledCol>
-              <StyledCol>Col-2</StyledCol>
-              <StyledCol>Col-3</StyledCol>
-              <StyledCol>Col-4</StyledCol>
-              <StyledCol>Col-5</StyledCol>
-              <StyledCol>Col-6</StyledCol>
-              <StyledCol>Col-7</StyledCol>
-              <StyledCol>Col-8</StyledCol>
-              <StyledCol>Col-9</StyledCol>
-              <StyledCol>Col-10</StyledCol>
-              <StyledCol>Col-11</StyledCol>
-              <StyledCol>Col-12</StyledCol>
-            </StyledRow>
-          </Container>
-      </ThemeProvider>
-    );
-   }}
+    <ThemeProvider theme={getTheme()}>
+      <Container>
+        <Row>
+          <Column>Col-1</Column>
+          <Column>Col-2</Column>
+          <Column>Col-3</Column>
+          <Column>Col-4</Column>
+          <Column>Col-5</Column>
+          <Column>Col-6</Column>
+          <Column>Col-7</Column>
+          <Column>Col-8</Column>
+          <Column>Col-9</Column>
+          <Column>Col-10</Column>
+          <Column>Col-11</Column>
+          <Column>Col-12</Column>
+        </Row>
+      </Container>
+    </ThemeProvider>
   </Story>
 </Preview>
 
@@ -74,42 +57,24 @@ Two different types of containers, the main container and fluid container. This 
 
 <Preview>
   <Story name="fluid container">
-    {() => {
-    const StyledRow = styled(Row)`
-     margin-bottom: 2rem;
-     border: 1px dashed ${(props) => props.theme.colors.blueLighter};
-     justify-content: ${(props) => props.justify}
-    `;
-    const StyledCol = styled(Column)`
-     border: 1px solid ${(props) => props.theme.colors.primary};
-     background: rgba(28, 62, 148, 0.2);
-     height: 10rem;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     font-weight: bold;
-     font-size: 1.5rem;
-   `;
-    return (
-      <ThemeProvider theme={getTheme()}>
-          <FluidContainer>
-            <StyledRow>
-              <StyledCol>Col-1</StyledCol>
-              <StyledCol>Col-2</StyledCol>
-              <StyledCol>Col-3</StyledCol>
-              <StyledCol>Col-4</StyledCol>
-              <StyledCol>Col-5</StyledCol>
-              <StyledCol>Col-6</StyledCol>
-              <StyledCol>Col-7</StyledCol>
-              <StyledCol>Col-8</StyledCol>
-              <StyledCol>Col-9</StyledCol>
-              <StyledCol>Col-10</StyledCol>
-              <StyledCol>Col-11</StyledCol>
-              <StyledCol>Col-12</StyledCol>
-            </StyledRow>
-          </FluidContainer>
-      </ThemeProvider>)
-    }}
+    <ThemeProvider theme={getTheme()}>
+      <FluidContainer>
+        <Row>
+          <Column>Col-1</Column>
+          <Column>Col-2</Column>
+          <Column>Col-3</Column>
+          <Column>Col-4</Column>
+          <Column>Col-5</Column>
+          <Column>Col-6</Column>
+          <Column>Col-7</Column>
+          <Column>Col-8</Column>
+          <Column>Col-9</Column>
+          <Column>Col-10</Column>
+          <Column>Col-11</Column>
+          <Column>Col-12</Column>
+        </Row>
+      </FluidContainer>
+    </ThemeProvider>
   </Story>
 </Preview>
 
@@ -128,55 +93,36 @@ visually aligned down the left side.
 Horizontal alignment
 <Preview>
   <Story name="alignment">
-   {() => {
-    const StyledRow = styled(Row)`
-      margin-bottom: 2rem;
-      border: 1px dashed ${(props) => props.theme.colors.blueLighter};
-      justify-content: ${(props) => props.justify}
-   `;
-     const StyledCol = styled(Column)`
-      border: 1px solid ${(props) => props.theme.colors.primary};
-      background: rgba(28, 62, 148, 0.2);
-      height: 10rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 1.5rem;
-    `;
-    return (
-      <ThemeProvider theme={getTheme()}>
-        <Container>
-          <StyledRow>
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-          </StyledRow>
-          <StyledRow justify="center">
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-          </StyledRow>
-          <StyledRow justify="flex-end">
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-          </StyledRow>
-          <StyledRow justify="space-around">
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-          </StyledRow>
-          <StyledRow justify="space-between">
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-            <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-          </StyledRow>
-        </Container>
-      </ThemeProvider>
-    );
-  }}
+    <ThemeProvider theme={getTheme()}>
+      <Container>
+        <Row>
+          <Column col="4">col=&apos;4&apos;</Column>
+          <Column col="4">col=&apos;4&apos;</Column>
+        </Row>
+        <Row justify="center">
+          <Column col="4">col=&apos;4&apos;</Column>
+          <Column col="4">col=&apos;4&apos;</Column>
+        </Row>
+        <Row justify="flex-end">
+          <Column col="4">col=&apos;4&apos;</Column>
+          <Column col="4">col=&apos;4&apos;</Column>
+        </Row>
+        <Row justify="space-around">
+          <Column col="4">col=&apos;4&apos;</Column>
+          <Column col="4">col=&apos;4&apos;</Column>
+        </Row>
+        <Row justify="space-between">
+          <Column col="4">col=&apos;4&apos;</Column>
+          <Column col="4">col=&apos;4&apos;</Column>
+        </Row>
+      </Container>
+    </ThemeProvider>
   </Story>
 </Preview>
 
 ## Row props
 
-<Props of={Row} />
+<Props of={RealRow} />
 
 ### Column
 
@@ -196,60 +142,41 @@ above it (e.g., .col-sm-4 applies to small, medium, large, and extra large devic
 
 <Preview>
   <Story name="columns">
-    {() => {
-       const StyledRow = styled(Row)`
-          margin-bottom: 2rem;
-          border: 1px dashed ${(props) => props.theme.colors.blueLighter};
-          justify-content: ${(props) => props.justify}
-       `;
-       const StyledCol = styled(Column)`
-          border: 1px solid ${(props) => props.theme.colors.primary};
-          background: rgba(28, 62, 148, 0.2);
-          height: 10rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: bold;
-          font-size: 1.5rem;
-        `;
-      return (
-        <ThemeProvider theme={getTheme()}>
-          <StyledGrid>
-            <h5 style={{ margin: '0' }}>Auto-layout columns</h5>
-            <p>For example, here are two grid layouts that apply to every device and viewport, from xs to xl. Add any number of unit-less className for each breakpoint you need and every column will be the same width.</p>
-            <Container>
-              <StyledRow>
-                <StyledCol>1 of 2</StyledCol>
-                <StyledCol>2 of 2</StyledCol>
-              </StyledRow>
-              <StyledRow>
-                <StyledCol>1 of 3</StyledCol>
-                <StyledCol>2 of 3</StyledCol>
-                <StyledCol>3 of 3</StyledCol>
-              </StyledRow>
-            </Container>
-            <h5 style={{ margin: '0' }}>Setting one column width</h5>
-            <p>Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it.  Note that the other columns will resize no matter the width of the center column.</p>
-            <Container>
-              <StyledRow>
-                <StyledCol>1 of 3</StyledCol>
-                <StyledCol col="6">2 of 3 (wider col=&apos;6&apos;)</StyledCol>
-                <StyledCol>3 of 3</StyledCol>
-              </StyledRow>
-            </Container>
-            <h5 style={{ margin: '0' }}>Variable width content</h5>
-            <p>Use [breakpoint]==&apos;auto=&apos; props to size columns based on the natural width of their content.</p>
-            <Container>
-              <StyledRow className="justify-center">
-                <StyledCol>col</StyledCol>
-                <StyledCol md="auto">Variable width content (md=&apos;auto&apos;) add some more text to increase width</StyledCol>
-                <StyledCol>col</StyledCol>
-              </StyledRow>
-            </Container>
-          </StyledGrid>
-        </ThemeProvider>
-      );
-    }}
+    <ThemeProvider theme={getTheme()}>
+      <StyledGrid>
+        <h5 style={{ margin: '0' }}>Auto-layout columns</h5>
+        <p>For example, here are two grid layouts that apply to every device and viewport, from xs to xl. Add any number of unit-less className for each breakpoint you need and every column will be the same width.</p>
+        <Container>
+          <Row>
+            <Column>1 of 2</Column>
+            <Column>2 of 2</Column>
+          </Row>
+          <Row>
+            <Column>1 of 3</Column>
+            <Column>2 of 3</Column>
+            <Column>3 of 3</Column>
+          </Row>
+        </Container>
+        <h5 style={{ margin: '0' }}>Setting one column width</h5>
+        <p>Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it.  Note that the other columns will resize no matter the width of the center column.</p>
+        <Container>
+          <Row>
+            <Column>1 of 3</Column>
+            <Column col="6">2 of 3 (wider col=&apos;6&apos;)</Column>
+            <Column>3 of 3</Column>
+          </Row>
+        </Container>
+        <h5 style={{ margin: '0' }}>Variable width content</h5>
+        <p>Use [breakpoint]==&apos;auto=&apos; props to size columns based on the natural width of their content.</p>
+        <Container>
+          <Row className="justify-center">
+            <Column>col</Column>
+            <Column md="auto">Variable width content (md=&apos;auto&apos;) add some more text to increase width</Column>
+            <Column>col</Column>
+          </Row>
+        </Container>
+      </StyledGrid>
+    </ThemeProvider>
   </Story>
 </Preview>
 
@@ -257,65 +184,46 @@ above it (e.g., .col-sm-4 applies to small, medium, large, and extra large devic
 
 <Preview>
   <Story name="responsive columns">
-    {() => {
-      const StyledRow = styled(Row)`
-        margin-bottom: 2rem;
-        border: 1px dashed ${(props) => props.theme.colors.blueLighter};
-        justify-content: ${(props) => props.justify}
-     `;
-     const StyledCol = styled(Column)`
-        border: 1px solid ${(props) => props.theme.colors.primary};
-        background: rgba(28, 62, 148, 0.2);
-        height: 10rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        font-size: 1.5rem;
-      `;
-      return (
-        <ThemeProvider theme={getTheme()}>
-          <StyledGrid className="grid-view manor-rich-text">
-            <h5 style={{ margin: '0' }}>Responsive StyledCols</h5>
-            <p>For grids that are the same from the smallest of devices to the largest, use the col=[value]. Specify a numbered class when you need a particularly sized StyledCol; otherwise, feel free to omit all props (auto calculation).</p>
-            <Container>
-              <StyledRow>
-                <StyledCol>col</StyledCol>
-                <StyledCol>col</StyledCol>
-                <StyledCol>col</StyledCol>
-                <StyledCol>col</StyledCol>
-              </StyledRow>
-              <StyledRow>
-                <StyledCol>col=&apos;8&apos;</StyledCol>
-                <StyledCol col="4">col=&apos;4&apos;</StyledCol>
-              </StyledRow>
-              </Container>
-              <h5 style={{ margin: '0' }}>Stacked to horizontal</h5>
-                <p>Using a single set of col=sm or sm=[value] props, you can create a basic grid system that starts out stacked before becoming horizontal with at the small breakpoint (sm).</p>
-              <Container>
-                <StyledRow>
-                  <StyledCol sm="8">sm=&apos;8&apos;</StyledCol>
-                  <StyledCol sm="4">sm=&apos;4&apos;</StyledCol>
-                </StyledRow>
-                <StyledRow>
-                  <StyledCol col="sm">col=&apos;sm&apos;</StyledCol>
-                  <StyledCol col="sm">col=&apos;sm&apos;</StyledCol>
-                  <StyledCol col="sm">col=&apos;sm&apos;</StyledCol>
-                </StyledRow>
-              </Container>
-                <h5 style={{ margin: '0' }}>Mix and match</h5>
-                <p>Don’t want your StyledCols to simply stack in some grid tiers? Use a combination of different className for each tier as needed. See the example below for a better idea of how it all works.</p>
-              <Container>
-                <StyledRow>
-                  <StyledCol sm="4" lg="2">sm=&apos;4&apos; lg=&apos;2&apos;</StyledCol>
-                  <StyledCol sm="4" lg="2">sm=&apos;4&apos; lg=&apos;2&apos;</StyledCol>
-                  <StyledCol sm="4" lg="8">sm=&apos;4&apos; lg=&apos;8&apos;</StyledCol>
-                </StyledRow>
-              </Container>
-          </StyledGrid>
-        </ThemeProvider>
-      );
-    }}
+    <ThemeProvider theme={getTheme()}>
+      <StyledGrid className="grid-view manor-rich-text">
+        <h5 style={{ margin: '0' }}>Responsive Columns</h5>
+        <p>For grids that are the same from the smallest of devices to the largest, use the col=[value]. Specify a numbered class when you need a particularly sized Column; otherwise, feel free to omit all props (auto calculation).</p>
+        <Container>
+          <Row>
+            <Column>col</Column>
+            <Column>col</Column>
+            <Column>col</Column>
+            <Column>col</Column>
+          </Row>
+          <Row>
+            <Column>col=&apos;8&apos;</Column>
+            <Column col="4">col=&apos;4&apos;</Column>
+          </Row>
+        </Container>
+        <h5 style={{ margin: '0' }}>Stacked to horizontal</h5>
+          <p>Using a single set of col=sm or sm=[value] props, you can create a basic grid system that starts out stacked before becoming horizontal with at the small breakpoint (sm).</p>
+        <Container>
+          <Row>
+            <Column sm="8">sm=&apos;8&apos;</Column>
+            <Column sm="4">sm=&apos;4&apos;</Column>
+          </Row>
+          <Row>
+            <Column col="sm">col=&apos;sm&apos;</Column>
+            <Column col="sm">col=&apos;sm&apos;</Column>
+            <Column col="sm">col=&apos;sm&apos;</Column>
+          </Row>
+        </Container>
+          <h5 style={{ margin: '0' }}>Mix and match</h5>
+          <p>Don’t want your Columns to simply stack in some grid tiers? Use a combination of different className for each tier as needed. See the example below for a better idea of how it all works.</p>
+        <Container>
+          <Row>
+            <Column sm="4" lg="2">sm=&apos;4&apos; lg=&apos;2&apos;</Column>
+            <Column sm="4" lg="2">sm=&apos;4&apos; lg=&apos;2&apos;</Column>
+            <Column sm="4" lg="8">sm=&apos;4&apos; lg=&apos;8&apos;</Column>
+          </Row>
+        </Container>
+      </StyledGrid>
+    </ThemeProvider>
   </Story>
 </Preview>
 
@@ -323,63 +231,44 @@ above it (e.g., .col-sm-4 applies to small, medium, large, and extra large devic
 
 <Preview>
   <Story name="offset columns">
-    {() => {
-      const StyledRow = styled(Row)`
-        margin-bottom: 2rem;
-        border: 1px dashed ${(props) => props.theme.colors.blueLighter};
-        justify-content: ${(props) => props.justify}
-      `;
-      const StyledCol = styled(Column)`
-        border: 1px solid ${(props) => props.theme.colors.primary};
-        background: rgba(28, 62, 148, 0.2);
-        height: 10rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        font-size: 1.5rem;
-      `;
-      return (
-        <ThemeProvider theme={getTheme()}>
-            <h5 style={{ margin: '0' }}>Column offsets</h5>
-            <Container>
-              <StyledRow>
-                <StyledCol col="4" offset="4">col=&apos;4&apos; offset=&apos;4&apos;</StyledCol>
-              </StyledRow>
-              <StyledRow>
-                <StyledCol col="3" offset="2">col=&apos;3&apos; offset=&apos;2&apos;</StyledCol>
-                <StyledCol col="3" offset="2">col=&apos;3&apos; offset=&apos;2&apos;</StyledCol>
-              </StyledRow>
-              <StyledRow>
-                <StyledCol col="1">col=&apos;1&apos;</StyledCol>
-                <StyledCol col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</StyledCol>
-                <StyledCol col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</StyledCol>
-                <StyledCol col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</StyledCol>
-                <StyledCol col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</StyledCol>
-                <StyledCol col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</StyledCol>
-              </StyledRow>
-            </Container>
-            <h5 style={{ margin: '0' }}>Breakpoint specific offsets</h5>
-            <Container>
-              <StyledRow>
-                <StyledCol col="2" offsetSm={1}>col=&apos;2&apos; offsetSm=&apos;1&apos;</StyledCol>
-                <StyledCol col="2" offsetSm={1}>col=&apos;2&apos; offsetSm=&apos;1&apos;</StyledCol>
-              </StyledRow>
-              <StyledRow>
-                <StyledCol col="2" offsetSm={1} offsetMd={3}>col=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</StyledCol>
-                <StyledCol col="2" offsetSm={1} offsetMd={3}>col=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</StyledCol>
-              </StyledRow>
-              <StyledRow>
-                <StyledCol offsetSm={1} offsetMd={3}>offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</StyledCol>
-                <StyledCol offsetSm={1} offsetMd={3}>offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</StyledCol>
-              </StyledRow>
-            </Container>
-          </ThemeProvider>
-      );
-    }}
+    <ThemeProvider theme={getTheme()}>
+      <h5 style={{margin: '0'}}>Column offsets</h5>
+      <Container>
+        <Row>
+          <Column col="4" offset="4">col=&apos;4&apos; offset=&apos;4&apos;</Column>
+        </Row>
+        <Row>
+          <Column col="3" offset="2">col=&apos;3&apos; offset=&apos;2&apos;</Column>
+          <Column col="3" offset="2">col=&apos;3&apos; offset=&apos;2&apos;</Column>
+        </Row>
+        <Row>
+          <Column col="1">col=&apos;1&apos;</Column>
+          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
+          <Column col="1" offset="1">col=&apos;1&apos; offset=&apos;1&apos;</Column>
+        </Row>
+      </Container>
+      <h5 style={{margin: '0'}}>Breakpoint specific offsets</h5>
+      <Container>
+        <Row>
+          <Column col="2" offsetSm={1}>col=&apos;2&apos; offsetSm=&apos;1&apos;</Column>
+          <Column col="2" offsetSm={1}>col=&apos;2&apos; offsetSm=&apos;1&apos;</Column>
+        </Row>
+        <Row>
+          <Column col="2" offsetSm={1} offsetMd={3}>col=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+          <Column col="2" offsetSm={1} offsetMd={3}>col=&apos;2&apos; offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+        </Row>
+        <Row>
+          <Column offsetSm={1} offsetMd={3}>offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+          <Column offsetSm={1} offsetMd={3}>offsetSm=&apos;1&apos; offsetMd=&apos;3&apos;</Column>
+        </Row>
+      </Container>
+    </ThemeProvider>
   </Story>
 </Preview>
 
 ## Column props
 
-<Props of={Column} />
+<Props of={RealCol} />

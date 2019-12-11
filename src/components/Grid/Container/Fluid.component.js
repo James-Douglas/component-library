@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
 `;
 
 const FluidContainer = ({ children, className }) => (
-  <StyledContainer className={`container ${className}`}>
+  <StyledContainer className={className}>
     {children}
   </StyledContainer>
 );

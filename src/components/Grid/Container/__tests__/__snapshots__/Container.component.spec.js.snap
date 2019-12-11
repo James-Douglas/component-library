@@ -19,7 +19,7 @@ exports[`Container allows additional classes to be passed through 1`] = `
 
 <div>
   <div
-    class="c0 container fixed test-class"
+    class="c0 test-class"
   />
 </div>
 `;
@@ -43,7 +43,7 @@ exports[`Container has a container and fixed class by default 1`] = `
 
 <div>
   <div
-    class="c0 container fixed "
+    class="c0"
   />
 </div>
 `;
@@ -67,7 +67,7 @@ exports[`Container renders children 1`] = `
 
 <div>
   <div
-    class="c0 container fixed "
+    class="c0"
   >
     <div
       class="child-content"
@@ -97,7 +97,7 @@ exports[`Container renders correctly without props 1`] = `
 
 <div>
   <div
-    class="c0 container fixed "
+    class="c0"
   />
 </div>
 `;

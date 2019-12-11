@@ -223,31 +223,31 @@ exports[`Column resizes offsets on breakpoint 1`] = `
   max-width: 100%;
 }
 
-@media (min-width:768px) {
+@media (min-width:576px) {
   .c0 {
     margin-left: 66.66666666666667%;
   }
 }
 
-@media (min-width:992px) {
+@media (min-width:768px) {
   .c0 {
     margin-left: 58.333333333333336%;
   }
 }
 
-@media (min-width:1200px) {
+@media (min-width:992px) {
   .c0 {
     margin-left: 50%;
   }
 }
 
-@media (min-width:1900px) {
+@media (min-width:1200px) {
   .c0 {
     margin-left: 41.66666666666667%;
   }
 }
 
-@media (min-width:2560px) {
+@media (min-width:1900px) {
   .c0 {
     margin-left: 33.333333333333336%;
   }
@@ -276,7 +276,7 @@ exports[`Column resizes on breakpoint 1`] = `
   padding-right: 1.6rem;
 }
 
-@media (min-width:768px) {
+@media (min-width:576px) {
   .c0 {
     -webkit-flex: 66.66666666666667%;
     -ms-flex: 66.66666666666667%;
@@ -285,7 +285,7 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
-@media (min-width:992px) {
+@media (min-width:768px) {
   .c0 {
     -webkit-flex: 58.333333333333336%;
     -ms-flex: 58.333333333333336%;
@@ -294,7 +294,7 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
-@media (min-width:1200px) {
+@media (min-width:992px) {
   .c0 {
     -webkit-flex: 50%;
     -ms-flex: 50%;
@@ -303,7 +303,7 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
-@media (min-width:1900px) {
+@media (min-width:1200px) {
   .c0 {
     -webkit-flex: 41.66666666666667%;
     -ms-flex: 41.66666666666667%;
@@ -312,7 +312,7 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
-@media (min-width:2560px) {
+@media (min-width:1900px) {
   .c0 {
     -webkit-flex: 33.333333333333336%;
     -ms-flex: 33.333333333333336%;
