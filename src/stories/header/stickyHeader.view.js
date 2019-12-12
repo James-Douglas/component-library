@@ -1,5 +1,4 @@
 import React from 'react';
-
 import StickyHeader from '../../components/Header/StickyHeader.component';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
@@ -9,11 +8,11 @@ const HeaderView = () => (
     <FluidContainer>
       <div className="full scrollable w-auto" style={{ marginTop: '60px' }}>
         <div className="hero">
-          <h1 className="manor-h1">Example Headline</h1>
+          <h1>Example Headline</h1>
         </div>
         <div className="section">
           <FluidContainer>
-            <h2 className="manor-h2">Content with Grey Background</h2>
+            <h2>Content with Grey Background</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas sapien id tristique consequat.
               Suspendisse imperdiet, sapien vel pellentesque rhoncus, arcu odio pellentesque ligula, a aliquet eros mi
@@ -62,7 +61,7 @@ const HeaderView = () => (
         </div>
         <div className="section white-bg">
           <FluidContainer>
-            <h2 className="manor-h2">Content with White Background</h2>
+            <h2>Content with White Background</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas sapien id tristique consequat.
               Suspendisse imperdiet, sapien vel pellentesque rhoncus, arcu odio pellentesque ligula, a aliquet eros mi

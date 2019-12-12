@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Subtitle.component renders correctly with minimal props 1`] = `
+.c0 {
+  font-weight: 400;
+  line-height: 1.4;
+  font-size: 1.8rem;
+}
+
+<div>
+  <p
+    class="c0"
+  />
+</div>
+`;

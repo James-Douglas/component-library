@@ -46,7 +46,7 @@ const Tabs = ({
   const [activeTab, changeTab] = useState(startingTab);
   const tabProviderValue = { activeTab, changeTab };
   const classNames = `
-    tabs-container manor-rich-text
+    tabs-container
     ${className || ''}
   `;
 

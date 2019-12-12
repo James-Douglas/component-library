@@ -31,9 +31,9 @@ const FooterView = () => {
       <FluidContainer>
         <Row>
           <Column md={12} xl={10} offsetXl={1}>
-            <div className="manor-rich-text scrollable w-auto" style={{ marginTop: '60px' }}>
-              <h1 className="manor-h1">Example Headline</h1>
-              <h2 className="manor-h2">Content with White Background</h2>
+            <div className="scrollable w-auto" style={{ marginTop: '60px' }}>
+              <h1>Example Headline</h1>
+              <h2>Content with White Background</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas sapien id tristique consequat.
                 Suspendisse imperdiet, sapien vel pellentesque rhoncus, arcu odio pellentesque ligula, a aliquet eros mi

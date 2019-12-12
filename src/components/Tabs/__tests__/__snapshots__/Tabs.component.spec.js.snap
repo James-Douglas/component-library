@@ -142,7 +142,7 @@ exports[`Tabs renders a border 1`] = `
 <div>
   <div
     class="sc-bwzfXH jMoURj 
-    tabs-container manor-rich-text
+    tabs-container
     
   "
     style="min-height: initial;"
@@ -208,7 +208,7 @@ exports[`Tabs renders additional classNames 1`] = `
 <div>
   <div
     class="sc-bwzfXH jMoURj 
-    tabs-container manor-rich-text
+    tabs-container
     test classes
   "
     style="min-height: initial;"
@@ -274,7 +274,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
 <div>
   <div
     class="sc-bwzfXH jMoURj 
-    tabs-container manor-rich-text
+    tabs-container
     
   "
     style="min-height: initial;"

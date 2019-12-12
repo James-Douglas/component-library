@@ -104,7 +104,7 @@ const AccordionPanel = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <StyledAccordionPanel isVisible={isVisible} isFocus={isFocus} className="manor-rich-text" role="tablist" aria-label="Information tabs">
+      <StyledAccordionPanel isVisible={isVisible} isFocus={isFocus} role="tablist" aria-label="Information tabs">
         <StyledAccordionHead
           isVisible={isVisible}
           onClick={toggleTrueFalse}

@@ -1,29 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input.component renders with minimal props 1`] = `
-"<div class=\\"fieldset\\"><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-EHOje ieBshd label\\"><div cols=\\"12\\" class=\\"sc-htpNat cVeGGe 
+"<div class=\\"fieldset\\"><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-gzVnrw fdPEUc label\\"><div cols=\\"12\\" class=\\"sc-bxivhb diaiaX 
         
-      \\"><label class=\\"sc-bZQynM hFJVkI\\"></label></div></div></div><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-htpNat iNMqHw 
+      \\"><label class=\\"sc-htoDjs kiRfcR\\"></label></div></div></div><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-bxivhb obkds 
         
-      \\"><div class=\\"sc-fjdhpX dybFtm input-container\\"><div class=\\"sc-jzJRlG ecmhww 
+      \\"><div class=\\"sc-cSHVUG emQwsz input-container\\"><div class=\\"sc-kAzzGY eHdGUc 
                 input-wrap 
-              \\"><div class=\\"sc-cSHVUG QByXw input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"sc-kAzzGY lbaeFc 
+              \\"><div class=\\"sc-chPdSV eKlXFC input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"sc-kgoBCf kJnlHQ 
                     input-default
-                  \\" value=\\"\\"></div></div></div></div></div><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-htpNat iNMqHw 
+                  \\" value=\\"\\"></div></div></div></div></div><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-bxivhb obkds 
         
-      \\"><div class=\\"sc-iwsKbI kKTqkq\\"><div class=\\"sc-gZMcBi kjbvYA\\"></div></div></div></div></div>"
+      \\"><div class=\\"sc-gqjmRU dLDxrx\\"><div class=\\"sc-VigVT cHiFle\\"></div></div></div></div></div>"
 `;
 
 exports[`Input.component renders with props 1`] = `
-"<div class=\\"fieldset\\"><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-EHOje ieBshd label\\"><div cols=\\"12\\" class=\\"sc-htpNat cVeGGe 
+"<div class=\\"fieldset\\"><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-gzVnrw fdPEUc label\\"><div cols=\\"12\\" class=\\"sc-bxivhb diaiaX 
         
-      \\"><label class=\\"sc-bZQynM hFJVkI\\">input label</label></div></div></div><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-htpNat iNMqHw 
+      \\"><label class=\\"sc-htoDjs kiRfcR\\">input label</label></div></div></div><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-bxivhb obkds 
         
-      \\"><div class=\\"sc-fjdhpX dybFtm input-container\\"><div class=\\"sc-jzJRlG ecmhww 
+      \\"><div class=\\"sc-cSHVUG emQwsz input-container\\"><div class=\\"sc-kAzzGY eHdGUc 
                 input-wrap 
-              \\"><div class=\\"sc-cSHVUG QByXw input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"sc-kAzzGY lbaeFc 
+              \\"><div class=\\"sc-chPdSV eKlXFC input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"sc-kgoBCf kJnlHQ 
                     input-default
-                  \\" value=\\"\\"></div></div></div></div></div><div class=\\"sc-bwzfXH jvvHxh row \\"><div class=\\"sc-htpNat iNMqHw 
+                  \\" value=\\"\\"></div></div></div></div></div><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-bxivhb obkds 
         
-      \\"><div class=\\"sc-iwsKbI kKTqkq\\"><div class=\\"sc-gZMcBi kjbvYA\\"></div></div></div></div></div>"
+      \\"><div class=\\"sc-gqjmRU dLDxrx\\"><div class=\\"sc-VigVT cHiFle\\"></div></div></div></div></div>"
 `;

@@ -96,7 +96,6 @@ const Modal = ({
   };
 
   const classNames = `
-    manor-rich-text
     ${size}
     ${className}
   `;

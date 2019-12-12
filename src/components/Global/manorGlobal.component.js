@@ -45,7 +45,7 @@ export const manor = css`
   *, *:before, *:after {
     box-sizing: inherit;
   }
-  h1, h2, h3, h4, h5, h6, p, ul, ol, ul li, ol l input, label, button, textarea, .subtitle-1, .subtitle-2, .microcopy, .overline, .subscript, ::placeholder {
+  h1, h2, h3, h4, h5, h6, p, ul, ol, ul li, ol l input, label, button, textarea, .subtitle-primary, .subtitle-secondary, .microcopy, .overline, .subscript, ::placeholder {
     font-weight: ${(props) => props.theme.fontWeight.normal};
     font-family: SourceSansPro, Arial, sans-serif;
   }
@@ -86,6 +86,9 @@ export const manor = css`
     font-size: ${(props) => props.theme.fontSize.base};
     margin: 0 0 ${(props) => props.theme.spacing[12]};
   }
+  p.body-secondary {
+    font-size: ${(props) => props.theme.fontSize.sm};
+  }
   ol, ul {
     list-style: none;
     margin: 0;
@@ -108,12 +111,12 @@ export const manor = css`
     font-size: ${(props) => props.theme.fontSize.base};
     line-height: ${(props) => props.theme.lineHeight.snug};
   }
-  .subtitle-1 {
+  .subtitle-primary {
     font-weight: ${(props) => props.theme.fontWeight.normal};
     line-height: ${(props) => props.theme.lineHeight.snug};
-    font-size: ${(props) => props.theme.fontSize.base};
+    font-size: ${(props) => props.theme.fontSize.lg};
   }
-  .subtitle-2 {
+  .subtitle-secondary {
     font-weight: ${(props) => props.theme.fontWeight.bold};
     font-size: ${(props) => props.theme.fontSize.base};
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import Icon from '../Icon/Icon.component';
+import Subscript from '../Typography/Subscript/Subscript.component';
 import UseFieldset from '../../hooks/useFieldset';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import usePrefill from '../../hooks/usePrefill';
@@ -164,7 +165,7 @@ export const getSupportingElements = (required) => {
 
   return (
     <StyledSupportingElements className="supporting-elements">
-      <span className="subscript">Optional</span>
+      <Subscript>Optional</Subscript>
     </StyledSupportingElements>
   );
 };

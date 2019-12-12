@@ -8,7 +8,7 @@ import 'tippy.js/dist/tippy.css';
 import 'tippy.js/dist/backdrop.css';
 import 'tippy.js/animations/scale.css';
 import 'tippy.js/animations/shift-away.css';
-
+import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
 import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
 import Icon from '../Icon/Icon.component';
@@ -120,7 +120,7 @@ export function getTippyPlacement(desktop, containerWidth) {
 export function getContent(title, body) {
   return (
     <div className="manor-tooltip-content">
-      {title ? <p className="subtitle-2">{title}</p> : ''}
+      {title ? <Subtitle variant="secondary">{title}</Subtitle> : ''}
       {body ? <p>{body}</p> : ''}
     </div>
   );

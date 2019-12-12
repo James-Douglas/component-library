@@ -29,7 +29,6 @@ exports[`Modal renders with minimal props 1`] = `
 
 <div
   class="c0 
-    manor-rich-text
     md
     
   "

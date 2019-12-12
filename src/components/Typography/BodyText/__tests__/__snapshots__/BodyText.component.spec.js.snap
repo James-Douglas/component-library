@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BodyText.component renders correctly with minimal props 1`] = `
+.c0 {
+  line-height: 1.4;
+  margin: 0 0 1.2rem;
+  font-size: 1.6rem;
+}
+
+<div>
+  <p
+    class="c0"
+  />
+</div>
+`;
