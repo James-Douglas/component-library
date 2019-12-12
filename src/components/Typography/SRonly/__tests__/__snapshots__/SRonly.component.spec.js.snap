@@ -15,7 +15,7 @@ exports[`SRonly.component renders correctly with minimal props 1`] = `
 }
 
 <div>
-  <p
+  <div
     class="c0"
   />
 </div>

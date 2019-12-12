@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 import getTheme from 'utils/getTheme';
 
-const StyledSr = styled.p`
+const StyledSr = styled.div`
   position: absolute;
   width: 1px;
   height: 1px;
