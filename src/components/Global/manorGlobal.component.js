@@ -152,21 +152,6 @@ export const manor = css`
     white-space: nowrap;
     border-width: 0;
   }
-  @media all and (min-width: ${screens.lg}){
-    html {
-      zoom: 110%;
-    }
-  }
-  @media all and (min-width: ${screens.xl}){
-    html {
-      zoom: 115%;
-    }
-  }
-  @media all and (min-width: ${screens.xxl}){
-    html {
-      zoom: 120%;
-    }
-  }
 `;
 
 const GlobalStyles = createGlobalStyle`${manor}`;
