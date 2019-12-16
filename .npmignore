@@ -19,3 +19,18 @@ yarn-error.log*
 
 # webstorm / intellij
 /.idea
+
+.github
+.storybook
+config
+deployment
+node_modules
+src
+.babelrc
+.env
+.eslint
+.eslintignore
+commitlint.config.js
+postcss.config.js
+rollup.config.js
+yarn.lock

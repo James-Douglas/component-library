@@ -117,11 +117,6 @@ const buildLibrary = () => {
         // are always bundled with the code, not copied to /dist
         limit: Infinity,
       }),
-      copy({
-        targets: [
-          { src: 'src/themes/ctm.theme.js', dest: 'lib'},
-        ]
-      }),
       localResolve(),
       resolve({
         browser: true
@@ -136,9 +131,25 @@ const buildLibrary = () => {
     ]
   });
 
+  config.push({
+    input: `src/themes/index.js`,
+    output: [
+      {
+        file: `${ouputDir}/themes.js`,
+        format: "cjs"
+      }
+    ],
+    plugins: [
+      babel({ exclude: "node_modules/**" }),
+      commonjs(),
+      filesize()
+    ]
+  });
+
   // send this back to rollup for the build
   return config;
 };
+
 
 const config = buildLibrary();
 

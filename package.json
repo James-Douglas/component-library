@@ -1,6 +1,7 @@
 {
   "name": "@comparethemarketau/manor",
   "version": "0.0.0",
+  "main": "./lib/index.js",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
