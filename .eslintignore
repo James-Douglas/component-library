@@ -1,4 +1,4 @@
 **/*.js
 # Enable linting just for some files
 !src/**/*.js
-src/components/index.js
+src/modules.js

@@ -36,25 +36,26 @@ const rmdir = function(dir) {
 
 rmdir(ouputDir);
 
-const makeComponentIndex = components => {
-  let paths = components.map(f => {
-    const importDir = path.relative(`${process.cwd()}/src/components`, f);
+const makeModuleIndex = modules => {
+  let paths = modules.map(f => {
+    const importDir = path.relative(`${process.cwd()}/src`, f);
     const [fileName] = /([^\/]+$)/.exec(importDir);
-    const componentName = fileName.replace(".component.js", "");
-    return `export { default as ${componentName} } from "./${importDir}";`;
-  });
-  fs.writeFileSync("src/components/index.js", paths.join("\n"));
-};
+    const moduleName = fileName.replace(/(?:\.\w*)*\.js/gm, "", "");
+    return `export { default as ${moduleName} } from "./${importDir}";`;
+  })
+  fs.writeFileSync("src/modules.js", paths.join("\n"));
+}
 
-const makeFileConfig = componentPath => {
-  const [fileName] = /([^\/]+$)/.exec(componentPath);
-  const componentName = fileName.replace(".component.js", "");
+
+const makeFileConfig = modulePath => {
+  const [fileName] = /([^\/]+$)/.exec(modulePath);
+  const moduleName = fileName.replace(/(?:\.\w*)*\.js/gm, "");
 
   const config = {
-    input: componentPath,
+    input: modulePath,
     output: [
       {
-        file: `${ouputDir}/${componentName}/index.js`,
+        file: `${ouputDir}/${moduleName}/index.js`,
         format: "cjs",
         exports: "named"
       }
@@ -89,15 +90,18 @@ const makeFileConfig = componentPath => {
 };
 
 const buildLibrary = () => {
-  // gather our components
+  // gather our modules
   const components = glob.sync(`${__dirname}/src/components/**/*.component.js`);
-  // create the components index
-  makeComponentIndex(components);
+  const hooks = glob.sync(`${__dirname}/src/hooks/use*.js`);
+  const modules = [...components, ...hooks]
+  // create the modules index
+  makeModuleIndex(modules);
   // gather our rollup config
-  const config = components.map(path => makeFileConfig(path));
-  // add the index config to the config map
+  const config = modules.map(path => makeFileConfig(path));
+
+  // add the modules index config to the config map
   config.push({
-    input: `src/components/index.js`,
+    input: `src/modules.js`,
     output: [
       {
         file: `${ouputDir}/index.js`,
@@ -131,6 +135,7 @@ const buildLibrary = () => {
     ]
   });
 
+  // add the theme to the config map
   config.push({
     input: `src/themes/index.js`,
     output: [
