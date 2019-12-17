@@ -10,7 +10,6 @@ import localResolve from "rollup-plugin-local-resolve";
 import includePaths from "rollup-plugin-includepaths";
 import smartAsset from "rollup-plugin-smart-asset";
 import ignoreImport from "rollup-plugin-ignore-import";
-import copy from "rollup-plugin-copy";
 import url from 'rollup-plugin-url';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
@@ -141,6 +140,21 @@ const buildLibrary = () => {
     output: [
       {
         file: `${ouputDir}/themes.js`,
+        format: "cjs"
+      }
+    ],
+    plugins: [
+      babel({ exclude: "node_modules/**" }),
+      commonjs(),
+      filesize()
+    ]
+  });
+
+  config.push({
+    input: `config/screens.js`,
+    output: [
+      {
+        file: `${ouputDir}/screens.js`,
         format: "cjs"
       }
     ],
