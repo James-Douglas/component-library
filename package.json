@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "npx rollup -c rollup.config.js",
+    "watch": "npx rollup -c rollup.config.js -w",
     "tdd": "jest --coverage --watchAll",
     "test": "cross-env JEST_SILENT_REPORTER_DOTS=true jest --reporters=jest-silent-reporter --coverage --watchAll",
     "test:ci": "cross-env CI=true jest",
