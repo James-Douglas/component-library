@@ -1,5 +1,8 @@
 #!/bin/bash
 set -e
+# Token variable needs to be set prior to sourcing nvm completion
+export NPM_FONTAWESOME_TOKEN=$bamboo_fa_token_password
+
 source ~/.nvm/nvm.sh
 
 echo "running: nvm install v10.17.0"

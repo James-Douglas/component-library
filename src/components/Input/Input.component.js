@@ -2,7 +2,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
-import Icon from '../Icon/Icon.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
+import SRonly from '../Typography/SRonly/SRonly.component';
 import Subscript from '../Typography/Subscript/Subscript.component';
 import UseFieldset from '../../hooks/useFieldset';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
@@ -136,8 +138,8 @@ export const renderClearIcon = (value, clearInput, isAutofill, label) => {
           input-clear-button
         `}
       >
-        <div className="sr-only">Clears the{label}{' '}field.</div>
-        <Icon name="closeCircle" size={1.6} />
+        <SRonly>Clears the{label}{' '}field.</SRonly>
+        <FontAwesomeIcon icon={faTimesCircle} size="lg" />
       </StyledClearIcon>
     );
   }

@@ -35,7 +35,7 @@ describe('Accordion', () => {
       jest.runAllTimers();
     });
 
-    expect(svg).toHaveAttribute('data-icon', 'angle-down');
+    expect(svg).toHaveAttribute('data-icon', 'chevron-down');
     expect(accordionBody).toHaveStyleRule('height', '0');
     expect(accordion).toHaveStyleRule('border-bottom', '1px solid rgba(0,0,0,.1)');
     fireEvent.click(accordionHead);
@@ -44,7 +44,7 @@ describe('Accordion', () => {
     });
     expect(accordionBody).toHaveStyleRule('height', 'auto');
     expect(accordion).toHaveStyleRule('border-bottom', '2px solid #999999');
-    expect(svg).toHaveAttribute('data-icon', 'angle-up');
+    expect(container.querySelector('.fa-flip-vertical')).toBeInTheDocument();
   });
 
   it('works on focus/when leaving focus', () => {

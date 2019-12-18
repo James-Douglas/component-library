@@ -31,6 +31,11 @@ import SUZU from '../../images/car-makes/SUZU.png';
 import TOYO from '../../images/car-makes/TOYO.png';
 import VOLK from '../../images/car-makes/VOLK.png';
 
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons/faPhoneAlt';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
+
+
 <Meta title="Components|Toggles" component={Toggle} />
 
 # Toggles
@@ -133,9 +138,9 @@ ToggleGroup can be passed a `rectOptions` object to customize the rectangle togg
       const onToggle = () => {};
       return (
         <ToggleGroup label="Icons" name="toggleGroupB" tooltip={tooltip} onToggle={onToggle}>
-          <Toggle value="contact" id="contact" label="Contact" icon="contact" iconSize={4} />
-          <Toggle value="close" id="close" label="Close" icon="close" iconSize={4} />
-          <Toggle value="info" id="info" label="Info" icon="info" iconSize={4} />
+          <Toggle value="contact" id="contact" label="Contact" icon={faPhoneAlt} iconSize='3x' />
+          <Toggle value="close" id="close" label="Close" icon={faTimes} iconSize='3x' />
+          <Toggle value="info" id="info" label="Info" icon={faInfoCircle} iconSize='3x' />
         </ToggleGroup>
       );
     }}

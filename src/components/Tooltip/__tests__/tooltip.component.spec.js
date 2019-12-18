@@ -105,7 +105,7 @@ describe('Tooltip', () => {
 
   it('renders tooltip correctly', () => {
     const { container, getByText } = render(<Tooltip body="test tooltip content" />);
-    const tooltipTriggerElement = container.querySelector('.icon');
+    const tooltipTriggerElement = container.querySelector('svg');
     fireEvent.click(tooltipTriggerElement);
     expect(getByText('test tooltip content')).toBeInTheDocument();
   });

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, keyframes, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
-import Icon from '../Icon/Icon.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 
 const coolBoxOpenLeftKeyframes = keyframes`
   from { left: -100% }
@@ -99,7 +100,12 @@ const Slider = ({
         notificationSize={notificationSize}
         direction={direction}
       >
-        {closeButton && <StyledIcon className={`${iconClassName} icon-close`} onClick={IconClick} onKeyPress={IconClick} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false"><Icon name="close" size={1.6} /></StyledIcon>}
+        {closeButton
+          && (
+          <StyledIcon className={`${iconClassName} icon-close`} onClick={IconClick} onKeyPress={IconClick} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
+            <FontAwesomeIcon icon={faTimes} size="2x" />
+          </StyledIcon>
+          )}
         {children}
       </StyledSlider>
     </ThemeProvider>

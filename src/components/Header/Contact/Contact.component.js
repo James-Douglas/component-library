@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import useIsDesktop from 'hooks/useIsDesktop';
-import Icon from '../../Icon/Icon.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons/faPhoneAlt';
 
 const StyledContact = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ const StylesdIframe = styled.iframe`
 
 const StyledIconWrap = styled.span`
   display: flex;
+  margin-top: ${(props) => props.theme.spacing[2]};
   margin-left: ${(props) => props.theme.spacing[4]};
   margin-right: ${(props) => props.theme.spacing[4]};
 `;
@@ -48,7 +50,9 @@ const Contact = ({ number, size }) => {
   return (
     <ThemeProvider theme={getTheme()}>
       <StyledContact isDesktop={isDesktop} size={size} href={`tel:${number}`} target="link-target">
-        <StyledIconWrap><Icon name="contact" size={2} /></StyledIconWrap>
+        <StyledIconWrap>
+          <FontAwesomeIcon icon={faPhoneAlt} size="sm" />
+        </StyledIconWrap>
         { mobileLabel }
       </StyledContact>
       <StylesdIframe title="link iframe" name="link-target" />

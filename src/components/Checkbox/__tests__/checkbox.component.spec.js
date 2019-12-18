@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 import Checkbox, { renderIcon } from '../Checkbox.component';
 
 describe('renderIcon()', () => {
@@ -11,12 +12,12 @@ describe('renderIcon()', () => {
   );
 
   it('does not render an icon if toggle condition is not met', () => {
-    const { container } = render(<IconContainer toggle={false} />);
+    const { container } = render(<IconContainer icon={faTimes} toggle={false} />);
     expect(container).toBeEmpty();
   });
 
   it('renders an icon when params are set (icon name and toggle is true)', () => {
-    const { container } = render(<IconContainer icon="check" toggle />);
+    const { container } = render(<IconContainer icon={faTimes} toggle />);
     const svg = container.querySelector('svg');
     expect(svg).toBeDefined();
     expect(container.innerHTML).toMatchSnapshot();
@@ -34,7 +35,7 @@ describe('Checkbox.component', () => {
     const { container } = render(
       <Checkbox
         id="test-id"
-        icon="check"
+        icon={faTimes}
         disabled={false}
         invertColour
         handleChange={mockTestClick}
@@ -54,6 +55,7 @@ describe('Checkbox.component', () => {
     expect(checkbox.getAttribute('disabled')).toBe(null);
     expect(container.querySelector('#child-content')).toBeDefined();
     expect(container.getElementsByTagName('svg')).toBeDefined();
+    expect(container.querySelector('.fa-check')).toBeDefined();
     expect(container.innerHTML).toMatchSnapshot();
   });
 
@@ -61,7 +63,6 @@ describe('Checkbox.component', () => {
     const { container } = render(
       <Checkbox
         id="test-id"
-        icon="check"
         invalid
       >
         <p>child content</p>
@@ -84,7 +85,6 @@ describe('Checkbox.component', () => {
     const { container } = render(
       <Checkbox
         id="test-id"
-        icon="check"
         isSelected
       />,
     );
@@ -94,7 +94,7 @@ describe('Checkbox.component', () => {
   });
 
   it('checks on click', () => {
-    const { container } = render(<Checkbox id="test-id" icon="check" disabled={false} invertColour />);
+    const { container } = render(<Checkbox id="test-id" disabled={false} invertColour />);
 
     const checkbox = container.querySelector('#test-id');
     const label = container.querySelector('label');
@@ -105,7 +105,7 @@ describe('Checkbox.component', () => {
   });
 
   it('click is disabled when disabled prop is supplied', () => {
-    const { container } = render(<Checkbox id="test-id" icon="check" disabled />);
+    const { container } = render(<Checkbox id="test-id" disabled />);
 
     const checkbox = container.querySelector('#test-id');
     const label = container.querySelector('label');

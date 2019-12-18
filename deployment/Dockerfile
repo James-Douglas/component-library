@@ -6,6 +6,9 @@ FROM node:10.17.0-alpine as build
 ARG bamboo_nexus_fe_token_password
 ENV bamboo_nexus_fe_token_password=${bamboo_nexus_fe_token_password}
 
+ARG NPM_FONTAWESOME_TOKEN
+ENV NPM_FONTAWESOME_TOKEN=${NPM_FONTAWESOME_TOKEN}
+
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN yarn

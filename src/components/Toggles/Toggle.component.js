@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BaseToggle from './BaseToggle';
 import ToggleLabel from './ToggleLabel';
-import Icon from '../Icon/Icon.component';
 import Picture from '../Picture/Picture.component';
 
 const StyledTextToggleContent = styled.div`
@@ -84,7 +84,7 @@ export function getIconToggleContent(icon, iconSize, label) {
   return (
     <ThemeProvider theme={getTheme()}>
       <StyledIconToggleContent>
-        <Icon name={icon} size={iconSize} />
+        <FontAwesomeIcon icon={icon} size={iconSize} />
         <StyledIconContent>{label}</StyledIconContent>
       </StyledIconToggleContent>
     </ThemeProvider>
@@ -195,13 +195,20 @@ Toggle.propTypes = {
    */
   onToggle: PropTypes.func,
   /**
-   * Name of the icon to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).
+   * Icon from fontAweseom to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).
    */
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.shape({
+      prefix: PropTypes.string,
+      iconName: PropTypes.string,
+      icon: PropTypes.array,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * Size of the icon to be rendered on the toggle.
    */
-  iconSize: PropTypes.number,
+  iconSize: PropTypes.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
   /**
    *  Options object for rendering a picture on a toggle, attributes match those of the Picture component.
    */
@@ -232,7 +239,7 @@ Toggle.defaultProps = {
   disabled: false,
   onToggle: null,
   icon: null,
-  iconSize: 10,
+  iconSize: '3x',
   rectOptions: {
     align: 'center',
     col: 1,

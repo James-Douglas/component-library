@@ -20,7 +20,10 @@ const Microcopy = ({
 );
 
 Microcopy.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]),
 };
 
 Microcopy.defaultProps = {

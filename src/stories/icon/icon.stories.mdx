@@ -1,31 +1,41 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
-import Icon from '../../components/Icon/Icon.component.js';
-import { ctmIcons, faIcons } from '../../components/Icon/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faTimes, faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
+import { faCheck, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import Overline from 'components/Typography/Overline/Overline.component';
 
-<Meta title="Components|Icon" component={Icon} />
+<Meta title="Docs|Iconography" />
 
-# Icon
+# Icons
 
-Icon component, we use a mixture of inhouse designed icons and FontAwesome icons.
+For icons we use Font Awesome with the pro licence, so all icons from [FontAwesome](https://fontawesome.com/icons) are available to use **with UX approval**. 
+
+To use the pro icons, you'll need an auth key. This can be found in our FontAwesome account (UX can provide login/auth key)
+
+To setup, you'll need this in your .npmrc file:
+
+```
+@fortawesome:registry=https://npm.fontawesome.com/
+//npm.fontawesome.com/:_authToken=${NPM_FONTAWESOME_TOKEN}
+```
+Then you'll need to set an environment variable with the auth key, e.g `export NPM_FONTAWESOME_TOKEN=*fontawesome_auth_key_here*` in your terminal.
+
+### UX approved Icons 
 
 <Preview>
-  <Story name="icon">
-    <Icon name="contact" size={2}/>
-  </Story>
-</Preview>
-
-## Available icons
-### CTM Icons
-<Preview>
-  <Story name="available icons - CTM">
+  <Story name="Iconography">
     {() => {
+      const iconArr = [faChevronDown, faTimes, faInfoCircle, faCheck, faPhoneAlt];
       const renderIcons = () => {
-        return Object.keys(ctmIcons).map((icon) => {
+        return iconArr.map((elem) => {
+          const { iconName } = elem;
          return (
-           <div style={{display: 'flex', width: '6.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-             <Icon name={icon} size={2} />
-             <span className="subtitle-primary" style={{paddingTop: '0.8rem'}}>{icon}</span>
+           <div key={iconName} style={{display: 'flex', width: '8.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', alignItems: 'center', textAlign: 'center', flexDirection: 'column'}}>
+             <FontAwesomeIcon icon={elem} size='4x' key={iconName}/>
+              <div style={{marginTop: '1.5rem'}}>
+                <Overline>{iconName}</Overline>
+              </div>
            </div>
          )
        })
@@ -39,52 +49,13 @@ Icon component, we use a mixture of inhouse designed icons and FontAwesome icons
   </Story>
 </Preview>
 
-### FontAwesome Icons
-<Preview>
-  <Story name="available icons - font awesome">
-    {() => {
-      const renderIcons = () => {
-        return Object.keys(faIcons).map((icon) => {
-         return (
-           <div key={icon} style={{display: 'flex', width: '6.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-             <Icon name={icon} size={2} />
-             <span className="subtitle-primary" style={{paddingTop: '0.8rem'}}>{icon}</span>
-           </div>
-         )
-       })
-      }
-      return (
-        <div style={{display: 'flex', flexWrap: 'wrap'}}>
-          {renderIcons()}
-        </div>
-      );
-    }}
-  </Story>
-</Preview>
 
-## Props
+## Useful links: 
 
-<Props of={Icon} />
+* [FontAwesome Icons](https://fontawesome.com/icons)
+* [Package reference](https://fontawesome.com/how-to-use/with-the-api/setup/importing-icons#packages)
+* [React FontAwesome Docs](https://fontawesome.com/how-to-use/with-the-api/setup/importing-icons#packages)
+* [React FontAwesome Repo](https://fontawesome.com/how-to-use/with-the-api/setup/importing-icons#packages)
 
-<Story name="icon with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
-  {() => {
-    const name = select('name', Object.keys(ctmIcons), 'contact');
-    const size = number('size', 2);
-    const flipV = boolean('flipV', false);
-    const flipH = boolean('flipH', false);
-    return (
-      <Icon name={name} size={size} flipV={flipV} flipH={flipH} />
-    )
-  }}
-</Story>
 
-## Adding icons
-
-### CTM icons
-
-For icons that have been developed in house, you will need to extract the paths and the viewBox from the .svg file and add them
-to `src/components/Icon/icons.js`.
-
-### FontAwesome icons
-
-For FontAwesome icons simply import and export them within `src/components/Icon/icons.js` as per the other examples.
+ 

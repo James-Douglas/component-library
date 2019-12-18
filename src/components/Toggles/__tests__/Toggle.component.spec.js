@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import Toggle, {
   getPictureToggleContent, getIconToggleContent, getTextToggleContent, getToggleContent,
 } from '../Toggle.component';
 import 'jest-styled-components';
-
 
 describe('getPictureToggleContent()', () => {
   // eslint-disable-next-line react/prop-types
@@ -39,9 +39,10 @@ describe('getIconToggleContent()', () => {
   );
 
   it('renders with props', () => {
-    const { getByText, container } = render(<IconToggleContentContainer icon="info" iconSize={4} label="test" />);
+    const { getByText, container } = render(<IconToggleContentContainer icon={faCheck} iconSize="1x" label="test" />);
     expect(getByText('test')).toBeInTheDocument();
-    expect(container.querySelector('.icon')).toBeInTheDocument();
+    expect(container.querySelector('.fa-check')).toBeInTheDocument();
+    expect(container.querySelector('.fa-1x')).toBeInTheDocument();
   });
 });
 
@@ -97,9 +98,10 @@ describe('getToggleContent()', () => {
   });
 
   it('returns icon content when icon provided', () => {
-    const { getByText, container } = render(<ToggleContentContainer id="test" icon="info" iconSize={4} label="test" />);
+    const { getByText, container } = render(<ToggleContentContainer id="test" icon={faCheck} iconSize="lg" label="test" />);
     expect(getByText('test')).toBeInTheDocument();
-    expect(container.querySelector('.icon')).toBeInTheDocument();
+    expect(container.querySelector('.fa-check')).toBeInTheDocument();
+    expect(container.querySelector('.fa-lg')).toBeInTheDocument();
   });
 
   it('returns (square) text content when no picture or icon provided', () => {

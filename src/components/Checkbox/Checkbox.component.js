@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import useToggleState from '../../hooks/useToggleState';
-import Icon from '../Icon/Icon.component';
 
 const StyledHiddenInput = styled.input`
   border: 0;
@@ -79,7 +80,7 @@ const StyledContent = styled.div`
 export const renderIcon = (icon, value) => {
   if (value) {
     return (
-      <Icon name={icon} size={1.4} />
+      <FontAwesomeIcon icon={icon} size="1x" />
     );
   }
   return null;
@@ -109,7 +110,6 @@ const Checkbox = ({
   children,
 }) => {
   const [value, toggle] = useToggleState(isSelected);
-
   const toggleEventHandler = () => {
     toggle(value);
   };
@@ -158,7 +158,14 @@ Checkbox.propTypes = {
   /**
    * Defines the icon needed for the checkbox.
    */
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.shape({
+      prefix: PropTypes.string,
+      iconName: PropTypes.string,
+      icon: PropTypes.array,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * Defines if the checkbox is disabled or not.
    */
@@ -191,7 +198,7 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
-  icon: 'check',
+  icon: faCheck,
   disabled: false,
   isSelected: false,
   invalid: false,

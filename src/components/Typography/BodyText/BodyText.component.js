@@ -27,7 +27,10 @@ const BodyText = ({
 
 BodyText.propTypes = {
   variant: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]),
 };
 
 BodyText.defaultProps = {

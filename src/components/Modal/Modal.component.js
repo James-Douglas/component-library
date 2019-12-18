@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import styled, { ThemeProvider, keyframes } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import PropTypes from 'prop-types';
-import Icon from '../Icon/Icon.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 
 const StyledAlignment = styled.div`
   width: 100%;
@@ -51,9 +52,11 @@ const StyledModal = styled.div`
 
 const StyledCloseIcon = styled.div`
   position: absolute;
-  top: 2rem;
   right: 2rem;
+  top: 2.5rem;
   cursor: pointer;
+  z-index: ${(props) => (props.theme.zIndex[50])}; 
+  opacity: 0.5;
 `;
 
 const StyledContent = styled.div`
@@ -72,7 +75,9 @@ const RenderedModal = ({
           <ThemeProvider theme={getTheme()}>
             <StyledAlignment>
               <StyledModal id={id} className={classNames} size={size}>
-                <StyledCloseIcon className="icon-close" onClick={close} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false"><Icon name="close" size={2} /></StyledCloseIcon>
+                <StyledCloseIcon className="icon-close" onClick={close} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false">
+                  <FontAwesomeIcon icon={faTimes} size="2x" />
+                </StyledCloseIcon>
                 <StyledContent className="content">
                   {children}
                 </StyledContent>

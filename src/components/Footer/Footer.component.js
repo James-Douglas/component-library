@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
-import Icon from '../Icon/Icon.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import Column from '../Grid/Column/Column.component';
 import Row from '../Grid/Row/Row.component';
 import FluidContainer from '../Grid/Container/Fluid.component';
@@ -80,7 +81,7 @@ const Footer = ({ disclaimer }) => {
                   </StyledFooterCopy>
                   {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                   <StyledScrollTop onClick={() => window.scroll({ top: 0, behavior: 'smooth' })} role="scrollIcon">
-                    <Icon name="angleUp" size={2} />
+                    <FontAwesomeIcon icon={faChevronDown} size="lg" flip="vertical" />
                   </StyledScrollTop>
                 </StyledFooterBarContent>
               </StyledFooterBar>

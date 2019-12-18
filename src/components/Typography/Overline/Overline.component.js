@@ -23,7 +23,10 @@ const Overline = ({
 );
 
 Overline.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]),
 };
 
 Overline.defaultProps = {

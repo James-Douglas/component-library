@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
 
@@ -19,8 +20,8 @@ describe('generateGroup', () => {
   it('renders if there are children', () => {
     const { container } = render(
       <GroupContainer colSize="6">
-        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-1" icon={faTimes}><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2" icon={faTimes}><p>A-2 check</p></Checkbox>
       </GroupContainer>,
     );
 
@@ -37,9 +38,9 @@ describe('CheckboxGroup.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(
       <CheckboxGroup label="test" groupId="test-group-id">
-        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
+        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
       </CheckboxGroup>,
     );
     expect(container.innerHTML).toMatchSnapshot();
@@ -49,9 +50,9 @@ describe('CheckboxGroup.component', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
       <CheckboxGroup groupId="test-group-id" colSize="5" handleChange={mockTestClick} disableFieldset>
-        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
+        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
       </CheckboxGroup>,
     );
 
@@ -73,9 +74,9 @@ describe('CheckboxGroup.component', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
       <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
-        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3" icon="check"><p>A-3 check</p></Checkbox>
+        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
       </CheckboxGroup>,
     );
 
@@ -90,9 +91,9 @@ describe('CheckboxGroup.component', () => {
   it('accepts a prefill value', () => {
     const { container } = render(
       <CheckboxGroup groupId="test-group-id" colSize="5">
-        <Checkbox id="A-1" icon="check" isSelected><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3" icon="check" isSelected><p>A-3 check</p></Checkbox>
+        <Checkbox id="A-1" isSelected><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3" isSelected><p>A-3 check</p></Checkbox>
       </CheckboxGroup>,
     );
 
@@ -108,9 +109,9 @@ describe('CheckboxGroup.component', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
       <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
-        <Checkbox id="A-1" icon="check"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2" icon="check"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3" icon="check" disabled><p>A-3 check</p></Checkbox>
+        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-3" disabled><p>A-3 check</p></Checkbox>
       </CheckboxGroup>,
     );
 

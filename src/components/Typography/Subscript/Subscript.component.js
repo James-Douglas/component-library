@@ -23,7 +23,10 @@ const Subscript = ({
 );
 
 Subscript.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]),
 };
 
 Subscript.defaultProps = {

@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeProvider, css } from 'styled-components';
 import PropTypes from 'prop-types';
 import getTheme from 'utils/getTheme';
-import Icon from '../Icon/Icon.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /* ICONS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -37,7 +37,7 @@ const StyledButton = styled.button`
   font-weight: ${(props) => props.theme.fontWeight.bold};
   line-height: ${(props) => props.theme.lineHeight.relaxed};
   > ${StyledIcon} {
-    padding-right: ${(props) => props.theme.spacing[12]};
+    margin-right: ${(props) => props.theme.spacing[12]};
   }
   :focus {
     outline: none;
@@ -46,8 +46,8 @@ const StyledButton = styled.button`
   ${(props) => props.iconAlignRight && css`
     flex-direction: row-reverse;
     > ${StyledIcon} {
-      padding-right: 0;
-      padding-left: ${props.theme.spacing[12]};
+      margin-right: 0;
+      margin-left: ${props.theme.spacing[12]};
     }
   `}
   ${(props) => props.variant === 'primary' && css`
@@ -120,6 +120,11 @@ const StyledButton = styled.button`
     font-weight: ${props.theme.fontWeight.bold};
     font-size: ${props.theme.fontSize.xs};
   `}
+  ${(props) => props.disabled && css`
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+  `}
 `;
 
 /* LINK BUTTONS
@@ -135,15 +140,16 @@ const StyledAnchor = styled.a`
   font-size: ${(props) => props.theme.fontSize.base};
   line-height: ${(props) => props.theme.lineHeight.relaxed};
   > ${StyledIcon} {
-    padding-left: 0;
-    padding-right: ${(props) => props.theme.spacing[12]};
-    padding-top: 0.2rem;
+    margin-left: 0;
+    margin-right: ${(props) => props.theme.spacing[8]};
+    margin-top: 0.4rem;
   }
   ${(props) => props.iconAlignRight && css`
     flex-direction: row-reverse;
     > ${StyledIcon} {
-      padding-right: 0;
-      padding-left: ${props.theme.spacing[12]};
+      margin-right: 0;
+      margin-left: ${props.theme.spacing[8]};
+      margin-top: 0.4rem;
     }
   `}
   ${(props) => props.variant === 'text' && css`
@@ -198,6 +204,11 @@ const StyledAnchor = styled.a`
       color: ${props.theme.colors.white};
     }
   `}
+  ${(props) => props.disabled && css`
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+  `}
 `;
 
 /* BUTTON COMPONENT
@@ -224,7 +235,7 @@ const Button = ({
       return (
         <>
           <StyledIcon>
-            <Icon name={icon} size={iconSize} />
+            <FontAwesomeIcon icon={icon} size={iconSize} />
           </StyledIcon>
           {content}
         </>
@@ -294,11 +305,18 @@ Button.propTypes = {
   /**
    * The icon to be supplied with the button. Defaults to none.
    */
-  icon: PropTypes.string,
+  icon: PropTypes.oneOfType([
+    PropTypes.shape({
+      prefix: PropTypes.string,
+      iconName: PropTypes.string,
+      icon: PropTypes.array,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * The icon sizing. Defaults to '2'
    */
-  iconSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  iconSize: PropTypes.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
   /**
    * Shift the icon to the right, content to the left. Defaults to false.
    */
@@ -331,8 +349,8 @@ Button.defaultProps = {
   size: 'md',
   content: '',
   disabled: false,
-  icon: '',
-  iconSize: 2,
+  icon: null,
+  iconSize: '1x',
   iconAlignRight: false,
   href: '',
   target: '#',

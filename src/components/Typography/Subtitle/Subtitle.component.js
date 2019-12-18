@@ -29,7 +29,10 @@ const Subtitle = ({
 
 Subtitle.propTypes = {
   variant: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]),
 };
 
 Subtitle.defaultProps = {

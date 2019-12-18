@@ -2,7 +2,8 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import PropTypes from 'prop-types';
-import Icon from '../Icon/Icon.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 
 const StyledFeatureList = styled.ul`
   margin-left: 0;
@@ -32,7 +33,7 @@ const FeatureList = ({ features }) => (
     <StyledFeatureList>
       {features.map((feature) => (
         <StyledListItem key={feature}>
-          <StyledFeatureListItemIcon><Icon name="check" size={1} /></StyledFeatureListItemIcon>
+          <StyledFeatureListItemIcon><FontAwesomeIcon icon={faCheck} size="xs" /></StyledFeatureListItemIcon>
           <StyledFeatureListItemText>{feature}</StyledFeatureListItemText>
         </StyledListItem>
       ))}

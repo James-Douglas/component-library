@@ -1,7 +1,6 @@
 import React from 'react';
 import { css, createGlobalStyle, ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
-import screens from '../../../config/screens';
 
 import SourceSansProSrc from '../../fonts/sourcesanspro-regular-webfont.woff2';
 import SourceSansProUrl from '../../fonts/sourcesanspro-regular-webfont.woff';

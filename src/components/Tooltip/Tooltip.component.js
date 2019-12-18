@@ -11,7 +11,8 @@ import 'tippy.js/animations/shift-away.css';
 import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
 import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
-import Icon from '../Icon/Icon.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 import throttle from '../../utils/throttle';
 
 const StyledTooltipWrapper = styled.div`
@@ -248,7 +249,7 @@ const Tooltip = ({
           >
             <>
               <span className="sr-only">{screenReaderLabel}</span>
-              <Icon name="info" size={desktop ? 2.4 : 3.5} />
+              <FontAwesomeIcon icon={faInfoCircle} size={desktop ? '2x' : '3x'} />
             </>
           </StyledTooltipIcon>
         </Tippy>

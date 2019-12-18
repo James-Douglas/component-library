@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import PropTypes from 'prop-types';
 import getTheme from 'utils/getTheme';
-import Icon from '../Icon/Icon.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import FluidContainer from '../Grid/Container/Fluid.component';
@@ -73,7 +74,7 @@ const AccordionPanel = ({
 }) => {
   const [isVisible, setIsVisible] = useState(show);
   const [isFocus, setIsFocus] = useState(false);
-  const angleName = isVisible ? 'Up' : 'Down';
+  const direction = isVisible ? 'vertical' : null;
 
   const toggleTrueFalse = () => {
     setTimeout(() => {
@@ -119,7 +120,7 @@ const AccordionPanel = ({
             <Row>
               <Column cols="11">{title}</Column>
               <Column cols="1">
-                <Icon name={`angle${angleName}`} size={iconSize} />
+                <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
               </Column>
             </Row>
           </FluidContainer>
@@ -156,7 +157,7 @@ AccordionPanel.propTypes = {
   /**
    * The size of the show/hide icon
    */
-  iconSize: PropTypes.number,
+  iconSize: PropTypes.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
   /**
    * Used to AccordionGroup to control visibility
    */
@@ -167,7 +168,7 @@ AccordionPanel.defaultProps = {
   children: '',
   title: '',
   show: false,
-  iconSize: 1.5,
+  iconSize: '1x',
   onClickGroup: null,
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import 'jest-styled-components';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button.component';
 
 describe('Button', () => {
@@ -10,7 +11,7 @@ describe('Button', () => {
   });
 
   it('renders with props', () => {
-    const { container, getByText } = render(<Button id="test-id" variant="primary" darkMode size="md" content="test content" icon="check" iconAlignRight />);
+    const { container, getByText } = render(<Button id="test-id" variant="primary" darkMode size="md" content="test content" icon={faCheck} iconAlignRight />);
     const btn = container.querySelector('#test-id');
     expect(getByText('test content')).toBeDefined();
     expect(btn).toHaveStyle('background: #36A93F'); // primaryAA from theme.js
@@ -55,7 +56,7 @@ describe('Button', () => {
   });
 
   it('renders a text button with an icon when specified', () => {
-    const { container } = render(<Button id="test-id" variant="text" icon="check" content="test thing" />);
+    const { container } = render(<Button id="test-id" variant="text" icon={faCheck} content="test thing" />);
     const icon = container.querySelector('svg');
     const btn = container.querySelector('#test-id');
     expect(btn).toHaveStyle('color: #000000');

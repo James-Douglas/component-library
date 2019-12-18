@@ -4,7 +4,8 @@
 exe() { printf "$@" ; $@ ; }
 
 # build docker image
-exe "docker build -t quay.io/comparethemarketau/manor:$(git rev-parse HEAD) -f deployment/Dockerfile ."
+exe "docker build --build-arg NPM_FONTAWESOME_TOKEN=${bamboo_fa_token_password} \
+  -t quay.io/comparethemarketau/manor:$(git rev-parse HEAD) -f deployment/Dockerfile ."
 if [ "$?" -ne 0 ]; then
   echo "ERROR - could not build docker image"
   exit 1
