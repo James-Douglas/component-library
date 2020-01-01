@@ -41,6 +41,7 @@ const StyledAffix = styled.span`
   height: 4.4rem;
   padding-right: ${(props) => (props.affixType === 'prefix' ? '0.5rem' : '')};
   padding-left: ${(props) => (props.affixType === 'suffix' ? '0.5rem' : '')};
+  background: ${(props) => props.theme.colors.white};
 
   ${(props) => (!props.bordered && props.affixType) && css`
     background: ${props.theme.colors.white};
