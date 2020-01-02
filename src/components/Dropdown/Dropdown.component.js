@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/pro-regular-svg-icons';
 import styled, { css, ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import usePrefill from '../../hooks/usePrefill';
 import UseFieldset from '../../hooks/useFieldset';
+
 
 const StyledSupportingElements = styled.div`
   display: flex;
@@ -45,6 +47,7 @@ const StyledPrefix = styled.div`
   display: flex;
   border: 1px solid transparent;
   height: 100%;
+  width: 100%;
   &:hover {
     border: ${(props) => `1px solid ${props.theme.colors.blueLight}`};
   }
@@ -61,7 +64,6 @@ const StyledPrefix = styled.div`
     border-width: 1px;
     outline: none;
   }
-
    ${(props) => props.isFocusActive && css`
       border:${`1px solid ${props.theme.colors.blueLight}`};
   `}
@@ -80,20 +82,26 @@ const StyledPrefixRight = styled.div`
   &:focus  {
     outline: none;
   }
+  img {
+    max-width: 100%;
+  }
+}`;
+const StyledChevron = styled.div`
+  z-index: 1;
+  position: absolute;
+  right: 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
 }`;
 
-
-const sharedStylePrefilled = css`
-  border: ${(props) => `1px solid ${props.theme.colors.precheckedDarker}`};
-  background-color: ${(props) => `1px solid ${props.theme.colors.white}`};
-  -webkit-text-fill-color: theme('colors.black');
-  -webkit-box-shadow: 0 0 0 100rem rgba(255, 255, 255, 0) inset;
-  transition: background-color 5000s ease-in-out 0s;
-  background-image: ${(props) => `url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.white}) 0%, theme('colors.prechecked') 100%)`};
-  background-repeat: no-repeat, repeat;
-  background-position: right 1.12rem top 49%, 0 0; 
-  background-size: 1.04rem auto, 100%;          
-`;
+const StyledSelectWrap = styled.div`
+  width: 100%;
+  position: relative;
+  height: 100%;
+  display: flex;
+}`;
 
 
 const StyledSelect = styled.select`
@@ -101,7 +109,6 @@ const StyledSelect = styled.select`
   background: ${(props) => props.theme.colors.white};
   font-weight: ${(props) => props.theme.fontWeight.normal};
   max-width: 100%;
-  border: 1px solid transparent;
   border-radius: 0;
   font-size: ${(props) => props.theme.fontSize.base};
   box-shadow: none;
@@ -111,53 +118,41 @@ const StyledSelect = styled.select`
   width: 100%;
   line-height: ${(props) => props.theme.lineHeight.tighter};
   height: ${(props) => props.theme.spacing['42']};
-  padding: ${(props) => `${props.theme.spacing['8']} ${props.theme.spacing['24']} ${props.theme.spacing['8']} ${props.theme.spacing['12']}`};
+  padding: ${(props) => `${props.theme.spacing['8']} ${props.theme.spacing['40']} ${props.theme.spacing['8']} ${props.theme.spacing['12']}`};
   box-sizing: border-box;
   -moz-appearance: none;
   -webkit-appearance: none;
-
-  background-image: ${(props) => `url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.white}) 0%, theme(${props.theme.colors.prechecked}) 100%)`};
-  background-repeat: no-repeat, repeat;
-  background-position: right 1.12rem top 49%, 0 0;
-  background-size: 1.04rem auto, 100%;
+  border: ${(props) => `1px solid ${props.theme.colors.greyLight}`};
+  &:disabled {
+    border: ${(props) => `1px solid ${props.theme.colors.greyLight}`};
+    opacity: 0.5;
+  }
+  &:disabled:hover {
+    border: ${(props) => `1px solid ${props.theme.colors.greyLight}`};
+  }
+   &:disabled + div svg{
+    opacity: 0.3;
+   }
   &.manor-dropdown::-ms-expand {
    display: none;
   }
   &:hover {
     border: ${(props) => `1px solid ${props.theme.colors.blueLight}`};
-    background-image: ${(props) => `url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%231780F3%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.white}) 0%, theme(${props.theme.colors.white}) 100%)`};
   }
-   &:focus {
-    background-image: ${(props) => `url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%231780F3%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.white}) 0%, theme(${props.theme.colors.white}) 100%)`};
+  &:focus {
     box-shadow: none;
     outline: none;
   }
-  &:-webkit-autofill {
-     ${sharedStylePrefilled}
-  }
-  &:-webkit-autofill:hover {
-     ${sharedStylePrefilled}
-  }
-  &:-webkit-autofill:focus {
-     ${sharedStylePrefilled}
-  }
+  ${(props) => !props.isPrefix && css`
+    &:focus {
+      border: ${`1px solid ${props.theme.colors.blueLight}`};
+    }
+  `}
+
   /* **********************************************************************
   invalid styles
   ************************************************************************* */
   /* .manor-dropdown:invalid, */    /* Note: Required fields would have red around them on page load if :invalid was used */
-  ${(props) => props.showDefaultStyle && props.isUsePrefill && css`
-    font-style: italic;
-    -webkit-text-fill-color: ${props.theme.colors.disabledText};
-    &:focus {
-      font-style: italic;
-      -webkit-text-fill-color: ${props.theme.colors.disabledText};
-    }
-    &:hover {
-      font-style: italic;
-      -webkit-text-fill-color: ${props.theme.colors.disabledText};
-    }
-  `}
-
   ${(props) => props.invalidClass && css`
     &.invalid{
       border: ${`1px solid ${props.theme.colors.invalid}`};
@@ -166,56 +161,8 @@ const StyledSelect = styled.select`
      border: ${`1px solid ${props.theme.colors.invalid}`};
     }
   `}
-
-  ${(props) => props.isUsePrefill && css`
-    ${sharedStylePrefilled}
-  `}
-  ${(props) => props.showDefaultStyle && css`
-    color: ${props.theme.colors.disabledText};
-    font-style: italic;
-    &:disabled {
-      font-style: italic;
-    }
-    &[aria-disabled=true] {
-      font-style: italic;
-    }
-    &:-webkit-autofill {
-      font-style: italic;
-      -webkit-text-fill-color: ${props.theme.colors.disabledText};
-    }
-    &:-webkit-autofill:hover {
-      font-style: italic;
-      -webkit-text-fill-color: ${props.theme.colors.disabledText};
-    }
-    &:-webkit-autofill:focus {
-      font-style: italic;
-      -webkit-text-fill-color: ${props.theme.colors.disabledText};
-    }
-  `}
-  ${(props) => props.bordered && css`
-    border: ${`1px solid ${props.theme.colors.greyLight}`};
-    &:disabled:focus {
-      border: ${`1px solid ${props.theme.colors.greyLight}`};
-    }
-    &[aria-disabled=true]:focus {
-      border: ${`1px solid ${props.theme.colors.greyLight}`};
-    }
-    &:disabled:hover {
-      border: ${`1px solid ${props.theme.colors.greyLight}`};
-    }
-    &[aria-disabled=true]:hover {
-      border: ${`1px solid ${props.theme.colors.greyLight}`};
-    }
-    &:disabled {
-      background-image: ${`url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%231780F3%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.greyLight}) 0%, theme(${props.theme.colors.greyLight}) 100%)`};
-      border: ${`1px solid ${props.theme.colors.greyLight}`};
-      opacity: 0.5;
-    }
-    &[aria-disabled=true] {
-      background-image: ${`url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2244px%22%20height%3D%2244px%22%3E%3Cpath%20fill%3D%22%231780F3%22%20d%3D%22M41.5%2C11.3c-1.3-1.3-3.5-1.3-4.9-0.1L22%2C25.4L7.4%2C11.2C6%2C9.9%2C3.9%2C10%2C2.5%2C11.3c-1.3%2C1.3-1.4%2C3.4-0.1%2C4.8l17.1%2C16.6c1.4%2C1.3%2C3.6%2C1.3%2C5%2C0l17.1-16.6C42.8%2C14.7%2C42.8%2C12.6%2C41.5%2C11.3z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, theme(${props.theme.colors.greyLight}) 0%, theme(${props.theme.colors.greyLight}) 100%)`};
-      border: ${`1px solid ${props.theme.colors.greyLight}`};
-      opacity: 0.5;
-    }
+  ${(props) => !props.bordered && css`
+   border: 1px solid transparent;
   `}
 }`;
 
@@ -234,64 +181,77 @@ export const getSupportingElements = (required) => {
 };
 
 
-export const selectField = (
+export const renderSelectField = (
   id,
   name,
-  disabled,
+  isDisabled,
   required,
-  readonly,
   selectValue,
+  prefixContent,
   handleChange,
   handleFocus,
   handleBlur,
-  optionsModified,
+  options,
   invalidClass,
-  isUsePrefill,
   bordered,
-  showDefaultStyle,
   className,
+  isFocusActive,
 ) => (
   <ThemeProvider theme={getTheme()}>
-    <StyledSelect
-      id={id}
-      name={name}
-      disabled={disabled}
-      required={required}
-      readOnly={readonly}
-      value={selectValue}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      invalidClass={invalidClass}
-      isUsePrefill={isUsePrefill}
-      bordered={bordered}
-      className={className}
-      showDefaultStyle={showDefaultStyle}
-    >
-      {optionsModified.map((option) => (
-        <StyledOption
-          key={option.value}
-          value={option.value}
-          id={`${id}_${option.value}`}
-          disabled={option.disabled}
-          hidden={option.hidden}
-          data-default={option.defaultOption}
-          className={option.className}
-        >
-          {option.title}
-        </StyledOption>
-      ))}
-    </StyledSelect>
+    <StyledSelectWrap>
+      <StyledSelect
+        id={id}
+        name={name}
+        disabled={isDisabled}
+        required={required}
+        value={selectValue}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        invalidClass={invalidClass}
+        bordered={bordered}
+        className={className}
+        isPrefix={Boolean(prefixContent)}
+      >
+        {options && options.map((option) => (
+          <StyledOption
+            key={option.value}
+            value={option.value}
+            id={`${id}_${option.value}`}
+            disabled={option.disabled}
+          >
+            {option.title}
+          </StyledOption>
+        ))}
+      </StyledSelect>
+      <StyledChevron>
+        <FontAwesomeIcon icon={isFocusActive ? faChevronDown : faChevronUp} size="2x" />
+      </StyledChevron>
+    </StyledSelectWrap>
+  </ThemeProvider>
+);
+
+
+const PrefixContent = ({
+  children,
+  prefixContent,
+  isFocusActive,
+}) => (
+  <ThemeProvider theme={getTheme()}>
+    <StyledPrefix isFocusActive={isFocusActive}>
+      <StyledPrefixRight tabIndex="-1">{prefixContent}</StyledPrefixRight>{children}
+    </StyledPrefix>
   </ThemeProvider>
 );
 
 const WithPrefixContent = ({ children, isFocusActive, prefixContent }) => (prefixContent
   ? (
-    <ThemeProvider theme={getTheme()}>
-      <StyledPrefix isFocusActive={isFocusActive}>
-        <StyledPrefixRight tabIndex="-1">{prefixContent}</StyledPrefixRight>{children}
-      </StyledPrefix>
-    </ThemeProvider>
+    <PrefixContent
+      isFocusActive={isFocusActive}
+      prefixContent={prefixContent}
+    >
+      {children}
+    </PrefixContent>
   ) : children
 );
 
@@ -303,25 +263,25 @@ const Dropdown = ({
   validationMessage,
   id,
   name,
-  prefillValue,
   bordered,
   disabled,
   required,
-  readonly,
   options,
-  value,
   onChange,
   disableFieldset,
   className,
   prefixContent,
 }) => {
   const invalidClass = validationMessage && validationMessage.length;
-  const [isDirty, setIsDirty] = useState(false);
-  const [stateValue, setStateValue] = useState(value);
-  const isUsePrefill = usePrefill(prefillValue, value, isDirty);
-  const selectValue = isUsePrefill ? prefillValue : stateValue;
-  const valueOption = options.find((i) => i.value === selectValue);
-  const [showDefaultStyle, setshowDefaultStyle] = useState(valueOption ? !!valueOption.defaultOption : !!options[0].defaultOption);
+  let valueDropdown;
+  if (options && options.length) {
+    const valueOption = options ? options.find((i) => i.selected) : false;
+    valueDropdown = valueOption ? valueOption.value : options[0].value;
+  } else {
+    valueDropdown = '';
+    console.warn(`Invalid prop 'options' supplied to Dropdown. Validation failed.`);
+  }
+  const [selectValue, setSelectValue] = useState(valueDropdown);
   const [isFocusActive, setFocusActive] = useState(false);
   const handleFocus = () => {
     setFocusActive(true);
@@ -331,15 +291,14 @@ const Dropdown = ({
   };
   const handleChange = (event) => {
     event.preventDefault();
-    setIsDirty(true);
     const selectedValue = event.target.value;
-    setshowDefaultStyle(event.target.options[event.target.selectedIndex].getAttribute('data-default'));
-    setStateValue(selectedValue);
+    setSelectValue(selectedValue);
     if (onChange) {
       onChange(selectedValue);
     }
   };
-
+  const isOptionExist = options && options.length;
+  const isDisabled = isOptionExist ? disabled : !isOptionExist;
   return (
     <UseFieldset
       disableFieldset={disableFieldset}
@@ -350,7 +309,7 @@ const Dropdown = ({
       supportingElements={getSupportingElements(required)}
     >
       <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
-        {selectField(id, name, disabled, required, readonly, selectValue, handleChange, handleFocus, handleBlur, options, invalidClass, isUsePrefill, bordered, showDefaultStyle, className)}
+        {renderSelectField(id, name, isDisabled, required, selectValue, prefixContent, handleChange, handleFocus, handleBlur, options, invalidClass, bordered, className, isFocusActive)}
       </WithPrefixContent>
     </UseFieldset>
   );
@@ -382,10 +341,6 @@ Dropdown.propTypes = {
    */
   name: PropTypes.string,
   /**
-   * Prefill a value and apply prefill styles (this is used to emulate browser autocomplete styles)
-   */
-  prefillValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
    * Styles the input with a border
    */
   bordered: PropTypes.bool,
@@ -398,17 +353,9 @@ Dropdown.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * Whether the dropdown is read only
-   */
-  readonly: PropTypes.bool,
-  /**
    * Onchange function, called with the selected value
    */
   onChange: PropTypes.func,
-  /**
-   * Set the value of the dropdown
-   */
-  value: PropTypes.string,
   /**
    * The dropdown options
    */
@@ -416,13 +363,9 @@ Dropdown.propTypes = {
     value: PropTypes.string,
     title: PropTypes.string,
     disabled: PropTypes.bool,
-    hidden: PropTypes.bool,
-    className: PropTypes.string,
-    /**
-     * Allows a default option to be added to the dropdown
-     */
-    defaultOption: PropTypes.bool,
-  })),
+    selected: PropTypes.bool,
+  })).isRequired,
+
   /**
    * Classes to be applied to the container element
    */
@@ -446,14 +389,10 @@ Dropdown.defaultProps = {
   forceFullWidth: false,
   validationMessage: '',
   name: '',
-  value: '',
-  prefillValue: null,
-  bordered: false,
+  bordered: true,
   disabled: false,
   required: false,
-  readonly: false,
   onChange: null,
-  options: [],
   disableFieldset: false,
   className: '',
   prefixContent: '',
@@ -476,5 +415,25 @@ WithPrefixContent.defaultProps = {
   isFocusActive: false,
   prefixContent: '',
 };
+
+PrefixContent.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  isFocusActive: PropTypes.bool,
+  prefixContent: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+};
+
+PrefixContent.defaultProps = {
+  children: '',
+  isFocusActive: false,
+  prefixContent: '',
+};
+
 
 export default Dropdown;

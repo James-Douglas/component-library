@@ -3,6 +3,8 @@ import { withKnobs, text, boolean, number, select, array, object } from '@storyb
 import Dropdown from '../../components/Dropdown/Dropdown.component';
 import fieldValidation from './flag.png';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
+import Row from 'components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
 
 <Meta title="Components|Dropdown" component={Dropdown} />
 
@@ -15,9 +17,9 @@ select (another component will handle multi select).
   <Story name="dropdown">
     {() => {
       const options = [
-        { value: 'Default', title: 'Default Item - Title', defaultOption: true},
-        { value: 'First', title: 'First Item - Title', className: 'test-class'},
-        { value: 'Second', title: 'Second Item - Title'},
+        { value: '', title: 'Default Item - Title'},
+        { value: 'First', title: 'First Item - Title'},
+        { value: 'Second', title: 'Second Item - Title', selected: true},
         { value: 'Third', title: 'Third Item - Title', disabled: true }
       ];
       return (
@@ -30,7 +32,6 @@ select (another component will handle multi select).
                supportingElements
                forceFullWidth
                label="Dropdown Label"
-               bordered
              />
           </Column>
         </Row>
@@ -57,7 +58,7 @@ select (another component will handle multi select).
         <FluidContainer>
            <Row>
               <Column>
-                <div style={{backgroundColor: '#f3f3f3', padding: '1.2rem', borderRadius: '0.8rem', maxWidth: '64rem', fontWeight: '400', fontSize: '1.6rem', lineHeight: '1.625'}}>
+                <div style={{backgroundColor: '#f3f3f3', padding: '1.2rem', borderRadius: '0.8rem', maxWidth: '64rem', width: '100%', fontWeight: '400', fontSize: '1.6rem', lineHeight: '1.625'}}>
                   <Dropdown
                     id="input-one"
                     options={options}
@@ -67,6 +68,7 @@ select (another component will handle multi select).
                     bordered={false}
                     required
                     prefixContent="$"
+                    bordered={false}
                   />
                   <Dropdown
                     id="input-one"
@@ -77,6 +79,7 @@ select (another component will handle multi select).
                     bordered={false}
                     required
                     prefixContent={<img src={fieldValidation} className="w-20" />}
+                    bordered={false}
                   />
                 </div>
               </Column>
@@ -108,7 +111,7 @@ select (another component will handle multi select).
     const readOnly = boolean('readOnly', false);
     const options = [
       object('first option', { value: 'First', title: 'First Item - Title' }),
-      object('second option', { value: 'Second', title: 'Second Item - Title' }),
+      object('second option', { value: 'Second', title: 'Second Item - Title', selected: true }),
       object('third option', { value: 'Third', title: 'Third Item - Title', disabled: true })
     ];
     return (
