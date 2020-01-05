@@ -30,6 +30,7 @@ const StyledTooltipIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: ${(props) => (props.desktop ? '1.8rem' : '2.2rem')}; 
   color:  ${(props) => props.theme.colors.grey}; 
   fill: currentColor;
    ${(props) => props.pinned && css`
@@ -234,6 +235,7 @@ const Tooltip = ({
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <StyledTooltipIcon
             role="tooltip"
+            desktop={desktop}
             ref={tooltipElement}
             pinned={pinned}
             onClick={pinTooltip}
@@ -249,7 +251,7 @@ const Tooltip = ({
           >
             <>
               <span className="sr-only">{screenReaderLabel}</span>
-              <FontAwesomeIcon icon={faInfoCircle} size={desktop ? '2x' : '3x'} />
+              <FontAwesomeIcon icon={faInfoCircle} />
             </>
           </StyledTooltipIcon>
         </Tippy>
