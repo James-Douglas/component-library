@@ -1,6 +1,9 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
 
+import Container from '../../components/Grid/Container/Container.component';
+import Row from '../../components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
 import Input from '../../components/Input/Input.component';
 import GreyBackgroundView from './input-on-grey-background';
 import WhiteBackgroundView from './input-on-white-background';
@@ -15,7 +18,7 @@ import InputStates from './input-states';
 <Preview>
   <Story name="input">
     <Input
-      label="[Fieldset label] With tooltip"
+      label="Input demo"
       id="input-one"
       tooltip={{title: 'input demo'}}
       placeholder="Placeholder one"
@@ -26,12 +29,31 @@ import InputStates from './input-states';
       invalid={false}
       handleChange={() => {}}
     />
+    <Container>
+      <Row>
+        <Column>
+          <Input
+            label="Input demo"
+            id="input-one"
+            tooltip={{title: 'input demo'}}
+            placeholder="Placeholder one"
+            type="text"
+            bordered
+            required={false}
+            disabled={false}
+            invalid={false}
+            handleChange={() => {}}
+          />
+        </Column>
+      </Row>
+    </Container>
   </Story>
 </Preview>
 
 ## Props
 
 <Props of={Input} />
+
 
 <Story name="input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {

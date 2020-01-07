@@ -1,25 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
 import { render, fireEvent } from '@testing-library/react';
-import Dropdown, { getSupportingElements } from '../Dropdown.component';
-
-
-describe('getSupportingElements()', () => {
-  // eslint-disable-next-line react/prop-types
-  const SupportingElementsContainer = ({ required }) => (
-    <>
-      {getSupportingElements(required)}
-    </>
-  );
-  it('returns null when required is true', () => {
-    expect(getSupportingElements(true)).toBeNull();
-  });
-  it('returns OPTIONAL text when required is false', () => {
-    const { getByText } = render(<SupportingElementsContainer />);
-    expect(getByText('OPTIONAL')).toBeInTheDocument();
-  });
-});
-
+import Dropdown from '../Dropdown.component';
 
 describe('Dropdown', () => {
   const optionsSelected = [
@@ -52,23 +34,6 @@ describe('Dropdown', () => {
     for (let index = 0; index < dropdownOptionsCount; index += 1) {
       expect(dropdownOptions[index].disabled).toBe(Boolean(optionsSelected[index].disabled));
     }
-  });
-  it('renders with Chevron up', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" bordered />);
-    const svg = container.querySelector('svg');
-    expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute('data-icon', 'chevron-up');
-  });
-  it('renders with Chevron down', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" />);
-    const selectField = container.querySelector('select');
-    selectField.focus();
-    const svg = container.querySelector('svg');
-    expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute('data-icon', 'chevron-down');
-    selectField.blur();
-    expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute('data-icon', 'chevron-up');
   });
   it('renders with default props', () => {
     const selectedValue = 'Default';
@@ -124,7 +89,7 @@ describe('Dropdown', () => {
   });
   it('renders with supportingElements props', () => {
     const { getByText } = render(<Dropdown id="dropdown" options={optionsDefault} label="Dropdown Label" />);
-    expect(getByText('OPTIONAL')).toBeInTheDocument();
+    expect(getByText('Optional')).toBeInTheDocument();
   });
   it('renders  with validation message', () => {
     const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" validationMessage="sdfsdfsdfsdfsdf" />);

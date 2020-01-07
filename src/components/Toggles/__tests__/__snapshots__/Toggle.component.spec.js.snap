@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toggle renders with props 1`] = `"<div class=\\"sc-bdVaJa jnMbrs\\"><input tabindex=\\"0\\" id=\\"test-id\\" type=\\"radio\\" name=\\"\\" class=\\"sc-bwzfXH cTYmDK\\" value=\\"test\\"><label for=\\"test-id\\" class=\\"sc-htpNat fdwQdn\\"><div class=\\"sc-bxivhb klybVK\\"><div type=\\"square\\" class=\\"sc-bZQynM joZKug\\">test label</div></div></label></div>"`;
+exports[`Toggle renders with props 1`] = `"<div class=\\"sc-bdVaJa jnMbrs\\"><input tabindex=\\"0\\" id=\\"test-id\\" type=\\"radio\\" name=\\"\\" class=\\"sc-bwzfXH cTYmDK\\" value=\\"test\\"><label for=\\"test-id\\" class=\\"sc-htpNat bACRNp\\"><div class=\\"sc-bxivhb loCWgs\\"><div type=\\"square\\" class=\\"sc-bZQynM joZKug\\">test label</div></div></label></div>"`;

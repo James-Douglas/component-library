@@ -95,7 +95,6 @@ describe('Textarea.component.js', () => {
       readonly: false,
       maxlength: '',
       maxchars: '',
-      disableFieldset: false,
     };
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
@@ -115,80 +114,72 @@ describe('Textarea.component.js', () => {
 
 
   /* *******************************************************************************************
-        test white background support
+        test borders
     ******************************************************************************************** */
-  it('renders a textarea with a class for the border styles, an associated label', () => {
+  it('renders with border', () => {
     const props = {
       id: 'textarea-id',
       name: 'textarea-name',
       label: 'this is a test',
       bordered: true,
-      disableFieldset: false,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElementId = container.querySelector('.manor-textarea-border').id;
-    expect(theTextareaElementId).toContain('textarea-id');
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).toHaveStyle('border: 1px solid #DDDDDD');
   });
 
-  /* *******************************************************************************************
-        test grey background support
-    ******************************************************************************************** */
-  it('renders a textarea without a class for the border styles when specified (used for grey backgrounds)', () => {
+  it('renders without border', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
       bordered: false,
-      disableFieldset: false,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElementId1 = container.querySelector('.manor-textarea-border');
-    expect(theTextareaElementId1).toBeNull();
-
-    const theTextareaElementId2 = container.querySelector('.manor-textarea-default').id;
-    expect(theTextareaElementId2).toContain('textarea-id');
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).not.toHaveStyle('border: 1px solid #DDDDDD');
   });
 
 
   /* *******************************************************************************************
         test specified attributes
     ******************************************************************************************** */
-  it('has an invalid class for the textarea when it is indicated to do so', () => {
+  it('applies invalid styling when validation message is supplied', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
       validationMessage: 'invalid',
       value: 'Hello World',
-      disableFieldset: false,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElementId = container.querySelector('.manor-textarea-default.invalid').id;
-    expect(theTextareaElementId).toContain('textarea-id');
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
   });
 
-
-  it('has a manor-prefilled class for the textarea when it is indicated to do so', () => {
+  it('applies manor-prefilled styles when isPrefill is true', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
       isPrefill: true,
       value: 'Hello World',
-      disableFieldset: false,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElementId = container.querySelector('.manor-textarea-default.manor-prefilled').id;
-    expect(theTextareaElementId).toContain('textarea-id');
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).toHaveStyle(`
+      background: #F0E599;
+      border: 1px solid #F0E599;
+    `);
   });
 
 
@@ -197,31 +188,29 @@ describe('Textarea.component.js', () => {
       id: 'textarea-id',
       label: 'this is a test',
       required: true,
-      disableFieldset: false,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElementId = container.querySelector('.manor-textarea-default:required').id;
-    expect(theTextareaElementId).toContain('textarea-id');
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).toHaveAttribute('required');
   });
 
 
-  it('it has a disable attribute when specified', () => {
+  it('it has a disabled attribute when specified', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
       disabled: true,
       value: 'helloworld',
-      disableFieldset: false,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElement = container.querySelector('.manor-textarea-default:disabled');
-    expect(theTextareaElement.value).toBe('helloworld');
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).toHaveAttribute('disabled');
   });
 
 
@@ -232,14 +221,13 @@ describe('Textarea.component.js', () => {
       name: 'thisisatest',
       value: '',
       disabled: true,
-      disableFieldset: false,
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElementId = container.querySelector('#textarea-id').id;
-    expect(theTextareaElementId).toContain('textarea-id');
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).toHaveAttribute('id', 'textarea-id');
   });
 
 
@@ -249,48 +237,13 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       name: 'thisisatest',
       disabled: true,
-      disableFieldset: false,
     };
-
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElementId = container.querySelector('.manor-textarea-default[name="thisisatest"]').id;
-    expect(theTextareaElementId).toContain('textarea-id');
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).toHaveAttribute('name', 'thisisatest');
   });
-
-
-  /* *******************************************************************************************
-        test additional attributes
-    ******************************************************************************************** */
-
-  /*
-
-  ####  This currently fails due to ignoring props that are not explicitly specified - eg title this test needs to be added after that feature is added to the code #####
-
-  it('has additional attributes when supplied', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      value: 'Hello World',
-      'data-ng-blah': 'a value',
-      'aria-autocomplete': false,
-      hidden: false,
-      title: 'wassup',
-      autofocus: false,
-      tabindex: '1',
-      accesskey: 'k',
-    };
-
-    / * eslint-disable-next-line react/jsx-props-no-spreading * /
-    const { container } = render(<Textarea {...props} />);
-
-    const theTextareaElementId = container.querySelector('.manor-textarea-default[title="wassup"]').id;
-    expect(theTextareaElementId).toContain('textarea-id');
-
-    expect(container.innerHTML).toMatchSnapshot();
-  });
-  */
 
   /* *******************************************************************************************
         test supplied value
@@ -300,7 +253,7 @@ describe('Textarea.component.js', () => {
       id: 'textarea-id',
       label: 'this is a test',
       value: 'Hello World',
-      disableFieldset: false,
+
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -317,7 +270,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: 'Hello World',
       disabled: true,
-      disableFieldset: false,
+
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -337,7 +290,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: '',
       maxLength: '7',
-      disableFieldset: false,
+
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
@@ -357,28 +310,23 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: 'hello',
       maxLength: '7',
-      disableFieldset: false,
+
     };
     /* eslint-disable-next-line react/jsx-props-no-spreading */
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { getByText, container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElement = container.querySelector('.manor-maxlength-indicator');
-    expect(theTextareaElement.innerHTML).toContain('2');
+    const textAreaElement = container.querySelector('textarea');
 
-    const theTextareaElement1 = container.querySelector('.manor-textarea-default.invalid');
-    expect(theTextareaElement1).toBeNull();
+    // remaining chars text
+    expect(getByText('2')).toBeInTheDocument();
+    expect(textAreaElement).not.toHaveStyle('border: 1px solid #EF425E');
 
-    const textareaField = container.querySelector('textarea');
-    fireEvent.change(textareaField, { target: { value: 'helloworld' } });
+    fireEvent.change(textAreaElement, { target: { value: 'helloworld' } });
 
-    const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
-    expect(theTextareaElement2.value).toBe('helloworld');
+    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
 
-    const theTextareaElement3 = container.querySelector('.manor-textarea-default:invalid');
-    expect(theTextareaElement3.value).toBe('helloworld');
-
-    const theTextareaElement4 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
-    expect(theTextareaElement4.innerHTML).toContain('-3');
+    // remaining chars text
+    expect(getByText('-3')).toBeInTheDocument();
   });
 
   it('if default supplied text exceeds max length limit, validation is performed', () => {
@@ -388,39 +336,14 @@ describe('Textarea.component.js', () => {
       value: 'helloworld',
       maxLength: '7',
       autofill: true,
-      disableFieldset: false,
     };
 
     // eslint-disable-next-line react/jsx-props-no-spreading
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container, getByText } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElement = container.querySelector('.manor-textarea-default.invalid');
-    expect(theTextareaElement.value).toBe('helloworld');
-
-    const theTextareaElement2 = container.querySelector('.manor-textarea-default:invalid');
-    expect(theTextareaElement2.value).toBe('helloworld');
-
-    const theTextareaElement3 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
-    expect(theTextareaElement3.innerHTML).toContain('-3');
-  });
-
-  it('on maxLength provided, indicator is displayed', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      value: '',
-      maxChars: '7',
-      disableFieldset: false,
-    };
-
-    /* eslint-disable-next-line react/jsx-props-no-spreading */
-    const { container } = render(<Textarea label="test" {...props} />);
-
-    const theTextareaElement = container.querySelector('.manor-maxlength-indicator');
-    expect(theTextareaElement.innerHTML).toContain('7');
-
-    const theTextareaElement1 = container.querySelector('.manor-textarea-default.invalid');
-    expect(theTextareaElement1).toBeNull();
+    const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
+    expect(getByText('-3')).toBeInTheDocument();
   });
 
   it('on maxChars exceeded, validation is performed', () => {
@@ -429,28 +352,18 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: 'hello',
       maxChars: '7',
-      disableFieldset: false,
+
     };
     /* eslint-disable-next-line react/jsx-props-no-spreading */
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { getByText, container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElement = container.querySelector('.manor-maxlength-indicator');
-    expect(theTextareaElement.innerHTML).toContain('2');
+    const textAreaElement = container.querySelector('textarea');
+    expect(getByText('2')).toBeInTheDocument();
 
-    const theTextareaElement1 = container.querySelector('.manor-textarea-default.invalid');
-    expect(theTextareaElement1).toBeNull();
+    fireEvent.change(textAreaElement, { target: { value: 'helloworld' } });
 
-    const textareaField = container.querySelector('textarea');
-    fireEvent.change(textareaField, { target: { value: 'helloworld' } });
-
-    const theTextareaElement2 = container.querySelector('.manor-textarea-default.invalid');
-    expect(theTextareaElement2.value).toBe('helloworld');
-
-    const theTextareaElement3 = container.querySelector('.manor-textarea-default:invalid');
-    expect(theTextareaElement3.value).toBe('helloworld');
-
-    const theTextareaElement4 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
-    expect(theTextareaElement4.innerHTML).toContain('-3');
+    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
+    expect(getByText('-3')).toBeInTheDocument();
   });
 
   it('if default supplied text exceeds maxChars limit, validation is performed', () => {
@@ -460,37 +373,14 @@ describe('Textarea.component.js', () => {
       value: 'helloworld',
       maxChars: '7',
       autofill: true,
-      disableFieldset: false,
     };
 
     // eslint-disable-next-line react/jsx-props-no-spreading
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { getByText, container } = render(<Textarea label="test" {...props} />);
 
-    const theTextareaElement = container.querySelector('.manor-textarea-default.invalid');
-    expect(theTextareaElement.value).toBe('helloworld');
+    const textAreaElement = container.querySelector('textarea');
 
-    const theTextareaElement2 = container.querySelector('.manor-textarea-default:invalid');
-    expect(theTextareaElement2.value).toBe('helloworld');
-
-    const theTextareaElement3 = container.querySelector('.manor-maxlength-indicator.max-chars-exceeded');
-    expect(theTextareaElement3.innerHTML).toContain('-3');
-  });
-
-  it('if maxLenth and maxChars limit not supplied maxlength indicator does not exist', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      value: 'helloworld',
-      disableFieldset: false,
-    };
-
-    /* eslint-disable-next-line react/jsx-props-no-spreading */
-    const { container } = render(<Textarea label="test" {...props} />);
-
-    const theTextareaElement = container.querySelector('.manor-textarea-default');
-    expect(theTextareaElement.value).toBe('helloworld');
-
-    const theTextareaElement3 = container.querySelector('.manor-maxlength-indicator');
-    expect(theTextareaElement3).toBeNull();
+    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
+    expect(getByText('-3')).toBeInTheDocument();
   });
 });

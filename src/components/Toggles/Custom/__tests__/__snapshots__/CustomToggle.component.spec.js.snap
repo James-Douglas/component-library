@@ -53,6 +53,7 @@ exports[`CustomToggle renders with minimal props 1`] = `
 }
 
 .c2 {
+  height: 100%;
   width: 100%;
   cursor: pointer;
   display: block;
@@ -66,6 +67,7 @@ exports[`CustomToggle renders with minimal props 1`] = `
 }
 
 .c3 {
+  height: 100%;
   font-weight: 700;
   font-size: 1.4rem;
   margin-bottom: 0;

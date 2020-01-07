@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledRow = styled.div`
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   margin-left: -1.6rem;
   margin-right: -1.6rem;
 `;

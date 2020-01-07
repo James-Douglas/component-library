@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled, { createGlobalStyle, css, ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import PropTypes from 'prop-types';
@@ -13,7 +13,6 @@ import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
-import throttle from '../../utils/throttle';
 
 const StyledTooltipWrapper = styled.div`
   display: flex;
@@ -33,13 +32,11 @@ const StyledTooltipIcon = styled.div`
   font-size: ${(props) => (props.desktop ? '1.8rem' : '2.2rem')}; 
   color:  ${(props) => props.theme.colors.grey}; 
   fill: currentColor;
-   ${(props) => props.pinned && css`
+   ${(props) => props.tippyVisible && css`
     fill: currentColor;
-    color: rgba(51, 51, 51, 0.97) !important;
+    color: ${props.theme.colors.primaryAA};
   `}
-  ${(props) => props.tippyVisible && !props.pinned && css`
-    color:  ${props.theme.colors.blueLight}; 
-  `}
+  outline: none;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -67,51 +64,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-/**
- * Calculates the width of the tooltip when there is a boundingElement & we're in a "small"
- * container.
- * width = (end of tooltip - start of container) - (end of container - end of tooltip
- *    (even 'padding' on both sides))
- *       = (icon.right - boundingElement.left) - (boundingElement.right - icon.right)
- */
-export function calculateTooltipWidth(tooltipElement, boundingElement) {
-  if (tooltipElement && boundingElement) {
-    const tooltipElementBoundingRect = tooltipElement.getBoundingClientRect();
-    const boundingElementBoundingRect = boundingElement.getBoundingClientRect();
+const StyledTooltipContainer = styled.div`
+  min-height: 4.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
 
-    const containerWidth = (tooltipElementBoundingRect.right - boundingElementBoundingRect.left)
-      - (boundingElementBoundingRect.right - tooltipElementBoundingRect.right);
-
-    if (containerWidth < 0) {
-      // Icon isn't aligned properly, e.g. resizing has pushed it to the next line
-      return boundingElement.offsetWidth;
-    }
-
-    if (containerWidth < 150) {
-      return 150; // min width
-    }
-
-    if (containerWidth >= 500) {
-      return 500; // max width
-    }
-    return containerWidth;
-  }
-  return null;
-}
-
-/**
- * Returns the alignments for the tippy tooltip
- * @param desktop {boolean} - is desktop resolution
- * @param containerWidth {number} - width of the tooltip container
- * @returns {string} - placement
- */
-export function getTippyPlacement(desktop, containerWidth) {
-  // If in desktop or in a container over 499, align the tooltip to the left
-  if (desktop && containerWidth > 499) {
-    return 'left';
-  }
-  return 'bottom-end';
-}
 
 /**
  * Get the tooltip html content
@@ -123,7 +83,7 @@ export function getContent(title, body) {
   return (
     <div className="manor-tooltip-content">
       {title ? <Subtitle variant="secondary">{title}</Subtitle> : ''}
-      {body ? <p>{body}</p> : ''}
+      {body}
     </div>
   );
 }
@@ -131,7 +91,7 @@ export function getContent(title, body) {
 const Tooltip = ({
   title,
   body,
-  boundingElementSelector,
+  placement,
   screenReaderLabel,
   justifyEnd,
 }) => {
@@ -140,22 +100,6 @@ const Tooltip = ({
   const [tippyInstance, setTippyInstance] = useState(null);
   const [tippyVisible, setTippyVisible] = useState(false);
   const tooltipElement = useRef(null);
-  const boundingElement = useRef(null);
-
-  useEffect(() => {
-    if (boundingElementSelector) {
-      boundingElement.current = document.querySelector(boundingElementSelector);
-    } else {
-      boundingElement.current = document.body;
-    }
-  }, [boundingElementSelector]);
-
-  const setPlacementAndDynamicStyles = () => {
-    const containerWidth = calculateTooltipWidth(tooltipElement.current, boundingElement.current);
-    tippyInstance.setProps({
-      placement: getTippyPlacement(desktop, containerWidth),
-    });
-  };
 
   const hideTooltip = () => {
     setTippyVisible(false);
@@ -167,16 +111,12 @@ const Tooltip = ({
     setTippyVisible(true);
   };
 
-  const throttledSetPlacementAndDynamicStyles = throttle(setPlacementAndDynamicStyles);
-
   const addOnShowListeners = () => {
-    window.addEventListener('resize', throttledSetPlacementAndDynamicStyles);
     window.addEventListener('scroll', hideTooltip);
   };
 
   const removeOnShowListeners = () => {
     window.removeEventListener('scroll', hideTooltip);
-    window.removeEventListener('resize', throttledSetPlacementAndDynamicStyles);
   };
 
   useUnmountEffect(() => {
@@ -196,7 +136,6 @@ const Tooltip = ({
   const onTippyShow = () => {
     document.body.click();
     document.body.addEventListener('click', hideTooltip);
-    setPlacementAndDynamicStyles();
     addOnShowListeners();
   };
 
@@ -230,14 +169,17 @@ const Tooltip = ({
           onCreate={(instance) => setTippyInstance(instance)}
           onShow={onTippyShow}
           visible={tippyVisible}
-          maxWidth={calculateTooltipWidth(tooltipElement.current, boundingElement.current)}
+          placement={placement}
+          maxWidth={500}
         >
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <StyledTooltipIcon
+            tabIndex={0}
             role="tooltip"
             desktop={desktop}
             ref={tooltipElement}
             pinned={pinned}
+            tippyVisible={tippyVisible}
             onClick={pinTooltip}
             onKeyDown={handleKeyPress}
             onFocus={showTooltip}
@@ -260,6 +202,24 @@ const Tooltip = ({
   );
 };
 
+export const InlineTooltip = ({
+  title,
+  body,
+  placement,
+  screenReaderLabel,
+  justifyEnd,
+}) => (
+  <StyledTooltipContainer>
+    <Tooltip
+      title={title}
+      body={body}
+      placement={placement}
+      screenReaderLabel={screenReaderLabel}
+      justifyEnd={justifyEnd}
+    />
+  </StyledTooltipContainer>
+);
+
 export const tooltipPropTypes = {
   title: PropTypes.oneOfType([
     PropTypes.string,
@@ -272,18 +232,27 @@ export const tooltipPropTypes = {
     PropTypes.object,
   ]),
   justifyEnd: PropTypes.bool,
-  boundingElementSelector: PropTypes.string,
   screenReaderLabel: PropTypes.string,
+  placement: PropTypes.oneOf([
+    'top', 'bottom', 'left', 'right', 'top-start', 'top-end', 'bottom-start', 'bottom-end', 'left-start', 'left-end',
+    'right-start', 'right-end',
+  ]),
 };
 
-Tooltip.propTypes = tooltipPropTypes;
-
-Tooltip.defaultProps = {
+const defaultProps = {
   title: '',
   body: '',
   justifyEnd: false,
-  boundingElementSelector: null,
   screenReaderLabel: '',
+  placement: 'bottom-end',
 };
+
+
+Tooltip.propTypes = tooltipPropTypes;
+InlineTooltip.propTypes = tooltipPropTypes;
+
+
+Tooltip.defaultProps = defaultProps;
+InlineTooltip.defaultProps = defaultProps;
 
 export default Tooltip;

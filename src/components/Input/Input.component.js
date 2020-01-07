@@ -2,14 +2,23 @@ import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
+import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
-import SRonly from '../Typography/SRonly/SRonly.component';
-import Subscript from '../Typography/Subscript/Subscript.component';
-import UseFieldset from '../../hooks/useFieldset';
-import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import usePrefill from '../../hooks/usePrefill';
 
+import SRonly from '../Typography/SRonly/SRonly.component';
+import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import usePrefill from '../../hooks/usePrefill';
+import Label from '../Label/Label.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
+import Row from '../Grid/Row/Row.component';
+import Column from '../Grid/Column/Column.component';
+import FieldValidation from '../FieldValidation/FieldValidation.component';
+import SupportingElements from '../SupportingElements/SupportingElements';
+
+const StyledRow = styled(Row)`
+  margin-bottom: ${(props) => props.theme.spacing[16]};
+`;
 const StyledClearIcon = styled.button`
   position: absolute;
   top: 0.3rem;
@@ -46,16 +55,10 @@ const StyledAffix = styled.span`
   ${(props) => (!props.bordered && props.affixType) && css`
     background: ${props.theme.colors.white};
   `}
+  
   ${(props) => (props.isAutofill && !props.disabled) && css`
     background: ${props.theme.colors.prechecked};
   `}
-`;
-
-const StyledSupportingElements = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding-top: 0.8rem;
 `;
 
 const StyledInputContainer = styled.div`
@@ -75,7 +78,7 @@ const StyledInputWrap = styled.div`
     color: ${(props) => props.theme.colors.grey};
   }
   [disabled] {
-    background ${(props) => props.theme.colors.white};
+    background: ${(props) => props.theme.colors.white};
   }
 
   ${(props) => props.bordered && css`
@@ -86,7 +89,7 @@ const StyledInputWrap = styled.div`
     border: 1px solid ${props.theme.colors.precheckedDarker};
   `}
 
-  ${(props) => (props.validationMessage && props.validationMessage.length) && css`
+  ${(props) => props.invalid && css`
     border: 1px solid ${props.theme.colors.invalid};
   `}
 
@@ -163,16 +166,6 @@ export const renderAffix = (affixType, affixContent, bordered, isAutofill, disab
   return null;
 };
 
-export const getSupportingElements = (required) => {
-  if (required) return null;
-
-  return (
-    <StyledSupportingElements className="supporting-elements">
-      <Subscript>Optional</Subscript>
-    </StyledSupportingElements>
-  );
-};
-
 export const getInitialValue = (valueMasking, value, prefillValue) => {
   if (valueMasking && value && value.length) {
     return valueMasking(value);
@@ -211,13 +204,13 @@ const Input = ({
   handleBlur,
   valueMasking,
   dataList,
-  disableFieldset,
 }) => {
   const [internalValue, setInternalValue] = useState(getInitialValue(valueMasking, value, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const inputWrapElement = useRef(null);
   const theme = getTheme();
+  const desktop = useIsDesktop(false);
 
   const clearInput = () => {
     setIsDirty(true);
@@ -278,62 +271,59 @@ const Input = ({
 
   return (
     <>
-      <UseFieldset
-        disableFieldset={disableFieldset}
-        label={label}
-        tooltip={tooltip}
-        forceFullWidth={forceFullWidth}
-        validationMessage={validationMessage}
-        supportingElements={getSupportingElements(required)}
-      >
-        <ThemeProvider theme={theme}>
-
-          <StyledInputContainer className="input-container">
-            <StyledInputWrap
-              ref={inputWrapElement}
-              isAutofill={isAutofill}
-              disabled={disabled}
-              bordered={bordered}
-              validationMessage={validationMessage}
-              className={`
-                input-wrap 
-              `}
-            >
-
-              {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
-
-              <StyledInputClearWrap className="input-clear-wrap">
-                <StyledInput
-                  id={id}
-                  name={id}
-                  type={type}
-                  placeholder={placeholder}
-                  disabled={disabled}
-                  value={internalValue}
-                  onChange={handleOnChange}
-                  autoComplete={autocomplete}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  maxLength={maxlength}
-                  isAutofill={isAutofill}
-                  className={`
-                    input-default
-                  `}
-                />
-
-                {renderClearIcon(internalValue, clearInput, isAutofill, label)}
-
-              </StyledInputClearWrap>
-
-              {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
-
-            </StyledInputWrap>
-
-            {dataList && <div>{dataList()}</div>}
-
-          </StyledInputContainer>
-        </ThemeProvider>
-      </UseFieldset>
+      <ThemeProvider theme={theme}>
+        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+        <StyledRow>
+          <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+            <StyledInputContainer className="input-container">
+              <StyledInputWrap
+                ref={inputWrapElement}
+                isAutofill={isAutofill}
+                disabled={disabled}
+                bordered={bordered}
+                invalid={validationMessage && validationMessage.length}
+                className="input-wrap"
+              >
+                {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
+                <StyledInputClearWrap className="input-clear-wrap">
+                  <StyledInput
+                    id={id}
+                    name={id}
+                    type={type}
+                    placeholder={placeholder}
+                    disabled={disabled}
+                    value={internalValue}
+                    onChange={handleOnChange}
+                    autoComplete={autocomplete}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    maxLength={maxlength}
+                    isAutofill={isAutofill}
+                    className="input-default"
+                  />
+                  {renderClearIcon(internalValue, clearInput, isAutofill, label)}
+                </StyledInputClearWrap>
+                {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
+              </StyledInputWrap>
+              <SupportingElements required={required} label={label} />
+              {dataList && <div>{dataList()}</div>}
+            </StyledInputContainer>
+            <FieldValidation message={validationMessage} />
+          </Column>
+          {desktop && hasTooltipContent(tooltip)
+            && (
+            <Column cols={2}>
+              <InlineTooltip
+                title={tooltip.title}
+                body={tooltip.body}
+                boundingElementSelector={tooltip.boundingElementSelector || null}
+                screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+                justifyEnd={tooltip.justifyEnd}
+              />
+            </Column>
+            )}
+        </StyledRow>
+      </ThemeProvider>
     </>
   );
 };
@@ -359,10 +349,6 @@ Input.propTypes = {
    * Forces the ToggleGroup to expand to 12 columns
    */
   forceFullWidth: PropTypes.bool,
-  /**
-   * Displays given validation message and invalid styles on the component when provided.
-   */
-  validationMessage: PropTypes.string,
   /**
    * Maximum length for the input element
    */
@@ -395,6 +381,10 @@ Input.propTypes = {
    * Disables the button via a class on its wrapper, and an attribute on the input.
    */
   disabled: PropTypes.bool,
+  /**
+   * Displays given validation message and invalid styles on the component when provided.
+   */
+  validationMessage: PropTypes.string,
   /**
    * The input field border style.
    */
@@ -429,17 +419,12 @@ Input.propTypes = {
    * Used for the combo component, this is the list of options that is displayed on input.
    */
   dataList: PropTypes.func,
-  /**
-   * Used for disableFieldset wrap component.
-   */
-  disableFieldset: PropTypes.bool,
 };
 
 Input.defaultProps = {
   label: '',
   tooltip: {},
   forceFullWidth: false,
-  validationMessage: null,
   valueMasking: null,
   maxlength: null,
   type: 'text',
@@ -453,9 +438,9 @@ Input.defaultProps = {
   handleBlur: null,
   required: true,
   disabled: false,
+  validationMessage: '',
   bordered: true,
   dataList: null,
-  disableFieldset: false,
 };
 
 export default Input;

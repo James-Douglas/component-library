@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
 
 const StyledLabelWrap = styled.div`
   display: flex;
   align-items: flex-end;
-  padding-bottom: 0.8rem;
+  padding-bottom: 0.4rem;
   width: 100%;
 `;
 
@@ -18,18 +19,25 @@ const StyledLabel = styled.label`
 `;
 
 const Label = ({
-  forId, text, tooltip, tooltipEnabled,
+  forId, text, tooltip, fullWidth,
 }) => {
   const [hasTooltip, setHasTooltip] = useState(true);
+  const [enableTooltip, setEnableTooltip] = useState(false);
+  const desktop = useIsDesktop(false);
+
   useEffect(() => {
     setHasTooltip(!!((tooltip.body && tooltip.body.length) || (tooltip.title && tooltip.title.length)));
   }, [tooltip.body, tooltip.title]);
+
+  useEffect(() => {
+    setEnableTooltip(fullWidth || !desktop);
+  }, [fullWidth, desktop]);
 
   const renderTooltip = () => {
     const {
       title, body, boundingElementSelector, screenReaderLabel, justifyEnd,
     } = tooltip;
-    if (hasTooltip && tooltipEnabled) {
+    if (hasTooltip && enableTooltip) {
       return (
         <Column cols="2">
           <Tooltip
@@ -62,14 +70,14 @@ Label.propTypes = {
   forId: PropTypes.string,
   text: PropTypes.string,
   tooltip: PropTypes.shape(tooltipPropTypes),
-  tooltipEnabled: PropTypes.bool,
+  fullWidth: PropTypes.bool,
 };
 
 Label.defaultProps = {
   forId: null,
   text: '',
   tooltip: {},
-  tooltipEnabled: false,
+  fullWidth: false,
 };
 
 export default Label;

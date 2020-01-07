@@ -7,7 +7,7 @@ const StyledToggle = styled.div`
   display: flex;
   position: relative;
   cursor: pointer;
-  border: 1px solid ${(props) => props.theme.colors.greyLight};
+  border: 1px solid ${(props) => (props.invalid ? props.theme.colors.invalid : props.theme.colors.greyLight)};
   font-weight: ${(props) => props.theme.fontWeight.bold};
   margin: ${(props) => `0 ${props.theme.spacing['8']} ${props.theme.spacing['16']} ${props.theme.spacing['8']}`};
   background: ${(props) => props.theme.colors.white};
@@ -45,12 +45,10 @@ const StyledToggleInput = styled.input`
   }
   ${(props) => props.invalid && css`
      & + label {
-      border: 1px solid ${props.theme.colors.invalid};
       color:  ${props.theme.colors.invalid};
       fill: currentColor;
      }
      &:checked + label {
-      border: 2px solid ${props.theme.colors.invalid};
       color:  ${props.theme.colors.invalid};
       fill: currentColor;
     }
@@ -98,6 +96,7 @@ const BaseToggle = ({
           toggleElement.current.click();
           toggleElement.current.focus();
         }}
+        invalid={invalid}
         ref={wrapperElement}
       >
         <StyledToggleInput

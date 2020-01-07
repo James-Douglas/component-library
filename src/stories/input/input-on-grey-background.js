@@ -6,6 +6,7 @@ const GreyBackgroundView = () => {
   const tooltip = {
     title: 'Tooltip heading',
     body: 'Grey background input view',
+    justifyEnd: true,
   };
 
   const logValue = (value) => {
@@ -16,18 +17,20 @@ const GreyBackgroundView = () => {
   return (
     <StyledBackground color="grey">
       <Input
-        label="[Fieldset label] With tooltip"
-        tooltip={tooltip}
         id="default-id"
+        label="Input one"
+        tooltip={tooltip}
         placeholder="Placeholder one"
         type="text"
         bordered={false}
         required={false}
         handleChange={(value) => logValue(value)}
+        validationMessage="Invalid email"
       />
       <Input
-        label="[Fieldset label] Without tooltip"
         id="input-two"
+        label="Input two"
+        tooltip={tooltip}
         placeholder="Placeholder two"
         type="text"
         bordered={false}

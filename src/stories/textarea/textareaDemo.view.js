@@ -28,7 +28,7 @@ const TextareaDemoView = ({
   readonly,
   maxChars,
   maxLength,
-  disableFieldset,
+  validationMessage,
 }) => (
   <ThemeProvider theme={getTheme()}>
     <StyledBackground
@@ -51,7 +51,7 @@ const TextareaDemoView = ({
           readonly={readonly}
           maxChars={maxChars}
           maxLength={maxLength}
-          disableFieldset={disableFieldset}
+          validationMessage={validationMessage}
         />
       </StyledView>
     </StyledBackground>
@@ -74,7 +74,7 @@ TextareaDemoView.propTypes = {
   readonly: PropTypes.bool,
   maxChars: PropTypes.string,
   maxLength: PropTypes.string,
-  disableFieldset: PropTypes.bool,
+  validationMessage: PropTypes.string,
 };
 
 TextareaDemoView.defaultProps = {
@@ -91,7 +91,7 @@ TextareaDemoView.defaultProps = {
   readonly: false,
   maxLength: '',
   maxChars: '',
-  disableFieldset: false,
+  validationMessage: '',
 };
 
 export default TextareaDemoView;

@@ -154,13 +154,11 @@ import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
                   <Row className="row-view">
                     <Column cols="5">
                       <p style={{ color: '#818181' }}>Interest rate</p>
-                      <div>
-                        <Container>
-                          <Row className="row-view">
-                            <Column><h4 style={{margin: '0'}}>2</h4></Column>
-                            <Column><Tooltip title="some title" body="some body" /></Column>
-                          </Row>
-                        </Container>
+                      <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <h4 style={{margin: '0'}}>2</h4>
+                          <span style={{marginLeft: '8px', marginTop: '2px'}}>
+                          <Tooltip title="some title" body="some body" />
+                        </span>
                       </div>
                     </Column>
                     <Column cols="2"><Separator type="vertical" /></Column>
@@ -185,13 +183,11 @@ import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
                   <Row className="row-view">
                     <Column cols="5">
                       <p style={{ color: '#818181' }}>Interest rate</p>
-                      <div>
-                        <Container>
-                          <Row className="row-view">
-                            <Column><h4 style={{margin: '0'}}>2</h4></Column>
-                            <Column><Tooltip title="some title" body="some body" /></Column>
-                          </Row>
-                        </Container>
+                      <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <h4 style={{margin: '0'}}>2</h4>
+                          <span style={{marginLeft: '8px', marginTop: '2px'}}>
+                          <Tooltip title="some title" body="some body" />
+                        </span>
                       </div>
                     </Column>
                     <Column cols="2" className="items-center"> <Separator type="vertical" /> </Column>
@@ -206,7 +202,7 @@ import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
             </div>
           </Column>
           <Column cols="4" sm="12" md="4">
-            <div style={{padding: '4rem', textAlign: 'center', border: '1px solid #dddddd'}}>
+            <div id="thirdBox" style={{padding: '4rem', textAlign: 'center', border: '1px solid #dddddd'}}>
               <h3>Term Deposit Name</h3>
               <p>It has survived not only five centuries, but also the leap into electronic typesetting,
                 remaining essentially unchanged. software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -216,13 +212,11 @@ import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
                   <Row className="row-view">
                     <Column cols="5">
                       <p style={{ color: '#818181' }}>Interest rate</p>
-                      <div>
-                        <Container>
-                          <Row className="row-view">
-                            <Column><h4 style={{margin: '0'}}>2</h4></Column>
-                            <Column><Tooltip title="some title" body="some body" /></Column>
-                          </Row>
-                        </Container>
+                      <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <h4 style={{margin: '0'}}>2</h4>
+                          <span style={{marginLeft: '8px', marginTop: '2px'}}>
+                          <Tooltip title="some title" body="some body" boundingElementSelector="#thirdBox" />
+                        </span>
                       </div>
                     </Column>
                     <Column cols="2" className="items-center"> <Separator type="vertical" /> </Column>

@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
-import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import UseFieldset from '../../hooks/useFieldset';
+import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import Label from '../Label/Label.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
+import FieldValidation from '../FieldValidation/FieldValidation.component';
+
+const StyledContainer = styled.div`
+  width: 100%;
+`;
+
+const StyledRow = styled(Row)`
+  margin-bottom: ${(props) => props.theme.spacing[16]};
+`;
 
 export const generateGroup = (colSize, children, callback) => {
   if (children) {
@@ -28,9 +40,9 @@ const CheckboxGroup = ({
   colSize,
   handleChange,
   children,
-  disableFieldset,
 }) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const desktop = useIsDesktop(false);
 
   const handleCheckboxClick = ({ id, value }) => {
     const exists = selectedCheckboxes.find((checkbox) => checkbox.id === id);
@@ -48,19 +60,31 @@ const CheckboxGroup = ({
   }, [handleChange, selectedCheckboxes]);
 
   return (
-    <UseFieldset
-      disableFieldset={disableFieldset}
-      label={label}
-      tooltip={tooltip}
-      validationMessage={validationMessage}
-      forceFullWidth={forceFullWidth}
-    >
-      <div id={groupId}>
-        <Row>
-          {generateGroup(colSize, children, handleCheckboxClick)}
-        </Row>
-      </div>
-    </UseFieldset>
+    <>
+      <Label forId={groupId} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+      <StyledRow>
+        <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+          <StyledContainer id={groupId}>
+            <Row>
+              {generateGroup(colSize, children, handleCheckboxClick)}
+            </Row>
+          </StyledContainer>
+          <FieldValidation message={validationMessage} />
+        </Column>
+        {desktop && hasTooltipContent(tooltip)
+        && (
+          <Column cols={2}>
+            <InlineTooltip
+              title={tooltip.title}
+              body={tooltip.body}
+              boundingElementSelector={tooltip.boundingElementSelector || null}
+              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+              justifyEnd={tooltip.justifyEnd}
+            />
+          </Column>
+        )}
+      </StyledRow>
+    </>
   );
 };
 
@@ -98,7 +122,6 @@ CheckboxGroup.propTypes = {
    * The child Checkbox components to render in the CheckboxGroup
    */
   children: (props, propname, componentName) => componentName === 'Checkbox',
-  disableFieldset: PropTypes.bool,
 };
 
 CheckboxGroup.defaultProps = {
@@ -109,7 +132,6 @@ CheckboxGroup.defaultProps = {
   colSize: '6',
   handleChange: () => { },
   children: [],
-  disableFieldset: false,
 };
 
 export default CheckboxGroup;

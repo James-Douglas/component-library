@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
 
@@ -20,8 +21,8 @@ describe('generateGroup', () => {
   it('renders if there are children', () => {
     const { container } = render(
       <GroupContainer colSize="6">
-        <Checkbox id="A-1" icon={faTimes}><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2" icon={faTimes}><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
       </GroupContainer>,
     );
 
@@ -37,11 +38,13 @@ describe('generateGroup', () => {
 describe('CheckboxGroup.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(
-      <CheckboxGroup label="test" groupId="test-group-id">
-        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
-      </CheckboxGroup>,
+      <ThemeProvider theme={getTheme()}>
+        <CheckboxGroup label="test" groupId="test-group-id">
+          <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+          <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+          <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
+        </CheckboxGroup>
+      </ThemeProvider>,
     );
     expect(container.innerHTML).toMatchSnapshot();
   });
@@ -49,17 +52,18 @@ describe('CheckboxGroup.component', () => {
   it('renders with props', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleChange={mockTestClick} disableFieldset>
-        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
-      </CheckboxGroup>,
+      <ThemeProvider theme={getTheme()}>
+        <CheckboxGroup groupId="test-group-id" colSize="5" handleChange={mockTestClick}>
+          <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+          <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+          <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
+        </CheckboxGroup>
+      </ThemeProvider>,
     );
 
     const checkboxGroup = container.querySelector('#test-group-id');
     const chkA1 = container.querySelector('label[for="A-1"]');
-    const label = container.querySelector('label');
-    const chkA1Style = label.firstChild;
+    const chkA1Style = chkA1.firstChild;
     fireEvent.click(chkA1, { button: 0 });
 
     expect(checkboxGroup.id).toBe('test-group-id');
@@ -73,11 +77,13 @@ describe('CheckboxGroup.component', () => {
   it('checks on click', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
-        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
-      </CheckboxGroup>,
+      <ThemeProvider theme={getTheme()}>
+        <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+          <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+          <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+          <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
+        </CheckboxGroup>
+      </ThemeProvider>,
     );
 
     const chkA1Input = container.querySelector('#A-1');
@@ -90,11 +96,13 @@ describe('CheckboxGroup.component', () => {
 
   it('accepts a prefill value', () => {
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5">
-        <Checkbox id="A-1" isSelected><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3" isSelected><p>A-3 check</p></Checkbox>
-      </CheckboxGroup>,
+      <ThemeProvider theme={getTheme()}>
+        <CheckboxGroup groupId="test-group-id" colSize="5">
+          <Checkbox id="A-1" isSelected><p>A-1 check</p></Checkbox>
+          <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+          <Checkbox id="A-3" isSelected><p>A-3 check</p></Checkbox>
+        </CheckboxGroup>
+      </ThemeProvider>,
     );
 
     const checkboxA1 = container.querySelector('#A-1');
@@ -108,11 +116,13 @@ describe('CheckboxGroup.component', () => {
   it('does not check when disabled', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
-        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3" disabled><p>A-3 check</p></Checkbox>
-      </CheckboxGroup>,
+      <ThemeProvider theme={getTheme()}>
+        <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+          <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+          <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+          <Checkbox id="A-3" disabled><p>A-3 check</p></Checkbox>
+        </CheckboxGroup>\
+      </ThemeProvider>,
     );
 
     const chkA3Input = container.querySelector('#A-3');

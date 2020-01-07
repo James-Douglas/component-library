@@ -1,15 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Currency renders with minimal props 1`] = `
-"<div class=\\"fieldset\\"><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-gzVnrw fdPEUc label\\"><div cols=\\"12\\" class=\\"sc-bxivhb diaiaX 
+"<div class=\\"sc-EHOje gshLHj row \\"><div class=\\"sc-gzVnrw kngDdT label\\"><div cols=\\"12\\" class=\\"sc-bZQynM jqGTQC 
         
-      \\"><label class=\\"sc-htoDjs kiRfcR\\"></label></div></div></div><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-bxivhb obkds 
+      \\"><label for=\\"test-id\\" class=\\"sc-htoDjs kiRfcR\\"></label></div></div></div><div class=\\"sc-EHOje gshLHj row sc-VigVT hVGZur\\"><div cols=\\"10\\" class=\\"sc-bZQynM jdmkSg 
         
-      \\"><div class=\\"sc-cSHVUG emQwsz input-container\\"><div class=\\"sc-kAzzGY eHdGUc 
-                input-wrap 
-              \\"><div class=\\"sc-chPdSV eKlXFC input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-kgoBCf kJnlHQ 
-                    input-default
-                  \\" value=\\"\\"></div></div></div></div></div><div class=\\"sc-htpNat khvGBi row \\"><div class=\\"sc-bxivhb obkds 
-        
-      \\"><div class=\\"sc-gqjmRU dLDxrx\\"><div class=\\"sc-VigVT cHiFle\\"></div></div></div></div></div>"
+      \\"><div class=\\"sc-jzJRlG iNJnXl input-container\\"><div class=\\"sc-cSHVUG gitqZs input-wrap\\"><div class=\\"sc-kAzzGY kSadOM input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-chPdSV kyhzIM input-default\\" value=\\"\\"></div></div></div></div></div>"
 `;

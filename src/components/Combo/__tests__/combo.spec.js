@@ -7,35 +7,22 @@ const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fu
 
 describe('Combo', () => {
   it('renders correct number options', () => {
-    const { container } = render(<Combo prefillValue="que" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} disableFieldset />);
+    const { container } = render(<Combo prefillValue="que" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} />);
     const list = container.getElementsByTagName('li');
     expect(list.length).toBe(3);
   });
 
   it('renders no options', () => {
-    const { container } = render(<Combo prefillValue="nope" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} disableFieldset />);
+    const { container } = render(<Combo prefillValue="nope" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} />);
     const list = container.getElementsByTagName('li');
     expect(list.length).toBe(0);
   });
 
   it('renders correct changed characterMinimum', () => {
-    const { container } = render(<Combo prefillValue="pres" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset />);
+    const { container } = render(<Combo prefillValue="pres" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
     const list = container.getElementsByTagName('li')[0];
     expect(list).toBeUndefined();
   });
-
-  it('renders correct with current label param disableFieldset is enabled', () => {
-    const { container } = render(<Combo prefillValue="pres" label="First label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset />);
-    const label = container.querySelector('label');
-    expect(label).not.toBeInTheDocument();
-  });
-
-  it('renders correct with current label param disableFieldset is disabled', () => {
-    const { container } = render(<Combo prefillValue="pres" label="First label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} disableFieldset={false} />);
-    const label = container.querySelector('label');
-    expect(label).toBeInTheDocument();
-  });
-
 
   it('on input, set value func is called', () => {
     const { container } = render(<Combo label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
@@ -45,7 +32,6 @@ describe('Combo', () => {
     fireEvent.change(inputField, { target: { value: 'present' } });
     expect(inputField).toHaveValue('present');
   });
-
 
   it('renders with value', () => {
     const { container } = render(<Combo value="presentation dfsdf que ffgddfg" prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);

@@ -35,7 +35,8 @@
   "jest": {
     "collectCoverageFrom": [
       "src/components/**/*.{js,jsx,ts,tsx}",
-      "src/hooks/**/*.{js,jsx,ts,tsx}"
+      "src/hooks/**/*.{js,jsx,ts,tsx}",
+      "src/utils/**/*.{js,jsx,ts,tsx}"
     ],
     "roots": [
       "src",

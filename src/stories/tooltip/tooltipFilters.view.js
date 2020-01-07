@@ -64,7 +64,7 @@ const TooltipFiltersView = () => {
                   </Column>
                   <Column cols="2">
                     <div style={alignTooltip}>
-                      <Tooltip title="test tooltip" body={tooltipContentA} boundingElementSelector="#filter-container" />
+                      <Tooltip title="test tooltip" body={tooltipContentA} placement="bottom-end" />
                     </div>
                   </Column>
                 </Row>

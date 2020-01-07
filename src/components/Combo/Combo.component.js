@@ -140,7 +140,6 @@ const Combo = ({
   linkText,
   linkHref,
   tooltip,
-  disableFieldset,
 }) => {
   const [listVisible, setListVisible] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
@@ -284,7 +283,6 @@ const Combo = ({
           handleChange={onChange}
           tabIndex="0"
           role="comboField"
-          disableFieldset={disableFieldset}
           dataList={() => comboDropdownList(linkText,
             linkHref,
             blueButton,
@@ -383,10 +381,6 @@ Combo.propTypes = {
    * Define a tooltip to be displayed alongside this component. See Tooltip props for details.
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
-  /**
-   * Used for disableFieldset wrap component.
-   */
-  disableFieldset: PropTypes.bool,
 };
 
 Combo.defaultProps = {
@@ -407,7 +401,6 @@ Combo.defaultProps = {
   linkHref: '',
   linkText: '',
   tooltip: {},
-  disableFieldset: false,
 };
 
 export default Combo;

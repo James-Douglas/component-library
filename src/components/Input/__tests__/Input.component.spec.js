@@ -4,7 +4,7 @@ import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import Input, {
-  renderClearIcon, renderAffix, getSupportingElements,
+  renderClearIcon, renderAffix,
 } from '../Input.component';
 
 const SvgUkFlag = () => (
@@ -113,25 +113,6 @@ describe('renderAffix()', () => {
   });
 });
 
-/* getSupportingElements()
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-describe('getSupportingElements()', () => {
-  // eslint-disable-next-line react/prop-types
-  const SupportElementsContainer = ({ required }) => (
-    <ThemeProvider theme={getTheme()}>
-      {getSupportingElements(required)}
-    </ThemeProvider>
-  );
-  it('returns null when required true', () => {
-    expect(getSupportingElements(true)).toBeNull();
-  });
-  it('returns Optional text when required false', () => {
-    const { getByText } = render(<SupportElementsContainer />);
-    expect(getByText('Optional')).toBeInTheDocument();
-  });
-});
-
 /* Input.component
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -159,14 +140,12 @@ describe('Input.component', () => {
     const placeholder = input.getAttribute('placeholder');
     const autocomplete = input.getAttribute('autocomplete');
     const inputWrap = container.querySelector('.input-wrap');
-    const fieldSet = container.querySelector('.fieldset');
     const inputInvalid = container.querySelector('.invalid');
 
     expect(label.textContent).toBe('input label');
     expect(placeholder).toBe('placeholder test');
     expect(autocomplete).toBe('on');
     expect(inputWrap).toHaveStyleRule('border', '1px solid #DDDDDD');
-    expect(fieldSet).toBeInTheDocument();
     expect(inputInvalid).toBe(null);
     expect(container.innerHTML).toMatchSnapshot();
   });

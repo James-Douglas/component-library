@@ -29,7 +29,7 @@ export const valueMasking = (val, maxlength) => {
 };
 
 const CurrencyInput = ({
-  id, label, placeholder, value, prefillValue, handleChange, currencySymbol, bordered, required, disabled, autocomplete, tooltip, forceFullWidth, validationMessage, maxlength, disableFieldset,
+  id, label, placeholder, value, prefillValue, handleChange, currencySymbol, bordered, required, disabled, autocomplete, tooltip, forceFullWidth, validationMessage, maxlength,
 }) => (
   <>
     <Input
@@ -50,7 +50,6 @@ const CurrencyInput = ({
       validationMessage={validationMessage}
       autocomplete={autocomplete}
       tooltip={tooltip}
-      disableFieldset={disableFieldset}
     />
   </>
 );
@@ -119,7 +118,6 @@ CurrencyInput.propTypes = {
     PropTypes.string,
     PropTypes.node,
   ]),
-  disableFieldset: PropTypes.bool,
 };
 
 CurrencyInput.defaultProps = {
@@ -136,7 +134,6 @@ CurrencyInput.defaultProps = {
   disabled: false,
   bordered: true,
   label: '',
-  disableFieldset: false,
 };
 
 export default CurrencyInput;

@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 
 const StyledToggleLabel = styled.label`
+  height: 100%;
   width: 100%;
   cursor: pointer;
   display: block;
@@ -15,6 +16,7 @@ const StyledToggleLabel = styled.label`
 `;
 
 const StyledContent = styled.div`
+  height: 100%;
   font-weight: ${(props) => props.theme.fontWeight.bold};
   font-size: ${(props) => props.theme.fontSize.sm};
   margin-bottom: 0;

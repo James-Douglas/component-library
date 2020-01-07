@@ -50,7 +50,7 @@ const prefixSuffixView = () => {
   return (
     <StyledBackground color="white">
       <Input
-        label="[Fieldset label] With tooltip, prefix and suffix"
+        label="With tooltip, prefix and suffix"
         tooltip={tooltip}
         id="input-one"
         placeholder="Placeholder one"
@@ -65,7 +65,7 @@ const prefixSuffixView = () => {
       />
 
       <Input
-        label="[Fieldset label] With prefix"
+        label="With prefix"
         id="input-two"
         placeholder="Placeholder two"
         type="text"
@@ -78,7 +78,7 @@ const prefixSuffixView = () => {
       />
 
       <Input
-        label="[Fieldset label] With suffix"
+        label="With suffix"
         id="input-three"
         placeholder="Placeholder three"
         type="text"

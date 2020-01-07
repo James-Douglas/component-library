@@ -1,61 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import 'jest-styled-components';
-import Tooltip, { calculateTooltipWidth, getTippyPlacement, getContent } from '../Tooltip.component';
-
-describe('calculateTooltipWidth()', () => {
-  const testTooltipElement = (right) => ({
-    getBoundingClientRect: () => ({ right }),
-  });
-
-  const testBoundingElement = (left, right, offsetWidth) => ({
-    getBoundingClientRect: () => ({ right, left }),
-    offsetWidth,
-  });
-
-  it('returns null when params null', () => {
-    expect(calculateTooltipWidth()).toBeNull();
-  });
-
-  it('returns bounding elements width for misaligned tooltips', () => {
-    const expected = 200;
-    const tooltipElement = testTooltipElement(100);
-    const boundingElement = testBoundingElement(85, 260, expected);
-    expect(calculateTooltipWidth(tooltipElement, boundingElement)).toEqual(expected);
-  });
-
-  it('returns 150 when containerWidth is below minimum', () => {
-    const tooltipElement = testTooltipElement(200);
-    const boundingElement = testBoundingElement(120, 130, 100);
-    expect(calculateTooltipWidth(tooltipElement, boundingElement)).toEqual(150);
-  });
-
-  it('returns 500 when containerWidth exceeds maximum', () => {
-    const tooltipElement = testTooltipElement(1240);
-    const boundingElement = testBoundingElement(0, 1500, 1500);
-    expect(calculateTooltipWidth(tooltipElement, boundingElement)).toEqual(500);
-  });
-
-  it('returns containerWidth when within bounds and properly aligned', () => {
-    const tooltipElement = testTooltipElement(340);
-    const boundingElement = testBoundingElement(40, 370, 330);
-    expect(calculateTooltipWidth(tooltipElement, boundingElement)).toEqual(270);
-  });
-});
-
-describe('getTippyPlacement()', () => {
-  it('returns left when desktop true and containerWidth > 499', () => {
-    expect(getTippyPlacement(true, 500)).toEqual('left');
-  });
-
-  it('returns bottom-end when desktop false', () => {
-    expect(getTippyPlacement(false, 500)).toEqual('bottom-end');
-  });
-
-  it('returns bottom-end when containerWidth under 500', () => {
-    expect(getTippyPlacement(true, 400)).toEqual('bottom-end');
-  });
-});
+import Tooltip, { getContent } from '../Tooltip.component';
 
 describe('getContent()', () => {
   // eslint-disable-next-line react/prop-types
@@ -151,22 +97,5 @@ describe('Tooltip', () => {
 
     fireEvent.blur(tooltipTriggerElement);
     expect(tooltipElement).not.toBeVisible();
-  });
-
-  it('has correct placement when in a small container', () => {
-    const containingElement = document.createElement('div');
-    Object.defineProperty(containingElement, 'offsetWidth', { value: 200, writable: false });
-    containingElement.id = 'test-container';
-
-    document.body.appendChild(containingElement);
-
-    const { container } = render(<Tooltip body="test tooltip content" boundingElementSelector="#test-container" />);
-
-    const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
-    fireEvent.click(tooltipTriggerElement);
-
-    const tooltipElement = container.querySelector('.tippy-popper');
-    // eslint-disable-next-line no-underscore-dangle
-    expect(tooltipElement._tippy.props.placement).toEqual('bottom-end');
   });
 });

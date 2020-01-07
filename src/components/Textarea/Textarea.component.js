@@ -2,21 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
-import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import UseFieldset from '../../hooks/useFieldset';
+import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
+import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import Row from '../Grid/Row/Row.component';
+import Label from '../Label/Label.component';
+import Column from '../Grid/Column/Column.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
+import SupportingElements from '../SupportingElements/SupportingElements';
+import FieldValidation from '../FieldValidation/FieldValidation.component';
+
+const StyledRow = styled(Row)`
+  margin-bottom: ${(props) => props.theme.spacing[16]};
+`;
 
 const StyledOptionalIndicator = styled.span`
   margin-left: 1rem;
 `;
 
 const StyledmaxlengthIndicator = styled.span`
-  margin-left: 0.4rem;
-`;
-
-const StyledSupportingElements = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 0.8rem;
+  margin-right: 0.4rem;
 `;
 
 const StyledTextAreaWrapper = styled.div`
@@ -110,7 +114,6 @@ const Textarea = ({
   maxChars,
   maxLength,
   onChange,
-  disableFieldset,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [charsExceed, setCharsExceed] = useState(false);
@@ -118,6 +121,7 @@ const Textarea = ({
   const [stateValue, setStateValue] = useState(value);
   const [textAreaRemainChars, setTextAreaRemainChars] = useState(charLimit);
   const textAreaElement = useRef(null);
+  const desktop = useIsDesktop(false);
 
   useEffect(() => {
     setCharLimit(maxChars || maxLength || null);
@@ -155,58 +159,52 @@ const Textarea = ({
     validationMessageToDisplay = 'Maximum characters exceeded';
   }
 
-  const supportingElements = (
-    <StyledSupportingElements className="supporting-elements">
-      {getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)}
-      {getOptionalFieldContent(required, id, label)}
-    </StyledSupportingElements>
-  );
-
   const prefillStyles = isPrefill && !isDirty && !disabled ? 'manor-prefilled' : '';
-  const validation = validationMessage && validationMessage.length;
+  const validation = validationMessageToDisplay && validationMessageToDisplay.length;
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <UseFieldset
-        disableFieldset={disableFieldset}
-        label={label}
-        tooltip={tooltip}
-        forceFullWidth={forceFullWidth}
-        validationMessage={validationMessageToDisplay}
-        supportingElements={supportingElements}
-      >
-        <StyledTextAreaWrapper className={`manor-textarea-wrapper ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
-
-          <StyledTextArea
-            ref={textAreaElement}
-            value={stateValue}
-            onChange={handleChange}
-            id={id}
-            name={name}
-            placeholder={placeholder}
-            disabled={disabled}
-            required={required}
-            rows={rows}
-            wrap={wrap}
-            readOnly={readonly}
-            maxLength={maxLength}
-            isPrefill={isPrefill}
-            isDirty={isDirty}
-            validation={validation}
-            validationMessage={validationMessage}
-            textAreaRemainChars={textAreaRemainChars}
-            bordered={bordered}
-            className={`
-              manor-textarea-default manor-body2 
-              ${bordered ? 'manor-textarea-border' : ''} 
-              ${prefillStyles} 
-              ${validation || (textAreaRemainChars < 0) ? 'invalid' : ''}
-            `}
-            aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
-          />
-
-        </StyledTextAreaWrapper>
-      </UseFieldset>
+      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+      <StyledRow>
+        <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+          <StyledTextAreaWrapper className={`manor-textarea-wrapper ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
+            <StyledTextArea
+              ref={textAreaElement}
+              value={stateValue}
+              onChange={handleChange}
+              id={id}
+              name={name}
+              placeholder={placeholder}
+              disabled={disabled}
+              required={required}
+              rows={rows}
+              wrap={wrap}
+              readOnly={readonly}
+              maxLength={maxLength}
+              isPrefill={isPrefill}
+              isDirty={isDirty}
+              validation={validation}
+              textAreaRemainChars={textAreaRemainChars}
+              bordered={bordered}
+              aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
+            />
+            <SupportingElements required={required} additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)} />
+          </StyledTextAreaWrapper>
+          <FieldValidation message={validationMessage} />
+        </Column>
+        {desktop && hasTooltipContent(tooltip)
+        && (
+          <Column cols={2}>
+            <InlineTooltip
+              title={tooltip.title}
+              body={tooltip.body}
+              boundingElementSelector={tooltip.boundingElementSelector || null}
+              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+              justifyEnd={tooltip.justifyEnd}
+            />
+          </Column>
+        )}
+      </StyledRow>
     </ThemeProvider>
   );
 };
@@ -282,10 +280,6 @@ Textarea.propTypes = {
    */
   maxChars: PropTypes.string,
   /**
-   * Specifies fieldset wrap component.
-   */
-  disableFieldset: PropTypes.bool,
-  /**
    * Specifies the maximum number of characters allowed in the text area - while providing useful feedback if the
    limit is exceeded
    */
@@ -314,7 +308,6 @@ Textarea.defaultProps = {
   maxLength: '',
   maxChars: '',
   onChange: null,
-  disableFieldset: false,
 };
 
 export default Textarea;

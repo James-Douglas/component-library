@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
-import UseFieldset from '../../hooks/useFieldset';
+import Label from '../Label/Label.component';
+import Row from '../Grid/Row/Row.component';
+import getTheme from '../../utils/getTheme';
+import FieldValidation from '../FieldValidation/FieldValidation.component';
+
+const StyledRow = styled(Row)`
+  margin-bottom: ${(props) => props.theme.spacing[16]};
+`;
 
 const StyledToggleGroup = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+`;
+
+const StyledValidationWrapper = styled.div`
+  width: 100%;
+  margin-left: ${(props) => props.theme.spacing[8]};
 `;
 
 export const getType = (children) => {
@@ -53,7 +65,6 @@ const ToggleGroup = ({
   selectedValue,
   children,
   rectOptions,
-  disableFieldset,
 }) => {
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
   const type = getType(children);
@@ -69,17 +80,17 @@ const ToggleGroup = ({
   }
 
   return (
-    <UseFieldset
-      disableFieldset={disableFieldset}
-      label={label}
-      tooltip={tooltipOptions}
-      forceFullWidth={forceFullWidth}
-      validationMessage={validationMessage}
-    >
-      <StyledToggleGroup id={id}>
-        {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
-      </StyledToggleGroup>
-    </UseFieldset>
+    <ThemeProvider theme={getTheme()}>
+      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+      <StyledRow>
+        <StyledToggleGroup id={id}>
+          {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
+        </StyledToggleGroup>
+        <StyledValidationWrapper>
+          <FieldValidation message={validationMessage} />
+        </StyledValidationWrapper>
+      </StyledRow>
+    </ThemeProvider>
   );
 };
 
@@ -124,7 +135,6 @@ ToggleGroup.propTypes = {
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
     height: PropTypes.number,
   }),
-  disableFieldset: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -150,7 +160,6 @@ ToggleGroup.defaultProps = {
     height: 8,
   },
   children: [],
-  disableFieldset: false,
 };
 
 export default ToggleGroup;

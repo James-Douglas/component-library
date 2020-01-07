@@ -1,33 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/pro-regular-svg-icons';
+import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
 import styled, { css, ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
-import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import UseFieldset from '../../hooks/useFieldset';
+import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
+import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import SupportingElements from '../SupportingElements/SupportingElements';
+import Label from '../Label/Label.component';
+import Row from '../Grid/Row/Row.component';
+import Column from '../Grid/Column/Column.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
+import FieldValidation from '../FieldValidation/FieldValidation.component';
 
-
-const StyledSupportingElements = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding-top: ${(props) => props.theme.spacing['8']};
-`;
-
-const StyledFullWidth = styled.div`
-  width: 100%;
-`;
-
-const StyledRequiredStatus = styled.div`
-   line-height: ${(props) => props.theme.lineHeight.snug};
-    font-family: SourceSansPro, Arial, sans-serif;
-    font-size: ${(props) => props.theme.fontSize['2xs']};
-    letter-spacing: 0.15rem;
-    font-weight: ${(props) => props.theme.fontWeight.normal};
-    text-transform: uppercase;
-    color: ${(props) => props.theme.colors.greyDarkest};
-  }
+const StyledRow = styled(Row)`
+  margin-bottom: ${(props) => props.theme.spacing[16]};
 `;
 
 const StyledOption = styled.option`
@@ -42,6 +29,12 @@ const StyledOption = styled.option`
   }
 `;
 
+const sharedStyleNoBorder = css`
+  border: 1px solid transparent;
+  border-width: 1px;
+  outline: none;
+`;
+
 
 const StyledPrefix = styled.div`
   display: flex;
@@ -49,9 +42,6 @@ const StyledPrefix = styled.div`
   height: 100%;
   width: 100%;
   &:hover {
-    border: ${(props) => `1px solid ${props.theme.colors.blueLight}`};
-  }
-  &:focus {
     border: ${(props) => `1px solid ${props.theme.colors.blueLight}`};
   }
   &:hover select {
@@ -96,13 +86,17 @@ const StyledChevron = styled.div`
   font-size: 0.8rem;
 }`;
 
+const StyledSelectContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 const StyledSelectWrap = styled.div`
   width: 100%;
   position: relative;
   height: 100%;
   display: flex;
 }`;
-
 
 const StyledSelect = styled.select`
   color: ${(props) => props.theme.colors.black};
@@ -137,15 +131,17 @@ const StyledSelect = styled.select`
    display: none;
   }
   &:hover {
-    border: ${(props) => `1px solid ${props.theme.colors.blueLight}`};
+    ${sharedStyleNoBorder};
   }
   &:focus {
-    box-shadow: none;
-    outline: none;
+     ${sharedStyleNoBorder};
   }
   ${(props) => !props.isPrefix && css`
-    &:focus {
+    &:hover {
       border: ${`1px solid ${props.theme.colors.blueLight}`};
+    }
+    &:focus {
+     border: ${`1px solid ${props.theme.colors.blueLight}`};
     }
   `}
 
@@ -166,92 +162,14 @@ const StyledSelect = styled.select`
   `}
 }`;
 
-
-export const getSupportingElements = (required) => {
-  if (required) return null;
-  return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledFullWidth>
-        <StyledSupportingElements>
-          <StyledRequiredStatus>OPTIONAL</StyledRequiredStatus>
-        </StyledSupportingElements>
-      </StyledFullWidth>
-    </ThemeProvider>
-  );
-};
-
-
-export const renderSelectField = (
-  id,
-  name,
-  isDisabled,
-  required,
-  selectValue,
-  prefixContent,
-  handleChange,
-  handleFocus,
-  handleBlur,
-  options,
-  invalidClass,
-  bordered,
-  className,
-  isFocusActive,
-) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledSelectWrap>
-      <StyledSelect
-        id={id}
-        name={name}
-        disabled={isDisabled}
-        required={required}
-        value={selectValue}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        invalidClass={invalidClass}
-        bordered={bordered}
-        className={className}
-        isPrefix={Boolean(prefixContent)}
-      >
-        {options && options.map((option) => (
-          <StyledOption
-            key={option.value}
-            value={option.value}
-            id={`${id}_${option.value}`}
-            disabled={option.disabled}
-          >
-            {option.title}
-          </StyledOption>
-        ))}
-      </StyledSelect>
-      <StyledChevron>
-        <FontAwesomeIcon icon={isFocusActive ? faChevronDown : faChevronUp} size="2x" />
-      </StyledChevron>
-    </StyledSelectWrap>
-  </ThemeProvider>
-);
-
-
-const PrefixContent = ({
-  children,
-  prefixContent,
-  isFocusActive,
-}) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledPrefix isFocusActive={isFocusActive}>
-      <StyledPrefixRight tabIndex="-1">{prefixContent}</StyledPrefixRight>{children}
-    </StyledPrefix>
-  </ThemeProvider>
-);
-
 const WithPrefixContent = ({ children, isFocusActive, prefixContent }) => (prefixContent
   ? (
-    <PrefixContent
-      isFocusActive={isFocusActive}
-      prefixContent={prefixContent}
-    >
-      {children}
-    </PrefixContent>
+    <ThemeProvider theme={getTheme()}>
+      <StyledPrefix isFocusActive={isFocusActive} isPrefix={Boolean(prefixContent)}>
+        <StyledPrefixRight tabIndex="-1">{prefixContent}</StyledPrefixRight>
+        {children}
+      </StyledPrefix>
+    </ThemeProvider>
   ) : children
 );
 
@@ -268,27 +186,33 @@ const Dropdown = ({
   required,
   options,
   onChange,
-  disableFieldset,
   className,
   prefixContent,
 }) => {
   const invalidClass = validationMessage && validationMessage.length;
+  const isOptionExist = options && options.length;
+  const isDisabled = isOptionExist ? disabled : !isOptionExist;
+  const [isFocusActive, setFocusActive] = useState(false);
+  const desktop = useIsDesktop(false);
+
   let valueDropdown;
   if (options && options.length) {
     const valueOption = options ? options.find((i) => i.selected) : false;
     valueDropdown = valueOption ? valueOption.value : options[0].value;
   } else {
     valueDropdown = '';
-    console.warn(`Invalid prop 'options' supplied to Dropdown. Validation failed.`);
+    console.warn('Invalid prop \'options\' supplied to Dropdown. Validation failed.');
   }
   const [selectValue, setSelectValue] = useState(valueDropdown);
-  const [isFocusActive, setFocusActive] = useState(false);
+
   const handleFocus = () => {
     setFocusActive(true);
   };
+
   const handleBlur = () => {
     setFocusActive(false);
   };
+
   const handleChange = (event) => {
     event.preventDefault();
     const selectedValue = event.target.value;
@@ -297,21 +221,63 @@ const Dropdown = ({
       onChange(selectedValue);
     }
   };
-  const isOptionExist = options && options.length;
-  const isDisabled = isOptionExist ? disabled : !isOptionExist;
+
   return (
-    <UseFieldset
-      disableFieldset={disableFieldset}
-      label={label}
-      tooltip={tooltip}
-      forceFullWidth={forceFullWidth}
-      validationMessage={validationMessage}
-      supportingElements={getSupportingElements(required)}
-    >
-      <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
-        {renderSelectField(id, name, isDisabled, required, selectValue, prefixContent, handleChange, handleFocus, handleBlur, options, invalidClass, bordered, className, isFocusActive)}
-      </WithPrefixContent>
-    </UseFieldset>
+    <ThemeProvider theme={getTheme()}>
+      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+      <StyledRow>
+        <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+          <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
+            <StyledSelectContainer>
+              <StyledSelectWrap>
+                <StyledSelect
+                  id={id}
+                  name={name}
+                  disabled={isDisabled}
+                  required={required}
+                  value={selectValue}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  invalidClass={invalidClass}
+                  bordered={bordered}
+                  className={className}
+                  isPrefix={Boolean(prefixContent)}
+                >
+                  {options.map((option) => (
+                    <StyledOption
+                      key={option.value}
+                      value={option.value}
+                      id={`${id}_${option.value}`}
+                      disabled={option.disabled}
+                    >
+                      {option.title}
+                    </StyledOption>
+                  ))}
+                </StyledSelect>
+                <StyledChevron>
+                  <FontAwesomeIcon icon={faChevronDown} size="2x" />
+                </StyledChevron>
+              </StyledSelectWrap>
+              <SupportingElements required={required} label={label} />
+            </StyledSelectContainer>
+          </WithPrefixContent>
+          <FieldValidation message={validationMessage} />
+        </Column>
+        {desktop && hasTooltipContent(tooltip)
+        && (
+          <Column cols={2}>
+            <InlineTooltip
+              title={tooltip.title}
+              body={tooltip.body}
+              boundingElementSelector={tooltip.boundingElementSelector || null}
+              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+              justifyEnd={tooltip.justifyEnd}
+            />
+          </Column>
+        )}
+      </StyledRow>
+    </ThemeProvider>
   );
 };
 
@@ -371,10 +337,6 @@ Dropdown.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Specifies disableFieldset wrap component.
-   */
-  disableFieldset: PropTypes.bool,
-  /**
    * Content to be displayed as a prefix for the dropdown
    */
   prefixContent: PropTypes.oneOfType([
@@ -393,7 +355,6 @@ Dropdown.defaultProps = {
   disabled: false,
   required: false,
   onChange: null,
-  disableFieldset: false,
   className: '',
   prefixContent: '',
 };
@@ -415,25 +376,5 @@ WithPrefixContent.defaultProps = {
   isFocusActive: false,
   prefixContent: '',
 };
-
-PrefixContent.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  isFocusActive: PropTypes.bool,
-  prefixContent: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-};
-
-PrefixContent.defaultProps = {
-  children: '',
-  isFocusActive: false,
-  prefixContent: '',
-};
-
 
 export default Dropdown;

@@ -16,7 +16,7 @@ const whiteBackgroundView = () => {
   return (
     <StyledBackground color="white">
       <Input
-        label="[Fieldset label] With tooltip"
+        label="Input with tooltip"
         tooltip={tooltip}
         id="input-one"
         placeholder="Placeholder one"
@@ -29,7 +29,7 @@ const whiteBackgroundView = () => {
       />
 
       <Input
-        label="[Fieldset label] Without tooltip'"
+        label="Input without tooltip"
         id="input-two"
         placeholder="Placeholder two"
         type="text"

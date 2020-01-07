@@ -9,6 +9,7 @@ exports[`Row allows additional classes to be passed through 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
   margin-left: -1.6rem;
   margin-right: -1.6rem;
 }
@@ -29,6 +30,7 @@ exports[`Row has a row class by default 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
   margin-left: -1.6rem;
   margin-right: -1.6rem;
 }
@@ -49,6 +51,7 @@ exports[`Row renders children 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
   margin-left: -1.6rem;
   margin-right: -1.6rem;
 }
@@ -75,6 +78,7 @@ exports[`Row renders correctly without props 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
   margin-left: -1.6rem;
   margin-right: -1.6rem;
 }

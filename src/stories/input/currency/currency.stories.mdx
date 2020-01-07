@@ -46,7 +46,6 @@ import Currency from '../../../components/Input/Currency/Currency.component';
     const required = boolean('required', false);
     const disabled = boolean('disabled', false);
     const bordered = boolean('bordered', true);
-    const disableFieldset = boolean('disableFieldset', false);
     const currencySymbol = text('currencySymbol', '$');
     return (
       <Currency
@@ -64,7 +63,6 @@ import Currency from '../../../components/Input/Currency/Currency.component';
         required={required}
         disabled={disabled}
         handleChange={() => {}}
-        disableFieldset={disableFieldset}
       />
     )
   }}
