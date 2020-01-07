@@ -88,6 +88,46 @@ Rows are wrappers for columns. Each column has horizontal padding (called a gutt
 them. This padding is then counteracted on the rows with negative margins. This way, all the content in your columns is
 visually aligned down the left side.
 
+You can pass in a boolean prop for the flex direction, reversing the order of the row contents.
+
+<Preview>
+  <Story name="row">
+    <ThemeProvider theme={getTheme()}>
+      <Container>
+        <Row>
+          <Column valign="center" halign="center">Cols-1</Column>
+          <Column valign="center" halign="center">Cols-2</Column>
+          <Column valign="center" halign="center">Cols-3</Column>
+          <Column valign="center" halign="center">Cols-4</Column>
+          <Column valign="center" halign="center">Cols-5</Column>
+          <Column valign="center" halign="center">Cols-6</Column>
+          <Column valign="center" halign="center">Cols-7</Column>
+          <Column valign="center" halign="center">Cols-8</Column>
+          <Column valign="center" halign="center">Cols-9</Column>
+          <Column valign="center" halign="center">Cols-10</Column>
+          <Column valign="center" halign="center">Cols-11</Column>
+          <Column valign="center" halign="center">Cols-12</Column>
+        </Row>
+        <Row reverse>
+          <Column valign="center" halign="center">Cols-1</Column>
+          <Column valign="center" halign="center">Cols-2</Column>
+          <Column valign="center" halign="center">Cols-3</Column>
+          <Column valign="center" halign="center">Cols-4</Column>
+          <Column valign="center" halign="center">Cols-5</Column>
+          <Column valign="center" halign="center">Cols-6</Column>
+          <Column valign="center" halign="center">Cols-7</Column>
+          <Column valign="center" halign="center">Cols-8</Column>
+          <Column valign="center" halign="center">Cols-9</Column>
+          <Column valign="center" halign="center">Cols-10</Column>
+          <Column valign="center" halign="center">Cols-11</Column>
+          <Column valign="center" halign="center">Cols-12</Column>
+        </Row>
+      </Container>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+
 ### Alignment
 
 Horizontal alignment

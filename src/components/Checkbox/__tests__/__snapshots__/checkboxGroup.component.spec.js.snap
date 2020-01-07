@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup.component renders with minimal props 1`] = `
-"<div class=\\"sc-bdVaJa imdHKr row \\"><div class=\\"sc-bZQynM egkTMy label\\"><div cols=\\"12\\" class=\\"sc-bwzfXH jqoWwu 
+"<div class=\\"sc-bdVaJa btrzog row \\"><div class=\\"sc-bZQynM egkTMy label\\"><div cols=\\"12\\" class=\\"sc-bwzfXH jqoWwu 
         
-      \\"><label for=\\"test-group-id\\" class=\\"sc-gzVnrw PpDCH\\">test</label></div></div></div><div class=\\"sc-bdVaJa imdHKr row sc-gZMcBi cQDqaf\\"><div cols=\\"10\\" class=\\"sc-bwzfXH crFjTb 
+      \\"><label for=\\"test-group-id\\" class=\\"sc-gzVnrw PpDCH\\">test</label></div></div></div><div class=\\"sc-bdVaJa btrzog row sc-gZMcBi cQDqaf\\"><div cols=\\"10\\" class=\\"sc-bwzfXH crFjTb 
         
-      \\"><div id=\\"test-group-id\\" class=\\"sc-iwsKbI btmaIR\\"><div class=\\"sc-bdVaJa imdHKr row \\"><div cols=\\"6\\" class=\\"sc-bwzfXH bqkTcV 
+      \\"><div id=\\"test-group-id\\" class=\\"sc-iwsKbI btmaIR\\"><div class=\\"sc-bdVaJa btrzog row \\"><div cols=\\"6\\" class=\\"sc-bwzfXH bqkTcV 
         
       \\"><div class=\\"sc-VigVT OMEkc\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"sc-gqjmRU dbQwMB\\"><label for=\\"A-1\\" class=\\"sc-jTzLTM ibcCDr\\"><div class=\\"sc-fjdhpX ceytmt\\"></div><div class=\\"sc-jzJRlG enebjQ checkbox-content\\"><p>A-1 check</p></div></label></div></div><div cols=\\"6\\" class=\\"sc-bwzfXH bqkTcV 
         
@@ -15,11 +15,11 @@ exports[`CheckboxGroup.component renders with minimal props 1`] = `
 `;
 
 exports[`CheckboxGroup.component renders with props 1`] = `
-"<div class=\\"sc-bdVaJa imdHKr row \\"><div class=\\"sc-bZQynM egkTMy label\\"><div cols=\\"12\\" class=\\"sc-bwzfXH jqoWwu 
+"<div class=\\"sc-bdVaJa btrzog row \\"><div class=\\"sc-bZQynM egkTMy label\\"><div cols=\\"12\\" class=\\"sc-bwzfXH jqoWwu 
         
-      \\"><label for=\\"test-group-id\\" class=\\"sc-gzVnrw PpDCH\\"></label></div></div></div><div class=\\"sc-bdVaJa imdHKr row sc-gZMcBi cQDqaf\\"><div cols=\\"10\\" class=\\"sc-bwzfXH crFjTb 
+      \\"><label for=\\"test-group-id\\" class=\\"sc-gzVnrw PpDCH\\"></label></div></div></div><div class=\\"sc-bdVaJa btrzog row sc-gZMcBi cQDqaf\\"><div cols=\\"10\\" class=\\"sc-bwzfXH crFjTb 
         
-      \\"><div id=\\"test-group-id\\" class=\\"sc-iwsKbI btmaIR\\"><div class=\\"sc-bdVaJa imdHKr row \\"><div cols=\\"5\\" class=\\"sc-bwzfXH kmafAo 
+      \\"><div id=\\"test-group-id\\" class=\\"sc-iwsKbI btmaIR\\"><div class=\\"sc-bdVaJa btrzog row \\"><div cols=\\"5\\" class=\\"sc-bwzfXH kmafAo 
         
       \\"><div class=\\"sc-VigVT OMEkc\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"sc-gqjmRU dbQwMB\\"><label for=\\"A-1\\" class=\\"sc-jTzLTM ibcCDr\\"><div class=\\"sc-fjdhpX kfyeti\\"><svg aria-hidden=\\"true\\" focusable=\\"false\\" data-prefix=\\"fas\\" data-icon=\\"check\\" class=\\"svg-inline--fa fa-check fa-w-16 fa-1x \\" role=\\"img\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 512 512\\"><path fill=\\"currentColor\\" d=\\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\\"></path></svg></div><div class=\\"sc-jzJRlG enebjQ checkbox-content\\"><p>A-1 check</p></div></label></div></div><div cols=\\"5\\" class=\\"sc-bwzfXH kmafAo 
         

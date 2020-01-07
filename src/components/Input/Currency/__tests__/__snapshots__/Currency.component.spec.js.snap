@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Currency renders with minimal props 1`] = `
-"<div class=\\"sc-EHOje gshLHj row \\"><div class=\\"sc-gzVnrw kngDdT label\\"><div cols=\\"12\\" class=\\"sc-bZQynM jqGTQC 
+"<div class=\\"sc-EHOje cwXMYF row \\"><div class=\\"sc-gzVnrw kngDdT label\\"><div cols=\\"12\\" class=\\"sc-bZQynM jqGTQC 
         
-      \\"><label for=\\"test-id\\" class=\\"sc-htoDjs kiRfcR\\"></label></div></div></div><div class=\\"sc-EHOje gshLHj row sc-VigVT hVGZur\\"><div cols=\\"10\\" class=\\"sc-bZQynM jdmkSg 
+      \\"><label for=\\"test-id\\" class=\\"sc-htoDjs kiRfcR\\"></label></div></div></div><div class=\\"sc-EHOje cwXMYF row sc-VigVT hVGZur\\"><div cols=\\"10\\" class=\\"sc-bZQynM jdmkSg 
         
       \\"><div class=\\"sc-jzJRlG iNJnXl input-container\\"><div class=\\"sc-cSHVUG gitqZs input-wrap\\"><div class=\\"sc-kAzzGY kSadOM input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-chPdSV kyhzIM input-default\\" value=\\"\\"></div></div></div></div></div>"
 `;

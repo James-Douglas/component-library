@@ -17,13 +17,11 @@ describe('Row', () => {
     );
 
     const childContent = container.querySelector('.child-content');
-    expect(container).toMatchSnapshot();
     expect(childContent).toBeInTheDocument();
   });
 
   it('has a row class by default', () => {
     const { container } = render(<Row />);
-    expect(container).toMatchSnapshot();
 
     const row = container.querySelector('.row');
     expect(row).toBeDefined();
@@ -33,8 +31,20 @@ describe('Row', () => {
   it('allows additional classes to be passed through', () => {
     const { container } = render(<Row className="test-class" />);
 
-    expect(container).toMatchSnapshot();
     const test = container.getElementsByClassName('test-class');
     expect(test).toBeDefined();
+  });
+
+  it('reverses the flow of the children items', () => {
+    const { container } = render(
+      <Row className="test-class" reverse>
+        <div>One</div>
+        <div>two</div>
+        <div>three</div>
+      </Row>,
+    );
+
+    const row = container.querySelector('.test-class');
+    expect(row).toHaveStyleRule('flex-direction', 'row-reverse');
   });
 });

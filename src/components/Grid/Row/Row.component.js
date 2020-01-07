@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledRow = styled.div`
   display: flex;
@@ -8,10 +8,13 @@ const StyledRow = styled.div`
   width: 100%;
   margin-left: -1.6rem;
   margin-right: -1.6rem;
+  ${(props) => (props.reverse) && css`
+    flex-direction: row-reverse;
+  `}
 `;
 
-const Row = ({ children, className }) => (
-  <StyledRow className={`row ${className}`}>
+const Row = ({ children, className, reverse }) => (
+  <StyledRow className={`row ${className}`} reverse={reverse}>
     {children}
   </StyledRow>
 );
@@ -21,6 +24,13 @@ Row.propTypes = {
    * Classes to be applied to the row element
    */
   className: PropTypes.string,
+  /**
+   * Flex-direction: reverse bool for the row
+   */
+  reverse: PropTypes.bool,
+  /**
+   * The children of the component
+   */
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -31,6 +41,7 @@ Row.propTypes = {
 Row.defaultProps = {
   className: '',
   children: [],
+  reverse: false,
 };
 
 export default Row;
