@@ -96,11 +96,12 @@ const StyledSelectWrap = styled.div`
   position: relative;
   height: 100%;
   display: flex;
+  background: ${(props) => props.theme.colors.white};
 }`;
 
 const StyledSelect = styled.select`
   color: ${(props) => props.theme.colors.black};
-  background: ${(props) => props.theme.colors.white};
+  background: transparent;
   font-weight: ${(props) => props.theme.fontWeight.normal};
   max-width: 100%;
   border-radius: 0;
@@ -108,6 +109,7 @@ const StyledSelect = styled.select`
   box-shadow: none;
   margin: 0;
   position: relative;
+  z-index: ${(props) => (props.theme.zIndex[10])};
   appearance: none;
   width: 100%;
   line-height: ${(props) => props.theme.lineHeight.tighter};
