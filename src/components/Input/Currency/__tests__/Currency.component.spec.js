@@ -3,11 +3,17 @@ import { render, fireEvent } from '@testing-library/react';
 import Currency, { valueMasking } from '../Currency.component';
 
 describe('valueMasking()', () => {
-  it('returns a raw value and a parsed value', () => {
+  it('returns correct values for valid input', () => {
     const { raw, parsed } = valueMasking('2000', 15);
 
     expect(raw).toEqual('2000');
     expect(parsed).toEqual('2,000');
+  });
+  it('returns empty values for invalid input', () => {
+    const { raw, parsed } = valueMasking('test');
+
+    expect(raw).toEqual('');
+    expect(parsed).toEqual('');
   });
 
   it('removes disallowed characters and formats the input', () => {

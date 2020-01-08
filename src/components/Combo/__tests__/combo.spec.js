@@ -254,6 +254,7 @@ describe('Combo', () => {
     fireEvent.keyDown(optionItem, { key: 'Enter', keyCode: 13 });
     expect(link).toHaveFocus();
     expect(getByText('Can’t find your address?').closest('a')).toHaveAttribute('href', 'https://www.comparethemarket.com.au/');
+    fireEvent.keyDown(link, { key: 'Enter', code: 13 });
   });
 
   it('accessibility - click tab', () => {

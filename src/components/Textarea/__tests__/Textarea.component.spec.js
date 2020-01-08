@@ -383,4 +383,35 @@ describe('Textarea.component.js', () => {
     expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
     expect(getByText('-3')).toBeInTheDocument();
   });
+  it('render with prop forceFullWidth', () => {
+    const props = {
+      id: 'textarea-id',
+      value: 'helloworld',
+      maxChars: '24',
+      autofill: true,
+      label: 'My try here label',
+    };
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    const { container } = render(<Textarea label="Broomstick" {...props} />);
+    const label = container.firstChild.firstChild.firstChild;
+
+    expect(label.getAttribute('cols')).toEqual('12');
+  });
+  it('render with prop tooltip', () => {
+    const tooltip = {
+      title: 'Tooltip heading',
+      body: 'Prefix and suffix view',
+    };
+    const props = {
+      id: 'textarea-id',
+      value: 'helloworld',
+      maxChars: '7',
+      autofill: true,
+      required: false,
+    };
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    const { container } = render(<Textarea label="test" {...props} tooltip={tooltip} />);
+    const tooltipExist = container.querySelector(' div[role="tooltip"]');
+    expect(tooltipExist).toBeInTheDocument();
+  });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import 'jest-styled-components';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 import Button from '../Button.component';
 
 describe('Button', () => {
@@ -11,7 +11,7 @@ describe('Button', () => {
   });
 
   it('renders with props', () => {
-    const { container, getByText } = render(<Button id="test-id" variant="primary" darkMode size="md" content="test content" icon={faCheck} iconAlignRight />);
+    const { container, getByText } = render(<Button id="test-id" variant="primary" darkMode size="md" content="test content" icon={faInfoCircle} iconAlignRight />);
     const btn = container.querySelector('#test-id');
     expect(getByText('test content')).toBeDefined();
     expect(btn).toHaveStyle('background: #36A93F'); // primaryAA from theme.js
@@ -24,7 +24,7 @@ describe('Button', () => {
     const { container } = render(<Button id="test-id" variant="primary" content="test thing" />);
     const btn = container.querySelector('#test-id');
     expect(btn).not.toHaveStyle('flex-direction: row-reverse');
-    expect(btn).toHaveStyleRule('background: #36A93F'); // primaryAA from theme.js
+    expect(btn).toHaveStyleRule('background', '#36A93F'); // primaryAA from theme.js
   });
 
   it('renders a secondary button when the prop is supplied', () => {
@@ -56,7 +56,7 @@ describe('Button', () => {
   });
 
   it('renders a text button with an icon when specified', () => {
-    const { container } = render(<Button id="test-id" variant="text" icon={faCheck} content="test thing" />);
+    const { container } = render(<Button id="test-id" variant="text" icon={faInfoCircle} content="test thing" />);
     const icon = container.querySelector('svg');
     const btn = container.querySelector('#test-id');
     expect(btn).toHaveStyle('color: #000000');
@@ -89,5 +89,37 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn.getAttribute('href')).toBe('#');
     expect(btn).toHaveStyle('color: #FFFFFF');
+  });
+  it('renders a disabled button when the prop is supplied', () => {
+    const { container } = render(<Button id="test-id" variant="primary" content="test thing" variant="footer-link" disabled />);
+    const btn = container.querySelector('#test-id');
+    expect(btn).toHaveStyleRule('cursor', 'not-allowed');
+  });
+  it('renders button aligned right', () => {
+    const { container } = render(<Button id="test-id" content="test thing" variant="footer-link" iconAlignRight icon={faInfoCircle} />);
+    const btn = container.querySelector('#test-id');
+    const wrapper = container.querySelector('a');
+    expect(btn).toHaveStyleRule('flex-direction', 'row-reverse');
+    expect(wrapper).toBeInTheDocument();
+  });
+  it('renders text button', () => {
+    const { container } = render(<Button id="test-id" content="test thing" variant="text" darkMode iconAlignRight icon={faInfoCircle} />);
+    const btn = container.querySelector('#test-id');
+    expect(btn).toHaveStyleRule('color', '#FFFFFF');
+  });
+  it('renders a tertiary button when the prop is disabled', () => {
+    const { container } = render(<Button id="test-id" variant="tertiary" content="test thing" disabled />);
+    const btn = container.querySelector('#test-id');
+    expect(btn).toHaveStyleRule('cursor', 'not-allowed');
+  });
+  it('renders a tertiary button when the prop is sm size', () => {
+    const { container } = render(<Button id="test-id" variant="tertiary" content="test thing" size="sm" />);
+    const btn = container.querySelector('#test-id');
+    expect(btn).toHaveStyleRule('max-width', '12rem');
+  });
+  it('renders a tertiary button when the prop is lg size', () => {
+    const { container } = render(<Button id="test-id" variant="tertiary" content="test thing" size="lg" />);
+    const btn = container.querySelector('#test-id');
+    expect(btn).toHaveStyleRule('min-width', '16rem');
   });
 });

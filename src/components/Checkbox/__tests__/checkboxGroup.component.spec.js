@@ -64,13 +64,17 @@ describe('CheckboxGroup.component', () => {
     const checkboxGroup = container.querySelector('#test-group-id');
     const chkA1 = container.querySelector('label[for="A-1"]');
     const chkA1Style = chkA1.firstChild;
-    fireEvent.click(chkA1, { button: 0 });
+    const inputId = container.querySelector('#A-1');
 
+    fireEvent.click(chkA1, { button: 0 });
     expect(checkboxGroup.id).toBe('test-group-id');
     expect(chkA1Style).toHaveStyle('background: #001443'); // darkBlue from theme.js
     expect(chkA1.getAttribute('disabled')).toBe(null);
     expect(chkA1.getElementsByTagName('svg')).toBeDefined();
     expect(mockTestClick).toHaveBeenCalled();
+    expect(inputId.checked).toBe(true);
+    fireEvent.click(chkA1, { button: 0 });
+    expect(inputId.checked).toBe(false);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
@@ -131,5 +135,38 @@ describe('CheckboxGroup.component', () => {
     fireEvent.click(chkA3Label, { button: 0 });
 
     expect(chkA3Input.checked).toBe(false);
+  });
+
+  it('render with prop forceFullWidth', () => {
+    const mockTestClick = jest.fn();
+    const { container } = render(
+      <ThemeProvider theme={getTheme()}>
+        <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick} forceFullWidth>
+          <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+          <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+          <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
+        </CheckboxGroup>
+      </ThemeProvider>,
+    );
+    const label = container.firstChild.firstChild.firstChild;
+    expect(label.getAttribute('cols')).toEqual('12');
+  });
+
+  it('render with prop tooltip', () => {
+    const tooltip = {
+      title: 'Tooltip heading',
+      body: 'Prefix and suffix view',
+    };
+    const { container } = render(
+      <ThemeProvider theme={getTheme()}>
+        <CheckboxGroup groupId="test-group-id" colSize="5" tooltip={tooltip} forceFullWidth>
+          <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
+          <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+          <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
+        </CheckboxGroup>
+      </ThemeProvider>,
+    );
+    const tooltipExist = container.querySelector(' div[role="tooltip"]');
+    expect(tooltipExist).toBeInTheDocument();
   });
 });

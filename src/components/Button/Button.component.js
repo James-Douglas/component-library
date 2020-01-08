@@ -23,7 +23,7 @@ const StyledButtonWrap = styled.span`
 
 const StyledButton = styled.button`
   box-shadow: ${(props) => props.theme.boxShadow.sm};
-  display: ${(props) => (props.content === '' ? 'block' : 'flex')}; // does this work?
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: ${(props) => props.theme.borderRadius.lg};

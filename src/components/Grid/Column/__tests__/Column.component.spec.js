@@ -178,4 +178,24 @@ describe('Column', () => {
     const test = container.getElementsByClassName('test-class');
     expect(test).toBeDefined();
   });
+
+  it('allows column be auto ', () => {
+    const { container } = render(<Column sm="auto" md="auto" lg="auto" xl="auto" xxl="auto" />);
+    const column = container.getElementsByTagName('div')[0];
+    expect(column).toHaveStyleRule('flex', '0 0 auto', {
+      media: `(min-width:${screens.xs})`,
+    });
+    expect(column).toHaveStyleRule('width', 'auto', {
+      media: `(min-width:${screens.sm})`,
+    });
+    expect(column).toHaveStyleRule('max-width', '100%', {
+      media: `(min-width:${screens.md})`,
+    });
+    expect(column).toHaveStyleRule('flex', '0 0 auto', {
+      media: `(min-width:${screens.lg})`,
+    });
+    expect(column).toHaveStyleRule('width', 'auto', {
+      media: `(min-width:${screens.xl})`,
+    });
+  });
 });

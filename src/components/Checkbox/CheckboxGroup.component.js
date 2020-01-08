@@ -77,7 +77,6 @@ const CheckboxGroup = ({
             <InlineTooltip
               title={tooltip.title}
               body={tooltip.body}
-              boundingElementSelector={tooltip.boundingElementSelector || null}
               screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
               justifyEnd={tooltip.justifyEnd}
             />

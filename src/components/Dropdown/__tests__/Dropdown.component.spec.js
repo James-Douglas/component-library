@@ -35,6 +35,18 @@ describe('Dropdown', () => {
       expect(dropdownOptions[index].disabled).toBe(Boolean(optionsSelected[index].disabled));
     }
   });
+
+
+  it('renders with Chevron', () => {
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" />);
+    const selectField = container.querySelector('select');
+    selectField.focus();
+    const svg = container.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+    expect(svg).toHaveAttribute('data-icon', 'chevron-down');
+    selectField.blur();
+  });
+
   it('renders with default props', () => {
     const selectedValue = 'Default';
     const { container } = render(<Dropdown id="dropdown-one" value={selectedValue} options={optionsDefault} label="Dropdown Label" bordered />);
@@ -83,17 +95,53 @@ describe('Dropdown', () => {
     const { container, getByText } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" prefixContent="$" />);
     const optionItem = container.querySelector('[tabIndex="-1"]');
 
-    expect(optionItem).toHaveStyleRule('padding-right: 2rem');
-    expect(optionItem).toHaveStyleRule('padding-left: 2rem');
+    expect(optionItem).toHaveStyleRule('padding-right', '2rem');
+    expect(optionItem).toHaveStyleRule('padding-left', '2rem');
     expect(getByText('$')).toBeInTheDocument();
   });
   it('renders with supportingElements props', () => {
     const { getByText } = render(<Dropdown id="dropdown" options={optionsDefault} label="Dropdown Label" />);
     expect(getByText('Optional')).toBeInTheDocument();
   });
-  it('renders  with validation message', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" validationMessage="sdfsdfsdfsdfsdf" />);
-    const errorMessage = container.querySelector('p');
-    expect(errorMessage).toHaveStyleRule('background: 1px solid red');
+  it('renders dropdown without options', () => {
+    const { getByText, container } = render(<Dropdown id="dropdown-one" label="Dropdown Label" validationMessage="No options" options={[]} />);
+    const selectHtml = container.querySelector('select');
+    expect(getByText('No options')).toBeInTheDocument();
+    expect(selectHtml).toHaveStyleRule('border', '1px solid #DDDDDD');
+  });
+  it('renders select with border by default', () => {
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" />);
+    const selectHtml = container.querySelector('select');
+    expect(selectHtml).toHaveStyleRule('border', '1px solid #DDDDDD');
+  });
+  it('renders select without border', () => {
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" bordered={false} />);
+    const selectHtml = container.querySelector('select');
+    expect(selectHtml.value).toBe('Default');
+    expect(selectHtml.value).not.toBe('Second');
+    expect(selectHtml).toHaveStyleRule('border', '1px solid transparent');
+  });
+  it('renders select active', () => {
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" />);
+    const selectHtml = container.querySelectorAll('.row')[1];
+    const selectFocus = selectHtml.firstChild.firstChild;
+    const selectField = container.querySelector('#dropdown-one');
+    expect(selectField.value).toBe('Second');
+    selectField.focus();
+    expect(selectFocus).toHaveStyleRule('border', '1px solid #1780F3');
+  });
+  it('render with prop forceFullWidth', () => {
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" forceFullWidth />);
+    const label = container.firstChild.firstChild.firstChild;
+    expect(label.getAttribute('cols')).toEqual('12');
+  });
+  it('render with prop tooltip', () => {
+    const tooltip = {
+      title: 'Tooltip heading',
+      body: 'Prefix and suffix view',
+    };
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" forceFullWidth tooltip={tooltip} />);
+    const tooltipExist = container.querySelector(' div[role="tooltip"]');
+    expect(tooltipExist).toBeInTheDocument();
   });
 });

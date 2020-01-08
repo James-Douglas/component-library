@@ -96,6 +96,11 @@ const StyledInputWrap = styled.div`
   ${(props) => (props.disabled) && css`
     opacity: 0.5;
   `}
+
+  ${(props) => props.isFocusActive && css`
+    border: 1px solid ${props.theme.colors.blueLight}
+  `}
+  
 `;
 
 const StyledInputClearWrap = styled.div`
@@ -208,7 +213,7 @@ const Input = ({
   const [internalValue, setInternalValue] = useState(getInitialValue(valueMasking, value, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
-  const inputWrapElement = useRef(null);
+  const [isFocusActive, setFocusActive] = useState(false);
   const theme = getTheme();
   const desktop = useIsDesktop(false);
 
@@ -247,26 +252,17 @@ const Input = ({
   }, [prefillValue, value, valueMasking]);
 
   const onFocus = () => {
-    const { current } = inputWrapElement;
-
     if (handleFocus) {
       handleFocus();
     }
-    current.setAttribute('style', `border: 1px solid ${theme.colors.blueLight}`);
+    setFocusActive(true);
   };
 
   const onBlur = () => {
-    const { current } = inputWrapElement;
     if (handleBlur) {
       handleBlur();
     }
-    if (bordered && isAutofill) {
-      current.setAttribute('style', `border: 1px solid ${theme.colors.precheckedDarker}`);
-    } else if (bordered) {
-      current.setAttribute('style', `border: 1px solid ${theme.colors.greyLight}`);
-    } else {
-      current.setAttribute('style', 'border: 1px solid transparent');
-    }
+    setFocusActive(false);
   };
 
   return (
@@ -277,12 +273,11 @@ const Input = ({
           <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
             <StyledInputContainer className="input-container">
               <StyledInputWrap
-                ref={inputWrapElement}
                 isAutofill={isAutofill}
                 disabled={disabled}
                 bordered={bordered}
                 invalid={validationMessage && validationMessage.length}
-                className="input-wrap"
+                isFocusActive={isFocusActive}
               >
                 {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
                 <StyledInputClearWrap className="input-clear-wrap">

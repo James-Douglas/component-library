@@ -139,7 +139,8 @@ describe('Input.component', () => {
     const label = container.querySelector('label');
     const placeholder = input.getAttribute('placeholder');
     const autocomplete = input.getAttribute('autocomplete');
-    const inputWrap = container.querySelector('.input-wrap');
+    const inputFieldWrap = container.querySelector('.input-container');
+    const inputWrap = inputFieldWrap.firstChild;
     const inputInvalid = container.querySelector('.invalid');
 
     expect(label.textContent).toBe('input label');
@@ -161,7 +162,8 @@ describe('Input.component', () => {
       />,
     );
 
-    const inputWrap = container.querySelector('.input-wrap');
+    const inputFieldWrap = container.querySelector('.input-container');
+    const inputWrap = inputFieldWrap.firstChild;
 
     expect(inputWrap).not.toHaveStyleRule('border', '1px solid #DDDDDD');
     expect(inputWrap).toHaveStyleRule('border', '1px solid transparent');
@@ -178,7 +180,8 @@ describe('Input.component', () => {
       />,
     );
 
-    const inputWrap = container.querySelector('.input-wrap');
+    const inputFieldWrap = container.querySelector('.input-container');
+    const inputWrap = inputFieldWrap.firstChild;
     expect(inputWrap).toHaveStyleRule('border', '1px solid #EF425E');
   });
 
@@ -211,7 +214,8 @@ describe('Input.component', () => {
       />,
     );
     const inputField = container.querySelector('input');
-    const inputWrap = container.querySelector('.input-wrap');
+    const inputFieldWrap = container.querySelector('.input-container');
+    const inputWrap = inputFieldWrap.firstChild;
 
     inputField.focus();
     expect(inputWrap).toHaveStyleRule('border: 1px solid #1780F3');
@@ -233,7 +237,8 @@ describe('Input.component', () => {
     );
 
     const inputField = container.querySelector('input');
-    const inputWrap = container.querySelector('.input-wrap');
+    const inputFieldWrap = container.querySelector('.input-container');
+    const inputWrap = inputFieldWrap.firstChild;
 
     expect(inputWrap).toHaveStyleRule('background: #C39600');
     expect(inputField.value).toBe('autofilled value test');
@@ -317,5 +322,48 @@ describe('Input.component', () => {
     fireEvent.blur(inputField);
     expect(blurCb.mock.calls.length).toBe(1);
     expect(blurCb.mock.calls[0][0]).toBe(undefined);
+  });
+
+  it('applies border on blur when border is false', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        handleChange={() => {}}
+        bordered={false}
+      />,
+    );
+    const inputFieldWrap = container.querySelector('.input-container');
+    const inputWrap = inputFieldWrap.firstChild;
+    const inputField = container.querySelector('#test-id');
+    expect(inputWrap).toHaveStyleRule('border', '1px solid transparent');
+    inputField.focus();
+    expect(inputWrap).toHaveStyleRule('border', '1px solid #1780F3');
+    inputField.blur();
+    expect(inputWrap).toHaveStyleRule('border', '1px solid transparent');
+  });
+  it('applies border on blur when border is true', () => {
+    const { container } = render(
+      <Input
+        label="[Fieldset label] With tooltip"
+        id="input-one"
+        tooltip={{ title: 'input demo' }}
+        placeholder="Placeholder one"
+        prefillValue="autofilled value test"
+        type="text"
+        required={false}
+        disabled={false}
+        invalid={false}
+        handleChange={() => {}}
+      />,
+    );
+    const inputFieldWrap = container.querySelector('.input-container');
+    const inputWrap = inputFieldWrap.firstChild;
+    const inputField = container.querySelector('#input-one');
+    inputField.focus();
+    expect(inputWrap).toHaveStyleRule('border', '1px solid #1780F3');
+    inputField.blur();
+    expect(inputWrap).toHaveStyleRule('border', '1px solid #C39600');
   });
 });
