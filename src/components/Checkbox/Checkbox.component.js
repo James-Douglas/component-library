@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
-import useToggleState from '../../hooks/useToggleState';
 
 const StyledHiddenInput = styled.input`
   border: 0;
@@ -109,9 +108,12 @@ const Checkbox = ({
   isSelected,
   children,
 }) => {
-  const [value, toggle] = useToggleState(isSelected);
+  const [value, setValue] = useState(isSelected);
+  useEffect(() => {
+    setValue(isSelected);
+  }, [isSelected]);
   const toggleEventHandler = () => {
-    toggle(value);
+    setValue(!value);
   };
 
   useEffect(() => {
