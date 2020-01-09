@@ -31,7 +31,9 @@ const ModalView = () => {
   return (
     <>
       {(m1Visible || m2Visible) && <Overlay opacityLevel={0.3} onClose={closeModals} />}
-      <Button id="demo-1-btn" variant="secondary" handleClick={m1Open} content="Modal one" />
+      <Button id="demo-1-btn" variant="secondary" handleClick={m1Open}>
+        Modal one
+      </Button>
       <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="lg">
         <h2>Email Results</h2>
         &nbsp;
@@ -50,10 +52,14 @@ const ModalView = () => {
           </TableBody>
         </Table>
         &nbsp;
-        <Button id="modal-email" variant="primary" content="Send Email" size="lg" />
+        <Button id="modal-email" variant="primary" size="lg">
+          Send Email
+        </Button>
       </Modal>
 
-      <Button id="demo-2-btn" variant="secondary" handleClick={m2Open} content="Modal two" />
+      <Button id="demo-2-btn" variant="secondary" handleClick={m2Open}>
+        Modal two
+      </Button>
 
       <Modal id="demo-2" visible={m2Visible} handleClose={closeModals} size="sm">
         <h2>Another modal</h2>

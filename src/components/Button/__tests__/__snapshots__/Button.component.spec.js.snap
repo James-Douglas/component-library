@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button renders correctly with minimal props 1`] = `
-.c0 {
+.c1 {
   box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.1);
   display: -webkit-box;
   display: -webkit-flex;
@@ -15,44 +15,67 @@ exports[`Button renders correctly with minimal props 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  border-radius: 0.8rem;
-  padding: 1.2rem 2.4rem;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  padding: 1.2rem 1.2rem;
   margin-bottom: 1.6rem;
   font-size: 1.8rem;
   text-transform: Capitalize;
-  border: 2px solid transparent;
-  min-height: 5.4rem;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   font-weight: 700;
-  line-height: 1.625;
+  border-radius: 0.8rem;
+  min-height: 5.4rem;
+  border: 1px solid transparent;
   background: #36A93F;
   color: #FFFFFF;
   fill: #FFFFFF;
+  line-height: 1.4;
   min-width: 16rem;
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
 }
 
-.c0 > .c1 {
+.c1 > .c2 {
   margin-right: 1.2rem;
 }
 
-.c0:focus {
+.c1:focus {
+  outline: none;
+}
+
+.c1:focus {
   outline: none;
   box-shadow: 0 0 2px 3px rgba(0,123,255,.3);
 }
 
-.c0:hover {
+.c1:hover {
   background: #319639;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-flex: 0 1 100%;
+  -ms-flex: 0 1 100%;
+  flex: 0 1 100%;
+  width: 100%;
 }
 
 <div>
   <span
-    class=""
+    class="c0"
+    width="100%"
   >
     <button
-      class="c0"
+      class="c1"
       id="test-id"
       type=""
     >
@@ -63,16 +86,16 @@ exports[`Button renders correctly with minimal props 1`] = `
 `;
 
 exports[`Button renders with props 1`] = `
-.c2 {
+.c3 {
   pointer-events: none;
   display: inherit;
 }
 
-.c3 > .c1 {
+.c4 > .c2 {
   margin-right: 1.2rem;
 }
 
-.c0 {
+.c1 {
   box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.1);
   display: -webkit-box;
   display: -webkit-flex;
@@ -86,57 +109,80 @@ exports[`Button renders with props 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  border-radius: 0.8rem;
-  padding: 1.2rem 2.4rem;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  padding: 1.2rem 1.2rem;
   margin-bottom: 1.6rem;
   font-size: 1.8rem;
   text-transform: Capitalize;
-  border: 2px solid transparent;
-  min-height: 5.4rem;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
   font-weight: 700;
-  line-height: 1.625;
   -webkit-flex-direction: row-reverse;
   -ms-flex-direction: row-reverse;
   flex-direction: row-reverse;
+  border-radius: 0.8rem;
+  min-height: 5.4rem;
+  border: 1px solid transparent;
   background: #36A93F;
   color: #FFFFFF;
   fill: #FFFFFF;
+  line-height: 1.4;
   min-width: 16rem;
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
 }
 
-.c0 > .c1 {
+.c1 > .c2 {
   margin-right: 1.2rem;
 }
 
-.c0:focus {
-  outline: none;
-  box-shadow: 0 0 2px 3px rgba(0,123,255,.3);
-}
-
-.c0 > .c1 {
+.c1 > .c2 {
   margin-right: 0;
   margin-left: 1.2rem;
 }
 
-.c0:hover {
+.c1:focus {
+  outline: none;
+}
+
+.c1:focus {
+  outline: none;
+  box-shadow: 0 0 2px 3px rgba(0,123,255,.3);
+}
+
+.c1:hover {
   background: #319639;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-flex: 0 1 100%;
+  -ms-flex: 0 1 100%;
+  flex: 0 1 100%;
+  width: 100%;
 }
 
 <div>
   <span
-    class=""
+    class="c0"
+    width="100%"
   >
     <button
-      class="c0"
+      class="c1"
       id="test-id"
       type=""
     >
       <div
-        class="c1 c2"
+        class="c2 c3"
       >
         <svg
           aria-hidden="true"

@@ -87,8 +87,12 @@ const SliderRight = () => {
                 </div>
                 <p style={{ marginTop: '3.2rem' }}>Interest paid Monthly, Quarterly, End of term</p>
                 <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
-                  <Button id="primary-btn01" variant="primary" btnSize="md" content="Go to site" disabled={false} />
-                  <Button id="text-btn01" variant="link" content="More info" disabled={false} href="#/" handleClick={clickMe} target="_self" />
+                  <Button id="primary-btn01" variant="primary" btnSize="md" disabled={false}>
+                    Go to site
+                  </Button>
+                  <Button id="text-btn01" variant="link" disabled={false} href="#/" handleClick={clickMe} target="_self">
+                    More info
+                  </Button>
                 </div>
               </StyledCard>
             </Column>

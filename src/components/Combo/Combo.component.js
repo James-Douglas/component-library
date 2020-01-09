@@ -104,11 +104,12 @@ export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, 
           <Button
             id="text-btn01"
             variant="text"
-            content={linkText}
             disabled={false}
             href={linkHref}
             target="_blank"
-          />
+          >
+            {linkText}
+          </Button>
         </StyledButtonWrap>
       )}
     </>

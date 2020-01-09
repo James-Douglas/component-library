@@ -4,136 +4,61 @@ import PropTypes from 'prop-types';
 import getTheme from 'utils/getTheme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-/* ICONS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
 const StyledIcon = styled.div`
   pointer-events: none;
   display: inherit;
 `;
 
-/* BUTTONS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-const StyledButtonWrap = styled.span`
- ${(props) => props.isInlineBlock && css`
-    display: inline-block;
-  `}
+const shadowStyles = css`
+  ${(props) => {
+    const shadowTypes = ['primary', 'secondary', 'tertiary'];
+    if (shadowTypes.includes(props.variant)) {
+      return css`
+        box-shadow: ${props.theme.boxShadow.sm};
+      `;
+    }
+    return null;
+  }}
 `;
 
-const StyledButton = styled.button`
-  box-shadow: ${(props) => props.theme.boxShadow.sm};
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const borderStyles = css`
   border-radius: ${(props) => props.theme.borderRadius.lg};
-  padding: 1.2rem ${(props) => props.theme.spacing[24]};
-  margin-bottom: ${(props) => props.theme.spacing[16]};
-  font-size: ${(props) => props.theme.fontSize.lg};
-  text-transform: Capitalize;
-  border: 2px solid transparent;
-  min-height: 5.4rem;
-  transition : all 200ms ease-out;
-  font-weight: ${(props) => props.theme.fontWeight.bold};
-  line-height: ${(props) => props.theme.lineHeight.relaxed};
-  > ${StyledIcon} {
-    margin-right: ${(props) => props.theme.spacing[12]};
-  }
+`;
+
+const focusStyles = css`
   :focus {
     outline: none;
     box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }
-  ${(props) => props.iconAlignRight && css`
-    flex-direction: row-reverse;
-    > ${StyledIcon} {
-      margin-right: 0;
-      margin-left: ${props.theme.spacing[12]};
-    }
-  `}
-  ${(props) => props.variant === 'primary' && css`
-    background: ${props.theme.colors.secondaryDarker};
-    color: ${props.theme.colors.white};
-    fill: ${props.theme.colors.white};
-    :hover {
-      background: ${props.theme.colors.secondaryDark};
-    }
-  `}
-  ${(props) => props.variant === 'secondary' && css`
-    background: ${props.theme.colors.white};
-    border: 1px solid ${props.theme.colors.primaryAA};
-    font-weight: ${props.theme.fontWeight.semibold};
-    color: ${props.theme.colors.primaryAA};
-    fill: ${props.theme.colors.primaryAA};
-    min-height: 4.4rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    :hover {
-      border: 1px solid ${props.theme.colors.primaryLight};
-      fill: ${props.theme.colors.primaryLight};
-      color: ${props.theme.colors.primaryLight};
-    }
-  `}
-  ${(props) => (props.variant === 'secondary' && props.darkMode) && css`
-    border: 1px solid transparent;
-    :hover {
-      border: 1px solid transparent;
-    }
-  `}
-  ${(props) => props.variant === 'tertiary' && css`
-    background ${props.theme.colors.blueDark};
-    color: ${props.theme.colors.white};
-    fill: ${props.theme.colors.white};
-    font-weight: ${props.theme.fontWeight.normal};
-    font-size: ${props.theme.fontSize.sm};
-    border-radius: 0;
-    min-height: 2.8rem;
-    :hover {
-      color: ${props.theme.colors.blueLighter};
-      fill: ${props.theme.colors.blueLighter};
-    }
-  `}
-  ${(props) => (props.variant === 'tertiary' && props.darkMode) && css`
-    background ${props.theme.colors.white};
-    border: 1px solid ${props.theme.colors.blueDark};
-    color: ${props.theme.colors.blueDark};
-    fill: ${props.theme.colors.blueDark};
-    :hover {
-      border-color: ${props.theme.colors.primaryLight};
-      fill: ${props.theme.colors.primaryLight};
-    }
-  `}
+`;
 
-  ${(props) => props.size === 'lg' && css`
-    width: 100%;
-    min-width: 16rem;
-  `}
-  ${(props) => props.size === 'md' && css`
-    min-width: 16rem;
-    padding-top: ${props.theme.spacing['4']};
-    padding-bottom: ${props.theme.spacing['4']};
-  `}
-  ${(props) => props.size === 'sm' && css`
-    max-width: 12rem;
+const disabledStyles = css`
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+`;
+
+const sizeStyles = {
+  sm: css`
     min-height: 3.6rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
-    font-weight: ${props.theme.fontWeight.bold};
-    font-size: ${props.theme.fontSize.xs};
-  `}
-  ${(props) => props.disabled && css`
-    cursor: not-allowed;
-    opacity: 0.6;
-    box-shadow: none;
-  `}
-`;
+    font-weight: ${(props) => props.theme.fontWeight.bold};
+    font-size: ${(props) => props.theme.fontSize.xs};
+  `,
+  md: css`
+    min-width: 16rem;
+    padding-top: ${(props) => props.theme.spacing['4']};
+    padding-bottom: ${(props) => props.theme.spacing['4']};
+  `,
+  lg: css`
+    min-width: 20rem;
+    padding-top: ${(props) => props.theme.spacing['20']};
+    padding-bottom: ${(props) => props.theme.spacing['20']};
+  `,
+};
 
-/* LINK BUTTONS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-const StyledAnchor = styled.a`
-  display: flex;
-  text-transform: Capitalize;
-  transition : all 200ms ease-out;
+const baseLinkStyles = css`
   color: ${(props) => props.theme.colors.black};
   fill: ${(props) => props.theme.colors.black};
   font-weight: ${(props) => props.theme.fontWeight.normal};
@@ -152,15 +77,117 @@ const StyledAnchor = styled.a`
       margin-top: 0.4rem;
     }
   `}
-  ${(props) => props.variant === 'text' && css`
-    text-decoration: none;
-    font-weight: ${props.theme.fontWeight.semibold};
+`;
+
+const baseButtonStyles = css`
+  ${shadowStyles}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: ${(props) => props.theme.spacing[12]} ${(props) => props.theme.spacing[12]};
+  margin-bottom: ${(props) => props.theme.spacing[16]};
+  font-size: ${(props) => props.theme.fontSize.lg};
+  text-transform: Capitalize;
+  transition : all 200ms ease-out;
+  font-weight: ${(props) => props.theme.fontWeight.bold};
+  > ${StyledIcon} {
+    margin-right: ${(props) => props.theme.spacing[12]};
+  }
+  ${(props) => props.iconAlignRight && css`
+    flex-direction: row-reverse;
+    > ${StyledIcon} {
+      margin-right: 0;
+      margin-left: ${props.theme.spacing[12]};
+    }
+  `}
+  :focus {
+    outline: none;
+  }
+`;
+
+const primaryVariant = css`
+  ${borderStyles}; 
+  ${focusStyles};
+  min-height: 5.4rem;
+  border: 1px solid transparent;
+  background: ${(props) => props.theme.colors.secondaryDarker};
+  color: ${(props) => props.theme.colors.white};
+  fill: ${(props) => props.theme.colors.white};
+  :hover {
+    background: ${(props) => props.theme.colors.secondaryDark};
+  }
+  line-height: ${(props) => props.theme.lineHeight.snug};
+  ${(props) => sizeStyles[props.size]}
+`;
+
+const secondaryVariant = css`
+  ${borderStyles}; 
+  ${focusStyles};
+  background: ${(props) => props.theme.colors.white};
+  border: 1px solid ${(props) => props.theme.colors.primaryAA};
+  font-weight: ${(props) => props.theme.fontWeight.semibold};
+  color: ${(props) => props.theme.colors.primaryAA};
+  fill: ${(props) => props.theme.colors.primaryAA};
+  min-height: 4.4rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  line-height: ${(props) => props.theme.lineHeight.snug};
+  :hover {
+    border: 1px solid ${(props) => props.theme.colors.primaryLight};
+    fill: ${(props) => props.theme.colors.primaryLight};
+    color: ${(props) => props.theme.colors.primaryLight};
+  }
+  ${(props) => props.darkMode && css`
+    border: 1px solid transparent;
     :hover {
-      color: ${props.theme.colors.primaryLight};
+      border: 1px solid transparent;
+    }
+  `}
+  ${(props) => sizeStyles[props.size]}
+`;
+
+const tertiaryVariant = css`
+  ${borderStyles}; 
+  ${focusStyles};
+  background: ${(props) => props.theme.colors.blueDark};
+  color: ${(props) => props.theme.colors.white};
+  fill: ${(props) => props.theme.colors.white};
+  font-weight: ${(props) => props.theme.fontWeight.normal};
+  font-size: ${(props) => props.theme.fontSize.sm};
+  border-radius: 0;
+  min-height: 3.4rem;
+  line-height: ${(props) => props.theme.lineHeight.snug};
+  :hover {
+    color: ${(props) => props.theme.colors.blueLighter};
+    fill: ${(props) => props.theme.colors.blueLighter};
+  }
+  ${(props) => (props.darkMode) && css`
+    background: ${props.theme.colors.white};
+    border: 1px solid ${props.theme.colors.blueDark};
+    color: ${props.theme.colors.blueDark};
+    fill: ${props.theme.colors.blueDark};
+    :hover {
+      border-color: ${props.theme.colors.primaryLight};
       fill: ${props.theme.colors.primaryLight};
     }
   `}
-  ${(props) => (props.variant === 'text' && props.darkMode) && css`
+  ${(props) => sizeStyles[props.size]}
+`;
+
+const textVariant = css`
+  ${baseLinkStyles}
+  padding: 0;
+  border-radius: unset;
+  text-decoration: none;
+  font-weight: ${(props) => props.theme.fontWeight.semibold};
+  :hover {
+    color: ${(props) => props.theme.colors.primaryLight};
+    fill: ${(props) => props.theme.colors.primaryLight};
+  }
+  ${(props) => props.darkMode && css`
     color: ${props.theme.colors.white};
     fill: ${props.theme.colors.white};
     :hover {
@@ -168,17 +195,23 @@ const StyledAnchor = styled.a`
       fill: ${props.theme.colors.blueLighter};
     }
   `}
-  ${(props) => props.variant === 'link' && css`
-    background: transparent;
-    text-transform: underline;
-    display: inline-block;
-    font-weight: ${props.theme.fontWeight.semibold};
-    :hover {
-      color: ${props.theme.colors.primaryLight};
-      fill: ${props.theme.colors.primaryLight};
-    }
-  `}
-  ${(props) => (props.variant === 'link' && props.darkMode) && css`
+`;
+
+const linkVariant = css`
+  ${baseLinkStyles}
+  padding: 0;
+  border-radius: unset;
+  margin-bottom: 0;
+  text-decoration: underline;
+  background: transparent;
+  text-transform: underline;
+  display: inline-block;
+  font-weight: ${(props) => props.theme.fontWeight.semibold};
+  :hover {
+    color: ${(props) => props.theme.colors.primaryLight};
+    fill: ${(props) => props.theme.colors.primaryLight};
+  }
+  ${(props) => (props.darkMode) && css`
     color: ${props.theme.colors.white};
     fill: ${props.theme.colors.white};
     :hover {
@@ -186,40 +219,73 @@ const StyledAnchor = styled.a`
       fill: ${props.theme.colors.blueLighter};
     }
   `}
-  ${(props) => props.variant === 'footer-link' && css`
-    font-size: ${props.theme.fontSize.sm};
-    font-weight: ${props.theme.fontWeight.semibold};
-    text-decoration: none;
-    display: block;
-    margin-bottom: 1rem;
-    :hover {
-      color: ${props.theme.colors.black};
-      text-decoration: underline;
-    }
-  `}
-  ${(props) => (props.variant === 'footer-link' && props.darkMode) && css`
+`;
+
+const footerVariant = css`
+  ${baseLinkStyles}
+  padding: 0;
+  text-align: left;
+  border-radius: unset;
+  font-size: ${(props) => props.theme.fontSize.sm};
+  font-weight: ${(props) => props.theme.fontWeight.semibold};
+  text-decoration: none;
+  display: block;
+  margin-bottom: 1rem;
+  :hover {
+    color: ${(props) => props.theme.colors.black};
+    text-decoration: underline;
+  }
+  ${(props) => (props.darkMode) && css`
     color: ${props.theme.colors.white};
     fill: ${props.theme.colors.white};
     :hover {
       color: ${props.theme.colors.white};
     }
   `}
-  ${(props) => props.disabled && css`
-    cursor: not-allowed;
-    opacity: 0.6;
-    box-shadow: none;
-  `}
 `;
 
-/* BUTTON COMPONENT
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+const BaseTag = styled.div`
+  ${baseButtonStyles}
+  
+  ${(props) => {
+    switch (props.variant) {
+      case 'primary':
+        return primaryVariant;
+      case 'secondary':
+        return secondaryVariant;
+      case 'tertiary':
+        return tertiaryVariant;
+      case 'text':
+        return textVariant;
+      case 'link':
+        return linkVariant;
+      case 'footer-link':
+        return footerVariant;
+      default:
+        return primaryVariant;
+    }
+  }}
+  ${(props) => props.disabled && disabledStyles};
+`;
+
+const StyledButtonWrap = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 1 100%;
+  width: ${(props) => props.width};
+  ${(props) => props.isInlineBlock && css`
+    display: inline-block;
+  `}
+  ${(props) => (props.isInlineBlock && props.variant === 'link') && css`
+    width: auto;
+  `}
+`;
 
 const Button = ({
   id,
   variant,
   darkMode,
   size,
-  content,
   disabled,
   icon,
   iconSize,
@@ -229,6 +295,9 @@ const Button = ({
   rel,
   handleClick,
   tagType,
+  width,
+  style,
+  children,
 }) => {
   const renderContent = () => {
     if (icon) {
@@ -237,20 +306,20 @@ const Button = ({
           <StyledIcon>
             <FontAwesomeIcon icon={icon} size={iconSize} />
           </StyledIcon>
-          {content}
+          {children}
         </>
       );
     }
-    return <>{content}</>;
+    return <>{children}</>;
   };
 
   const renderButton = () => {
-    const isButton = ['primary', 'secondary', 'tertiary'].includes(variant);
-    const Tag = isButton ? StyledButton : StyledAnchor;
+    const isButton = !href.length > 0;
 
     return (
       <ThemeProvider theme={getTheme()}>
-        <Tag
+        <BaseTag
+          as={isButton ? 'button' : 'a'}
           onClick={handleClick}
           id={id}
           variant={variant}
@@ -262,14 +331,16 @@ const Button = ({
           target={isButton ? null : target}
           rel={isButton ? null : rel}
           type={isButton ? tagType : null}
+          style={style}
         >
           {renderContent()}
-        </Tag>
+        </BaseTag>
       </ThemeProvider>
     );
   };
+
   return (
-    <StyledButtonWrap isInlineBlock={href && variant !== 'footer-link'}>
+    <StyledButtonWrap isInlineBlock={href && variant !== 'footer-link'} variant={variant} width={width}>
       {renderButton()}
     </StyledButtonWrap>
   );
@@ -281,8 +352,12 @@ Button.propTypes = {
    */
   id: PropTypes.string.isRequired,
   /**
-   * Defines the type of button to be used, applied as a class. Defaults to `primary`, other valid types are `secondary`,
-   * `text`, `link`, and `footer-link`
+   * The button/link contents
+   */
+  children: PropTypes.string,
+  /**
+   * Defines the type of button to be used. Defaults to `primary`. available types are `primary`, `secondary`,
+   * `tertiary`, `text`, `link`, and `footer-link`.
    */
   variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'text', 'link', 'footer-link']),
   /**
@@ -294,10 +369,6 @@ Button.propTypes = {
    * Defines the size of button to be used, `sm`, `md` and `lg`. Defaults to `md`.
    */
   size: PropTypes.string,
-  /**
-   * The button text. Can render html if required.
-   */
-  content: PropTypes.string,
   /**
    * Defines if the button is disabled or not. Defaults to false.
    */
@@ -338,6 +409,17 @@ Button.propTypes = {
    */
   tagType: PropTypes.string,
   /**
+   * Manually set the width of a button
+   */
+  width: PropTypes.string,
+  /**
+   * Overide the css with inline styles if needed
+   */
+  style: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ])),
+  /**
    * Pass the button a custom click function
    */
   handleClick: PropTypes.func,
@@ -347,7 +429,7 @@ Button.defaultProps = {
   variant: 'primary',
   darkMode: false,
   size: 'md',
-  content: '',
+  children: '',
   disabled: false,
   icon: null,
   iconSize: '1x',
@@ -356,6 +438,8 @@ Button.defaultProps = {
   target: '#',
   rel: '',
   tagType: '',
+  style: {},
+  width: '100%',
   handleClick: () => {},
 };
 

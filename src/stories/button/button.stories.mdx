@@ -14,11 +14,11 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 # Button
 
 The button can be styled with an icon, configurable for design approved modes. These are: `primary`, `secondary`,
-`text`, `link` and `footer-link`. `secondary`, `text` and `link`. All have an `darkMode` mode for dark backgrounds apart
-from `primary`.
+`text`, `link` and `footer-link`. All have an `darkMode` mode for dark backgrounds apart from `primary`.
 
-When `text`, `link` and `footer-link` are supplied as a `variant`, the html structure with be rendered as an `<a>` element,
-with removed padding/button styling.
+Width is set to `100%` by default, so the button fills the width of its parent container. This can be set via the `width` prop if needed.
+
+If a button is given a href, it will render as a link under the hood, with the same styling as the supplied variant.
 
 ## Primary
 <Preview>
@@ -27,9 +27,9 @@ with removed padding/button styling.
       <Row>
         <Column>
           <DemoContainer>
-            <Button id="primary-btn01" variant="primary" size="md" content="compare the market" />
-            <Button id="primary-btn02" variant="primary" size="md" content="compare the market" icon={faInfoCircle} iconSize='1x' />
-            <Button id="primary-btn03" variant="primary" size="md" content="compare the market" icon={faInfoCircle} iconSize='1x' iconAlignRight />
+            <Button id="primary-btn01" variant="primary" size="md" tagType='submit' width='250px'>compare the market</Button>
+            <Button id="primary-btn02" variant="primary" size="md" icon={faInfoCircle} iconSize='1x' width='250px'>compare the market</Button>
+            <Button id="primary-btn03" variant="primary" size="md" icon={faInfoCircle} iconSize='1x' width='250px' iconAlignRight>compare the market</Button>
           </DemoContainer>
         </Column>
       </Row>
@@ -44,12 +44,12 @@ with removed padding/button styling.
       <Row>
         <Column>
           <DemoContainer>
-            <Button id="secondary-btn01" variant="secondary" size="md" content="compare the market"  />
-            <Button id="secondary-btn02" variant="secondary" darkMode size="md" content="compare the market"  />
-            <Button id="secondary-btn03" variant="secondary" size="sm" content="add bill"  />
-            <Button id="secondary-btn04" variant="secondary" darkMode size="sm" content="add bill"  />
-            <Button id="secondary-icon01" variant="secondary" size="sm" content="edit details"/>
-            <Button id="secondary-icon02" variant="secondary" darkMode size="sm" content="edit details"/>
+            <Button id="secondary-btn01" variant="secondary" size="md" width='250px'>Compare the market</Button>
+            <Button id="secondary-btn02" variant="secondary" darkMode size="md" width='250px'>Compare the market</Button>
+            <Button id="secondary-btn03" variant="secondary" size="sm" width='250px'>add bill</Button>
+            <Button id="secondary-btn04" variant="secondary" darkMode size="sm" width='250px'>add bill</Button>
+            <Button id="secondary-icon01" variant="secondary" size="sm" width='250px'>edit details</Button>
+            <Button id="secondary-icon02" variant="secondary" darkMode size="sm" width='250px'>edit details</Button>
           </DemoContainer>
         </Column>
       </Row>
@@ -64,8 +64,8 @@ with removed padding/button styling.
       <Row>
         <Column>
           <DemoContainer>
-            <Button id="tertiary-btn01" variant="tertiary" size="md" content="compare the market" />
-            <Button id="tertiary-btn01" variant="tertiary" darkMode size="md" content="compare the market" />
+            <Button id="tertiary-btn01" variant="tertiary" size="md" width='250px'>compare the market</Button>
+            <Button id="tertiary-btn01" variant="tertiary" darkMode size="md" width='250px'>compare the market</Button>
           </DemoContainer>
         </Column>
       </Row>
@@ -83,19 +83,19 @@ with removed padding/button styling.
             <Overline>On light backgrounds:</Overline>
             <div style={{marginBottom: '1.5rem'}}>
               <div style={{margin: '1.5rem'}}>
-                <Button id="text-btn01" variant="text" content="Compare the Market" icon={faInfoCircle} href="#" target="_blank" />
+                <Button id="text-btn01" variant="text" icon={faInfoCircle} href="#" target="_blank">compare the market</Button>
               </div>
               <div style={{margin: '1.5rem'}}>
-                <Button id="text-btn01" variant="text" content="Compare the Market" icon={faInfoCircle} iconAlignRight href="#" target="_blank" />
+                <Button id="text-btn01" variant="text" icon={faInfoCircle} iconAlignRight href="#" target="_blank">compare the market</Button>
               </div>
             </div>
             <Overline>On dark backgrounds:</Overline>
             <DemoContainer bg='#001545' >
              <div style={{margin: '1.5rem'}}>
-                <Button id="text-btn02" variant="text" darkMode content="Compare the Market" icon={faInfoCircle} href="#" target="_blank" />
+                <Button id="text-btn02" variant="text" darkMode icon={faInfoCircle} href="#" target="_blank">compare the market</Button>
               </div>
               <div style={{margin: '1.5rem'}}>
-                <Button id="text-btn02" variant="text" darkMode content="Compare the Market" icon={faInfoCircle} iconAlignRight href="#" target="_blank" />
+                <Button id="text-btn02" variant="text" darkMode icon={faInfoCircle} iconAlignRight href="#" target="_blank">compare the market</Button>
               </div>
             </DemoContainer>
           </DemoContainer>
@@ -115,20 +115,20 @@ with removed padding/button styling.
           <DemoContainer>
             <Overline>On light backgrounds:</Overline>
             <div style={{marginBottom: '3rem', marginTop: '1.5rem'}}>
-              <Button id="text-btn01" variant="link" content="Compare the Market" href="#" target="_blank" />
+              <Button id="text-btn01" variant="link" href="#" target="_blank">compare the market</Button>
             </div>
             <Overline>On dark backgrounds:</Overline>
             <DemoContainer bg='#001545' >
-              <Button id="text-btn02" variant="link" darkMode content="Compare the Market" href="#" target="_blank" />
+              <Button id="text-btn02" variant="link" darkMode href="#" target="_blank">compare the market</Button>
             </DemoContainer>
             <div style={{marginTop: '2rem'}}>
               <DemoContainer >
               <Overline>As inline text:</Overline>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. &nbsp;
-                <Button id="text-btn02" variant="link" content="Compare the Market" href="#" target="_blank" />
+                <Button id="text-btn02" variant="link" href="#" target="_blank">compare the market</Button>
                 . Ut enim ad minim veniam, quis nostrud exercitation ea commodo consequat. &nbsp;
-                <Button id="text-btn02" variant="link" content="Compare the Market" href="#" target="_blank" />
+                <Button id="text-btn02" variant="link" href="#" target="_blank">compare the market</Button>
                 . Duis aute irure dolor in reprehenderit.
               </p>
               </DemoContainer>
@@ -151,14 +151,16 @@ with removed padding/button styling.
             <DemoContainer style={{padding: '0 1.2rem'}}>
               <Overline>On light backgrounds:</Overline>
               <div style={{padding: '1.2rem'}}>
-                <Button id="text-btn01" variant="footer-link" content="Compare the Market" href="#" target="_blank" />
+                <Button id="text-btn01" variant="footer-link" href="#" target="_blank">compare the market</Button>
               </div>
             </DemoContainer>
             <DemoContainer>
               <Overline>On dark backgrounds:</Overline>
             </DemoContainer>
             <DemoContainer bg='#333333' >
-              <Button id="text-btn01" variant="footer-link" darkMode content="Compare the Market" href="#" target="_blank" />
+              <div style={{padding: '1.2rem'}}>
+                <Button id="text-btn01" variant="footer-link" darkMode href="#" target="_blank">compare the market</Button>
+              </div>
             </DemoContainer>
             <div style={{padding: '1.2rem'}}>
               <DemoContainer>
@@ -169,34 +171,34 @@ with removed padding/button styling.
                   <Row>
                     <Column>
                       <div>
-                        <Button id="button-f1" variant="footer-link" darkMode content="About us" href="#" target="_blank" />
-                        <Button id="button-f2" variant="footer-link" darkMode content="Testimonials" href="#" target="_blank" />
-                        <Button id="button-f3" variant="footer-link" darkMode content="Privacy policy" href="#" target="_blank" />
-                        <Button id="button-f4" variant="footer-link" darkMode content="Credit guide" href="#" target="_blank" />
+                        <Button id="button-f1" variant="footer-link" darkMode href="#" target="_blank">About us</Button>
+                        <Button id="button-f2" variant="footer-link" darkMode href="#" target="_blank">Testimonials</Button>
+                        <Button id="button-f3" variant="footer-link" darkMode href="#" target="_blank">Privacy policy</Button>
+                        <Button id="button-f4" variant="footer-link" darkMode href="#" target="_blank">Credit guide</Button>
                       </div>
                     </Column>
                     <Column>
                       <div>
-                        <Button id="button-f5" variant="footer-link" darkMode content="Media centre" href="#" target="_blank" />
-                        <Button id="button-f6" variant="footer-link" darkMode content="Contact us" href="#" target="_blank" />
-                        <Button id="button-f7" variant="footer-link" darkMode content="Website terms of use" href="#" target="_blank" />
-                        <Button id="button-f8" variant="footer-link" darkMode content="Competition terms and conditions" href="#" target="_blank" />
+                        <Button id="button-f5" variant="footer-link" darkMode href="#" target="_blank">Media centre</Button>
+                        <Button id="button-f6" variant="footer-link" darkMode href="#" target="_blank">Contact us</Button>
+                        <Button id="button-f7" variant="footer-link" darkMode href="#" target="_blank">Website terms of use</Button>
+                        <Button id="button-f8" variant="footer-link" darkMode href="#" target="_blank">Competition terms and conditions</Button>
                       </div>
                     </Column>
                     <Column>
                       <div>
-                        <Button id="button-f5" variant="footer-link" darkMode content="Blog" href="#" target="_blank" />
-                        <Button id="button-f6" variant="footer-link" darkMode content="Products" href="#" target="_blank" />
-                        <Button id="button-f7" variant="footer-link" darkMode content="Careers" href="#" target="_blank" />
-                        <Button id="button-f8" variant="footer-link" darkMode content="Financial services guide" href="#" target="_blank" />
+                        <Button id="button-f5" variant="footer-link" darkMode href="#" target="_blank">Blog</Button>
+                        <Button id="button-f6" variant="footer-link" darkMode href="#" target="_blank">Products</Button>
+                        <Button id="button-f7" variant="footer-link" darkMode href="#" target="_blank">Careers</Button>
+                        <Button id="button-f8" variant="footer-link" darkMode href="#" target="_blank">Financial services guide</Button>
                       </div>
                     </Column>
                     <Column>
                       <div>
-                        <Button id="button-f5" variant="footer-link" darkMode content="Who we compare" href="#" target="_blank" />
-                        <Button id="button-f6" variant="footer-link" darkMode content="Sitemap" href="#" target="_blank" />
-                        <Button id="button-f7" variant="footer-link" darkMode content="Website terms of use" href="#" target="_blank" />
-                        <Button id="button-f8" variant="footer-link" darkMode content="Financial services guide - life insurance products" href="#" target="_blank" />
+                        <Button id="button-f5" variant="footer-link" darkMode href="#" target="_blank">Who we compare</Button>
+                        <Button id="button-f6" variant="footer-link" darkMode href="#" target="_blank">Sitemap</Button>
+                        <Button id="button-f7" variant="footer-link" darkMode href="#" target="_blank">Website terms of use</Button>
+                        <Button id="button-f8" variant="footer-link" darkMode href="#" target="_blank">Financial services guide - life insurance products</Button>
                       </div>
                     </Column>
                   </Row>
@@ -220,7 +222,7 @@ with removed padding/button styling.
     const variant = select('variant', ['primary', 'secondary', 'text', 'link', 'footer-link'], 'primary');
     const darkMode = boolean('darkMode', false);
     const size = select('size', ['sm', 'md', 'lg'], 'md');
-    const content = text('content', 'compare the market');
+    const children = text('content', 'Compare the market');
     const disabled = boolean('disabled',  false);
     const iconSize = select('Icon size', ["lg","xs","sm","1x","2x","3x","4x","5x","6x","7x","8x","9x","10x"], '1x');
     const iconAlignRight = boolean('iconAlignRight', false);
@@ -233,7 +235,7 @@ with removed padding/button styling.
         variant={variant}
         darkMode={darkMode}
         size={size}
-        content={content}
+        
         disabled={disabled}
         icon={faInfoCircle}
         iconSize={iconSize}
@@ -241,7 +243,9 @@ with removed padding/button styling.
         href={href}
         target={target}
         rel={rel}
-      />
+      >
+        {children}
+      </Button>
     );
   }}
 </Story>

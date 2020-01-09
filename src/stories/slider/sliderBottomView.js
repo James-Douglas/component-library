@@ -61,12 +61,13 @@ const SliderBottom = () => {
                 <Button
                   id="text-btn01"
                   variant="tertiary"
-                  content="Click me"
                   disabled={false}
                   href="#/"
                   handleClick={() => setShow(!show)}
                   target="_self"
-                />
+                >
+                  Click me
+                </Button>
               </div>
             </StyledCard>
           </Column>

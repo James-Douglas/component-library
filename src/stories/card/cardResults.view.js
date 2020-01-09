@@ -97,7 +97,9 @@ const CardResultsView = ({ background }) => {
                 display: 'flex', width: '100%', justifyContent: 'left', alignItems: 'center', marginTop: '2rem',
               }}
               >
-                <Button id="a" variant="primary" content="Go to site" />
+                <Button id="a" variant="primary">
+                  Go to site
+                </Button>
               </div>
             </Column>
           </Row>
@@ -107,7 +109,9 @@ const CardResultsView = ({ background }) => {
                 display: 'flex', width: '100%', justifyContent: 'left', alignItems: 'center',
               }}
               >
-                <Button id="b" variant="primary" content="More info" />
+                <Button id="b" variant="primary">
+                  More info
+                </Button>
               </div>
             </Column>
           </Row>
@@ -159,8 +163,12 @@ const CardResultsView = ({ background }) => {
                 display: 'flex', flexDirection: 'column', justifyContent: 'left', alignItems: 'center', marginTop: '2rem',
               }}
               >
-                <Button id="a" variant="primary" content="Go to site" />
-                <Button id="a" variant="primary" content="More info" />
+                <Button id="a" variant="primary">
+                  Go to site
+                </Button>
+                <Button id="a" variant="primary">
+                  More info
+                </Button>
               </div>
             </Column>
           </Row>
@@ -174,7 +182,9 @@ const CardResultsView = ({ background }) => {
       <Container>
         <Row>
           <Column offset={10} cols={2}>
-            <Button id="toggle-button" variant="secondary" content={`Toggle ${isGrid ? 'List' : 'Grid'}`} handleClick={toggleView} />
+            <Button id="toggle-button" variant="secondary" handleClick={toggleView}>
+              {`Toggle ${isGrid ? 'List' : 'Grid'}`}
+            </Button>
           </Column>
         </Row>
         <CardGroup id="test" cols={isGrid ? 3 : 1}>

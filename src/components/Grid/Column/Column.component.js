@@ -312,6 +312,9 @@ Column.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
+  /**
+   * The column contents.
+   */
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -319,11 +322,25 @@ Column.propTypes = {
   /**
    * The align-items property is related to CSS layout.
    */
-  valign: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'baseline', 'stretch']),
+  valign: PropTypes.oneOf([
+    'flex-start',
+    'flex-end',
+    'center',
+    'baseline',
+    'stretch',
+  ]),
   /**
    * The justify-content property is related to CSS layout.
    */
-  halign: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'initial', 'inherit']),
+  halign: PropTypes.oneOf([
+    'flex-start',
+    'flex-end',
+    'center',
+    'space-between',
+    'space-around',
+    'initial',
+    'inherit',
+  ]),
 };
 
 Column.defaultProps = {
