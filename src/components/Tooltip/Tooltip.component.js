@@ -3,11 +3,9 @@ import styled, { createGlobalStyle, css, ThemeProvider } from 'styled-components
 import getTheme from 'utils/getTheme';
 import PropTypes from 'prop-types';
 import Tippy from '@tippy.js/react';
-import { animateFill } from 'tippy.js';
+import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/dist/tippy.css';
-import 'tippy.js/dist/backdrop.css';
 import 'tippy.js/animations/scale.css';
-import 'tippy.js/animations/shift-away.css';
 import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
 import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
@@ -149,7 +147,6 @@ const Tooltip = ({
     }
   };
 
-
   return (
     <ThemeProvider theme={getTheme()}>
       <StyledTooltipWrapper justifyEnd={justifyEnd} desktop={desktop}>
@@ -158,10 +155,8 @@ const Tooltip = ({
           content={getContent(title, body)}
           theme="manor"
           interactive
-          animateFill
-          plugins={[animateFill]}
           arrow={desktop}
-          distance={desktop ? 5 : 0}
+          distance={desktop ? '0.8rem' : 0}
           animation="scale"
           duration={[150, 75]}
           hideOnClick={false}
@@ -171,6 +166,7 @@ const Tooltip = ({
           visible={tippyVisible}
           placement={placement}
           maxWidth={500}
+          delay={125}
         >
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <StyledTooltipIcon
@@ -244,7 +240,7 @@ const defaultProps = {
   body: '',
   justifyEnd: false,
   screenReaderLabel: '',
-  placement: 'bottom-end',
+  placement: 'left',
 };
 
 
