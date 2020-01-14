@@ -1,0 +1,86 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select, array, object } from '@storybook/addon-knobs';
+
+import Button from '../../components/Button/Button.component';
+import EmptyState from '../../components/EmptyState/EmptyState.component';
+
+import Container from '../../components/Grid/Container/Container.component';
+import Row from '../../components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
+
+<Meta title="Components|EmptyState" component={EmptyState} />
+
+# EmptyState
+
+TheEmptyState
+
+<Preview>
+  <Story name="empty state">
+    {() => {
+      return (
+        <EmptyState>
+          <div style={{fontSize: '20px', lineHeight: '30px'}}>
+            Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+          </div>
+        </EmptyState>
+      );
+    }}
+  </Story>
+  <Story name="empty state with primary button">
+    {() => {
+      return (
+        <EmptyState picture="https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png">
+          <div style={{fontSize: '20px', lineHeight: '30px'}}>
+            Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center'}}>
+            <div style={{textAlign: 'center', marginTop: '30px'}}>
+              <Button id="primary-btn01" variant="primary" size="sm" tagType='submit' width='120px'>Learn more</Button>
+            </div>
+           </div>
+        </EmptyState>
+      );
+    }}
+  </Story>
+  <Story name="empty state with primary and secondary buttons">
+      {() => {
+        return (
+          <EmptyState picture="https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png">
+            <div style={{fontSize: '20px', lineHeight: '30px'}}>
+              Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
+              <div style={{textAlign: 'center', marginTop: '30px'}}>
+               <Container>
+                 <Row>
+                   <Column cols={6}>
+                      <Button id="primary-btn02" variant="primary" size="sm" tagType='submit' width='120px'>Learn more</Button>
+                    </Column>
+                   <Column cols={6}>
+                      <Button id="primary-btn03" variant="secondary" size="sm" tagType='submit' width='120px'>Learn more</Button>
+                   </Column>
+                 </Row>
+               </Container>
+              </div>
+             </div>
+          </EmptyState>
+        );
+      }}
+    </Story>
+    <Story name="empty state with text link">
+        {() => {
+          return (
+            <EmptyState picture="https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png">
+              <div style={{fontSize: '20px', lineHeight: '30px'}}>
+                Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center'}}>
+                <div style={{textAlign: 'center', marginTop: '30px'}}>
+                   <Button id="text-btn01sdfsdf" variant="link" href="#" target="_blank">Learn more</Button>
+                </div>
+               </div>
+            </EmptyState>
+          );
+        }}
+      </Story>
+</Preview>
