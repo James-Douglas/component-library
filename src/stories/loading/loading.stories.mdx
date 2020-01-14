@@ -1,0 +1,66 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+import { useState } from 'react';
+import Loading from '../../components/Loading/Loading';
+
+<Meta title="Components|Loading" component={Loading} />
+
+# Loading
+<Story name="Loading">
+  {() => {
+   return (
+      <Loading />
+    )
+  }}
+</Story>
+
+# Loading with stops
+<Story name="Loading with stops">
+  {() => {
+    const [loadVar, isLoadVar] = useState(false);
+    setTimeout(() => {
+        isLoadVar(true);
+      },
+     3000);
+    const optionalProps = {
+      messages: [
+        'Checking your details',
+        'Finding great transaction accounts',
+        'Sorting by lowest fees',
+        'Finding great transaction accounts',
+        'Sorting by lowest fees',
+      ],
+      delayLoading: true
+    };
+   return (
+    <>
+    {!loadVar &&  <Loading {...optionalProps}  onLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
+    {loadVar &&  <div style={{fontSize: '30px'}}>Loading done</div>}
+      </>
+    )
+  }}
+</Story>
+
+# Loading without stops
+<Story name="Loading with props">
+  {() => {
+    const [loadVar, isLoadVar] = useState(false);
+    setTimeout(() => {
+        isLoadVar(true);
+      },
+     3000);
+    const optionalProps = {
+      messages: [
+        'Checking your details',
+        'Finding great transaction accounts',
+        'Sorting by lowest fees',
+        'Finding great transaction accounts',
+        'Sorting by lowest fees',
+      ],
+      delayLoading: true
+    };
+   return (
+      <Loading {...optionalProps}  onLoaded={() => {}} />
+    )
+  }}
+</Story>
