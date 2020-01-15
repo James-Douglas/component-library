@@ -3,34 +3,39 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import Card from './Card.component';
+import { spacingPropTypes } from '../../utils/applySpacing';
 
 const StyledCardGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
-  margin: ${(props) => `0 -${props.theme.spacing['4']}`};
+  margin: ${(props) => `0 -${props.theme.spacing[4]}`};
 `;
 
 const StyledCardGroupChildren = styled.div`
+  display: flex;
+  width: ${(props) => (props.cols === 1 ? '100%' : `${100 / props.cols}%`)};
   padding-right: ${(props) => props.theme.spacing['8']};
   padding-left: ${(props) => props.theme.spacing['8']};
 `;
 
-const getChildren = (children, cols, id) => {
-  const childStyles = { width: cols === 1 ? '100%' : `${100 / cols}%` };
+const getChildren = (children, cols, cardProps) => {
+  const { margin, padding } = cardProps;
   return children.map((child) => (
     // eslint-disable-next-line react/no-array-index-key
-    <StyledCardGroupChildren id={`card-group-${id}`} style={childStyles} key={`card-group-${id}-${child.props.id}`}>
-      {child}
+    <StyledCardGroupChildren cols={cols} key={`card-group-${child.props.id}`}>
+      {React.cloneElement(child, { margin, padding })}
     </StyledCardGroupChildren>
   ));
 };
 
-const CardGroup = ({ cols, children, id }) => (
+const CardGroup = ({
+  cols, children, id, cardProps,
+}) => (
   <ThemeProvider theme={getTheme()}>
-    <StyledCardGroup>
-      {getChildren(children, cols, id)}
+    <StyledCardGroup id={id}>
+      {getChildren(children, cols, cardProps)}
     </StyledCardGroup>
   </ThemeProvider>
 );
@@ -57,11 +62,19 @@ CardGroup.propTypes = {
       }),
     ),
   ]),
+  /**
+   * Can be used to set margin & padding on all cards within the CardGroup.
+   */
+  cardProps: PropTypes.shape({
+    margin: spacingPropTypes,
+    padding: spacingPropTypes,
+  }),
 };
 
 CardGroup.defaultProps = {
   cols: 1,
   children: [],
+  cardProps: {},
 };
 
 export default CardGroup;

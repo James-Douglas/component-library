@@ -1,8 +1,10 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, number, select, array } from '@storybook/addon-knobs';
 import Card from '../../components/Card/Card.component.js';
 import CardGroup from '../../components/Card/CardGroup.component.js';
 import CardResultsView from './cardResults.view';
+import Container from '../../components/Grid/Container/Container.component'
+import getTheme from 'utils/getTheme';
 
 <Meta title="Components|Cards" component={Card} />
 
@@ -13,11 +15,15 @@ which can be used to compose a group of cards.
 
 <Preview>
   <Story name="card">
-    <Card id='mdx-card'>
-      <div className="flex items-center justify-center w-full">
-        card content
+    <>
+    <Container>
+    <Card id='mdx-card' margin={['12']} padding={['36', '12']}>
+      <div>
+        <p>Card content</p>
       </div>
     </Card>
+    </Container>
+    </>
   </Story>
 </Preview>
 
@@ -28,15 +34,15 @@ which can be used to compose a group of cards.
 
 <Preview>
   <Story name="card group">
-    <CardGroup id='mdx-card-group'>
+    <CardGroup id='mdx-card-group' cols={2} cardProps={{margin:['4'], padding:['12']}}>
       <Card id='mdx-card-1'>
-        <div className="flex items-center justify-center w-full">
-          Card A
+        <div>
+          <p>Card A</p>
         </div>
       </Card>
       <Card id='mdx-card-2'>
-        <div className="flex items-center justify-center w-full">
-          Card B
+        <div>
+          <p>Card B</p>
         </div>
       </Card>
     </CardGroup>
@@ -49,67 +55,78 @@ which can be used to compose a group of cards.
 <Story name="card with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const id = text('id', 'test');
-    const cols = select('cols', [1,2,3,4,5,6,7,8,9,10,11,12], 1);
+    const cols = select('cols', [1,2,3,4,5,6,7,8,9,10,11,12], 3);
+    const options = Object.keys(getTheme().spacing);
+    const mt = select('Margin Top', options, '8');
+    const mr = select('Margin Right', options, '0');
+    const mb = select('Margin Bottom', options, '0');
+    const ml = select('Margin Left', options, '0');
+    const pt = select('Padding Top', options, '8');
+    const pr = select('Padding Right', options, '0');
+    const pb = select('Padding Bottom', options, '0');
+    const pl = select('Padding Left', options, '8');
+    const margin = [mt, mr, mb, ml];
+    const padding = [pt, pr, pb, pl]
     return (
-      <CardGroup id={id} cols={cols}>
+      <CardGroup id={id} cols={cols} cardProps={{margin, padding}}>
         <Card id='card-a'>
-          <div className="flex items-center justify-center w-full">
-            Card A
+          <div>
+            <p>Card A</p>
           </div>
         </Card>
         <Card id='card-b'>
-          <div className="flex items-center justify-center w-full">
-            Card B
+          <div>
+            <p>Card B</p>
           </div>
         </Card>
         <Card id='card-c'>
-          <div className="flex items-center justify-center w-full">
-            Card C
+          <div>
+            <p>Card C</p>
           </div>
         </Card>
         <Card id='card-d'>
-          <div className="flex items-center justify-center w-full">
-            Card D
+          <div>
+            <p>Card D</p>
           </div>
         </Card>
         <Card id='card-e'>
-          <div className="flex items-center justify-center w-full">
-            Card E
+          <div>
+            <p>Card E</p>
           </div>
         </Card>
         <Card id='card-f'>
-          <div className="flex items-center justify-center w-full">
-            Card F
+          <div>
+            <p>Card F</p>
           </div>
         </Card>
         <Card id='card-g'>
-          <div className="flex items-center justify-center w-full">
-            Card G
+          <div>
+            <p>Card G</p>
           </div>
         </Card>
         <Card id='card-h'>
-          <div className="flex items-center justify-center w-full">
-            Card H
+          <div>
+            <p>Card H</p>
           </div>
         </Card>
         <Card id='card-i'>
-          <div className="flex items-center justify-center w-full">
-            Card I
+          <div>
+            <p>Card I</p>
           </div>
         </Card>
         <Card id='card-j'>
-          <div className="flex items-center justify-center w-full">
-            Card J
+          <div>
+            <p>Card J</p>
           </div>
         </Card>
         <Card id='card-k'>
-          <div className="flex items-center justify-center w-full">
-            Card K
+          <div>
+            <p>Card K</p>
           </div>
         </Card>
         <Card id='card-l'>
-          <div className="flex items-center justify-center w-full">
-            Card L
+          <div>
+            <p>Card L</p>
           </div>
         </Card>
       </CardGroup>
