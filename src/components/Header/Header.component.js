@@ -9,13 +9,13 @@ import Contact from './Contact/Contact.component';
 const StyledHeader = styled.header`
   display: flex;
   width: 100%;
-  background: ${(props) => (props.theme.colors.white)}; 
-  z-index: ${(props) => (props.theme.zIndex[50])}; 
-  height: ${(props) => (props.stuck ? '4.4rem' : '6rem')}; 
-  transition: ${(props) => (props.stuck ? 'all 200ms ease' : 'none')}; 
-  box-shadow: ${(props) => (props.stuck ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : 'none')};
-  position: ${(props) => (props.isSticky ? 'fixed' : 'inherit')}; 
-  top: ${(props) => (props.isSticky ? '0' : 'inherit')};
+  background: ${({ theme }) => (theme.header.background)}; 
+  z-index: ${({ theme }) => (theme.zIndex[50])}; 
+  height: ${({ theme, stuck }) => (stuck ? theme.header.heightStuck : theme.header.height)}; 
+  transition: ${({ theme, stuck }) => (stuck ? 'all 200ms ease' : 'none')}; 
+  box-shadow: ${({ theme, stuck }) => (stuck ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : 'none')};
+  position: ${({ isSticky }) => (isSticky ? 'fixed' : 'inherit')}; 
+  top: ${({ isSticky }) => (isSticky ? '0' : 'inherit')};
 `;
 
 const StyledLogoWrap = styled.header`

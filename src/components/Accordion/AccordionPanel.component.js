@@ -10,20 +10,18 @@ import FluidContainer from '../Grid/Container/Fluid.component';
 
 const StyledAccordionPanel = styled.div`
   overflow: hidden;
-  border: ${(props) => (props.isFocus ? `1px solid ${props.theme.colors.primaryLight}` : '1px solid transparent')};
+  border: ${({ theme, isFocus }) => (isFocus ? `1px solid ${theme.colors.primaryLight}` : theme.borders.transparent)};
   border-bottom: ${(props) => {
-    const { isFocus, isVisible } = props;
-    let borderBottom;
-    if ((isVisible && isFocus) || (!isVisible && isFocus)) {
-      borderBottom = `1px solid ${props.theme.colors.primaryLight}`;
-    } else if (isVisible && !isFocus) {
-      borderBottom = `2px solid ${props.theme.colors.greyDark}`;
-    } else {
-      borderBottom = '1px solid rgba(0,0,0,.1)';
+    const { theme, isFocus, isVisible } = props;
+    if (isFocus) {
+      return `1px solid ${theme.colors.primaryLight}`;
     }
-    return borderBottom;
+    if (isVisible) {
+      return `2px solid ${theme.colors.greyDark}`;
+    }
+    return '1px solid rgba(0,0,0,.1)';
   }};
-  background: ${(props) => props.theme.colors.white}; 
+  background: ${({ theme }) => theme.accordion.background}; 
   transition: color 2s linear;
   &:focus,
   &:active,  
@@ -33,15 +31,15 @@ const StyledAccordionPanel = styled.div`
 `;
 
 const StyledAccordionBody = styled.div`
-  line-height: ${(props) => props.theme.lineHeight.normal};
-  margin: ${(props) => props.theme.spacing['0']}; 
-  background: ${(props) => props.theme.colors.white}; 
-  color: rgba(0,0,0,0.8);
+  line-height: ${({ theme }) => theme.lineHeight.normal};
+  margin: ${({ theme }) => theme.spacing['0']}; 
+  background: ${({ theme }) => theme.accordion.background}; 
+  color: ${({ theme }) => theme.accordion.color};
   transform-origin: top;
   transition: transform 0.25s;
-  transform: ${(props) => (props.isVisible ? 'translateY(0)' : 'translateY(-100%)')}; 
-  height:  ${(props) => (props.isVisible ? 'auto' : 0)};                   
-  padding: ${(props) => (props.isVisible ? `0 0 ${props.theme.spacing['40']}` : 0)};
+  transform: ${({ isVisible }) => (isVisible ? 'translateY(0)' : 'translateY(-100%)')}; 
+  height:  ${({ isVisible }) => (isVisible ? 'auto' : 0)};                   
+  padding: ${({ isVisible, theme }) => (isVisible ? `0 0 ${theme.spacing['40']}` : 0)};
   &:focus,
   &:active,  
   &:hover {
@@ -53,11 +51,11 @@ const StyledAccordionHead = styled.div`
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  background: ${(props) => (props.theme.colors.white)}; 
+  background: ${({ theme }) => (theme.accordion.background)}; 
   z-index: ${(props) => (props.theme.zIndex[10])}; 
   transition: font-size 0.25s;
-  padding: ${(props) => (`${props.theme.spacing['24']} 0`)};
-  font-size: ${(props) => (props.isVisible ? props.theme.fontSize['2xl'] : props.theme.fontSize.xl)}; 
+  padding: ${({ theme }) => `${theme.spacing[24]} 0`};
+  font-size: ${({ isVisible, theme }) => (isVisible ? theme.fontSize['2xl'] : theme.fontSize.xl)}; 
   &:focus,
   &:active,  
   &:hover {

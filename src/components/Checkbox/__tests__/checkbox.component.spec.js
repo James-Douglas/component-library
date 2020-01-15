@@ -2,6 +2,9 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 import Checkbox, { renderIcon } from '../Checkbox.component';
+import getTheme from '../../../utils/getTheme';
+
+const theme = getTheme();
 
 describe('renderIcon()', () => {
   // eslint-disable-next-line react/prop-types
@@ -51,7 +54,7 @@ describe('Checkbox.component', () => {
     fireEvent.click(label, { button: 0 });
 
     expect(mockTestClick).toHaveBeenCalled();
-    expect(labelStyle).toHaveStyle('background: #FFFFFF');
+    expect(labelStyle).toHaveStyle(`background: ${theme.checkbox.background}`);
     expect(checkbox.getAttribute('disabled')).toBe(null);
     expect(container.querySelector('#child-content')).toBeDefined();
     expect(container.getElementsByTagName('svg')).toBeDefined();
@@ -74,11 +77,10 @@ describe('Checkbox.component', () => {
     const labelStyle = label.firstChild;
     fireEvent.click(label, { button: 0 });
 
-    expect(labelStyle).toHaveStyle('border-color: #EF425E');
+    expect(labelStyle).toHaveStyle(`border: ${theme.borders.invalid}`);
     expect(checkbox.getAttribute('disabled')).toBe(null);
     expect(container.querySelector('#child-content')).toBeDefined();
     expect(container.getElementsByTagName('svg')).toBeDefined();
-    expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('accepts a prefill value', () => {

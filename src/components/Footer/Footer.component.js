@@ -10,7 +10,7 @@ import FluidContainer from '../Grid/Container/Fluid.component';
 
 const StyledFooterContainer = styled.div`
   width: 100%;
-  background: ${(props) => props.theme.colors.greyLighterAA}; 
+  background: ${({ theme }) => theme.footer.background}; 
   flex-grow: 1;
   flex-shrink: 0;
 `;
@@ -18,16 +18,16 @@ const StyledFooterContainer = styled.div`
 const StyledFooterDisclaimer = styled.div`
   width: 100%;
   display: flex;
-  padding: ${(props) => (`${props.theme.spacing['32']} 0 ${props.theme.spacing['16']} 0`)};
-  font-weight: ${(props) => props.theme.fontWeight.normal}; 
-  font-size: ${(props) => props.theme.fontSize.xs}; 
-  line-height: ${(props) => props.theme.lineHeight.snug}; 
+  padding: ${({ theme }) => (`${theme.spacing['32']} 0 ${theme.spacing['16']} 0`)};
+  font-weight: ${({ theme }) => theme.fontWeight.normal}; 
+  font-size: ${({ theme }) => theme.fontSize.xs}; 
+  line-height: ${({ theme }) => theme.lineHeight.snug}; 
 `;
 
 const StyledFooterCopy = styled.div`
-  font-weight: ${(props) => props.theme.fontWeight.normal}; 
-  font-size: ${(props) => props.theme.fontSize.sm}; 
-  line-height: ${(props) => props.theme.lineHeight.snug}; 
+  font-weight: ${({ theme }) => theme.fontWeight.normal}; 
+  font-size: ${({ theme }) => theme.fontSize.sm}; 
+  line-height: ${({ theme }) => theme.lineHeight.snug}; 
 `;
 
 
@@ -37,7 +37,7 @@ const StyledFooterBar = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: ${(props) => (`${props.theme.spacing['8']} 0 ${props.theme.spacing['8']} 0`)};
+  padding: ${({ theme }) => (`${theme.spacing['8']} 0 ${theme.spacing['8']} 0`)};
   min-height: 5.4rem;
 `;
 
@@ -54,10 +54,10 @@ const StyledScrollTop = styled.div`
   height: 3rem;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  padding: ${(props) => (props.theme.spacing['8'])};
+  border-radius: ${({ theme }) => (theme.borderRadius.full)};
+  padding: ${({ theme }) => (theme.spacing['8'])};
   cursor: pointer;
-  border: ${(props) => (`1px solid ${props.theme.colors.black}`)};
+  border: ${({ theme }) => theme.footer.scrollTopBorder};
   fill: currentColor;
 `;
 

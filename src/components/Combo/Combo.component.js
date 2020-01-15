@@ -8,16 +8,65 @@ import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 
 
 const StyledDropdownList = styled.div`
-  position: ${(props) => (props.position === 'absolute' ? 'absolute' : 'relative')}; 
+  position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')}; 
   width: 100%;
-  display:  ${(props) => (props.position === 'hidden' ? 'none' : 'block')}; 
-  z-index: ${(props) => (props.theme.zIndex[20])}; 
-  background: ${(props) => (props.theme.colors.white)};  
-  box-shadow: ${(props) => (props.theme.boxShadow.md)};  
-  margin-top: ${(props) => (props.theme.spacing[8])};
+  display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')}; 
+  z-index: ${({ theme }) => (theme.zIndex[20])}; 
+  background: ${({ theme }) => (theme.combo.list.background)};  
+  box-shadow: ${({ theme }) => (theme.combo.list.shadow)};  
+  margin-top: ${({ theme }) => (theme.spacing[8])};
   &:focus {
     outline: none;
   }
+`;
+
+const StyledList = styled.ul`
+  width:  100%;
+  padding: 0;
+  margin-top: ${({ theme }) => (theme.spacing[8])};  
+  z-index: ${({ theme }) => (theme.zIndex[30])}; 
+  color: ${({ theme }) => (theme.combo.list.color)}; 
+`;
+
+const StyledListItem = styled.li`
+  list-style-type: none;
+  cursor: pointer;
+  border: ${({ theme }) => theme.borders.transparent};
+  padding:  ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};  
+  font-size: ${({ theme }) => (theme.fontSize.base)}; 
+  color: ${({ theme }) => (theme.combo.list.item.color)}; 
+  transition: background-color 0.4s ease;
+  &:nth-last-child(1) {
+    padding-bottom:  ${({ theme }) => theme.spacing[20]};  
+  }
+  &:hover {
+    background: ${({ theme }) => theme.combo.list.item.backgroundHover}; 
+  }
+  &:focus {
+    outline: none;
+    border: ${({ theme }) => theme.combo.list.item.borderFocus};
+  }
+`;
+
+const StyledButtonWrap = styled.div`
+  justify-content: space-around;
+  text-align: center;
+  border: ${({ theme }) => theme.combo.list.border};
+  padding:  ${({ theme }) => `${theme.spacing[8]} 0`};  
+  background: ${({ theme }) => (theme.combo.button.background)};
+  &:focus {
+    outline: none;
+    border: ${({ theme }) => theme.combo.button.borderFocus};  
+    border-width: ${({ theme }) => theme.spacing.px}; /* IE 11 specific fix */ 
+  }
+  &:hover {
+    background: ${({ theme }) => (theme.combo.button.backgroundHover)};  
+  }
+  font-size: ${({ theme }) => theme.fontSize.base};
+`;
+
+const StyledDiv = styled.div`
+  width: 100%;
 `;
 
 export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
@@ -28,35 +77,6 @@ export function comboDropdownList(linkText, linkHref, blueButton, currentPrefill
     </StyledDropdownList>
   );
 }
-
-const StyledList = styled.ul`
-  width:  100%;
-  padding: 0;
-  margin-top: ${(props) => (props.theme.spacing[8])};  
-  z-index: ${(props) => (props.theme.zIndex[30])}; 
-  color: ${(props) => (props.theme.colors.black)}; 
-`;
-
-const StyledListItem = styled.li`
-  list-style-type: none;
-  cursor: pointer;
-  border: 1px solid transparent;
-  padding:  ${(props) => `${props.theme.spacing[8]} ${props.theme.spacing[12]}`};  
-  font-size: ${(props) => (props.theme.fontSize.base)}; 
-  color: ${(props) => (props.theme.colors.greyDarker)}; 
-  transition: background-color 0.4s ease;
-  &:nth-last-child(1) {
-    padding-bottom:  ${(props) => props.theme.spacing[20]};  
-  }
-  &:hover {
-    background: ${(props) => props.theme.colors.greyLighter}; 
-  }
-  &:focus {
-    outline: none;
-    border: ${(props) => `1px solid ${props.theme.colors.blueLight}`};
-  }
-`;
-
 
 export function comboDataList(filteredValues, handleSelectItem, filteredValuesRefs) {
   return (
@@ -78,22 +98,6 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
   );
 }
 
-const StyledButtonWrap = styled.div`
-  justify-content: space-around;
-  text-align: center;
-  border: 1px solid transparent;
-  padding:  ${(props) => `${props.theme.spacing[8]} 0`};  
-  background: ${(props) => (props.theme.colors.whiteLight)};
-  &:focus {
-    outline: none;
-    border: ${(props) => (`1px solid ${props.theme.colors.blueLight}`)};  
-    border-width: 1px; /* IE 11 specific fix */ 
-  }
-  &:hover {
-    background: ${(props) => (props.theme.colors.whiteLight)};  
-  }
-  font-size: ${(props) => props.theme.fontSize.base};
-`;
 
 export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton) {
   return (
@@ -115,12 +119,6 @@ export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, 
     </>
   );
 }
-
-
-const StyledDiv = styled.div`
-  width: 100%;
-`;
-
 
 const Combo = ({
   id,

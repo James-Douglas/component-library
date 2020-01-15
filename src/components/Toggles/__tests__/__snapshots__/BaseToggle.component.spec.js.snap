@@ -22,14 +22,14 @@ exports[`BaseToggle renders with minimal props 1`] = `
   width: 0;
   height: 0;
   position: absolute;
-}
-
-.c1:checked + label svg {
-  color: #FFFFFF;
   fill: currentColor;
   box-shadow: none;
   -webkit-transition: all 200ms ease-out;
   transition: all 200ms ease-out;
+}
+
+.c1:checked + label svg {
+  color: #FFFFFF;
 }
 
 .c1:disabled + label:hover {
@@ -38,7 +38,7 @@ exports[`BaseToggle renders with minimal props 1`] = `
 
 .c1:disabled + label {
   color: #CCCCCC;
-  border: 1px solid #CCCCCC;
+  border: 1px solid transparent;
   fill: currentColor;
 }
 

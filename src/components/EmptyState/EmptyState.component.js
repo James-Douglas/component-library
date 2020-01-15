@@ -18,7 +18,7 @@ const StyledEmptyStateWrap = styled.div`
   max-width: 375px;
   text-align: center;
   & > * {
-    margin-bottom: ${(props) => props.theme.spacing[32]};
+    margin-bottom: ${({ theme }) => theme.spacing[32]};
   }
 `;
 const StyledEmptyStatePicture = styled.div`

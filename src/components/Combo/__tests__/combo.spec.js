@@ -2,7 +2,9 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Combo from '../Combo.component';
 import 'jest-styled-components';
+import getTheme from '../../../utils/getTheme';
 
+const theme = getTheme();
 const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fugiat veniam minus', 'et presentation tempora', 'xfque dfsdf', 'presentation dfsdf que ffgddfg', 'presentation dfsdf que'];
 
 describe('Combo', () => {
@@ -112,20 +114,20 @@ describe('Combo', () => {
     expect(container).not.toHaveClass('item-manual-lookup');
   });
 
-  xit('check default border property', () => {
+  it('check default border property', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
-    const inputWrap = container.querySelector('.input-wrap');
-    expect(inputWrap).toHaveStyleRule('border: 1px solid #DDDDDD');
+    const inputWrap = container.querySelector('input').parentNode;
+    expect(inputWrap).toHaveStyleRule(`border: ${theme.borders.component}`);
   });
 
-  xit('renders correct when focus and blur', () => {
+  it('renders correct when focus and blur', () => {
     const { container } = render(<Combo prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
-    const inputWrap = container.querySelector('.input-wrap');
+    const inputWrap = container.querySelector('input').parentNode;
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
-    expect(inputWrap).toHaveStyleRule('border: 1px solid #1780F3');
+    expect(inputWrap).toHaveStyleRule(`border: ${theme.combo.list.item.borderFocus}`);
     inputField.blur();
-    expect(inputWrap).not.toHaveStyleRule('border: 1px solid #1780F3');
+    expect(inputWrap).not.toHaveStyleRule(`border: ${theme.combo.list.item.borderFocus}`);
   });
 
   it('accessibility - arrow down', () => {

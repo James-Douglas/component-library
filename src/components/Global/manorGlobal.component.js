@@ -16,21 +16,21 @@ export const manor = css`
     font-family: 'SourceSansPro';
     src: url(${SourceSansProSrc}) format('woff2'),
     url(${SourceSansProUrl}) format('woff');
-    font-weight: ${(props) => props.theme.fontWeight.normal};
+    font-weight: ${({ theme }) => theme.fontWeight.normal};
     font-style: normal;
   }
   @font-face {
     font-family: 'SourceSansPro';
     src: url(${SourceSansProSemiBoldSrc}) format('woff2'),
     url(${SourceSansProSemiBoldUrl}) format('woff');
-    font-weight: ${(props) => props.theme.fontWeight.semibold};
+    font-weight: ${({ theme }) => theme.fontWeight.semibold};
     font-style: normal;
   }
   @font-face {
     font-family: 'SourceSansPro';
     src: url(${SourceSansProBoldSrc}) format('woff2'),
     url(${SourceSansProBoldUrl}) format('woff');
-    font-weight: ${(props) => props.theme.fontWeight.bold};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
     font-style: normal;
   }
   html {
@@ -45,57 +45,57 @@ export const manor = css`
     box-sizing: inherit;
   }
   h1, h2, h3, h4, h5, h6, p, ul, ol, ul li, ol l input, label, button, textarea, .subtitle-primary, .subtitle-secondary, .microcopy, .overline, .subscript, ::placeholder {
-    font-weight: ${(props) => props.theme.fontWeight.normal};
+    font-weight: ${({ theme }) => theme.fontWeight.normal};
     font-family: SourceSansPro, Arial, sans-serif;
   }
   h1 {
-    line-height: ${(props) => props.theme.lineHeight.tighter};
-    font-size: ${(props) => props.theme.fontSize['4xl']};
-    margin:  ${(props) => `0 0 ${props.theme.spacing['24']}`};
+    line-height: ${({ theme }) => theme.lineHeight.tighter};
+    font-size: ${({ theme }) => theme.fontSize['4xl']};
+    margin:  ${({ theme }) => `0 0 ${theme.spacing['24']}`};
   }
   h2 {
-    line-height: ${(props) => props.theme.lineHeight.tighter};
-    font-size: ${(props) => props.theme.fontSize['4xl']};
-    margin:  ${(props) => `0 0 ${props.theme.spacing['20']}`};
+    line-height: ${({ theme }) => theme.lineHeight.tighter};
+    font-size: ${({ theme }) => theme.fontSize['4xl']};
+    margin:  ${({ theme }) => `0 0 ${theme.spacing['20']}`};
   }
   h3 {
-    line-height: ${(props) => props.theme.lineHeight.tighter};
-    font-size: ${(props) => props.theme.fontSize['2xl']};
-    margin:  ${(props) => `0 0 ${props.theme.spacing['16']}`};
+    line-height: ${({ theme }) => theme.lineHeight.tighter};
+    font-size: ${({ theme }) => theme.fontSize['2xl']};
+    margin:  ${({ theme }) => `0 0 ${theme.spacing['16']}`};
   } 
   h4 {
-    line-height: ${(props) => props.theme.lineHeight.snug};
-    font-size: ${(props) => props.theme.fontSize.lg};
-    margin:  ${(props) => `0 0 ${props.theme.spacing['16']}`};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    font-size: ${({ theme }) => theme.fontSize.lg};
+    margin:  ${({ theme }) => `0 0 ${theme.spacing['16']}`};
   }  
    
   h5 {
-    line-height: ${(props) => props.theme.lineHeight.snug};
-    font-size: ${(props) => props.theme.fontSize.xl};
-    margin:  ${(props) => `0 0 ${props.theme.spacing['16']}`};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    margin:  ${({ theme }) => `0 0 ${theme.spacing['16']}`};
   }   
   h6 {
-    font-weight: ${(props) => props.theme.fontWeight.bold};
-    line-height: ${(props) => props.theme.lineHeight.snug};
-    font-size: ${(props) => props.theme.fontSize.base};
-    margin:  ${(props) => `0 0 ${props.theme.spacing['12']}`};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    margin:  ${({ theme }) => `0 0 ${theme.spacing['12']}`};
   }   
   p {
-    line-height: ${(props) => props.theme.lineHeight.snug};
-    font-size: ${(props) => props.theme.fontSize.base};
-    margin: 0 0 ${(props) => props.theme.spacing[12]};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    margin: 0 0 ${({ theme }) => theme.spacing[12]};
   }
   p.body-secondary {
-    font-size: ${(props) => props.theme.fontSize.sm};
+    font-size: ${({ theme }) => theme.fontSize.sm};
   }
   ol, ul {
     list-style: none;
     margin: 0;
   }
   ul {
-    padding: ${(props) => props.theme.spacing[16]};
-    line-height: ${(props) => props.theme.lineHeight.tighter};
-    font-size: ${(props) => props.theme.fontSize.sm};
+    padding: ${({ theme }) => theme.spacing[16]};
+    line-height: ${({ theme }) => theme.lineHeight.tighter};
+    font-size: ${({ theme }) => theme.fontSize.sm};
     list-style-type: disc;
   }
   button {
@@ -105,40 +105,37 @@ export const manor = css`
     cursor: pointer;
   }
   ::placeholder {
-    font-weight: ${(props) => props.theme.fontWeight.normal};
-    font-style: italic;
-    font-size: ${(props) => props.theme.fontSize.base};
-    line-height: ${(props) => props.theme.lineHeight.snug};
+    ${({ theme }) => ({ ...theme.placeholder })}
   }
   .subtitle-primary {
-    font-weight: ${(props) => props.theme.fontWeight.normal};
-    line-height: ${(props) => props.theme.lineHeight.snug};
-    font-size: ${(props) => props.theme.fontSize.lg};
+    font-weight: ${({ theme }) => theme.fontWeight.normal};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    font-size: ${({ theme }) => theme.fontSize.lg};
   }
   .subtitle-secondary {
-    font-weight: ${(props) => props.theme.fontWeight.bold};
-    font-size: ${(props) => props.theme.fontSize.base};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.base};
   }
   .microcopy {
-    font-weight: ${(props) => props.theme.fontWeight.normal};
-    font-size: ${(props) => props.theme.fontSize.xs};
-    line-height: ${(props) => props.theme.lineHeight.snug};
+    font-weight: ${({ theme }) => theme.fontWeight.normal};
+    font-size: ${({ theme }) => theme.fontSize.xs};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
   }
   .overline {
-    line-height: ${(props) => props.theme.lineHeight.snug};
-    font-size: ${(props) => props.theme.fontSize['2xs']};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    font-size: ${({ theme }) => theme.fontSize['2xs']};
     letter-spacing: 0.15rem;
-    font-weight: ${(props) => props.theme.fontWeight.semibold};
+    font-weight: ${({ theme }) => theme.fontWeight.semibold};
     text-transform: uppercase;
-    color: ${(props) => props.theme.colors.placeholderText};
+    color: ${({ theme }) => theme.colors.placeholderText};
   }
   .subscript {
-    line-height: ${(props) => props.theme.lineHeight.snug};
-    font-size: ${(props) => props.theme.fontSize['2xs']};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    font-size: ${({ theme }) => theme.fontSize['2xs']};
     letter-spacing: 0.15rem;
-    font-weight: ${(props) => props.theme.fontWeight.normal};
+    font-weight: ${({ theme }) => theme.fontWeight.normal};
     text-transform: uppercase;
-    color: ${(props) => props.theme.colors.greyDarkest};
+    color: ${({ theme }) => theme.colors.greyDarkest};
   }
   .sr-only {
     position: absolute;

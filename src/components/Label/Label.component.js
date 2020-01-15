@@ -1,22 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
+import getTheme from '../../utils/getTheme';
 
 const StyledLabelWrap = styled.div`
   display: flex;
   align-items: flex-end;
-  padding-bottom: 0.4rem;
+  padding-bottom: ${({ theme }) => theme.spacing[4]};
   width: 100%;
 `;
 
 const StyledLabel = styled.label`
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  color: ${({ theme }) => theme.label.color};
   width: 100%;
 `;
+
+const renderTooltip = (tooltip, hasTooltip, enableTooltip) => {
+  const {
+    title, body, boundingElementSelector, screenReaderLabel, justifyEnd,
+  } = tooltip;
+  if (hasTooltip && enableTooltip) {
+    return (
+      <Column cols="2">
+        <Tooltip
+          title={title}
+          body={body}
+          boundingElementSelector={boundingElementSelector}
+          screenReaderLabel={screenReaderLabel}
+          justifyEnd={justifyEnd}
+        />
+      </Column>
+    );
+  }
+  return null;
+};
 
 const Label = ({
   forId, text, tooltip, fullWidth,
@@ -33,36 +55,19 @@ const Label = ({
     setEnableTooltip(fullWidth || !desktop);
   }, [fullWidth, desktop]);
 
-  const renderTooltip = () => {
-    const {
-      title, body, boundingElementSelector, screenReaderLabel, justifyEnd,
-    } = tooltip;
-    if (hasTooltip && enableTooltip) {
-      return (
-        <Column cols="2">
-          <Tooltip
-            title={title}
-            body={body}
-            boundingElementSelector={boundingElementSelector}
-            screenReaderLabel={screenReaderLabel}
-            justifyEnd={justifyEnd}
-          />
-        </Column>
-      );
-    }
-    return null;
-  };
   return (
-    <Row>
-      <StyledLabelWrap className="label">
-        <Column cols={hasTooltip ? '10' : '12'}>
-          <StyledLabel htmlFor={forId}>
-            {text}
-          </StyledLabel>
-        </Column>
-        {renderTooltip()}
-      </StyledLabelWrap>
-    </Row>
+    <ThemeProvider theme={getTheme()}>
+      <Row>
+        <StyledLabelWrap className="label">
+          <Column cols={hasTooltip ? '10' : '12'}>
+            <StyledLabel htmlFor={forId}>
+              {text}
+            </StyledLabel>
+          </Column>
+          {renderTooltip(tooltip, hasTooltip, enableTooltip)}
+        </StyledLabelWrap>
+      </Row>
+    </ThemeProvider>
   );
 };
 

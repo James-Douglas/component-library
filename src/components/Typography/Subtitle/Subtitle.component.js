@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import getTheme from 'utils/getTheme';
 
 const StyledSubtitle = styled.p`
-  ${(props) => props.variant === 'primary' && css`
-    font-weight: ${props.theme.fontWeight.normal};
-    line-height: ${props.theme.lineHeight.snug};
-    font-size: ${props.theme.fontSize.lg};
+  ${({ variant, theme }) => variant === 'primary' && css`
+    font-weight: ${theme.fontWeight.normal};
+    line-height: ${theme.lineHeight.snug};
+    font-size: ${theme.fontSize.lg};
   `}
-  ${(props) => props.variant === 'secondary' && css`
-    font-weight: ${props.theme.fontWeight.bold};
-    font-size: ${props.theme.fontSize.base};
-    line-height: ${props.theme.lineHeight.normal};
+  ${({ theme, variant }) => variant === 'secondary' && css`
+    font-weight: ${theme.fontWeight.bold};
+    font-size: ${theme.fontSize.base};
+    line-height: ${theme.lineHeight.normal};
   `}
 `;
 

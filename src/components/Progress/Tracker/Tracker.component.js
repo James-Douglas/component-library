@@ -16,7 +16,7 @@ const StyledProcessTrackerItemLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${(props) => props.theme.colors.black};  
+  color: ${({ theme }) => theme.progress.tracker.itemLinkColor};  
   div {
     transition: all 0.1s ease-out;
   }
@@ -25,37 +25,32 @@ const StyledProcessTrackerItemLink = styled.a`
   }
 `;
 const StyledProgressStep = styled.div`
-  color: ${(props) => props.theme.colors.black};
+  color: ${({ theme }) => theme.progress.tracker.progressStep.color};
   display: flex;
   justify-content: center;
   align-items: center;
-  ${(props) => props.active && css`
-    font-weight: ${props.theme.fontWeight.bold};
+  ${({ active, theme }) => active && css`
+    font-weight: ${theme.fontWeight.bold};
   `}
-  ${(props) => props.disabled && css`
-    font-weight: ${props.theme.fontWeight.bold};
-    color: ${props.theme.colors.greyDark};
+  ${({ disabled, theme }) => disabled && css`
+    font-weight: ${theme.fontWeight.bold};
+    color: ${theme.progress.tracker.progressStep.disabledColor};
   `}
 `;
 
 const StyledTracker = styled.div`
   width: 100%;
-  box-shadow: ${(props) => props.theme.boxShadow.progress}; 
-  font-size: ${(props) => props.theme.fontSize.sm}; 
-  z-index: ${(props) => (props.theme.zIndex[50])}; 
-  position: ${(props) => (props.isSticky || props.stuck ? 'fixed' : 'relative')}; 
-  top: ${(props) => (props.isSticky || props.stuck ? '0' : 'inherit')};
-  height:  ${(props) => (props.stuck ? 'auto' : 'none')};
+  box-shadow: ${({ theme }) => theme.boxShadow.progress}; 
+  font-size: ${({ theme }) => theme.fontSize.sm}; 
+  z-index: ${({ theme }) => theme.zIndex[50]}; 
+  position: ${({ isSticky, stuck }) => (isSticky || stuck ? 'fixed' : 'relative')}; 
+  top: ${({ isSticky, stuck }) => (isSticky || stuck ? '0' : 'inherit')};
+  height:  ${({ stuck }) => (stuck ? 'auto' : 'none')};
 `;
 
 const sharedStyleProgress = css`
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfefc2+0,c3e4cf+100 */
-  background: ${(props) => (props.theme.colors.secondaryLight)};  /* Old browsers */
-  background ${(props) => (`-moz-linear-gradient(left, ${props.theme.colors.secondaryLight} 0%, ${props.theme.colors.secondaryLighter}  100%)`)}; /* FF3.6-15 */   
-  background: ${(props) => (`-webkit-linear-gradient(left, ${props.theme.colors.secondaryLight} 0%, ${props.theme.colors.secondaryLighter}  100%)`)}; /* Chrome10-25,Safari5.1-6 */
-  background: ${(props) => (`linear-gradient(to right, ${props.theme.colors.secondaryLight} 0%, ${props.theme.colors.secondaryLighter}  100%)`)}; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: ${(props) => (`progid:DXImageTransform.Microsoft.gradient( startColorstr=${props.theme.colors.secondaryLight}, endColorstr=${props.theme.colors.secondaryLighter},GradientType=1 )`)};  /* IE6-9 */
-  transition : width 0.4s ease-in-out;
+  ${({ theme }) => theme.progress.tracker.backgroundCss};
+  transition: width 0.4s ease-in-out;
   border-radius:  ${(props) => ((props.value === 100 || props.value === '100') ? props.theme.borderRadius.none : `0 ${props.theme.borderRadius.full} ${props.theme.borderRadius.full} 0`)};  
 `;
 
@@ -65,11 +60,11 @@ const StyledProgress = styled.progress`
   left: 0;
   height: 100%;
   width: 100%;
-  background: ${(props) => (props.theme.colors.white)}; 
+  background: ${({ theme }) => theme.progress.tracker.background}; 
   /* ie11 */
   &[value]  {
-    background: ${(props) => (props.theme.colors.greyLighterAA)}; 
-    color: ${(props) => (props.theme.colors.secondaryLight)}; 
+    background: ${({ theme }) => theme.progress.tracker.backgroundValue}; 
+    color: ${({ theme }) => theme.progress.tracker.colorValue}; 
     /* Reset the default appearance */
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -84,8 +79,8 @@ const StyledProgress = styled.progress`
   }
   
   &::-webkit-progress-bar {
-    background: ${(props) => (props.theme.colors.greyLighterAA)}; 
-    transition: background-color 300ms ease-in-out;
+    background: ${({ theme }) => theme.progress.tracker.backgroundValue}; 
+    transition: background-color 300ms ease-in-out; 
   }
 
   ::-webkit-progress-value {
@@ -102,7 +97,7 @@ const StyledSteps = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 4.4rem; /* 44px */
+  height: ${({ theme }) => theme.spacing[44]};
 `;
 
 export function processTrackerItemLink(isDesktop, progressItem, index) {

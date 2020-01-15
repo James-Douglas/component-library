@@ -3,5 +3,5 @@
 exports[`ToggleGroup renders with minimal props 1`] = `
 "<div class=\\"sc-ifAKCX zFecC row \\"><div class=\\"sc-bZQynM egkTMy label\\"><div cols=\\"12\\" class=\\"sc-EHOje cynKkh 
         
-      \\"><label class=\\"sc-gzVnrw PpDCH\\"></label></div></div></div><div class=\\"sc-ifAKCX zFecC row sc-iwsKbI hESOnx\\"><div class=\\"sc-gZMcBi ichwlL\\"></div><div class=\\"sc-gqjmRU bgxlEu\\"></div></div>"
+      \\"><label class=\\"sc-gzVnrw lcTEvC\\"></label></div></div></div><div class=\\"sc-ifAKCX zFecC row sc-iwsKbI hESOnx\\"><div class=\\"sc-gZMcBi ichwlL\\"></div><div class=\\"sc-gqjmRU bgxlEu\\"></div></div>"
 `;

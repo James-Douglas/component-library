@@ -9,17 +9,17 @@ const StyledHiddenInput = styled.input`
   border: 0;
   clip: rect(0 0 0 0);
   clippath: inset(50%);
-  height: 1px;
+  height: ${({ theme }) => theme.spacing.px};
   margin: -1px;
   overflow: hidden;
   padding: 0;
   position: absolute;
   white-space: nowrap;
-  width: 1px;
+  width: ${({ theme }) => theme.spacing.px};
 `;
 
 const StyledWrap = styled.div`
-  margin-bottom: 1.2rem;
+  margin-bottom: ${({ theme }) => theme.spacing[12]};
   min-width: 3rem;
 `;
 
@@ -27,10 +27,10 @@ const StyledLabel = styled.label`
   display: flex;
   cursor: pointer;
   margin-top: 0.4rem;
-  ${(props) => props.children[1] === null && css`
+  ${({ children }) => children[1] === null && css`
     position: absolute;
   `}
-  ${(props) => props.disabled && css`
+  ${({ disabled }) => disabled && css`
     cursor: not-allowed;
   `};
 `;
@@ -39,41 +39,41 @@ const StyledCheckbox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid ${(props) => props.theme.colors.blueDark};
-  background: ${(props) => (props.checked ? `${props.theme.colors.blueDark}` : `${props.theme.colors.white}`)};
-  color: ${(props) => props.theme.colors.white};
-  min-width: 2.4rem;
-  height: 2.4rem;
+  border: ${({ theme }) => theme.checkbox.border};
+  background: ${({ checked, theme }) => (checked ? `${theme.checkbox.backgroundChecked}` : `${theme.checkbox.background}`)};
+  color: ${({ theme }) => theme.checkbox.color};
+  min-width: ${({ theme }) => theme.checkbox.size};
+  height: ${({ theme }) => theme.checkbox.size};
   pointer-events: none;
-  border-radius: 0.2rem;
-  padding: 1px;
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  padding: ${({ theme }) => theme.spacing.px};
 
   ${StyledHiddenInput}:focus + label & {
-    box-shadow: 0 0 0 1px rgba(0, 123, 255, .5);
+    box-shadow: ${({ theme }) => theme.checkbox.borderRadius};
   }
 
-  ${(props) => props.invertColour && css`
-    background: ${props.theme.colors.white};
-    color: ${props.theme.colors.blueDark};
+  ${({ invertColour, theme }) => invertColour && css`
+    background: ${theme.checkbox.background};
+    color: ${theme.checkbox.backgroundChecked};
   `}
 
-  ${(props) => props.invalid && css`
-    border: 1px solid ${props.theme.colors.invalid};
+  ${({ invalid, theme }) => invalid && css`
+    border: ${theme.borders.invalid};
   `}
 
-  ${(props) => props.disabled && css`
+  ${({ disabled, theme }) => disabled && css`
     pointer-events: none;
-    background: ${props.theme.colors.greyLight};
-    border: 1px solid transparent;
-    color: ${props.theme.colors.blueDark};
-    opacity: 0.5;
+    background: ${theme.checkbox.backgroundDisabled};
+    border: ${theme.borders.disabled};
+    color: ${theme.checkbox.colorDisabled};
+    opacity:${theme.checkbox.disabledOpacity};
   `}
 `;
 
 const StyledContent = styled.div`
-  margin: 0 0 0 1rem;
+  margin: ${({ theme }) => theme.checkbox.contentMargin};
   pointer-evemts: none;
-  font-size: ${(props) => props.theme.fontSize.base};
+  font-size: ${({ theme }) => theme.fontSize.base};
 `;
 
 export const renderIcon = (icon, value) => {

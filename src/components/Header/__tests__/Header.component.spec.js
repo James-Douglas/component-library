@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Header from '../Header.component';
 import 'jest-styled-components';
+import getTheme from '../../../utils/getTheme';
+
+const theme = getTheme();
 
 let mockUseIsStickyValue = true;
 jest.mock('../../../hooks/useIsSticky', () => ({
@@ -23,12 +26,12 @@ describe('Header', () => {
     mockUseIsStickyValue = false;
     const { container } = render(<Header number="1800 000 000" isSticky={mockUseIsStickyValue} stuck={mockUseIsStickyValue} />);
     const header = container.getElementsByTagName('header')[0];
-    expect(header).toHaveStyleRule('height', '6rem');
+    expect(header).toHaveStyleRule('height', theme.header.height);
   });
   it('renders correctly without sticky', () => {
     mockUseIsStickyValue = true;
     const { container } = render(<Header number="1800 000 000" isSticky={mockUseIsStickyValue} stuck={mockUseIsStickyValue} />);
     const header = container.getElementsByTagName('header')[0];
-    expect(header).toHaveStyleRule('height', '4.4rem');
+    expect(header).toHaveStyleRule('height', theme.header.heightStuck);
   });
 });

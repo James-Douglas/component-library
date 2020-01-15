@@ -3,6 +3,9 @@ import { act, fireEvent, render } from '@testing-library/react';
 import 'jest-styled-components';
 import AccordionPanel from '../AccordionPanel.component';
 import Accordion from '../Accordion.component';
+import getTheme from '../../../utils/getTheme';
+
+const theme = getTheme();
 
 describe('Accordion', () => {
   it('renders correctly without prop', () => {
@@ -43,6 +46,7 @@ describe('Accordion', () => {
     const accordionGroup = container.getElementsByTagName('svg');
     expect(accordionGroup.length).toBe(3);
   });
+
   it(' accordion after click', () => {
     jest.useFakeTimers();
     const mockTestClick = jest.fn();
@@ -62,13 +66,14 @@ describe('Accordion', () => {
     );
     const accordion = container.querySelector('[role="tablist"]');
     const accordionHead = container.querySelector('[role="tab"]');
-    expect(accordion).toHaveStyleRule('border-bottom', '2px solid #999999');
+    expect(accordion).toHaveStyleRule('border-bottom', `2px solid ${theme.colors.greyDark}`);
     fireEvent.click(accordionHead);
     act(() => {
       jest.runAllTimers();
     });
     expect(accordion).toHaveStyleRule('border-bottom', '1px solid rgba(0,0,0,.1)');
   });
+
   it(' accordion after click opposite', () => {
     jest.useFakeTimers();
     const mockTestClick = jest.fn();
@@ -93,6 +98,6 @@ describe('Accordion', () => {
     act(() => {
       jest.runAllTimers();
     });
-    expect(accordion).toHaveStyleRule('border-bottom', '2px solid #999999');
+    expect(accordion).toHaveStyleRule('border-bottom', `2px solid ${theme.colors.greyDark}`);
   });
 });

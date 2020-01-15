@@ -2,6 +2,10 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Logo from '../Logo.component';
 
+import getTheme from '../../../utils/getTheme';
+
+const theme = getTheme();
+
 describe('Logo', () => {
   it('renders correctly without props', () => {
     const { container } = render(<Logo />);
@@ -19,6 +23,6 @@ describe('Logo', () => {
 
   it('renders a small logo', () => {
     const { container } = render(<Logo size="small" />);
-    expect(container.querySelector('#logo')).toHaveStyle('height: 3.2rem');
+    expect(container.querySelector('#logo')).toHaveStyle(`height: ${theme.logo.heightSmall}`);
   });
 });

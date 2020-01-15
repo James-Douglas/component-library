@@ -9,11 +9,11 @@ const StyledCard = styled.div`
   width: 100%;
   min-width: ${({ theme }) => theme.spacing['80']};
   min-height: ${({ theme }) => theme.spacing['80']};
-  background: ${({ theme }) => theme.colors.white}; 
-  box-shadow: ${({ theme }) => theme.boxShadow.progress}; 
-  border: ${({ theme }) => `1px solid ${theme.colors.greyLight}`};   
-  ${(props) => applySpacing('margin', props.margin)};
-  ${(props) => applySpacing('padding', props.padding)}; 
+  background: ${({ theme }) => theme.card.background}; 
+  box-shadow: ${({ theme }) => theme.card.shadow}; 
+  border: ${({ theme }) => theme.card.border};   
+  ${({ margin }) => applySpacing('margin', margin)};
+  ${({ padding }) => applySpacing('padding', padding)}; 
 `;
 
 const Card = ({

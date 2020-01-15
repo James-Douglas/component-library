@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import getTheme from 'utils/getTheme';
 
 const StyledSubscript = styled.p`
-  line-height: ${(props) => props.theme.lineHeight.snug};
-  font-size: ${(props) => props.theme.fontSize['2xs']};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
+  font-size: ${({ theme }) => theme.fontSize['2xs']};
   letter-spacing: 0.15rem;
-  font-weight: ${(props) => props.theme.fontWeight.normal};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
   text-transform: uppercase;
-  color: ${(props) => props.theme.colors.greyDarkest};
+  color: ${({ theme }) => theme.colors.greyDarkest};
 `;
 
 const Subscript = ({

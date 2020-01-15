@@ -10,11 +10,11 @@ const StyledIcon = styled.div`
 `;
 
 const shadowStyles = css`
-  ${(props) => {
+  ${({ theme, variant }) => {
     const shadowTypes = ['primary', 'secondary', 'tertiary'];
-    if (shadowTypes.includes(props.variant)) {
+    if (shadowTypes.includes(variant)) {
       return css`
-        box-shadow: ${props.theme.boxShadow.sm};
+        box-shadow: ${theme.button.shadows.default};
       `;
     }
     return null;
@@ -22,20 +22,20 @@ const shadowStyles = css`
 `;
 
 const borderStyles = css`
-  border-radius: ${(props) => props.theme.borderRadius.lg};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
 `;
 
 const focusStyles = css`
   :focus {
     outline: none;
-    box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
+    box-shadow: ${({ theme }) => theme.button.shadows.focused};
   }
 `;
 
 const disabledStyles = css`
   cursor: not-allowed;
   opacity: 0.6;
-  box-shadow: none;
+  box-shadow:${({ theme }) => theme.button.shadows.disabled};
 `;
 
 const sizeStyles = {
@@ -43,37 +43,37 @@ const sizeStyles = {
     min-height: 3.6rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
-    font-weight: ${(props) => props.theme.fontWeight.bold};
-    font-size: ${(props) => props.theme.fontSize.xs};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.xs};
   `,
   md: css`
     min-width: 16rem;
-    padding-top: ${(props) => props.theme.spacing['4']};
-    padding-bottom: ${(props) => props.theme.spacing['4']};
+    padding-top: ${({ theme }) => theme.spacing['4']};
+    padding-bottom: ${({ theme }) => theme.spacing['4']};
   `,
   lg: css`
     min-width: 20rem;
-    padding-top: ${(props) => props.theme.spacing['20']};
-    padding-bottom: ${(props) => props.theme.spacing['20']};
+    padding-top: ${({ theme }) => theme.spacing['20']};
+    padding-bottom: ${({ theme }) => theme.spacing['20']};
   `,
 };
 
 const baseLinkStyles = css`
-  color: ${(props) => props.theme.colors.black};
-  fill: ${(props) => props.theme.colors.black};
-  font-weight: ${(props) => props.theme.fontWeight.normal};
-  font-size: ${(props) => props.theme.fontSize.base};
-  line-height: ${(props) => props.theme.lineHeight.relaxed};
+  color: ${({ theme }) => theme.button.link.color};
+  fill: ${({ theme }) => theme.button.link.fill};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-size: ${({ theme }) => theme.fontSize.base};
+  line-height: ${({ theme }) => theme.lineHeight.relaxed};
   > ${StyledIcon} {
     margin-left: 0;
-    margin-right: ${(props) => props.theme.spacing[8]};
+    margin-right: ${({ theme }) => theme.spacing[8]};
     margin-top: 0.4rem;
   }
-  ${(props) => props.iconAlignRight && css`
+  ${({ iconAlignRight, theme }) => iconAlignRight && css`
     flex-direction: row-reverse;
     > ${StyledIcon} {
       margin-right: 0;
-      margin-left: ${props.theme.spacing[8]};
+      margin-left: ${theme.spacing[8]};
       margin-top: 0.4rem;
     }
   `}
@@ -87,20 +87,20 @@ const baseButtonStyles = css`
   text-align: center;
   text-decoration: none;
   width: 100%;
-  padding: ${(props) => props.theme.spacing[12]} ${(props) => props.theme.spacing[12]};
-  margin-bottom: ${(props) => props.theme.spacing[16]};
-  font-size: ${(props) => props.theme.fontSize.lg};
+  padding: ${({ theme }) => `${theme.spacing[12]} ${theme.spacing[12]}`};
+  margin-bottom: ${({ theme }) => theme.spacing[16]};
+  font-size: ${({ theme }) => theme.fontSize.lg};
   text-transform: Capitalize;
   transition : all 200ms ease-out;
-  font-weight: ${(props) => props.theme.fontWeight.bold};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   > ${StyledIcon} {
-    margin-right: ${(props) => props.theme.spacing[12]};
+    margin-right: ${({ theme }) => theme.spacing[12]};
   }
-  ${(props) => props.iconAlignRight && css`
+  ${({ iconAlignRight, theme }) => iconAlignRight && css`
     flex-direction: row-reverse;
     > ${StyledIcon} {
       margin-right: 0;
-      margin-left: ${props.theme.spacing[12]};
+      margin-left: ${theme.spacing[12]};
     }
   `}
   :focus {
@@ -111,70 +111,70 @@ const baseButtonStyles = css`
 const primaryVariant = css`
   ${borderStyles}; 
   ${focusStyles};
-  min-height: 5.4rem;
-  border: 1px solid transparent;
-  background: ${(props) => props.theme.colors.secondaryDarker};
-  color: ${(props) => props.theme.colors.white};
-  fill: ${(props) => props.theme.colors.white};
+  min-height: ${({ theme }) => theme.button.primary.minHeight};
+  border: ${({ theme }) => theme.button.primary.border};
+  background: ${({ theme }) => theme.button.primary.background};
+  color: ${({ theme }) => theme.button.primary.color};
+  fill: ${({ theme }) => theme.button.primary.fill};
   :hover {
-    background: ${(props) => props.theme.colors.secondaryDark};
+    background: ${({ theme }) => theme.button.primary.backgroundHover};
   }
-  line-height: ${(props) => props.theme.lineHeight.snug};
-  ${(props) => sizeStyles[props.size]}
+  line-height: ${({ theme }) => theme.lineHeight.snug};
+  ${({ size }) => sizeStyles[size]}
 `;
 
 const secondaryVariant = css`
   ${borderStyles}; 
   ${focusStyles};
-  background: ${(props) => props.theme.colors.white};
-  border: 1px solid ${(props) => props.theme.colors.primaryAA};
-  font-weight: ${(props) => props.theme.fontWeight.semibold};
-  color: ${(props) => props.theme.colors.primaryAA};
-  fill: ${(props) => props.theme.colors.primaryAA};
-  min-height: 4.4rem;
+  background: ${({ theme }) => theme.button.secondary.background};
+  border: ${({ theme }) => theme.button.secondary.border};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.button.secondary.color};
+  fill: ${({ theme }) => theme.button.secondary.fill};
+  min-height: ${({ theme }) => theme.button.secondary.minHeight};
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
-  line-height: ${(props) => props.theme.lineHeight.snug};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
   :hover {
-    border: 1px solid ${(props) => props.theme.colors.primaryLight};
-    fill: ${(props) => props.theme.colors.primaryLight};
-    color: ${(props) => props.theme.colors.primaryLight};
+    border: ${({ theme }) => theme.button.secondary.borderHover};
+    fill: ${({ theme }) => theme.button.secondary.fillHover};
+    color: ${({ theme }) => theme.button.secondary.colorHover};
   }
-  ${(props) => props.darkMode && css`
-    border: 1px solid transparent;
+  ${({ darkMode, theme }) => darkMode && css`
+    border: ${theme.button.secondary.borderDarkMode};
     :hover {
-      border: 1px solid transparent;
+      border: ${theme.button.secondary.borderDarkMode};
     }
   `}
-  ${(props) => sizeStyles[props.size]}
+  ${({ size }) => sizeStyles[size]}
 `;
 
 const tertiaryVariant = css`
   ${borderStyles}; 
   ${focusStyles};
-  background: ${(props) => props.theme.colors.blueDark};
-  color: ${(props) => props.theme.colors.white};
-  fill: ${(props) => props.theme.colors.white};
-  font-weight: ${(props) => props.theme.fontWeight.normal};
-  font-size: ${(props) => props.theme.fontSize.sm};
-  border-radius: 0;
+  background: ${({ theme }) => theme.button.tertiary.background};
+  color: ${({ theme }) => theme.button.tertiary.color};
+  fill: ${({ theme }) => theme.button.tertiary.fill};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  border-radius: ${({ theme }) => theme.button.tertiary.borderRadius};
   min-height: 3.4rem;
-  line-height: ${(props) => props.theme.lineHeight.snug};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
   :hover {
-    color: ${(props) => props.theme.colors.blueLighter};
-    fill: ${(props) => props.theme.colors.blueLighter};
+    color: ${({ theme }) => theme.button.tertiary.colorHover};
+    fill: ${({ theme }) => theme.button.tertiary.fillHover};
   }
-  ${(props) => (props.darkMode) && css`
-    background: ${props.theme.colors.white};
-    border: 1px solid ${props.theme.colors.blueDark};
-    color: ${props.theme.colors.blueDark};
-    fill: ${props.theme.colors.blueDark};
+  ${({ darkMode, theme }) => (darkMode) && css`
+    background: ${theme.button.tertiary.backgroundDarkMode};
+    border: ${theme.button.tertiary.borderDarkMode};
+    color: ${theme.button.tertiary.colorDarkMode};
+    fill: ${theme.button.tertiary.fillDarkMode};
     :hover {
-      border-color: ${props.theme.colors.primaryLight};
-      fill: ${props.theme.colors.primaryLight};
+      border-color: ${theme.button.tertiary.borderColorDarkMode};
+      fill: ${theme.button.tertiary.fillDarkModeHover};
     }
   `}
-  ${(props) => sizeStyles[props.size]}
+  ${({ size }) => sizeStyles[size]}
 `;
 
 const textVariant = css`
@@ -182,17 +182,17 @@ const textVariant = css`
   padding: 0;
   border-radius: unset;
   text-decoration: none;
-  font-weight: ${(props) => props.theme.fontWeight.semibold};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
   :hover {
-    color: ${(props) => props.theme.colors.primaryLight};
-    fill: ${(props) => props.theme.colors.primaryLight};
+    color: ${({ theme }) => theme.button.text.colorHover};
+    fill: ${({ theme }) => theme.button.text.fillHover};
   }
-  ${(props) => props.darkMode && css`
-    color: ${props.theme.colors.white};
-    fill: ${props.theme.colors.white};
+  ${({ darkMode, theme }) => darkMode && css`
+    color: ${theme.button.text.colorDarkMode};
+    fill: ${theme.button.text.fillDarkMode};
     :hover {
-      color: ${props.theme.colors.blueLighter};
-      fill: ${props.theme.colors.blueLighter};
+      color: ${theme.button.text.colorDarkModeHover};
+      fill: ${theme.button.text.fillDarkModeHover};
     }
   `}
 `;
@@ -203,20 +203,19 @@ const linkVariant = css`
   border-radius: unset;
   margin-bottom: 0;
   text-decoration: underline;
-  background: transparent;
-  text-transform: underline;
+  background: ${({ theme }) => theme.button.link.background};
   display: inline-block;
-  font-weight: ${(props) => props.theme.fontWeight.semibold};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
   :hover {
-    color: ${(props) => props.theme.colors.primaryLight};
-    fill: ${(props) => props.theme.colors.primaryLight};
+    color: ${({ theme }) => theme.button.link.colorHover};
+    fill: ${({ theme }) => theme.button.link.fillHover};
   }
-  ${(props) => (props.darkMode) && css`
-    color: ${props.theme.colors.white};
-    fill: ${props.theme.colors.white};
+  ${({ theme, darkMode }) => (darkMode) && css`
+    color: ${theme.button.link.colorDarkMode};
+    fill: ${theme.button.link.fillDarkMode};
     :hover {
-      color: ${props.theme.colors.blueLighter};
-      fill: ${props.theme.colors.blueLighter};
+      color: ${theme.button.link.colorDarkModeHover};
+      fill: ${theme.button.link.fillDarkModeHover};
     }
   `}
 `;
@@ -226,20 +225,20 @@ const footerVariant = css`
   padding: 0;
   text-align: left;
   border-radius: unset;
-  font-size: ${(props) => props.theme.fontSize.sm};
-  font-weight: ${(props) => props.theme.fontWeight.semibold};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
   text-decoration: none;
   display: block;
   margin-bottom: 1rem;
   :hover {
-    color: ${(props) => props.theme.colors.black};
+    color: ${({ theme }) => theme.button.footer.colorHover};
     text-decoration: underline;
   }
-  ${(props) => (props.darkMode) && css`
-    color: ${props.theme.colors.white};
-    fill: ${props.theme.colors.white};
+  ${({ darkMode, theme }) => (darkMode) && css`
+    color: ${theme.button.footer.colorDarkMode};
+    fill: ${theme.button.footer.fillDarkMode};
     :hover {
-      color: ${props.theme.colors.white};
+      color: ${theme.button.footer.colorDarkModeHover};
     }
   `}
 `;
@@ -247,8 +246,8 @@ const footerVariant = css`
 const BaseTag = styled.div`
   ${baseButtonStyles}
   
-  ${(props) => {
-    switch (props.variant) {
+  ${({ variant }) => {
+    switch (variant) {
       case 'primary':
         return primaryVariant;
       case 'secondary':
@@ -265,18 +264,18 @@ const BaseTag = styled.div`
         return primaryVariant;
     }
   }}
-  ${(props) => props.disabled && disabledStyles};
+  ${({ disabled }) => disabled && disabledStyles};
 `;
 
 const StyledButtonWrap = styled.span`
   display: flex;
   flex-wrap: wrap;
   flex: 0 1 100%;
-  width: ${(props) => props.width};
-  ${(props) => props.isInlineBlock && css`
+  width: ${({ width }) => width};
+  ${({ isInlineBlock }) => isInlineBlock && css`
     display: inline-block;
   `}
-  ${(props) => (props.isInlineBlock && props.variant === 'link') && css`
+  ${({ isInlineBlock, variant }) => (isInlineBlock && variant === 'link') && css`
     width: auto;
   `}
 `;

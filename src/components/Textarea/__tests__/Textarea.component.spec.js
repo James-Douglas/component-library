@@ -1,6 +1,9 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Textarea, { getRemainingLimit, getOptionalFieldContent, getRemainingCharsContent } from '../Textarea.component';
+import getTheme from '../../../utils/getTheme';
+
+const theme = getTheme();
 
 describe('getRemainingLimit()', () => {
   it('returns charLimit when no value given', () => {
@@ -128,7 +131,7 @@ describe('Textarea.component.js', () => {
     const { container } = render(<Textarea label="test" {...props} />);
 
     const textAreaElement = container.querySelector('textarea');
-    expect(textAreaElement).toHaveStyle('border: 1px solid #DDDDDD');
+    expect(textAreaElement).toHaveStyle(`border: ${theme.borders.component}`);
   });
 
   it('renders without border', () => {
@@ -142,7 +145,7 @@ describe('Textarea.component.js', () => {
     const { container } = render(<Textarea label="test" {...props} />);
 
     const textAreaElement = container.querySelector('textarea');
-    expect(textAreaElement).not.toHaveStyle('border: 1px solid #DDDDDD');
+    expect(textAreaElement).not.toHaveStyle(`border: ${theme.borders.component}`);
   });
 
 
@@ -161,10 +164,10 @@ describe('Textarea.component.js', () => {
     const { container } = render(<Textarea label="test" {...props} />);
 
     const textAreaElement = container.querySelector('textarea');
-    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
+    expect(textAreaElement).toHaveStyle(`border: ${theme.borders.invalid}`);
   });
 
-  it('applies manor-prefilled styles when isPrefill is true', () => {
+  it('applies prefilled styles when isPrefill is true', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
@@ -177,8 +180,8 @@ describe('Textarea.component.js', () => {
 
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement).toHaveStyle(`
-      background: #F0E599;
-      border: 1px solid #F0E599;
+      background: ${theme.colors.prechecked};
+      border: 1px solid ${theme.colors.precheckedDarker};
     `);
   });
 
@@ -323,7 +326,7 @@ describe('Textarea.component.js', () => {
 
     fireEvent.change(textAreaElement, { target: { value: 'helloworld' } });
 
-    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
+    expect(textAreaElement).toHaveStyle(`border: ${theme.borders.invalid}`);
 
     // remaining chars text
     expect(getByText('-3')).toBeInTheDocument();
@@ -342,7 +345,7 @@ describe('Textarea.component.js', () => {
     const { container, getByText } = render(<Textarea label="test" {...props} />);
 
     const textAreaElement = container.querySelector('textarea');
-    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
+    expect(textAreaElement).toHaveStyle(`border: ${theme.borders.invalid}`);
     expect(getByText('-3')).toBeInTheDocument();
   });
 
@@ -362,7 +365,7 @@ describe('Textarea.component.js', () => {
 
     fireEvent.change(textAreaElement, { target: { value: 'helloworld' } });
 
-    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
+    expect(textAreaElement).toHaveStyle(`border: ${theme.borders.invalid}`);
     expect(getByText('-3')).toBeInTheDocument();
   });
 
@@ -380,7 +383,7 @@ describe('Textarea.component.js', () => {
 
     const textAreaElement = container.querySelector('textarea');
 
-    expect(textAreaElement).toHaveStyle('border: 1px solid #EF425E');
+    expect(textAreaElement).toHaveStyle(`border: ${theme.borders.invalid}`);
     expect(getByText('-3')).toBeInTheDocument();
   });
   it('render with prop forceFullWidth', () => {

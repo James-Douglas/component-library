@@ -4,25 +4,25 @@ import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
 
 const StyledProgressIcon = styled.span`
-  border: ${(props) => `2px solid ${props.theme.colors.black}`}; 
+  border: ${({ theme }) => theme.progress.icon.border}; 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: ${(props) => props.theme.spacing['16']};
-  border-radius:  ${(props) => props.theme.borderRadius.full};  
-  height: 3rem;
-  width: 3rem;
-  ${(props) => !props.mobile && css`
+  margin-right: ${({ theme }) => theme.spacing['16']};
+  border-radius:  ${({ theme }) => theme.borderRadius.full};  
+  height: 3rem; 
+  width: 3rem; 
+  ${({ mobile }) => !mobile && css`
     border: none; 
   `}
-  ${(props) => props.disabled && css`
-    border: 2px solid ${props.theme.colors.greyDark}
-    color: ${props.theme.colors.greyDark}
+  ${({ theme, disabled }) => disabled && css`
+    border: ${theme.progress.icon.borderDisabled};
+    color: ${theme.progress.icon.colorDisabled};
     cursor: default;
   `}
-  ${(props) => props.active && css`
-    color: ${props.theme.colors.white}
-    background: ${props.theme.colors.black};
+  ${({ theme, active }) => active && css`
+    color: ${theme.progress.icon.activeColor};
+    background: ${theme.progress.icon.activeBackground};
   `}
 `;
 

@@ -11,14 +11,14 @@ const StyledToggleLabel = styled.label`
   position: relative;
   transition : all 200ms ease-out;
   &:hover {
-    color: ${(props) => props.theme.colors.blueLight};
+    color: ${({ theme }) => theme.colors.blueLight};
   }
 `;
 
 const StyledContent = styled.div`
   height: 100%;
-  font-weight: ${(props) => props.theme.fontWeight.bold};
-  font-size: ${(props) => props.theme.fontSize.sm};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: ${({ theme }) => theme.fontSize.sm};
   margin-bottom: 0;
 `;
 

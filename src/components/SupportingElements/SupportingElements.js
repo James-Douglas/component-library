@@ -8,7 +8,7 @@ import SRonly from '../Typography/SRonly/SRonly.component';
 const StyledOptionalText = styled.div`
   position:absolute;
   right:0;
-  padding-top: ${(props) => props.theme.spacing[8]};
+  padding-top: ${({ theme }) => theme.spacing[8]};
   display: flex;
   flex-direction: row;
 `;

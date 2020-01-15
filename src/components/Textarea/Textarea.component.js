@@ -12,7 +12,7 @@ import SupportingElements from '../SupportingElements/SupportingElements';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const StyledRow = styled(Row)`
-  margin-bottom: ${(props) => props.theme.spacing[16]};
+  margin-bottom: ${({ theme }) => theme.spacing[16]};
 `;
 
 const StyledOptionalIndicator = styled.span`
@@ -32,29 +32,29 @@ const StyledTextArea = styled.textarea`
   width: 100%;
   display: block;
   padding: 1.6rem;
-  border: 1px solid transparent;
-  min-height: 4.4rem;
-  font-size: ${(props) => props.theme.fontSize.base};
+  border: ${({ theme }) => theme.borders.transparent};
+  min-height: ${({ theme }) => theme.spacing[44]};
+  font-size: ${({ theme }) => theme.fontSize.base};
   ::placeholder {
-    font-size: ${(props) => props.theme.fontSize.base};
-    font-style: italic;
-    color: ${(props) => props.theme.colors.grey};
+    ${({ theme }) => ({ ...theme.placeholder })}
   }
-  ${(props) => props.bordered && css`
-    border: 1px solid ${props.theme.colors.greyLight};
+  ${({ bordered, theme }) => bordered && css`
+    border: ${theme.borders.component};
   `}
-  ${(props) => (props.isPrefill && !props.isDirty && !props.disabled) && css`
-    background: ${props.theme.colors.prechecked};
-    border: 1px solid ${props.theme.colors.prechecked};
+  ${({
+    isPrefill, isDirty, disabled, theme,
+  }) => (isPrefill && !isDirty && !disabled) && css`
+    background: ${theme.colors.prechecked};
+    border: ${theme.borders.prefill};
   `}
-  ${(props) => (props.validation || props.textAreaRemainChars < 0) && css`
-    border: 1px solid ${props.theme.colors.invalid};
+  ${({ validation, textAreaRemainChars, theme }) => (validation || textAreaRemainChars < 0) && css`
+    border: ${theme.borders.invalid};
   `}
   :focus,
   :hover {
-    border: 1px solid ${(props) => props.theme.colors.blueLight};
+    border: ${({ theme }) => theme.borders.hover};
   }
-  ${(props) => props.disabled && css`
+  ${({ disabled }) => disabled && css`
     opacity: 0.5;
   `}
 `;
@@ -124,6 +124,10 @@ const Textarea = ({
   const desktop = useIsDesktop(false);
 
   useEffect(() => {
+    setStateValue(value);
+  }, [value]);
+
+  useEffect(() => {
     setCharLimit(maxChars || maxLength || null);
   }, [maxLength, maxChars]);
 
@@ -188,7 +192,7 @@ const Textarea = ({
               bordered={bordered}
               aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
             />
-            <SupportingElements required={required} additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)} />
+            <SupportingElements label={label} required={required} additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)} />
           </StyledTextAreaWrapper>
           <FieldValidation message={validationMessage} />
         </Column>
@@ -298,7 +302,7 @@ Textarea.defaultProps = {
   name: '',
   value: '',
   placeholder: '',
-  bordered: false,
+  bordered: true,
   disabled: false,
   required: false,
   isPrefill: false,

@@ -30,11 +30,10 @@ const animateIn = keyframes`
 `;
 
 const StyledModal = styled.div`
-  background: ${(props) => props.theme.colors.white};
-  box-shadow: ${(props) => props.theme.boxShadow.lg};
-  z-index: ${(props) => props.theme.zIndex[50]};
-  width: ${(props) => {
-    const { size } = props;
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.boxShadow.lg};
+  z-index: ${({ theme }) => theme.zIndex[50]};
+  width: ${({ size, theme }) => {
     if (size === 'lg') {
       return '66.666667%';
     } if (size === 'md') {
@@ -52,15 +51,15 @@ const StyledModal = styled.div`
 
 const StyledCloseIcon = styled.div`
   position: absolute;
-  right: 2rem;
-  top: 2.5rem;
+  right: ${({ theme }) => theme.spacing[20]};
+  top: ${({ theme }) => theme.spacing[24]};
   cursor: pointer;
-  z-index: ${(props) => (props.theme.zIndex[50])}; 
+  z-index: ${({ theme }) => (theme.zIndex[50])}; 
   opacity: 0.5;
 `;
 
 const StyledContent = styled.div`
-  padding: 4rem;
+  padding: ${({ theme }) => theme.spacing[40]};
 `;
 
 /* Workaround for storybook not rendering props when ReactDOM.createPortal is used https://github.com/storybookjs/storybook/issues/8435 */

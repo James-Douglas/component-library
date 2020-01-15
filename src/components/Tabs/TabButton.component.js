@@ -26,8 +26,8 @@ const StyledTabButton = styled.button`
     margin: 0;
   }
 
-  ${(props) => props.activeTab === props.name && css`
-    border-bottom: 0.5rem solid ${props.theme.colors.primaryAA};
+  ${({ theme, activeTab, name }) => activeTab === name && css`
+    border-bottom: 0.5rem solid ${theme.colors.primaryAA};
   `}
 `;
 

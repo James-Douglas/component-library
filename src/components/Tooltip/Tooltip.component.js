@@ -17,8 +17,8 @@ const StyledTooltipWrapper = styled.div`
   align-items: center;
   width: 100%;
   text-align: left;
-  justify-content: ${(props) => (props.desktop ? 'center' : 'flex-end')}; 
-  ${(props) => props.justifyEnd && css`
+  justify-content: ${({ desktop }) => (desktop ? 'center' : 'flex-end')}; 
+  ${({ justifyEnd }) => justifyEnd && css`
     justify-content: flex-end;
   `}
 `;
@@ -27,12 +27,12 @@ const StyledTooltipIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: ${(props) => (props.desktop ? '1.8rem' : '2.2rem')}; 
-  color:  ${(props) => props.theme.colors.grey}; 
+  font-size: ${({ desktop }) => (desktop ? '1.8rem' : '2.2rem')}; 
+  color:  ${({ theme }) => theme.tooltip.iconColor}; 
   fill: currentColor;
-   ${(props) => props.tippyVisible && css`
+   ${({ theme, tippyVisible }) => tippyVisible && css`
     fill: currentColor;
-    color: ${props.theme.colors.primaryAA};
+    color: ${theme.tooltip.iconColorVisible};
   `}
   outline: none;
 `;
@@ -43,7 +43,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 2rem;
   }
   .tippy-tooltip.manor-theme[data-animatefill] {
-    background-color: rgba(51, 51, 51, 0.97) !important;
+    background-color: ${({ theme }) => theme.tooltip.background} !important;
     box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.1);
   }
   @media screen and (min-width: 769px) {

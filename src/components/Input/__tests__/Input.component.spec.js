@@ -7,6 +7,8 @@ import Input, {
   renderClearIcon, renderAffix,
 } from '../Input.component';
 
+const theme = getTheme();
+
 const SvgUkFlag = () => (
   <svg width="30" height="21" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -51,9 +53,7 @@ describe('renderClearIcon()', () => {
 
   it('renders a clearIcon when the value.length is > 0', () => {
     const { container } = render(<ClearIconContainer value="input text" label="test input" />);
-
     const svg = container.querySelector('svg');
-
     expect(svg).toBeDefined();
   });
 });
@@ -73,7 +73,6 @@ describe('renderAffix()', () => {
 
   it('does not render a prefix or suffix if its not supplied', () => {
     const { container } = render(<AffixContainer />);
-
     expect(container).toBeEmpty();
   });
 
@@ -84,31 +83,25 @@ describe('renderAffix()', () => {
 
   it('renders a suffix when supplied', () => {
     const { getByText } = render(<AffixContainer affixType="suffix" affixContent="?!" bordered />);
-
     expect(getByText('?!')).toBeInTheDocument();
   });
 
   it('renders a suffix when supplied with additional styling for autofill ', () => {
     const { container } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill disabled={false} />);
-
     const element = container.querySelector('span');
-
-    expect(element).toHaveStyleRule('background', '#F0E599');
+    expect(element).toHaveStyleRule('background', theme.colors.prechecked);
   });
 
   it('does not render the additional stlying for autofill if its disabled', () => {
     const { container, getByText } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill disabled />);
-
     const prefix = getByText('?');
     const element = container.querySelector('span');
-
     expect(prefix).toBeInTheDocument();
-    expect(element).not.toHaveStyleRule('background', '#F0E599');
+    expect(element).not.toHaveStyleRule('background', theme.colors.prechecked);
   });
 
   it('can render a component via prop', () => {
     const { container } = render(<AffixContainer affixType="suffix" bordered affixContent={<SvgUkFlag />} />);
-
     expect(container.querySelector('svg')).toBeInTheDocument();
   });
 });
@@ -119,7 +112,6 @@ describe('renderAffix()', () => {
 describe('Input.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(<Input id="test-id" handleChange={() => {}} />);
-
     expect(container.innerHTML).toMatchSnapshot();
   });
 
@@ -146,7 +138,7 @@ describe('Input.component', () => {
     expect(label.textContent).toBe('input label');
     expect(placeholder).toBe('placeholder test');
     expect(autocomplete).toBe('on');
-    expect(inputWrap).toHaveStyleRule('border', '1px solid #DDDDDD');
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.component);
     expect(inputInvalid).toBe(null);
     expect(container.innerHTML).toMatchSnapshot();
   });
@@ -165,8 +157,8 @@ describe('Input.component', () => {
     const inputFieldWrap = container.querySelector('.input-container');
     const inputWrap = inputFieldWrap.firstChild;
 
-    expect(inputWrap).not.toHaveStyleRule('border', '1px solid #DDDDDD');
-    expect(inputWrap).toHaveStyleRule('border', '1px solid transparent');
+    expect(inputWrap).not.toHaveStyleRule('border', theme.borders.component);
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.transparent);
   });
 
   it('renders an invalid input', () => {
@@ -182,7 +174,7 @@ describe('Input.component', () => {
 
     const inputFieldWrap = container.querySelector('.input-container');
     const inputWrap = inputFieldWrap.firstChild;
-    expect(inputWrap).toHaveStyleRule('border', '1px solid #EF425E');
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.invalid);
   });
 
   it('renders an a prefix and a suffix', () => {
@@ -218,11 +210,11 @@ describe('Input.component', () => {
     const inputWrap = inputFieldWrap.firstChild;
 
     inputField.focus();
-    expect(inputWrap).toHaveStyleRule('border: 1px solid #1780F3');
-    expect(inputWrap).not.toHaveStyleRule('border: 1px solid #DDDDDD');
+    expect(inputWrap).toHaveStyleRule(`border: ${theme.borders.hover}`);
+    expect(inputWrap).not.toHaveStyleRule(`border: ${theme.borders.component}`);
     inputField.blur();
-    expect(inputWrap).not.toHaveStyleRule('border: 1px solid #1780F3');
-    expect(inputWrap).toHaveStyleRule('border: 1px solid #DDDDDD');
+    expect(inputWrap).not.toHaveStyleRule(`border: ${theme.borders.hover}`);
+    expect(inputWrap).toHaveStyleRule(`border: ${theme.borders.component}`);
   });
 
   it('accepts a prefill value and renders with prefill styling', () => {
@@ -240,9 +232,9 @@ describe('Input.component', () => {
     const inputFieldWrap = container.querySelector('.input-container');
     const inputWrap = inputFieldWrap.firstChild;
 
-    expect(inputWrap).toHaveStyleRule('background: #C39600');
+    expect(inputWrap).toHaveStyleRule(`background: ${theme.colors.prechecked}`);
     expect(inputField.value).toBe('autofilled value test');
-    expect(inputWrap).toHaveStyleRule('border: 1px solid #DDDDDD');
+    expect(inputWrap).toHaveStyleRule(`border: ${theme.borders.component}`);
   });
 
   it('clears the input on click of the clear button', () => {
@@ -337,12 +329,13 @@ describe('Input.component', () => {
     const inputFieldWrap = container.querySelector('.input-container');
     const inputWrap = inputFieldWrap.firstChild;
     const inputField = container.querySelector('#test-id');
-    expect(inputWrap).toHaveStyleRule('border', '1px solid transparent');
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.transparent);
     inputField.focus();
-    expect(inputWrap).toHaveStyleRule('border', '1px solid #1780F3');
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.hover);
     inputField.blur();
-    expect(inputWrap).toHaveStyleRule('border', '1px solid transparent');
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.transparent);
   });
+
   it('applies border on blur when border is true', () => {
     const { container } = render(
       <Input
@@ -362,8 +355,8 @@ describe('Input.component', () => {
     const inputWrap = inputFieldWrap.firstChild;
     const inputField = container.querySelector('#input-one');
     inputField.focus();
-    expect(inputWrap).toHaveStyleRule('border', '1px solid #1780F3');
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.hover);
     inputField.blur();
-    expect(inputWrap).toHaveStyleRule('border', '1px solid #C39600');
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.prefill);
   });
 });

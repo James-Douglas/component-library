@@ -27,39 +27,47 @@ const StyledSlider = styled.div`
   overflow: auto;
   margin: 0;
   height: 100%;
-  border-top: ${(props) => `1px solid ${props.theme.colors.white}`}; 
-  background: ${(props) => (props.theme.colors.white)}; 
-  z-index: ${(props) => (props.theme.zIndex[40])}; 
-  box-shadow: ${(props) => (props.show ? props.theme.boxShadow.lg : props.theme.boxShadow.none)}; 
-  ${(props) => props.direction === 'top' && css`
+  border-top: ${({ theme }) => theme.slider.borderTop}; 
+  background: ${({ theme }) => theme.slider.background}; 
+  z-index: ${({ theme }) => (theme.zIndex[40])}; 
+  box-shadow: ${({ theme, show }) => (show ? theme.boxShadow.lg : theme.boxShadow.none)}; 
+  ${({
+    direction, notificationSize, show, theme,
+  }) => direction === 'top' && css`
     animation-name: ${coolBoxOpenTopKeyframes};
-    height: ${props.notificationSize};
+    height: ${notificationSize};
     width: 100%;
     padding: 1rem 0.5rem 0.5rem 0.5rem;
-    top: ${!props.show ? -props.notificationSize : 0};
+    top: ${!show ? -notificationSize : 0};
     left: 0;
   `}
-  ${(props) => props.direction === 'left' && css`
+  ${({
+    direction, notificationSize, show, theme,
+  }) => direction === 'left' && css`
     animation-name: ${coolBoxOpenLeftKeyframes};
-    width: ${props.notificationSize};
+    width: ${notificationSize};
     padding: 6.4rem 0.5rem 0.5rem 0.5rem;
     top:0;
-    left: ${!props.show ? -props.notificationSize : 0};
+    left: ${!show ? -notificationSize : 0};
   `}
-  ${(props) => props.direction === 'bottom' && css`
+  ${({
+    direction, notificationSize, show, theme,
+  }) => direction === 'bottom' && css`
     animation-name: ${coolBoxBottomTopKeyframes};
     width: 100%;
-    height: ${props.notificationSize};
+    height: ${notificationSize};
     padding: 1rem 0.5rem 0.5rem 0.5rem;
-    bottom: ${!props.show ? -props.notificationSize : 0};
+    bottom: ${!show ? -notificationSize : 0};
     left: 0;
   `}
-  ${(props) => props.direction === 'right' && css`
+  ${({
+    direction, notificationSize, show, theme,
+  }) => direction === 'right' && css`
     animation-name: ${coolBoxOpenRightKeyframes};
-    width: ${props.notificationSize};
+    width: ${notificationSize};
     padding: 6.4rem 0.5rem 0.5rem 0.5rem;
     top:0;
-    right: ${!props.show ? -props.notificationSize : 0};
+    right: ${!show ? -notificationSize : 0};
   `} 
   animation-duration: 0.4s;
   animation-timing-function: ease;
@@ -73,7 +81,7 @@ const StyledIcon = styled.div`
   right: 2rem;
   top: 2.5rem;
   cursor: pointer;
-  z-index: ${(props) => (props.theme.zIndex[50])}; 
+  z-index: ${({ theme }) => (theme.zIndex[50])}; 
   opacity: 0.5;
 `;
 

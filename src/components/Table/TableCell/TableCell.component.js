@@ -7,15 +7,14 @@ import TableContext from '../Table/TableContext';
 
 const StyledComponent = styled.div`
   display: table-cell;
-  text-align: ${(props) => props.align}; 
-  vertical-align: ${(props) => props.valign}; 
-  padding: ${(props) => {
-    const { padding } = props;
+  text-align: ${({ align }) => align}; 
+  vertical-align: ${({ valign }) => valign}; 
+  padding: ${({ padding, theme }) => {
     if (padding === 'checkbox' || padding === 'medium') {
-      return props.theme.spacing['8'];
+      return theme.spacing['8'];
     }
-    if (props.padding === 'small') {
-      return props.theme.spacing['4'];
+    if (padding === 'small') {
+      return theme.spacing['4'];
     }
     return 'none';
   }

@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import 'jest-styled-components';
 import ProgressIcon from '../ProgressIcon.component';
+import getTheme from '../../../../utils/getTheme';
+
+const theme = getTheme();
 
 describe('ProgressIcon', () => {
   it('renders correctly without props', () => {
@@ -10,7 +13,7 @@ describe('ProgressIcon', () => {
   });
   it('renders correctly for disabled prop', () => {
     const { getByText } = render(<ProgressIcon index={4} disabled />);
-    expect(getByText('4')).toHaveStyleRule('border', '2px solid #999999');
+    expect(getByText('4')).toHaveStyleRule('border', theme.progress.icon.borderDisabled);
   });
   it('renders correctly for active prop', () => {
     const { getByText } = render(<ProgressIcon index={4} active />);
@@ -18,6 +21,6 @@ describe('ProgressIcon', () => {
   });
   it('renders correctly for mobile prop', () => {
     const { getByText } = render(<ProgressIcon index={4} mobile />);
-    expect(getByText('4')).toHaveStyleRule('border', '2px solid #000000');
+    expect(getByText('4')).toHaveStyleRule('border', theme.progress.icon.border);
   });
 });

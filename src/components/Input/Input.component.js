@@ -17,47 +17,36 @@ import FieldValidation from '../FieldValidation/FieldValidation.component';
 import SupportingElements from '../SupportingElements/SupportingElements';
 
 const StyledRow = styled(Row)`
-  margin-bottom: ${(props) => props.theme.spacing[16]};
+  margin-bottom: ${({ theme }) => theme.spacing[16]};
 `;
+
 const StyledClearIcon = styled.button`
   position: absolute;
   top: 0.3rem;
-  right: 0.2rem;
-  width: 4rem;
-  height: 4rem;
+  right:${({ theme }) => theme.spacing[4]};
+  width: ${({ theme }) => theme.spacing[40]};
+  height: ${({ theme }) => theme.spacing[40]};
   transition: .2s ease-in-out all;
   :hover {
-    color: ${(props) => props.theme.colors.blueLight}
+    color: ${({ theme }) => theme.input.clearButton.hoverColor};
   }
-  color: ${(props) => {
-    let color;
-    if (props.isAutofill) {
-      color = `${props.theme.colors.greyDark}`;
-    } else {
-      color = `${props.theme.colors.greyLight}`;
-    }
-    return color;
-  }};
+  color: ${({ theme, isAutofill }) => (isAutofill ? theme.input.clearButton.colorAutofill : theme.input.clearButton.color)};
 `;
 
 const StyledAffix = styled.span`
-  font-weight: ${(props) => props.theme.fontWeight.bold};
-  font-size: ${(props) => props.theme.fontSize.base};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: ${({ theme }) => theme.fontSize.base};
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 1.4rem;
-  height: 4.4rem;
-  padding-right: ${(props) => (props.affixType === 'prefix' ? '0.5rem' : '')};
-  padding-left: ${(props) => (props.affixType === 'suffix' ? '0.5rem' : '')};
-  background: ${(props) => props.theme.colors.white};
+  padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};
+  height: ${({ theme }) => theme.input.height};
+  padding-right: ${({ theme, affixType }) => (affixType === 'prefix' ? '0.5rem' : '')};
+  padding-left: ${({ theme, affixType }) => (affixType === 'suffix' ? '0.5rem' : '')};
+  background: ${({ theme }) => theme.input.background};
 
-  ${(props) => (!props.bordered && props.affixType) && css`
-    background: ${props.theme.colors.white};
-  `}
-  
-  ${(props) => (props.isAutofill && !props.disabled) && css`
-    background: ${props.theme.colors.prechecked};
+  ${({ theme, isAutofill, disabled }) => (isAutofill && !disabled) && css`
+    background: ${theme.colors.prechecked};
   `}
 `;
 
@@ -68,59 +57,58 @@ const StyledInputContainer = styled.div`
 
 const StyledInputWrap = styled.div`
   display: flex;
-  border: 1px solid transparent;
+  border: ${({ theme }) => theme.borders.transparent};
   :hover:not(.disabled) {
-    border: 1px solid ${(props) => props.theme.colors.blueLight};
+    border: ${({ theme }) => theme.borders.hover};
   }
-  input::placeholder {
-    font-style: italic;
-    font-size: ${(props) => props.theme.fontSize.base};
-    color: ${(props) => props.theme.colors.grey};
+  ::placeholder {
+    ${({ theme }) => ({ ...theme.placeholder })}
   }
   [disabled] {
-    background: ${(props) => props.theme.colors.white};
+    background: ${({ theme }) => theme.input.background};
   }
 
-  ${(props) => props.bordered && css`
-    border: 1px solid ${props.theme.colors.greyLight};
+  ${({ theme, bordered }) => bordered && css`
+    border: ${theme.borders.component};
   `}
 
-  ${(props) => (props.bordered && props.isAutofill && !props.disabled) && css`
-    border: 1px solid ${props.theme.colors.precheckedDarker};
+  ${({
+    theme, bordered, isAutofill, disabled,
+  }) => (bordered && isAutofill && !disabled) && css`
+    border: ${theme.borders.prefill};
   `}
 
-  ${(props) => props.invalid && css`
-    border: 1px solid ${props.theme.colors.invalid};
+  ${({ theme, invalid }) => invalid && css`
+    border: ${theme.borders.invalid};
   `}
 
-  ${(props) => (props.disabled) && css`
+  ${({ disabled }) => (disabled) && css`
     opacity: 0.5;
   `}
 
-  ${(props) => props.isFocusActive && css`
-    border: 1px solid ${props.theme.colors.blueLight}
+  ${({ theme, isFocusActive }) => isFocusActive && css`
+    border: ${theme.borders.hover}
   `}
-  
 `;
 
 const StyledInputClearWrap = styled.div`
   position: relative;
   width: 100%;
-  min-height: 4.4rem;
+  min-height: ${({ theme }) => theme.input.height};
 `;
 
 const StyledInput = styled.input`
-  padding-left: 1.2rem;
-  padding-right: 3.6rem;
+  padding-left: ${({ theme }) => theme.spacing[12]};
+  padding-right: ${({ theme }) => theme.spacing[36]};
   display: block;
   width: 100%;
-  font-size: ${(props) => props.theme.fontSize.base};
-  border: 1px solid transparent;
-  height: 4.4rem;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  border: ${({ theme }) => theme.borders.transparent};
+  height: ${({ theme }) => theme.input.height};
   :webkit-autofill,
   -webkit-autofill:hover,
   -webkit-autofill:focus {
-    -webkit-text-fill-color: ${(props) => props.theme.colors.black};
+    -webkit-text-fill-color: ${({ theme }) => theme.input.color};
   }
   ::-ms-clear {
     display: none;
@@ -131,10 +119,10 @@ const StyledInput = styled.input`
     outline: 0;
   }
 
-  ${(props) => props.isAutofill && !props.disabled && css`
-    background: ${props.theme.colors.prechecked}
+  ${({ theme, isAutofill, disabled }) => isAutofill && !disabled && css`
+    background: ${theme.colors.prechecked}
   `}
-  `;
+`;
 
 export const renderClearIcon = (value, clearInput, isAutofill, label) => {
   if (value && value.length) {
@@ -216,7 +204,6 @@ const Input = ({
   const [isFocusActive, setFocusActive] = useState(false);
   const theme = getTheme();
   const desktop = useIsDesktop(false);
-
   const clearInput = () => {
     setIsDirty(true);
     setInternalValue('');
@@ -276,7 +263,7 @@ const Input = ({
                 isAutofill={isAutofill}
                 disabled={disabled}
                 bordered={bordered}
-                invalid={validationMessage && validationMessage.length}
+                invalid={validationMessage && validationMessage.length > 0}
                 isFocusActive={isFocusActive}
               >
                 {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}

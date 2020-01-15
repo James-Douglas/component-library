@@ -1,34 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { css, ThemeProvider } from 'styled-components';
 import Picture from '../Picture/Picture.component';
 import logoMobile from '../../images/ctm-logo-mobile.svg';
 import logoDesktop from '../../images/ctm-logo-desktop.svg';
 import screens from '../../../config/screens';
+import getTheme from '../../utils/getTheme';
 
 const StyledLogo = styled.div`
   transition: all 200ms ease;
 
-  ${(props) => props.size === 'large' && css`
-    height: 4.4rem; /* 44px */
+  ${({ theme, size }) => size === 'large' && css`
+    height: ${theme.logo.heightLarge}; /* 44px */
   `}
 
-  ${(props) => props.size === 'small' && css`
-    height: 3.2rem; /* 32px */
+  ${({ theme, size }) => size === 'small' && css`
+    height: ${theme.logo.heightSmall}; /* 32px */
   `}
 `;
 
 const Logo = ({ size, src, srcsets }) => (
-  <StyledLogo size={size} id="logo">
-    <a href="https://www.comparethemarket.com.au">
-      <Picture
-        src={src}
-        srcsets={srcsets}
-        alt="Compare The Market Australia Logo"
-        title="Compare The Market Australia"
-      />
-    </a>
-  </StyledLogo>
+  <ThemeProvider theme={getTheme()}>
+    <StyledLogo size={size} id="logo">
+      <a href="https://www.comparethemarket.com.au">
+        <Picture
+          src={src}
+          srcsets={srcsets}
+          alt="Compare The Market Australia Logo"
+          title="Compare The Market Australia"
+        />
+      </a>
+    </StyledLogo>
+  </ThemeProvider>
 );
 
 Logo.propTypes = {

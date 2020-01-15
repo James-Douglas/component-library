@@ -6,7 +6,7 @@ import TabsContext from './TabsContext';
 const StyledPanel = styled.div`
   margin-top: 0;
   height: 100%;
-  ${(props) => props.activeTab !== props.name && css`
+  ${({ activeTab, name }) => activeTab !== name && css`
     display: none;
   `}
 `;

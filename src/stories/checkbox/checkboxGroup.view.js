@@ -69,12 +69,12 @@ const CheckboxGroupView = () => {
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
               >
-                <Checkbox id="A-1" icon="check">A-1 check</Checkbox>
-                <Checkbox id="A-2" icon="check">A-2 check</Checkbox>
-                <Checkbox id="A-3" icon="check">A-3 check</Checkbox>
-                <Checkbox id="A-4" icon="check">A-4 check</Checkbox>
-                <Checkbox id="A-5" icon="check">A-5 check</Checkbox>
-                <Checkbox id="A-6" icon="check">A-6 check</Checkbox>
+                <Checkbox id="A-1">A-1 check</Checkbox>
+                <Checkbox id="A-2">A-2 check</Checkbox>
+                <Checkbox id="A-3">A-3 check</Checkbox>
+                <Checkbox id="A-4">A-4 check</Checkbox>
+                <Checkbox id="A-5">A-5 check</Checkbox>
+                <Checkbox id="A-6">A-6 check</Checkbox>
               </CheckboxGroup>
             </Column>
           </Row>
@@ -87,12 +87,12 @@ const CheckboxGroupView = () => {
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
               >
-                <Checkbox id="B-1" icon="check">B-1 check</Checkbox>
-                <Checkbox id="B-2" icon="check" isSelected>B-2 check</Checkbox>
-                <Checkbox id="B-3" icon="check">B-3 check</Checkbox>
-                <Checkbox id="B-4" icon="check" isSelected>B-4 check</Checkbox>
-                <Checkbox id="B-5" icon="check">B-5 check</Checkbox>
-                <Checkbox id="B-6" icon="check" isSelected>B-6 check</Checkbox>
+                <Checkbox id="B-1">B-1 check</Checkbox>
+                <Checkbox id="B-2" isSelected>B-2 check</Checkbox>
+                <Checkbox id="B-3">B-3 check</Checkbox>
+                <Checkbox id="B-4" isSelected>B-4 check</Checkbox>
+                <Checkbox id="B-5">B-5 check</Checkbox>
+                <Checkbox id="B-6" isSelected>B-6 check</Checkbox>
               </CheckboxGroup>
             </Column>
           </Row>

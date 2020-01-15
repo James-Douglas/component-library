@@ -7,12 +7,12 @@ const StyledToggle = styled.div`
   display: flex;
   position: relative;
   cursor: pointer;
-  border: 1px solid ${(props) => (props.invalid ? props.theme.colors.invalid : props.theme.colors.greyLight)};
-  font-weight: ${(props) => props.theme.fontWeight.bold};
-  margin: ${(props) => `0 ${props.theme.spacing['8']} ${props.theme.spacing['16']} ${props.theme.spacing['8']}`};
-  background: ${(props) => props.theme.colors.white};
-  box-shadow: ${(props) => props.theme.boxShadow.sm};
-  line-height: ${(props) => props.theme.lineHeight.normal};
+  border: ${({ theme, invalid }) => (invalid ? theme.borders.invalid : theme.borders.component)};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  margin: ${({ theme }) => `0 ${theme.spacing['8']} ${theme.spacing['16']} ${theme.spacing['8']}`};
+  background: ${({ theme }) => theme.toggle.base.background};
+  box-shadow: ${({ theme }) => theme.boxShadow.sm};
+  line-height: ${({ theme }) => theme.lineHeight.normal};
   min-width: 12.8rem;
 `;
 
@@ -22,7 +22,7 @@ const StyledToggleInput = styled.input`
   height: 0;
   position: absolute;
   &:checked + label svg {
-    color: ${(props) => props.theme.colors.white};
+    color: ${({ theme }) => theme.toggle.base.background}};
     fill: currentColor;
     box-shadow: none;
      transition : all 200ms ease-out;
@@ -31,25 +31,25 @@ const StyledToggleInput = styled.input`
     cursor: not-allowed;
   }
   &:disabled + label {
-    color: ${(props) => props.theme.colors.disabled};
-    border: 1px solid ${(props) => props.theme.colors.disabled};
+    color: ${({ theme }) => theme.colors.disabled};
+    border: ${({ theme }) => theme.borders.transparent};
     fill: currentColor;
   }
   &:checked + label {
-    background: ${(props) => props.theme.colors.blueDark};
-    color: ${(props) => props.theme.colors.white};
+    background: ${({ theme }) => theme.toggle.base.backgroundChecked};
+    color: ${({ theme }) => theme.toggle.base.color};
     box-shadow: none;
   }
   &:focus + label {
     box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }
-  ${(props) => props.invalid && css`
+  ${({ invalid, theme }) => invalid && css`
      & + label {
-      color:  ${props.theme.colors.invalid};
+      color: ${theme.colors.invalid};
       fill: currentColor;
      }
      &:checked + label {
-      color:  ${props.theme.colors.invalid};
+      color:  ${theme.colors.invalid};
       fill: currentColor;
     }
   `}

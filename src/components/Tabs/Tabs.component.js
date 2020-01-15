@@ -8,16 +8,16 @@ import TabsContext from './TabsContext';
 const StyledTabsContainer = styled.div`
   width: 100%;
   min-width: 18rem;
-  box-shadow: ${(props) => props.theme.boxShadow.sm};
-  ${(props) => props.bordered && css`
-    border: 1px solid ${props.theme.colors.greyLight};
+  box-shadow: ${({ theme }) => theme.boxShadow.sm};
+  ${({ theme, bordered }) => bordered && css`
+    border: ${theme.borders.component};
   `}
 `;
 
 const StyledTabButtonWrap = styled.div`
   display: flex;
-  color: ${(props) => props.theme.colors.primaryAA};
-  background: ${(props) => props.theme.colors.white};
+  color: ${({ theme }) => theme.colors.primaryAA};
+  background: ${({ theme }) => theme.colors.white};
 `;
 
 export const renderChildren = (children) => {

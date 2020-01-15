@@ -3,6 +3,9 @@ import { render } from '@testing-library/react';
 import 'jest-styled-components';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 import Button from '../Button.component';
+import getTheme from '../../../utils/getTheme';
+
+const theme = getTheme();
 
 describe('Button', () => {
   it('renders correctly with minimal props', () => {
@@ -18,9 +21,9 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(getByText('test content')).toBeDefined();
-    expect(btn).toHaveStyle('background: #36A93F'); // primaryAA from theme.js
-    expect(btn).toHaveStyle('flex-direction: row-reverse');
-    expect(btn).toHaveStyleRule('box-shadow', '0 0.5rem 0.5rem 0 rgba(0,0,0,.1)');
+    expect(btn).toHaveStyleRule('background', theme.button.primary.background);
+    expect(btn).toHaveStyleRule('flex-direction', 'row-reverse');
+    expect(btn).toHaveStyleRule('box-shadow', theme.button.shadows.default);
     expect(container).toMatchSnapshot();
   });
 
@@ -33,7 +36,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
     expect(btn).not.toHaveStyle('flex-direction: row-reverse');
-    expect(btn).toHaveStyleRule('background', '#36A93F'); // primaryAA from theme.js
+    expect(btn).toHaveStyleRule('background', theme.button.primary.background);
   });
 
   it('renders a primary button as a link when the props are supplied', () => {
@@ -44,7 +47,7 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyleRule('background', '#36A93F'); // primaryAA from theme.js
+    expect(btn).toHaveStyleRule('background', theme.button.primary.background);
   });
 
   it('renders a secondary button when the prop is supplied', () => {
@@ -55,8 +58,8 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
-    expect(btn).toHaveStyle('background: #FFFFFF');
-    expect(btn).toHaveStyle('border: 1px solid #001442'); // secondaryDarker from theme.js
+    expect(btn).toHaveStyleRule('background', theme.button.secondary.background);
+    expect(btn).toHaveStyleRule('border', theme.button.secondary.border);
   });
 
   it('renders a secondary button as a link when the props are supplied', () => {
@@ -66,9 +69,9 @@ describe('Button', () => {
       </Button>,
     );
     const btn = container.querySelector('#test-id');
-    expect(btn).toHaveStyle('background: #FFFFFF');
+    expect(btn).toHaveStyleRule('background', theme.button.secondary.background);
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyle('border: 1px solid #001442'); // secondaryDarker from theme.js
+    expect(btn).toHaveStyleRule('border', theme.button.secondary.border);
   });
 
   it('renders a secondary button in mode = darkMode, when the props are supplied', () => {
@@ -78,8 +81,8 @@ describe('Button', () => {
       </Button>,
     );
     const btn = container.querySelector('#test-id');
-    expect(btn).toHaveStyle('border: 1px solid transparent');
-    expect(btn).toHaveStyleRule('box-shadow', '0 0.5rem 0.5rem 0 rgba(0,0,0,.1)');
+    expect(btn).toHaveStyleRule('border', theme.button.secondary.borderDarkMode);
+    expect(btn).toHaveStyleRule('box-shadow', theme.boxShadow.sm);
   });
 
   it('renders a secondary button in mode = darkMode as a link, when the props are supplied', () => {
@@ -89,9 +92,9 @@ describe('Button', () => {
       </Button>,
     );
     const btn = container.querySelector('#test-id');
-    expect(btn).toHaveStyle('border: 1px solid transparent');
+    expect(btn).toHaveStyleRule('border', theme.button.secondary.borderDarkMode);
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyleRule('box-shadow', '0 0.5rem 0.5rem 0 rgba(0,0,0,.1)');
+    expect(btn).toHaveStyleRule('box-shadow', theme.boxShadow.sm);
   });
 
   it('renders a tertiary button when the prop is supplied', () => {
@@ -102,8 +105,8 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
-    expect(btn).toHaveStyleRule('box-shadow', '0 0.5rem 0.5rem 0 rgba(0,0,0,.1)');
-    expect(btn).toHaveStyle('border-radius: 0');
+    expect(btn).toHaveStyleRule('box-shadow', theme.boxShadow.sm);
+    expect(btn).toHaveStyleRule('border-radius', theme.button.tertiary.borderRadius);
   });
 
   it('renders a tertiary button as a link when the props are supplied', () => {
@@ -114,8 +117,8 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyleRule('box-shadow', '0 0.5rem 0.5rem 0 rgba(0,0,0,.1)');
-    expect(btn).toHaveStyle('border-radius: 0');
+    expect(btn).toHaveStyleRule('box-shadow', theme.boxShadow.sm);
+    expect(btn).toHaveStyleRule('border-radius', theme.button.tertiary.borderRadius);
   });
 
   it('renders a tertiary button in darkmode when the props are supplied', () => {
@@ -126,8 +129,8 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
-    expect(btn).toHaveStyleRule('box-shadow', '0 0.5rem 0.5rem 0 rgba(0,0,0,.1)');
-    expect(btn).toHaveStyle('border: 1px solid #001443'); // blueDark from theme.js
+    expect(btn).toHaveStyleRule('box-shadow', theme.boxShadow.sm);
+    expect(btn).toHaveStyleRule('border', theme.button.tertiary.borderDarkMode);
   });
 
   it('renders a text button with an icon when specified', () => {
@@ -139,8 +142,8 @@ describe('Button', () => {
     const icon = container.querySelector('svg');
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyle('color: #000000');
     expect(icon).toBeTruthy();
+    expect(btn).toHaveStyleRule(`color: ${theme.colors.black}`);
   });
 
   it('renders a text button as a link with an icon when specified', () => {
@@ -152,8 +155,8 @@ describe('Button', () => {
     const icon = container.querySelector('svg');
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
-    expect(btn).toHaveStyle('color: #000000');
     expect(icon).toBeTruthy();
+    expect(btn).toHaveStyleRule(`color: ${theme.colors.black}`);
   });
 
   it('renders a link button (a href) when specified', () => {
@@ -165,7 +168,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn.getAttribute('href')).toBe('#');
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyle('color: #000000');
+    expect(btn).toHaveStyleRule(`color: ${theme.colors.black}`);
   });
 
   it('renders a link button (a href) in darkMode when specified', () => {
@@ -177,7 +180,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn.getAttribute('href')).toBe('#');
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyle('color: #FFFFFF');
+    expect(btn).toHaveStyle(`color: ${theme.colors.white}`);
   });
 
   it('renders a footer link (a href) when specified', () => {
@@ -189,7 +192,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn.getAttribute('href')).toBe('#');
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyle('color: #000000');
+    expect(btn).toHaveStyleRule(`color: ${theme.colors.black}`);
   });
 
   it('renders a footer link (a href) in darkMode when specified', () => {
@@ -201,8 +204,9 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn.getAttribute('href')).toBe('#');
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyle('color: #FFFFFF');
+    expect(btn).toHaveStyleRule(`color: ${theme.colors.black}`);
   });
+
   it('renders a disabled button when the prop is supplied', () => {
     const { container } = render(
       <Button id="test-id" variant="primary" disabled>
@@ -212,6 +216,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn).toHaveStyleRule('cursor', 'not-allowed');
   });
+
   it('renders button aligned right', () => {
     const { container } = render(
       <Button id="test-id" variant="footer-link" href="#" iconAlignRight icon={faInfoCircle}>
@@ -223,6 +228,7 @@ describe('Button', () => {
     expect(btn).toHaveStyleRule('flex-direction', 'row-reverse');
     expect(wrapper).toBeInTheDocument();
   });
+
   it('renders text button', () => {
     const { container } = render(
       <Button id="test-id" variant="text" darkMode iconAlignRight icon={faInfoCircle}>
@@ -230,8 +236,9 @@ describe('Button', () => {
       </Button>,
     );
     const btn = container.querySelector('#test-id');
-    expect(btn).toHaveStyleRule('color', '#FFFFFF');
+    expect(btn).toHaveStyleRule(`color: ${theme.colors.black}`);
   });
+
   it('renders a tertiary button when the prop is disabled', () => {
     const { container } = render(
       <Button id="test-id" variant="tertiary" disabled>
@@ -241,6 +248,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn).toHaveStyleRule('cursor', 'not-allowed');
   });
+
   it('renders a tertiary button when the prop is sm size', () => {
     const { container } = render(
       <Button id="test-id" variant="tertiary" size="sm">
@@ -250,6 +258,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn).toHaveStyleRule('min-height', '3.6rem');
   });
+
   it('renders a tertiary button when the prop is lg size', () => {
     const { container } = render(
       <Button id="test-id" variant="tertiary" size="lg">
@@ -259,6 +268,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn).toHaveStyleRule('min-width', '20rem');
   });
+
   it('renders primary variant if a wrong variant is supplied', () => {
     const { container } = render(
       <Button id="test-id" variant="test-case-prop">
@@ -266,6 +276,6 @@ describe('Button', () => {
       </Button>,
     );
     const btn = container.querySelector('#test-id');
-    expect(btn).toHaveStyleRule('background', '#36A93F');
+    expect(btn).toHaveStyleRule('background', theme.button.primary.background);
   });
 });

@@ -8,7 +8,7 @@ const StyledComponent = styled.div`
   display: table-row;
   vertical-align: middle;
   &:hover {
-    background: ${(props) => (props.hover ? props.theme.colors.greyLighter : 'none')}; 
+    background: ${({ hover, theme }) => (hover ? theme.table.rowHoverBackground : 'none')}; 
   }
 `;
 const TableRow = ({

@@ -14,48 +14,47 @@ import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const StyledRow = styled(Row)`
-  margin-bottom: ${(props) => props.theme.spacing[16]};
+  margin-bottom: ${({ theme }) => theme.input.rowBottomMargin};
 `;
 
 const StyledOption = styled.option`
-  font-size: ${(props) => props.theme.fontSize.base};
-  color: ${(props) => props.theme.colors.black};
-  font-weight: ${(props) => props.theme.fontWeight.normal};
+  font-size: ${({ theme }) => theme.fontSize.base};
+  color: ${({ theme }) => theme.dropdown.color};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
   &.default {
     font-style: italic;
   }
   &:disabled {
-    color: ${(props) => props.theme.colors.disabledText};
+    color: ${({ theme }) => theme.dropdown.colorDisabled};
   }
 `;
 
 const sharedStyleNoBorder = css`
-  border: 1px solid transparent;
-  border-width: 1px;
+  border: ${({ theme }) => theme.borders.transparent};
+  border-width: ${({ theme }) => theme.spacing.px};
   outline: none;
 `;
 
-
 const StyledPrefix = styled.div`
   display: flex;
-  border: 1px solid transparent;
+  border: ${({ theme }) => theme.borders.transparent};
   height: 100%;
   width: 100%;
   &:hover {
-    border: ${(props) => `1px solid ${props.theme.colors.blueLight}`};
+    border: ${({ theme }) => theme.borders.hover};
   }
   &:hover select {
-    border: 1px solid transparent;
-    border-width: 1px;
+    border: ${({ theme }) => theme.borders.transparent};
+    border-width: ${({ theme }) => theme.spacing.px};
     outline: none;
   }
   &:focus select {
-    border: 1px solid transparent;
-    border-width: 1px;
+    border: ${({ theme }) => theme.borders.transparent};
+    border-width: ${({ theme }) => theme.spacing.px};
     outline: none;
   }
-   ${(props) => props.isFocusActive && css`
-      border:${`1px solid ${props.theme.colors.blueLight}`};
+   ${({ isFocusActive, theme }) => isFocusActive && css`
+      border: ${theme.borders.hover};
   `}
 }`;
 
@@ -63,11 +62,11 @@ const StyledPrefixRight = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
-  background: ${(props) => props.theme.colors.white};
+  background: ${({ theme }) => theme.dropdown.prefixBackground};
   align-items: center;
-  padding-right: ${(props) => props.theme.spacing['20']};
-  padding-left: ${(props) => props.theme.spacing['20']};
-  min-width: 4rem;
+  padding-right: ${({ theme }) => theme.spacing['20']};
+  padding-left: ${({ theme }) => theme.spacing['20']};
+  min-width: ${({ theme }) => theme.spacing[4]};
   border: none;
   &:focus  {
     outline: none;
@@ -76,14 +75,15 @@ const StyledPrefixRight = styled.div`
     max-width: 100%;
   }
 }`;
+
 const StyledChevron = styled.div`
   z-index: 1;
   position: absolute;
-  right: 2rem;
+  right: ${({ theme }) => theme.spacing[20]};
   height: 100%;
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: ${({ theme }) => theme.fontSize['3xs']};
 }`;
 
 const StyledSelectContainer = styled.div`
@@ -96,38 +96,38 @@ const StyledSelectWrap = styled.div`
   position: relative;
   height: 100%;
   display: flex;
-  background: ${(props) => props.theme.colors.white};
+  background: ${({ theme }) => theme.dropdown.background};
 }`;
 
 const StyledSelect = styled.select`
-  color: ${(props) => props.theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
   background: transparent;
-  font-weight: ${(props) => props.theme.fontWeight.normal};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
   max-width: 100%;
   border-radius: 0;
-  font-size: ${(props) => props.theme.fontSize.base};
+  font-size: ${({ theme }) => theme.fontSize.base};
   box-shadow: none;
   margin: 0;
   position: relative;
-  z-index: ${(props) => (props.theme.zIndex[10])};
+  z-index: ${({ theme }) => (theme.zIndex[10])};
   appearance: none;
   width: 100%;
-  line-height: ${(props) => props.theme.lineHeight.tighter};
-  height: ${(props) => props.theme.spacing['42']};
-  padding: ${(props) => `${props.theme.spacing['8']} ${props.theme.spacing['40']} ${props.theme.spacing['8']} ${props.theme.spacing['12']}`};
+  line-height: ${({ theme }) => theme.lineHeight.tighter};
+  height: ${({ theme }) => theme.spacing['42']};
+  padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['40']} ${theme.spacing['8']} ${theme.spacing['12']}`};
   box-sizing: border-box;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border: ${(props) => `1px solid ${props.theme.colors.greyLight}`};
+  border: ${({ theme }) => theme.borders.component};
   &:disabled {
-    border: ${(props) => `1px solid ${props.theme.colors.greyLight}`};
-    opacity: 0.5;
+    border: ${({ theme }) => theme.borders.component};
+    opacity: ${({ theme }) => theme.dropdown.disabledOpacity};
   }
   &:disabled:hover {
-    border: ${(props) => `1px solid ${props.theme.colors.greyLight}`};
+    border: ${({ theme }) => theme.borders.component};
   }
    &:disabled + div svg{
-    opacity: 0.3;
+    opacity: ${({ theme }) => theme.dropdown.disabledSvgOpacity};
    }
   &.manor-dropdown::-ms-expand {
    display: none;
@@ -138,29 +138,32 @@ const StyledSelect = styled.select`
   &:focus {
      ${sharedStyleNoBorder};
   }
-  ${(props) => !props.isPrefix && css`
+  ${({ isPrefix, theme }) => !isPrefix && css`
     &:hover {
-      border: ${`1px solid ${props.theme.colors.blueLight}`};
+      border: ${theme.borders.hover};
     }
     &:focus {
-     border: ${`1px solid ${props.theme.colors.blueLight}`};
+      border: ${theme.borders.hover};
     }
+  `}
+ ${({ bordered, theme }) => !bordered && css`
+   border: ${theme.borders.transparent};
+  `}
+  ${({ invalidClass, theme }) => invalidClass && css`
+    border: ${theme.borders.invalid};
   `}
 
   /* **********************************************************************
   invalid styles
   ************************************************************************* */
   /* .manor-dropdown:invalid, */    /* Note: Required fields would have red around them on page load if :invalid was used */
-  ${(props) => props.invalidClass && css`
+  ${({ invalidClass, theme }) => invalidClass && css`
     &.invalid{
-      border: ${`1px solid ${props.theme.colors.invalid}`};
+      border: ${theme.borders.invalid};
     }
     &[aria-invalid=true] {
-     border: ${`1px solid ${props.theme.colors.invalid}`};
+      border: ${theme.borders.invalid};
     }
-  `}
-  ${(props) => !props.bordered && css`
-   border: 1px solid transparent;
   `}
 }`;
 
@@ -174,7 +177,6 @@ const WithPrefixContent = ({ children, isFocusActive, prefixContent }) => (prefi
     </ThemeProvider>
   ) : children
 );
-
 
 const Dropdown = ({
   label,
@@ -191,7 +193,7 @@ const Dropdown = ({
   className,
   prefixContent,
 }) => {
-  const invalidClass = validationMessage && validationMessage.length;
+  const invalidClass = validationMessage && validationMessage.length > 0;
   const isOptionExist = options && options.length;
   const isDisabled = isOptionExist ? disabled : !isOptionExist;
   const [isFocusActive, setFocusActive] = useState(false);

@@ -9,26 +9,25 @@ import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons/faPhoneAlt';
 const StyledContact = styled.div`
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme.colors.greyDarkest};
-  transition: all 200ms ease;
-  font-size: ${(props) => {
-    const { size, isDesktop } = props;
+  color: ${({ theme }) => theme.header.contact.color};
+  transition: ${({ theme }) => theme.header.transition};
+  font-size: ${({ theme, size, isDesktop }) => {
     let fontSize;
     if (size === 'small' && !isDesktop) {
-      fontSize = props.theme.fontSize.sm;
+      fontSize = theme.fontSize.sm;
     } else if (size === 'large' && !isDesktop) {
-      fontSize = props.theme.fontSize.lg;
+      fontSize = theme.fontSize.lg;
     } else if (size === 'small') {
-      fontSize = props.theme.fontSize.base;
+      fontSize = theme.fontSize.base;
     } else {
-      fontSize = props.theme.fontSize.xl;
+      fontSize = theme.fontSize.xl;
     }
     return fontSize;
   }};
   
   &:hover {
-   color: ${(props) => props.theme.colors.link};
-   fill: #164AD9;
+   color: ${({ theme }) => theme.header.contact.hoverColor};
+   fill: ${({ theme }) => theme.header.contact.hoverColor};
   }
 `;
 

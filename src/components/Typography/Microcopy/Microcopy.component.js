@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import getTheme from 'utils/getTheme';
 
 const StyledMicrocopy = styled.p`
-  font-weight: ${(props) => props.theme.fontWeight.normal};
-  font-size: ${(props) => props.theme.fontSize.xs};
-  line-height: ${(props) => props.theme.lineHeight.snug};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
 `;
 
 const Microcopy = ({

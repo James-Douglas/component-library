@@ -10,18 +10,17 @@ const StyledCardGroup = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
-  margin: ${(props) => `0 -${props.theme.spacing[4]}`};
+  margin: ${({ theme }) => `0 -${theme.spacing['4']}`};
 `;
 
 const StyledCardGroupChildren = styled.div`
   display: flex;
-  width: ${(props) => (props.cols === 1 ? '100%' : `${100 / props.cols}%`)};
-  padding-right: ${(props) => props.theme.spacing['8']};
-  padding-left: ${(props) => props.theme.spacing['8']};
+  width: ${({ cols }) => (cols === 1 ? '100%' : `${100 / cols}%`)};
+  padding-right: ${({ theme }) => theme.spacing['8']};
+  padding-left: ${({ theme }) => theme.spacing['8']};
 `;
 
-const getChildren = (children, cols, cardProps) => {
-  const { margin, padding } = cardProps;
+const getChildren = (children, cols, { margin, padding }) => {
   return children.map((child) => (
     // eslint-disable-next-line react/no-array-index-key
     <StyledCardGroupChildren cols={cols} key={`card-group-${child.props.id}`}>

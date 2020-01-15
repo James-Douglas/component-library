@@ -11,21 +11,21 @@ const StyledFeatureList = styled.ul`
 
 const StyledListItem = styled.li`
   display: flex;
-  margin-bottom: ${(props) => props.theme.spacing[4]}
+  margin-bottom: ${({ theme }) => theme.spacing[4]}
 `;
 
 const StyledFeatureListItemIcon = styled.span`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: ${(props) => props.theme.colors.secondaryDarker};
+  color: ${({ theme }) => theme.featureList.color};
 `;
 
 const StyledFeatureListItemText = styled.span`
-  margin-left: ${(props) => props.theme.spacing[8]};
-  font-weight: ${(props) => props.theme.fontWeight.normal};
-  line-height: ${(props) => props.theme.lineHeight.snug};
-  font-size: ${(props) => props.theme.fontSize.base};
+  margin-left: ${({ theme }) => theme.spacing[8]};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
+  font-size: ${({ theme }) => theme.fontSize.base};
 `;
 
 const FeatureList = ({ features }) => (

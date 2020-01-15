@@ -10,19 +10,19 @@ import Picture from '../Picture/Picture.component';
 const StyledTextToggleContent = styled.div`
   height: 100%;
   display: flex;
-  padding: ${(props) => props.theme.spacing['16']}; 
+  padding: ${({ theme }) => theme.spacing['16']}; 
   align-items: center;
   text-align: center;
   min-height: 2.4rem;
-   ${(props) => props.rectOptions && props.rectOptions.align && css`
-    justify-content: ${props.rectOptions.align};
+   ${({ rectOptions }) => rectOptions && rectOptions.align && css`
+    justify-content: ${rectOptions.align};
   `}
-  ${(props) => props.type === 'square' && css`
+  ${({ type, theme }) => type === 'square' && css`
     justify-content: space-around;
-    width: ${props.theme.spacing['128']}; 
-    height: ${props.theme.spacing['128']}; 
+    width: ${theme.spacing['128']}; 
+    height: ${theme.spacing['128']}; 
     min-height: 12.8rem;
-    padding: ${props.theme.spacing['8']};
+    padding: ${theme.spacing['8']};
   `}
 `;
 
@@ -32,8 +32,8 @@ const StyledIconToggleContent = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: ${(props) => props.theme.spacing['128']}; 
-  height: ${(props) => props.theme.spacing['128']}; 
+  width: ${({ theme }) => theme.spacing['128']}; 
+  height: ${({ theme }) => theme.spacing['128']}; 
   transition : all 200ms ease-out;
 `;
 const StyledImageToggle = styled.div`
@@ -42,16 +42,16 @@ const StyledImageToggle = styled.div`
   flex-direction: column;
   align-items: center;
   
-  width: ${(props) => props.theme.spacing['128']}; 
-  height: ${(props) => props.theme.spacing['128']};  
+  width: ${({ theme }) => theme.spacing['128']}; 
+  height: ${({ theme }) => theme.spacing['128']};  
 `;
 const StyledIconContent = styled.div`
-  padding-top: ${(props) => props.theme.spacing['32']}; 
+  padding-top: ${({ theme }) => theme.spacing['32']}; 
 `;
 
 const StyledPicture = styled.div`
-   width: ${(props) => props.theme.spacing['48']};
-   height: ${(props) => props.theme.spacing['48']};
+   width: ${({ theme }) => theme.spacing['48']};
+   height: ${({ theme }) => theme.spacing['48']};
    text-align: center;
 `;
 

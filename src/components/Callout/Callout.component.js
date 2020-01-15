@@ -5,12 +5,12 @@ import getTheme from 'utils/getTheme';
 
 
 const StyledCallout = styled.div`
-  font-size:  ${(props) => props.theme.fontSize.base};
-  font-weight: ${(props) => props.theme.fontWeight.normal};
-  line-height: ${(props) => props.theme.lineHeight.tight};
-  border-left: ${(props) => `4px solid ${props.theme.colors.blueDark}`};
-  padding: ${(props) => `${props.theme.spacing['12']} ${props.theme.spacing['20']}`};
-  background: ${(props) => (props.bgColorGrey ? props.theme.colors.greyLighter : props.theme.colors.white)}; 
+  font-size:  ${({ theme }) => theme.fontSize.base};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  line-height: ${({ theme }) => theme.lineHeight.tight};
+  border-left: ${({ theme }) => theme.callout.border};
+  padding: ${({ theme }) => `${theme.spacing['12']} ${theme.spacing['20']}`};
+  background: ${({ theme, bgColorGrey }) => (bgColorGrey ? theme.callout.backgroundGrey : theme.callout.background)}; 
 `;
 
 const Callout = ({

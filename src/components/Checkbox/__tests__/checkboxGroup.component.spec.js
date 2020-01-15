@@ -5,6 +5,8 @@ import getTheme from 'utils/getTheme';
 import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
 
+const theme = getTheme();
+
 describe('generateGroup', () => {
   // eslint-disable-next-line react/prop-types
   const GroupContainer = ({ colSize, children }) => (
@@ -38,7 +40,7 @@ describe('generateGroup', () => {
 describe('CheckboxGroup.component', () => {
   it('renders with minimal props', () => {
     const { container } = render(
-      <ThemeProvider theme={getTheme()}>
+      <ThemeProvider theme={theme}>
         <CheckboxGroup label="test" groupId="test-group-id">
           <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
@@ -52,7 +54,7 @@ describe('CheckboxGroup.component', () => {
   it('renders with props', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <ThemeProvider theme={getTheme()}>
+      <ThemeProvider theme={theme}>
         <CheckboxGroup groupId="test-group-id" colSize="5" handleChange={mockTestClick}>
           <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
@@ -68,7 +70,7 @@ describe('CheckboxGroup.component', () => {
 
     fireEvent.click(chkA1, { button: 0 });
     expect(checkboxGroup.id).toBe('test-group-id');
-    expect(chkA1Style).toHaveStyle('background: #001443'); // darkBlue from theme.js
+    expect(chkA1Style).toHaveStyle(`background: ${theme.checkbox.backgroundChecked}`);
     expect(chkA1.getAttribute('disabled')).toBe(null);
     expect(chkA1.getElementsByTagName('svg')).toBeDefined();
     expect(mockTestClick).toHaveBeenCalled();
@@ -81,7 +83,7 @@ describe('CheckboxGroup.component', () => {
   it('checks on click', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <ThemeProvider theme={getTheme()}>
+      <ThemeProvider theme={theme}>
         <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
           <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
@@ -100,7 +102,7 @@ describe('CheckboxGroup.component', () => {
 
   it('accepts a prefill value', () => {
     const { container } = render(
-      <ThemeProvider theme={getTheme()}>
+      <ThemeProvider theme={theme}>
         <CheckboxGroup groupId="test-group-id" colSize="5">
           <Checkbox id="A-1" isSelected><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
@@ -120,7 +122,7 @@ describe('CheckboxGroup.component', () => {
   it('does not check when disabled', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <ThemeProvider theme={getTheme()}>
+      <ThemeProvider theme={theme}>
         <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
           <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
@@ -140,7 +142,7 @@ describe('CheckboxGroup.component', () => {
   it('render with prop forceFullWidth', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <ThemeProvider theme={getTheme()}>
+      <ThemeProvider theme={theme}>
         <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick} forceFullWidth>
           <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
@@ -158,7 +160,7 @@ describe('CheckboxGroup.component', () => {
       body: 'Prefix and suffix view',
     };
     const { container } = render(
-      <ThemeProvider theme={getTheme()}>
+      <ThemeProvider theme={theme}>
         <CheckboxGroup groupId="test-group-id" colSize="5" tooltip={tooltip} forceFullWidth>
           <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>

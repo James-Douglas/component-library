@@ -21,7 +21,7 @@ const StyledToggleGroup = styled.div`
 
 const StyledValidationWrapper = styled.div`
   width: 100%;
-  margin-left: ${(props) => props.theme.spacing[8]};
+  margin-left: ${({ theme }) => theme.spacing[8]};
 `;
 
 export const getType = (children) => {
