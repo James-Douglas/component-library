@@ -20,14 +20,12 @@ const StyledCardGroupChildren = styled.div`
   padding-left: ${({ theme }) => theme.spacing['8']};
 `;
 
-const getChildren = (children, cols, { margin, padding }) => {
-  return children.map((child) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <StyledCardGroupChildren cols={cols} key={`card-group-${child.props.id}`}>
-      {React.cloneElement(child, { margin, padding })}
-    </StyledCardGroupChildren>
-  ));
-};
+const getChildren = (children, cols, { margin, padding }) => children.map((child) => (
+  // eslint-disable-next-line react/no-array-index-key
+  <StyledCardGroupChildren cols={cols} key={`card-group-${child.props.id}`}>
+    {React.cloneElement(child, { margin, padding })}
+  </StyledCardGroupChildren>
+));
 
 const CardGroup = ({
   cols, children, id, cardProps,

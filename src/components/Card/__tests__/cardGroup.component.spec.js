@@ -6,7 +6,7 @@ import CardGroup from '../CardGroup.component';
 
 describe('CardGroup', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<CardGroup id="test"/>);
+    const { container } = render(<CardGroup id="test" />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
