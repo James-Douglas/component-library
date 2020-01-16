@@ -38,7 +38,7 @@ exports[`Button renders correctly with minimal props 1`] = `
   padding-bottom: 0.4rem;
 }
 
-.c1 > .c2 {
+.c1 > .sc-AykKC {
   margin-right: 1.2rem;
 }
 
@@ -89,10 +89,6 @@ exports[`Button renders with props 1`] = `
 .c3 {
   pointer-events: none;
   display: inherit;
-}
-
-.c4 > .c2 {
-  margin-right: 1.2rem;
 }
 
 .c1 {

@@ -20,6 +20,7 @@ const getPercentage = (value) => {
   const parsed = parseInt(value, 10);
   return `${(100 / 12) * parsed}%`;
 };
+
 const media = [
   { col: 'sm', minWidth: screens.sm },
   { col: 'md', minWidth: screens.md },
@@ -48,7 +49,7 @@ const StyledColumn = styled.div`
 
     if (baseOffset) {
       colStyles += `
-        margin-left: ${getPercentage(baseOffset)}
+        margin-left: ${getPercentage(baseOffset)};
       `;
     }
 

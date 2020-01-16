@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ToggleGroup renders with minimal props 1`] = `
-"<div class=\\"sc-ifAKCX zFecC row \\"><div class=\\"sc-bZQynM egkTMy label\\"><div cols=\\"12\\" class=\\"sc-EHOje cynKkh 
+"<div class=\\"sc-AykKG bNAMPu row \\"><div class=\\"sc-AykKI idyXLU label\\"><div cols=\\"12\\" class=\\"sc-AykKH fmFHzH 
         
-      \\"><label class=\\"sc-gzVnrw lcTEvC\\"></label></div></div></div><div class=\\"sc-ifAKCX zFecC row sc-iwsKbI hESOnx\\"><div class=\\"sc-gZMcBi ichwlL\\"></div><div class=\\"sc-gqjmRU bgxlEu\\"></div></div>"
+      \\"><label class=\\"sc-AykKJ lcxqHW\\"></label></div></div></div><div class=\\"sc-AykKG bNAMPu row sc-fzXfLP gkgSMW\\"><div class=\\"sc-fzXfLQ eehNvH\\"></div><div class=\\"sc-fzXfLR hhHTLI\\"></div></div>"
 `;

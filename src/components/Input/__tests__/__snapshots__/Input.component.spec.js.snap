@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input.component renders with minimal props 1`] = `
-"<div class=\\"sc-EHOje cwXMYF row \\"><div class=\\"sc-gzVnrw kngDdT label\\"><div cols=\\"12\\" class=\\"sc-bZQynM jqGTQC 
+"<div class=\\"sc-AykKH tctSj row \\"><div class=\\"sc-AykKJ iloKyd label\\"><div cols=\\"12\\" class=\\"sc-AykKI evPkqg 
         
-      \\"><label for=\\"test-id\\" class=\\"sc-htoDjs iwxVem\\"></label></div></div></div><div class=\\"sc-EHOje cwXMYF row sc-VigVT hVGZur\\"><div cols=\\"10\\" class=\\"sc-bZQynM jdmkSg 
+      \\"><label for=\\"test-id\\" class=\\"sc-AykKK ksTIgn\\"></label></div></div></div><div class=\\"sc-AykKH tctSj row sc-fzXfLS crAofN\\"><div cols=\\"10\\" class=\\"sc-AykKI emtNqC 
         
-      \\"><div class=\\"sc-jzJRlG iNJnXl input-container\\"><div class=\\"sc-cSHVUG AmiqT\\"><div class=\\"sc-kAzzGY kSadOM input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"sc-chPdSV wLqRC input-default\\" value=\\"\\"></div></div></div></div></div>"
+      \\"><div class=\\"sc-fzXfLV bcqksq input-container\\"><div class=\\"sc-fzXfLW fuxyWH\\"><div class=\\"sc-fzXfLX ldgWrS input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"sc-fzXfMv evhubF input-default\\" value=\\"\\"></div></div></div></div></div>"
 `;
 
 exports[`Input.component renders with props 1`] = `
-"<div class=\\"sc-EHOje cwXMYF row \\"><div class=\\"sc-gzVnrw kngDdT label\\"><div cols=\\"12\\" class=\\"sc-bZQynM jqGTQC 
+"<div class=\\"sc-AykKH tctSj row \\"><div class=\\"sc-AykKJ iloKyd label\\"><div cols=\\"12\\" class=\\"sc-AykKI evPkqg 
         
-      \\"><label for=\\"test-id\\" class=\\"sc-htoDjs iwxVem\\">input label</label></div></div></div><div class=\\"sc-EHOje cwXMYF row sc-VigVT hVGZur\\"><div cols=\\"10\\" class=\\"sc-bZQynM jdmkSg 
+      \\"><label for=\\"test-id\\" class=\\"sc-AykKK ksTIgn\\">input label</label></div></div></div><div class=\\"sc-AykKH tctSj row sc-fzXfLS crAofN\\"><div cols=\\"10\\" class=\\"sc-AykKI emtNqC 
         
-      \\"><div class=\\"sc-jzJRlG iNJnXl input-container\\"><div class=\\"sc-cSHVUG AmiqT\\"><div class=\\"sc-kAzzGY kSadOM input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"sc-chPdSV wLqRC input-default\\" value=\\"\\"></div></div></div></div></div>"
+      \\"><div class=\\"sc-fzXfLV bcqksq input-container\\"><div class=\\"sc-fzXfLW fuxyWH\\"><div class=\\"sc-fzXfLX ldgWrS input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"sc-fzXfMv evhubF input-default\\" value=\\"\\"></div></div></div></div></div>"
 `;

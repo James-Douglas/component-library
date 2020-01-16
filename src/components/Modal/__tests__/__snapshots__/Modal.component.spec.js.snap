@@ -10,8 +10,8 @@ exports[`Modal renders with minimal props 1`] = `
   height: auto;
   pointer-events: auto;
   position: relative;
-  -webkit-animation-name: jzgqvH;
-  animation-name: jzgqvH;
+  -webkit-animation-name: jJtDGj;
+  animation-name: jJtDGj;
   -webkit-animation-duration: .3s;
   animation-duration: .3s;
 }
