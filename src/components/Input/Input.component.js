@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
@@ -41,8 +41,8 @@ const StyledAffix = styled.span`
   justify-content: center;
   padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};
   height: ${({ theme }) => theme.input.height};
-  padding-right: ${({ theme, affixType }) => (affixType === 'prefix' ? '0.5rem' : '')};
-  padding-left: ${({ theme, affixType }) => (affixType === 'suffix' ? '0.5rem' : '')};
+  padding-right: ${({ affixType }) => (affixType === 'prefix' ? '0.5rem' : '')};
+  padding-left: ${({ affixType }) => (affixType === 'suffix' ? '0.5rem' : '')};
   background: ${({ theme }) => theme.input.background};
 
   ${({ theme, isAutofill, disabled }) => (isAutofill && !disabled) && css`
@@ -62,7 +62,7 @@ const StyledInputWrap = styled.div`
     border: ${({ theme }) => theme.borders.hover};
   }
   ::placeholder {
-    ${({ theme }) => ({ ...theme.placeholder })}
+    ${({ theme }) => ({ ...theme.placeholder })};
   }
   [disabled] {
     background: ${({ theme }) => theme.input.background};
@@ -87,7 +87,7 @@ const StyledInputWrap = styled.div`
   `}
 
   ${({ theme, isFocusActive }) => isFocusActive && css`
-    border: ${theme.borders.hover}
+    border: ${theme.borders.hover};
   `}
 `;
 
@@ -120,7 +120,7 @@ const StyledInput = styled.input`
   }
 
   ${({ theme, isAutofill, disabled }) => isAutofill && !disabled && css`
-    background: ${theme.colors.prechecked}
+    background: ${theme.colors.prechecked};
   `}
 `;
 
@@ -253,60 +253,58 @@ const Input = ({
   };
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-        <StyledRow>
-          <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
-            <StyledInputContainer className="input-container">
-              <StyledInputWrap
-                isAutofill={isAutofill}
-                disabled={disabled}
-                bordered={bordered}
-                invalid={validationMessage && validationMessage.length > 0}
-                isFocusActive={isFocusActive}
-              >
-                {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
-                <StyledInputClearWrap className="input-clear-wrap">
-                  <StyledInput
-                    id={id}
-                    name={id}
-                    type={type}
-                    placeholder={placeholder}
-                    disabled={disabled}
-                    value={internalValue}
-                    onChange={handleOnChange}
-                    autoComplete={autocomplete}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    maxLength={maxlength}
-                    isAutofill={isAutofill}
-                    className="input-default"
-                  />
-                  {renderClearIcon(internalValue, clearInput, isAutofill, label)}
-                </StyledInputClearWrap>
-                {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
-              </StyledInputWrap>
-              <SupportingElements required={required} label={label} />
-              {dataList && <div>{dataList()}</div>}
-            </StyledInputContainer>
-            <FieldValidation message={validationMessage} />
+    <ThemeProvider theme={theme}>
+      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+      <StyledRow>
+        <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+          <StyledInputContainer className="input-container">
+            <StyledInputWrap
+              isAutofill={isAutofill}
+              disabled={disabled}
+              bordered={bordered}
+              invalid={validationMessage && validationMessage.length > 0}
+              isFocusActive={isFocusActive}
+            >
+              {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
+              <StyledInputClearWrap className="input-clear-wrap">
+                <StyledInput
+                  id={id}
+                  name={id}
+                  type={type}
+                  placeholder={placeholder}
+                  disabled={disabled}
+                  value={internalValue}
+                  onChange={handleOnChange}
+                  autoComplete={autocomplete}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  maxLength={maxlength}
+                  isAutofill={isAutofill}
+                  className="input-default"
+                />
+                {renderClearIcon(internalValue, clearInput, isAutofill, label)}
+              </StyledInputClearWrap>
+              {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
+            </StyledInputWrap>
+            <SupportingElements required={required} label={label} />
+            {dataList && <div>{dataList()}</div>}
+          </StyledInputContainer>
+          <FieldValidation message={validationMessage} />
+        </Column>
+        {desktop && hasTooltipContent(tooltip)
+          && (
+          <Column cols={2}>
+            <InlineTooltip
+              title={tooltip.title}
+              body={tooltip.body}
+              boundingElementSelector={tooltip.boundingElementSelector || null}
+              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+              justifyEnd={tooltip.justifyEnd}
+            />
           </Column>
-          {desktop && hasTooltipContent(tooltip)
-            && (
-            <Column cols={2}>
-              <InlineTooltip
-                title={tooltip.title}
-                body={tooltip.body}
-                boundingElementSelector={tooltip.boundingElementSelector || null}
-                screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
-                justifyEnd={tooltip.justifyEnd}
-              />
-            </Column>
-            )}
-        </StyledRow>
-      </ThemeProvider>
-    </>
+          )}
+      </StyledRow>
+    </ThemeProvider>
   );
 };
 

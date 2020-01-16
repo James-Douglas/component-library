@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render, fireEvent, prettyDOM } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import EmptyState from '../EmptyState.component';
 
 describe('Empty State', () => {

@@ -15,7 +15,7 @@ import getTheme from 'utils/getTheme';
 const StyledBar = styled.div`
   margin-bottom: 5.4rem;
   height: 6.4rem;
-  background: ${(props) => props.theme.colors.blueDark}
+  background: ${(props) => props.theme.colors.blueDark};
 `;
 
 const StyledCard = styled.div`
@@ -30,9 +30,6 @@ const SliderRight = () => {
   const [show, setShow] = useState(false);
   const clickMe = () => {
     setShow(!show);
-  };
-  const onClose = () => {
-    setShow(false);
   };
   const breakpoint = useBreakpoint(false);
 

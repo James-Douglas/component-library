@@ -62,7 +62,7 @@ const prefixSuffixView = () => (
       handleChange={(value) => logValue(value)}
       handleFocus={() => { console.warn('focused'); }}
       handleBlur={() => { console.warn('blurred'); }}
-      maxlength="5"
+      maxlength={5}
     />
   </StyledBackground>
 );

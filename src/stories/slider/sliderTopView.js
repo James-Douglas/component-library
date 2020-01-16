@@ -13,7 +13,7 @@ import getTheme from 'utils/getTheme';
 const StyledBar = styled.div`
   margin-bottom: 5.4rem;
   height: 6.4rem;
-  background: ${(props) => props.theme.colors.blueDark}
+  background: ${(props) => props.theme.colors.blueDark};
 `;
 
 const StyledCard = styled.div`
@@ -32,9 +32,6 @@ const SliderTop = () => {
   const [show, setShow] = useState(false);
   const clickMe = () => {
     setShow(!show);
-  };
-  const onClose = () => {
-    setShow(false);
   };
 
   return (
@@ -89,7 +86,7 @@ const SliderTop = () => {
                 <p style={{ marginTop: '3.2rem' }}>Interest paid Monthly, Quarterly, End of term</p>
                 <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
                   <Button id="primary-btn01" variant="primary" btnSize="md" disabled={false}>
-                    Go to side
+                    Go to site
                   </Button>
                   <Button id="text-btn01" variant="link" disabled={false} href="#/" handleClick={clickMe} target="_self">
                     More info

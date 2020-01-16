@@ -205,6 +205,7 @@ const Dropdown = ({
     valueDropdown = valueOption ? valueOption.value : options[0].value;
   } else {
     valueDropdown = '';
+    // eslint-disable-next-line no-console
     console.warn('Invalid prop \'options\' supplied to Dropdown. Validation failed.');
   }
   const [selectValue, setSelectValue] = useState(valueDropdown);

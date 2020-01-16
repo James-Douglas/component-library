@@ -5,7 +5,7 @@ exports[`Input.component renders with minimal props 1`] = `
         
       \\"><label for=\\"test-id\\" class=\\"sc-AykKK ksTIgn\\"></label></div></div></div><div class=\\"sc-AykKH tctSj row sc-fzXfLS crAofN\\"><div cols=\\"10\\" class=\\"sc-AykKI emtNqC 
         
-      \\"><div class=\\"sc-fzXfLV bcqksq input-container\\"><div class=\\"sc-fzXfLW fuxyWH\\"><div class=\\"sc-fzXfLX ldgWrS input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"sc-fzXfMv evhubF input-default\\" value=\\"\\"></div></div></div></div></div>"
+      \\"><div class=\\"sc-fzXfLV bcqksq input-container\\"><div class=\\"sc-fzXfLW kPitLO\\"><div class=\\"sc-fzXfLX ldgWrS input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"sc-fzXfMv evhubF input-default\\" value=\\"\\"></div></div></div></div></div>"
 `;
 
 exports[`Input.component renders with props 1`] = `
@@ -13,5 +13,5 @@ exports[`Input.component renders with props 1`] = `
         
       \\"><label for=\\"test-id\\" class=\\"sc-AykKK ksTIgn\\">input label</label></div></div></div><div class=\\"sc-AykKH tctSj row sc-fzXfLS crAofN\\"><div cols=\\"10\\" class=\\"sc-AykKI emtNqC 
         
-      \\"><div class=\\"sc-fzXfLV bcqksq input-container\\"><div class=\\"sc-fzXfLW fuxyWH\\"><div class=\\"sc-fzXfLX ldgWrS input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"sc-fzXfMv evhubF input-default\\" value=\\"\\"></div></div></div></div></div>"
+      \\"><div class=\\"sc-fzXfLV bcqksq input-container\\"><div class=\\"sc-fzXfLW kPitLO\\"><div class=\\"sc-fzXfLX ldgWrS input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"sc-fzXfMv evhubF input-default\\" value=\\"\\"></div></div></div></div></div>"
 `;

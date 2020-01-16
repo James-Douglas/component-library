@@ -95,7 +95,7 @@ describe('Tooltip', () => {
   });
 
   it('tooltip on click body', async () => {
-    const { container, getByText } = render(<Tooltip body="test tooltip content" />);
+    const { container } = render(<Tooltip body="test tooltip content" />);
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
     const tooltipElement = container.querySelector('.tippy-popper');

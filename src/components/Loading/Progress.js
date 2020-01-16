@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from 'utils/getTheme';
-import TableContext from '../Table/Table/TableContext';
 
 export const StyledProgress = styled.div`
   margin-top: 1rem;
