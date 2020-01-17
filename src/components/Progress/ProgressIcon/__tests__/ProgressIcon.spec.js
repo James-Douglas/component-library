@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import 'jest-styled-components';
-import ProgressIcon from '../ProgressIcon.component';
+import ProgressIcon from '../ProgressIcon';
 import getTheme from '../../../../utils/getTheme';
 
 const theme = getTheme();

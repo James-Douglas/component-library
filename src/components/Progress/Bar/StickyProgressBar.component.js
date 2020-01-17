@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useIsSticky from '../../../hooks/useIsSticky';
-import Bar from './Bar.component';
+import Bar from './ProgressBar.component';
 
 const StickyBar = ({
   value,

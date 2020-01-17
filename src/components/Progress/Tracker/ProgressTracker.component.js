@@ -4,7 +4,7 @@ import styled, { ThemeProvider, css } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import useIsDesktop from 'hooks/useIsDesktop';
 import Container from '../../Grid/Container/Container.component';
-import TrackerItem from '../TrackerItem/TrackerItem.component';
+import TrackerItem from '../TrackerItem/TrackerItem';
 
 /**
  * Output progress item depending from active and disable props

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import TrackerItem from '../TrackerItem.component';
+import TrackerItem from '../TrackerItem';
 
 let mockUseIsDesktopValue = true;
 jest.mock('../../../../hooks/useIsDesktop', () => ({

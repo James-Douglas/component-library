@@ -1,8 +1,6 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
-import Bar from '../../components/Progress/Bar/Bar.component';
-import Tracker from '../../components/Progress/Tracker/Tracker.component';
-import StickyTracker from '../../components/Progress/Tracker/StickyTracker.component';
+import ProgressBar from '../../components/Progress/Bar/ProgressBar.component';
 import Header from '../../components/Header/Header.component';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
@@ -16,7 +14,7 @@ also have active and disabled states.
 <Preview>
   <Story name="progress bar">
     <div style={{maxWidth: '100%'}}>
-      <Bar value={50} />
+      <ProgressBar value={50} />
     </div>
   </Story>
 </Preview>
@@ -31,7 +29,7 @@ also have active and disabled states.
       <div>
         <div style={{ height: '120px' }}>
           <Header number="1800 123 456" />
-          <Bar value={value} />
+          <ProgressBar value={value} />
         </div>
         <FluidContainer>
           <div className="full scrollable w-auto">

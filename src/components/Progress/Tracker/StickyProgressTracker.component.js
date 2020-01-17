@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useIsSticky from '../../../hooks/useIsSticky';
-import Tracker from './Tracker.component';
+import Tracker from './ProgressTracker.component';
 
 const StickyTracker = ({
   steps,

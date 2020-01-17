@@ -1,8 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, number, object } from '@storybook/addon-knobs';
 import { linkTo } from '@storybook/addon-links'
-
-import StickyTracker from '../../components/Progress/Tracker/StickyTracker.component';
+import StickyProgressTracker from '../../components/Progress/Tracker/StickyProgressTracker.component';
 import Header from '../../components/Header/Header.component';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
@@ -14,7 +13,7 @@ import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
 <Story name="sticky progress tracker" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   <div style={{maxWidth: '100%'}}>
-    <StickyTracker steps={[{ label: 'About You', url: '#label', active: true }, { label: 'About me', url: '#label' }, { label: 'About us', url: '#label' }, { label: 'About them', url: '#label' } ]} />
+    <StickyProgressTracker steps={[{ label: 'About You', url: '#label', active: true }, { label: 'About me', url: '#label' }, { label: 'About us', url: '#label' }, { label: 'About them', url: '#label' } ]} />
   </div>
 </Story>
 
@@ -34,7 +33,7 @@ import FluidContainer from '../../components/Grid/Container/Fluid.component';
       <div>
         <div style={{ height: '120px' }}>
           <Header number="1800 123 456" />
-          <StickyTracker value={value} steps={steps} />
+          <StickyProgressTracker value={value} steps={steps} />
         </div>
         <FluidContainer >
           <div>

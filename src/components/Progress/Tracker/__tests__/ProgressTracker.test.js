@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import 'jest-styled-components';
-import Tracker from '../Tracker.component';
+import ProgressTracker from '../ProgressTracker.component';
 
 describe('processTrackerItemLink()', () => {
   const props = {
@@ -15,16 +15,16 @@ describe('processTrackerItemLink()', () => {
     ],
   };
   it('count total length of steps ', () => {
-    const { container } = render(<Tracker value="60" steps={props.steps} />);
+    const { container } = render(<ProgressTracker value="60" steps={props.steps} />);
     const progressLinksCount = container.getElementsByTagName('a').length;
     expect(progressLinksCount).toBe(2);
   });
   it('count total length', () => {
-    const { container } = render(<Tracker value="60" steps={props.steps} isSticky stuck />);
+    const { container } = render(<ProgressTracker value="60" steps={props.steps} isSticky stuck />);
     expect(container.firstChild).toHaveStyleRule('position', 'fixed');
   });
   it('should check complete class', () => {
-    const { container } = render(<Tracker value={100} />);
+    const { container } = render(<ProgressTracker value={100} />);
     const list = container.getElementsByTagName('progress')[0];
     expect(list).toHaveAttribute('value', '100');
   });

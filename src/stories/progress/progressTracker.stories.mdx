@@ -1,6 +1,6 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, number, object } from '@storybook/addon-knobs';
-import Tracker from '../../components/Progress/Tracker/Tracker.component';
+import ProgressTracker from '../../components/Progress/Tracker/ProgressTracker.component';
 import Header from '../../components/Header/Header.component';
 import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
@@ -14,7 +14,7 @@ also have active and disabled states.
 <Preview>
   <Story name="progress tracker">
     <div style={{maxWidth: '100%'}}>
-      <Tracker steps={[{ label: 'About You', url: '#label'}, { label: 'About me', url: '#label', active: true  }, { label: 'About us', url: '#label',disabled: true }, { label: 'About them', url: '#label' } ]}/>
+      <ProgressTracker steps={[{ label: 'About You', url: '#label'}, { label: 'About me', url: '#label', active: true  }, { label: 'About us', url: '#label',disabled: true }, { label: 'About them', url: '#label' } ]}/>
     </div>
   </Story>
 </Preview>
@@ -34,7 +34,7 @@ also have active and disabled states.
       <div>
         <div style={{ height: '120px' }}>
           <Header number="1800 123 456" />
-          <Tracker steps={steps} />
+          <ProgressTracker steps={steps} />
         </div>
         <FluidContainer>
           <div className="full scrollable w-auto">
