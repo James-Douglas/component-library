@@ -14,7 +14,7 @@ import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const StyledRow = styled(Row)`
-  margin-bottom: ${({ theme }) => theme.input.rowBottomMargin};
+  margin-bottom: ${({ theme }) => theme.spacing[16]};
 `;
 
 const StyledOption = styled.option`
@@ -56,7 +56,7 @@ const StyledPrefix = styled.div`
    ${({ isFocusActive, theme }) => isFocusActive && css`
       border: ${theme.borders.hover};
   `}
-}`;
+`;
 
 const StyledPrefixRight = styled.div`
   display: flex;
@@ -74,7 +74,7 @@ const StyledPrefixRight = styled.div`
   img {
     max-width: 100%;
   }
-}`;
+`;
 
 const StyledChevron = styled.div`
   z-index: 1;
@@ -84,7 +84,7 @@ const StyledChevron = styled.div`
   display: flex;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize['3xs']};
-}`;
+`;
 
 const StyledSelectContainer = styled.div`
   position: relative;
@@ -97,7 +97,7 @@ const StyledSelectWrap = styled.div`
   height: 100%;
   display: flex;
   background: ${({ theme }) => theme.dropdown.background};
-}`;
+`;
 
 const StyledSelect = styled.select`
   color: ${({ theme }) => theme.colors.black};
@@ -165,7 +165,7 @@ const StyledSelect = styled.select`
       border: ${theme.borders.invalid};
     }
   `}
-}`;
+`;
 
 const WithPrefixContent = ({ children, isFocusActive, prefixContent }) => (prefixContent
   ? (
@@ -229,59 +229,60 @@ const Dropdown = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-      <StyledRow>
-        <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
-          <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
-            <StyledSelectContainer>
-              <StyledSelectWrap>
-                <StyledSelect
-                  id={id}
-                  name={name}
-                  disabled={isDisabled}
-                  required={required}
-                  value={selectValue}
-                  onChange={handleChange}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  invalidClass={invalidClass}
-                  bordered={bordered}
-                  className={className}
-                  isPrefix={Boolean(prefixContent)}
-                >
-                  {options.map((option) => (
-                    <StyledOption
-                      key={option.value}
-                      value={option.value}
-                      id={`${id}_${option.value}`}
-                      disabled={option.disabled}
-                    >
-                      {option.title}
-                    </StyledOption>
-                  ))}
-                </StyledSelect>
-                <StyledChevron>
-                  <FontAwesomeIcon icon={faChevronDown} size="2x" />
-                </StyledChevron>
-              </StyledSelectWrap>
-              <SupportingElements required={required} label={label} />
-            </StyledSelectContainer>
-          </WithPrefixContent>
-          <FieldValidation message={validationMessage} />
-        </Column>
-        {desktop && hasTooltipContent(tooltip)
-        && (
-          <Column cols={2}>
-            <InlineTooltip
-              title={tooltip.title}
-              body={tooltip.body}
-              boundingElementSelector={tooltip.boundingElementSelector || null}
-              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
-              justifyEnd={tooltip.justifyEnd}
-            />
+      <>
+        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+        <StyledRow>
+          <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+            <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
+              <StyledSelectContainer>
+                <StyledSelectWrap>
+                  <StyledSelect
+                    id={id}
+                    name={name}
+                    disabled={isDisabled}
+                    required={required}
+                    value={selectValue}
+                    onChange={handleChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    invalidClass={invalidClass}
+                    bordered={bordered}
+                    className={className}
+                    isPrefix={Boolean(prefixContent)}
+                  >
+                    {options.map((option) => (
+                      <StyledOption
+                        key={option.value}
+                        value={option.value}
+                        id={`${id}_${option.value}`}
+                        disabled={option.disabled}
+                      >
+                        {option.title}
+                      </StyledOption>
+                    ))}
+                  </StyledSelect>
+                  <StyledChevron>
+                    <FontAwesomeIcon icon={faChevronDown} size="2x" />
+                  </StyledChevron>
+                </StyledSelectWrap>
+                <SupportingElements required={required} label={label} />
+              </StyledSelectContainer>
+            </WithPrefixContent>
+            <FieldValidation message={validationMessage} />
           </Column>
-        )}
-      </StyledRow>
+          {desktop && hasTooltipContent(tooltip)
+          && (
+            <Column cols={2}>
+              <InlineTooltip
+                title={tooltip.title}
+                body={tooltip.body}
+                screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+                justifyEnd={tooltip.justifyEnd}
+              />
+            </Column>
+          )}
+        </StyledRow>
+      </>
     </ThemeProvider>
   );
 };

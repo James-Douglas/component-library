@@ -254,56 +254,57 @@ const Input = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-      <StyledRow>
-        <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
-          <StyledInputContainer className="input-container">
-            <StyledInputWrap
-              isAutofill={isAutofill}
-              disabled={disabled}
-              bordered={bordered}
-              invalid={validationMessage && validationMessage.length > 0}
-              isFocusActive={isFocusActive}
-            >
-              {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
-              <StyledInputClearWrap className="input-clear-wrap">
-                <StyledInput
-                  id={id}
-                  name={id}
-                  type={type}
-                  placeholder={placeholder}
-                  disabled={disabled}
-                  value={internalValue}
-                  onChange={handleOnChange}
-                  autoComplete={autocomplete}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  maxLength={maxlength}
-                  isAutofill={isAutofill}
-                  className="input-default"
-                />
-                {renderClearIcon(internalValue, clearInput, isAutofill, label)}
-              </StyledInputClearWrap>
-              {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
-            </StyledInputWrap>
-            <SupportingElements required={required} label={label} />
-            {dataList && <div>{dataList()}</div>}
-          </StyledInputContainer>
-          <FieldValidation message={validationMessage} />
-        </Column>
-        {desktop && hasTooltipContent(tooltip)
-          && (
-          <Column cols={2}>
-            <InlineTooltip
-              title={tooltip.title}
-              body={tooltip.body}
-              boundingElementSelector={tooltip.boundingElementSelector || null}
-              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
-              justifyEnd={tooltip.justifyEnd}
-            />
+      <>
+        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+        <StyledRow>
+          <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+            <StyledInputContainer className="input-container">
+              <StyledInputWrap
+                isAutofill={isAutofill}
+                disabled={disabled}
+                bordered={bordered}
+                invalid={validationMessage && validationMessage.length > 0}
+                isFocusActive={isFocusActive}
+              >
+                {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
+                <StyledInputClearWrap className="input-clear-wrap">
+                  <StyledInput
+                    id={id}
+                    name={id}
+                    type={type}
+                    placeholder={placeholder}
+                    disabled={disabled}
+                    value={internalValue}
+                    onChange={handleOnChange}
+                    autoComplete={autocomplete}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    maxLength={maxlength}
+                    isAutofill={isAutofill}
+                    className="input-default"
+                  />
+                  {renderClearIcon(internalValue, clearInput, isAutofill, label)}
+                </StyledInputClearWrap>
+                {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
+              </StyledInputWrap>
+              <SupportingElements required={required} label={label} />
+              {dataList && <div>{dataList()}</div>}
+            </StyledInputContainer>
+            <FieldValidation message={validationMessage} />
           </Column>
-          )}
-      </StyledRow>
+          {desktop && hasTooltipContent(tooltip)
+            && (
+            <Column cols={2}>
+              <InlineTooltip
+                title={tooltip.title}
+                body={tooltip.body}
+                screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+                justifyEnd={tooltip.justifyEnd}
+              />
+            </Column>
+            )}
+        </StyledRow>
+      </>
     </ThemeProvider>
   );
 };

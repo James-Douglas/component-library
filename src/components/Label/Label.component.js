@@ -22,7 +22,7 @@ const StyledLabel = styled.label`
 
 const renderTooltip = (tooltip, hasTooltip, enableTooltip) => {
   const {
-    title, body, boundingElementSelector, screenReaderLabel, justifyEnd,
+    title, body, screenReaderLabel, justifyEnd,
   } = tooltip;
   if (hasTooltip && enableTooltip) {
     return (
@@ -30,7 +30,6 @@ const renderTooltip = (tooltip, hasTooltip, enableTooltip) => {
         <Tooltip
           title={title}
           body={body}
-          boundingElementSelector={boundingElementSelector}
           screenReaderLabel={screenReaderLabel}
           justifyEnd={justifyEnd}
         />

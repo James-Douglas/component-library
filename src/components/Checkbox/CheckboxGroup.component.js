@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledRow = styled(Row)`
-  margin-bottom: ${(props) => props.theme.spacing[16]};
+  margin-bottom: ${({ theme }) => theme.spacing[16]};
 `;
 
 export const generateGroup = (colSize, children, callback) => {

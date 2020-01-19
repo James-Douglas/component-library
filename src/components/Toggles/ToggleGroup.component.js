@@ -81,15 +81,17 @@ const ToggleGroup = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-      <StyledRow>
-        <StyledToggleGroup id={id}>
-          {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
-        </StyledToggleGroup>
-        <StyledValidationWrapper>
-          <FieldValidation message={validationMessage} />
-        </StyledValidationWrapper>
-      </StyledRow>
+      <>
+        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+        <StyledRow>
+          <StyledToggleGroup id={id}>
+            {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
+          </StyledToggleGroup>
+          <StyledValidationWrapper>
+            <FieldValidation message={validationMessage} />
+          </StyledValidationWrapper>
+        </StyledRow>
+      </>
     </ThemeProvider>
   );
 };

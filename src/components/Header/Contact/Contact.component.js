@@ -48,13 +48,15 @@ const Contact = ({ number, size }) => {
   const mobileLabel = isDesktop ? number : 'Need help?';
   return (
     <ThemeProvider theme={getTheme()}>
-      <StyledContact isDesktop={isDesktop} size={size} href={`tel:${number}`} target="link-target">
-        <StyledIconWrap>
-          <FontAwesomeIcon icon={faPhoneAlt} size="sm" />
-        </StyledIconWrap>
-        { mobileLabel }
-      </StyledContact>
-      <StylesdIframe title="link iframe" name="link-target" />
+      <>
+        <StyledContact isDesktop={isDesktop} size={size} href={`tel:${number}`} target="link-target">
+          <StyledIconWrap>
+            <FontAwesomeIcon icon={faPhoneAlt} size="sm" />
+          </StyledIconWrap>
+          { mobileLabel }
+        </StyledContact>
+        <StylesdIframe title="link iframe" name="link-target" />
+      </>
     </ThemeProvider>
   );
 };

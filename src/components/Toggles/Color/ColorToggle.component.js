@@ -77,26 +77,28 @@ const ColorToggle = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <GlobalStyle />
-      <div className={`scoped-toggle ${fontColor}`}>
-        <BaseToggle
-          id={id}
-          type="custom"
-          value={value}
-          name={name}
-          selectedValue={selectedValue}
-          invalid={invalid}
-          disabled={disabled}
-          onToggle={handleToggle}
-        >
-          <ToggleLabel id={id}>
-            <StyledColourToggle>
-              <StyledContent>{displayLabel}</StyledContent>
-              <StyledBorderColour style={animationStyle} />
-            </StyledColourToggle>
-          </ToggleLabel>
-        </BaseToggle>
-      </div>
+      <>
+        <GlobalStyle />
+        <div className={`scoped-toggle ${fontColor}`}>
+          <BaseToggle
+            id={id}
+            type="custom"
+            value={value}
+            name={name}
+            selectedValue={selectedValue}
+            invalid={invalid}
+            disabled={disabled}
+            onToggle={handleToggle}
+          >
+            <ToggleLabel id={id}>
+              <StyledColourToggle>
+                <StyledContent>{displayLabel}</StyledContent>
+                <StyledBorderColour style={animationStyle} />
+              </StyledColourToggle>
+            </ToggleLabel>
+          </BaseToggle>
+        </div>
+      </>
     </ThemeProvider>
   );
 };
