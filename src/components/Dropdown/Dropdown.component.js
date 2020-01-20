@@ -265,7 +265,7 @@ const Dropdown = ({
                     <FontAwesomeIcon icon={faChevronDown} size="2x" />
                   </StyledChevron>
                 </StyledSelectWrap>
-                <SupportingElements required={required} label={label} />
+                <SupportingElements required={required} disabled={disabled} label={label} />
               </StyledSelectContainer>
             </WithPrefixContent>
             <FieldValidation message={validationMessage} />

@@ -193,7 +193,7 @@ const Textarea = ({
                 bordered={bordered}
                 aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
               />
-              <SupportingElements label={label} required={required} additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)} />
+              <SupportingElements label={label} required={required} disabled={disabled} additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)} />
             </StyledTextAreaWrapper>
             <FieldValidation message={validationMessage} />
           </Column>

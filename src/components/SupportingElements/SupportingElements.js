@@ -13,15 +13,17 @@ const StyledOptionalText = styled.div`
   flex-direction: row;
 `;
 
-const SupportingElements = ({ required, label, additionalContent }) => {
-  if (required && !additionalContent) return null;
+const SupportingElements = ({
+  required, disabled, label, additionalContent,
+}) => {
+  if ((required && !additionalContent) || disabled) return null;
   return (
     <ThemeProvider theme={getTheme}>
       <StyledOptionalText>
         {additionalContent}
         {!required && (
           <>
-            <SRonly>The ${label} field is optional</SRonly>
+            <SRonly>The {label} field is optional</SRonly>
             <Subscript>Optional</Subscript>
           </>
         )}
@@ -32,13 +34,17 @@ const SupportingElements = ({ required, label, additionalContent }) => {
 
 SupportingElements.propTypes = {
   /**
-   * Whether the field is required, if true OptionalText does not render
+   * Whether the field is required, if true Optional Text does not renderu
    */
   required: PropTypes.bool.isRequired,
   /**
    * Label for the form component
    */
   label: PropTypes.string.isRequired,
+  /**
+   * Whether the field is disabled, if true Optional Text will not be rendered even if field is required
+   */
+  disabled: PropTypes.bool,
   /**
    * Any additional content to be rendered within the OptionalText container
    * (current use case - text area character count)
@@ -48,6 +54,7 @@ SupportingElements.propTypes = {
 
 SupportingElements.defaultProps = {
   additionalContent: null,
+  disabled: false,
 };
 
 export default SupportingElements;

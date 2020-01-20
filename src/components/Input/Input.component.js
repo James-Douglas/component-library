@@ -287,7 +287,7 @@ const Input = ({
                 </StyledInputClearWrap>
                 {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
               </StyledInputWrap>
-              <SupportingElements required={required} label={label} />
+              <SupportingElements required={required} disabled={disabled} label={label} />
               {dataList && <div>{dataList()}</div>}
             </StyledInputContainer>
             <FieldValidation message={validationMessage} />
