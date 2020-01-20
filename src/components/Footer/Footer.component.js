@@ -8,7 +8,7 @@ import Column from '../Grid/Column/Column.component';
 import Row from '../Grid/Row/Row.component';
 import FluidContainer from '../Grid/Container/Fluid.component';
 
-const StyledFooterContainer = styled.div`
+const StyledFooterContainer = styled.footer`
   width: 100%;
   background: ${({ theme }) => theme.footer.background}; 
   flex-grow: 1;
@@ -29,7 +29,6 @@ const StyledFooterCopy = styled.div`
   font-size: ${({ theme }) => theme.fontSize.sm}; 
   line-height: ${({ theme }) => theme.lineHeight.snug}; 
 `;
-
 
 const StyledFooterBar = styled.div`
   width: 100%;
@@ -61,11 +60,11 @@ const StyledScrollTop = styled.div`
   fill: currentColor;
 `;
 
-const Footer = ({ disclaimer }) => {
+const Footer = ({ disclaimer, className }) => {
   const currentYear = new Date().getFullYear();
   return (
     <ThemeProvider theme={getTheme()}>
-      <StyledFooterContainer>
+      <StyledFooterContainer className={className}>
         <FluidContainer>
           <Row>
             <Column md={12} xl={10} offsetXl={1}>
@@ -98,10 +97,15 @@ Footer.propTypes = {
    * The disclaimer text to display
    */
   disclaimer: PropTypes.string,
+  /**
+   * Classes to be applied to the Footer component
+   */
+  className: PropTypes.string,
 };
 
 Footer.defaultProps = {
   disclaimer: null,
+  className: '',
 };
 
 export default Footer;
