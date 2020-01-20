@@ -5,5 +5,5 @@ exports[`Currency renders with minimal props 1`] = `
         sc-AykKK gUjXDj
       \\"><label for=\\"test-id\\" class=\\"sc-fzXfLP fuIufG\\"></label></div></div></div><div class=\\"sc-AykKH tctSj row sc-fzXfLU gENaCA\\"><div cols=\\"10\\" class=\\"sc-AykKI emtNqC 
         sc-fzXfLV hMHPxM
-      \\"><div class=\\"sc-fzXfMv eUXFYH input-container\\"><div class=\\"sc-fzXfMw jmMbCD\\"><div class=\\"sc-fzXfMx fVMFMz input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-fzXfMy dUGmFQ input-default\\" value=\\"\\"></div></div></div></div></div>"
+      \\"><div class=\\"sc-fzXfMv eUXFYH input-container\\"><div class=\\"sc-fzXfMw guXMYH\\"><div class=\\"sc-fzXfMx fVMFMz input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-fzXfMy dNNhnu input-default\\" value=\\"\\"></div></div></div></div></div>"
 `;

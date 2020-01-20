@@ -29,15 +29,16 @@ const StyledColumn = styled(Column)`
 
 const StyledClearIcon = styled.button`
   position: absolute;
-  top: 0.3rem;
-  right:${({ theme }) => theme.spacing[4]};
-  width: ${({ theme }) => theme.spacing[40]};
-  height: ${({ theme }) => theme.spacing[40]};
+  top: 0;
+  right: 0;
+  width: ${({ theme }) => theme.spacing[44]};
+  height: ${({ theme }) => theme.spacing[44]};
   transition: .2s ease-in-out all;
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+  color: ${({ theme, isAutofill }) => (isAutofill ? theme.input.clearButton.colorAutofill : theme.input.clearButton.color)};
   :hover {
     color: ${({ theme }) => theme.input.clearButton.hoverColor};
   }
-  color: ${({ theme, isAutofill }) => (isAutofill ? theme.input.clearButton.colorAutofill : theme.input.clearButton.color)};
 `;
 
 const StyledAffix = styled.span`
@@ -65,8 +66,8 @@ const StyledInputContainer = styled.div`
 const StyledInputWrap = styled.div`
   display: flex;
   border: ${({ theme }) => theme.borders.transparent};
-  :hover:not(.disabled) {
-    border: ${({ theme }) => theme.borders.hover};
+  :hover {
+    border: ${({ theme, disabled }) => (disabled ? '' : theme.borders.hover)};
   }
   ::placeholder {
     ${({ theme }) => ({ ...theme.placeholder })};
@@ -74,25 +75,20 @@ const StyledInputWrap = styled.div`
   [disabled] {
     background: ${({ theme }) => theme.input.background};
   }
-
   ${({ theme, bordered }) => bordered && css`
     border: ${theme.borders.component};
   `}
-
   ${({
     theme, bordered, isAutofill, disabled,
   }) => (bordered && isAutofill && !disabled) && css`
     border: ${theme.borders.prefill};
   `}
-
   ${({ theme, invalid }) => invalid && css`
     border: ${theme.borders.invalid};
   `}
-
   ${({ disabled }) => (disabled) && css`
     opacity: 0.5;
   `}
-
   ${({ theme, isFocusActive }) => isFocusActive && css`
     border: ${theme.borders.hover};
   `}
@@ -112,10 +108,11 @@ const StyledInput = styled.input`
   font-size: ${({ theme }) => theme.fontSize.base};
   border: ${({ theme }) => theme.borders.transparent};
   height: ${({ theme }) => theme.input.height};
-  :webkit-autofill,
-  -webkit-autofill:hover,
-  -webkit-autofill:focus {
-    -webkit-text-fill-color: ${({ theme }) => theme.input.color};
+  -moz-appearance: textfield;
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
   ::-ms-clear {
     display: none;
@@ -125,17 +122,17 @@ const StyledInput = styled.input`
   :hover {
     outline: 0;
   }
-
   ${({ theme, isAutofill, disabled }) => isAutofill && !disabled && css`
     background: ${theme.colors.prechecked};
   `}
 `;
 
-export const renderClearIcon = (value, clearInput, isAutofill, label) => {
+export const renderClearIcon = (value, clearInput, isAutofill, label, disabled) => {
   if (value && value.length) {
     return (
       <StyledClearIcon
         isAutofill={isAutofill}
+        disabled={disabled}
         type="button"
         onClick={clearInput}
         className={`
@@ -290,7 +287,7 @@ const Input = ({
                     isAutofill={isAutofill}
                     className="input-default"
                   />
-                  {renderClearIcon(internalValue, clearInput, isAutofill, label)}
+                  {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled)}
                 </StyledInputClearWrap>
                 {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
               </StyledInputWrap>
