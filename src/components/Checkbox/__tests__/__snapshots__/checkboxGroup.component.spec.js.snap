@@ -1,37 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup.component renders with minimal props 1`] = `
-"<div class=\\"sc-AykKC hrukEm row \\"><div class=\\"sc-AykKI idyXLU label\\"><div cols=\\"12\\" class=\\"sc-AykKD iBTwlL 
+"<div class=\\"sc-AykKC hrukEm row \\"><div class=\\"sc-AykKJ iloKyd label\\"><div cols=\\"12\\" class=\\"sc-AykKD iBTwlL 
         
-      \\"><label for=\\"test-group-id\\" class=\\"sc-AykKJ lcxqHW\\">test</label></div></div></div><div class=\\"sc-AykKC hrukEm row sc-fzXfLQ iJdlKj\\"><div cols=\\"10\\" class=\\"sc-AykKD bVLFix 
+      \\"><label for=\\"test-group-id\\" class=\\"sc-AykKK ksTIgn\\">test</label></div></div></div><div class=\\"sc-AykKC hrukEm row sc-fzXfLR lhZEHw\\"><div cols=\\"10\\" class=\\"sc-AykKD bVLFix 
         
-      \\"><div id=\\"test-group-id\\" class=\\"sc-fzXfLP iNvAyc\\"><div class=\\"sc-AykKC hrukEm row \\"><div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
+      \\"><div id=\\"test-group-id\\" class=\\"sc-fzXfLQ cBgAlh\\"><div class=\\"sc-AykKC hrukEm row \\"><div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
         
-      \\"><div class=\\"sc-fzXfLS ewUIao\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"sc-fzXfLR fEVwrY\\"><label for=\\"A-1\\" class=\\"sc-fzXfLT gSxRaV\\"><div class=\\"sc-fzXfLU drOfyM\\"></div><div class=\\"sc-fzXfLV wfDbd checkbox-content\\"><p>A-1 check</p></div></label></div></div><div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
+      \\"><div class=\\"sc-fzXfLT sOAGp\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"sc-fzXfLS hKHOXt\\"><label for=\\"A-1\\" class=\\"sc-fzXfLU dWoAbS\\"><div class=\\"sc-fzXfLV vCywG\\"></div><div class=\\"sc-fzXfLW krPauy checkbox-content\\"><p>A-1 check</p></div></label></div></div><div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
         
-      \\"><div class=\\"sc-fzXfLS ewUIao\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"sc-fzXfLR fEVwrY\\"><label for=\\"A-2\\" class=\\"sc-fzXfLT gSxRaV\\"><div class=\\"sc-fzXfLU drOfyM\\"></div><div class=\\"sc-fzXfLV wfDbd checkbox-content\\"><p>A-2 check</p></div></label></div></div><div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
+      \\"><div class=\\"sc-fzXfLT sOAGp\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"sc-fzXfLS hKHOXt\\"><label for=\\"A-2\\" class=\\"sc-fzXfLU dWoAbS\\"><div class=\\"sc-fzXfLV vCywG\\"></div><div class=\\"sc-fzXfLW krPauy checkbox-content\\"><p>A-2 check</p></div></label></div></div><div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
         
-      \\"><div class=\\"sc-fzXfLS ewUIao\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" class=\\"sc-fzXfLR fEVwrY\\"><label for=\\"A-3\\" class=\\"sc-fzXfLT gSxRaV\\"><div class=\\"sc-fzXfLU drOfyM\\"></div><div class=\\"sc-fzXfLV wfDbd checkbox-content\\"><p>A-3 check</p></div></label></div></div></div></div></div></div>"
+      \\"><div class=\\"sc-fzXfLT sOAGp\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" class=\\"sc-fzXfLS hKHOXt\\"><label for=\\"A-3\\" class=\\"sc-fzXfLU dWoAbS\\"><div class=\\"sc-fzXfLV vCywG\\"></div><div class=\\"sc-fzXfLW krPauy checkbox-content\\"><p>A-3 check</p></div></label></div></div></div></div></div></div>"
 `;
 
 exports[`CheckboxGroup.component renders with props 1`] = `
-"<div class=\\"sc-AykKC hrukEm row \\"><div class=\\"sc-AykKI idyXLU label\\"><div cols=\\"12\\" class=\\"sc-AykKD iBTwlL 
+"<div class=\\"sc-AykKC hrukEm row \\"><div class=\\"sc-AykKJ iloKyd label\\"><div cols=\\"12\\" class=\\"sc-AykKD iBTwlL 
         
-      \\"><label for=\\"test-group-id\\" class=\\"sc-AykKJ lcxqHW\\"></label></div></div></div><div class=\\"sc-AykKC hrukEm row sc-fzXfLQ iJdlKj\\"><div cols=\\"10\\" class=\\"sc-AykKD bVLFix 
+      \\"><label for=\\"test-group-id\\" class=\\"sc-AykKK ksTIgn\\"></label></div></div></div><div class=\\"sc-AykKC hrukEm row sc-fzXfLR lhZEHw\\"><div cols=\\"10\\" class=\\"sc-AykKD bVLFix 
         
-      \\"><div id=\\"test-group-id\\" class=\\"sc-fzXfLP iNvAyc\\"><div class=\\"sc-AykKC hrukEm row \\"><div cols=\\"5\\" class=\\"sc-AykKD hyzhpZ 
+      \\"><div id=\\"test-group-id\\" class=\\"sc-fzXfLQ cBgAlh\\"><div class=\\"sc-AykKC hrukEm row \\"><div cols=\\"5\\" class=\\"sc-AykKD hyzhpZ 
         
-      \\"><div class=\\"sc-fzXfLS ewUIao\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"sc-fzXfLR fEVwrY\\"><label for=\\"A-1\\" class=\\"sc-fzXfLT gSxRaV\\"><div class=\\"sc-fzXfLU drOfyM\\"></div><div class=\\"sc-fzXfLV wfDbd checkbox-content\\"><p>A-1 check</p></div></label></div></div><div cols=\\"5\\" class=\\"sc-AykKD hyzhpZ 
+      \\"><div class=\\"sc-fzXfLT sOAGp\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"sc-fzXfLS hKHOXt\\"><label for=\\"A-1\\" class=\\"sc-fzXfLU dWoAbS\\"><div class=\\"sc-fzXfLV vCywG\\"></div><div class=\\"sc-fzXfLW krPauy checkbox-content\\"><p>A-1 check</p></div></label></div></div><div cols=\\"5\\" class=\\"sc-AykKD hyzhpZ 
         
-      \\"><div class=\\"sc-fzXfLS ewUIao\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"sc-fzXfLR fEVwrY\\"><label for=\\"A-2\\" class=\\"sc-fzXfLT gSxRaV\\"><div class=\\"sc-fzXfLU drOfyM\\"></div><div class=\\"sc-fzXfLV wfDbd checkbox-content\\"><p>A-2 check</p></div></label></div></div><div cols=\\"5\\" class=\\"sc-AykKD hyzhpZ 
+      \\"><div class=\\"sc-fzXfLT sOAGp\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"sc-fzXfLS hKHOXt\\"><label for=\\"A-2\\" class=\\"sc-fzXfLU dWoAbS\\"><div class=\\"sc-fzXfLV vCywG\\"></div><div class=\\"sc-fzXfLW krPauy checkbox-content\\"><p>A-2 check</p></div></label></div></div><div cols=\\"5\\" class=\\"sc-AykKD hyzhpZ 
         
-      \\"><div class=\\"sc-fzXfLS ewUIao\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" class=\\"sc-fzXfLR fEVwrY\\"><label for=\\"A-3\\" class=\\"sc-fzXfLT gSxRaV\\"><div class=\\"sc-fzXfLU drOfyM\\"></div><div class=\\"sc-fzXfLV wfDbd checkbox-content\\"><p>A-3 check</p></div></label></div></div></div></div></div></div>"
+      \\"><div class=\\"sc-fzXfLT sOAGp\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" class=\\"sc-fzXfLS hKHOXt\\"><label for=\\"A-3\\" class=\\"sc-fzXfLU dWoAbS\\"><div class=\\"sc-fzXfLV vCywG\\"></div><div class=\\"sc-fzXfLW krPauy checkbox-content\\"><p>A-3 check</p></div></label></div></div></div></div></div></div>"
 `;
 
 exports[`generateGroup renders if there are children 1`] = `
 "<div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
         
-      \\"><div class=\\"sc-fzXfLS ewUIao\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"sc-fzXfLR fEVwrY\\"><label for=\\"A-1\\" class=\\"sc-fzXfLT gSxRaV\\"><div class=\\"sc-fzXfLU drOfyM\\"></div><div class=\\"sc-fzXfLV wfDbd checkbox-content\\"><p>A-1 check</p></div></label></div></div><div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
+      \\"><div class=\\"sc-fzXfLT sOAGp\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" class=\\"sc-fzXfLS hKHOXt\\"><label for=\\"A-1\\" class=\\"sc-fzXfLU dWoAbS\\"><div class=\\"sc-fzXfLV vCywG\\"></div><div class=\\"sc-fzXfLW krPauy checkbox-content\\"><p>A-1 check</p></div></label></div></div><div cols=\\"6\\" class=\\"sc-AykKD klJPaz 
         
-      \\"><div class=\\"sc-fzXfLS ewUIao\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"sc-fzXfLR fEVwrY\\"><label for=\\"A-2\\" class=\\"sc-fzXfLT gSxRaV\\"><div class=\\"sc-fzXfLU drOfyM\\"></div><div class=\\"sc-fzXfLV wfDbd checkbox-content\\"><p>A-2 check</p></div></label></div></div>"
+      \\"><div class=\\"sc-fzXfLT sOAGp\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" class=\\"sc-fzXfLS hKHOXt\\"><label for=\\"A-2\\" class=\\"sc-fzXfLU dWoAbS\\"><div class=\\"sc-fzXfLV vCywG\\"></div><div class=\\"sc-fzXfLW krPauy checkbox-content\\"><p>A-2 check</p></div></label></div></div>"
 `;

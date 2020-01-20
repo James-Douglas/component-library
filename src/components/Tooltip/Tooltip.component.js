@@ -11,6 +11,7 @@ import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
+import SRonly from '../Typography/SRonly/SRonly.component';
 
 const StyledTooltipWrapper = styled.div`
   display: flex;
@@ -27,8 +28,10 @@ const StyledTooltipIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: ${({ desktop }) => (desktop ? '1.8rem' : '2.2rem')}; 
-  color:  ${({ theme }) => theme.tooltip.iconColor}; 
+  font-size: ${({ desktop, iconSmall }) => (desktop || iconSmall ? '1.8rem' : '2.4rem')}; 
+  height: 2.4rem;
+  width: 2.4rem;
+  color:  ${(props) => props.theme.colors.grey}; 
   fill: currentColor;
    ${({ theme, tippyVisible }) => tippyVisible && css`
     fill: currentColor;
@@ -92,6 +95,7 @@ const Tooltip = ({
   placement,
   screenReaderLabel,
   justifyEnd,
+  iconSmall,
 }) => {
   const [pinned, setPinned] = useState(false);
   const desktop = useIsDesktop(false);
@@ -174,6 +178,7 @@ const Tooltip = ({
             role="tooltip"
             desktop={desktop}
             ref={tooltipElement}
+            iconSmall={iconSmall}
             pinned={pinned}
             tippyVisible={tippyVisible}
             onClick={pinTooltip}
@@ -188,7 +193,7 @@ const Tooltip = ({
             }}
           >
             <>
-              <span className="sr-only">{screenReaderLabel}</span>
+              <SRonly>{screenReaderLabel}</SRonly>
               <FontAwesomeIcon icon={faInfoCircle} />
             </>
           </StyledTooltipIcon>
@@ -204,6 +209,7 @@ export const InlineTooltip = ({
   placement,
   screenReaderLabel,
   justifyEnd,
+  iconSmall,
 }) => (
   <StyledTooltipContainer>
     <Tooltip
@@ -212,27 +218,48 @@ export const InlineTooltip = ({
       placement={placement}
       screenReaderLabel={screenReaderLabel}
       justifyEnd={justifyEnd}
+      iconSmall={iconSmall}
     />
   </StyledTooltipContainer>
 );
 
 export const tooltipPropTypes = {
+  /**
+   * Title for the tooltip
+   */
   title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
     PropTypes.object,
   ]),
+  /**
+   * Body content for the tooltip
+   */
   body: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
     PropTypes.object,
   ]),
+  /**
+   * Aligns the tooltip with the end of it's wrapper (centered otherwise)
+   */
   justifyEnd: PropTypes.bool,
+  /**
+   * Label for screen readers
+   */
   screenReaderLabel: PropTypes.string,
+  /**
+   * Placement of the tooltip in relation to it's icon
+   */
   placement: PropTypes.oneOf([
     'top', 'bottom', 'left', 'right', 'top-start', 'top-end', 'bottom-start', 'bottom-end', 'left-start', 'left-end',
     'right-start', 'right-end',
   ]),
+  /**
+   * Render a 1.8rem tooltip icon despite screensize (by default the tooltip icon is 1.8rem on desktop &
+   * 2.4rem on mobile), the clickable area will remain 2.4rem
+   */
+  iconSmall: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -241,6 +268,7 @@ const defaultProps = {
   justifyEnd: false,
   screenReaderLabel: '',
   placement: 'left',
+  iconSmall: false,
 };
 
 

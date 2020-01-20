@@ -41,24 +41,30 @@ Combo is an extension of the Input component.
 
 <Story name="combo with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
+    const componentPropsId = 'Component Props';
+    const tooltipGroupId = 'Tooltip Props';
     const apiData = fakeApiData.map((obj) => obj.title);
-    const id = text('id', 'combo-demo');
-    const label = text('label', 'Example Combo');
-    const value = text('value', '');
-    const placeholder = text('placeholder', 'Placeholder');
-    const required = boolean('required', true);
-    const disabled = boolean('disabled', false);
-    const bordered = boolean('bordered', true);
-    const validationMessage = text('validationMessage', '');
-    const prefillValue = text('prefillValue', '');
-    const autoComplete = text('autoComplete', 'off');
-    const prefixContent = text('prefix', '');
-    const suffixContent = text('suffix', '');
-    const renderLimit = number('renderLimit', 10);
-    const characterMinimum = number('characterMinimum', 1);
-    const tooltip = object('Tooltip', { title: 'Combo component' });
-    const linkHref = text('linkHref', 'https://www.comparethemarket.com.au/');
-    const linkText = text('linkText', 'Can’t find your address?')
+    const id = text('id', 'combo-demo', componentPropsId);
+    const label = text('label', 'Example Combo', componentPropsId);
+    const value = text('value', '', componentPropsId);
+    const placeholder = text('placeholder', 'Placeholder', componentPropsId);
+    const required = boolean('required', true, componentPropsId);
+    const disabled = boolean('disabled', false, componentPropsId);
+    const bordered = boolean('bordered', true, componentPropsId);
+    const validationMessage = text('validationMessage', '', componentPropsId);
+    const prefillValue = text('prefillValue', '', componentPropsId);
+    const autoComplete = text('autoComplete', 'off', componentPropsId);
+    const prefixContent = text('prefix', '', componentPropsId);
+    const suffixContent = text('suffix', '', componentPropsId);
+    const renderLimit = number('renderLimit', 10, componentPropsId);
+    const characterMinimum = number('characterMinimum', 1, componentPropsId);
+    const linkHref = text('linkHref', 'https://www.comparethemarket.com.au/', componentPropsId);
+    const linkText = text('linkText', 'Can’t find your address?', componentPropsId)
+    const title = text('title', 'input tooltip', tooltipGroupId);
+    const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
+    const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
+    const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
+    const iconSmall = boolean('iconSmall', false, tooltipGroupId);
     return (
       <FluidContainer>
         <Row>
@@ -81,7 +87,13 @@ Combo is an extension of the Input component.
               apiData={apiData}
               linkHref={linkHref}
               linkText={linkText}
-              tooltip={tooltip}
+              tooltip={{
+                title,
+                body,
+                justifyEnd,
+                screenReaderLabel,
+                iconSmall
+              }}
             />
           </Column>
         </Row>

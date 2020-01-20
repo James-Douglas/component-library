@@ -18,27 +18,28 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
 
 <Story name="textarea with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
-    const id = text('ID', 'input-one');
-    const name = text('Name', 'input-one');
-    const label = text('Label', 'Label');
-    const placeholder = text('Placeholder', 'Placeholder Text');
-    const TextareaValue = text('Value', '');
-    const bordered = boolean('Bordered', true);
-    const disabled = boolean('Disabled', false);
-    const required = boolean('Required', false);
-    const isPrefill = boolean('Prefilled', false);
-    const rows = text('Rows', '6'); // can be set via the css width property
-    const wrap = select('Wrap', ['hard', 'soft'], 'soft');
-    const readonly = boolean('Readonly', false);
-    const maxLength = text('Maxlength', '');
-    const maxChars = text('Maxchars', '500');
-    const tooltip = object('tooltip', {
-      title: 'dropdown tooltip',
-      body: 'this is a tooltip for the dropdown component',
-      justifyEnd: false,
-      screenReaderLabel: 'dropdown screenReaderLabel'
-    });
-    const validationMessage = text('validationMessage', '');
+    const componentPropsId = 'Component Props';
+    const tooltipGroupId = 'Tooltip Props';
+    const id = text('ID', 'input-one', componentPropsId);
+    const name = text('Name', 'input-one', componentPropsId);
+    const label = text('Label', 'Label', componentPropsId);
+    const placeholder = text('Placeholder', 'Placeholder Text', componentPropsId);
+    const TextareaValue = text('Value', '', componentPropsId);
+    const bordered = boolean('Bordered', true, componentPropsId);
+    const disabled = boolean('Disabled', false, componentPropsId);
+    const required = boolean('Required', false, componentPropsId);
+    const isPrefill = boolean('Prefilled', false, componentPropsId);
+    const rows = text('Rows', '6', componentPropsId); // can be set via the css width property
+    const wrap = select('Wrap', ['hard', 'soft'], 'soft', componentPropsId);
+    const readonly = boolean('Readonly', false, componentPropsId);
+    const maxLength = text('Maxlength', '', componentPropsId);
+    const maxChars = text('Maxchars', '500', componentPropsId);
+    const validationMessage = text('validationMessage', '', componentPropsId);
+    const title = text('title', 'input tooltip', tooltipGroupId);
+    const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
+    const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
+    const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
+    const iconSmall = boolean('iconSmall', false, tooltipGroupId);
     return (
       <TextareaDemoView
         id={id}
@@ -55,7 +56,13 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
         readonly={readonly}
         maxLength={maxLength}
         maxChars={maxChars}
-        tooltip={tooltip}
+        tooltip={{
+          title,
+          body,
+          justifyEnd,
+          screenReaderLabel,
+          iconSmall
+        }}
         validationMessage={validationMessage}
       />
     );

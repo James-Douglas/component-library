@@ -39,30 +39,37 @@ import InputStates from './input-states';
 
 <Story name="input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
-    const label = text('label', 'input demo');
-    const tooltip = object('tooltip', {
-      title: 'input tooltip',
-      body: 'this is a tooltip for the input component',
-      justifyEnd: false,
-      screenReaderLabel: 'input screenReaderLabel'
-    });
-    const forceFullWidth = boolean('forceFullWidth', false);
-    const validationMessage = text('validationMessage', '');
-    const maxLength = number('maxLength', 25);
-    const value = text('value', '');
-    const prefillValue = text('prefillValue', 'prefilled');
-    const type = text('type', 'text');
-    const placeholder = text('placeholder', 'input demo');
-    const required = boolean('required', false);
-    const disabled = boolean('disabled', false);
-    const bordered = boolean('bordered', true);
-    const prefixContent = text('prefixContent', '');
-    const suffixContent = text('suffixContent', '');
+    const componentPropsId = 'Component Props';
+    const tooltipGroupId = 'Tooltip Props';
+    const label = text('label', 'input demo', componentPropsId);
+    const forceFullWidth = boolean('forceFullWidth', false, componentPropsId);
+    const validationMessage = text('validationMessage', '', componentPropsId);
+    const maxLength = number('maxLength', 25, componentPropsId);
+    const value = number('value', 33, componentPropsId);
+    const prefillValue = text('prefillValue', 'prefilled', componentPropsId);
+    const type = text('type', 'text', componentPropsId);
+    const placeholder = text('placeholder', 'input demo', componentPropsId);
+    const required = boolean('required', false, componentPropsId);
+    const disabled = boolean('disabled', false, componentPropsId);
+    const bordered = boolean('bordered', true, componentPropsId);
+    const prefixContent = text('prefixContent', '', componentPropsId);
+    const suffixContent = text('suffixContent', '', componentPropsId);
+    const title = text('title', 'input tooltip', tooltipGroupId);
+    const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
+    const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
+    const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
+    const iconSmall = boolean('iconSmall', false, tooltipGroupId);
     return (
       <Input
         id="input-props"
         label={label}
-        tooltip={tooltip}
+        tooltip={{
+          title,
+          body,
+          justifyEnd,
+          screenReaderLabel,
+          iconSmall
+        }}
         forceFullWidth={forceFullWidth}
         validationMessage={validationMessage}
         maxLength={maxLength}

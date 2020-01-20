@@ -95,25 +95,26 @@ select (another component will handle multi select).
 
 <Story name="dropdown with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
-    const label = text('label', 'Dropdown example');
-    const forceFullWidth = boolean('forceFullWidth', false);
-    const tooltip = object('tooltip', {
-      title: 'dropdown tooltip',
-      body: 'this is a tooltip for the dropdown component',
-      justifyEnd: false,
-      screenReaderLabel: 'dropdown screenReaderLabel'
-    });
-    const validationMessage = text('validationMessage', '');
-    const prefillValue = text('prefillValue', '');
-    const bordered = boolean('bordered', true);
-    const disabled = boolean('disabled', false);
-    const required = boolean('required', true);
-    const readOnly = boolean('readOnly', false);
+    const componentPropsId = 'Component Props';
+    const tooltipGroupId = 'Tooltip Props';
+    const label = text('label', 'Dropdown example', componentPropsId);
+    const forceFullWidth = boolean('forceFullWidth', false, componentPropsId);
+    const validationMessage = text('validationMessage', '', componentPropsId);
+    const prefillValue = text('prefillValue', '', componentPropsId);
+    const bordered = boolean('bordered', true, componentPropsId);
+    const disabled = boolean('disabled', false, componentPropsId);
+    const required = boolean('required', true, componentPropsId);
+    const readOnly = boolean('readOnly', false, componentPropsId);
     const options = [
-      object('first option', { value: 'First', title: 'First Item - Title' }),
-      object('second option', { value: 'Second', title: 'Second Item - Title', selected: true }),
-      object('third option', { value: 'Third', title: 'Third Item - Title', disabled: true })
+      object('first option', { value: 'First', title: 'First Item - Title' }, componentPropsId),
+      object('second option', { value: 'Second', title: 'Second Item - Title', selected: true }, componentPropsId),
+      object('third option', { value: 'Third', title: 'Third Item - Title', disabled: true }, componentPropsId)
     ];
+    const title = text('title', 'input tooltip', tooltipGroupId);
+    const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
+    const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
+    const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
+    const iconSmall = boolean('iconSmall', false, tooltipGroupId);
     return (
        <FluidContainer>
          <Row>
@@ -123,7 +124,13 @@ select (another component will handle multi select).
                 label={label}
                 forceFullWidth={forceFullWidth}
                 options={options}
-                tooltip={tooltip}
+                tooltip={{
+                  title,
+                  body,
+                  justifyEnd,
+                  screenReaderLabel,
+                  iconSmall
+                }}
                 validationMessage={validationMessage}
                 prefillValue={prefillValue}
                 bordered={bordered}

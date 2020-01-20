@@ -300,6 +300,7 @@ const Input = ({
                 body={tooltip.body}
                 screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
                 justifyEnd={tooltip.justifyEnd}
+                iconSmall={tooltip.iconSmall}
               />
             </Column>
             )}
