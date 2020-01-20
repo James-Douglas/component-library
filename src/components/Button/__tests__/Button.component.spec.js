@@ -268,14 +268,4 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn).toHaveStyleRule('min-width', '20rem');
   });
-
-  it('renders primary variant if a wrong variant is supplied', () => {
-    const { container } = render(
-      <Button id="test-id" variant="test-case-prop">
-        test thing
-      </Button>,
-    );
-    const btn = container.querySelector('#test-id');
-    expect(btn).toHaveStyleRule('background', theme.button.primary.background);
-  });
 });

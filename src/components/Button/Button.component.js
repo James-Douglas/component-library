@@ -183,6 +183,9 @@ const textVariant = css`
   border-radius: unset;
   text-decoration: none;
   font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  > ${StyledIcon} {
+    margin-top: 0;
+  }
   :hover {
     color: ${({ theme }) => theme.button.text.colorHover};
     fill: ${({ theme }) => theme.button.text.fillHover};
@@ -264,7 +267,7 @@ const BaseTag = styled.div`
         return primaryVariant;
     }
   }}
-  ${({ disabled }) => disabled && disabledStyles};
+  ${({ disabled, href }) => (disabled && !href) && disabledStyles};
 `;
 
 const StyledButtonWrap = styled.span`
