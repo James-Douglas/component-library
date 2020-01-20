@@ -15,6 +15,13 @@ import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const StyledRow = styled(Row)`
   margin-bottom: ${({ theme }) => theme.spacing[16]};
+  margin-left: 0;
+  margin-right: 0;
+`;
+
+const StyledColumn = styled(Column)`
+  padding-left: 0;
+  padding-right: 0;
 `;
 
 const StyledOption = styled.option`
@@ -232,7 +239,7 @@ const Dropdown = ({
       <>
         <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
         <StyledRow>
-          <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+          <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
             <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
               <StyledSelectContainer>
                 <StyledSelectWrap>
@@ -269,17 +276,17 @@ const Dropdown = ({
               </StyledSelectContainer>
             </WithPrefixContent>
             <FieldValidation message={validationMessage} />
-          </Column>
-          {desktop && hasTooltipContent(tooltip)
+          </StyledColumn>
+          {desktop && !forceFullWidth && hasTooltipContent(tooltip)
           && (
-            <Column cols={2}>
+            <StyledColumn cols={2}>
               <InlineTooltip
                 title={tooltip.title}
                 body={tooltip.body}
                 screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
                 justifyEnd={tooltip.justifyEnd}
               />
-            </Column>
+            </StyledColumn>
           )}
         </StyledRow>
       </>

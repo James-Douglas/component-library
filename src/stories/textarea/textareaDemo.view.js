@@ -1,5 +1,5 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
 import Textarea from '../../components/Textarea/Textarea.component';
@@ -29,6 +29,7 @@ const TextareaDemoView = ({
   maxChars,
   maxLength,
   validationMessage,
+  forceFullWidth,
 }) => (
   <ThemeProvider theme={getTheme()}>
     <StyledBackground
@@ -52,46 +53,12 @@ const TextareaDemoView = ({
           maxChars={maxChars}
           maxLength={maxLength}
           validationMessage={validationMessage}
+          forceFullWidth={forceFullWidth}
         />
       </StyledView>
     </StyledBackground>
 
   </ThemeProvider>
 );
-
-TextareaDemoView.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string,
-  label: PropTypes.string,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
-  bordered: PropTypes.bool,
-  disabled: PropTypes.bool,
-  required: PropTypes.bool,
-  isPrefill: PropTypes.bool,
-  rows: PropTypes.string,
-  wrap: PropTypes.string,
-  readonly: PropTypes.bool,
-  maxChars: PropTypes.string,
-  maxLength: PropTypes.string,
-  validationMessage: PropTypes.string,
-};
-
-TextareaDemoView.defaultProps = {
-  name: '',
-  value: '',
-  label: '',
-  placeholder: '',
-  bordered: false,
-  disabled: false,
-  required: false,
-  isPrefill: false,
-  rows: '',
-  wrap: '',
-  readonly: false,
-  maxLength: '',
-  maxChars: '',
-  validationMessage: '',
-};
 
 export default TextareaDemoView;

@@ -13,8 +13,18 @@ const StyledContainer = styled.div`
   width: 100%;
 `;
 
-const StyledRow = styled(Row)`
+const StyledWrapperRow = styled(Row)`
   margin-bottom: ${({ theme }) => theme.spacing[16]};
+`;
+
+const StyledInnerRow = styled(Row)`
+  margin-left: 0;
+  margin-right: 0;
+`;
+
+const StyledColumn = styled(Column)`
+  padding-left: 0;
+  padding-right: 0;
 `;
 
 export const generateGroup = (colSize, children, callback) => {
@@ -22,9 +32,9 @@ export const generateGroup = (colSize, children, callback) => {
     return children.map((child) => {
       const component = React.cloneElement(child, { handleChange: callback });
       return (
-        <Column cols={colSize} key={`key-${child.props.id}`}>
+        <StyledColumn cols={colSize} key={`key-${child.props.id}`}>
           {component}
-        </Column>
+        </StyledColumn>
       );
     });
   }
@@ -62,16 +72,16 @@ const CheckboxGroup = ({
   return (
     <>
       <Label forId={groupId} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-      <StyledRow>
+      <StyledWrapperRow>
         <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
           <StyledContainer id={groupId}>
-            <Row>
+            <StyledInnerRow>
               {generateGroup(colSize, children, handleCheckboxClick)}
-            </Row>
+            </StyledInnerRow>
           </StyledContainer>
           <FieldValidation message={validationMessage} />
         </Column>
-        {desktop && hasTooltipContent(tooltip)
+        {desktop && !forceFullWidth && hasTooltipContent(tooltip)
         && (
           <Column cols={2}>
             <InlineTooltip
@@ -82,7 +92,7 @@ const CheckboxGroup = ({
             />
           </Column>
         )}
-      </StyledRow>
+      </StyledWrapperRow>
     </>
   );
 };

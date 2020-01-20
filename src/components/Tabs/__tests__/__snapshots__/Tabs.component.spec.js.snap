@@ -207,7 +207,7 @@ exports[`Tabs renders a border 1`] = `
 exports[`Tabs renders additional classNames 1`] = `
 <div>
   <div
-    class="sc-AykKD kyNNoe 
+    class="sc-AykKD cFBUNQ 
     tabs-container
     test classes
   "
@@ -273,7 +273,7 @@ exports[`Tabs renders additional classNames 1`] = `
 exports[`Tabs renders correctly with minimal props 1`] = `
 <div>
   <div
-    class="sc-AykKD kyNNoe 
+    class="sc-AykKD cFBUNQ 
     tabs-container
     
   "

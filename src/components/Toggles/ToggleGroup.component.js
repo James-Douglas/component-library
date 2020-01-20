@@ -10,6 +10,8 @@ import FieldValidation from '../FieldValidation/FieldValidation.component';
 
 const StyledRow = styled(Row)`
   margin-bottom: ${(props) => props.theme.spacing[16]};
+  margin-left: 0;
+  margin-right: 0;
 `;
 
 const StyledToggleGroup = styled.div`

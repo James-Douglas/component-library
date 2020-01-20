@@ -53,7 +53,7 @@ const Tabs = ({
   return (
     <TabsContext.Provider value={tabProviderValue}>
       <ThemeProvider theme={getTheme()}>
-        <StyledTabsContainer className={classNames} bordered style={{ minHeight: `${minHeight}` }}>
+        <StyledTabsContainer className={classNames} bordered={bordered} style={{ minHeight: `${minHeight}` }}>
           {renderChildren(children)}
         </StyledTabsContainer>
       </ThemeProvider>

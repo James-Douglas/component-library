@@ -7,6 +7,16 @@ import Column from '../Grid/Column/Column.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import getTheme from '../../utils/getTheme';
 
+const StyledRow = styled(Row)`
+  margin-left: 0;
+  margin-right: 0;
+`;
+
+const StyledColumn = styled(Column)`
+  padding-left: 0;
+  padding-right: 0;
+`;
+
 const StyledLabelWrap = styled.div`
   display: flex;
   align-items: flex-end;
@@ -20,21 +30,21 @@ const StyledLabel = styled.label`
   width: 100%;
 `;
 
-const renderTooltip = (tooltip, hasTooltip, enableTooltip) => {
+const renderTooltip = (tooltip, hasTooltip, enableTooltip, fullWidth) => {
   const {
     title, body, screenReaderLabel, justifyEnd, iconSmall,
   } = tooltip;
   if (hasTooltip && enableTooltip) {
     return (
-      <Column cols="2">
+      <StyledColumn cols="2">
         <Tooltip
           title={title}
           body={body}
           screenReaderLabel={screenReaderLabel}
-          justifyEnd={justifyEnd}
+          justifyEnd={justifyEnd || fullWidth}
           iconSmall={iconSmall}
         />
-      </Column>
+      </StyledColumn>
     );
   }
   return null;
@@ -57,16 +67,16 @@ const Label = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <Row>
+      <StyledRow>
         <StyledLabelWrap className="label">
-          <Column cols={hasTooltip ? '10' : '12'}>
+          <StyledColumn cols={hasTooltip ? '10' : '12'}>
             <StyledLabel htmlFor={forId}>
               {text}
             </StyledLabel>
-          </Column>
-          {renderTooltip(tooltip, hasTooltip, enableTooltip)}
+          </StyledColumn>
+          {renderTooltip(tooltip, hasTooltip, enableTooltip, fullWidth)}
         </StyledLabelWrap>
-      </Row>
+      </StyledRow>
     </ThemeProvider>
   );
 };

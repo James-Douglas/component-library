@@ -18,6 +18,7 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
 
 <Story name="textarea with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
+    const validationMessage = text('validationMessage', '');
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
     const id = text('ID', 'input-one', componentPropsId);
@@ -34,6 +35,7 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
     const readonly = boolean('Readonly', false, componentPropsId);
     const maxLength = text('Maxlength', '', componentPropsId);
     const maxChars = text('Maxchars', '500', componentPropsId);
+     const forceFullWidth = boolean('forceFullWidth', false);
     const validationMessage = text('validationMessage', '', componentPropsId);
     const title = text('title', 'input tooltip', tooltipGroupId);
     const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
@@ -64,6 +66,7 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
           iconSmall
         }}
         validationMessage={validationMessage}
+        forceFullWidth={forceFullWidth}
       />
     );
   }}

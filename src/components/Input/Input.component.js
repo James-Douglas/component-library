@@ -18,6 +18,13 @@ import SupportingElements from '../SupportingElements/SupportingElements';
 
 const StyledRow = styled(Row)`
   margin-bottom: ${({ theme }) => theme.spacing[16]};
+  margin-left: 0;
+  margin-right: 0;
+`;
+
+const StyledColumn = styled(Column)`
+  padding-left: 0;
+  padding-right: 0;
 `;
 
 const StyledClearIcon = styled.button`
@@ -257,7 +264,7 @@ const Input = ({
       <>
         <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
         <StyledRow>
-          <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+          <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
             <StyledInputContainer className="input-container">
               <StyledInputWrap
                 isAutofill={isAutofill}
@@ -291,10 +298,10 @@ const Input = ({
               {dataList && <div>{dataList()}</div>}
             </StyledInputContainer>
             <FieldValidation message={validationMessage} />
-          </Column>
-          {desktop && hasTooltipContent(tooltip)
+          </StyledColumn>
+          {desktop && !forceFullWidth && hasTooltipContent(tooltip)
             && (
-            <Column cols={2}>
+            <StyledColumn cols={2}>
               <InlineTooltip
                 title={tooltip.title}
                 body={tooltip.body}
@@ -302,7 +309,7 @@ const Input = ({
                 justifyEnd={tooltip.justifyEnd}
                 iconSmall={tooltip.iconSmall}
               />
-            </Column>
+            </StyledColumn>
             )}
         </StyledRow>
       </>
