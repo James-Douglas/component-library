@@ -6,13 +6,19 @@ import Loading from '../../components/Loading/Loading';
 <Meta title="Components|Loading" component={Loading} />
 
 # Loading
-<Story name="Loading">
-  {() => {
-   return (
-      <Loading />
-    )
-  }}
-</Story>
+<Preview>
+  <Story name="Loading">
+    {() => {
+     return (
+        <Loading />
+      )
+    }}
+  </Story>
+</Preview>
+
+### Props
+
+<Props of={Loading} />
 
 # Loading with stops
 <Story name="Loading with stops">
@@ -42,7 +48,7 @@ import Loading from '../../components/Loading/Loading';
 </Story>
 
 # Loading without stops
-<Story name="Loading with props">
+<Story name="Loading without stops">
   {() => {
     const [loadVar, isLoadVar] = useState(false);
     setTimeout(() => {
@@ -60,7 +66,7 @@ import Loading from '../../components/Loading/Loading';
       delayLoading: true
     };
    return (
-      <Loading {...optionalProps}  onLoaded={() => {}} />
+      <Loading {...optionalProps} maxProgress={90} onLoaded={() => {}} />
     )
   }}
 </Story>

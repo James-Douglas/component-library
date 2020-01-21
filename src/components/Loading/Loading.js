@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import theme from 'utils/getTheme';
+import getTheme from '../../utils/getTheme';
 import Progress from './Progress';
 import useInterval from '../../hooks/useInterval';
 
@@ -11,12 +11,12 @@ export const StyledContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: calc(100vh - 150px);
-  font-size: ${(props) => props.theme.fontSize.base};
+  font-size: ${({ theme }) => theme.fontSize.base};
 `;
 export const StyledInnerContainer = styled.div`
   margin-top: 10rem;
   text-align: center;
-  width: 800px;
+  width: 80rem;
 `;
 export const StyledMessageContainer = styled.div`
   display: flex;
@@ -30,8 +30,8 @@ const Loading = ({
   onLoaded,
   forceStop,
   delayNumber,
+  maxProgress,
 }) => {
-  const maxProgress = 100;
   const [progress, setProgress] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
   const [timer, setTimer] = useState(0);
@@ -40,7 +40,7 @@ const Loading = ({
 
   useEffect(() => {
     setProgress(forceStop ? maxProgress : progress);
-  }, [forceStop, progress]);
+  }, [forceStop, maxProgress, progress]);
 
   // Interval to track the progress value
   useInterval(() => {
@@ -78,7 +78,7 @@ const Loading = ({
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={getTheme()}>
       <StyledContainer>
         <StyledInnerContainer>
           {
@@ -98,31 +98,30 @@ const Loading = ({
 
 Loading.propTypes = {
   /**
-   * @param {Array} messages
    * Set of messages to show.
    * Currently cycles through a maximum of 3 messages.
    */
   messages: PropTypes.arrayOf(PropTypes.string),
   /**
-   * @param {Function} onLoaded
    * Call back function when loading has finished.
    */
   onLoaded: PropTypes.func,
   /**
-   * @param {Boolean} isDelayMessages
    * Stops the loading on each message
    */
   isDelayMessages: PropTypes.bool,
   /**
-   * @param {Boolean} forceStop
    * Force stop the loading
    */
   forceStop: PropTypes.bool,
   /**
-   * @param {Boolean} forceStop
    * Change speed of the loading
    */
   delayNumber: PropTypes.number,
+  /**
+   * Define a maximum percentage the loading bar can reach
+   */
+  maxProgress: PropTypes.number,
 };
 
 Loading.defaultProps = {
@@ -131,6 +130,7 @@ Loading.defaultProps = {
   isDelayMessages: false,
   forceStop: false,
   delayNumber: 30,
+  maxProgress: 100,
 };
 
 export default Loading;

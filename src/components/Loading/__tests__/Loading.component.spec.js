@@ -12,9 +12,10 @@ describe('Loading', () => {
     expect(getByText('Loading...')).toBeInTheDocument();
     expect(inputField).toBeInTheDocument();
   });
-  test('Loading call done function at the end', async () => {
+
+  it('calls done function when complete', async () => {
     // element is initially not present...
-    const LoadingDone = jest.fn();
+    const loadingDone = jest.fn();
     const messages = [
       'Checking your details',
       'Finding great transaction accounts',
@@ -23,7 +24,7 @@ describe('Loading', () => {
       'Sorting by lowest fees',
     ];
     const { getByText } = render(
-      <Loading messages={messages} isDelayMessages onLoaded={LoadingDone} />,
+      <Loading messages={messages} isDelayMessages onLoaded={loadingDone} />,
     );
     await wait(() => {
       expect(getByText('Checking your details')).toBeInTheDocument();
@@ -39,11 +40,12 @@ describe('Loading', () => {
     });
     await wait(() => {
       expect(getByText('Sorting by lowest fees')).toBeInTheDocument();
-      expect(LoadingDone).toHaveBeenCalled();
+      expect(loadingDone).toHaveBeenCalled();
     });
   });
-  test('Loading check force to stop prop', async () => {
-    // element is initially not present...
+
+  it('completes when forceStop is true', async () => {
+    const loadingDone = jest.fn();
     const messages = [
       'Checking your details',
       'Finding great transaction accounts',
@@ -57,13 +59,31 @@ describe('Loading', () => {
     expect(progressDOM).toHaveAttribute('value', '0');
     // wait for appearance
     await wait(() => {
-      // eslint-disable-next-line react/jsx-props-no-spreading
       expect(getByText('Sorting by lowest fees')).toBeInTheDocument();
     });
     await wait(() => {
       loadVar = true;
-      // eslint-disable-next-line react/jsx-props-no-spreading
       expect(progressDOM).toHaveAttribute('value', '101');
+    });
+  });
+
+  it('stops at maxProgress when given', async () => {
+    const loadingDone = jest.fn();
+    const messages = [
+      'Checking your details',
+      'Finding great transaction accounts',
+      'Sorting by lowest fees',
+      'Finding great transaction accounts',
+      'Sorting by lowest fees',
+    ];
+    const { getByText, container } = render(<Loading messages={messages} maxProgress={80} onLoaded={loadingDone} />);
+
+    await wait(() => getByText('Sorting by lowest fees'));
+
+    const progressDOM = container.querySelector('progress');
+    await wait(() => {
+      expect(loadingDone).toHaveBeenCalled();
+      expect(progressDOM).toHaveAttribute('value', '81');
     });
   });
 });
