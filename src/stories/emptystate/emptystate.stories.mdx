@@ -15,7 +15,7 @@ import Column from '../../components/Grid/Column/Column.component';
 TheEmptyState
 
 <Preview>
-  <Story name="empty state">
+  <Story name="empty state" height="500px">
     {() => {
       return (
         <EmptyState>
@@ -26,10 +26,24 @@ TheEmptyState
       );
     }}
   </Story>
-  <Story name="empty state with primary button">
+</Preview>
+
+### Props
+
+<Props of={EmptyState} />
+
+<Preview>
+  <Story name="empty state with primary button" height="600px">
     {() => {
       return (
-        <EmptyState picture="https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png">
+        <EmptyState
+          picture={{
+            src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
+            srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
+            alt: 'alt text',
+            title: 'no results found',
+          }}
+        >
           <div style={{fontSize: '20px', lineHeight: '30px'}}>
             Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
           </div>
@@ -42,10 +56,20 @@ TheEmptyState
       );
     }}
   </Story>
-  <Story name="empty state with primary and secondary buttons">
+</Preview>
+
+<Preview>
+  <Story name="empty state with primary and secondary buttons" height="600px">
       {() => {
         return (
-          <EmptyState picture="https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png">
+          <EmptyState
+            picture={{
+              src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
+              srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
+              alt: 'alt text',
+              title: 'no results found',
+            }}
+          >
             <div style={{fontSize: '20px', lineHeight: '30px'}}>
               Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
             </div>
@@ -66,11 +90,21 @@ TheEmptyState
           </EmptyState>
         );
       }}
-    </Story>
-    <Story name="empty state with text link">
+  </Story>
+</Preview>
+
+<Preview>
+    <Story name="empty state with text link" height="600px">
         {() => {
           return (
-            <EmptyState picture="https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png">
+            <EmptyState
+              picture={{
+                src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
+                srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
+                alt: 'alt text',
+                title: 'no results found',
+              }}
+            >
               <div style={{fontSize: '20px', lineHeight: '30px'}}>
                 Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
               </div>

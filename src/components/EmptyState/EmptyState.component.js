@@ -1,30 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
-import Picture from '../Picture/Picture.component';
+import Picture, { picturePropTypes } from '../Picture/Picture.component';
 import placeholder from '../../images/sergei.png';
-
-const sharedImageStyles = css`
-  max-width: 375px;
-  max-height: 375px;
-`;
+import useIsDesktop from '../../hooks/useIsDesktop';
 
 const StyledEmptyState = styled.div`
   display: flex;
+  justify-content: center;
 `;
 const StyledEmptyStateWrap = styled.div`
-  margin: auto;
+  max-height: 375px;
   max-width: 375px;
   text-align: center;
   & > * {
-    margin-bottom: ${({ theme }) => theme.spacing[32]};
-  }
-`;
-const StyledEmptyStatePicture = styled.div`
- ${sharedImageStyles}
-  img {
-     ${sharedImageStyles}
+    margin-bottom: ${({ theme, desktop }) => (desktop ? theme.spacing[32] : theme.spacing[16])};
   }
 `;
 
@@ -32,20 +23,19 @@ const EmptyState = ({
   children,
   picture,
 }) => {
-  let placeholderImage;
-  if (picture) {
-    placeholderImage = <Picture src={picture} />;
-  } else {
-    placeholderImage = <Picture src={placeholder} />;
-  }
+  const desktop = useIsDesktop();
+  const pictureProps = {
+    src: picture ? picture.src : placeholder,
+    srcsets: picture ? picture.srcsets : [{ srcset: placeholder }],
+    alt: picture ? picture.alt : 'no results found',
+    title: 'no results found',
+  };
 
   return (
     <ThemeProvider theme={getTheme()}>
       <StyledEmptyState>
-        <StyledEmptyStateWrap>
-          <StyledEmptyStatePicture>
-            {placeholderImage}
-          </StyledEmptyStatePicture>
+        <StyledEmptyStateWrap desktop={desktop}>
+          <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
           <h3>Sorry, no results found</h3>
           <div>
             {children}
@@ -64,12 +54,15 @@ EmptyState.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  picture: PropTypes.string,
+  /**
+   *  Picture props (see the Picture component documentation)
+   */
+  picture: PropTypes.shape(picturePropTypes),
 };
 
 EmptyState.defaultProps = {
   children: '',
-  picture: '',
+  picture: null,
 };
 
 export default EmptyState;

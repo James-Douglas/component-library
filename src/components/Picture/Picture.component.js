@@ -29,7 +29,7 @@ const Picture = ({
   </StyledPicture>
 );
 
-Picture.propTypes = {
+export const picturePropTypes = {
   /**
    * src attribute for the img tag
    */
@@ -50,6 +50,8 @@ Picture.propTypes = {
    */
   title: PropTypes.string,
 };
+
+Picture.propTypes = picturePropTypes;
 
 Picture.defaultProps = {
   src: placeholder,

@@ -8,16 +8,15 @@ import FluidContainer from '../../components/Grid/Container/Fluid.component';
 
 # Progress Bar
 
-By passing an array of steps, links we can visually represent the current progress of journeys. Steps and links can
-also have active and disabled states.
+Visually represents the current progress of a journey via a progress bar with a percentage value.
 
-<Preview>
-  <Story name="progress bar">
-    <div style={{maxWidth: '100%'}}>
-      <ProgressBar value={50} />
-    </div>
-  </Story>
-</Preview>
+**Switch to canvas view to see examples**
+
+<Story name="progress bar" parameters={{ docs: { disable: true } }}>
+  <div style={{width: '100%'}}>
+    <ProgressBar value={50} />
+  </div>
+</Story>
 
 ## Props
 <Props of={ProgressBar} />

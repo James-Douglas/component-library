@@ -10,7 +10,21 @@ describe('Empty State', () => {
     expect(picture).toHaveAttribute('src', 'sergei.png');
   });
   it('renders empty state page with cudtom image', () => {
-    const { container } = render(<EmptyState picture="https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png" />);
+    const { container } = render(
+      <EmptyState
+        picture={{
+          src: 'https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png',
+          srcsets: [
+            {
+              srcset: 'https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png',
+              media: '(min-width: 1200px)',
+            },
+          ],
+          alt: 'test',
+          title: 'test',
+        }}
+      />,
+    );
     const picture = container.querySelector('img');
     expect(picture).toHaveAttribute('src', 'https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png');
   });
