@@ -67,6 +67,7 @@ const ToggleGroup = ({
   selectedValue,
   children,
   rectOptions,
+  className,
 }) => {
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
   const type = getType(children);
@@ -86,7 +87,7 @@ const ToggleGroup = ({
       <>
         <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
         <StyledRow>
-          <StyledToggleGroup id={id}>
+          <StyledToggleGroup id={id} className={className}>
             {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
           </StyledToggleGroup>
           <StyledValidationWrapper>
@@ -149,6 +150,10 @@ ToggleGroup.propTypes = {
       PropTypes.node,
     ])),
   ]),
+  /**
+   * Classes to be applied to the ToggleGroup component
+   */
+  className: PropTypes.string,
 };
 
 ToggleGroup.defaultProps = {
@@ -164,6 +169,7 @@ ToggleGroup.defaultProps = {
     height: 8,
   },
   children: [],
+  className: '',
 };
 
 export default ToggleGroup;

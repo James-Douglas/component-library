@@ -21,9 +21,12 @@ const Separator = ({ type, className }) => (
 );
 
 Separator.propTypes = {
+  /**
+   * Direction of the Separator
+   */
   type: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * Classes to be applied to the container element
+   * Classes to be applied to the Separator element
    */
   className: PropTypes.string,
 };

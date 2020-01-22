@@ -139,6 +139,7 @@ const Combo = ({
   linkText,
   linkHref,
   tooltip,
+  className,
 }) => {
   const [listVisible, setListVisible] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
@@ -280,6 +281,7 @@ const Combo = ({
           suffixContent={suffixContent}
           autocomplete={autocomplete}
           handleChange={onChange}
+          className={className}
           tabIndex="0"
           role="comboField"
           dataList={() => comboDropdownList(linkText,
@@ -380,6 +382,10 @@ Combo.propTypes = {
    * Define a tooltip to be displayed alongside this component. See Tooltip props for details.
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
+  /**
+   * Classes to be applied to the Combo component
+   */
+  className: PropTypes.string,
 };
 
 Combo.defaultProps = {
@@ -400,6 +406,7 @@ Combo.defaultProps = {
   linkHref: '',
   linkText: '',
   tooltip: {},
+  className: '',
 };
 
 export default Combo;

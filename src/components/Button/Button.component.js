@@ -300,6 +300,7 @@ const Button = ({
   width,
   style,
   children,
+  className,
 }) => {
   const renderContent = () => {
     if (icon) {
@@ -334,6 +335,7 @@ const Button = ({
           rel={isButton ? null : rel}
           type={isButton ? tagType : null}
           style={style}
+          className={className}
         >
           {renderContent()}
         </BaseTag>
@@ -422,6 +424,10 @@ Button.propTypes = {
     PropTypes.number,
   ])),
   /**
+   * Classes to be applied to the Button component
+   */
+  className: PropTypes.string,
+  /**
    * Pass the button a custom click function
    */
   handleClick: PropTypes.func,
@@ -442,6 +448,7 @@ Button.defaultProps = {
   tagType: '',
   style: {},
   width: '100%',
+  className: '',
   handleClick: () => {},
 };
 

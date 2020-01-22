@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, prettyDOM } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Notification from '../Notification.component';
 import 'jest-styled-components';
 import getTheme from '../../../utils/getTheme';

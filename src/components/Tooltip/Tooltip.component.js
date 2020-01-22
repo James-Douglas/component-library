@@ -73,7 +73,6 @@ const StyledTooltipContainer = styled.div`
   width: 100%;
 `;
 
-
 /**
  * Get the tooltip html content
  * @param title {string} - Optional title for the tooltip
@@ -96,6 +95,7 @@ const Tooltip = ({
   screenReaderLabel,
   justifyEnd,
   iconSmall,
+  className,
 }) => {
   const [pinned, setPinned] = useState(false);
   const desktop = useIsDesktop(false);
@@ -153,7 +153,7 @@ const Tooltip = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <StyledTooltipWrapper justifyEnd={justifyEnd} desktop={desktop}>
+      <StyledTooltipWrapper justifyEnd={justifyEnd} desktop={desktop} className={className}>
         <GlobalStyle />
         <Tippy
           content={getContent(title, body)}
@@ -210,8 +210,9 @@ export const InlineTooltip = ({
   screenReaderLabel,
   justifyEnd,
   iconSmall,
+  className,
 }) => (
-  <StyledTooltipContainer>
+  <StyledTooltipContainer className={className}>
     <Tooltip
       title={title}
       body={body}
@@ -260,6 +261,10 @@ export const tooltipPropTypes = {
    * 2.4rem on mobile), the clickable area will remain 2.4rem
    */
   iconSmall: PropTypes.bool,
+  /**
+   * Classes to be applied to the Tooltip component
+   */
+  className: PropTypes.string,
 };
 
 const defaultProps = {
@@ -269,12 +274,11 @@ const defaultProps = {
   screenReaderLabel: '',
   placement: 'left',
   iconSmall: false,
+  className: '',
 };
-
 
 Tooltip.propTypes = tooltipPropTypes;
 InlineTooltip.propTypes = tooltipPropTypes;
-
 
 Tooltip.defaultProps = defaultProps;
 InlineTooltip.defaultProps = defaultProps;

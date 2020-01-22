@@ -20,19 +20,19 @@ const StyledCardGroupChildren = styled.div`
   padding-left: ${({ theme }) => theme.spacing['8']};
 `;
 
-const getChildren = (children, cols, { margin, padding }) => children.map((child) => (
+const getChildren = (children, cols, { margin, padding }, className) => children.map((child) => (
   // eslint-disable-next-line react/no-array-index-key
   <StyledCardGroupChildren cols={cols} key={`card-group-${child.props.id}`}>
-    {React.cloneElement(child, { margin, padding })}
+    {React.cloneElement(child, { margin, padding, className })}
   </StyledCardGroupChildren>
 ));
 
 const CardGroup = ({
-  cols, children, id, cardProps,
+  cols, children, id, cardProps, className,
 }) => (
   <ThemeProvider theme={getTheme()}>
     <StyledCardGroup id={id}>
-      {getChildren(children, cols, cardProps)}
+      {getChildren(children, cols, cardProps, className)}
     </StyledCardGroup>
   </ThemeProvider>
 );
@@ -66,12 +66,17 @@ CardGroup.propTypes = {
     margin: spacingPropTypes,
     padding: spacingPropTypes,
   }),
+  /**
+   * Classes to be applied to the CardGroup component
+   */
+  className: PropTypes.string,
 };
 
 CardGroup.defaultProps = {
   cols: 1,
   children: [],
   cardProps: {},
+  className: '',
 };
 
 export default CardGroup;

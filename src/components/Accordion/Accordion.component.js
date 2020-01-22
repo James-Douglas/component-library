@@ -16,11 +16,12 @@ export const getInitialChildIndex = (children) => {
   return initialChildIndex;
 };
 
-const AccordionGroupChildren = (children) => {
+const AccordionGroupChildren = (children, className) => {
   // null if all Accordions are closed or index of opened Accordion
   const [childIndex, setChildIndex] = useState(() => getInitialChildIndex(children));
   return React.Children.map(children, ((child, index) => React.cloneElement(child, {
     show: childIndex === index,
+    className,
     onClickGroup: (isVisible) => {
       setChildIndex(isVisible ? index : null);
     },
@@ -29,9 +30,10 @@ const AccordionGroupChildren = (children) => {
 
 const Accordion = ({
   children,
+  className,
 }) => (
   <>
-    { AccordionGroupChildren(children) }
+    { AccordionGroupChildren(children, className) }
   </>
 );
 
@@ -49,6 +51,15 @@ Accordion.propTypes = {
       }),
     ),
   ]).isRequired,
+  /**
+   * Classes to be applied to the AccordionGroup
+   */
+  className: PropTypes.string,
 };
+
+Accordion.defaultProps = {
+  className: '',
+};
+
 
 export default Accordion;

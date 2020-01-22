@@ -346,7 +346,7 @@ Dropdown.propTypes = {
   })).isRequired,
 
   /**
-   * Classes to be applied to the container element
+   * Classes to be applied to the select element
    */
   className: PropTypes.string,
   /**

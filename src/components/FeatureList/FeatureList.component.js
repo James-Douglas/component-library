@@ -11,7 +11,7 @@ const StyledFeatureList = styled.ul`
 
 const StyledListItem = styled.li`
   display: flex;
-  margin-bottom: ${({ theme }) => theme.spacing[4]}
+  margin-bottom: ${({ theme }) => theme.spacing[4]};
 `;
 
 const StyledFeatureListItemIcon = styled.span`
@@ -28,11 +28,11 @@ const StyledFeatureListItemText = styled.span`
   font-size: ${({ theme }) => theme.fontSize.base};
 `;
 
-const FeatureList = ({ features }) => (
+const FeatureList = ({ features, className }) => (
   <ThemeProvider theme={getTheme()}>
     <StyledFeatureList>
       {features.map((feature) => (
-        <StyledListItem key={feature}>
+        <StyledListItem key={feature} className={className}>
           <StyledFeatureListItemIcon><FontAwesomeIcon icon={faCheck} size="xs" /></StyledFeatureListItemIcon>
           <StyledFeatureListItemText>{feature}</StyledFeatureListItemText>
         </StyledListItem>
@@ -46,6 +46,14 @@ FeatureList.propTypes = {
    * The features/benefits to be listed
    */
   features: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * Classes to be applied to the FeatureList component
+   */
+  className: PropTypes.string,
+};
+
+FeatureList.defaultProps = {
+  className: '',
 };
 
 export default FeatureList;

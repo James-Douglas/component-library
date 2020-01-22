@@ -45,7 +45,6 @@ describe('Loading', () => {
   });
 
   it('completes when forceStop is true', async () => {
-    const loadingDone = jest.fn();
     const messages = [
       'Checking your details',
       'Finding great transaction accounts',

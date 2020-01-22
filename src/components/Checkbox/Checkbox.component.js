@@ -8,7 +8,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 const StyledHiddenInput = styled.input`
   border: 0;
   clip: rect(0 0 0 0);
-  clippath: inset(50%);
+  clip-path: inset(50%);
   height: ${({ theme }) => theme.spacing.px};
   margin: -1px;
   overflow: hidden;
@@ -72,7 +72,7 @@ const StyledCheckbox = styled.div`
 
 const StyledContent = styled.div`
   margin: ${({ theme }) => theme.checkbox.contentMargin};
-  pointer-evemts: none;
+  pointer-events: none;
   font-size: ${({ theme }) => theme.fontSize.base};
 `;
 
@@ -107,6 +107,7 @@ const Checkbox = ({
   handleChange,
   isSelected,
   children,
+  className,
 }) => {
   const [value, setValue] = useState(isSelected);
   useEffect(() => {
@@ -137,6 +138,7 @@ const Checkbox = ({
             htmlFor={id}
           >
             <StyledCheckbox
+              className={className}
               invertColour={invertColour}
               checked={value}
               disabled={disabled}
@@ -197,6 +199,10 @@ Checkbox.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Classes to be applied to the Checkbox component
+   */
+  className: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
@@ -207,6 +213,7 @@ Checkbox.defaultProps = {
   invertColour: false,
   handleChange: () => { },
   children: null,
+  className: '',
 };
 
 export default Checkbox;

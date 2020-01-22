@@ -121,6 +121,7 @@ const Textarea = ({
   maxChars,
   maxLength,
   onChange,
+  className,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [charsExceed, setCharsExceed] = useState(false);
@@ -179,7 +180,7 @@ const Textarea = ({
         <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
         <StyledRow>
           <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
-            <StyledTextAreaWrapper className={`manor-textarea-wrapper ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
+            <StyledTextAreaWrapper className={`manor-textarea-wrapper ${className} ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
               <StyledTextArea
                 ref={textAreaElement}
                 value={stateValue}
@@ -300,6 +301,10 @@ Textarea.propTypes = {
    * Called when the value of the text area changes. Function will be called with an object consisting of id and value of the text area.
    */
   onChange: PropTypes.func,
+  /**
+   * Classes to be applied to the Textarea component
+   */
+  className: PropTypes.string,
 };
 
 Textarea.defaultProps = {
@@ -320,6 +325,7 @@ Textarea.defaultProps = {
   maxLength: '',
   maxChars: '',
   onChange: null,
+  className: '',
 };
 
 export default Textarea;

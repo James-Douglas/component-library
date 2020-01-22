@@ -78,7 +78,7 @@ export function getInlineStyles(type, rectOptions) {
 }
 
 const BaseToggle = ({
-  id, type, value, name, selectedValue, invalid, disabled, onToggle, rectOptions, children,
+  id, type, value, name, selectedValue, invalid, disabled, onToggle, rectOptions, children, className,
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
@@ -98,6 +98,7 @@ const BaseToggle = ({
         }}
         invalid={invalid}
         ref={wrapperElement}
+        className={className}
       >
         <StyledToggleInput
           tabIndex={0}
@@ -118,7 +119,6 @@ const BaseToggle = ({
   );
 };
 
-
 BaseToggle.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['square', 'rectangle', 'custom']).isRequired,
@@ -134,6 +134,7 @@ BaseToggle.propTypes = {
     height: PropTypes.number,
   }),
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 BaseToggle.defaultProps = {
@@ -147,6 +148,7 @@ BaseToggle.defaultProps = {
     height: 8,
   },
   children: [],
+  className: '',
 };
 
 export default BaseToggle;

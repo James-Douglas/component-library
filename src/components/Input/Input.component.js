@@ -201,6 +201,7 @@ const Input = ({
   handleBlur,
   valueMasking,
   dataList,
+  className,
 }) => {
   const [internalValue, setInternalValue] = useState(getInitialValue(valueMasking, value, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
@@ -285,7 +286,7 @@ const Input = ({
                     onBlur={onBlur}
                     maxLength={maxlength}
                     isAutofill={isAutofill}
-                    className="input-default"
+                    className={`input-default ${className}`}
                   />
                   {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled)}
                 </StyledInputClearWrap>
@@ -405,6 +406,10 @@ Input.propTypes = {
    * Used for the combo component, this is the list of options that is displayed on input.
    */
   dataList: PropTypes.func,
+  /**
+   * Classes to be applied to the Input component
+   */
+  className: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -427,6 +432,7 @@ Input.defaultProps = {
   validationMessage: '',
   bordered: true,
   dataList: null,
+  className: '',
 };
 
 export default Input;

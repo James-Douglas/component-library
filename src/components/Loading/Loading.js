@@ -30,6 +30,7 @@ const Loading = ({
   onLoaded,
   forceStop,
   delayNumber,
+  className,
   maxProgress,
 }) => {
   const [progress, setProgress] = useState(0);
@@ -79,7 +80,7 @@ const Loading = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <StyledContainer>
+      <StyledContainer className={className}>
         <StyledInnerContainer>
           {
             messages[messageIndex]
@@ -119,6 +120,10 @@ Loading.propTypes = {
    */
   delayNumber: PropTypes.number,
   /**
+   * Classes to be applied to the Loading component
+   */
+  className: PropTypes.string,
+  /**
    * Define a maximum percentage the loading bar can reach
    */
   maxProgress: PropTypes.number,
@@ -130,6 +135,7 @@ Loading.defaultProps = {
   isDelayMessages: false,
   forceStop: false,
   delayNumber: 30,
+  className: '',
   maxProgress: 100,
 };
 

@@ -36,6 +36,7 @@ const StyledIconToggleContent = styled.div`
   height: ${({ theme }) => theme.spacing['128']}; 
   transition : all 200ms ease-out;
 `;
+
 const StyledImageToggle = styled.div`
   display: flex;
   justify-content: space-around;
@@ -45,6 +46,7 @@ const StyledImageToggle = styled.div`
   width: ${({ theme }) => theme.spacing['128']}; 
   height: ${({ theme }) => theme.spacing['128']};  
 `;
+
 const StyledIconContent = styled.div`
   padding-top: ${({ theme }) => theme.spacing['32']}; 
 `;

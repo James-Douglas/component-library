@@ -17,10 +17,10 @@ const StyledCard = styled.div`
 `;
 
 const Card = ({
-  id, children, margin, padding,
+  id, children, margin, padding, className,
 }) => (
   <ThemeProvider theme={getTheme()}>
-    <StyledCard id={id} margin={margin} padding={padding}>
+    <StyledCard id={id} margin={margin} padding={padding} className={className}>
       {children}
     </StyledCard>
   </ThemeProvider>
@@ -43,12 +43,17 @@ Card.propTypes = {
    * Allows setting of padding values for the card
    */
   padding: spacingPropTypes,
+  /**
+   * Classes to be applied to the Card component
+   */
+  className: PropTypes.string,
 };
 
 Card.defaultProps = {
   children: [],
   margin: ['4', '4', '16'],
   padding: ['16'],
+  className: '',
 };
 
 export default Card;

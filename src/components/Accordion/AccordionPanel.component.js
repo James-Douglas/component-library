@@ -69,6 +69,7 @@ const AccordionPanel = ({
   show,
   iconSize,
   onClickGroup,
+  className,
 }) => {
   const [isVisible, setIsVisible] = useState(show);
   const [isFocus, setIsFocus] = useState(false);
@@ -103,7 +104,7 @@ const AccordionPanel = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <StyledAccordionPanel isVisible={isVisible} isFocus={isFocus} role="tablist" aria-label="Information tabs">
+      <StyledAccordionPanel isVisible={isVisible} isFocus={isFocus} className={className} role="tablist" aria-label="Information tabs">
         <StyledAccordionHead
           isVisible={isVisible}
           onClick={toggleTrueFalse}
@@ -160,6 +161,10 @@ AccordionPanel.propTypes = {
    * Used to AccordionGroup to control visibility
    */
   onClickGroup: PropTypes.func,
+  /**
+   * Classes to be applied to the Accordion panel component
+   */
+  className: PropTypes.string,
 };
 
 AccordionPanel.defaultProps = {
@@ -168,6 +173,7 @@ AccordionPanel.defaultProps = {
   show: false,
   iconSize: '1x',
   onClickGroup: null,
+  className: '',
 };
 
 export default AccordionPanel;

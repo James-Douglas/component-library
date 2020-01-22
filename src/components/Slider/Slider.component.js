@@ -6,20 +6,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 
 const coolBoxOpenLeftKeyframes = keyframes`
-  from { left: -100% }
-  to { left: 0 }
+  from { left: -100% };
+  to { left: 0 };
 `;
+
 const coolBoxOpenRightKeyframes = keyframes`
-  from { right: -100% }
-  to { right: 0 }
+  from { right: -100% };
+  to { right: 0 };
 `;
+
 const coolBoxOpenTopKeyframes = keyframes`
-  from { top: -100% }
-  to { top: 0 }
+  from { top: -100% };
+  to { top: 0 };
 `;
+
 const coolBoxBottomTopKeyframes = keyframes`
-  from { bottom: -100% }
-  to { bottom: 0}
+  from { bottom: -100% };
+  to { bottom: 0};
 `;
 
 const StyledSlider = styled.div`
@@ -32,7 +35,7 @@ const StyledSlider = styled.div`
   z-index: ${({ theme }) => (theme.zIndex[40])}; 
   box-shadow: ${({ theme, show }) => (show ? theme.boxShadow.lg : theme.boxShadow.none)}; 
   ${({
-    direction, notificationSize, show, theme,
+    direction, notificationSize, show,
   }) => direction === 'top' && css`
     animation-name: ${coolBoxOpenTopKeyframes};
     height: ${notificationSize};
@@ -42,7 +45,7 @@ const StyledSlider = styled.div`
     left: 0;
   `}
   ${({
-    direction, notificationSize, show, theme,
+    direction, notificationSize, show,
   }) => direction === 'left' && css`
     animation-name: ${coolBoxOpenLeftKeyframes};
     width: ${notificationSize};
@@ -51,7 +54,7 @@ const StyledSlider = styled.div`
     left: ${!show ? -notificationSize : 0};
   `}
   ${({
-    direction, notificationSize, show, theme,
+    direction, notificationSize, show,
   }) => direction === 'bottom' && css`
     animation-name: ${coolBoxBottomTopKeyframes};
     width: 100%;
@@ -61,7 +64,7 @@ const StyledSlider = styled.div`
     left: 0;
   `}
   ${({
-    direction, notificationSize, show, theme,
+    direction, notificationSize, show,
   }) => direction === 'right' && css`
     animation-name: ${coolBoxOpenRightKeyframes};
     width: ${notificationSize};
@@ -76,6 +79,7 @@ const StyledSlider = styled.div`
   animation-direction: normal;
   animation-play-state: running;
 `;
+
 const StyledIcon = styled.div`
   position: absolute;
   right: 2rem;
@@ -85,7 +89,6 @@ const StyledIcon = styled.div`
   opacity: 0.5;
 `;
 
-
 const Slider = ({
   direction,
   notificationSize,
@@ -94,6 +97,7 @@ const Slider = ({
   iconClassName,
   show,
   onClose,
+  className,
 }) => {
   const IconClick = () => {
     if (onClose) {
@@ -107,6 +111,7 @@ const Slider = ({
         show={Boolean(show)}
         notificationSize={notificationSize}
         direction={direction}
+        className={className}
       >
         {closeButton
           && (
@@ -153,6 +158,10 @@ Slider.propTypes = {
    *  onClose function, called when click close button.
    */
   onClose: PropTypes.func,
+  /**
+   * Classes to be applied to the Slider component
+   */
+  className: PropTypes.string,
 };
 
 Slider.defaultProps = {
@@ -163,6 +172,7 @@ Slider.defaultProps = {
   iconClassName: '',
   show: false,
   onClose: null,
+  className: '',
 };
 
 export default Slider;

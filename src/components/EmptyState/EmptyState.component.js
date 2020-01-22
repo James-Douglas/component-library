@@ -10,6 +10,7 @@ const StyledEmptyState = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 const StyledEmptyStateWrap = styled.div`
   max-height: 375px;
   max-width: 375px;
@@ -22,6 +23,7 @@ const StyledEmptyStateWrap = styled.div`
 const EmptyState = ({
   children,
   picture,
+  className,
   heading,
 }) => {
   const desktop = useIsDesktop();
@@ -34,7 +36,7 @@ const EmptyState = ({
 
   return (
     <ThemeProvider theme={getTheme()}>
-      <StyledEmptyState>
+      <StyledEmptyState className={className}>
         <StyledEmptyStateWrap desktop={desktop}>
           <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
           <h3>{heading}</h3>
@@ -56,6 +58,10 @@ EmptyState.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   /**
+   * Classes to be applied to the EmptyState component
+   */
+  className: PropTypes.string,
+  /**
    *  Picture props (see the Picture component documentation)
    */
   picture: PropTypes.shape(picturePropTypes),
@@ -68,6 +74,7 @@ EmptyState.propTypes = {
 EmptyState.defaultProps = {
   children: '',
   picture: '',
+  className: '',
   heading: 'Sorry, no results found',
 };
 

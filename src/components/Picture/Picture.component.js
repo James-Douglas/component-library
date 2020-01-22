@@ -15,9 +15,9 @@ const StyledImg = styled.img`
 `;
 
 const Picture = ({
-  src, srcsets, alt, title,
+  src, srcsets, alt, title, className,
 }) => (
-  <StyledPicture>
+  <StyledPicture className={className}>
     {srcsets.map((source) => (
       <source
         srcSet={source.srcset}
@@ -25,7 +25,7 @@ const Picture = ({
         key={source.srcset}
       />
     ))}
-    <StyledImg src={src} alt={alt} title={title} />
+    <StyledImg src={src} alt={alt} title={title} className={className} />
   </StyledPicture>
 );
 
@@ -49,6 +49,10 @@ export const picturePropTypes = {
    * title text
    */
   title: PropTypes.string,
+  /**
+   * Classes to be applied to the Picture component
+   */
+  className: PropTypes.string,
 };
 
 Picture.propTypes = picturePropTypes;
@@ -58,6 +62,7 @@ Picture.defaultProps = {
   srcsets: [],
   alt: 'a placeholder image',
   title: 'a placeholder title',
+  className: '',
 };
 
 export default Picture;

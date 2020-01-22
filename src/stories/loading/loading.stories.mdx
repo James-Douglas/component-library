@@ -25,9 +25,8 @@ import Loading from '../../components/Loading/Loading';
   {() => {
     const [loadVar, isLoadVar] = useState(false);
     setTimeout(() => {
-        isLoadVar(true);
-      },
-     3000);
+      isLoadVar(true);
+    }, 3000);
     const optionalProps = {
       messages: [
         'Checking your details',
@@ -38,10 +37,10 @@ import Loading from '../../components/Loading/Loading';
       ],
       delayLoading: true
     };
-   return (
-    <>
-    {!loadVar &&  <Loading {...optionalProps}  onLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
-    {loadVar &&  <div style={{fontSize: '30px'}}>Loading done</div>}
+    return (
+      <>
+        {!loadVar && <Loading {...optionalProps} onLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
+        {loadVar && <div style={{fontSize: '30px'}}>Loading done</div>}
       </>
     )
   }}
@@ -52,9 +51,8 @@ import Loading from '../../components/Loading/Loading';
   {() => {
     const [loadVar, isLoadVar] = useState(false);
     setTimeout(() => {
-        isLoadVar(true);
-      },
-     3000);
+      isLoadVar(true);
+    }, 3000);
     const optionalProps = {
       messages: [
         'Checking your details',
