@@ -32,6 +32,18 @@ TheEmptyState
 
 <Props of={EmptyState} />
 
+<Story name="empty state with custom heading">
+  {() => {
+    return (
+      <EmptyState heading="A custom heading">
+        <div style={{fontSize: '20px', lineHeight: '30px'}}>
+          Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+        </div>
+      </EmptyState>
+    )
+  }}
+</Story>
+
 <Preview>
   <Story name="empty state with primary button" height="600px">
     {() => {

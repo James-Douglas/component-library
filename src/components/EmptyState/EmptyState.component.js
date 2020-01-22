@@ -22,6 +22,7 @@ const StyledEmptyStateWrap = styled.div`
 const EmptyState = ({
   children,
   picture,
+  heading,
 }) => {
   const desktop = useIsDesktop();
   const pictureProps = {
@@ -36,7 +37,7 @@ const EmptyState = ({
       <StyledEmptyState>
         <StyledEmptyStateWrap desktop={desktop}>
           <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
-          <h3>Sorry, no results found</h3>
+          <h3>{heading}</h3>
           <div>
             {children}
           </div>
@@ -48,7 +49,7 @@ const EmptyState = ({
 
 EmptyState.propTypes = {
   /**
-   * Label for the Dropdown.
+   * The text content beneath the heading.
    */
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -58,11 +59,16 @@ EmptyState.propTypes = {
    *  Picture props (see the Picture component documentation)
    */
   picture: PropTypes.shape(picturePropTypes),
+  /**
+   * The heading text underneath the image
+   */
+  heading: PropTypes.string,
 };
 
 EmptyState.defaultProps = {
   children: '',
-  picture: null,
+  picture: '',
+  heading: 'Sorry, no results found',
 };
 
 export default EmptyState;
