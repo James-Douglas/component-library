@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
@@ -8,6 +8,7 @@ import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
+import getTheme from '../../utils/getTheme';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -70,30 +71,32 @@ const CheckboxGroup = ({
   }, [handleChange, selectedCheckboxes]);
 
   return (
-    <>
-      <Label forId={groupId} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-      <StyledWrapperRow>
-        <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
-          <StyledContainer id={groupId}>
-            <StyledInnerRow>
-              {generateGroup(colSize, children, handleCheckboxClick)}
-            </StyledInnerRow>
-          </StyledContainer>
-          <FieldValidation message={validationMessage} />
-        </Column>
-        {desktop && !forceFullWidth && hasTooltipContent(tooltip)
-        && (
-          <Column cols={2}>
-            <InlineTooltip
-              title={tooltip.title}
-              body={tooltip.body}
-              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
-              justifyEnd={tooltip.justifyEnd}
-            />
+    <ThemeProvider theme={getTheme()}>
+      <>
+        <Label forId={groupId} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+        <StyledWrapperRow>
+          <Column cols={desktop && !forceFullWidth ? '10' : '12'}>
+            <StyledContainer id={groupId}>
+              <StyledInnerRow>
+                {generateGroup(colSize, children, handleCheckboxClick)}
+              </StyledInnerRow>
+            </StyledContainer>
+            <FieldValidation message={validationMessage} />
           </Column>
-        )}
-      </StyledWrapperRow>
-    </>
+          {desktop && !forceFullWidth && hasTooltipContent(tooltip)
+          && (
+            <Column cols={2}>
+              <InlineTooltip
+                title={tooltip.title}
+                body={tooltip.body}
+                screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+                justifyEnd={tooltip.justifyEnd}
+              />
+            </Column>
+          )}
+        </StyledWrapperRow>
+      </>
+    </ThemeProvider>
   );
 };
 

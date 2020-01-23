@@ -1,6 +1,6 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, object } from '@storybook/addon-knobs';
-import placeholder from '../../images/placeholder.png';
+import sergei from '../../images/sergei.png';
 import Picture from '../../components/Picture/Picture.component';
 
 <Meta title="Components|Picture" component={Picture} />
@@ -9,10 +9,16 @@ import Picture from '../../components/Picture/Picture.component';
 
 Responsive picture component, designed to fit within it's containing element.
 
+This component renders a `<picture>` tag, which contains `<source>` elements (passed in via the `srcsets` prop), and an
+`<img>` element (passed in via the `src` prop)  in order to cater to different display/device scenarios. Browsers will
+consider each `<source>` element and choose the best match based on the media query provided, if none are found (or the
+browser doesn't support the `<picture>` element, such as IE11) it will fall back to the `<img>` element.
+[MDN Picture Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
+
 <Preview>
   <Story name="picture">
-    <div style={{height: '44px'}}>
-     <Picture alt="placeholder" title="title"/>
+    <div style={{height: '25rem', display: 'flex', width: '100%', justifyContent: 'center'}}>
+     <Picture alt="sergei" title="sergei" src={sergei} srcsets={[{ srcset: sergei }]}/>
      </div>
   </Story>
 </Preview>

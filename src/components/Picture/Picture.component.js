@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import placeholder from 'images/placeholder.png';
 
 const StyledPicture = styled.picture`
   height: 100%;
@@ -16,24 +15,27 @@ const StyledImg = styled.img`
 
 const Picture = ({
   src, srcsets, alt, title, className,
-}) => (
-  <StyledPicture className={className}>
-    {srcsets.map((source) => (
-      <source
-        srcSet={source.srcset}
-        media={source.media}
-        key={source.srcset}
-      />
-    ))}
-    <StyledImg src={src} alt={alt} title={title} className={className} />
-  </StyledPicture>
-);
+}) => {
+  if (!src) return null;
+  return (
+    <StyledPicture className={className}>
+      {srcsets.map((source) => (
+        <source
+          srcSet={source.srcset}
+          media={source.media}
+          key={source.srcset}
+        />
+      ))}
+      <StyledImg src={src} alt={alt} title={title} className={className} />
+    </StyledPicture>
+  );
+};
 
 export const picturePropTypes = {
   /**
    * src attribute for the img tag
    */
-  src: PropTypes.string,
+  src: PropTypes.string.isRequired,
   /**
    * srcsets attribute for the picture tag
    */
@@ -58,10 +60,9 @@ export const picturePropTypes = {
 Picture.propTypes = picturePropTypes;
 
 Picture.defaultProps = {
-  src: placeholder,
   srcsets: [],
-  alt: 'a placeholder image',
-  title: 'a placeholder title',
+  alt: '',
+  title: '',
   className: '',
 };
 
