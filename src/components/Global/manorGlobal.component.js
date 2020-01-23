@@ -34,6 +34,8 @@ export const manor = css`
     font-style: normal;
   }
   html {
+    position: relative;
+    min-height: 100vh;
     font-size: 62.5%; 
     box-sizing: border-box;
   }

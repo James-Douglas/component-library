@@ -10,7 +10,6 @@ import Container from 'components/Grid/Container/Container.component';
 import Row from 'components/Grid/Row/Row.component';
 import Column from 'components/Grid/Column/Column.component';
 import ModalView from './modal.view';
-import styled from 'styled-components';
 
 <Meta title="Components|Modal" component={Modal} />
 
@@ -30,18 +29,15 @@ This allows the Modal component to be used with or without an overlay component.
     const modalClose = () => {
       setVisible(false);
     }
-    const StyledModal = styled(Modal)`
-      background: red;
-    `;
     return (
       <>
         {visible && <Overlay opacityLevel={0.3} onClose={modalClose} />}
         <Button id='preview-btn' variant='secondary' handleClick={modalOpen}>
           Modal Preview
         </Button>
-        <StyledModal id='preview-modal' visible={visible} handleClose={modalClose} size="sm">
+        <Modal id='preview-modal' visible={visible} handleClose={modalClose} size="sm">
           <p>Some modal content!</p>
-        </StyledModal>
+        </Modal>
       </>
     )
   }}
