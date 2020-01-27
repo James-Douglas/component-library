@@ -6,7 +6,7 @@ exports[`Container allows additional classes to be passed through 1`] = `
   margin: auto;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  max-width: 190rem;
+  max-width: 120rem;
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -30,7 +30,7 @@ exports[`Container has a container and fixed class by default 1`] = `
   margin: auto;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  max-width: 190rem;
+  max-width: 120rem;
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -54,7 +54,7 @@ exports[`Container renders children 1`] = `
   margin: auto;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  max-width: 190rem;
+  max-width: 120rem;
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -84,7 +84,7 @@ exports[`Container renders correctly without props 1`] = `
   margin: auto;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  max-width: 190rem;
+  max-width: 120rem;
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;

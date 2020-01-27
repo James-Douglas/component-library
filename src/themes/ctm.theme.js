@@ -301,6 +301,9 @@ const ctmTheme = {
     borderRadius: '0 0 0 1px rgba(0, 123, 255, .5)',
     contentMargin: '0 0 0 1rem',
   },
+  container: {
+    maxWidth: '120rem',
+  },
   combo: {
     list: {
       color: colors.black,

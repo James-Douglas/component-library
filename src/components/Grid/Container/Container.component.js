@@ -1,22 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import getTheme from 'utils/getTheme';
 
 const StyledContainer = styled.div`
-  width: 100%;
+  width: ${({ theme }) => theme.maxWidth.full};
   margin: auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
-  max-width: 190rem;
+  padding-left: ${({ theme }) => theme.spacing[16]};
+  padding-right: ${({ theme }) => theme.spacing[16]};
+  max-width: ${({ theme }) => theme.container.maxWidth};
   position: relative;
   display: flex;
   flex-direction: column;
 `;
 
 const Container = ({ children, className }) => (
-  <StyledContainer className={className}>
-    {children}
-  </StyledContainer>
+  <ThemeProvider theme={getTheme()}>
+    <StyledContainer className={className}>
+      {children}
+    </StyledContainer>
+  </ThemeProvider>
 );
 
 Container.propTypes = {
