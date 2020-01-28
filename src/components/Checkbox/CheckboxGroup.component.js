@@ -52,7 +52,9 @@ const CheckboxGroup = ({
   handleChange,
   children,
 }) => {
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const initialSelected = children.map((child) => (child.props.isSelected ? { id: child.props.id, value: child.props.isSelected } : undefined)).filter(Boolean);
+
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState(initialSelected);
   const desktop = useIsDesktop(false);
 
   const handleCheckboxClick = ({ id, value }) => {

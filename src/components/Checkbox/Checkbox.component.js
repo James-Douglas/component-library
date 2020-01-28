@@ -109,17 +109,21 @@ const Checkbox = ({
   children,
   className,
 }) => {
-  const [value, setValue] = useState(isSelected);
-  useEffect(() => {
-    setValue(isSelected);
-  }, [isSelected]);
-  const toggleEventHandler = () => {
-    setValue(!value);
-  };
+  const [checked, setChecked] = useState(isSelected);
 
   useEffect(() => {
-    handleChange({ id, value });
-  }, [handleChange, id, value]);
+    setChecked(isSelected);
+  }, [isSelected]);
+
+  const toggleEventHandler = (e) => {
+    const targValue = e.target.checked;
+
+    setChecked(targValue);
+
+    if (handleChange) {
+      handleChange({ id, value: targValue });
+    }
+  };
 
   return (
     <>
@@ -131,7 +135,7 @@ const Checkbox = ({
             type="checkbox"
             disabled={disabled}
             onChange={toggleEventHandler}
-            checked={value}
+            checked={checked}
           />
           <StyledLabel
             disabled={disabled}
@@ -140,11 +144,11 @@ const Checkbox = ({
             <StyledCheckbox
               className={className}
               invertColour={invertColour}
-              checked={value}
+              checked={checked}
               disabled={disabled}
               invalid={invalid}
             >
-              {renderIcon(icon, value)}
+              {renderIcon(icon, checked)}
             </StyledCheckbox>
             {renderContent(children)}
           </StyledLabel>
@@ -211,7 +215,7 @@ Checkbox.defaultProps = {
   isSelected: false,
   invalid: false,
   invertColour: false,
-  handleChange: () => { },
+  handleChange: null,
   children: null,
   className: '',
 };

@@ -13,8 +13,8 @@ const StyledGridView = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1.5rem;
-  font-size: ${(props) => props.theme.fontSize.base}
-  line-height: ${(props) => props.theme.lineHeight.relaxed}
+  font-size: ${(props) => props.theme.fontSize.base};
+  line-height: ${(props) => props.theme.lineHeight.relaxed};
   font-weight: ${(props) => props.theme.fontWeight.normal};
 `;
 
@@ -29,10 +29,9 @@ const StyledResults = styled.div`
 const g1 = 'checkbox-group-a';
 const g2 = 'checkbox-group-b';
 
-
 const CheckboxGroupView = () => {
   const [checkboxGroupA, updateCheckboxGroupA] = useState([]);
-  const [checkboxGroupB, updateCheckboxGroupB] = useState([]);
+  const [checkboxGroupB, updateCheckboxGroupB] = useState([{ id: 'B-2', value: true }]);
   const [validationMessageGroupA, setValidationMessageGroupA] = useState('');
   const [validationMessageGroupB, setValidationMessageGroupB] = useState('');
 
