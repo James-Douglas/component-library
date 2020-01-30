@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import useIsDesktop from 'hooks/useIsDesktop';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons/faPhoneAlt';
@@ -47,17 +46,15 @@ const Contact = ({ number, size }) => {
   const isDesktop = useIsDesktop();
   const mobileLabel = isDesktop ? number : 'Need help?';
   return (
-    <ThemeProvider theme={getTheme()}>
-      <>
-        <StyledContact isDesktop={isDesktop} size={size} href={`tel:${number}`} target="link-target">
-          <StyledIconWrap>
-            <FontAwesomeIcon icon={faPhoneAlt} size="sm" />
-          </StyledIconWrap>
-          { mobileLabel }
-        </StyledContact>
-        <StylesdIframe title="link iframe" name="link-target" />
-      </>
-    </ThemeProvider>
+    <>
+      <StyledContact isDesktop={isDesktop} size={size} href={`tel:${number}`} target="link-target">
+        <StyledIconWrap>
+          <FontAwesomeIcon icon={faPhoneAlt} size="sm" />
+        </StyledIconWrap>
+        { mobileLabel }
+      </StyledContact>
+      <StylesdIframe title="link iframe" name="link-target" />
+    </>
   );
 };
 

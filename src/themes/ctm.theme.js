@@ -430,6 +430,10 @@ const ctmTheme = {
     iconColorVisible: colors.primaryAA,
     background: 'rgba(51, 51, 51, 0.97)',
   },
+  drawer: {
+    borderTop: `1px solid ${colors.white}`,
+    background: colors.white,
+  },
   borders,
   colors,
   fontFamily,

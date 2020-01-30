@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import screens from '../../../config/screens';
 
 const StyledFieldValidation = styled.div`
@@ -33,11 +32,9 @@ const StyledMessage = styled.p`
 const FieldValidation = ({ message }) => {
   if (!message || !message.length) return null;
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledFieldValidation>
-        <StyledMessage>{message}</StyledMessage>
-      </StyledFieldValidation>
-    </ThemeProvider>
+    <StyledFieldValidation>
+      <StyledMessage>{message}</StyledMessage>
+    </StyledFieldValidation>
   );
 };
 

@@ -1,11 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import Input from '../Input/Input.component';
 import Button from '../Button/Button.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-
 
 const StyledDropdownList = styled.div`
   position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')}; 
@@ -168,7 +166,7 @@ const Combo = ({
     setFocusedRef(null);
   };
 
-  const onChange = (valueInput) => {
+  const handleChange = (valueInput) => {
     setCurrentValue(valueInput);
     setListVisible(!!valueInput.length);
   };
@@ -259,43 +257,40 @@ const Combo = ({
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <ThemeProvider theme={getTheme()}>
-      <StyledDiv
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onKeyDown={keyboardAccessibility}
-      >
-        <Input
-          id={id}
-          tooltip={tooltip}
-          placeholder={placeholder}
-          label={label}
-          value={currentValue}
-          prefillValue={prefillValue}
-          bordered={bordered}
-          required={required}
-          disabled={disabled}
-          validationMessage={validationMessage}
-          prefixContent={prefixContent}
-          suffixContent={suffixContent}
-          autocomplete={autocomplete}
-          handleChange={onChange}
-          className={className}
-          tabIndex="0"
-          role="comboField"
-          dataList={() => comboDropdownList(linkText,
-            linkHref,
-            blueButton,
-            currentValue,
-            characterMinimum,
-            filteredValues,
-            handleSelectItem,
-            filteredValuesRefs,
-            listVisible)}
-        />
-      </StyledDiv>
-    </ThemeProvider>
+    <StyledDiv
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      onKeyDown={keyboardAccessibility}
+    >
+      <Input
+        id={id}
+        tooltip={tooltip}
+        placeholder={placeholder}
+        label={label}
+        value={currentValue}
+        prefillValue={prefillValue}
+        bordered={bordered}
+        required={required}
+        disabled={disabled}
+        validationMessage={validationMessage}
+        prefixContent={prefixContent}
+        suffixContent={suffixContent}
+        autocomplete={autocomplete}
+        handleChange={handleChange}
+        className={className}
+        tabIndex="0"
+        role="comboField"
+        dataList={() => comboDropdownList(linkText,
+          linkHref,
+          blueButton,
+          currentValue,
+          characterMinimum,
+          filteredValues,
+          handleSelectItem,
+          filteredValuesRefs,
+          listVisible)}
+      />
+    </StyledDiv>
   );
 };
 

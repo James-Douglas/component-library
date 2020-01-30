@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import Column from '../Grid/Column/Column.component';
@@ -63,32 +62,30 @@ const StyledScrollTop = styled.div`
 const Footer = ({ disclaimer, className }) => {
   const currentYear = new Date().getFullYear();
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledFooterContainer className={className}>
-        <FluidContainer>
-          <Row>
-            <Column md={12} xl={10} offsetXl={1}>
-              <StyledFooterBar>
-                {disclaimer && (
-                <StyledFooterDisclaimer>
-                  {disclaimer}
-                </StyledFooterDisclaimer>
-                )}
-                <StyledFooterBarContent>
-                  <StyledFooterCopy className="manor-body2">
-                      &copy; {currentYear} Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926
-                  </StyledFooterCopy>
-                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-                  <StyledScrollTop onClick={() => window.scroll({ top: 0, behavior: 'smooth' })} role="scrollIcon">
-                    <FontAwesomeIcon icon={faChevronDown} size="lg" flip="vertical" />
-                  </StyledScrollTop>
-                </StyledFooterBarContent>
-              </StyledFooterBar>
-            </Column>
-          </Row>
-        </FluidContainer>
-      </StyledFooterContainer>
-    </ThemeProvider>
+    <StyledFooterContainer className={className}>
+      <FluidContainer>
+        <Row>
+          <Column md={12} xl={10} offsetXl={1}>
+            <StyledFooterBar>
+              {disclaimer && (
+              <StyledFooterDisclaimer>
+                {disclaimer}
+              </StyledFooterDisclaimer>
+              )}
+              <StyledFooterBarContent>
+                <StyledFooterCopy className="manor-body2">
+                    &copy; {currentYear} Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926
+                </StyledFooterCopy>
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                <StyledScrollTop onClick={() => window.scroll({ top: 0, behavior: 'smooth' })} role="scrollIcon">
+                  <FontAwesomeIcon icon={faChevronDown} size="lg" flip="vertical" />
+                </StyledScrollTop>
+              </StyledFooterBarContent>
+            </StyledFooterBar>
+          </Column>
+        </Row>
+      </FluidContainer>
+    </StyledFooterContainer>
   );
 };
 

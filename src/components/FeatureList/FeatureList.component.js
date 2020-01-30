@@ -1,6 +1,5 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
@@ -29,16 +28,14 @@ const StyledFeatureListItemText = styled.span`
 `;
 
 const FeatureList = ({ features, className }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledFeatureList>
-      {features.map((feature) => (
-        <StyledListItem key={feature} className={className}>
-          <StyledFeatureListItemIcon><FontAwesomeIcon icon={faCheck} size="xs" /></StyledFeatureListItemIcon>
-          <StyledFeatureListItemText>{feature}</StyledFeatureListItemText>
-        </StyledListItem>
-      ))}
-    </StyledFeatureList>
-  </ThemeProvider>
+  <StyledFeatureList>
+    {features.map((feature) => (
+      <StyledListItem key={feature} className={className}>
+        <StyledFeatureListItemIcon><FontAwesomeIcon icon={faCheck} size="xs" /></StyledFeatureListItemIcon>
+        <StyledFeatureListItemText>{feature}</StyledFeatureListItemText>
+      </StyledListItem>
+    ))}
+  </StyledFeatureList>
 );
 
 FeatureList.propTypes = {

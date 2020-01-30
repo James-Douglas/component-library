@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
+import { render, fireEvent } from '../../../testUtils';
 import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
 
@@ -127,7 +127,7 @@ describe('CheckboxGroup.component', () => {
           <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
           <Checkbox id="A-3" disabled><p>A-3 check</p></Checkbox>
-        </CheckboxGroup>\
+        </CheckboxGroup>
       </ThemeProvider>,
     );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../../../testUtils';
 import ColorToggle, { getDisplayBackgroundColor, getAnimationStyle, getDisplayLabel } from '../ColorToggle.component';
 import 'jest-styled-components';
 
@@ -55,9 +55,9 @@ describe('ColorToggle', () => {
     expect(container.querySelector('.scoped-toggle')).toHaveClass('white');
   });
 
-  it('calls onToggle when change event fires', () => {
+  it('calls handleToggle when change event fires', () => {
     const onToggleCb = jest.fn();
-    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" fontColor="white" onToggle={onToggleCb} />);
+    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" fontColor="white" handleToggle={onToggleCb} />);
     const element = container.querySelector('input');
     fireEvent.click(element);
     expect(onToggleCb).toHaveBeenCalled();

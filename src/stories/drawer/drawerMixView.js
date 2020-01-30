@@ -1,0 +1,321 @@
+import React, { useState } from 'react';
+import useBreakpoint from 'hooks/useBreakpoint';
+import styled from 'styled-components';
+import Drawer from '../../components/Drawer/Drawer.component';
+import Container from '../../components/Grid/Container/Container.component';
+import FluidContainer from '../../components/Grid/Container/Fluid.component';
+import Row from '../../components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
+import Button from '../../components/Button/Button.component';
+import Modal from '../../components/Modal/Modal.component';
+
+const StyledCard = styled.div`
+  text-align: center;
+  padding: 4rem;
+  border: 1px solid ${(props) => props.theme.colors.greyLight};
+`;
+const StyledDrawerContent = styled.div`
+  padding: 2rem 2rem 0 2rem;
+`;
+const StyledContainer = styled(FluidContainer)`
+  background: ${(props) => props.theme.colors.greyLight};
+`;
+
+const DrawerMix = () => {
+  const [show, setShow] = useState(false);
+  const [showLeft, setShowLeft] = useState(false);
+  const [openLayers, setOpenLayers] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const breakpoint = useBreakpoint(false);
+
+  const setOpenLayersHandler = (layer, direction) => {
+    if (direction && !openLayers.includes(layer)) {
+      setOpenLayers([...openLayers, layer]);
+    } else {
+      setOpenLayers(openLayers.filter((item) => item !== layer));
+    }
+  };
+  const handleClickBottom = (layer) => {
+    setOpenLayersHandler(layer, !show);
+    setShow(!show);
+  };
+  const handleClickRight = (layer) => {
+    setOpenLayersHandler(layer, !showLeft);
+    setShowLeft(!showLeft);
+  };
+  return (
+    <>
+      <Drawer
+        id="1"
+        notificationSize={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '300px'}`}
+        show={show}
+        direction="bottom"
+        handleClose={() => { setOpenLayers(openLayers.filter((item) => item !== 'secondary')); setShow(false); }}
+        iconClassName="closeIconSlide"
+        closeButton
+        layerType="secondary"
+        drawerArray={openLayers}
+      >
+        <StyledDrawerContent>
+          <FluidContainer className="mt-24">
+            <Row>
+              <Column cols="12" sm="12" md="12">
+                <div>
+                  <h4>Hi I am a Drawer :)</h4>
+                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                    literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
+                    College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
+                    and going through the cites of the word in classical literature, discovered the undoubtable source.
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+                    (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                    This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                  </p>
+                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                    It has roots in a piece of classical Latin literature from 45 BC,
+                    making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+                    looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the
+                    cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                    This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                  </p>
+                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                    in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                    Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one
+                    of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going
+                    through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
+                    written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                  </p>
+                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                    It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+                    a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                    from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil)
+                    by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                  </p>
+                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                    It has roots in a piece of classical Latin literature from 45 BC,
+                    making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+                    looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites
+                    of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                    This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                  </p>
+                  <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                    It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+                    a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                    from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+                    (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..",
+                    comes from a line in section 1.10.32.
+                  </p>
+                </div>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </StyledDrawerContent>
+      </Drawer>
+      <Drawer
+        notificationSize={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '50%'}`}
+        show={showLeft}
+        direction="right"
+        handleClose={() => { setOpenLayers(openLayers.filter((item) => item !== 'primary')); setShowLeft(false); }}
+        iconClassName="closeIconSlide"
+        closeButton
+        layerType="primary"
+        drawerArray={openLayers}
+        overlay
+        overlayOpacity={0.3}
+      >
+        <Container>
+          <Row>
+            <Column cols="12" sm="12" md="12">
+              <div>
+                <h4>Hi I am a right drawer :)</h4>
+                <Button id="demo-1-btn" variant="secondary" handleClick={() => setModalVisible(true)}>
+                  Modal one
+                </Button>
+                <Modal id="test-modal" visible={modalVisible} handleClose={() => setModalVisible(false)} size="lg" overlay overlayOpacity={0.3}>
+                  <h2>Email Results</h2>
+                  &nbsp;
+                  <p>Access these search results later from any device</p>
+                </Modal>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                  It has roots in a piece of classical Latin literature from 45 BC,
+                  making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+                  looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the
+                  cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                  This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                  in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                  Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one
+                  of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going
+                  through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
+                  written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                  It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+                  a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                  from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil)
+                  by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                  It has roots in a piece of classical Latin literature from 45 BC,
+                  making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+                  looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites
+                  of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                  This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                  It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+                  a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                  from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+                  (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..",
+                  comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+                  literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
+                  College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
+                  and going through the cites of the word in classical literature, discovered the undoubtable source.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+                  (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                  This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                  It has roots in a piece of classical Latin literature from 45 BC,
+                  making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+                  looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the
+                  cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                  This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                  in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                  Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one
+                  of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going
+                  through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
+                  written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                  It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+                  a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                  from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil)
+                  by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                  It has roots in a piece of classical Latin literature from 45 BC,
+                  making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+                  looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites
+                  of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+                  This book is a treatise on the theory of ethics, very popular during the Renaissance.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                </p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+                  It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+                  a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                  from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+                  (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..",
+                  comes from a line in section 1.10.32.
+                </p>
+              </div>
+            </Column>
+          </Row>
+        </Container>
+      </Drawer>
+      <StyledContainer>
+        <Row className="row-view">
+          <Column cols="12" valign="center">
+            <StyledCard>
+              <h4>Basic Drawer demo</h4>
+              <p>This is an example of the Drawer component.</p>
+              <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
+                <Button
+                  id="text-btn01"
+                  variant="tertiary"
+                  disabled={false}
+                  href="#/"
+                  handleClick={() => handleClickBottom('secondary')}
+                  target="_self"
+                >
+                Open Bottom Drawer
+                </Button>
+                <Button
+                  id="text-btn01"
+                  variant="tertiary"
+                  disabled={false}
+                  href="#/"
+                  handleClick={() => handleClickRight('primary')}
+                  target="_self"
+                >
+                Open Right Drawer
+                </Button>
+              </div>
+            </StyledCard>
+          </Column>
+        </Row>
+      </StyledContainer>
+    </>
+  );
+};
+
+export default DrawerMix;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '../../../../testUtils';
 import 'jest-styled-components';
 import ProgressIcon from '../ProgressIcon';
 import getTheme from '../../../../utils/getTheme';

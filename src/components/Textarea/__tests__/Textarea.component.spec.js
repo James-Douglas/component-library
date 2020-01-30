@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render } from '../../../testUtils';
 import Textarea, { getRemainingLimit, getOptionalFieldContent, getRemainingCharsContent } from '../Textarea.component';
 import getTheme from '../../../utils/getTheme';
 
@@ -106,7 +106,7 @@ describe('Textarea.component.js', () => {
 
   it('on input, set value func is called', () => {
     const getValueCb = jest.fn();
-    const { container } = render(<Textarea label="test" id="input-id" onChange={getValueCb} />);
+    const { container } = render(<Textarea label="test" id="input-id" handleChange={getValueCb} />);
 
     const textareaField = container.querySelector('textarea');
     fireEvent.change(textareaField, { target: { value: 'thing' } });

@@ -78,13 +78,13 @@ export function getInlineStyles(type, rectOptions) {
 }
 
 const BaseToggle = ({
-  id, type, value, name, selectedValue, invalid, disabled, onToggle, rectOptions, children, className,
+  id, type, value, name, selectedValue, invalid, disabled, handleToggle, rectOptions, children, className,
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
 
-  const handleToggle = () => {
-    onToggle(value);
+  const toggleHandler = () => {
+    handleToggle(value);
   };
 
   return (
@@ -106,7 +106,7 @@ const BaseToggle = ({
           invalid={invalid}
           id={id}
           type="radio"
-          onChange={handleToggle}
+          onChange={toggleHandler}
           checked={selectedValue === value}
           disabled={disabled}
           name={name}
@@ -127,7 +127,7 @@ BaseToggle.propTypes = {
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired,
+  handleToggle: PropTypes.func.isRequired,
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),

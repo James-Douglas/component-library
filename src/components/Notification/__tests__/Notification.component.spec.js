@@ -15,7 +15,7 @@ describe('Notification()', () => {
   it('Notification type danger', () => {
     const setIsVisibleToast = jest.fn();
     const { container } = render(
-      <Notification type="danger" icon closeButton onClose={setIsVisibleToast}>
+      <Notification type="danger" icon closeButton handleClose={setIsVisibleToast}>
         <h5>Notification title goes here</h5>
         Provider will capture the full description.
       </Notification>,

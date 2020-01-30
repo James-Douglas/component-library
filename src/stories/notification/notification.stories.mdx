@@ -34,7 +34,7 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
               <Column offset="1" cols="10">
                 <div style={{margin: '50px 0', width: '50%'}}>
                   {isVisibleToast &&
-                  <Notification type="primary" closeButton onClose={() => setIsVisibleToast(false)}>
+                  <Notification type="primary" closeButton handleClose={() => setIsVisibleToast(false)}>
                     <h5 style={{margin: '0 0 5px', color: 'black'}}>Toast title goes here</h5>
                     Provider will capture the full description.
                   </Notification>
@@ -68,7 +68,7 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
               <Column offset="1" cols="10">
                 <div style={{margin: '50px 0', width: '100%'}}>
                   {isVisible &&
-                    <Notification type="primary" icon closeButton onClose={() => setIsVisible(false)}>
+                    <Notification type="primary" icon closeButton handleClose={() => setIsVisible(false)}>
                       <h5 style={{margin: '0 0 5px', color: 'black'}}>Notification title goes here</h5>
                       The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later.
                       <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between'}}>
@@ -104,7 +104,7 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
               <Column offset="1" cols="10">
                 <div style={{margin: '50px 0', width: '50%'}}>
                   {isVisibleToast &&
-                    <Notification type="primary" icon closeButton onClose={() => setIsVisibleToast(false)}>
+                    <Notification type="primary" icon closeButton handleClose={() => setIsVisibleToast(false)}>
                       <h5 style={{margin: '0 0 5px', color: 'black'}}>Notification title goes here</h5>
                       Provider will capture the full description.
                       <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between'}}>
@@ -167,7 +167,7 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
             <Column offset="1" cols="10">
               <div style={{margin: '50px 0', width: '50%'}}>
                 {isVisibleToast &&
-                  <Notification type="success" icon closeButton onClose={() => setIsVisibleToast(false)}>
+                  <Notification type="success" icon closeButton handleClose={() => setIsVisibleToast(false)}>
                     <h5 style={{margin: '0 0 5px', color: 'black'}}>Notification title goes here</h5>
                     Provider will capture the full description.
                   </Notification>
@@ -227,7 +227,7 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
               <Column offset="1" cols="10">
                 <div style={{margin: '50px 0', width: '50%'}}>
                   {isVisibleToast &&
-                  <Notification type="warning" icon closeButton onClose={() => setIsVisibleToast(false)}>
+                  <Notification type="warning" icon closeButton handleClose={() => setIsVisibleToast(false)}>
                     <h5 style={{margin: '0 0 5px', color: 'black'}}>Notification title goes here</h5>
                     Provider will capture the full description.
                     <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between'}}>
@@ -290,7 +290,7 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
               <Column offset="1" cols="10">
                 <div style={{margin: '50px 0', width: '50%'}}>
                   {isVisibleToast &&
-                  <Notification type="danger" icon closeButton onClose={() => setIsVisibleToast(false)}>
+                  <Notification type="danger" icon closeButton handleClose={() => setIsVisibleToast(false)}>
                     <h5 style={{margin: '0 0 5px', color: 'black'}}>Notification title goes here</h5>
                     Provider will capture the full description.
                      <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between'}}>

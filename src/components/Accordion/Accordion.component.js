@@ -22,7 +22,7 @@ const AccordionGroupChildren = (children, className) => {
   return React.Children.map(children, ((child, index) => React.cloneElement(child, {
     show: childIndex === index,
     className,
-    onClickGroup: (isVisible) => {
+    handleClickGroup: (isVisible) => {
       setChildIndex(isVisible ? index : null);
     },
   })));

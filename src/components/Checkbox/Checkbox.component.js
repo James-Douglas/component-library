@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, css } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 
@@ -127,33 +126,31 @@ const Checkbox = ({
 
   return (
     <>
-      <ThemeProvider theme={getTheme()}>
-        <StyledWrap>
-          <StyledHiddenInput
-            id={id}
-            name={id}
-            type="checkbox"
-            disabled={disabled}
-            onChange={toggleEventHandler}
+      <StyledWrap>
+        <StyledHiddenInput
+          id={id}
+          name={id}
+          type="checkbox"
+          disabled={disabled}
+          onChange={toggleEventHandler}
+          checked={checked}
+        />
+        <StyledLabel
+          disabled={disabled}
+          htmlFor={id}
+        >
+          <StyledCheckbox
+            className={className}
+            invertColour={invertColour}
             checked={checked}
-          />
-          <StyledLabel
             disabled={disabled}
-            htmlFor={id}
+            invalid={invalid}
           >
-            <StyledCheckbox
-              className={className}
-              invertColour={invertColour}
-              checked={checked}
-              disabled={disabled}
-              invalid={invalid}
-            >
-              {renderIcon(icon, checked)}
-            </StyledCheckbox>
-            {renderContent(children)}
-          </StyledLabel>
-        </StyledWrap>
-      </ThemeProvider>
+            {renderIcon(icon, checked)}
+          </StyledCheckbox>
+          {renderContent(children)}
+        </StyledLabel>
+      </StyledWrap>
     </>
   );
 };

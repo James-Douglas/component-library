@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-  fireEvent, render, cleanup, act,
-} from '@testing-library/react';
+  fireEvent, render, act,
+} from '../../../testUtils';
 import 'jest-styled-components';
 import AccordionPanel from '../AccordionPanel.component';
-
-afterEach(cleanup);
 
 describe('Accordion', () => {
   it('renders correctly without prop', () => {
@@ -63,10 +61,10 @@ describe('Accordion', () => {
     expect(accordion).toHaveStyleRule('border', '1px solid transparent');
   });
 
-  it('check onClickGroup function is called', () => {
+  it('check handleClickGroup function is called', () => {
     jest.useFakeTimers();
-    const onClickGroup = jest.fn();
-    const { container } = render(<AccordionPanel show onClickGroup={onClickGroup} />);
+    const handleClickGroup = jest.fn();
+    const { container } = render(<AccordionPanel show handleClickGroup={handleClickGroup} />);
     const accordionHead = container.querySelector('[role="tab"]');
     const accordion = container.querySelector('[role="tablist"]');
     fireEvent.click(accordionHead);
@@ -74,7 +72,7 @@ describe('Accordion', () => {
       jest.runAllTimers();
     });
     expect(accordion).toHaveStyleRule('border', '1px solid transparent');
-    expect(onClickGroup).toBeCalled();
+    expect(handleClickGroup).toBeCalled();
   });
 
   it('works on keydown', () => {

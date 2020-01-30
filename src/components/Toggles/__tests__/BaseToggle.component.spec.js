@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../../testUtils';
 import 'jest-styled-components';
 import BaseToggle, { getInlineStyles } from '../BaseToggle';
 
@@ -39,7 +39,7 @@ describe('BaseToggle', () => {
   });
   it('calls onToggle when toggled', () => {
     const onToggleCb = jest.fn();
-    const { container } = render(<BaseToggle type="square" id="test-square" value="testt" onToggle={onToggleCb} />);
+    const { container } = render(<BaseToggle type="square" id="test-square" value="testt" handleToggle={onToggleCb} />);
     const element = container.firstChild;
     fireEvent.click(element);
     expect(onToggleCb).toHaveBeenCalled();

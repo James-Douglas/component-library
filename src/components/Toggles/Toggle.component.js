@@ -128,15 +128,15 @@ const Toggle = ({
   selectedValue,
   invalid,
   disabled,
-  onToggle,
+  handleToggle,
   icon,
   iconSize,
   pictureOptions,
   rectOptions,
 }) => {
-  const handleToggle = () => {
-    if (onToggle) {
-      onToggle(value);
+  const toggleHandler = () => {
+    if (handleToggle) {
+      handleToggle(value);
     }
   };
   return (
@@ -149,7 +149,7 @@ const Toggle = ({
         selectedValue={selectedValue}
         invalid={invalid}
         disabled={disabled}
-        onToggle={handleToggle}
+        handleToggle={toggleHandler}
         rectOptions={rectOptions}
       >
         {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
@@ -195,7 +195,7 @@ Toggle.propTypes = {
   /**
    * Handler function called when a toggle is toggled on (called with object: { id, value } of the toggle).
    */
-  onToggle: PropTypes.func,
+  handleToggle: PropTypes.func,
   /**
    * Icon from fontAweseom to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).
    */
@@ -239,7 +239,7 @@ Toggle.defaultProps = {
   selectedValue: null,
   invalid: false,
   disabled: false,
-  onToggle: null,
+  handleToggle: null,
   icon: null,
   iconSize: '3x',
   rectOptions: {

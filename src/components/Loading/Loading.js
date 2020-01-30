@@ -27,7 +27,7 @@ export const StyledMessageContainer = styled.div`
 const Loading = ({
   messages,
   isDelayMessages,
-  onLoaded,
+  handleLoaded,
   forceStop,
   delayNumber,
   className,
@@ -75,7 +75,9 @@ const Loading = ({
 
   const done = () => {
     setIsDone(true);
-    onLoaded();
+    if (handleLoaded) {
+      handleLoaded();
+    }
   };
 
   return (
@@ -106,7 +108,7 @@ Loading.propTypes = {
   /**
    * Call back function when loading has finished.
    */
-  onLoaded: PropTypes.func,
+  handleLoaded: PropTypes.func,
   /**
    * Stops the loading on each message
    */
@@ -131,7 +133,7 @@ Loading.propTypes = {
 
 Loading.defaultProps = {
   messages: ['Loading...'],
-  onLoaded: () => {},
+  handleLoaded: null,
   isDelayMessages: false,
   forceStop: false,
   delayNumber: 30,

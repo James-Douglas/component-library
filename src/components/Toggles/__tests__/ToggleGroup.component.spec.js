@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../../testUtils';
 import ToggleGroup, { getType, getChildren } from '../ToggleGroup.component';
 import Toggle from '../Toggle.component';
 import 'jest-styled-components';
@@ -39,14 +39,14 @@ describe('getChildren()', () => {
     ]);
     const result = getChildren(testChildren, 'square', 'test-group', null, didToggleCb, null);
     const {
-      name, id, selectedValue, onToggle, type, value,
+      name, id, selectedValue, handleToggle, type, value,
     } = result[0].props;
 
     expect(name).toEqual('test-group');
     expect(value).toEqual('val-a');
     expect(id).toEqual('a');
     expect(selectedValue).toEqual(null);
-    expect(onToggle).toEqual(didToggleCb);
+    expect(handleToggle).toEqual(didToggleCb);
     expect(type).toEqual('square');
   });
 
@@ -85,10 +85,10 @@ describe('ToggleGroup', () => {
     expect(container.innerHTML).toMatchSnapshot();
   });
 
-  it('calls onToggle on toggle selection', () => {
+  it('calls handleToggle on toggle selection', () => {
     const onToggleCb = jest.fn();
     const { container } = render(
-      <ToggleGroup name="test-toggle-group-b" onToggle={onToggleCb}>
+      <ToggleGroup name="test-toggle-group-b" handleToggle={onToggleCb}>
         <Toggle label="test toggle a" value="a" id="a" />
         <Toggle label="test toggle b" value="b" id="b" />
       </ToggleGroup>,

@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import getTheme from 'utils/getTheme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StyledIcon = styled.div`
@@ -320,26 +319,24 @@ const Button = ({
     const isButton = !href.length > 0;
 
     return (
-      <ThemeProvider theme={getTheme()}>
-        <BaseTag
-          as={isButton ? 'button' : 'a'}
-          onClick={handleClick}
-          id={id}
-          variant={variant}
-          iconAlignRight={iconAlignRight}
-          darkMode={darkMode}
-          size={size}
-          disabled={disabled}
-          href={isButton ? null : href}
-          target={isButton ? null : target}
-          rel={isButton ? null : rel}
-          type={isButton ? tagType : null}
-          style={style}
-          className={className}
-        >
-          {renderContent()}
-        </BaseTag>
-      </ThemeProvider>
+      <BaseTag
+        as={isButton ? 'button' : 'a'}
+        onClick={handleClick}
+        id={id}
+        variant={variant}
+        iconAlignRight={iconAlignRight}
+        darkMode={darkMode}
+        size={size}
+        disabled={disabled}
+        href={isButton ? null : href}
+        target={isButton ? null : target}
+        rel={isButton ? null : rel}
+        type={isButton ? tagType : null}
+        style={style}
+        className={className}
+      >
+        {renderContent()}
+      </BaseTag>
     );
   };
 
@@ -448,8 +445,8 @@ Button.defaultProps = {
   tagType: '',
   style: {},
   width: '100%',
+  handleClick: null,
   className: '',
-  handleClick: () => {},
 };
 
 export default Button;

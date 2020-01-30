@@ -1,0 +1,215 @@
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
+import styled, { keyframes, css } from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import Overlay from '../Overlay/Overlay.component';
+import LayerEventManager from '../../LayerEventManager';
+
+const animateLeft = keyframes`
+  from { left: -100% }
+  to { left: 0 }
+`;
+const animateRight = keyframes`
+  from { right: -100% }
+  to { right: 0 }
+`;
+const animateTop = keyframes`
+  from { top: -100% }
+  to { top: 0 }
+`;
+const animateBottom = keyframes`
+  from { bottom: -100% }
+  to { bottom: 0}
+`;
+
+const StyledDrawer = styled.div`
+  position: fixed;
+  overflow: auto;
+  margin: 0;
+  height: 100%;
+  border-top: ${({ theme }) => theme.drawer.borderTop}; 
+  background: ${({ theme }) => (theme.drawer.background)}; 
+  z-index: inherit;
+  box-shadow: ${({ theme }) => theme.boxShadow.lg};    
+  padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[4]}`};
+  ${({ notificationSize, direction }) => direction === 'top' && css`
+    animation-name: ${animateTop};
+    height: ${notificationSize};
+    width: 100%;
+    top: 0;
+    left: 0;
+  `}
+  ${({ notificationSize, direction }) => direction === 'left' && css`
+    animation-name: ${animateLeft};
+    width: ${notificationSize};
+    top:0;
+    left: 0;
+  `}
+  ${({ notificationSize, direction }) => direction === 'bottom' && css`
+    animation-name: ${animateBottom};
+    width: 100%;
+    height: ${notificationSize};
+    bottom: 0;
+    left: 0;
+  `}
+  ${({ notificationSize, direction }) => direction === 'right' && css`
+    animation-name: ${animateRight};
+    width: ${notificationSize};
+    top:0;
+    right: 0;
+  `} 
+  animation-duration: 0.4s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-play-state: running;
+`;
+const StyledIcon = styled.div`
+  position: absolute;
+  right: ${({ theme }) => (theme.spacing[40])};
+  top: ${({ theme }) => (theme.spacing[20])};
+  cursor: pointer;
+  z-index: inherit;
+`;
+const StyledDrawerCloseBase = styled.div`
+  height: ${({ theme }) => (theme.spacing[60])};
+  position: fixed;
+  background: ${({ theme }) => (theme.drawer.background)};
+  z-index: inherit;
+  width: 100%;
+  
+  ${({ direction }) => direction === 'top' && css`
+    width: 100%;
+    animation-name: ${animateTop};
+  `}
+  ${({ direction }) => direction === 'bottom' && css`
+    width: 100%;
+    animation-name: ${animateBottom};
+  `}
+  ${({ theme, direction, notificationSize }) => direction === 'left' && css`
+    width: calc(${notificationSize} - ${theme.spacing[8]});
+    animation-name: ${animateLeft};
+  `}
+  ${({ direction, notificationSize }) => direction === 'right' && css`
+    width: ${notificationSize};
+    animation-name: ${animateRight};
+  `} 
+`;
+const StyledDrawerText = styled.div`
+ padding-top: ${({ theme, closeButton }) => (closeButton ? theme.spacing[60] : theme.spacing[32])};
+`;
+
+const Drawer = ({
+  id,
+  direction,
+  notificationSize,
+  closeButton,
+  children,
+  iconClassName,
+  show,
+  handleClose,
+  overlay,
+  overlayOpacity,
+  handleOverlayClick,
+}) => {
+  const drawerElement = useRef(null);
+
+  const IconClick = () => {
+    handleClose();
+  };
+
+  return (
+    <LayerEventManager id={id} visible={show} handleClose={handleClose}>
+      <>
+        {show && overlay && <Overlay show opacityLevel={overlayOpacity} handleClick={handleOverlayClick} />}
+        {show && (
+          <StyledDrawer
+            show
+            notificationSize={notificationSize}
+            direction={direction}
+            ref={drawerElement}
+          >
+            {closeButton
+              && (
+                <StyledDrawerCloseBase notificationSize={notificationSize} direction={direction} show={Boolean(show)}>
+                  <StyledIcon className={`${iconClassName} icon-close`} onClick={IconClick} onKeyPress={IconClick} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
+                    <FontAwesomeIcon icon={faTimes} size="2x" />
+                  </StyledIcon>
+                </StyledDrawerCloseBase>
+              )}
+            <StyledDrawerText direction={direction} closeButton={closeButton}>
+              {children}
+            </StyledDrawerText>
+          </StyledDrawer>
+        )}
+      </>
+    </LayerEventManager>
+  );
+};
+
+Drawer.propTypes = {
+  /**
+   * unique id
+   */
+  id: PropTypes.string,
+  /**
+   *  Direction param play a role in how we interpret a slide's movement within a frame.
+   */
+  direction: PropTypes.string,
+  /**
+   *  Defines height or width (depending from direction) of the slide.
+   */
+  notificationSize: PropTypes.string,
+  /**
+   *  The slide's content.
+   */
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  /**
+   *  Defines close button visibility(by default it's hidden).
+   */
+  closeButton: PropTypes.bool,
+  /**
+   *  Defines custom class name for close button.
+   */
+  iconClassName: PropTypes.string,
+  /**
+   *  Defines drawer visibility.
+   */
+  show: PropTypes.bool,
+  /**
+   *  handleClose function, called when click close button.
+   */
+  handleClose: PropTypes.func.isRequired,
+  /**
+   * Render an overlay over the remainder of the screen (blocking interaction)
+   */
+  overlay: PropTypes.bool,
+  /**
+   * Defines the opacity of the overlay, if rendered. (0 to 1)
+   */
+  overlayOpacity: PropTypes.number,
+  /**
+   * Called when the overlay is clicked
+   */
+  handleOverlayClick: PropTypes.func,
+};
+
+Drawer.defaultProps = {
+  id: null,
+  direction: 'right',
+  notificationSize: '80%',
+  children: '',
+  closeButton: false,
+  iconClassName: '',
+  show: false,
+  overlay: false,
+  overlayOpacity: 0.7,
+  handleOverlayClick: null,
+};
+
+export default Drawer;

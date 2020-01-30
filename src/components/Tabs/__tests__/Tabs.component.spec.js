@@ -1,11 +1,9 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../../testUtils';
 import Tabs, { renderChildren } from '../Tabs.component';
 import TabButton from '../TabButton.component';
 import TabPanel from '../TabPanel.component';
 import TabsContext from '../TabsContext';
-
-afterEach(cleanup);
 
 /* renderChildren
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

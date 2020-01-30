@@ -63,11 +63,11 @@ export function getDisplayLabel(label, backgroundColor) {
 }
 
 const ColorToggle = ({
-  id, label, backgroundColor, fontColor, value, name, selectedValue, invalid, disabled, onToggle,
+  id, label, backgroundColor, fontColor, value, name, selectedValue, invalid, disabled, handleToggle,
 }) => {
-  const handleToggle = () => {
-    if (onToggle) {
-      onToggle(value);
+  const toggleHandler = () => {
+    if (handleToggle) {
+      handleToggle(value);
     }
   };
 
@@ -88,7 +88,7 @@ const ColorToggle = ({
             selectedValue={selectedValue}
             invalid={invalid}
             disabled={disabled}
-            onToggle={handleToggle}
+            handleToggle={toggleHandler}
           >
             <ToggleLabel id={id}>
               <StyledColourToggle>
@@ -113,7 +113,7 @@ ColorToggle.propTypes = {
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
-  onToggle: PropTypes.func,
+  handleToggle: PropTypes.func,
 };
 
 ColorToggle.defaultProps = {
@@ -123,7 +123,7 @@ ColorToggle.defaultProps = {
   selectedValue: null,
   invalid: false,
   disabled: false,
-  onToggle: null,
+  handleToggle: null,
 };
 
 export default ColorToggle;

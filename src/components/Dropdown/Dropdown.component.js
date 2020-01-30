@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
-import styled, { css, ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { css } from 'styled-components';
 import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
 import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import SupportingElements from '../SupportingElements/SupportingElements';
@@ -176,12 +175,10 @@ const StyledSelect = styled.select`
 
 const WithPrefixContent = ({ children, isFocusActive, prefixContent }) => (prefixContent
   ? (
-    <ThemeProvider theme={getTheme()}>
-      <StyledPrefix isFocusActive={isFocusActive} isPrefix={Boolean(prefixContent)}>
-        <StyledPrefixRight tabIndex="-1">{prefixContent}</StyledPrefixRight>
-        {children}
-      </StyledPrefix>
-    </ThemeProvider>
+    <StyledPrefix isFocusActive={isFocusActive} isPrefix={Boolean(prefixContent)}>
+      <StyledPrefixRight tabIndex="-1">{prefixContent}</StyledPrefixRight>
+      {children}
+    </StyledPrefix>
   ) : children
 );
 
@@ -196,7 +193,7 @@ const Dropdown = ({
   disabled,
   required,
   options,
-  onChange,
+  handleChange,
   className,
   prefixContent,
 }) => {
@@ -225,72 +222,70 @@ const Dropdown = ({
     setFocusActive(false);
   };
 
-  const handleChange = (event) => {
+  const changeHandler = (event) => {
     event.preventDefault();
     const selectedValue = event.target.value;
     setSelectValue(selectedValue);
-    if (onChange) {
-      onChange(selectedValue);
+    if (handleChange) {
+      handleChange(selectedValue);
     }
   };
 
   return (
-    <ThemeProvider theme={getTheme()}>
-      <>
-        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-        <StyledRow>
-          <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
-            <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
-              <StyledSelectContainer>
-                <StyledSelectWrap>
-                  <StyledSelect
-                    id={id}
-                    name={name}
-                    disabled={isDisabled}
-                    required={required}
-                    value={selectValue}
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    invalidClass={invalidClass}
-                    bordered={bordered}
-                    className={className}
-                    isPrefix={Boolean(prefixContent)}
-                  >
-                    {options.map((option) => (
-                      <StyledOption
-                        key={option.value}
-                        value={option.value}
-                        id={`${id}_${option.value}`}
-                        disabled={option.disabled}
-                      >
-                        {option.title}
-                      </StyledOption>
-                    ))}
-                  </StyledSelect>
-                  <StyledChevron>
-                    <FontAwesomeIcon icon={faChevronDown} size="2x" />
-                  </StyledChevron>
-                </StyledSelectWrap>
-                <SupportingElements required={required} disabled={disabled} label={label} />
-              </StyledSelectContainer>
-            </WithPrefixContent>
-            <FieldValidation message={validationMessage} />
+    <>
+      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
+      <StyledRow>
+        <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
+          <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
+            <StyledSelectContainer>
+              <StyledSelectWrap>
+                <StyledSelect
+                  id={id}
+                  name={name}
+                  disabled={isDisabled}
+                  required={required}
+                  value={selectValue}
+                  onChange={changeHandler}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  invalidClass={invalidClass}
+                  bordered={bordered}
+                  className={className}
+                  isPrefix={Boolean(prefixContent)}
+                >
+                  {options.map((option) => (
+                    <StyledOption
+                      key={option.value}
+                      value={option.value}
+                      id={`${id}_${option.value}`}
+                      disabled={option.disabled}
+                    >
+                      {option.title}
+                    </StyledOption>
+                  ))}
+                </StyledSelect>
+                <StyledChevron>
+                  <FontAwesomeIcon icon={faChevronDown} size="2x" />
+                </StyledChevron>
+              </StyledSelectWrap>
+              <SupportingElements required={required} disabled={disabled} label={label} />
+            </StyledSelectContainer>
+          </WithPrefixContent>
+          <FieldValidation message={validationMessage} />
+        </StyledColumn>
+        {desktop && !forceFullWidth && hasTooltipContent(tooltip)
+        && (
+          <StyledColumn cols={2}>
+            <InlineTooltip
+              title={tooltip.title}
+              body={tooltip.body}
+              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
+              justifyEnd={tooltip.justifyEnd}
+            />
           </StyledColumn>
-          {desktop && !forceFullWidth && hasTooltipContent(tooltip)
-          && (
-            <StyledColumn cols={2}>
-              <InlineTooltip
-                title={tooltip.title}
-                body={tooltip.body}
-                screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
-                justifyEnd={tooltip.justifyEnd}
-              />
-            </StyledColumn>
-          )}
-        </StyledRow>
-      </>
-    </ThemeProvider>
+        )}
+      </StyledRow>
+    </>
   );
 };
 
@@ -334,7 +329,7 @@ Dropdown.propTypes = {
   /**
    * Onchange function, called with the selected value
    */
-  onChange: PropTypes.func,
+  handleChange: PropTypes.func,
   /**
    * The dropdown options
    */
@@ -367,7 +362,7 @@ Dropdown.defaultProps = {
   bordered: true,
   disabled: false,
   required: false,
-  onChange: null,
+  handleChange: null,
   className: '',
   prefixContent: '',
 };

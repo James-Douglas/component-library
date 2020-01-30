@@ -76,19 +76,19 @@ const Notification = ({
   type,
   icon,
   closeButton,
-  onClose,
+  handleClose,
   className,
 }) => {
-  const IconClick = () => {
-    if (onClose) {
-      onClose();
+  const iconHandler = () => {
+    if (handleClose) {
+      handleClose();
     }
   };
   return (
     <ThemeProvider theme={getTheme()}>
       <StyledNotification type={type} icon={icon} className={className}>
         {closeButton && (
-          <StyledIcon onClick={IconClick} onKeyPress={IconClick} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
+          <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
             <FontAwesomeIcon icon={faTimes} size="lg" />
           </StyledIcon>
         )}
@@ -135,7 +135,7 @@ Notification.propTypes = {
   /**
    *  Called when click close button.
    */
-  onClose: PropTypes.func,
+  handleClose: PropTypes.func,
   /**
    * Classes to be applied to the Notification component
    */
@@ -147,7 +147,7 @@ Notification.defaultProps = {
   type: 'primary',
   icon: false,
   closeButton: false,
-  onClose: null,
+  handleClose: null,
   className: '',
 };
 

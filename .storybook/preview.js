@@ -4,10 +4,10 @@ import { withA11y } from '@storybook/addon-a11y';
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { ManorGlobalStyles } from '../src/components/Global/manorGlobal.component';
+import ManorProvider from '../src/provider/ManorProvider';
 
 addDecorator(withA11y);
+addDecorator(storyFn => <ManorProvider>{storyFn()}</ManorProvider>);
 
 addParameters({
   options: {
@@ -21,14 +21,6 @@ addParameters({
 });
 
 function loadStories() {
-  const globalStyleEl = document.querySelector('#gen3-global-style')
-    || (() => {
-      const el = document.createElement('div');
-      el.id = 'gen3-global-style';
-      document.head.append(el);
-      return el;
-    })();
-  ReactDOM.render(<ManorGlobalStyles />, globalStyleEl);
   const allExports = [];
   const req = require.context('../src/stories', true, /\.stories\.(js|mdx)$/);
   req.keys().forEach((fname) => allExports.push(req(fname)));

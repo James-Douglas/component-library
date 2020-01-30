@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import { render, fireEvent } from '../../../testUtils';
 import Checkbox, { renderIcon } from '../Checkbox.component';
 import getTheme from '../../../utils/getTheme';
 

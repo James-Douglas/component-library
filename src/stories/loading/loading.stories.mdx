@@ -39,7 +39,7 @@ import Loading from '../../components/Loading/Loading';
     };
     return (
       <>
-        {!loadVar && <Loading {...optionalProps} onLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
+        {!loadVar && <Loading {...optionalProps} handleLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
         {loadVar && <div style={{fontSize: '30px'}}>Loading done</div>}
       </>
     )
@@ -64,7 +64,7 @@ import Loading from '../../components/Loading/Loading';
       delayLoading: true
     };
    return (
-      <Loading {...optionalProps} maxProgress={90} onLoaded={() => {}} />
+      <Loading {...optionalProps} maxProgress={90} handleLoaded={() => {}} />
     )
   }}
 </Story>

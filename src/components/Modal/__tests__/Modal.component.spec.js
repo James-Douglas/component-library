@@ -1,9 +1,9 @@
 import React from 'react';
-import {
-  render, fireEvent,
-} from '@testing-library/react';
 import 'jest-styled-components';
 import Input from 'components/Input/Input.component';
+import {
+  render, fireEvent,
+} from '../../../testUtils';
 import Modal from '../Modal.component';
 
 /* Modal
@@ -18,9 +18,8 @@ describe('Modal', () => {
   });
 
   it('does not render if visible={false}', () => {
-    const { baseElement } = render(<Modal id="test-modal" visible={false} />);
-    const modal = baseElement.querySelector('#test-modal');
-
+    const { container } = render(<Modal id="test-modal" visible={false} />);
+    const modal = container.querySelector('#test-modal');
     expect(modal).not.toBeInTheDocument();
   });
 

@@ -29,13 +29,15 @@ This allows the Modal component to be used with or without an overlay component.
     const modalClose = () => {
       setVisible(false);
     }
+    const overlayClickHandler = () => {
+      setVisible(false);
+    }
     return (
       <>
-        {visible && <Overlay opacityLevel={0.3} onClose={modalClose} />}
         <Button id='preview-btn' variant='secondary' handleClick={modalOpen}>
           Modal Preview
         </Button>
-        <Modal id='preview-modal' visible={visible} handleClose={modalClose} size="sm">
+        <Modal id='preview-modal' visible={visible} handleClose={modalClose} size="sm" overlay handleOverlayClick={overlayClickHandler}>
           <p>Some modal content!</p>
         </Modal>
       </>

@@ -1,6 +1,4 @@
-import React from 'react';
-import { css, createGlobalStyle, ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import { css, createGlobalStyle } from 'styled-components';
 
 import SourceSansProSrc from '../../fonts/sourcesanspro-regular-webfont.woff2';
 import SourceSansProUrl from '../../fonts/sourcesanspro-regular-webfont.woff';
@@ -152,12 +150,6 @@ export const manor = css`
   }
 `;
 
-const GlobalStyles = createGlobalStyle`${manor}`;
-
-export const ManorGlobalStyles = () => (
-  <ThemeProvider theme={getTheme()}>
-    <GlobalStyles />
-  </ThemeProvider>
-);
+export const ManorGlobalStyles = createGlobalStyle`${manor}`;
 
 export default manor;

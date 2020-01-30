@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '../../../testUtils';
 import 'jest-styled-components';
 import AccordionPanel from '../AccordionPanel.component';
 import Accordion from '../Accordion.component';
@@ -52,7 +52,7 @@ describe('Accordion', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
       <Accordion>
-        <AccordionPanel title="What are the benefits1 of combining your electricity and gas bills?" show onClickGroup={mockTestClick}>
+        <AccordionPanel title="What are the benefits1 of combining your electricity and gas bills?" show handleClickGroup={mockTestClick}>
           <div>
             <p>
               Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
@@ -79,7 +79,7 @@ describe('Accordion', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
       <Accordion>
-        <AccordionPanel title="What are the benefits1 of combining your electricity and gas bills?" onClickGroup={mockTestClick}>
+        <AccordionPanel title="What are the benefits1 of combining your electricity and gas bills?" handleClickGroup={mockTestClick}>
           <div>
             <p>
               Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather

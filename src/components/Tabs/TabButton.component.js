@@ -34,7 +34,7 @@ const StyledTabButton = styled.button`
 const TabButton = ({ name, handleClick, children }) => {
   const tabContext = useContext(TabsContext);
 
-  const onClick = (e) => {
+  const clickHandler = (e) => {
     tabContext.changeTab(name);
     if (handleClick) {
       handleClick(e);
@@ -48,7 +48,7 @@ const TabButton = ({ name, handleClick, children }) => {
 
   return (
     <>
-      <StyledTabButton type="button" className={classNames} activeTab={tabContext.activeTab} name={name} onClick={onClick}>
+      <StyledTabButton type="button" className={classNames} activeTab={tabContext.activeTab} name={name} onClick={clickHandler}>
         {children}
       </StyledTabButton>
     </>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { render, fireEvent } from '../../../testUtils';
 import Toggle, {
   getPictureToggleContent, getIconToggleContent, getTextToggleContent, getToggleContent,
 } from '../Toggle.component';
@@ -130,7 +130,7 @@ describe('Toggle', () => {
 
   it('calls handleChange on handleChange when provided', () => {
     const handleChangeCb = jest.fn();
-    const { container } = render(<Toggle label="test label" id="test-id" value="test" onToggle={handleChangeCb} />);
+    const { container } = render(<Toggle label="test label" id="test-id" value="test" handleToggle={handleChangeCb} />);
     const element = container.firstChild;
     fireEvent.click(element);
     expect(handleChangeCb).toHaveBeenCalled();

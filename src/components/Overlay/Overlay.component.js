@@ -10,36 +10,34 @@ const StyledOverlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 30;
+  z-index: inherit;
   margin: 0;
   padding: 0;
 `;
 
-const Overlay = ({ opacityLevel, onClose }) => {
-  const handleCloseSection = () => {
-    if (onClose) {
-      onClose();
-    }
-  };
-  return (
-    <StyledOverlay className="overlay" style={{ background: `rgba(0,0,0,${opacityLevel})` }} onClick={handleCloseSection} onKeyPress={handleCloseSection} aria-label="overlay" tabIndex="0" role="option" aria-selected={false} />
-  );
-};
+const Overlay = ({ show, opacityLevel, handleClick }) => show && (
+  <StyledOverlay className="overlay" style={{ background: `rgba(0,0,0,${opacityLevel})` }} aria-label="overlay" tabIndex="0" role="option" aria-selected={false} onClick={handleClick} />
+);
 
 Overlay.propTypes = {
+  /**
+   *  Defines overlay visibility.
+   */
+  show: PropTypes.bool,
   /**
    *  Defines opacity level of the background(from 0 to 1).
    */
   opacityLevel: PropTypes.number,
   /**
-   *  onClose function, called when click on overlay component.
+   * Called when the overlay is clicked
    */
-  onClose: PropTypes.func,
+  handleClick: PropTypes.func,
 };
 
 Overlay.defaultProps = {
+  show: false,
   opacityLevel: 0.7,
-  onClose: null,
+  handleClick: null,
 };
 
 export default Overlay;

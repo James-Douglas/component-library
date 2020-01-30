@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import 'jest-styled-components';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
+import { render } from '../../../testUtils';
 import Button from '../Button.component';
 import getTheme from '../../../utils/getTheme';
 

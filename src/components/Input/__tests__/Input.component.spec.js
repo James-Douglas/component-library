@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
 import 'jest-styled-components';
 import { ThemeProvider } from 'styled-components';
 import getTheme from 'utils/getTheme';
+import { render, fireEvent } from '../../../testUtils';
 import Input, {
   renderClearIcon, renderAffix,
 } from '../Input.component';
@@ -278,7 +278,7 @@ describe('Input.component', () => {
     expect(maxlength).toBe('5');
   });
 
-  it('has a blur handler when passed in', () => {
+  it('has a focus handler when passed in', () => {
     const focusCb = jest.fn();
     const { container } = render(
       <Input

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Modal from 'components/Modal/Modal.component';
-import Overlay from 'components/Overlay/Overlay.component';
 import Button from 'components/Button/Button.component';
 import Checkbox from 'components/Checkbox/Checkbox.component';
 import Input from 'components/Input/Input.component';
@@ -30,11 +29,10 @@ const ModalView = () => {
 
   return (
     <>
-      {(m1Visible || m2Visible) && <Overlay opacityLevel={0.3} onClose={closeModals} />}
       <Button id="demo-1-btn" variant="secondary" handleClick={m1Open}>
         Modal one
       </Button>
-      <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="lg">
+      <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="lg" overlay overlayOpacity={0.3}>
         <h2>Email Results</h2>
         &nbsp;
         <p>Access these search results later from any device</p>
@@ -61,7 +59,7 @@ const ModalView = () => {
         Modal two
       </Button>
 
-      <Modal id="demo-2" visible={m2Visible} handleClose={closeModals} size="sm">
+      <Modal id="demo-2" visible={m2Visible} handleClose={closeModals} size="sm" overlay overlayOpacity={0.3}>
         <h2>Another modal</h2>
         &nbsp;
         <p>Another bit of content</p>

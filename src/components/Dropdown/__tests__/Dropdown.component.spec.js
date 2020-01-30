@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../../testUtils';
 import Dropdown from '../Dropdown.component';
 import getTheme from '../../../utils/getTheme';
 
@@ -89,7 +89,7 @@ describe('Dropdown', () => {
 
   it('on input, set value func is called', () => {
     const getValueCb = jest.fn();
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" onChange={getValueCb} />);
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" handleChange={getValueCb} />);
     const dropdownField = container.querySelector('select');
     fireEvent.change(dropdownField, { target: { value: 'Default' } });
     expect(dropdownField).toHaveValue('Default');

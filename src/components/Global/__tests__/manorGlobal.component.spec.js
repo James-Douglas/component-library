@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render } from '@testing-library/react';
+import { render } from '../../../testUtils';
 import { ManorGlobalStyles } from '../manorGlobal.component';
 import '@testing-library/jest-dom/extend-expect';
 

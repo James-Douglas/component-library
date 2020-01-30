@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import Picture, { picturePropTypes } from '../Picture/Picture.component';
 import placeholder from '../../images/sergei.png';
 import useIsDesktop from '../../hooks/useIsDesktop';
@@ -35,17 +34,15 @@ const EmptyState = ({
   };
 
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledEmptyState className={className}>
-        <StyledEmptyStateWrap desktop={desktop}>
-          <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
-          <h3>{heading}</h3>
-          <div>
-            {children}
-          </div>
-        </StyledEmptyStateWrap>
-      </StyledEmptyState>
-    </ThemeProvider>
+    <StyledEmptyState className={className}>
+      <StyledEmptyStateWrap desktop={desktop}>
+        <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
+        <h3>{heading}</h3>
+        <div>
+          {children}
+        </div>
+      </StyledEmptyStateWrap>
+    </StyledEmptyState>
   );
 };
 
@@ -73,7 +70,7 @@ EmptyState.propTypes = {
 
 EmptyState.defaultProps = {
   children: '',
-  picture: '',
+  picture: null,
   className: '',
   heading: 'Sorry, no results found',
 };

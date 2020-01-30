@@ -92,7 +92,8 @@ const buildLibrary = () => {
   // gather our modules
   const components = glob.sync(`${__dirname}/src/components/**/*.component.js`);
   const hooks = glob.sync(`${__dirname}/src/hooks/use*.js`);
-  const modules = [...components, ...hooks]
+  const provider = glob.sync(`${__dirname}/src/provider/ManorProvider.js`);
+  const modules = [...components, ...hooks, ...provider];
   // create the modules index
   makeModuleIndex(modules);
   // gather our rollup config

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait } from '@testing-library/react';
+import { render, wait } from '../../../testUtils';
 import 'jest-styled-components';
 import Loading from '../Loading';
 
@@ -24,7 +24,7 @@ describe('Loading', () => {
       'Sorting by lowest fees',
     ];
     const { getByText } = render(
-      <Loading messages={messages} isDelayMessages onLoaded={loadingDone} />,
+      <Loading messages={messages} isDelayMessages handleLoaded={loadingDone} />,
     );
     await wait(() => {
       expect(getByText('Checking your details')).toBeInTheDocument();
@@ -75,7 +75,7 @@ describe('Loading', () => {
       'Finding great transaction accounts',
       'Sorting by lowest fees',
     ];
-    const { getByText, container } = render(<Loading messages={messages} maxProgress={80} onLoaded={loadingDone} />);
+    const { getByText, container } = render(<Loading messages={messages} maxProgress={80} handleLoaded={loadingDone} />);
 
     await wait(() => getByText('Sorting by lowest fees'));
 

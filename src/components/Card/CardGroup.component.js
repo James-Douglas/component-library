@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import Card from './Card.component';
 import { spacingPropTypes } from '../../utils/applySpacing';
 
@@ -30,11 +29,9 @@ const getChildren = (children, cols, { margin, padding }, className) => children
 const CardGroup = ({
   cols, children, id, cardProps, className,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledCardGroup id={id}>
-      {getChildren(children, cols, cardProps, className)}
-    </StyledCardGroup>
-  </ThemeProvider>
+  <StyledCardGroup id={id}>
+    {getChildren(children, cols, cardProps, className)}
+  </StyledCardGroup>
 );
 
 CardGroup.propTypes = {

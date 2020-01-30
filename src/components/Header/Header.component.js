@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import Logo from '../Logo/Logo.component';
 import FluidContainer from '../Grid/Container/Fluid.component';
 import Contact from './Contact/Contact.component';
@@ -29,16 +28,14 @@ const StyledLogoWrap = styled.header`
 const Header = ({ isSticky, stuck, number }) => {
   const size = stuck ? 'small' : 'large';
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledHeader stuck={stuck} isSticky={isSticky}>
-        <FluidContainer>
-          <StyledLogoWrap>
-            <Logo size={size} />
-            {number && <Contact number={number} size={size} />}
-          </StyledLogoWrap>
-        </FluidContainer>
-      </StyledHeader>
-    </ThemeProvider>
+    <StyledHeader stuck={stuck} isSticky={isSticky}>
+      <FluidContainer>
+        <StyledLogoWrap>
+          <Logo size={size} />
+          {number && <Contact number={number} size={size} />}
+        </StyledLogoWrap>
+      </FluidContainer>
+    </StyledHeader>
   );
 };
 

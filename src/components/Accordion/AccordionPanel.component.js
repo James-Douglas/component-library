@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import PropTypes from 'prop-types';
-import getTheme from 'utils/getTheme';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import FluidContainer from '../Grid/Container/Fluid.component';
@@ -68,7 +67,7 @@ const AccordionPanel = ({
   children,
   show,
   iconSize,
-  onClickGroup,
+  handleClickGroup,
   className,
 }) => {
   const [isVisible, setIsVisible] = useState(show);
@@ -77,8 +76,8 @@ const AccordionPanel = ({
 
   const toggleTrueFalse = () => {
     setTimeout(() => {
-      if (onClickGroup) {
-        onClickGroup(!isVisible);
+      if (handleClickGroup) {
+        handleClickGroup(!isVisible);
       }
       return setIsVisible(!isVisible);
     }, 1);
@@ -103,36 +102,34 @@ const AccordionPanel = ({
   };
 
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledAccordionPanel isVisible={isVisible} isFocus={isFocus} className={className} role="tablist" aria-label="Information tabs">
-        <StyledAccordionHead
-          isVisible={isVisible}
-          onClick={toggleTrueFalse}
-          onKeyDown={toggleTrueFalseOnKey}
-          role="tab"
-          aria-selected="true"
-          tabIndex="0"
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        >
-          <FluidContainer>
-            <Row>
-              <Column cols="11">{title}</Column>
-              <Column cols="1">
-                <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
-              </Column>
-            </Row>
-          </FluidContainer>
-        </StyledAccordionHead>
-        <StyledAccordionBody isVisible={isVisible} role="tabpanel">
-          <FluidContainer>
-            <Row className="row-view">
-              <Column cols="12">{children}</Column>
-            </Row>
-          </FluidContainer>
-        </StyledAccordionBody>
-      </StyledAccordionPanel>
-    </ThemeProvider>
+    <StyledAccordionPanel isVisible={isVisible} isFocus={isFocus} className={className} role="tablist" aria-label="Information tabs">
+      <StyledAccordionHead
+        isVisible={isVisible}
+        onClick={toggleTrueFalse}
+        onKeyDown={toggleTrueFalseOnKey}
+        role="tab"
+        aria-selected="true"
+        tabIndex="0"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
+        <FluidContainer>
+          <Row>
+            <Column cols="11">{title}</Column>
+            <Column cols="1">
+              <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
+            </Column>
+          </Row>
+        </FluidContainer>
+      </StyledAccordionHead>
+      <StyledAccordionBody isVisible={isVisible} role="tabpanel">
+        <FluidContainer>
+          <Row className="row-view">
+            <Column cols="12">{children}</Column>
+          </Row>
+        </FluidContainer>
+      </StyledAccordionBody>
+    </StyledAccordionPanel>
   );
 };
 
@@ -160,7 +157,7 @@ AccordionPanel.propTypes = {
   /**
    * Used to AccordionGroup to control visibility
    */
-  onClickGroup: PropTypes.func,
+  handleClickGroup: PropTypes.func,
   /**
    * Classes to be applied to the Accordion panel component
    */
@@ -172,7 +169,7 @@ AccordionPanel.defaultProps = {
   title: '',
   show: false,
   iconSize: '1x',
-  onClickGroup: null,
+  handleClickGroup: null,
   className: '',
 };
 

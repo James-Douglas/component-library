@@ -209,13 +209,14 @@ const Input = ({
   const [isFocusActive, setFocusActive] = useState(false);
   const theme = getTheme();
   const desktop = useIsDesktop(false);
+
   const clearInput = () => {
     setIsDirty(true);
     setInternalValue('');
     handleChange('');
   };
 
-  const handleOnChange = (e) => {
+  const changeHandler = (e) => {
     setIsDirty(true);
 
     if (valueMasking) {
@@ -243,14 +244,14 @@ const Input = ({
     }
   }, [prefillValue, value, valueMasking]);
 
-  const onFocus = () => {
+  const focusHandler = () => {
     if (handleFocus) {
       handleFocus();
     }
     setFocusActive(true);
   };
 
-  const onBlur = () => {
+  const blurHandler = () => {
     if (handleBlur) {
       handleBlur();
     }
@@ -280,10 +281,10 @@ const Input = ({
                     placeholder={placeholder}
                     disabled={disabled}
                     value={internalValue}
-                    onChange={handleOnChange}
+                    onChange={changeHandler}
                     autoComplete={autocomplete}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
+                    onFocus={focusHandler}
+                    onBlur={blurHandler}
                     maxLength={maxlength}
                     isAutofill={isAutofill}
                     className={`input-default ${className}`}

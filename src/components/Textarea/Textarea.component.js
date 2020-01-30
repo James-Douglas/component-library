@@ -120,7 +120,7 @@ const Textarea = ({
   readonly,
   maxChars,
   maxLength,
-  onChange,
+  handleChange,
   className,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
@@ -153,17 +153,14 @@ const Textarea = ({
     textAreaElement.current.setCustomValidity(charsExceed ? 'Maximum characters exceeded' : '');
   }, [charsExceed]);
 
-  const handleChange = (event) => {
+  const changeHandler = (event) => {
     event.preventDefault();
     setIsDirty(true);
     setStateValue(event.target.value);
-  };
-
-  useEffect(() => {
-    if (onChange) {
-      onChange({ id, stateValue });
+    if (handleChange) {
+      handleChange({ id, stateValue });
     }
-  }, [onChange, id, stateValue]);
+  };
 
   let validationMessageToDisplay = validationMessage;
 
@@ -184,7 +181,7 @@ const Textarea = ({
               <StyledTextArea
                 ref={textAreaElement}
                 value={stateValue}
-                onChange={handleChange}
+                onChange={changeHandler}
                 id={id}
                 name={name}
                 placeholder={placeholder}
@@ -300,7 +297,7 @@ Textarea.propTypes = {
   /**
    * Called when the value of the text area changes. Function will be called with an object consisting of id and value of the text area.
    */
-  onChange: PropTypes.func,
+  handleChange: PropTypes.func,
   /**
    * Classes to be applied to the Textarea component
    */
@@ -324,7 +321,7 @@ Textarea.defaultProps = {
   readonly: false,
   maxLength: '',
   maxChars: '',
-  onChange: null,
+  handleChange: null,
   className: '',
 };
 

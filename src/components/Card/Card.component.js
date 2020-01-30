@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import applySpacing, { spacingPropTypes } from 'utils/applySpacing';
 
 const StyledCard = styled.div`
@@ -19,11 +18,9 @@ const StyledCard = styled.div`
 const Card = ({
   id, children, margin, padding, className,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledCard id={id} margin={margin} padding={padding} className={className}>
-      {children}
-    </StyledCard>
-  </ThemeProvider>
+  <StyledCard id={id} margin={margin} padding={padding} className={className}>
+    {children}
+  </StyledCard>
 );
 
 Card.propTypes = {

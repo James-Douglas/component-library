@@ -46,7 +46,7 @@ export const getChildren = (children, type, name, selectedToggleValue, handleTog
       key,
       name,
       selectedValue: selectedToggleValue,
-      onToggle: handleToggle,
+      handleToggle,
       type,
       invalid: !!validationMessage && validationMessage.length > 0,
     };
@@ -63,7 +63,7 @@ const ToggleGroup = ({
   validationMessage,
   id,
   name,
-  onToggle,
+  handleToggle,
   selectedValue,
   children,
   rectOptions,
@@ -71,11 +71,11 @@ const ToggleGroup = ({
 }) => {
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
   const type = getType(children);
-  const handleToggle = (value) => {
+  const toggleHandler = (value) => {
     setSelectedToggleValue(value);
   };
 
-  useDidUpdateEffect(onToggle, [selectedToggleValue], [onToggle, selectedToggleValue]);
+  useDidUpdateEffect(handleToggle, [selectedToggleValue], [handleToggle, selectedToggleValue]);
 
   const tooltipOptions = tooltip;
   if (tooltip) {
@@ -88,7 +88,7 @@ const ToggleGroup = ({
         <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
         <StyledRow>
           <StyledToggleGroup id={id} className={className}>
-            {getChildren(children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage)}
+            {getChildren(children, type, name, selectedToggleValue, toggleHandler, rectOptions, validationMessage)}
           </StyledToggleGroup>
           <StyledValidationWrapper>
             <FieldValidation message={validationMessage} />
@@ -107,7 +107,7 @@ ToggleGroup.propTypes = {
   /**
    * onChange handler function, called on select of a toggle with { id: <selected toggle id>, value: <selected toggle value> }
    */
-  onToggle: PropTypes.func.isRequired,
+  handleToggle: PropTypes.func.isRequired,
   /**
    * Label for the ToggleGroup.
    */

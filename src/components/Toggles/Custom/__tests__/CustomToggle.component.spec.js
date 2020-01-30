@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../../../testUtils';
 import CustomToggle from '../CustomToggle.component';
 import 'jest-styled-components';
 
@@ -19,9 +19,9 @@ describe('CustomToggle', () => {
     expect(getByText('this is a test')).toBeInTheDocument();
   });
 
-  it('calls onToggle onchange', () => {
+  it('calls handleToggle onchange', () => {
     const onToggleCb = jest.fn();
-    const { container } = render(<CustomToggle id="test-c" value="test-c" onToggle={onToggleCb} />);
+    const { container } = render(<CustomToggle id="test-c" value="test-c" handleToggle={onToggleCb} />);
     const toggle = container.firstChild;
     fireEvent.click(toggle);
     expect(onToggleCb).toHaveBeenCalled();

@@ -5,11 +5,11 @@ import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 
 const CustomToggle = ({
-  id, value, name, selectedValue, invalid, disabled, onToggle, children,
+  id, value, name, selectedValue, invalid, disabled, handleToggle, children,
 }) => {
-  const handleToggle = () => {
-    if (onToggle) {
-      onToggle(value);
+  const toggleHandler = () => {
+    if (handleToggle) {
+      handleToggle(value);
     }
   };
 
@@ -22,7 +22,7 @@ const CustomToggle = ({
       selectedValue={selectedValue}
       invalid={invalid}
       disabled={disabled}
-      onToggle={handleToggle}
+      handleToggle={toggleHandler}
     >
       <ToggleLabel id={id}>
         {children}
@@ -38,7 +38,7 @@ CustomToggle.propTypes = {
   name: PropTypes.string,
   invalid: PropTypes.bool,
   disabled: PropTypes.bool,
-  onToggle: PropTypes.func,
+  handleToggle: PropTypes.func,
   children: PropTypes.node,
 };
 
@@ -47,7 +47,7 @@ CustomToggle.defaultProps = {
   selectedValue: null,
   invalid: false,
   disabled: false,
-  onToggle: null,
+  handleToggle: null,
   children: [],
 };
 

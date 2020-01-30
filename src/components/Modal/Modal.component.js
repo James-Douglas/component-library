@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import styled, { ThemeProvider, keyframes } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import Overlay from '../Overlay/Overlay.component';
+import LayerEventManager from '../../LayerEventManager';
 
 const StyledAlignment = styled.div`
   width: 100%;
@@ -12,10 +12,11 @@ const StyledAlignment = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   pointer-events: none;
+  z-index: inherit;
 `;
 
 const animateIn = keyframes`
@@ -32,8 +33,8 @@ const animateIn = keyframes`
 const StyledModal = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.boxShadow.lg};
-  z-index: ${({ theme }) => theme.zIndex[50]};
-  width: ${({ size, theme }) => {
+  z-index: inherit;
+  width: ${({ size }) => {
     if (size === 'lg') {
       return '66.666667%';
     } if (size === 'md') {
@@ -54,7 +55,7 @@ const StyledCloseIcon = styled.div`
   right: ${({ theme }) => theme.spacing[20]};
   top: ${({ theme }) => theme.spacing[24]};
   cursor: pointer;
-  z-index: ${({ theme }) => (theme.zIndex[50])}; 
+  z-index: inherit;
   opacity: 0.5;
 `;
 
@@ -62,19 +63,23 @@ const StyledContent = styled.div`
   padding: ${({ theme }) => theme.spacing[40]};
 `;
 
-/* Workaround for storybook not rendering props when ReactDOM.createPortal is used https://github.com/storybookjs/storybook/issues/8435 */
-const RenderedModal = ({
-  visible, id, classNames, size, close, handleClose, children,
-}) => (
-  ReactDOM.createPortal(
-    <>
-      {visible
-      && (
-        <>
-          <ThemeProvider theme={getTheme()}>
-            <StyledAlignment>
+const Modal = ({
+  id, visible, handleClose, size, className, children, overlay, overlayOpacity, handleOverlayClick,
+}) => {
+  const classNames = `
+    ${size}
+    ${className}
+  `;
+
+  return (
+    <LayerEventManager id={id} visible={visible} handleClose={handleClose}>
+      <>
+        {overlay && <Overlay show={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} />}
+        {visible
+          && (
+            <StyledAlignment visible={visible}>
               <StyledModal id={id} className={classNames} size={size}>
-                <StyledCloseIcon className="icon-close" onClick={close} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false">
+                <StyledCloseIcon className="icon-close" onClick={handleClose} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false">
                   <FontAwesomeIcon icon={faTimes} size="2x" />
                 </StyledCloseIcon>
                 <StyledContent className="content">
@@ -82,32 +87,9 @@ const RenderedModal = ({
                 </StyledContent>
               </StyledModal>
             </StyledAlignment>
-          </ThemeProvider>
-        </>
-      )}
-    </>,
-    document.body,
-  )
-);
-
-const Modal = ({
-  id, visible, handleClose, size, className, children,
-}) => {
-  const close = () => {
-    if (handleClose) {
-      handleClose();
-    }
-  };
-
-  const classNames = `
-    ${size}
-    ${className}
-  `;
-
-  return (
-    <RenderedModal visible={visible} id={id} classNames={classNames} size={size} close={close} handleClose={handleClose}>
-      {children}
-    </RenderedModal>
+          )}
+      </>
+    </LayerEventManager>
   );
 };
 
@@ -134,6 +116,18 @@ Modal.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Render an overlay over the remainder of the screen (blocking interaction)
+   */
+  overlay: PropTypes.bool,
+  /**
+   * Defines the opacity of the overlay, if rendered. (0 to 1)
+   */
+  overlayOpacity: PropTypes.number,
+  /**
+   * Called when the overlay is clicked
+   */
+  handleOverlayClick: PropTypes.func,
+  /**
    * The child content of the Modal
    */
   children: PropTypes.oneOfType([
@@ -144,12 +138,15 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  id: '',
+  id: null,
   visible: false,
   handleClose: null,
   size: 'md',
   className: '',
   children: '',
+  overlay: false,
+  overlayOpacity: 0.7,
+  handleOverlayClick: null,
 };
 
 export default Modal;
