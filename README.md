@@ -21,7 +21,6 @@ render = () => (
 );
 ```
 
-
 ## Development
 ### TLDR;
 - `yarn storybook` - runs storybook for development
@@ -40,7 +39,11 @@ Locally this can be exported as an env far and specified in your shell: `export 
 ### FontAwesome icons
 We have access to pro icons within the font awesome library. For this, you'll need to add an env variable to your machine in the format of `NPM_FONTAWESOME_TOKEN=<YOUR_TOKEN>` where YOUR_TOKEN will also look like `1234567e-89aa-1a23-4567-ab12cd3e4fg5`
 
-UX holds the account info, where you can log in and grab the key. 
+UX holds the account info, where you can log in and grab the key. When set up, import as usual e.g
+
+```
+  import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
+```
 
 ## Whitelabeling
 Whitelabeling can be achieved via themes and Manor has been developed with this capability. 
