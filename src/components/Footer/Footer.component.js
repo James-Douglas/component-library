@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import Column from '../Grid/Column/Column.component';
 import Row from '../Grid/Row/Row.component';
-import FluidContainer from '../Grid/Container/Fluid.component';
+import FluidContainer from '../Grid/Container/FluidContainer.component';
 
 const StyledFooterContainer = styled.footer`
   width: 100%;
@@ -74,7 +74,7 @@ const Footer = ({ disclaimer, className }) => {
               )}
               <StyledFooterBarContent>
                 <StyledFooterCopy className="manor-body2">
-                    &copy; {currentYear} Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926
+                  &copy; {currentYear} Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926
                 </StyledFooterCopy>
                 {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                 <StyledScrollTop onClick={() => window.scroll({ top: 0, behavior: 'smooth' })} role="scrollIcon">

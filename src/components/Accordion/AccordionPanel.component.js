@@ -5,7 +5,7 @@ import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown'
 import PropTypes from 'prop-types';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
-import FluidContainer from '../Grid/Container/Fluid.component';
+import FluidContainer from '../Grid/Container/FluidContainer.component';
 
 const StyledAccordionPanel = styled.div`
   overflow: hidden;

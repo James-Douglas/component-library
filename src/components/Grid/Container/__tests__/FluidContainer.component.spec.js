@@ -1,19 +1,19 @@
 import React from 'react';
 import { render } from '../../../../testUtils';
 import 'jest-styled-components';
-import Fluid from '../Fluid.component';
+import FluidContainer from '../FluidContainer.component';
 
 describe('Container', () => {
   it('renders correctly without props', () => {
-    const { container } = render(<Fluid />);
+    const { container } = render(<FluidContainer />);
     expect(container).toMatchSnapshot();
   });
 
   it('renders children', () => {
     const { container } = render(
-      <Fluid>
+      <FluidContainer>
         <div className="child-content">test</div>
-      </Fluid>,
+      </FluidContainer>,
     );
 
     const childContent = container.querySelector('.child-content');
@@ -22,7 +22,7 @@ describe('Container', () => {
   });
 
   it('has a container class by default and NO fixed class', () => {
-    const { container } = render(<Fluid />);
+    const { container } = render(<FluidContainer />);
 
     const containerComponent = container.firstChild;
 
@@ -33,7 +33,7 @@ describe('Container', () => {
   });
 
   it('allows additional classes to be passed through', () => {
-    const { container } = render(<Fluid className="test-class" />);
+    const { container } = render(<FluidContainer className="test-class" />);
 
     expect(container).toMatchSnapshot();
     const test = container.getElementsByClassName('test-class');

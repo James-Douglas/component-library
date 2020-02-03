@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../../components/Footer/Footer.component';
 import StickyHeader from '../../components/Header/StickyHeader.component';
-import FluidContainer from '../../components/Grid/Container/Fluid.component';
+import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 

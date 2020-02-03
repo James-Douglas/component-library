@@ -70,8 +70,8 @@ const CardResultsView = ({ background }) => {
           <Row>
             <Column offset={2} cols={8}>
               <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                  et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                et dolore magna aliqua.
               </p>
             </Column>
           </Row>

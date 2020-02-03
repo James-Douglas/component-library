@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Logo from '../Logo/Logo.component';
-import FluidContainer from '../Grid/Container/Fluid.component';
+import FluidContainer from '../Grid/Container/FluidContainer.component';
 import Contact from './Contact/Contact.component';
 
 const StyledHeader = styled.header`

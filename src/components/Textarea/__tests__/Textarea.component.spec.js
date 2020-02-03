@@ -306,32 +306,6 @@ describe('Textarea.component.js', () => {
     expect(theTextareaElement1).toBeNull();
   });
 
-
-  it('on maxLength exceeded, validation is performed', () => {
-    const props = {
-      id: 'textarea-id',
-      label: 'this is a test',
-      value: 'hello',
-      maxLength: '7',
-
-    };
-    /* eslint-disable-next-line react/jsx-props-no-spreading */
-    const { getByText, container } = render(<Textarea label="test" {...props} />);
-
-    const textAreaElement = container.querySelector('textarea');
-
-    // remaining chars text
-    expect(getByText('2')).toBeInTheDocument();
-    expect(textAreaElement).not.toHaveStyle('border: 1px solid #EF425E');
-
-    fireEvent.change(textAreaElement, { target: { value: 'helloworld' } });
-
-    expect(textAreaElement).toHaveStyle(`border: ${theme.borders.invalid}`);
-
-    // remaining chars text
-    expect(getByText('-3')).toBeInTheDocument();
-  });
-
   it('if default supplied text exceeds max length limit, validation is performed', () => {
     const props = {
       id: 'textarea-id',

@@ -1,4 +1,4 @@
-module.exports = {
+const screens = {
   xs: "576px",
   sm: "768px",
   md: "992px",
@@ -6,3 +6,5 @@ module.exports = {
   xl: "1900px",
   xxl: "2560px"
 };
+
+export default screens;

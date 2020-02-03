@@ -3,7 +3,7 @@ import useBreakpoint from 'hooks/useBreakpoint';
 import styled from 'styled-components';
 import Drawer from '../../components/Drawer/Drawer.component';
 import Container from '../../components/Grid/Container/Container.component';
-import FluidContainer from '../../components/Grid/Container/Fluid.component';
+import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 import Button from '../../components/Button/Button.component';
@@ -297,7 +297,7 @@ const DrawerMix = () => {
                   handleClick={() => handleClickBottom('secondary')}
                   target="_self"
                 >
-                Open Bottom Drawer
+                  Open Bottom Drawer
                 </Button>
                 <Button
                   id="text-btn01"
@@ -307,7 +307,7 @@ const DrawerMix = () => {
                   handleClick={() => handleClickRight('primary')}
                   target="_self"
                 >
-                Open Right Drawer
+                  Open Right Drawer
                 </Button>
               </div>
             </StyledCard>

@@ -8,8 +8,8 @@ import postcss from "rollup-plugin-postcss";
 import filesize from "rollup-plugin-filesize";
 import localResolve from "rollup-plugin-local-resolve";
 import includePaths from "rollup-plugin-includepaths";
-import smartAsset from "rollup-plugin-smart-asset";
 import ignoreImport from "rollup-plugin-ignore-import";
+import smartAsset from "rollup-plugin-smart-asset";
 import url from 'rollup-plugin-url';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
@@ -43,49 +43,6 @@ const makeModuleIndex = modules => {
     return `export { default as ${moduleName} } from "./${importDir}";`;
   })
   fs.writeFileSync("src/modules.js", paths.join("\n"));
-}
-
-
-const makeFileConfig = modulePath => {
-  const [fileName] = /([^\/]+$)/.exec(modulePath);
-  const moduleName = fileName.replace(/(?:\.\w*)*\.js/gm, "");
-
-  const config = {
-    input: modulePath,
-    output: [
-      {
-        file: `${ouputDir}/${moduleName}/index.js`,
-        format: "cjs",
-        exports: "named"
-      }
-    ],
-    external: id => /^react/.test(id),
-
-    plugins: [
-      peerDepsExternal(),
-      postcss(),
-      includePaths({ paths: ["src", "config"] }),
-      url({
-        // by default, rollup-plugin-url will not handle font files
-        include: ['**/*.woff', '**/*.woff2', '**/*.eot', '**/*.ttf'],
-        // setting infinite limit will ensure that the files
-        // are always bundled with the code, not copied to /dist
-        limit: Infinity,
-      }),
-      localResolve(),
-      resolve({
-        browser: true
-      }),
-      smartAsset({
-        url: "copy",
-        keepImport: true
-      }),
-      babel({ exclude: "node_modules/**" }),
-      commonjs(),
-      filesize()
-    ]
-  };
-  return config;
 };
 
 const buildLibrary = () => {
@@ -97,10 +54,9 @@ const buildLibrary = () => {
   // create the modules index
   makeModuleIndex(modules);
   // gather our rollup config
-  const config = modules.map(path => makeFileConfig(path));
 
   // add the modules index config to the config map
-  config.push({
+  const config = [{
     input: `src/modules.js`,
     output: [
       {
@@ -129,11 +85,15 @@ const buildLibrary = () => {
       ignoreImport({
         extensions: [".svg", ".png", ".jpg", ".jpeg"]
       }),
+      smartAsset({
+        url: "copy",
+        keepImport: true
+      }),
       babel({ exclude: "node_modules/**" }),
       commonjs(),
       filesize()
     ]
-  });
+  }];
 
   // add the theme to the config map
   config.push({

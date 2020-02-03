@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Drawer from 'components/Drawer/Drawer.component';
-import FluidContainer from 'components/Grid/Container/Container.component';
+import FluidContainer from 'components/Grid/Container/FluidContainer.component';
 import Row from 'components/Grid/Row/Row.component';
 import Column from 'components/Grid/Column/Column.component';
 import Button from 'components/Button/Button.component';

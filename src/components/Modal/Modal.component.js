@@ -74,7 +74,7 @@ const Modal = ({
   return (
     <LayerEventManager id={id} visible={visible} handleClose={handleClose}>
       <>
-        {overlay && <Overlay show={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} />}
+        {overlay && visible && <Overlay show={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} />}
         {visible
           && (
             <StyledAlignment visible={visible}>

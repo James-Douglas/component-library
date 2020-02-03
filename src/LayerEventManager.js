@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useEffect, useRef,
+  useCallback, useEffect, useLayoutEffect, useRef,
 } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -79,7 +79,7 @@ const LayerEventManager = ({
     }
   }, [visible, layerInfo, handleClose]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress);
     return () => {
       window.removeEventListener('keydown', handleUserKeyPress);

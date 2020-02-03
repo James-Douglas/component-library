@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header/Header.component';
-import FluidContainer from '../../components/Grid/Container/Fluid.component';
+import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
 const HeaderView = () => (
   <div>

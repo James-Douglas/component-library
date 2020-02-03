@@ -77,7 +77,7 @@ export function getOptionalFieldContent(required, id, label) {
         <span className="sr-only">
           {`The ${label} field is `}
         </span>
-          Optional
+        Optional
       </StyledOptionalIndicator>
     );
   }
