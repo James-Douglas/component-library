@@ -80,7 +80,7 @@ describe('ToggleGroup', () => {
   it('renders with minimal props', () => {
     const { container } = render(<ToggleGroup
       name="test-toggle-group"
-      onToggle={() => {}}
+      handleToggle={() => {}}
     />);
     expect(container.innerHTML).toMatchSnapshot();
   });
@@ -103,7 +103,7 @@ describe('ToggleGroup', () => {
     const handleChangeCb = jest.fn();
     const tooltip = { title: 'test' };
     const { container } = render(
-      <ToggleGroup name="test-toggle-group-b" onToggle={handleChangeCb} tooltip={tooltip}>
+      <ToggleGroup name="test-toggle-group-b" handleToggle={handleChangeCb} tooltip={tooltip}>
         <Toggle label="test toggle a" id="a" value="val-1" />
         <Toggle label="test toggle b" id="b" value="val-2" />
       </ToggleGroup>,

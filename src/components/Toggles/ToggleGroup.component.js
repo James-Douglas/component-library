@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 import Label from '../Label/Label.component';
 import Row from '../Grid/Row/Row.component';
 import getTheme from '../../utils/getTheme';
@@ -71,11 +70,13 @@ const ToggleGroup = ({
 }) => {
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
   const type = getType(children);
+
   const toggleHandler = (value) => {
     setSelectedToggleValue(value);
+    if (handleToggle) {
+      handleToggle(value);
+    }
   };
-
-  useDidUpdateEffect(handleToggle, [selectedToggleValue], [handleToggle, selectedToggleValue]);
 
   const tooltipOptions = tooltip;
   if (tooltip) {

@@ -30,11 +30,11 @@ describe('getInlineStyles()', () => {
 
 describe('BaseToggle', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<BaseToggle type="square" id="test-square" value="test" onToggle={() => {}} />);
+    const { container } = render(<BaseToggle type="square" id="test-square" value="test" handleToggle={() => {}} />);
     expect(container).toMatchSnapshot();
   });
   it('sets checked when selectedId equals id', () => {
-    const { container } = render(<BaseToggle type="square" id="test-selected-id" value="test" selectedValue="test" autofill onToggle={() => {}} />);
+    const { container } = render(<BaseToggle type="square" id="test-selected-id" value="test" selectedValue="test" autofill handleToggle={() => {}} />);
     expect(container.querySelector('input')).toHaveAttribute('checked');
   });
   it('calls onToggle when toggled', () => {
