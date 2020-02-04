@@ -30,6 +30,14 @@ Combo is an extension of the Input component.
                   required={false}
                   renderLimit={3}
                   tooltip={{ title: 'Combo component' }}
+                  handleChange={(value) => {
+                    // eslint-disable-next-line no-console
+                    console.log(value)
+                  }}
+                  handleInput={(value) => {
+                    // eslint-disable-next-line no-console
+                    console.log(value)
+                  }}
                 />
             </Column>
           </Row>

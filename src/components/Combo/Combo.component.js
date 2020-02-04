@@ -138,6 +138,8 @@ const Combo = ({
   linkHref,
   tooltip,
   className,
+  handleChange,
+  handleInput,
 }) => {
   const [listVisible, setListVisible] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
@@ -164,11 +166,17 @@ const Combo = ({
     setCurrentValue(selectedValue);
     setListVisible(false);
     setFocusedRef(null);
+    if (handleChange) {
+      handleChange(selectedValue);
+    }
   };
 
-  const handleChange = (valueInput) => {
+  const comboHandleChange = (valueInput) => {
     setCurrentValue(valueInput);
     setListVisible(!!valueInput.length);
+    if (handleInput) {
+      handleInput(valueInput);
+    }
   };
 
   const handleOnFocus = (event) => {
@@ -276,7 +284,7 @@ const Combo = ({
         prefixContent={prefixContent}
         suffixContent={suffixContent}
         autocomplete={autocomplete}
-        handleChange={handleChange}
+        handleChange={comboHandleChange}
         className={className}
         tabIndex="0"
         role="comboField"
@@ -299,6 +307,14 @@ Combo.propTypes = {
    * The Combo ID. Required as it informs the label and value of the underlying input.
    */
   id: PropTypes.string.isRequired,
+  /**
+   * Custom handler to attach to the combo field - used to get the value of the selected combo item.
+   */
+  handleChange: PropTypes.func.isRequired,
+  /**
+   * Custom handler to attach to the combo field - used to get the value of the combo on each input.
+   */
+  handleInput: PropTypes.func,
   /**
    * Label for the Combo.
    */
@@ -402,6 +418,7 @@ Combo.defaultProps = {
   linkText: '',
   tooltip: {},
   className: '',
+  handleInput: null,
 };
 
 export default Combo;
