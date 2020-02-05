@@ -79,6 +79,17 @@ describe('Dropdown', () => {
     expect(dropdown.value).toBe(selectedValue);
   });
 
+  it('calls focus and blur handlers', () => {
+    const handleFocus = jest.fn();
+    const handleBlur = jest.fn();
+    const { container } = render(<Dropdown id="dropdown-one" handleFocus={handleFocus} handleBlur={handleBlur} options={optionsDefault} label="Dropdown Label" />);
+    const dropdown = container.getElementsByTagName('select')[0];
+    fireEvent.focus(dropdown);
+    expect(handleFocus).toHaveBeenCalled();
+    fireEvent.blur(dropdown);
+    expect(handleBlur).toHaveBeenCalled();
+  });
+
   it('renders  with defaultOptions', () => {
     const { container, getByText } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" />);
     const dropdownOptions = container.getElementsByTagName('option');

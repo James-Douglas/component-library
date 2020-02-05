@@ -115,6 +115,18 @@ describe('Textarea.component.js', () => {
     expect(getValueCb).toBeCalled();
   });
 
+  it('calls focus & blur handlers', () => {
+    const handleFocus = jest.fn();
+    const handleBlur = jest.fn();
+    const { container } = render(<Textarea label="test" id="input-id" handleFocus={handleFocus} handleBlur={handleBlur} />);
+
+    const textareaField = container.querySelector('textarea');
+    fireEvent.focus(textareaField);
+    expect(handleFocus).toHaveBeenCalled();
+    fireEvent.blur(textareaField);
+    expect(handleBlur).toHaveBeenCalled();
+  });
+
 
   /* *******************************************************************************************
         test borders

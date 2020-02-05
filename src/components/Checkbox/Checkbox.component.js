@@ -104,6 +104,8 @@ const Checkbox = ({
   invalid,
   invertColour,
   handleChange,
+  handleFocus,
+  handleBlur,
   isSelected,
   children,
   className,
@@ -134,6 +136,8 @@ const Checkbox = ({
           disabled={disabled}
           onChange={toggleEventHandler}
           checked={checked}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
         <StyledLabel
           disabled={disabled}
@@ -192,6 +196,14 @@ Checkbox.propTypes = {
    */
   handleChange: PropTypes.func,
   /**
+   * Called on focus of the checkbox
+   */
+  handleFocus: PropTypes.func,
+  /**
+   * Called on blur of the checkbox
+   */
+  handleBlur: PropTypes.func,
+  /**
    * Defines the associated content for the checkbox, used by the wrapper component, `<CheckboxGroup/>`.
    * Not required for the singular checkbox.
    */
@@ -213,6 +225,8 @@ Checkbox.defaultProps = {
   invalid: false,
   invertColour: false,
   handleChange: null,
+  handleFocus: null,
+  handleBlur: null,
   children: null,
   className: '',
 };

@@ -35,6 +35,17 @@ describe('Combo', () => {
     expect(inputField).toHaveValue('present');
   });
 
+  it('calls focus and blur handlers when provided', () => {
+    const handleFocus = jest.fn();
+    const handleBlur = jest.fn();
+    const { container } = render(<Combo handleFocus={handleFocus} handleBlur={handleBlur} handleChange={() => {}} label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('input');
+    fireEvent.focus(inputField);
+    expect(handleFocus).toHaveBeenCalled();
+    fireEvent.blur(inputField);
+    expect(handleBlur).toHaveBeenCalled();
+  });
+
   it('renders with value', () => {
     const { container } = render(<Combo handleChange={() => {}} value="presentation dfsdf que ffgddfg" prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
     const { value } = container.querySelector('#combo-id-first');

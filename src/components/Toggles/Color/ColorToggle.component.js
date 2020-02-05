@@ -104,15 +104,45 @@ const ColorToggle = ({
 };
 
 ColorToggle.propTypes = {
+  /**
+   * Unique identifier for the toggle
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * The background color for the toggle
+   */
   backgroundColor: PropTypes.string.isRequired,
+  /**
+   * Value applied to the input field
+   */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  /**
+   * The label to display on the toggle
+   */
   label: PropTypes.string,
+  /**
+   * The color of the label text
+   */
   fontColor: PropTypes.string,
+  /**
+   * The value of the currently selected (toggled on) toggle.
+   */
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * The name to be applied to the input field.
+   */
   name: PropTypes.string,
+  /**
+   * Applies invalid styling when true.
+   */
   invalid: PropTypes.bool,
+  /**
+   * Disables the toggle when true.
+   */
   disabled: PropTypes.bool,
+  /**
+   * Handler function called when a toggle is toggled on with the value of the toggle.
+   */
   handleToggle: PropTypes.func,
 };
 

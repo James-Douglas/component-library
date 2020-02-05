@@ -123,6 +123,23 @@ describe('Currency', () => {
     expect(handler.mock.calls[0][0]).toBe('2,222,222');
   });
 
+  it('calls focus and blur handlers', () => {
+    const focusHandler = jest.fn();
+    const blurHandler = jest.fn();
+    const { container } = render(
+      <Currency
+        id="test-id"
+        handleFocus={focusHandler}
+        handleBlur={blurHandler}
+      />,
+    );
+    const currencyInput = container.querySelector('input');
+    fireEvent.focus(currencyInput);
+    expect(focusHandler).toHaveBeenCalled();
+    fireEvent.blur(currencyInput);
+    expect(blurHandler).toHaveBeenCalled();
+  });
+
   it('removes disallowed characters and formats the input', () => {
     const { container } = render(
       <Currency

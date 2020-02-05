@@ -193,7 +193,7 @@ Toggle.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Handler function called when a toggle is toggled on (called with object: { id, value } of the toggle).
+   * Handler function called when a toggle is toggled on with the value of the toggle.
    */
   handleToggle: PropTypes.func,
   /**

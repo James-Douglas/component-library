@@ -78,14 +78,22 @@ export function getInlineStyles(type, rectOptions) {
 }
 
 const BaseToggle = ({
-  id, type, value, name, selectedValue, invalid, disabled, handleToggle, rectOptions, children, className,
+  id,
+  type,
+  value,
+  name,
+  selectedValue,
+  invalid,
+  disabled,
+  handleToggle,
+  handleFocus,
+  handleBlur,
+  rectOptions,
+  children,
+  className,
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
-
-  const toggleHandler = () => {
-    handleToggle(value);
-  };
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
@@ -106,11 +114,13 @@ const BaseToggle = ({
           invalid={invalid}
           id={id}
           type="radio"
-          onChange={toggleHandler}
+          onChange={() => handleToggle(value)}
           checked={selectedValue === value}
           disabled={disabled}
           name={name}
           value={value}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
         {children}
       </StyledToggle>
@@ -120,14 +130,43 @@ const BaseToggle = ({
 };
 
 BaseToggle.propTypes = {
+  /**
+   * Unique identifier for the toggle
+   */
   id: PropTypes.string.isRequired,
+  /**
+   * Type of the toggle
+   */
   type: PropTypes.oneOf(['square', 'rectangle', 'custom']).isRequired,
+  /**
+   * Value applied to the input field
+   */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  /**
+   * The value of the currently selected (toggled on) toggle.
+   */
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * The name to be applied to the input field.
+   */
   name: PropTypes.string,
+  /**
+   * Applies invalid styling when true.
+   */
   invalid: PropTypes.bool,
+  /**
+   * Disables the toggle when true.
+   */
   disabled: PropTypes.bool,
+  /**
+   * Handler function called when a toggle is toggled on with the value of the toggle.
+   */
   handleToggle: PropTypes.func.isRequired,
+  handleFocus: PropTypes.func,
+  handleBlur: PropTypes.func,
+  /**
+   * Options object for rendering rectangular toggles]
+   */
   rectOptions: PropTypes.shape({
     align: PropTypes.oneOf(['center', 'left', 'right']),
     col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
@@ -149,6 +188,8 @@ BaseToggle.defaultProps = {
   },
   children: [],
   className: '',
+  handleFocus: null,
+  handleBlur: null,
 };
 
 export default BaseToggle;

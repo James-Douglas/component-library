@@ -121,6 +121,8 @@ const Textarea = ({
   maxChars,
   maxLength,
   handleChange,
+  handleFocus,
+  handleBlur,
   className,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
@@ -182,6 +184,8 @@ const Textarea = ({
                 ref={textAreaElement}
                 value={stateValue}
                 onChange={changeHandler}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
                 id={id}
                 name={name}
                 placeholder={placeholder}
@@ -299,6 +303,14 @@ Textarea.propTypes = {
    */
   handleChange: PropTypes.func,
   /**
+   * Called on focus of the checkbox
+   */
+  handleFocus: PropTypes.func,
+  /**
+   * Called on blur of the checkbox
+   */
+  handleBlur: PropTypes.func,
+  /**
    * Classes to be applied to the Textarea component
    */
   className: PropTypes.string,
@@ -322,6 +334,8 @@ Textarea.defaultProps = {
   maxLength: '',
   maxChars: '',
   handleChange: null,
+  handleFocus: null,
+  handleBlur: null,
   className: '',
 };
 

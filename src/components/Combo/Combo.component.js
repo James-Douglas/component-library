@@ -67,11 +67,11 @@ const StyledDiv = styled.div`
   width: 100%;
 `;
 
-export function comboDropdownList(linkText, linkHref, blueButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
+export function comboDropdownList(linkText, linkHref, bottomButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
   return (
     <StyledDropdownList position={`${!listVisible || currentPrefillValue.length < characterMinimum ? 'hidden' : 'absolute'}`} role="listwrap">
       {comboDataList(filteredValues, handleSelectItem, filteredValuesRefs)}
-      {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton)}
+      {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, bottomButton)}
     </StyledDropdownList>
   );
 }
@@ -97,12 +97,12 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
 }
 
 
-export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, blueButton) {
+export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, bottomButton) {
   return (
     <>
       {linkText && linkHref && currentPrefillValue.length >= characterMinimum
       && (
-        <StyledButtonWrap ref={blueButton} tabIndex="0" role="buttonOption" aria-selected={false}>
+        <StyledButtonWrap ref={bottomButton} tabIndex="0" role="buttonOption" aria-selected={false}>
           <Button
             id="text-btn01"
             variant="text"
@@ -140,10 +140,12 @@ const Combo = ({
   className,
   handleChange,
   handleInput,
+  handleFocus,
+  handleBlur,
 }) => {
   const [listVisible, setListVisible] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
-  const blueButton = React.createRef();
+  const bottomButton = React.createRef();
 
   const filteredValues = useMemo(
     () => {
@@ -189,10 +191,16 @@ const Combo = ({
       return;
     }
     setListVisible(!!currentValue.length);
+    if (handleFocus) {
+      handleFocus();
+    }
   };
   const handleOnBlur = (event) => {
-    if (!(blueButton.current && blueButton.current.contains(event.relatedTarget))) {
+    if (!(bottomButton.current && bottomButton.current.contains(event.relatedTarget))) {
       setListVisible(false);
+      if (handleBlur) {
+        handleBlur();
+      }
     }
   };
   const keyboardAccessibility = (event) => {
@@ -215,12 +223,12 @@ const Combo = ({
         if (currentValue.length >= characterMinimum) {
           if (focusedRef === null) {
             if (linkText && linkHref) {
-              if (document.activeElement === blueButton.current) {
+              if (document.activeElement === bottomButton.current) {
                 setFocusedRef(filteredValues.length - 1);
                 filteredValuesRefs[filteredValues.length - 1].current.focus();
               } else {
                 setFocusedRef(null);
-                blueButton.current.focus();
+                bottomButton.current.focus();
               }
             } else {
               setFocusedRef(filteredValues.length - 1);
@@ -229,7 +237,7 @@ const Combo = ({
           } else if (focusedRef === 0) {
             if (linkText && linkHref) {
               setFocusedRef(null);
-              blueButton.current.focus();
+              bottomButton.current.focus();
             } else {
               setFocusedRef(filteredValues.length - 1);
               filteredValuesRefs[filteredValues.length - 1].current.focus();
@@ -245,7 +253,7 @@ const Combo = ({
           if (focusedRef === filteredValues.length - 1) {
             if (linkText && linkHref) {
               setFocusedRef(null);
-              blueButton.current.focus();
+              bottomButton.current.focus();
             } else {
               setFocusedRef(0);
               filteredValuesRefs[0].current.focus();
@@ -290,7 +298,7 @@ const Combo = ({
         role="comboField"
         dataList={() => comboDropdownList(linkText,
           linkHref,
-          blueButton,
+          bottomButton,
           currentValue,
           characterMinimum,
           filteredValues,
@@ -315,6 +323,14 @@ Combo.propTypes = {
    * Custom handler to attach to the combo field - used to get the value of the combo on each input.
    */
   handleInput: PropTypes.func,
+  /**
+   * Called on focus of the checkbox
+   */
+  handleFocus: PropTypes.func,
+  /**
+   * Called on blur of the checkbox
+   */
+  handleBlur: PropTypes.func,
   /**
    * Label for the Combo.
    */
@@ -419,6 +435,8 @@ Combo.defaultProps = {
   tooltip: {},
   className: '',
   handleInput: null,
+  handleFocus: null,
+  handleBlur: null,
 };
 
 export default Combo;

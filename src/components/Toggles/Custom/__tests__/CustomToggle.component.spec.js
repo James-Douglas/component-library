@@ -5,7 +5,7 @@ import 'jest-styled-components';
 
 describe('CustomToggle', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<CustomToggle id="test-a" value="test-a" handleToggle={() => {}}/>);
+    const { container } = render(<CustomToggle id="test-a" value="test-a" handleToggle={() => {}} />);
     expect(container).toMatchSnapshot();
     expect(container.querySelector('input')).toHaveAttribute('id', 'test-a');
   });

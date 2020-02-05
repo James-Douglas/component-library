@@ -116,4 +116,21 @@ describe('Checkbox.component', () => {
 
     expect(checkbox.checked).toBe(false);
   });
+
+  it('calls focus handler on focus', () => {
+    const handleFocus = jest.fn();
+    const { container } = render(<Checkbox id="test-id" handleFocus={handleFocus} />);
+    const input = container.querySelector('input');
+    input.focus();
+    expect(handleFocus).toHaveBeenCalled();
+  });
+
+  it('calls blur handler on blur', () => {
+    const handleBlur = jest.fn();
+    const { container } = render(<Checkbox id="test-id" handleBlur={handleBlur} />);
+    const input = container.querySelector('input');
+    input.focus();
+    input.blur();
+    expect(handleBlur).toHaveBeenCalled();
+  });
 });

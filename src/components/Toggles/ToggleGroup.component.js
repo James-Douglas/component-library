@@ -25,18 +25,7 @@ const StyledValidationWrapper = styled.div`
   margin-left: ${({ theme }) => theme.spacing[8]};
 `;
 
-export const getType = (children) => {
-  for (let i = 0; i < children.length; i += 1) {
-    const child = children[i];
-    if (child.props && child.props.label) {
-      const { length } = child.props.label;
-      if (length > 25) {
-        return 'rectangle';
-      }
-    }
-  }
-  return 'square';
-};
+export const getType = (children) => (children.find(({ props }) => props && props.label && props.label.length > 25) ? 'rectangle' : 'square');
 
 export const getChildren = (children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage) => (
   children.map((child, index) => {
@@ -106,7 +95,7 @@ ToggleGroup.propTypes = {
    */
   name: PropTypes.string.isRequired,
   /**
-   * onChange handler function, called on select of a toggle with { id: <selected toggle id>, value: <selected toggle value> }
+   * Handler function called when a toggle is toggled on with the value of the toggle.
    */
   handleToggle: PropTypes.func.isRequired,
   /**

@@ -45,6 +45,8 @@ const CurrencyInput = ({
   validationMessage,
   maxlength,
   className,
+  handleFocus,
+  handleBlur,
 }) => (
   <>
     <Input
@@ -66,6 +68,8 @@ const CurrencyInput = ({
       autocomplete={autocomplete}
       tooltip={tooltip}
       className={className}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
     />
   </>
 );
@@ -79,6 +83,14 @@ CurrencyInput.propTypes = {
    * Custom handler to attach to the input field - used to get the value of the field for example.
    */
   handleChange: PropTypes.func.isRequired,
+  /**
+   * Called on focus of the checkbox
+   */
+  handleFocus: PropTypes.func,
+  /**
+   * Called on blur of the checkbox
+   */
+  handleBlur: PropTypes.func,
   /**
    * Label for the input
    */
@@ -155,6 +167,8 @@ CurrencyInput.defaultProps = {
   bordered: true,
   label: '',
   className: '',
+  handleFocus: null,
+  handleBlur: null,
 };
 
 export default CurrencyInput;

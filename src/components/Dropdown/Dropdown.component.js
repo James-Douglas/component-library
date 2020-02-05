@@ -196,6 +196,8 @@ const Dropdown = ({
   handleChange,
   className,
   prefixContent,
+  handleFocus,
+  handleBlur,
 }) => {
   const invalidClass = validationMessage && validationMessage.length > 0;
   const isOptionExist = options && options.length;
@@ -214,12 +216,18 @@ const Dropdown = ({
   }
   const [selectValue, setSelectValue] = useState(valueDropdown);
 
-  const handleFocus = () => {
+  const focusHandler = () => {
     setFocusActive(true);
+    if (handleFocus) {
+      handleFocus();
+    }
   };
 
-  const handleBlur = () => {
+  const blurHandler = () => {
     setFocusActive(false);
+    if (handleBlur) {
+      handleBlur();
+    }
   };
 
   const changeHandler = (event) => {
@@ -246,8 +254,8 @@ const Dropdown = ({
                   required={required}
                   value={selectValue}
                   onChange={changeHandler}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
+                  onFocus={focusHandler}
+                  onBlur={blurHandler}
                   invalidClass={invalidClass}
                   bordered={bordered}
                   className={className}
@@ -331,6 +339,14 @@ Dropdown.propTypes = {
    */
   handleChange: PropTypes.func,
   /**
+   * Called on focus of the checkbox
+   */
+  handleFocus: PropTypes.func,
+  /**
+   * Called on blur of the checkbox
+   */
+  handleBlur: PropTypes.func,
+  /**
    * The dropdown options
    */
   options: PropTypes.arrayOf(PropTypes.shape({
@@ -365,6 +381,8 @@ Dropdown.defaultProps = {
   handleChange: null,
   className: '',
   prefixContent: '',
+  handleFocus: null,
+  handleBlur: null,
 };
 
 WithPrefixContent.propTypes = {
