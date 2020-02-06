@@ -129,6 +129,8 @@ const Toggle = ({
   invalid,
   disabled,
   handleToggle,
+  handleFocus,
+  handleBlur,
   icon,
   iconSize,
   pictureOptions,
@@ -150,6 +152,8 @@ const Toggle = ({
         invalid={invalid}
         disabled={disabled}
         handleToggle={toggleHandler}
+        handleFocus={handleFocus}
+        handleBlur={handleBlur}
         rectOptions={rectOptions}
       >
         {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
@@ -197,6 +201,14 @@ Toggle.propTypes = {
    */
   handleToggle: PropTypes.func,
   /**
+   * Handler function call on focus of the toggle
+   */
+  handleFocus: PropTypes.func,
+  /**
+   * Handler function call on blur of the toggle
+   */
+  handleBlur: PropTypes.func,
+  /**
    * Icon from fontAweseom to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).
    */
   icon: PropTypes.oneOfType([
@@ -240,6 +252,8 @@ Toggle.defaultProps = {
   invalid: false,
   disabled: false,
   handleToggle: null,
+  handleFocus: null,
+  handleBlur: null,
   icon: null,
   iconSize: '3x',
   rectOptions: {

@@ -136,4 +136,14 @@ describe('Toggle', () => {
     expect(handleChangeCb).toHaveBeenCalled();
     expect(handleChangeCb.mock.calls[0][0]).toEqual('test');
   });
+  it('calls focus and blur handlers', () => {
+    const handleFocus = jest.fn();
+    const handleBlur = jest.fn();
+    const { container } = render(<Toggle handleToggle={() => {}} id="test" value="testt" handleFocus={handleFocus} handleBlur={handleBlur} />);
+    const input = container.querySelector('input');
+    fireEvent.focus(input);
+    expect(handleFocus).toHaveBeenCalled();
+    fireEvent.blur(input);
+    expect(handleBlur).toHaveBeenCalled();
+  });
 });

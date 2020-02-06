@@ -162,7 +162,13 @@ BaseToggle.propTypes = {
    * Handler function called when a toggle is toggled on with the value of the toggle.
    */
   handleToggle: PropTypes.func.isRequired,
+  /**
+   * Handler function call on focus of the toggle
+   */
   handleFocus: PropTypes.func,
+  /**
+   * Handler function call on blur of the toggle
+   */
   handleBlur: PropTypes.func,
   /**
    * Options object for rendering rectangular toggles]
