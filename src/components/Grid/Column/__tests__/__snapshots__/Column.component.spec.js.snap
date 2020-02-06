@@ -12,14 +12,14 @@ exports[`Column adds default styles to col if no props are passed 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
   -ms-flex-preferred-size: 0;
   -webkit-flex-basis: 0%;
   -ms-flex-preferred-size: 0%;
@@ -73,14 +73,14 @@ exports[`Column allows additional classes to be passed through 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
   -ms-flex-preferred-size: 0;
   -webkit-flex-basis: 0%;
   -ms-flex-preferred-size: 0%;
@@ -134,14 +134,14 @@ exports[`Column defines an offset when supplied 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
   margin-left: 8.333333333333334%;
   -ms-flex-preferred-size: 0;
   -webkit-flex-basis: 0%;
@@ -196,14 +196,14 @@ exports[`Column defines col size when supplied 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
   -webkit-flex: 41.66666666666667%;
   -ms-flex: 41.66666666666667%;
   flex: 41.66666666666667%;
@@ -252,14 +252,14 @@ exports[`Column renders children 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
   -ms-flex-preferred-size: 0;
   -webkit-flex-basis: 0%;
   -ms-flex-preferred-size: 0%;
@@ -319,14 +319,14 @@ exports[`Column renders correctly without props 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
   -ms-flex-preferred-size: 0;
   -webkit-flex-basis: 0%;
   -ms-flex-preferred-size: 0%;
@@ -380,14 +380,14 @@ exports[`Column resizes offsets on breakpoint 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
   -ms-flex-preferred-size: 0;
   -webkit-flex-basis: 0%;
   -ms-flex-preferred-size: 0%;
@@ -451,14 +451,14 @@ exports[`Column resizes on breakpoint 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
 }
 
 @media (min-width:576px) {
@@ -527,14 +527,14 @@ exports[`Column stacks at breakpoint lg 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
 }
 
 @media (min-width:1200px) {
@@ -591,14 +591,14 @@ exports[`Column stacks at breakpoint md 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
 }
 
 @media (min-width:992px) {
@@ -655,14 +655,14 @@ exports[`Column stacks at breakpoint sm 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
 }
 
 @media (min-width:768px) {
@@ -719,14 +719,14 @@ exports[`Column stacks at breakpoint xl 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
 }
 
 @media (min-width:1900px) {
@@ -783,14 +783,14 @@ exports[`Column stacks at breakpoint xxl 1`] = `
   width: 100%;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
 }
 
 @media (min-width:2560px) {

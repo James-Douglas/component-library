@@ -359,8 +359,8 @@ Column.defaultProps = {
   offsetXl: 0,
   offsetXxl: 0,
   children: [],
-  valign: 'flex-start',
-  halign: 'flex-start',
+  valign: 'stretch',
+  halign: 'initial',
 };
 
 export default Column;

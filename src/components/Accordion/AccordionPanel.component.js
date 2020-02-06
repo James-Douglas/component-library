@@ -39,6 +39,7 @@ const StyledAccordionBody = styled.div`
   transform: ${({ isVisible }) => (isVisible ? 'translateY(0)' : 'translateY(-100%)')}; 
   height:  ${({ isVisible }) => (isVisible ? 'auto' : 0)};                   
   padding: ${({ isVisible, theme }) => (isVisible ? `0 0 ${theme.spacing['40']}` : 0)};
+  width: 100%;
   &:focus,
   &:active,  
   &:hover {
