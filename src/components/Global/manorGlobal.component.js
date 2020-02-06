@@ -34,12 +34,13 @@ export const manor = css`
   html {
     position: relative;
     min-height: 100vh;
-    font-size: 62.5%; 
+    font-size: 62.5%;
     box-sizing: border-box;
   }
   body {
     margin: 0;
     font-family: SourceSansPro, Helvetica, Arial;
+    font-size: ${({ theme }) => theme.fontSize['16']};
   }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -51,35 +52,35 @@ export const manor = css`
   h1 {
     line-height: ${({ theme }) => theme.lineHeight.tighter};
     font-size: ${({ theme }) => theme.fontSize['4xl']};
-    margin:  ${({ theme }) => `0 0 ${theme.spacing['24']}`};
+    margin:  ${({ theme }) => css`0 0 ${theme.spacing['24']}`};
   }
   h2 {
     line-height: ${({ theme }) => theme.lineHeight.tighter};
     font-size: ${({ theme }) => theme.fontSize['4xl']};
-    margin:  ${({ theme }) => `0 0 ${theme.spacing['20']}`};
+    margin:  ${({ theme }) => css`0 0 ${theme.spacing['20']}`};
   }
   h3 {
     line-height: ${({ theme }) => theme.lineHeight.tighter};
     font-size: ${({ theme }) => theme.fontSize['2xl']};
-    margin:  ${({ theme }) => `0 0 ${theme.spacing['16']}`};
-  } 
+    margin:  ${({ theme }) => css`0 0 ${theme.spacing['16']}`};
+  }
   h4 {
     line-height: ${({ theme }) => theme.lineHeight.snug};
     font-size: ${({ theme }) => theme.fontSize.lg};
-    margin:  ${({ theme }) => `0 0 ${theme.spacing['16']}`};
-  }  
-   
+    margin:  ${({ theme }) => css`0 0 ${theme.spacing['16']}`};
+  }
+
   h5 {
     line-height: ${({ theme }) => theme.lineHeight.snug};
     font-size: ${({ theme }) => theme.fontSize.xl};
-    margin:  ${({ theme }) => `0 0 ${theme.spacing['16']}`};
-  }   
+    margin:  ${({ theme }) => css`0 0 ${theme.spacing['16']}`};
+  }
   h6 {
     font-weight: ${({ theme }) => theme.fontWeight.bold};
     line-height: ${({ theme }) => theme.lineHeight.snug};
     font-size: ${({ theme }) => theme.fontSize.base};
-    margin:  ${({ theme }) => `0 0 ${theme.spacing['12']}`};
-  }   
+    margin:  ${({ theme }) => css`0 0 ${theme.spacing['12']}`};
+  }
   p {
     line-height: ${({ theme }) => theme.lineHeight.snug};
     font-size: ${({ theme }) => theme.fontSize.base};
