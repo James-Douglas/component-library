@@ -11,16 +11,10 @@ const StyledHeader = styled.header`
   background: ${({ theme }) => (theme.header.background)}; 
   z-index: ${({ theme }) => (theme.zIndex[50])}; 
   height: ${({ theme, stuck }) => (stuck ? theme.header.heightStuck : theme.header.height)}; 
-  transition: ${({ theme, stuck }) => (stuck ? 'all 200ms ease' : 'none')}; 
-  box-shadow: ${({ theme, stuck }) => (stuck ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : 'none')};
+  transition: ${({ stuck }) => (stuck ? 'all 200ms ease' : 'none')}; 
+  box-shadow: ${({ stuck }) => (stuck ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : 'none')};
   position: ${({ isSticky }) => (isSticky ? 'fixed' : 'inherit')}; 
   top: ${({ isSticky }) => (isSticky ? '0' : 'inherit')};
-`;
-
-const StyledLogoWrap = styled.header`
-  display: flex;
-  height: 100%;
-  width: 100%;
   justify-content: space-between;
   align-items: center;  
 `;
@@ -28,14 +22,12 @@ const StyledLogoWrap = styled.header`
 const Header = ({ isSticky, stuck, number }) => {
   const size = stuck ? 'small' : 'large';
   return (
+    <FluidContainer>
     <StyledHeader stuck={stuck} isSticky={isSticky}>
-      <FluidContainer>
-        <StyledLogoWrap>
-          <Logo size={size} />
-          {number && <Contact number={number} size={size} />}
-        </StyledLogoWrap>
-      </FluidContainer>
+      <Logo size={size} />
+      {number && <Contact number={number} size={size} />}
     </StyledHeader>
+    </FluidContainer>
   );
 };
 
