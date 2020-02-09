@@ -30,7 +30,6 @@ select (another component will handle multi select).
                id="input-one"
                options={options}
                supportingElements
-               forceFullWidth
                label="Dropdown Label"
              />
           </Column>
@@ -63,7 +62,6 @@ select (another component will handle multi select).
                     id="input-two"
                     options={options}
                     supportingElements
-                    forceFullWidth
                     label="From currency"
                     bordered={false}
                     required
@@ -74,7 +72,6 @@ select (another component will handle multi select).
                     id="input-three"
                     options={options}
                     supportingElements
-                    forceFullWidth
                     label="From currency"
                     bordered={false}
                     required
@@ -98,7 +95,6 @@ select (another component will handle multi select).
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
     const label = text('label', 'Dropdown example', componentPropsId);
-    const forceFullWidth = boolean('forceFullWidth', false, componentPropsId);
     const validationMessage = text('validationMessage', '', componentPropsId);
     const prefillValue = text('prefillValue', '', componentPropsId);
     const bordered = boolean('bordered', true, componentPropsId);
@@ -114,7 +110,6 @@ select (another component will handle multi select).
     const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
     const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
     const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
-    const iconSmall = boolean('iconSmall', false, tooltipGroupId);
     return (
        <FluidContainer>
          <Row>
@@ -122,14 +117,12 @@ select (another component will handle multi select).
               <Dropdown
                 id="input-one"
                 label={label}
-                forceFullWidth={forceFullWidth}
                 options={options}
                 tooltip={{
                   title,
                   body,
                   justifyEnd,
                   screenReaderLabel,
-                  iconSmall
                 }}
                 validationMessage={validationMessage}
                 prefillValue={prefillValue}

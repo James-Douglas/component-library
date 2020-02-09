@@ -9,7 +9,8 @@ const StyledToggle = styled.div`
   cursor: pointer;
   border: ${({ theme, invalid }) => (invalid ? theme.borders.invalid : theme.borders.component)};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin: ${({ theme }) => `0 ${theme.spacing['8']} ${theme.spacing['16']} ${theme.spacing['8']}`};
+  margin: ${({ theme }) => `0 ${theme.spacing['16']} ${theme.spacing['16']} 0`};
+  margin-bottom: ${({ theme }) => theme.spacing['16']};
   background: ${({ theme }) => theme.toggle.base.background};
   box-shadow: ${({ theme }) => theme.boxShadow.sm};
   line-height: ${({ theme }) => theme.lineHeight.normal};

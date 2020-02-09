@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import TableContext from '../Table/TableContext';
 
@@ -44,21 +43,17 @@ const TableCell = ({
   }
 
   return (
-    <>
-      <ThemeProvider theme={getTheme()}>
-        <StyledComponent
-          as={Component}
-          padding={padding || table.size}
-          valign={valign}
-          align={align}
-          className={className}
-          colSpan={colspan}
-          rowSpan={rowspan}
-        >
-          {children || null}
-        </StyledComponent>
-      </ThemeProvider>
-    </>
+    <StyledComponent
+      as={Component}
+      padding={padding || table.size}
+      valign={valign}
+      align={align}
+      className={className}
+      colSpan={colspan}
+      rowSpan={rowspan}
+    >
+      {children || null}
+    </StyledComponent>
   );
 };
 

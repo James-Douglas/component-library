@@ -1,33 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, css } from 'styled-components';
-import getTheme from 'utils/getTheme';
-import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 
 import SRonly from '../Typography/SRonly/SRonly.component';
-import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import usePrefill from '../../hooks/usePrefill';
 import Label from '../Label/Label.component';
-import useIsDesktop from '../../hooks/useIsDesktop';
-import Row from '../Grid/Row/Row.component';
-import Column from '../Grid/Column/Column.component';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 import SupportingElements from '../SupportingElements/SupportingElements';
 
-const StyledRow = styled(Row)`
-  margin-bottom: ${({ theme }) => theme.spacing[16]};
-  margin-left: 0;
-  margin-right: 0;
+const StyledWrapper = styled.div`
+  margin-bottom: 2rem;
 `;
-
-const StyledColumn = styled(Column)`
-  padding-left: 0;
-  padding-right: 0;
-  position: relative;
-`;
-
 const StyledClearIcon = styled.button`
   position: absolute;
   top: 0;
@@ -52,11 +38,6 @@ const StyledAffix = styled.span`
   height: ${({ theme }) => theme.input.height};
   padding-right: ${({ affixType }) => (affixType === 'prefix' ? '0.5rem' : '')};
   padding-left: ${({ affixType }) => (affixType === 'suffix' ? '0.5rem' : '')};
-  background: ${({ theme }) => theme.input.background};
-
-  ${({ theme, isAutofill, disabled }) => (isAutofill && !disabled) && css`
-    background: ${theme.colors.prechecked};
-  `}
 `;
 
 const StyledInputContainer = styled.div`
@@ -66,6 +47,10 @@ const StyledInputContainer = styled.div`
 
 const StyledInputWrap = styled.div`
   display: flex;
+  background: ${({ theme }) => theme.input.background};
+  ${({ theme, isAutofill, disabled }) => (isAutofill && !disabled) && css`
+    background: ${theme.colors.prechecked};
+  `}
   border: ${({ theme }) => theme.borders.transparent};
   :hover {
     border: ${({ theme, disabled }) => (disabled ? '' : theme.borders.hover)};
@@ -184,7 +169,6 @@ export const getInitialValue = (valueMasking, value, prefillValue) => {
 const Input = React.forwardRef(({
   label,
   tooltip,
-  forceFullWidth,
   validationMessage,
   id,
   type,
@@ -211,8 +195,6 @@ const Input = React.forwardRef(({
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [isFocusActive, setFocusActive] = useState(false);
-  const theme = getTheme();
-  const desktop = useIsDesktop(false);
 
   const clearInput = () => {
     setIsDirty(true);
@@ -263,62 +245,44 @@ const Input = React.forwardRef(({
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="input-label-container">
-        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-        <StyledRow>
-          <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
-            <StyledInputContainer className="input-container">
-              <StyledInputWrap
-                isAutofill={isAutofill}
-                disabled={disabled}
-                bordered={bordered}
-                invalid={validationMessage && validationMessage.length > 0}
-                isFocusActive={isFocusActive}
-              >
-                {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
-                <StyledInputClearWrap className="input-clear-wrap">
-                  <StyledInput
-                    id={id}
-                    name={id}
-                    type={type}
-                    placeholder={placeholder}
-                    disabled={disabled}
-                    value={internalValue}
-                    onChange={changeHandler}
-                    autoComplete={autocomplete}
-                    onClick={handleOnClick}
-                    onFocus={focusHandler}
-                    onBlur={blurHandler}
-                    maxLength={maxlength}
-                    isAutofill={isAutofill}
-                    ref={ref}
-                    className={`input-default ${className}`}
-                  />
-                  {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon)}
-                </StyledInputClearWrap>
-                {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
-              </StyledInputWrap>
-              <SupportingElements required={required} disabled={disabled} label={label} />
-            </StyledInputContainer>
-            {dataList && <div>{dataList()}</div>}
-            <FieldValidation message={validationMessage} />
-          </StyledColumn>
-          {desktop && !forceFullWidth && hasTooltipContent(tooltip)
-            && (
-            <StyledColumn cols={2}>
-              <InlineTooltip
-                title={tooltip.title}
-                body={tooltip.body}
-                screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
-                justifyEnd={tooltip.justifyEnd}
-                iconSmall={tooltip.iconSmall}
-              />
-            </StyledColumn>
-            )}
-        </StyledRow>
-      </div>
-    </ThemeProvider>
+    <StyledWrapper>
+      <Label forId={id} text={label} tooltip={tooltip} />
+      <StyledInputContainer className="input-container">
+        <StyledInputWrap
+          isAutofill={isAutofill}
+          disabled={disabled}
+          bordered={bordered}
+          invalid={validationMessage && validationMessage.length > 0}
+          isFocusActive={isFocusActive}
+        >
+          {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
+          <StyledInputClearWrap className="input-clear-wrap">
+            <StyledInput
+              id={id}
+              name={id}
+              type={type}
+              placeholder={placeholder}
+              disabled={disabled}
+              value={internalValue}
+              onChange={changeHandler}
+              autoComplete={autocomplete}
+              onClick={handleOnClick}
+              onFocus={focusHandler}
+              onBlur={blurHandler}
+              maxLength={maxlength}
+              isAutofill={isAutofill}
+              ref={ref}
+              className={`input-default ${className}`}
+            />
+            {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon)}
+          </StyledInputClearWrap>
+          {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
+        </StyledInputWrap>
+        <SupportingElements required={required} disabled={disabled} label={label} />
+        {dataList && <div>{dataList()}</div>}
+      </StyledInputContainer>
+      <FieldValidation message={validationMessage} />
+    </StyledWrapper>
   );
 });
 
@@ -339,10 +303,6 @@ Input.propTypes = {
    * Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
-  /**
-   * Forces the ToggleGroup to expand to 12 columns
-   */
-  forceFullWidth: PropTypes.bool,
   /**
    * Maximum length for the input element
    */
@@ -430,7 +390,6 @@ Input.propTypes = {
 Input.defaultProps = {
   label: '',
   tooltip: {},
-  forceFullWidth: false,
   valueMasking: null,
   maxlength: null,
   type: 'text',

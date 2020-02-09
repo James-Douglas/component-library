@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import screens from '../../../config/screens';
 
 const StyledFieldValidation = styled.div`
-  display: inline-block;
+  display: table;
+  position: relative;
   background: ${({ theme }) => theme.colors.validationBackground};
   color: ${({ theme }) => theme.colors.invalid};
-  z-index: ${({ theme }) => theme.zIndex['10']};
+  z-index: ${({ theme }) => theme.zIndex['30']};
   margin-top: ${({ theme }) => theme.spacing['8']};
   padding: ${({ theme }) => `${theme.spacing['4']} ${theme.spacing['8']}`};
 

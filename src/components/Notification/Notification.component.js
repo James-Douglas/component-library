@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 import { faCheckCircle } from '@fortawesome/pro-regular-svg-icons/faCheckCircle';
@@ -85,23 +84,21 @@ const Notification = ({
     }
   };
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledNotification type={type} icon={icon} className={className}>
-        {closeButton && (
-          <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
-            <FontAwesomeIcon icon={faTimes} size="lg" />
-          </StyledIcon>
-        )}
-        {icon && (
-          <StyledNotificationImage icon={icon} type={type}>
-            <FontAwesomeIcon icon={iconName(type)} size="lg" />
-          </StyledNotificationImage>
-        )}
-        <StyledNotificationContent>
-          {children}
-        </StyledNotificationContent>
-      </StyledNotification>
-    </ThemeProvider>
+    <StyledNotification type={type} icon={icon} className={className}>
+      {closeButton && (
+        <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
+          <FontAwesomeIcon icon={faTimes} size="lg" />
+        </StyledIcon>
+      )}
+      {icon && (
+        <StyledNotificationImage icon={icon} type={type}>
+          <FontAwesomeIcon icon={iconName(type)} size="lg" />
+        </StyledNotificationImage>
+      )}
+      <StyledNotificationContent>
+        {children}
+      </StyledNotificationContent>
+    </StyledNotification>
   );
 };
 

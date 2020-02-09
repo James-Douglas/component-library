@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 
 import TableContext from './TableContext';
 
@@ -27,16 +26,14 @@ const Table = ({
 
   return (
     <TableContext.Provider value={table}>
-      <ThemeProvider theme={getTheme()}>
-        <StyledComponent
-          as={Component}
-          className={className}
-          aria-label={ariaLabel}
-          aria-describedby={ariaDescribedby}
-        >
-          {children || null}
-        </StyledComponent>
-      </ThemeProvider>
+      <StyledComponent
+        as={Component}
+        className={className}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedby}
+      >
+        {children || null}
+      </StyledComponent>
     </TableContext.Provider>
   );
 };

@@ -3,24 +3,13 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
 import styled, { css } from 'styled-components';
-import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
-import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import SupportingElements from '../SupportingElements/SupportingElements';
 import Label from '../Label/Label.component';
-import Row from '../Grid/Row/Row.component';
-import Column from '../Grid/Column/Column.component';
-import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 
-const StyledRow = styled(Row)`
-  margin-bottom: ${({ theme }) => theme.spacing[16]};
-  margin-left: 0;
-  margin-right: 0;
-`;
-
-const StyledColumn = styled(Column)`
-  padding-left: 0;
-  padding-right: 0;
+const StyledWrapper = styled.div`
+  margin-bottom: 2rem;
 `;
 
 const StyledOption = styled.option`
@@ -43,6 +32,8 @@ const sharedStyleNoBorder = css`
 
 const StyledPrefix = styled.div`
   display: flex;
+  align-items: center;
+  background: ${({ theme }) => theme.dropdown.prefixBackground};
   border: ${({ theme }) => theme.borders.transparent};
   height: 100%;
   width: 100%;
@@ -185,7 +176,6 @@ const WithPrefixContent = ({ children, isFocusActive, prefixContent }) => (prefi
 const Dropdown = ({
   label,
   tooltip,
-  forceFullWidth,
   validationMessage,
   id,
   name,
@@ -203,7 +193,6 @@ const Dropdown = ({
   const isOptionExist = options && options.length;
   const isDisabled = isOptionExist ? disabled : !isOptionExist;
   const [isFocusActive, setFocusActive] = useState(false);
-  const desktop = useIsDesktop(false);
 
   let valueDropdown;
   if (options && options.length) {
@@ -240,60 +229,46 @@ const Dropdown = ({
   };
 
   return (
-    <>
-      <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-      <StyledRow>
-        <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
-          <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
-            <StyledSelectContainer>
-              <StyledSelectWrap>
-                <StyledSelect
-                  id={id}
-                  name={name}
-                  disabled={isDisabled}
-                  required={required}
-                  value={selectValue}
-                  onChange={changeHandler}
-                  onFocus={focusHandler}
-                  onBlur={blurHandler}
-                  invalidClass={invalidClass}
-                  bordered={bordered}
-                  className={className}
-                  isPrefix={Boolean(prefixContent)}
+    <StyledWrapper>
+      <Label forId={id} text={label} tooltip={tooltip} />
+      <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
+        <StyledSelectContainer>
+          <StyledSelectWrap>
+            <StyledSelect
+              id={id}
+              name={name}
+              disabled={isDisabled}
+              required={required}
+              value={selectValue}
+              onChange={changeHandler}
+              onFocus={focusHandler}
+              onBlur={blurHandler}
+              invalidClass={invalidClass}
+              bordered={bordered}
+              className={className}
+              isPrefix={Boolean(prefixContent)}
+              tabIndex="0"
+            >
+              {options.map((option) => (
+                <StyledOption
+                  key={option.value}
+                  value={option.value}
+                  id={`${id}_${option.value}`}
+                  disabled={option.disabled}
                 >
-                  {options.map((option) => (
-                    <StyledOption
-                      key={option.value}
-                      value={option.value}
-                      id={`${id}_${option.value}`}
-                      disabled={option.disabled}
-                    >
-                      {option.title}
-                    </StyledOption>
-                  ))}
-                </StyledSelect>
-                <StyledChevron>
-                  <FontAwesomeIcon icon={faChevronDown} size="2x" />
-                </StyledChevron>
-              </StyledSelectWrap>
-              <SupportingElements required={required} disabled={disabled} label={label} />
-            </StyledSelectContainer>
-          </WithPrefixContent>
-          <FieldValidation message={validationMessage} />
-        </StyledColumn>
-        {desktop && !forceFullWidth && hasTooltipContent(tooltip)
-        && (
-          <StyledColumn cols={2}>
-            <InlineTooltip
-              title={tooltip.title}
-              body={tooltip.body}
-              screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
-              justifyEnd={tooltip.justifyEnd}
-            />
-          </StyledColumn>
-        )}
-      </StyledRow>
-    </>
+                  {option.title}
+                </StyledOption>
+              ))}
+            </StyledSelect>
+            <StyledChevron>
+              <FontAwesomeIcon icon={faChevronDown} size="2x" />
+            </StyledChevron>
+          </StyledSelectWrap>
+          <SupportingElements required={required} disabled={disabled} label={label} />
+        </StyledSelectContainer>
+      </WithPrefixContent>
+      <FieldValidation message={validationMessage} />
+    </StyledWrapper>
   );
 };
 
@@ -306,10 +281,6 @@ Dropdown.propTypes = {
    *  Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
-  /**
-   * Forces the ToggleGroup to expand to 12 columns
-   */
-  forceFullWidth: PropTypes.bool,
   /**
    *  Displays given validation message and invalid styles on the component when provided.
    */
@@ -372,7 +343,6 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
   label: '',
   tooltip: {},
-  forceFullWidth: false,
   validationMessage: '',
   name: '',
   bordered: true,

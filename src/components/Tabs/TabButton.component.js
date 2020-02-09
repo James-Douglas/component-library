@@ -47,11 +47,9 @@ const TabButton = ({ name, handleClick, children }) => {
   `;
 
   return (
-    <>
-      <StyledTabButton type="button" className={classNames} activeTab={tabContext.activeTab} name={name} onClick={clickHandler}>
-        {children}
-      </StyledTabButton>
-    </>
+    <StyledTabButton type="button" className={classNames} activeTab={tabContext.activeTab} name={name} onClick={clickHandler}>
+      {children}
+    </StyledTabButton>
   );
 };
 

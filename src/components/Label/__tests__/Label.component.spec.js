@@ -22,7 +22,7 @@ describe('Label', () => {
   });
 
   it('renders correctly without tooltip prop', () => {
-    const { container } = render(<Label text="Label" tooltip={tooltip} forId="LabelId" />);
+    const { container } = render(<Label text="Label" forId="LabelId" />);
     const svg = container.querySelector('svg');
     expect(svg).not.toBeInTheDocument();
   });

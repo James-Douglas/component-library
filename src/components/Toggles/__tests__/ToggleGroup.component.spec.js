@@ -99,7 +99,7 @@ describe('ToggleGroup', () => {
     expect(onToggleCb.mock.calls[0][0]).toEqual('a');
   });
 
-  it('adds justifyEnd property to tooltip when exists', () => {
+  it('renders with tooltip', () => {
     const handleChangeCb = jest.fn();
     const tooltip = { title: 'test' };
     const { container } = render(
@@ -109,6 +109,6 @@ describe('ToggleGroup', () => {
       </ToggleGroup>,
     );
     const tooltipWrapper = container.querySelector('[role="tooltip"]');
-    expect(tooltipWrapper.parentNode).toHaveStyleRule('justify-content', 'flex-end');
+    expect(tooltipWrapper).toBeInTheDocument();
   });
 });

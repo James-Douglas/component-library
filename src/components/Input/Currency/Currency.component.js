@@ -41,7 +41,6 @@ const CurrencyInput = ({
   disabled,
   autocomplete,
   tooltip,
-  forceFullWidth,
   validationMessage,
   maxlength,
   className,
@@ -54,7 +53,6 @@ const CurrencyInput = ({
       label={label}
       type="tel"
       handleChange={handleChange}
-      forceFullWidth={forceFullWidth}
       prefixContent={currencySymbol}
       placeholder={placeholder}
       bordered={bordered}
@@ -99,10 +97,6 @@ CurrencyInput.propTypes = {
    * Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
-  /**
-   * Forces the ToggleGroup to expand to 12 columns
-   */
-  forceFullWidth: PropTypes.bool,
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
@@ -156,7 +150,6 @@ CurrencyInput.defaultProps = {
   maxlength: 15,
   value: null,
   tooltip: {},
-  forceFullWidth: false,
   validationMessage: null,
   prefillValue: null,
   placeholder: '',

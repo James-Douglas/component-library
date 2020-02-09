@@ -25,7 +25,6 @@ const GreyBackgroundView = () => {
         bordered={false}
         required={false}
         handleChange={(value) => logValue(value)}
-        validationMessage="Invalid email"
       />
       <Input
         id="input-two"

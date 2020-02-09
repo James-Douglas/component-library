@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 const tablelvl2 = {
@@ -20,14 +19,12 @@ const TableHead = ({
   const Component = component || 'thead';
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <ThemeProvider theme={getTheme()}>
-        <StyledComponent
-          as={Component}
-          className={className}
-        >
-          {children || null}
-        </StyledComponent>
-      </ThemeProvider>
+      <StyledComponent
+        as={Component}
+        className={className}
+      >
+        {children || null}
+      </StyledComponent>
     </Tablelvl2Context.Provider>
   );
 };

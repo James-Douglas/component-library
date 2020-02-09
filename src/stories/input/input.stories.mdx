@@ -42,7 +42,6 @@ import InputStates from './input-states';
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
     const label = text('label', 'input demo', componentPropsId);
-    const forceFullWidth = boolean('forceFullWidth', false, componentPropsId);
     const validationMessage = text('validationMessage', '', componentPropsId);
     const maxLength = number('maxLength', 25, componentPropsId);
     const value = text('value', '', componentPropsId);
@@ -58,7 +57,6 @@ import InputStates from './input-states';
     const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
     const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
     const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
-    const iconSmall = boolean('iconSmall', false, tooltipGroupId);
     return (
       <Input
         id="input-props"
@@ -68,9 +66,7 @@ import InputStates from './input-states';
           body,
           justifyEnd,
           screenReaderLabel,
-          iconSmall
         }}
-        forceFullWidth={forceFullWidth}
         validationMessage={validationMessage}
         maxLength={maxLength}
         value={value}

@@ -86,12 +86,6 @@ describe('renderAffix()', () => {
     expect(getByText('?!')).toBeInTheDocument();
   });
 
-  it('renders a suffix when supplied with additional styling for autofill ', () => {
-    const { container } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill disabled={false} />);
-    const element = container.querySelector('span');
-    expect(element).toHaveStyleRule('background', theme.colors.prechecked);
-  });
-
   it('does not render the additional stlying for autofill if its disabled', () => {
     const { container, getByText } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill disabled />);
     const prefix = getByText('?');

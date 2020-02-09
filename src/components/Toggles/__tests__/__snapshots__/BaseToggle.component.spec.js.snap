@@ -10,7 +10,8 @@ exports[`BaseToggle renders with minimal props 1`] = `
   cursor: pointer;
   border: 1px solid #DDDDDD;
   font-weight: 700;
-  margin: 0 0.8rem 1.6rem 0.8rem;
+  margin: 0 1.6rem 1.6rem 0;
+  margin-bottom: 1.6rem;
   background: #FFFFFF;
   box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.1);
   line-height: 1.5;

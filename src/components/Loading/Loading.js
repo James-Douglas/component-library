@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from '../../utils/getTheme';
+import styled from 'styled-components';
 import Progress from './Progress';
 import useInterval from '../../hooks/useInterval';
 
@@ -81,21 +80,19 @@ const Loading = ({
   };
 
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledContainer className={className}>
-        <StyledInnerContainer>
-          {
-            messages[messageIndex]
-            && (
-              <StyledMessageContainer>
-                <div className="loading-message">{messages[messageIndex]}</div>
-              </StyledMessageContainer>
-            )
-          }
-          <Progress value={progress} />
-        </StyledInnerContainer>
-      </StyledContainer>
-    </ThemeProvider>
+    <StyledContainer className={className}>
+      <StyledInnerContainer>
+        {
+          messages[messageIndex]
+          && (
+            <StyledMessageContainer>
+              <div className="loading-message">{messages[messageIndex]}</div>
+            </StyledMessageContainer>
+          )
+        }
+        <Progress value={progress} />
+      </StyledInnerContainer>
+    </StyledContainer>
   );
 };
 

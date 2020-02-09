@@ -147,20 +147,15 @@ describe('Dropdown', () => {
     expect(selectHtml).toHaveStyleRule('border', theme.borders.transparent);
   });
 
-  it('renders select active', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" />);
-    const selectHtml = container.querySelectorAll('.row')[1];
-    const selectFocus = selectHtml.firstChild.firstChild;
-    const selectField = container.querySelector('#dropdown-one');
-    expect(selectField.value).toBe('Second');
-    selectField.focus();
-    expect(selectFocus).toHaveStyleRule('border', theme.borders.hover);
-  });
-
-  it('render with prop forceFullWidth', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" forceFullWidth />);
-    const label = container.firstChild.firstChild.firstChild;
-    expect(label.getAttribute('cols')).toEqual('12');
+  it('calls focus and blur handlers', () => {
+    const handleFocus = jest.fn();
+    const handleBlur = jest.fn();
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" handleFocus={handleFocus} handleBlur={handleBlur} />);
+    const select = container.querySelector('select');
+    fireEvent.focus(select);
+    expect(handleFocus).toHaveBeenCalled();
+    fireEvent.blur(select);
+    expect(handleBlur).toHaveBeenCalled();
   });
 
   it('render with prop tooltip', () => {
@@ -168,7 +163,7 @@ describe('Dropdown', () => {
       title: 'Tooltip heading',
       body: 'Prefix and suffix view',
     };
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" forceFullWidth tooltip={tooltip} />);
+    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" tooltip={tooltip} />);
     const tooltipExist = container.querySelector(' div[role="tooltip"]');
     expect(tooltipExist).toBeInTheDocument();
   });

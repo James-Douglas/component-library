@@ -139,21 +139,6 @@ describe('CheckboxGroup.component', () => {
     expect(chkA3Input.checked).toBe(false);
   });
 
-  it('render with prop forceFullWidth', () => {
-    const mockTestClick = jest.fn();
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick} forceFullWidth>
-          <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
-          <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
-          <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
-        </CheckboxGroup>
-      </ThemeProvider>,
-    );
-    const label = container.firstChild.firstChild.firstChild;
-    expect(label.getAttribute('cols')).toEqual('12');
-  });
-
   it('render with prop tooltip', () => {
     const tooltip = {
       title: 'Tooltip heading',
@@ -161,7 +146,7 @@ describe('CheckboxGroup.component', () => {
     };
     const { container } = render(
       <ThemeProvider theme={theme}>
-        <CheckboxGroup groupId="test-group-id" colSize="5" tooltip={tooltip} forceFullWidth>
+        <CheckboxGroup groupId="test-group-id" colSize="5" tooltip={tooltip}>
           <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
           <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
           <Checkbox id="A-3"><p>A-3 check</p></Checkbox>

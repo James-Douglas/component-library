@@ -34,13 +34,11 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
     const readonly = boolean('Readonly', false, componentPropsId);
     const maxLength = text('Maxlength', '', componentPropsId);
     const maxChars = text('Maxchars', '500', componentPropsId);
-     const forceFullWidth = boolean('forceFullWidth', false);
     const validationMessage = text('validationMessage', '', componentPropsId);
     const title = text('title', 'input tooltip', tooltipGroupId);
     const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
     const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
     const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
-    const iconSmall = boolean('iconSmall', false, tooltipGroupId);
     return (
       <TextareaDemoView
         id={id}
@@ -62,10 +60,8 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
           body,
           justifyEnd,
           screenReaderLabel,
-          iconSmall
         }}
         validationMessage={validationMessage}
-        forceFullWidth={forceFullWidth}
       />
     );
   }}

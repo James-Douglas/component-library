@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
-import Row from '../Grid/Row/Row.component';
-import getTheme from '../../utils/getTheme';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
-
-const StyledRow = styled(Row)`
-  margin-bottom: ${(props) => props.theme.spacing[16]};
-  margin-left: 0;
-  margin-right: 0;
-`;
 
 const StyledToggleGroup = styled.div`
   width: 100%;
@@ -47,7 +39,6 @@ export const getChildren = (children, type, name, selectedToggleValue, handleTog
 const ToggleGroup = ({
   label,
   tooltip,
-  forceFullWidth,
   validationMessage,
   id,
   name,
@@ -67,25 +58,16 @@ const ToggleGroup = ({
     }
   };
 
-  const tooltipOptions = tooltip;
-  if (tooltip) {
-    tooltipOptions.justifyEnd = true;
-  }
-
   return (
-    <ThemeProvider theme={getTheme()}>
-      <>
-        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-        <StyledRow>
-          <StyledToggleGroup id={id} className={className}>
-            {getChildren(children, type, name, selectedToggleValue, toggleHandler, rectOptions, validationMessage)}
-          </StyledToggleGroup>
-          <StyledValidationWrapper>
-            <FieldValidation message={validationMessage} />
-          </StyledValidationWrapper>
-        </StyledRow>
-      </>
-    </ThemeProvider>
+    <>
+      <Label forId={id} text={label} tooltip={tooltip} />
+      <StyledToggleGroup id={id} className={className}>
+        {getChildren(children, type, name, selectedToggleValue, toggleHandler, rectOptions, validationMessage)}
+      </StyledToggleGroup>
+      <StyledValidationWrapper>
+        <FieldValidation message={validationMessage} />
+      </StyledValidationWrapper>
+    </>
   );
 };
 
@@ -106,10 +88,6 @@ ToggleGroup.propTypes = {
    * Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
-  /**
-   * Forces the ToggleGroup to expand to 12 columns (default true for ToggleGroup)
-   */
-  forceFullWidth: PropTypes.bool,
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
@@ -149,7 +127,6 @@ ToggleGroup.propTypes = {
 ToggleGroup.defaultProps = {
   label: '',
   tooltip: {},
-  forceFullWidth: true,
   validationMessage: null,
   id: null,
   selectedValue: null,

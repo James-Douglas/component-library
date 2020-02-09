@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import theme from 'utils/getTheme';
+import styled from 'styled-components';
 
 export const StyledProgress = styled.div`
   margin-top: 1rem;
@@ -32,13 +31,11 @@ const Progress = ({
   const Component = 'progress';
 
   return (
-    <ThemeProvider theme={theme()}>
-      <StyledProgress
-        as={Component}
-        value={value}
-        max={max}
-      />
-    </ThemeProvider>
+    <StyledProgress
+      as={Component}
+      value={value}
+      max={max}
+    />
   );
 };
 

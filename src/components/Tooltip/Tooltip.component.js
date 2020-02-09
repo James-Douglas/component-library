@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import styled, { createGlobalStyle, css, ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Tippy from '@tippy.js/react';
 import 'tippy.js/dist/svg-arrow.css';
@@ -13,22 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 import SRonly from '../Typography/SRonly/SRonly.component';
 
-const StyledTooltipWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  text-align: left;
-  justify-content: ${({ desktop }) => (desktop ? 'center' : 'flex-end')}; 
-  ${({ justifyEnd }) => justifyEnd && css`
-    justify-content: flex-end;
-  `}
-`;
-
 const StyledTooltipIcon = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: ${({ desktop, iconSmall }) => (desktop || iconSmall ? '1.8rem' : '2.4rem')}; 
+  display: inline-block;
+  margin-left: ${({ theme }) => theme.spacing[8]};
+  font-size: '1.8rem'; 
   height: 2.4rem;
   width: 2.4rem;
   color:  ${(props) => props.theme.colors.grey}; 
@@ -65,14 +52,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const StyledTooltipContainer = styled.div`
-  min-height: 4.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
 /**
  * Get the tooltip html content
  * @param title {string} - Optional title for the tooltip
@@ -93,8 +72,6 @@ const Tooltip = ({
   body,
   placement,
   screenReaderLabel,
-  justifyEnd,
-  iconSmall,
   className,
 }) => {
   const [pinned, setPinned] = useState(false);
@@ -151,78 +128,57 @@ const Tooltip = ({
     }
   };
 
+  if (!title && !body) {
+    return null;
+  }
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledTooltipWrapper justifyEnd={justifyEnd} desktop={desktop} className={className}>
-        <GlobalStyle />
-        <Tippy
-          content={getContent(title, body)}
-          theme="manor"
-          interactive
-          arrow={desktop}
-          distance={desktop ? '0.8rem' : 0}
-          animation="scale"
-          duration={[150, 75]}
-          hideOnClick={false}
-          trigger="manual"
-          onCreate={(instance) => setTippyInstance(instance)}
-          onShow={onTippyShow}
-          visible={tippyVisible}
-          placement={placement}
-          maxWidth={500}
-          delay={125}
+    <>
+      <GlobalStyle />
+      <Tippy
+        content={getContent(title, body)}
+        theme="manor"
+        interactive
+        arrow={desktop}
+        distance={desktop ? '0.8rem' : 0}
+        animation="scale"
+        duration={[150, 75]}
+        hideOnClick={false}
+        trigger="manual"
+        onCreate={(instance) => setTippyInstance(instance)}
+        onShow={onTippyShow}
+        visible={tippyVisible}
+        placement={placement}
+        maxWidth={500}
+        delay={125}
+      >
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+        <StyledTooltipIcon
+          tabIndex={0}
+          role="tooltip"
+          desktop={desktop}
+          ref={tooltipElement}
+          pinned={pinned}
+          tippyVisible={tippyVisible}
+          onClick={pinTooltip}
+          onKeyDown={handleKeyPress}
+          onFocus={showTooltip}
+          onBlur={hideTooltip}
+          onMouseEnter={showTooltip}
+          onMouseLeave={() => {
+            if (!pinned) {
+              hideTooltip();
+            }
+          }}
         >
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-          <StyledTooltipIcon
-            tabIndex={0}
-            role="tooltip"
-            desktop={desktop}
-            ref={tooltipElement}
-            iconSmall={iconSmall}
-            pinned={pinned}
-            tippyVisible={tippyVisible}
-            onClick={pinTooltip}
-            onKeyDown={handleKeyPress}
-            onFocus={showTooltip}
-            onBlur={hideTooltip}
-            onMouseEnter={showTooltip}
-            onMouseLeave={() => {
-              if (!pinned) {
-                hideTooltip();
-              }
-            }}
-          >
-            <>
-              <SRonly>{screenReaderLabel}</SRonly>
-              <FontAwesomeIcon icon={faInfoCircle} />
-            </>
-          </StyledTooltipIcon>
-        </Tippy>
-      </StyledTooltipWrapper>
-    </ThemeProvider>
+          <>
+            <SRonly>{screenReaderLabel}</SRonly>
+            <FontAwesomeIcon icon={faInfoCircle} />
+          </>
+        </StyledTooltipIcon>
+      </Tippy>
+    </>
   );
 };
-
-export const InlineTooltip = ({
-  title,
-  body,
-  placement,
-  screenReaderLabel,
-  justifyEnd,
-  iconSmall,
-  className,
-}) => (
-  <StyledTooltipContainer className={className}>
-    <Tooltip
-      title={title}
-      body={body}
-      placement={placement}
-      screenReaderLabel={screenReaderLabel}
-      justifyEnd={justifyEnd}
-      iconSmall={iconSmall}
-    />
-  </StyledTooltipContainer>
-);
 
 export const tooltipPropTypes = {
   /**
@@ -242,10 +198,6 @@ export const tooltipPropTypes = {
     PropTypes.object,
   ]),
   /**
-   * Aligns the tooltip with the end of it's wrapper (centered otherwise)
-   */
-  justifyEnd: PropTypes.bool,
-  /**
    * Label for screen readers
    */
   screenReaderLabel: PropTypes.string,
@@ -257,11 +209,6 @@ export const tooltipPropTypes = {
     'right-start', 'right-end',
   ]),
   /**
-   * Render a 1.8rem tooltip icon despite screensize (by default the tooltip icon is 1.8rem on desktop &
-   * 2.4rem on mobile), the clickable area will remain 2.4rem
-   */
-  iconSmall: PropTypes.bool,
-  /**
    * Classes to be applied to the Tooltip component
    */
   className: PropTypes.string,
@@ -270,17 +217,13 @@ export const tooltipPropTypes = {
 const defaultProps = {
   title: '',
   body: '',
-  justifyEnd: false,
   screenReaderLabel: '',
-  placement: 'left',
-  iconSmall: false,
+  placement: 'right',
   className: '',
 };
 
 Tooltip.propTypes = tooltipPropTypes;
-InlineTooltip.propTypes = tooltipPropTypes;
 
 Tooltip.defaultProps = defaultProps;
-InlineTooltip.defaultProps = defaultProps;
 
 export default Tooltip;

@@ -29,7 +29,6 @@ const TextareaDemoView = ({
   maxChars,
   maxLength,
   validationMessage,
-  forceFullWidth,
 }) => (
   <ThemeProvider theme={getTheme()}>
     <StyledBackground
@@ -53,7 +52,6 @@ const TextareaDemoView = ({
           maxChars={maxChars}
           maxLength={maxLength}
           validationMessage={validationMessage}
-          forceFullWidth={forceFullWidth}
         />
       </StyledView>
     </StyledBackground>

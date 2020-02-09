@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, css } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { css } from 'styled-components';
 
 const StyledProgressIcon = styled.span`
   border: ${({ theme }) => theme.progress.icon.border}; 
@@ -32,9 +31,7 @@ const ProgressIcon = ({
   mobile,
   index,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledProgressIcon active={active} disabled={disabled} mobile={mobile}>{index}</StyledProgressIcon>
-  </ThemeProvider>
+  <StyledProgressIcon active={active} disabled={disabled} mobile={mobile}>{index}</StyledProgressIcon>
 );
 
 

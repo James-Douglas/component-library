@@ -60,7 +60,6 @@ const prefixSuffixView = () => {
         disabled={false}
         prefixContent={<SvgUkFlag />}
         suffixContent={<SvgAusFlag />}
-        invalid={false}
         handleChange={(value) => logValue(value)}
       />
 
@@ -73,7 +72,6 @@ const prefixSuffixView = () => {
         required={false}
         disabled={false}
         prefixContent="prefix"
-        invalid={false}
         handleChange={(value) => logValue(value)}
       />
 
@@ -86,7 +84,6 @@ const prefixSuffixView = () => {
         required={false}
         disabled={false}
         suffixContent="suffix"
-        invalid={false}
         handleChange={(value) => logValue(value)}
       />
     </StyledBackground>

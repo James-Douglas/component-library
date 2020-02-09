@@ -20,11 +20,9 @@ const TabPanel = ({ name, className, children }) => {
   `;
 
   return (
-    <>
-      <StyledPanel className={classNames} activeTab={tabContext.activeTab} name={name}>
-        {children}
-      </StyledPanel>
-    </>
+    <StyledPanel className={classNames} activeTab={tabContext.activeTab} name={name}>
+      {children}
+    </StyledPanel>
   );
 };
 

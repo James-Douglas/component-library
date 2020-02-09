@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, css } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { css } from 'styled-components';
 import TabButton from './TabButton.component';
 import TabsContext from './TabsContext';
 
@@ -30,11 +29,9 @@ export const renderChildren = (children) => {
 
   return (
     <>
-      <ThemeProvider theme={getTheme()}>
-        <StyledTabButtonWrap className="tab-button-wrap">
-          {tabButton}
-        </StyledTabButtonWrap>
-      </ThemeProvider>
+      <StyledTabButtonWrap className="tab-button-wrap">
+        {tabButton}
+      </StyledTabButtonWrap>
       {rest}
     </>
   );
@@ -52,11 +49,9 @@ const Tabs = ({
 
   return (
     <TabsContext.Provider value={tabProviderValue}>
-      <ThemeProvider theme={getTheme()}>
-        <StyledTabsContainer className={classNames} bordered={bordered} style={{ minHeight: `${minHeight}` }}>
-          {renderChildren(children)}
-        </StyledTabsContainer>
-      </ThemeProvider>
+      <StyledTabsContainer className={classNames} bordered={bordered} style={{ minHeight: `${minHeight}` }}>
+        {renderChildren(children)}
+      </StyledTabsContainer>
     </TabsContext.Provider>
   );
 };

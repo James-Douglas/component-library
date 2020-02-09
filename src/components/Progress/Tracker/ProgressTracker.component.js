@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, css } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { css } from 'styled-components';
 import useIsDesktop from 'hooks/useIsDesktop';
 import Container from '../../Grid/Container/Container.component';
 import TrackerItem from '../TrackerItem/TrackerItem';
@@ -137,14 +136,12 @@ const Tracker = ({
   const activeProperty = steps.findIndex((element) => element.active);
   const value = (activeProperty === -1) ? 100 : ((activeProperty + 1) / steps.length) * 100;
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledTracker isSticky={isSticky} stuck={stuck}>
-        <StyledProgress max="100" value={value} />
-        <Container>
-          <StyledSteps>{processTrackerItems(steps, isDesktop)}</StyledSteps>
-        </Container>
-      </StyledTracker>
-    </ThemeProvider>
+    <StyledTracker isSticky={isSticky} stuck={stuck}>
+      <StyledProgress max="100" value={value} />
+      <Container>
+        <StyledSteps>{processTrackerItems(steps, isDesktop)}</StyledSteps>
+      </Container>
+    </StyledTracker>
   );
 };
 

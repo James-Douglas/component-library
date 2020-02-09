@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, css } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { css } from 'styled-components';
 
 const StyledBar = styled.div`
   width: 100%;
@@ -74,14 +73,12 @@ const Bar = ({
   isSticky,
   stuck,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledBar stuck={stuck} isSticky={isSticky} value={value}>
-      <StyledProgress max="100" value={value} />
-      <StyledLabel value={value}>
-        {`${value}%`}
-      </StyledLabel>
-    </StyledBar>
-  </ThemeProvider>
+  <StyledBar stuck={stuck} isSticky={isSticky} value={value}>
+    <StyledProgress max="100" value={value} />
+    <StyledLabel value={value}>
+      {`${value}%`}
+    </StyledLabel>
+  </StyledBar>
 );
 
 

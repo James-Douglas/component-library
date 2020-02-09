@@ -1,26 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, css } from 'styled-components';
-import getTheme from 'utils/getTheme';
-import { hasTooltipContent, getScreenReaderLabel } from 'utils/form';
-import { InlineTooltip, tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import Row from '../Grid/Row/Row.component';
+import styled, { css } from 'styled-components';
+import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
-import Column from '../Grid/Column/Column.component';
-import useIsDesktop from '../../hooks/useIsDesktop';
 import SupportingElements from '../SupportingElements/SupportingElements';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
-
-const StyledRow = styled(Row)`
-  margin-bottom: ${({ theme }) => theme.spacing[16]};
-  margin-left: 0;
-  margin-right: 0;
-`;
-
-const StyledColumn = styled(Column)`
-  padding-left: 0;
-  padding-right: 0;
-`;
 
 const StyledOptionalIndicator = styled.span`
   margin-left: 1rem;
@@ -105,7 +89,6 @@ export function getRemainingCharsContent(maxChars, maxLength, id, textAreaRemain
 const Textarea = ({
   label,
   tooltip,
-  forceFullWidth,
   validationMessage,
   id,
   name,
@@ -131,7 +114,6 @@ const Textarea = ({
   const [stateValue, setStateValue] = useState(value);
   const [textAreaRemainChars, setTextAreaRemainChars] = useState(charLimit);
   const textAreaElement = useRef(null);
-  const desktop = useIsDesktop(false);
 
   useEffect(() => {
     setStateValue(value);
@@ -174,52 +156,35 @@ const Textarea = ({
   const validation = validationMessageToDisplay && validationMessageToDisplay.length;
 
   return (
-    <ThemeProvider theme={getTheme()}>
-      <>
-        <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
-        <StyledRow>
-          <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
-            <StyledTextAreaWrapper className={`manor-textarea-wrapper ${className} ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
-              <StyledTextArea
-                ref={textAreaElement}
-                value={stateValue}
-                onChange={changeHandler}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                id={id}
-                name={name}
-                placeholder={placeholder}
-                disabled={disabled}
-                required={required}
-                rows={rows}
-                wrap={wrap}
-                readOnly={readonly}
-                maxLength={maxLength}
-                isPrefill={isPrefill}
-                isDirty={isDirty}
-                validation={validation}
-                textAreaRemainChars={textAreaRemainChars}
-                bordered={bordered}
-                aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
-              />
-              <SupportingElements label={label} required={required} disabled={disabled} additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)} />
-            </StyledTextAreaWrapper>
-            <FieldValidation message={validationMessage} />
-          </StyledColumn>
-          {desktop && !forceFullWidth && hasTooltipContent(tooltip)
-          && (
-            <StyledColumn cols={2}>
-              <InlineTooltip
-                title={tooltip.title}
-                body={tooltip.body}
-                screenReaderLabel={getScreenReaderLabel(tooltip.screenReaderLabel, label)}
-                justifyEnd={tooltip.justifyEnd}
-              />
-            </StyledColumn>
-          )}
-        </StyledRow>
-      </>
-    </ThemeProvider>
+    <>
+      <Label forId={id} text={label} tooltip={tooltip} />
+      <StyledTextAreaWrapper className={`manor-textarea-wrapper ${className} ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
+        <StyledTextArea
+          ref={textAreaElement}
+          value={stateValue}
+          onChange={changeHandler}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          disabled={disabled}
+          required={required}
+          rows={rows}
+          wrap={wrap}
+          readOnly={readonly}
+          maxLength={maxLength}
+          isPrefill={isPrefill}
+          isDirty={isDirty}
+          validation={validation}
+          textAreaRemainChars={textAreaRemainChars}
+          bordered={bordered}
+          aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
+        />
+      </StyledTextAreaWrapper>
+      <SupportingElements label={label} required={required} disabled={disabled} additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)} />
+      <FieldValidation message={validationMessage} />
+    </>
   );
 };
 
@@ -236,10 +201,6 @@ Textarea.propTypes = {
    * Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
-  /**
-   * Forces the Textarea to expand to 12 columns
-   */
-  forceFullWidth: PropTypes.bool,
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
@@ -319,7 +280,6 @@ Textarea.propTypes = {
 Textarea.defaultProps = {
   label: '',
   tooltip: {},
-  forceFullWidth: false,
   validationMessage: null,
   name: '',
   value: '',

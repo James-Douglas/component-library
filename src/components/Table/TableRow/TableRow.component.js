@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 
 const StyledComponent = styled.div`
   color: inherit;
@@ -19,15 +18,13 @@ const TableRow = ({
 }) => {
   const Component = component || 'tr';
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledComponent
-        as={Component}
-        hover={hover}
-        className={className}
-      >
-        {children || null}
-      </StyledComponent>
-    </ThemeProvider>
+    <StyledComponent
+      as={Component}
+      hover={hover}
+      className={className}
+    >
+      {children || null}
+    </StyledComponent>
   );
 };
 

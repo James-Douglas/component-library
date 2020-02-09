@@ -23,7 +23,6 @@ const prefixSuffixView = () => {
         type="email"
         bordered
         disabled={false}
-        invalid={false}
         handleChange={(value) => logValue(value)}
       />
 
@@ -35,7 +34,6 @@ const prefixSuffixView = () => {
         type="tel"
         bordered
         disabled={false}
-        invalid={false}
         handleChange={(value) => logValue(value)}
       />
 
@@ -47,7 +45,6 @@ const prefixSuffixView = () => {
         type="number"
         bordered
         disabled={false}
-        invalid={false}
         handleChange={(value) => logValue(value)}
       />
 
@@ -59,7 +56,6 @@ const prefixSuffixView = () => {
         type="text"
         bordered
         disabled={false}
-        invalid={false}
         handleChange={(value) => logValue(value)}
       />
     </StyledBackground>

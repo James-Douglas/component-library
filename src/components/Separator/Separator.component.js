@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 
 const StyledHR = styled.hr`
   border: none;
@@ -15,9 +14,7 @@ const StyledHR = styled.hr`
 `;
 
 const Separator = ({ type, className }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledHR type={type} className={className} />
-  </ThemeProvider>
+  <StyledHR type={type} className={className} />
 );
 
 Separator.propTypes = {
