@@ -1,29 +1,47 @@
-import React, { useState, useMemo } from 'react';
+import React, {
+  useState, useMemo, useCallback, useEffect, useLayoutEffect,
+} from 'react';
+
+
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Input from '../Input/Input.component';
 import Button from '../Button/Button.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
+import Overlay from '../Overlay/Overlay.component';
+import LayerEventManager from '../../LayerEventManager';
+import { picturePropTypes } from '../Picture/Picture.component';
+import EmptyState from '../EmptyState/EmptyState.component';
 
 const StyledDropdownList = styled.div`
-  position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')}; 
-  width: 100%;
+  position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')};
+  width: ${({ theme }) => (theme.maxWidth.full)};
   display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')}; 
   z-index: ${({ theme }) => (theme.zIndex[20])}; 
   background: ${({ theme }) => (theme.combo.list.background)};  
-  box-shadow: ${({ theme }) => (theme.combo.list.shadow)};  
+  box-shadow: ${({ theme, desktop }) => (desktop ? theme.combo.list.shadow : '')};  
   margin-top: ${({ theme }) => (theme.spacing[8])};
   &:focus {
     outline: none;
   }
+  ${({ desktop }) => !desktop && css`
+    height: 100%;
+    max-height: ${({ theme }) => (theme.minHeight.full)};;
+    margin: 0;
+  `}
 `;
 
 const StyledList = styled.ul`
-  width:  100%;
+  width: ${({ theme }) => (theme.maxWidth.full)};
   padding: 0;
   margin-top: ${({ theme }) => (theme.spacing[8])};  
   z-index: ${({ theme }) => (theme.zIndex[30])}; 
   color: ${({ theme }) => (theme.combo.list.color)}; 
+`;
+
+const StyledDefault = styled.div`
+  width: ${({ theme }) => (theme.maxWidth.full)};
 `;
 
 const StyledListItem = styled.li`
@@ -64,15 +82,113 @@ const StyledButtonWrap = styled.div`
 `;
 
 const StyledDiv = styled.div`
-  width: 100%;
+  width: ${({ theme }) => (theme.maxWidth.full)};
+  .input-label-container {
+  ${({ desktop }) => !desktop && css`
+     z-index: ${({ theme }) => (theme.zIndex[40])}; 
+     top: ${({ theme }) => theme.spacing[136]};
+     position: fixed;
+     right: ${({ theme }) => theme.spacing[16]};
+     left: ${({ theme }) => theme.spacing[16]};
+     max-width: ${({ theme }) => `calc(100% - ${theme.spacing[32]})`};
+     .label {
+       visibility: hidden;
+    }
+   `}
+  }  
 `;
 
-export function comboDropdownList(linkText, linkHref, bottomButton, currentPrefillValue, characterMinimum, filteredValues, handleSelectItem, filteredValuesRefs, listVisible) {
+const WrapList = styled.div`
+  ${({ desktop }) => !desktop && css`
+    z-index: ${({ theme }) => (theme.zIndex.entry)}; 
+    width: auto;
+    right: ${({ theme }) => theme.spacing[8]};
+    left: ${({ theme }) => theme.spacing[8]};
+    position: fixed;
+    bottom: ${({ theme }) => theme.spacing[32]};
+    top: ${({ theme }) => theme.spacing[152]};
+    background: ${({ theme }) => theme.colors.white};
+    border-radius: ${({ theme }) => theme.borderRadius.default};
+    padding-top: ${({ theme }) => theme.spacing[60]};
+    max-height: initial;
+    overflow: hidden;
+    &:after {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 0;
+      width: ${({ theme }) => (theme.maxWidth.full)};
+      height: ${({ theme }) => (theme.spacing[72])};
+      background: ${({ theme }) => theme.colors.whiteLight};
+    }
+  `}
+`;
+
+const StyledComboListWrap = styled.div`
+  ${({ desktop }) => !desktop && css`
+    display: flex;
+    flex-direction: column;
+    width: ${({ theme }) => (theme.maxWidth.full)};
+    max-width: ${({ theme }) => (theme.maxWidth.full)};
+    height: ${({ theme }) => (theme.minHeight.full)};
+    padding-top: ${({ theme }) => (theme.spacing[12])};
+  `}
+`;
+
+const StyledComboList = styled.div`
+  ${({ desktop }) => !desktop && css`
+    font-size: ${({ theme }) => theme.fontSize['3xl']};
+    flex-grow: 1;
+    overflow: auto;
+  `}
+`;
+
+const StyledEmptyStateMessage = styled.div`
+  position: fixed;
+  width: ${({ theme }) => (theme.maxWidth.full)};
+  max-width: ${({ theme }) => `calc(100% - ${theme.spacing[32]})`};
+  max-height: ${({ theme }) => (theme.spacing[200])};
+  top: ${({ theme }) => theme.spacing[280]};
+  z-index: ${({ theme }) => (theme.zIndex[50])}; 
+  font-size: ${({ theme }) => theme.fontSize.base};
+  color: ${({ theme }) => theme.combo.list.item.color};
+  text-align: center;
+  img {
+    max-width: ${({ theme }) => (theme.spacing[100])};
+    margin-bottom: ${({ theme }) => (theme.spacing[20])};
+  }
+  .empty-state-wrap {
+    max-height: ${({ theme }) => (theme.spacing[100])};
+  }
+`;
+
+export function comboDropdownList(
+  desktop,
+  linkText,
+  linkHref,
+  bottomButton,
+  currentPrefillValue,
+  characterMinimum,
+  filteredValues,
+  handleSelectItem,
+  filteredValuesRefs,
+  listVisible,
+) {
+  const positionDesktop = !desktop ? 'relative' : 'absolute';
+  const emptyState = !listVisible || currentPrefillValue.length < characterMinimum;
+  const positionConst = emptyState ? 'hidden' : positionDesktop;
+
   return (
-    <StyledDropdownList position={`${!listVisible || currentPrefillValue.length < characterMinimum ? 'hidden' : 'absolute'}`} role="listwrap">
-      {comboDataList(filteredValues, handleSelectItem, filteredValuesRefs)}
-      {blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, bottomButton)}
-    </StyledDropdownList>
+    <WrapList desktop={desktop}>
+      <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
+        <StyledComboListWrap desktop={desktop}>
+          <StyledComboList desktop={desktop}>
+            {!emptyState && comboDataList(filteredValues, handleSelectItem, filteredValuesRefs)}
+          </StyledComboList>
+          {!emptyState && <div>{blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, bottomButton)}</div>}
+        </StyledComboListWrap>
+      </StyledDropdownList>
+    </WrapList>
   );
 }
 
@@ -83,7 +199,7 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
         <StyledListItem
           tabIndex="0"
           key={`option-${filteredValue}`}
-          role="option"
+          role="listitem"
           data-type="list"
           aria-selected={false}
           onMouseDown={() => handleSelectItem(filteredValue)}
@@ -142,10 +258,19 @@ const Combo = ({
   handleInput,
   handleFocus,
   handleBlur,
+  emptyStateChildren,
+  emptyStatePicture,
+  emptyStateClassName,
+  emptyStateHeading,
+  helperMessage,
 }) => {
   const [listVisible, setListVisible] = useState(false);
+  const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
   const bottomButton = React.createRef();
+  const desktop = useIsDesktop();
+  const textInput = React.useRef(null);
+  const mobileOverlay = !desktop && isMobileModalView;
 
   const filteredValues = useMemo(
     () => {
@@ -163,11 +288,19 @@ const Combo = ({
   );
 
   const [focusedRef, setFocusedRef] = useState(null);
-
+  const onFieldClick = (valueInput) => {
+    setIsMobileModalView(true);
+  };
+  const closeFieldModal = () => {
+    setIsMobileModalView(false);
+  };
   const handleSelectItem = (selectedValue) => {
     setCurrentValue(selectedValue);
     setListVisible(false);
     setFocusedRef(null);
+    if (mobileOverlay) {
+      closeFieldModal();
+    }
     if (handleChange) {
       handleChange(selectedValue);
     }
@@ -180,6 +313,26 @@ const Combo = ({
       handleInput(valueInput);
     }
   };
+
+  const handleUserKeyPress = useCallback((event) => {
+    const { keyCode } = event;
+    // escape
+    if (keyCode === 27) {
+      setIsMobileModalView(false);
+    }
+  }, [setIsMobileModalView]);
+
+  useLayoutEffect(() => {
+    window.addEventListener('keydown', handleUserKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleUserKeyPress);
+    };
+  }, [handleUserKeyPress]);
+
+  useEffect(() => {
+    isMobileModalView && textInput.current && textInput.current.focus();
+  }, [isMobileModalView]);
+
 
   const handleOnFocus = (event) => {
     if (
@@ -203,6 +356,8 @@ const Combo = ({
       }
     }
   };
+  const emptyStateCondition = currentValue.length < characterMinimum;
+  const noResultCondition = filteredValues.length === 0 && currentValue.length >= characterMinimum;
   const keyboardAccessibility = (event) => {
     const closestLink = event.target.getElementsByTagName('a')[0];
     switch (event.key) {
@@ -271,42 +426,92 @@ const Combo = ({
         break;
     }
   };
-
   return (
-    <StyledDiv
-      onFocus={handleOnFocus}
-      onBlur={handleOnBlur}
-      onKeyDown={keyboardAccessibility}
-    >
-      <Input
-        id={id}
-        tooltip={tooltip}
-        placeholder={placeholder}
-        label={label}
-        value={currentValue}
-        prefillValue={prefillValue}
-        bordered={bordered}
-        required={required}
-        disabled={disabled}
-        validationMessage={validationMessage}
-        prefixContent={prefixContent}
-        suffixContent={suffixContent}
-        autocomplete={autocomplete}
-        handleChange={comboHandleChange}
-        className={className}
-        tabIndex="0"
-        role="comboField"
-        dataList={() => comboDropdownList(linkText,
-          linkHref,
-          bottomButton,
-          currentValue,
-          characterMinimum,
-          filteredValues,
-          handleSelectItem,
-          filteredValuesRefs,
-          listVisible)}
-      />
-    </StyledDiv>
+    <LayerEventManager id={`LayerEventManager${id}`} visible={mobileOverlay}>
+      <>
+        {mobileOverlay && (<Overlay opacityLevel={0.3} show={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
+        {(mobileOverlay || desktop) && (
+          <>
+            <StyledDiv
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlur}
+              onKeyDown={keyboardAccessibility}
+              desktop={desktop}
+            >
+              {emptyStateCondition && mobileOverlay && <StyledEmptyStateMessage>{helperMessage}</StyledEmptyStateMessage>}
+              {noResultCondition && mobileOverlay && (
+                <StyledEmptyStateMessage>
+                  <EmptyState
+                    picture={emptyStatePicture}
+                    className={`${emptyStateClassName} empty-state-wrap`}
+                    heading={emptyStateHeading}
+                  >
+                    {emptyStateChildren}
+                  </EmptyState>
+                </StyledEmptyStateMessage>
+              )}
+              <Input
+                id={id}
+                tooltip={tooltip}
+                placeholder={placeholder}
+                label={label}
+                value={currentValue}
+                prefillValue={prefillValue}
+                bordered={bordered}
+                required={required}
+                disabled={disabled}
+                validationMessage={validationMessage}
+                prefixContent={prefixContent}
+                suffixContent={suffixContent}
+                autocomplete={autocomplete}
+                handleChange={comboHandleChange}
+                className={className}
+                tabIndex="0"
+                ref={textInput}
+                role="comboField"
+                dataList={() => comboDropdownList(
+                  desktop,
+                  linkText,
+                  linkHref,
+                  bottomButton,
+                  currentValue,
+                  characterMinimum,
+                  filteredValues,
+                  handleSelectItem,
+                  filteredValuesRefs,
+                  listVisible,
+                )}
+              />
+            </StyledDiv>
+          </>
+        )}
+        {!desktop && (
+          <StyledDefault>
+            <Input
+              id={`mobile${id}`}
+              tooltip={tooltip}
+              placeholder={placeholder}
+              label={label}
+              value={currentValue}
+              prefillValue={prefillValue}
+              bordered={bordered}
+              required={required}
+              disabled={disabled}
+              validationMessage={validationMessage}
+              prefixContent={prefixContent}
+              suffixContent={suffixContent}
+              handleOnClick={onFieldClick}
+              handleChange={() => {}}
+              handleFocus={onFieldClick}
+              disableClearIcon
+              tabIndex="0"
+              role="comboMobileField"
+            />
+          </StyledDefault>
+        )}
+      </>
+    </LayerEventManager>
+
   );
 };
 
@@ -413,6 +618,27 @@ Combo.propTypes = {
    * Classes to be applied to the Combo component
    */
   className: PropTypes.string,
+  /**
+   * Message for empty state
+   */
+  emptyStateChildren: PropTypes.string,
+  /**
+   *  Picture props (see the Picture component documentation)
+   */
+  emptyStatePicture: PropTypes.shape(picturePropTypes),
+
+  /**
+   * Classes to be applied to the EmptyState component
+   */
+  emptyStateClassName: PropTypes.string,
+  /**
+   * The heading text underneath the image
+   */
+  emptyStateHeading: PropTypes.string,
+  /**
+   * Message to help user start typing
+   */
+  helperMessage: PropTypes.string,
 };
 
 Combo.defaultProps = {
@@ -437,6 +663,11 @@ Combo.defaultProps = {
   handleInput: null,
   handleFocus: null,
   handleBlur: null,
+  emptyStateChildren: '',
+  emptyStatePicture: null,
+  emptyStateClassName: '',
+  emptyStateHeading: null,
+  helperMessage: null,
 };
 
 export default Combo;

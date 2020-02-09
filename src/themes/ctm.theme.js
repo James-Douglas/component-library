@@ -114,6 +114,7 @@ const spacing = {
   248: '24.8rem',
   252: '25.2rem',
   256: '25.6rem',
+  280: '28rem',
 };
 const borderRadius = {
   none: '0',
@@ -191,6 +192,7 @@ const opacity = {
 
 const zIndex = {
   auto: 'auto',
+  entry: '-1',
   0: '0',
   10: '10',
   20: '20',

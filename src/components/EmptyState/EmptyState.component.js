@@ -35,7 +35,7 @@ const EmptyState = ({
 
   return (
     <StyledEmptyState className={className}>
-      <StyledEmptyStateWrap desktop={desktop}>
+      <StyledEmptyStateWrap desktop={desktop} className={className}>
         <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
         <h3>{heading}</h3>
         <div>

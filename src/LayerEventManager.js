@@ -10,6 +10,7 @@ import usePrevious from './hooks/usePrevious';
 const StyledLayer = styled.span`
   z-index: ${({ zIndex }) => zIndex};
   position: relative;
+  width: 100%;
 `;
 
 const LayerEventManager = ({

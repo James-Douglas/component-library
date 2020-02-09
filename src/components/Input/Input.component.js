@@ -25,6 +25,7 @@ const StyledRow = styled(Row)`
 const StyledColumn = styled(Column)`
   padding-left: 0;
   padding-right: 0;
+  position: relative;
 `;
 
 const StyledClearIcon = styled.button`
@@ -127,8 +128,8 @@ const StyledInput = styled.input`
   `}
 `;
 
-export const renderClearIcon = (value, clearInput, isAutofill, label, disabled) => {
-  if (value && value.length) {
+export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, disableClearIcon) => {
+  if (value && value.length && !disableClearIcon) {
     return (
       <StyledClearIcon
         isAutofill={isAutofill}
@@ -179,7 +180,8 @@ export const getInitialValue = (valueMasking, value, prefillValue) => {
   return '';
 };
 
-const Input = ({
+// eslint-disable-next-line react/display-name
+const Input = React.forwardRef(({
   label,
   tooltip,
   forceFullWidth,
@@ -201,8 +203,10 @@ const Input = ({
   handleBlur,
   valueMasking,
   dataList,
+  handleOnClick,
   className,
-}) => {
+  disableClearIcon,
+}, ref) => {
   const [internalValue, setInternalValue] = useState(getInitialValue(valueMasking, value, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
@@ -260,7 +264,7 @@ const Input = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <>
+      <div className="input-label-container">
         <Label forId={id} text={label} tooltip={tooltip} fullWidth={forceFullWidth} />
         <StyledRow>
           <StyledColumn cols={desktop && !forceFullWidth ? '10' : '12'}>
@@ -283,19 +287,21 @@ const Input = ({
                     value={internalValue}
                     onChange={changeHandler}
                     autoComplete={autocomplete}
+                    onClick={handleOnClick}
                     onFocus={focusHandler}
                     onBlur={blurHandler}
                     maxLength={maxlength}
                     isAutofill={isAutofill}
+                    ref={ref}
                     className={`input-default ${className}`}
                   />
-                  {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled)}
+                  {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon)}
                 </StyledInputClearWrap>
                 {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
               </StyledInputWrap>
               <SupportingElements required={required} disabled={disabled} label={label} />
-              {dataList && <div>{dataList()}</div>}
             </StyledInputContainer>
+            {dataList && <div>{dataList()}</div>}
             <FieldValidation message={validationMessage} />
           </StyledColumn>
           {desktop && !forceFullWidth && hasTooltipContent(tooltip)
@@ -311,10 +317,10 @@ const Input = ({
             </StyledColumn>
             )}
         </StyledRow>
-      </>
+      </div>
     </ThemeProvider>
   );
-};
+});
 
 Input.propTypes = {
   /**
@@ -390,6 +396,10 @@ Input.propTypes = {
    */
   handleBlur: PropTypes.func,
   /**
+   * Function called when click on input
+   */
+  handleOnClick: PropTypes.func,
+  /**
    * Content to be displayed as a prefix for the input
    */
   prefixContent: PropTypes.oneOfType([
@@ -411,6 +421,10 @@ Input.propTypes = {
    * Classes to be applied to the Input component
    */
   className: PropTypes.string,
+  /**
+   * Props to be applied to cancel close button
+   */
+  disableClearIcon: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -433,7 +447,9 @@ Input.defaultProps = {
   validationMessage: '',
   bordered: true,
   dataList: null,
+  handleOnClick: null,
   className: '',
+  disableClearIcon: false,
 };
 
 export default Input;

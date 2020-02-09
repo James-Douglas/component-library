@@ -7,9 +7,18 @@ import getTheme from '../../../utils/getTheme';
 const theme = getTheme();
 const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fugiat veniam minus', 'et presentation tempora', 'xfque dfsdf', 'presentation dfsdf que ffgddfg', 'presentation dfsdf que'];
 
+
+let mockUseIsDesktopValue = true;
+jest.mock('../../../hooks/useIsDesktop', () => ({
+  __esModule: true,
+  default: jest.fn(() => mockUseIsDesktopValue),
+}));
+
 describe('Combo', () => {
   it('renders correct number options', () => {
     const { container } = render(<Combo handleChange={() => {}} prefillValue="que" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     const list = container.getElementsByTagName('li');
     expect(list.length).toBe(3);
   });
@@ -53,7 +62,9 @@ describe('Combo', () => {
   });
 
   it('renders correct with link text', () => {
-    const { getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { getByText, container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     expect(getByText('Can’t find your address?')).toBeInTheDocument();
   });
 
@@ -65,6 +76,8 @@ describe('Combo', () => {
 
   it('renders correct when click', () => {
     const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     const currentItem = container.getElementsByTagName('li')[0];
     const input = container.querySelector('input');
     fireEvent.mouseDown(currentItem);
@@ -74,6 +87,8 @@ describe('Combo', () => {
   it('selects an item passed it via callback', () => {
     const onSelectCb = jest.fn();
     const { container } = render(<Combo handleChange={onSelectCb} label="First Combo label" prefillValue="pre" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     const currentItem = container.getElementsByTagName('li')[0];
     const input = container.querySelector('input');
     fireEvent.mouseDown(currentItem);
@@ -89,8 +104,10 @@ describe('Combo', () => {
     expect(inputField.value).toBe('present');
   });
 
-  it('renders correct when click', () => {
+  it('renders correct when clickddsf', () => {
     const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     const currentItem = container.getElementsByTagName('li')[0];
     const input = container.querySelector('input');
     fireEvent.mouseDown(currentItem);
@@ -99,6 +116,8 @@ describe('Combo', () => {
 
   it('renders correct when click on second', () => {
     const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     const currentItem = container.getElementsByTagName('li')[1];
     const input = container.querySelector('input');
     fireEvent.mouseDown(currentItem);
@@ -106,7 +125,9 @@ describe('Combo', () => {
   });
 
   it('renders correct with link', () => {
-    const { getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     expect(getByText('Can’t find your address?').closest('a')).toHaveAttribute('href', 'https://www.comparethemarket.com.au/');
   });
 
@@ -133,21 +154,33 @@ describe('Combo', () => {
   it('renders correct opposite characterMinimum and visibility list', () => {
     const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
     const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     const list = container.getElementsByTagName('li');
     const listwrap = container.querySelector('[role="listwrap"]');
-    expect(listwrap).toHaveStyleRule('display', 'none');
-    expect(list.length).toBe(3);
-    inputField.focus();
     expect(listwrap).toHaveStyleRule('display', 'block');
+    expect(list.length).toBe(3);
+    inputField.blur();
+    expect(listwrap).toHaveStyleRule('display', 'none');
   });
 
   it('renders correct with link href', () => {
-    const { getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
+    expect(getByText('Can’t find your address?')).toBeInTheDocument();
+  });
+
+  it('renders correct with link href', () => {
+    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     expect(getByText('Can’t find your address?')).toBeInTheDocument();
   });
 
   it('renders correct without link', () => {
     const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
     expect(container).not.toHaveClass('item-manual-lookup');
   });
 
@@ -285,8 +318,8 @@ describe('Combo', () => {
   it('accessibility - click enter', () => {
     const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
     const inputField = container.querySelector('input');
-    const link = container.getElementsByTagName('a')[0];
     inputField.focus();
+    const link = container.getElementsByTagName('a')[0];
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
     const optionItem = container.querySelector('[role="buttonOption"]');
     expect(optionItem).toHaveFocus();
@@ -315,5 +348,76 @@ describe('Combo', () => {
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'e', code: 69 });
     expect(getByText('et presentation tempora')).toBeInTheDocument();
+  });
+
+  it('check mobile version exit on esc', () => {
+    mockUseIsDesktopValue = false;
+    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const inputField = container.querySelector('#mobilecombo-id-first');
+    inputField.click();
+    const overlay = container.querySelector('[role="option"]');
+    expect(container.firstChild.firstChild).toHaveClass('overlay');
+    const input = container.querySelector('#combo-id-first');
+    fireEvent.keyDown(input, { key: 'Escape', keyCode: 27 });
+    expect(overlay).not.toBeInTheDocument();
+  });
+
+  it('close overlay when choose item', () => {
+    mockUseIsDesktopValue = false;
+    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const inputField = container.querySelector('#mobilecombo-id-first');
+    inputField.click();
+    const inputDefaultField = container.querySelector('#combo-id-first');
+    inputDefaultField.focus();
+    expect(inputDefaultField).toHaveFocus();
+    fireEvent.keyDown(inputDefaultField, { key: 'ArrowDown', keyCode: 40 });
+    const focusItem = container.getElementsByTagName('li')[0];
+    focusItem.focus();
+    fireEvent.keyDown(focusItem, { key: 'Enter', keyCode: 13 });
+  });
+  it('check padding', () => {
+    mockUseIsDesktopValue = false;
+    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const inputField = container.querySelector('#mobilecombo-id-first');
+    inputField.click();
+    const inputDefaultField = container.querySelector('#combo-id-first');
+    inputDefaultField.focus();
+    expect(inputDefaultField).toHaveFocus();
+    const listitem = container.querySelectorAll('[role="listitem"]')[0];
+    expect(listitem).toHaveStyleRule('padding', `${theme.spacing[8]} ${theme.spacing[12]}`);
+    expect(listitem).toHaveStyleRule('cursor', 'pointer');
+  });
+  it('check on item close', () => {
+    mockUseIsDesktopValue = false;
+    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const inputField = container.querySelector('#mobilecombo-id-first');
+    inputField.click();
+    const inputDefaultField = container.querySelector('#combo-id-first');
+    inputDefaultField.focus();
+    expect(inputDefaultField).toHaveFocus();
+    const listitemSum = container.querySelectorAll('[role="listitem"]');
+    expect(listitemSum.length).toBe(3);
+    const listitem = listitemSum[1];
+    fireEvent.mouseDown(listitem);
+    const listitemSumAfterClick = container.querySelectorAll('[role="listitem"]');
+    expect(listitemSumAfterClick.length).toBe(0);
+  });
+  it('empty state check condition ', () => {
+    mockUseIsDesktopValue = false;
+    const { getByText, container } = render(<Combo handleChange={() => {}} prefillValue="" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} helperMessage="Please start typing" tooltip={{ title: 'Combo component' }} />);
+    const inputField = container.querySelector('#mobilecombo-id-first');
+    inputField.click();
+    const emptyState = getByText('Please start typing');
+    expect(emptyState).toBeInTheDocument();
+    expect(emptyState).toHaveStyleRule('font-size', `${theme.fontSize.base}`);
+    expect(emptyState).toHaveStyleRule('color', `${theme.combo.list.item.color}`);
+  });
+  it('no results check condition ', () => {
+    mockUseIsDesktopValue = false;
+    const { getByText, container } = render(<Combo handleChange={() => {}} prefillValue="random" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} emptyStateHeading="Sorry, no results found" />);
+    const inputField = container.querySelector('#mobilecombo-id-first');
+    inputField.click();
+    const emptyState = getByText('Sorry, no results found');
+    expect(emptyState).toBeInTheDocument();
   });
 });

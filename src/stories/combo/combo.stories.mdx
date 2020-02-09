@@ -6,6 +6,7 @@ import FluidContainer from '../../components/Grid/Container/FluidContainer.compo
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 
+
 <Meta title="Components|Combo" component={Combo} />
 
 # Combo
@@ -25,11 +26,18 @@ Combo is an extension of the Input component.
                   apiData={apiData}
                   id="combo-id-first"
                   value="ser"
-                  linkHref="https://www.comparethemarket.com.au/"
-                  linkText="Can’t find your address?"
                   required={false}
                   renderLimit={3}
+                  emptyStatePicture={{
+                    src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
+                    srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
+                    alt: 'alt text',
+                    title: 'no results found',
+                  }}
                   tooltip={{ title: 'Combo component' }}
+                  emptyStateHeading = "Sorry, no results found"
+                  emptyStateChildren='Try adjusting your search to find what you are looking for.'
+                  helperMessage='Please enter your address in the field above and we will try locate it.'
                   handleChange={(value) => {
                     // eslint-disable-next-line no-console
                     console.log(value)
@@ -77,6 +85,7 @@ Combo is an extension of the Input component.
       <FluidContainer>
         <Row>
           <Column>
+          <div style={{height: '300px'}}></div>
             <Combo
               id={id}
               label={label}
@@ -95,6 +104,10 @@ Combo is an extension of the Input component.
               apiData={apiData}
               linkHref={linkHref}
               linkText={linkText}
+              handleChange={(value) => {
+                // eslint-disable-next-line no-console
+                console.log(value)
+              }}
               tooltip={{
                 title,
                 body,
