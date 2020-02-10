@@ -7,14 +7,22 @@ Desigin system component library for CTM - tested on Node v10.17.0
 
 `yarn add @comparethemarketau/manor`
 
-Import manor css into your app
+Wrap your app in the ManorProvider
 
-`import '@comparethemarketau/manor/lib/styles.css';`
+```
+import { ManorProvider } from '@comparethemarketau/manor/lib';
+
+const App = () => (
+  <ManorProvider>
+    ... your app here
+  </ManorProvider>
+);
+```
 
 Import components as required
 
 ```
-import Header from '@comparethemarketau/manor/lib/Header'
+import { Header } from '@comparethemarketau/manor/lib'
 
 render = () => (
   <Header />
@@ -25,6 +33,7 @@ render = () => (
 ### TLDR;
 - `yarn storybook` - runs storybook for development
 - `yarn test` - runs the tests
+- `yarn tdd` - runs the tests with logs
 - `yarn lint` - runs the linter
 - `yarn build` - runs the build
 
