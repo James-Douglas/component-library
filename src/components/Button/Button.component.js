@@ -301,6 +301,10 @@ const Button = ({
   children,
   className,
 }) => {
+
+  const nonInlineTypes = ['primary', 'secondary', 'tertiary', 'footer-link'];
+  const inlineComponent = href && !nonInlineTypes.includes(variant);
+
   const renderContent = () => {
     if (icon) {
       return (
@@ -341,7 +345,7 @@ const Button = ({
   };
 
   return (
-    <StyledButtonWrap isInlineBlock={href && variant !== 'footer-link'} variant={variant} width={width}>
+    <StyledButtonWrap isInlineBlock={inlineComponent} variant={variant} width={width}>
       {renderButton()}
     </StyledButtonWrap>
   );
