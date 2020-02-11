@@ -38,7 +38,7 @@ exports[`Button renders correctly with minimal props 1`] = `
   padding-bottom: 0.4rem;
 }
 
-.c1 > .sc-AykKC {
+.c1 > .sc-AxjAm {
   margin-right: 1.2rem;
 }
 
