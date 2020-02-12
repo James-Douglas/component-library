@@ -1,10 +1,17 @@
+import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, select, array, object } from '@storybook/addon-knobs';
-import Dropdown from '../../components/Dropdown/Dropdown.component';
+import styled, { css } from 'styled-components';
 import fieldValidation from './flag.png';
+import Dropdown from '../../components/Dropdown/Dropdown.component';
+import Checkbox from '../../components/Checkbox/Checkbox.component';
+import DropdownView from './dropdownView.view';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/pro-regular-svg-icons/faCheck';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
 
 <Meta title="Components|Dropdown" component={Dropdown} />
 
@@ -13,127 +20,86 @@ import Column from '../../components/Grid/Column/Column.component';
 The CTM Dropdown component, which is essentially a styled HTML select and it's child options - does not support multi
 select (another component will handle multi select).
 
-<Preview>
-  <Story name="dropdown">
-    {() => {
-      const options = [
-        { value: '', title: 'Default Item - Title'},
-        { value: 'First', title: 'First Item - Title'},
-        { value: 'Second', title: 'Second Item - Title', selected: true},
-        { value: 'Third', title: 'Third Item - Title', disabled: true }
-      ];
-      return (
-        <FluidContainer>
-          <Row>
-            <Column>
-               <Dropdown
-               id="input-one"
-               options={options}
-               supportingElements
-               label="Dropdown Label"
-             />
-          </Column>
-        </Row>
-      </FluidContainer>
-      );
-    }}
-  </Story>
-</Preview>
-
-## Dropdown with Prefix
-
-The CTM Dropdown component, which is essentially a styled HTML select and it's child options - does not support multi
-select (another component will handle multi select).
-
-<Preview>
-  <Story name="Dropdown with PrefixContent">
-    {() => {
-      const options = [
-        { value: 'First', title: 'First Item - Title' },
-        { value: 'Second', title: 'Second Item - Title' },
-        { value: 'Third', title: 'Third Item - Title', disabled: true }
-      ];
-      return (
-        <FluidContainer>
-           <Row>
-              <Column>
-                <div style={{backgroundColor: '#f3f3f3', padding: '1.2rem', borderRadius: '0.8rem', maxWidth: '64rem', width: '100%', fontWeight: '400', fontSize: '1.6rem', lineHeight: '1.625'}}>
-                  <Dropdown
-                    id="input-two"
-                    options={options}
-                    supportingElements
-                    label="From currency"
-                    bordered={false}
-                    required
-                    prefixContent="$"
-                    bordered={false}
-                  />
-                  <Dropdown
-                    id="input-three"
-                    options={options}
-                    supportingElements
-                    label="From currency"
-                    bordered={false}
-                    required
-                    prefixContent={<img src={fieldValidation} className="w-20" />}
-                    bordered={false}
-                  />
-                </div>
-              </Column>
-            </Row>
-         </FluidContainer>
-      );
-    }}
-  </Story>
-</Preview>
+<Story name="Dropdown">
+  <DropdownView />
+</Story>
 
 ## Dropdown with props
 <Props of={Dropdown} />
 
-<Story name="dropdown with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+
+<Story name="Dropdown with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
+   const options = [
+      {
+        checkboxId: 'A-2', title: 'Default Item - Title', checkboxDisabled: false, selected: true,
+      },
+      {
+        checkboxId: 'A-3', title: 'First Item - Title', checkboxDisabled: false, selected: false,
+      },
+      {
+        checkboxId: 'A-4', title: 'Second Item - Title', checkboxDisabled: false, selected: false,
+      },
+      {
+        checkboxId: 'A-5', title: 'Third Item - Title', checkboxDisabled: false, selected: false,
+      },
+    ];
+    const desktop = useIsDesktop();
+    const [selectedIndex, setSelectedIndex] = useState(options.findIndex((option) => option.selected) || 0);
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
-    const label = text('label', 'Dropdown example', componentPropsId);
+    const id = text('id', 'dropdown-demo', componentPropsId);
+    const label = text('label', 'Example Combo', componentPropsId);
     const validationMessage = text('validationMessage', '', componentPropsId);
-    const prefillValue = text('prefillValue', '', componentPropsId);
-    const bordered = boolean('bordered', true, componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
-    const required = boolean('required', true, componentPropsId);
-    const readOnly = boolean('readOnly', false, componentPropsId);
-    const options = [
-      object('first option', { value: 'First', title: 'First Item - Title' }, componentPropsId),
-      object('second option', { value: 'Second', title: 'Second Item - Title', selected: true }, componentPropsId),
-      object('third option', { value: 'Third', title: 'Third Item - Title', disabled: true }, componentPropsId)
-    ];
+    const prefixContent = text('prefix', '', componentPropsId);
     const title = text('title', 'input tooltip', tooltipGroupId);
     const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
-    const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
     const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
+    const StyledListItem = styled.li`
+      svg {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+      }
+      ${({ active, desktop }) => (active && !desktop) && css`
+        background: #f1f8fb;
+        color: #0273b5;
+         svg {
+          display: none;
+         }
+      `}
+    `;
     return (
-       <FluidContainer>
-         <Row>
-            <Column>
-              <Dropdown
-                id="input-one"
-                label={label}
-                options={options}
-                tooltip={{
-                  title,
-                  body,
-                  justifyEnd,
-                  screenReaderLabel,
-                }}
-                validationMessage={validationMessage}
-                prefillValue={prefillValue}
-                bordered={bordered}
-                disabled={disabled}
-                required={required}
-                readOnly={readOnly}
-              />
-            </Column>
-           </Row>
-       </FluidContainer>
+      <FluidContainer>
+        <Row>
+          <Column>
+            <div style={{height: '300px'}}></div>
+            <Dropdown
+              id={id}
+              label={label}
+              options={options}
+              supportingElements
+              validationMessage={validationMessage}
+              tooltip={{
+                title,
+                body,
+                screenReaderLabel,
+              }}
+              handleClick={(event, index) => { setSelectedIndex(index); }}
+              handleFocus={(value) => { console.log(value) }}
+              handleBlur={(value) => { console.log(value) }}
+            >
+              {options.map((option, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <StyledListItem option={option} index={index} key={index} ref={option.ref} role="option" tabIndex={index} active={selectedIndex === index} desktop={desktop} >
+                  {option.title}
+                </StyledListItem>
+              ))}
+            </Dropdown>
+          </Column>
+        </Row>
+      </FluidContainer>
     );
   }}
 </Story>

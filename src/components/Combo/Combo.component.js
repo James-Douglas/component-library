@@ -18,7 +18,7 @@ const StyledDropdownList = styled.div`
   position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')};
   width: ${({ theme }) => (theme.maxWidth.full)};
   display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')}; 
-  z-index: ${({ theme }) => (theme.zIndex[20])}; 
+  z-index: ${({ theme }) => (theme.zIndex[40])}; 
   background: ${({ theme }) => (theme.combo.list.background)};  
   box-shadow: ${({ theme, desktop }) => (desktop ? theme.combo.list.shadow : '')};  
   margin-top: ${({ theme }) => (theme.spacing[8])};
@@ -34,8 +34,7 @@ const StyledDropdownList = styled.div`
 
 const StyledList = styled.ul`
   width: ${({ theme }) => (theme.maxWidth.full)};
-  padding: 0;
-  margin-top: ${({ theme }) => (theme.spacing[8])};  
+  padding: 0; 
   z-index: ${({ theme }) => (theme.zIndex[30])}; 
   color: ${({ theme }) => (theme.combo.list.color)}; 
 `;
@@ -82,20 +81,28 @@ const StyledButtonWrap = styled.div`
 `;
 
 const StyledDiv = styled.div`
-  width: ${({ theme }) => (theme.maxWidth.full)};
-  .input-label-container {
-  ${({ desktop }) => !desktop && css`
-     z-index: ${({ theme }) => (theme.zIndex[40])}; 
-     top: ${({ theme }) => theme.spacing[136]};
-     position: fixed;
-     right: ${({ theme }) => theme.spacing[16]};
-     left: ${({ theme }) => theme.spacing[16]};
-     max-width: ${({ theme }) => `calc(100% - ${theme.spacing[32]})`};
-     .label {
-       visibility: hidden;
+ ${({ desktop }) => !desktop && css`
+    width: ${({ theme }) => (theme.maxWidth.full)};
+    z-index: ${({ theme }) => (theme.zIndex[40])}; 
+    top: ${({ theme }) => theme.spacing[136]};
+    position: fixed;
+    right: ${({ theme }) => theme.spacing[16]};
+    left: ${({ theme }) => theme.spacing[16]};
+    max-width: ${({ theme }) => `calc(100% - ${theme.spacing[8]})`};
+   .label {
+      visibility: hidden;
     }
-   `}
-  }  
+  .input-wrap {
+    width: auto;
+    right: ${({ theme }) => theme.spacing[16]};
+    left: ${({ theme }) => theme.spacing[16]};
+    position: fixed;
+    top: ${({ theme }) => theme.spacing[162]};
+    p {
+      display: none;
+    }
+  }
+`}
 `;
 
 const WrapList = styled.div`
@@ -106,10 +113,10 @@ const WrapList = styled.div`
     left: ${({ theme }) => theme.spacing[8]};
     position: fixed;
     bottom: ${({ theme }) => theme.spacing[32]};
-    top: ${({ theme }) => theme.spacing[152]};
+    top: ${({ theme }) => theme.spacing[148]};
     background: ${({ theme }) => theme.colors.white};
     border-radius: ${({ theme }) => theme.borderRadius.default};
-    padding-top: ${({ theme }) => theme.spacing[60]};
+    padding-top: ${({ theme }) => theme.spacing[80]};
     max-height: initial;
     overflow: hidden;
     &:after {
@@ -147,6 +154,8 @@ const StyledEmptyStateMessage = styled.div`
   position: fixed;
   width: ${({ theme }) => (theme.maxWidth.full)};
   max-width: ${({ theme }) => `calc(100% - ${theme.spacing[32]})`};
+  right: ${({ theme }) => theme.spacing[16]};
+  left: ${({ theme }) => theme.spacing[16]};
   max-height: ${({ theme }) => (theme.spacing[200])};
   top: ${({ theme }) => theme.spacing[280]};
   z-index: ${({ theme }) => (theme.zIndex[50])}; 
@@ -663,11 +672,11 @@ Combo.defaultProps = {
   handleInput: null,
   handleFocus: null,
   handleBlur: null,
-  emptyStateChildren: '',
+  emptyStateChildren: 'No results found',
   emptyStatePicture: null,
   emptyStateClassName: '',
-  emptyStateHeading: null,
-  helperMessage: null,
+  emptyStateHeading: 'No results found',
+  helperMessage: 'Please start typing',
 };
 
 export default Combo;

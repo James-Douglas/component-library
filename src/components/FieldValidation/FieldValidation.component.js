@@ -10,7 +10,6 @@ const StyledFieldValidation = styled.div`
   color: ${({ theme }) => theme.colors.invalid};
   z-index: ${({ theme }) => theme.zIndex['30']};
   margin-top: ${({ theme }) => theme.spacing['8']};
-  padding: ${({ theme }) => `${theme.spacing['4']} ${theme.spacing['8']}`};
 
   @media (max-width: ${screens.xs}) {
     width: 100%;
@@ -28,6 +27,7 @@ const StyledFieldValidation = styled.div`
 
 const StyledMessage = styled.p`
   margin: 0;
+  padding: ${({ theme }) => `${theme.spacing['4']} ${theme.spacing['8']}`};
 `;
 
 const FieldValidation = ({ message }) => {

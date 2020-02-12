@@ -1,376 +1,413 @@
-import React, { useState } from 'react';
+import React, {
+  useState,
+  useRef,
+  useLayoutEffect, useEffect, useCallback,
+} from 'react';
+
 import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
-import styled, { css } from 'styled-components';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import SupportingElements from '../SupportingElements/SupportingElements';
 import Label from '../Label/Label.component';
+import Overlay from '../Overlay/Overlay.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
+import LayerEventManager from '../../LayerEventManager';
 
-const StyledWrapper = styled.div`
-  margin-bottom: 2rem;
-`;
 
-const StyledOption = styled.option`
+const StyledDropdownMainWrap = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.dropdown.color};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  &.default {
-    font-style: italic;
-  }
-  &:disabled {
-    color: ${({ theme }) => theme.dropdown.colorDisabled};
-  }
 `;
 
-const sharedStyleNoBorder = css`
-  border: ${({ theme }) => theme.borders.transparent};
-  border-width: ${({ theme }) => theme.spacing.px};
-  outline: none;
-`;
-
-const StyledPrefix = styled.div`
-  display: flex;
+const StyledLabel = styled.div`
+  width: 100%;
+  display: inline-flex;
   align-items: center;
-  background: ${({ theme }) => theme.dropdown.prefixBackground};
-  border: ${({ theme }) => theme.borders.transparent};
-  height: 100%;
-  width: 100%;
-  &:hover {
-    border: ${({ theme }) => theme.borders.hover};
-  }
-  &:hover select {
-    border: ${({ theme }) => theme.borders.transparent};
-    border-width: ${({ theme }) => theme.spacing.px};
-    outline: none;
-  }
-  &:focus select {
-    border: ${({ theme }) => theme.borders.transparent};
-    border-width: ${({ theme }) => theme.spacing.px};
-    outline: none;
-  }
-   ${({ isFocusActive, theme }) => isFocusActive && css`
-      border: ${theme.borders.hover};
-  `}
-`;
-
-const StyledPrefixRight = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  background: ${({ theme }) => theme.dropdown.prefixBackground};
-  align-items: center;
-  padding-right: ${({ theme }) => theme.spacing['20']};
-  padding-left: ${({ theme }) => theme.spacing['20']};
-  min-width: ${({ theme }) => theme.spacing[4]};
-  border: none;
-  &:focus  {
-    outline: none;
-  }
-  img {
-    max-width: 100%;
-  }
-`;
-
-const StyledChevron = styled.div`
-  z-index: 1;
-  position: absolute;
-  right: ${({ theme }) => theme.spacing[20]};
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: ${({ theme }) => theme.fontSize['3xs']};
-`;
-
-const StyledSelectContainer = styled.div`
   position: relative;
-  width: 100%;
+  height: ${({ theme }) => theme.spacing[44]};
+  padding: ${({ theme }) => (`${theme.spacing['8']} ${theme.spacing['12']}`)};
+  .svgArrowWrap {
+    position: absolute;
+    right: ${({ theme }) => theme.spacing[12]};
+    top: ${({ theme }) => theme.spacing[12]};
+    fill: ${({ theme }) => theme.colors.greyDarkest};
+  }
 `;
 
-const StyledSelectWrap = styled.div`
-  width: 100%;
-  position: relative;
-  height: 100%;
-  display: flex;
-  background: ${({ theme }) => theme.dropdown.background};
-`;
-
-const StyledSelect = styled.select`
-  color: ${({ theme }) => theme.colors.black};
-  background: transparent;
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  max-width: 100%;
-  border-radius: 0;
-  font-size: ${({ theme }) => theme.fontSize.base};
-  box-shadow: none;
-  margin: 0;
-  position: relative;
-  z-index: ${({ theme }) => (theme.zIndex[10])};
-  appearance: none;
-  width: 100%;
-  line-height: ${({ theme }) => theme.lineHeight.tighter};
-  height: ${({ theme }) => theme.spacing['42']};
-  padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['40']} ${theme.spacing['8']} ${theme.spacing['12']}`};
-  box-sizing: border-box;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+const StyledDropdownButton = styled.div`
   border: ${({ theme }) => theme.borders.component};
-  &:disabled {
-    border: ${({ theme }) => theme.borders.component};
-    opacity: ${({ theme }) => theme.dropdown.disabledOpacity};
-  }
-  &:disabled:hover {
-    border: ${({ theme }) => theme.borders.component};
-  }
-   &:disabled + div svg{
-    opacity: ${({ theme }) => theme.dropdown.disabledSvgOpacity};
-   }
-  &.manor-dropdown::-ms-expand {
-   display: none;
+  &:hover,
+  &:focus {
+    border: ${({ theme }) => theme.combo.list.item.borderFocus};
+    outline: none;
   }
   &:hover {
-    ${sharedStyleNoBorder};
-  }
-  &:focus {
-     ${sharedStyleNoBorder};
-  }
-  ${({ isPrefix, theme }) => !isPrefix && css`
-    &:hover {
-      border: ${theme.borders.hover};
+    cursor: pointer;
+    .svgArrowWrap {
+      path {
+        fill: ${({ theme }) => theme.colors.blueLight};
+      }
     }
+  }
+  ${({ invalid }) => invalid && css`
+    border: ${({ theme }) => theme.borders.invalid};
+    &:hover,
     &:focus {
-      border: ${theme.borders.hover};
-    }
+       border: ${({ theme }) => theme.borders.invalid};
+       cursor: default;
+    } 
   `}
- ${({ bordered, theme }) => !bordered && css`
-   border: ${theme.borders.transparent};
-  `}
-  ${({ invalidClass, theme }) => invalidClass && css`
-    border: ${theme.borders.invalid};
-  `}
-
-  /* **********************************************************************
-  invalid styles
-  ************************************************************************* */
-  /* .manor-dropdown:invalid, */    /* Note: Required fields would have red around them on page load if :invalid was used */
-  ${({ invalidClass, theme }) => invalidClass && css`
-    &.invalid{
-      border: ${theme.borders.invalid};
-    }
-    &[aria-invalid=true] {
-      border: ${theme.borders.invalid};
-    }
+  ${({ disabled }) => disabled && css`
+    background: ${({ theme }) => theme.colors.greyLight};
+    border: ${({ theme }) => theme.borders.disabled};
+    &:hover,
+    &:focus {
+       border: ${({ theme }) => theme.borders.disabled};
+       cursor: default;
+       .svgArrowWrap {
+        path {
+          fill: ${({ theme }) => theme.colors.black};
+        }
+      }
+    } 
   `}
 `;
 
-const WithPrefixContent = ({ children, isFocusActive, prefixContent }) => (prefixContent
-  ? (
-    <StyledPrefix isFocusActive={isFocusActive} isPrefix={Boolean(prefixContent)}>
-      <StyledPrefixRight tabIndex="-1">{prefixContent}</StyledPrefixRight>
-      {children}
-    </StyledPrefix>
-  ) : children
-);
+const StyledListul = styled.ul`
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  ${({ desktop }) => desktop && css`
+    max-height: ${({ theme }) => (theme.spacing[252])};
+    overflow: auto;
+  `}
+  li {
+    list-style-type: none;
+    position: relative;
+    border: ${({ theme }) => theme.borders.transparent};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    padding: ${({ theme }) => (`${theme.spacing['8']} ${theme.spacing['32']}`)};
+    &:hover {
+      cursor: pointer;
+      background: ${({ theme }) => (theme.colors.greyLight)};
+    }
+    ${({ desktop }) => !desktop && css`
+      font-size: ${({ theme }) => theme.fontSize.xl};
+      padding: ${({ theme }) => (`${theme.spacing['16']} ${theme.spacing['16']} ${theme.spacing['20']}`)};
+    `}
+    &:focus {
+      outline: none;
+      border: ${({ theme }) => theme.combo.list.item.borderFocus};
+    }
+  }
+`;
+
+const StyledList = styled.div`
+  position: absolute;
+  display: inline-flex;
+  width: 100%;
+  box-shadow: ${({ theme }) => theme.dropdown.shadow};
+  z-index: ${({ theme }) => theme.zIndex[40]};
+  background: ${({ theme }) => theme.colors.white};
+  top: ${({ theme }) => `calc(100% + ${theme.spacing[8]})`};
+  ${({ desktop, isDropdownOpen }) => (isDropdownOpen && !desktop) && css`
+    max-height: initial;
+    overflow: auto;
+    right: ${({ theme }) => theme.spacing[8]};
+    left: ${({ theme }) => theme.spacing[8]};
+    width: ${({ theme }) => `calc(100% - ${theme.spacing[16]})`};
+    position: fixed;
+    bottom: ${({ theme }) => theme.spacing[32]};
+    top: ${({ theme }) => theme.spacing[152]};
+    background: ${({ theme }) => theme.colors.white};
+    border-radius: ${({ theme }) => theme.borderRadius.default};
+    z-index: ${({ theme }) => theme.zIndex[40]};
+  `}
+`;
+
+const StyledAffix = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: ${({ theme }) => theme.fontSize.base};
+  padding: ${({ theme }) => `0 ${theme.spacing[8]} 0 0`};
+  padding-right: ${({ affixType }) => (affixType === 'prefix' ? '2rem' : '')};
+  padding-left: ${({ affixType }) => (affixType === 'suffix' ? '2rem' : '')};
+  background: ${({ theme }) => theme.input.background};
+`;
 
 const Dropdown = ({
+  id,
+  options,
   label,
   tooltip,
+  children,
   validationMessage,
-  id,
-  name,
-  bordered,
   disabled,
-  required,
-  options,
-  handleChange,
-  className,
   prefixContent,
+  handleClick,
   handleFocus,
   handleBlur,
 }) => {
-  const invalidClass = validationMessage && validationMessage.length > 0;
-  const isOptionExist = options && options.length;
-  const isDisabled = isOptionExist ? disabled : !isOptionExist;
-  const [isFocusActive, setFocusActive] = useState(false);
+  const node = useRef();
+  const desktop = useIsDesktop();
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isMobileModalView, setIsMobileModalView] = useState(false);
+  const [focusedRef, setFocusedRef] = useState(null);
+  const mobileOverlay = !desktop && isMobileModalView;
+  const handleDropdownButton = () => {
+    if (!disabled) {
+      setDropdownOpen(!isDropdownOpen);
+      setIsMobileModalView(true);
+    }
+  };
 
-  let valueDropdown;
-  if (options && options.length) {
-    const valueOption = options ? options.find((i) => i.selected) : false;
-    valueDropdown = valueOption ? valueOption.value : options[0].value;
-  } else {
-    valueDropdown = '';
-    // eslint-disable-next-line no-console
-    console.warn('Invalid prop \'options\' supplied to Dropdown. Validation failed.');
-  }
-  const [selectValue, setSelectValue] = useState(valueDropdown);
-
-  const focusHandler = () => {
-    setFocusActive(true);
+  const handleFocusDropdownButton = () => {
+    if (!desktop) {
+      handleDropdownButton();
+    }
     if (handleFocus) {
       handleFocus();
     }
   };
 
-  const blurHandler = () => {
-    setFocusActive(false);
+  const handleBlurDropdownButton = () => {
     if (handleBlur) {
       handleBlur();
     }
   };
 
-  const changeHandler = (event) => {
-    event.preventDefault();
-    const selectedValue = event.target.value;
-    setSelectValue(selectedValue);
-    if (handleChange) {
-      handleChange(selectedValue);
+  const modalClose = () => {
+    toggleDropdown(false);
+    setIsMobileModalView(false);
+    setFocusedRef(null);
+  };
+  const toggleDropdown = (bool) => {
+    setDropdownOpen(bool);
+    !bool && setFocusedRef(null);
+  };
+  const result = options.filter((option) => option.selected);
+  const selectedValueResult = result && result[0] ? result[0].title : options[0].title;
+  const [selectedValue, setSelectedValue] = useState(selectedValueResult);
+  const [optionsArray, modifyOptionsArray] = useState(options);
+  const onItemClick = (event, index) => {
+    const currenPosition = options && options[index] ? options[index] : options[0];
+    setSelectedValue(currenPosition.title);
+    // eslint-disable-next-line no-param-reassign,no-return-assign
+    optionsArray.map((option, i) => option.selected = i === index);
+    modifyOptionsArray(optionsArray);
+
+    // call parent
+    handleClick && handleClick(event, index);
+  };
+  const childrenWithProps = React.Children.map(children, (child) => React.cloneElement(child, {
+    onClick: (event) => {
+      onItemClick(event, child.props.index);
+      modalClose();
+    },
+    onKeyDown: (event) => {
+      if (event.keyCode === 13) {
+        onItemClick(event, child.props.index);
+        modalClose();
+      }
+    },
+    ref: React.createRef(),
+  }));
+  const handleClickOutside = (e) => {
+    if (!node.current.contains(e.target)) {
+      setDropdownOpen(false);
     }
   };
 
+  const closeFieldModal = () => {
+    setIsMobileModalView(false);
+  };
+
+  const keyboardArrowsAccessibility = (event) => {
+    setDropdownOpen(true);
+    // eslint-disable-next-line no-shadow
+    const selectedIndex = childrenWithProps.findIndex((event) => event.props.option.selected);
+    if (selectedIndex > -1) {
+      setFocusedRef(selectedIndex);
+    } else {
+      setFocusedRef(null);
+    }
+  };
+  const keyboardAccessibility = (event) => {
+    if (!disabled) {
+      switch (event.key) {
+        case 'Tab':
+          break;
+        case 'Escape':
+          toggleDropdown(false);
+          break;
+        case 'Enter':
+          setDropdownOpen(!isDropdownOpen);
+          break;
+        case 'ArrowUp':
+          if (!isDropdownOpen) {
+            keyboardArrowsAccessibility(event);
+            return false;
+          }
+          if (focusedRef === null || focusedRef === 0) {
+            setFocusedRef(childrenWithProps.length - 1);
+          } else {
+            setFocusedRef(focusedRef - 1);
+          }
+          break;
+        case 'ArrowDown':
+          if (!isDropdownOpen) {
+            keyboardArrowsAccessibility(event);
+            return false;
+          }
+          if (focusedRef === null || focusedRef === childrenWithProps.length - 1) {
+            setFocusedRef(0);
+          } else {
+            setFocusedRef(focusedRef + 1);
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    focusedRef !== null && childrenWithProps[focusedRef].ref && childrenWithProps[focusedRef].ref.current && childrenWithProps[focusedRef].ref.current.focus();
+  }, [childrenWithProps, focusedRef]);
+
+  useLayoutEffect(() => {
+    // add when mounted
+    document.addEventListener('mousedown', handleClickOutside);
+    // return function to be called when unmounted
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [handleClickOutside]);
+
+  const handleUserKeyPress = useCallback((event) => {
+    const { keyCode } = event;
+    // escape
+    if (keyCode === 27) {
+      setIsMobileModalView(false);
+    }
+  }, [setIsMobileModalView]);
+
+  useLayoutEffect(() => {
+    window.addEventListener('keydown', handleUserKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleUserKeyPress);
+    };
+  }, [handleUserKeyPress]);
   return (
-    <StyledWrapper>
-      <Label forId={id} text={label} tooltip={tooltip} />
-      <WithPrefixContent isFocusActive={isFocusActive} prefixContent={prefixContent}>
-        <StyledSelectContainer>
-          <StyledSelectWrap>
-            <StyledSelect
-              id={id}
-              name={name}
-              disabled={isDisabled}
-              required={required}
-              value={selectValue}
-              onChange={changeHandler}
-              onFocus={focusHandler}
-              onBlur={blurHandler}
-              invalidClass={invalidClass}
-              bordered={bordered}
-              className={className}
-              isPrefix={Boolean(prefixContent)}
-              tabIndex="0"
-            >
-              {options.map((option) => (
-                <StyledOption
-                  key={option.value}
-                  value={option.value}
-                  id={`${id}_${option.value}`}
-                  disabled={option.disabled}
-                >
-                  {option.title}
-                </StyledOption>
-              ))}
-            </StyledSelect>
-            <StyledChevron>
-              <FontAwesomeIcon icon={faChevronDown} size="2x" />
-            </StyledChevron>
-          </StyledSelectWrap>
-          <SupportingElements required={required} disabled={disabled} label={label} />
-        </StyledSelectContainer>
-      </WithPrefixContent>
-      <FieldValidation message={validationMessage} />
-    </StyledWrapper>
+    <LayerEventManager id={`LayerEventManagerDropdown${id}`} visible={mobileOverlay && isDropdownOpen}>
+      {(mobileOverlay && isDropdownOpen) && (
+        <Overlay opacityLevel={0.3} show={mobileOverlay && isDropdownOpen} onClose={closeFieldModal} handleClick={closeFieldModal} />
+      )}
+      <>
+        <StyledDropdownMainWrap ref={node} onKeyDown={keyboardAccessibility}>
+          <Label forId={id} text={label} tooltip={tooltip} />
+          <StyledDropdownButton
+            role="button"
+            onClick={handleDropdownButton}
+            onFocus={handleFocusDropdownButton}
+            onBlur={handleBlurDropdownButton}
+            tabIndex={0}
+            invalid={validationMessage && validationMessage.length > 0}
+            disabled={disabled}
+          >
+            <StyledLabel>
+              {prefixContent && <StyledAffix>{prefixContent}</StyledAffix>}
+              <span>{selectedValue}</span>
+              <span className="svgArrowWrap"><FontAwesomeIcon icon={faChevronDown} size="sm" flip={isDropdownOpen ? 'vertical' : null} /></span>
+            </StyledLabel>
+          </StyledDropdownButton>
+          {Boolean(isDropdownOpen) && (
+            <StyledList isDropdownOpen={isDropdownOpen} desktop={desktop}>
+              <StyledListul desktop={desktop}>
+                {childrenWithProps}
+              </StyledListul>
+            </StyledList>
+          )}
+        </StyledDropdownMainWrap>
+        <FieldValidation message={validationMessage} />
+      </>
+    </LayerEventManager>
   );
 };
 
 Dropdown.propTypes = {
   /**
-   * Label for the Dropdown.
-   */
-  label: PropTypes.string,
-  /**
-   *  Tooltip object (see Tooltip documentation)
-   */
-  tooltip: PropTypes.shape(tooltipPropTypes),
-  /**
-   *  Displays given validation message and invalid styles on the component when provided.
-   */
-  validationMessage: PropTypes.string,
-  /**
-   * Specifies a unique id for an element
+   * Unique id for the component. Required.
    */
   id: PropTypes.string.isRequired,
   /**
-   * Defines a name for the drop-down list
+   *
    */
-  name: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.object),
   /**
-   * Styles the input with a border
+   * Label for the input
    */
-  bordered: PropTypes.bool,
+  label: PropTypes.string,
   /**
-   * Disables the input
+   * Tooltip object (see Tooltip documentation)
    */
-  disabled: PropTypes.bool,
+  tooltip: PropTypes.shape(tooltipPropTypes),
   /**
-   * Define whether this is a required field
+   * Label for the Dropdown.
    */
-  required: PropTypes.bool,
-  /**
-   * Onchange function, called with the selected value
-   */
-  handleChange: PropTypes.func,
-  /**
-   * Called on focus of the checkbox
-   */
-  handleFocus: PropTypes.func,
-  /**
-   * Called on blur of the checkbox
-   */
-  handleBlur: PropTypes.func,
-  /**
-   * The dropdown options
-   */
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string,
-    title: PropTypes.string,
-    disabled: PropTypes.bool,
-    selected: PropTypes.bool,
-  })).isRequired,
-
-  /**
-   * Classes to be applied to the select element
-   */
-  className: PropTypes.string,
-  /**
-   * Content to be displayed as a prefix for the dropdown
-   */
-  prefixContent: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-  ]),
-};
-
-Dropdown.defaultProps = {
-  label: '',
-  tooltip: {},
-  validationMessage: '',
-  name: '',
-  bordered: true,
-  disabled: false,
-  required: false,
-  handleChange: null,
-  className: '',
-  prefixContent: '',
-  handleFocus: null,
-  handleBlur: null,
-};
-
-WithPrefixContent.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  isFocusActive: PropTypes.bool,
+  /**
+   * Displays given validation message and invalid styles on the component when provided.
+   */
+  validationMessage: PropTypes.string,
+  /**
+   * Disables the button via a class on its wrapper, and an attribute on the dropdown.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Content to be displayed as a prefix for the input
+   */
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Called on click of the dropdown's item
+   */
+  handleClick: PropTypes.func,
+  /**
+   * Called on focus of the dropdown
+   */
+  handleFocus: PropTypes.func,
+  /**
+   * Function called when dropdown loses focus
+   */
+  handleBlur: PropTypes.func,
+
 };
-WithPrefixContent.defaultProps = {
+
+Dropdown.defaultProps = {
+  options: [],
+  label: '',
+  tooltip: {},
   children: '',
-  isFocusActive: false,
+  validationMessage: '',
+  disabled: false,
   prefixContent: '',
+  handleClick: null,
+  handleFocus: null,
+  handleBlur: null,
 };
 
 export default Dropdown;

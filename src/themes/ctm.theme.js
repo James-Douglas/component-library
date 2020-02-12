@@ -331,6 +331,7 @@ const ctmTheme = {
     disabledOpacity: '0.5',
     disabledSvgOpacity: '0.3',
     prefixBackground: colors.white,
+    shadow: '0px 3px 8px rgba(0, 0, 0, 0.1)',
   },
   featureList: {
     color: colors.secondaryDarker,

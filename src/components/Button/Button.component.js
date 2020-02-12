@@ -301,7 +301,6 @@ const Button = ({
   children,
   className,
 }) => {
-
   const nonInlineTypes = ['primary', 'secondary', 'tertiary', 'footer-link'];
   const inlineComponent = href && !nonInlineTypes.includes(variant);
 

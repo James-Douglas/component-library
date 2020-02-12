@@ -1,170 +1,528 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render, fireEvent } from '../../../testUtils';
-import Dropdown from '../Dropdown.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/pro-regular-svg-icons/faCheck';
+import { act } from 'react-dom/test-utils';
+import { fireEvent, render } from '../../../testUtils';
 import getTheme from '../../../utils/getTheme';
+import Dropdown from '../Dropdown.component';
+
 
 const theme = getTheme();
+let mockUseIsDesktopValue = true;
+jest.mock('../../../hooks/useIsDesktop', () => ({
+  __esModule: true,
+  default: jest.fn(() => mockUseIsDesktopValue),
+}));
+
 
 describe('Dropdown', () => {
-  const optionsSelected = [
-    { value: 'Default', title: 'Default Item - Title' },
-    { value: 'First', title: 'First Item - Title' },
-    { value: 'Second', title: 'Second Item - Title', selected: true },
-    { value: 'Third', title: 'Third Item - Title', disabled: true },
-  ];
-  const optionsDefault = [
-    { value: 'Default', title: 'Default Item - Title' },
-    { value: 'First', title: 'First Item - Title' },
-    { value: 'Second', title: 'Second Item - Title' },
-    { value: 'Third', title: 'Third Item - Title', disabled: true },
-  ];
+  it('accessibility check for arrow down', () => {
+    const options = [
+      {
+        checkboxId: 'A-2',
+        title: '1Default Item - Title',
+        checkboxDisabled: false,
+        selected: true,
+        ref: React.createRef(),
+      },
+      {
+        checkboxId: 'A-3',
+        title: '2First Item - Title',
+        checkboxDisabled: false,
+        selected: false,
+        ref: React.createRef(),
+      },
+      {
+        checkboxId: 'A-4',
+        title: '3First Item - Title',
+        checkboxDisabled: false,
+        selected: false,
+        ref: React.createRef(),
+      },
+    ];
+    const onItemClick = jest.fn();
+    const onItemKeyDown = jest.fn();
+    const { container, getByText } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="3First Item - Title"
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+    fireEvent.keyDown(buttonDropdown, { key: 'Tab', keyCode: 9 });
+    buttonDropdown.focus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
+    const focusItem = container.getElementsByTagName('li')[0];
+    expect(getByText('2First Item - Title')).toBeInTheDocument();
+    const ulList = container.querySelector('ul');
+    expect(ulList).toHaveStyleRule('max-height', '25.2rem');
+    expect(focusItem).toHaveFocus();
 
-  it('renders with minimal props', () => {
-    // const mockTestClick = jest.fn();
-    const selectedValue = 'Second';
-    const { container, getByText } = render(<Dropdown id="dropdown-one" value={selectedValue} options={optionsSelected} label="Dropdown Label" bordered />);
-    // test label
-    expect(getByText('Dropdown Label')).toBeInTheDocument();
-    // test options count
-    const dropdownOptions = container.getElementsByTagName('option');
-    const dropdownOptionsCount = dropdownOptions.length;
-    expect(dropdownOptionsCount).toBe(optionsSelected.length);
-    // test selected value
-    const dropdown = container.getElementsByTagName('select')[0];
-    const dropdownValue = dropdown.value;
-    expect(dropdownValue).toBe(selectedValue);
-    // test disabled options
-    for (let index = 0; index < dropdownOptionsCount; index += 1) {
-      expect(dropdownOptions[index].disabled).toBe(Boolean(optionsSelected[index].disabled));
-    }
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
+    const focusItem2 = container.getElementsByTagName('li')[1];
+    expect(focusItem2).toHaveFocus();
+    const listItems = container.querySelectorAll('li');
+    expect(listItems.length).toBe(3);
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
+    const focusItem3 = container.getElementsByTagName('li')[2];
+    expect(focusItem3).toHaveFocus();
+    focusItem3.click();
+    const listItemsUpdated = container.querySelectorAll('li');
+    expect(listItemsUpdated.length).toBe(0);
   });
-
-  it('renders with Chevron', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" />);
-    const selectField = container.querySelector('select');
-    selectField.focus();
+  it('accessibility check for arrow up', () => {
+    const options = [
+      {
+        checkboxId: 'A-2',
+        title: '1Default Item - Title',
+        checkboxDisabled: false,
+        selected: true,
+        ref: React.createRef(),
+      },
+      {
+        checkboxId: 'A-3',
+        title: '2First Item - Title',
+        checkboxDisabled: false,
+        selected: false,
+        ref: React.createRef(),
+      },
+    ];
+    const { container, getByText } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="3First Item - Title"
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+    fireEvent.keyDown(buttonDropdown, { key: 'Tab', keyCode: 9 });
+    buttonDropdown.focus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowUp', keyCode: 38 });
+    const focusItem = container.getElementsByTagName('li')[0];
+    expect(getByText('2First Item - Title')).toBeInTheDocument();
+    expect(focusItem).toHaveFocus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowUp', keyCode: 38 });
+    const focusItem2 = container.getElementsByTagName('li')[1];
+    expect(focusItem2).toHaveFocus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowUp', keyCode: 38 });
+    const focusItem3 = container.getElementsByTagName('li')[0];
+    expect(focusItem3).toHaveFocus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowUp', keyCode: 38 });
+    const focusItem4 = container.getElementsByTagName('li')[1];
+    expect(focusItem4).toHaveFocus();
+  });
+  it('click outside of dropdown', () => {
+    const options = [
+      {
+        checkboxId: 'A-2',
+        title: '1Default Item - Title',
+        checkboxDisabled: false,
+        selected: true,
+        ref: React.createRef(),
+      },
+      {
+        checkboxId: 'A-3',
+        title: '2First Item - Title',
+        checkboxDisabled: false,
+        selected: false,
+        ref: React.createRef(),
+      },
+    ];
+    const { container } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="3First Item - Title"
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} ref={option.ref} role="option" key={index} tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const evt = new Event('mousedown', { bubbles: false, cancelable: false, composed: false });
+    const DropdownTriggerElement = container.querySelector('[role="button"]');
+    fireEvent.click(DropdownTriggerElement);
+    const listItems = container.querySelectorAll('li');
+    expect(listItems.length).toBe(2);
+    act(() => {
+      document.dispatchEvent(evt);
+    });
+    const listItemsUpdated = container.querySelectorAll('li');
+    expect(listItemsUpdated.length).toBe(0);
     const svg = container.querySelector('svg');
     expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute('data-icon', 'chevron-down');
-    selectField.blur();
+    const icon = container.getElementsByClassName('svgArrowWrap')[0];
+    expect(icon).toHaveStyle('right: 1.2rem');
   });
 
-  it('renders with default props', () => {
-    const selectedValue = 'Default';
-    const { container } = render(<Dropdown id="dropdown-one" value={selectedValue} options={optionsDefault} label="Dropdown Label" bordered />);
-    const dropdown = container.getElementsByTagName('select')[0];
-    const dropdownValue = dropdown.value;
-    expect(dropdownValue).toBe(selectedValue);
+  it('click on dropdown ', () => {
+    const options = [
+      {
+        checkboxId: 'A-2',
+        title: '1Default Item - Title',
+        checkboxDisabled: false,
+        selected: true,
+        ref: React.createRef(),
+      },
+      {
+        checkboxId: 'A-3',
+        title: '2First Item - Title',
+        checkboxDisabled: false,
+        selected: false,
+        ref: React.createRef(),
+      },
+    ];
+    const onItemClick = jest.fn();
+    const onItemKeyDown = jest.fn();
+    const { container } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="3First Item - Title"
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+
+    const buttonDrop = container.querySelector('[role="button"]');
+    fireEvent.keyDown(buttonDrop, { key: 'Tab', keyCode: 9 });
+    buttonDrop.focus();
+    buttonDrop.click();
+    const listItemsFirst = container.querySelectorAll('li');
+    expect(listItemsFirst.length).toBe(2);
+    const label = container.getElementsByClassName('label')[0];
+    label.click();
+    buttonDrop.blur();
+    const listItems = container.querySelectorAll('li');
+    expect(listItems.length).toBe(2);
   });
 
-  it('renders with disabled attribute', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" disabled autofill />);
-    const dropdown = container.getElementsByTagName('select')[0];
-    expect(dropdown).toHaveAttribute('disabled');
+  it('accessibility check for arrow down if nothing selected', () => {
+    const options = [
+      {
+        checkboxId: 'A-2',
+        title: '1Default Item - Title',
+        checkboxDisabled: false,
+        selected: false,
+        ref: React.createRef(),
+      },
+      {
+        checkboxId: 'A-3',
+        title: '2First Item - Title',
+        checkboxDisabled: false,
+        selected: false,
+        ref: React.createRef(),
+      },
+      {
+        checkboxId: 'A-4',
+        title: '3First Item - Title',
+        checkboxDisabled: false,
+        selected: false,
+        ref: React.createRef(),
+      },
+    ];
+    const onItemClick = jest.fn();
+    const onItemKeyDown = jest.fn();
+    const { container, getByText } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="3First Item - Title"
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+    fireEvent.keyDown(buttonDropdown, { key: 'Tab', keyCode: 9 });
+    buttonDropdown.focus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
+    buttonDropdown.focus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
+    const focusItem = container.getElementsByTagName('li')[0];
+    expect(getByText('2First Item - Title')).toBeInTheDocument();
+    expect(focusItem).toHaveFocus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
+    const focusItem2 = container.getElementsByTagName('li')[1];
+    expect(focusItem2).toHaveFocus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
+    const focusItem3 = container.getElementsByTagName('li')[2];
+    expect(focusItem3).toHaveFocus();
+    fireEvent.keyDown(focusItem3, { key: 'Enter', keyCode: 13 });
+    const AllItems = container.querySelectorAll('li');
+    expect(AllItems.length).toBe(0);
   });
 
-  it('renders with required attribute', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" required autofill />);
-    const dropdown = container.getElementsByTagName('select')[0];
-    expect(dropdown).toHaveAttribute('required');
+
+  it('accessibility check for edgecase', () => {
+    const options = [
+      {
+        checkboxId: 'A-2', title: '1Default Item - Title', checkboxDisabled: false, selected: false,
+      },
+      {
+        checkboxId: 'A-3', title: '2First Item - Title', checkboxDisabled: false, selected: true,
+      },
+    ];
+    const { container, getByText } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="3First Item - Title"
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+
+    fireEvent.keyDown(buttonDropdown, { key: 'Tab', keyCode: 9 });
+    buttonDropdown.focus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowRight', keyCode: 39 });
+    const listItems = container.querySelectorAll('li');
+    expect(listItems.length).toBe(0);
+  });
+  it('accessibility check for enter', () => {
+    const options = [
+      {
+        checkboxId: 'A-2', title: '1Default Item - Title', checkboxDisabled: false, selected: false,
+      },
+      {
+        checkboxId: 'A-3', title: '2First Item - Title', checkboxDisabled: false, selected: true,
+      },
+    ];
+    const { container, getByText } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="3First Item - Title"
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+
+    fireEvent.keyDown(buttonDropdown, { key: 'Tab', keyCode: 9 });
+    buttonDropdown.focus();
+    fireEvent.keyDown(buttonDropdown, { key: 'Enter', keyCode: 13 });
+    expect(getByText('1Default Item - Title')).toBeInTheDocument();
+    expect(buttonDropdown).toHaveFocus();
+    const AllItems = container.querySelectorAll('li');
+    expect(AllItems.length).toBe(2);
+    fireEvent.keyDown(buttonDropdown, { key: 'Enter', keyCode: 13 });
+    expect(buttonDropdown).toHaveFocus();
+    const updatedListItems = container.querySelectorAll('li');
+    expect(updatedListItems.length).toBe(0);
+    fireEvent.keyDown(buttonDropdown, { key: 'Escape', keyCode: 27 });
+    expect(buttonDropdown).toHaveFocus();
+    const listItems = container.querySelectorAll('li');
+    expect(listItems.length).toBe(0);
   });
 
-  it('renders with handleClick', () => {
-    const selectedValue = 'First';
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" />);
-    const dropdown = container.getElementsByTagName('select')[0];
-    dropdown.value = selectedValue;
-    fireEvent.change(dropdown);
-    expect(dropdown.value).toBe(selectedValue);
+  it('check mobile version', () => {
+    mockUseIsDesktopValue = false;
+    const onItemClick = jest.fn();
+    const onItemKeyDown = jest.fn();
+    const options = [
+      {
+        checkboxId: 'A-2', title: '1Default Item - Title', checkboxDisabled: false, selected: false,
+      },
+      {
+        checkboxId: 'A-3', title: '2First Item - Title', checkboxDisabled: false, selected: true,
+      },
+    ];
+    let selectedValue;
+    const { container } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue={selectedValue}
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+    fireEvent.keyDown(buttonDropdown, { key: 'Tab', keyCode: 9 });
+    buttonDropdown.focus();
+    const overlay = container.querySelector('[role="option"]');
+    overlay.click();
+    expect(overlay).not.toBeInTheDocument();
   });
-
-  it('calls focus and blur handlers', () => {
-    const handleFocus = jest.fn();
-    const handleBlur = jest.fn();
-    const { container } = render(<Dropdown id="dropdown-one" handleFocus={handleFocus} handleBlur={handleBlur} options={optionsDefault} label="Dropdown Label" />);
-    const dropdown = container.getElementsByTagName('select')[0];
-    fireEvent.focus(dropdown);
-    expect(handleFocus).toHaveBeenCalled();
-    fireEvent.blur(dropdown);
-    expect(handleBlur).toHaveBeenCalled();
+  it('check disbaled property for dropdown', () => {
+    mockUseIsDesktopValue = false;
+    const options = [
+      {
+        checkboxId: 'A-2', title: '1Default Item - Title', checkboxDisabled: false, selected: false,
+      },
+      {
+        checkboxId: 'A-3', title: '2First Item - Title', checkboxDisabled: false, selected: true,
+      },
+    ];
+    const onItemClick = jest.fn();
+    const onItemKeyDown = jest.fn();
+    const { container } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="1Default Item - Title"
+        disabled
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+    expect(buttonDropdown).toHaveStyleRule('background', `${theme.colors.greyLight}`);
+    expect(buttonDropdown).toHaveStyleRule('border', `${theme.borders.disabled}`);
+    buttonDropdown.focus();
+    buttonDropdown.click();
+    const listItems = container.querySelectorAll('li');
+    expect(listItems.length).toBe(0);
   });
-
-  it('renders  with defaultOptions', () => {
-    const { container, getByText } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" />);
-    const dropdownOptions = container.getElementsByTagName('option');
-    const dropdownOptionsCount = dropdownOptions.length;
-    expect(getByText('Default Item - Title')).toBeInTheDocument();
-    expect(dropdownOptionsCount).toBe(optionsDefault.length);
+  it('check affixContent property for dropdown', () => {
+    mockUseIsDesktopValue = false;
+    const options = [
+      {
+        checkboxId: 'A-2', title: '1Default Item - Title', checkboxDisabled: false, selected: false,
+      },
+      {
+        checkboxId: 'A-3', title: '2First Item - Title', checkboxDisabled: false, selected: true,
+      },
+    ];
+    const { getByText } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="1Default Item - Title"
+        prefixContent="Prefix"
+        disabled
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    expect(getByText('Prefix')).toBeInTheDocument();
   });
-
-  it('on input, set value func is called', () => {
-    const getValueCb = jest.fn();
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" handleChange={getValueCb} />);
-    const dropdownField = container.querySelector('select');
-    fireEvent.change(dropdownField, { target: { value: 'Default' } });
-    expect(dropdownField).toHaveValue('Default');
-    expect(getValueCb).toBeCalled();
-  });
-
-  it('renders  option with id', () => {
-    const { getByText } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" />);
-    expect(getByText('First Item - Title')).toHaveAttribute('id');
-  });
-
-  it('renders  option with prefix', () => {
-    const { container, getByText } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" prefixContent="$" />);
-    const optionItem = container.querySelector('[tabIndex="-1"]');
-
-    expect(optionItem).toHaveStyleRule('padding-right', theme.spacing[20]);
-    expect(optionItem).toHaveStyleRule('padding-left', theme.spacing[20]);
-    expect(getByText('$')).toBeInTheDocument();
-  });
-
-  it('renders with supportingElements props', () => {
-    const { getByText } = render(<Dropdown id="dropdown" options={optionsDefault} label="Dropdown Label" />);
-    expect(getByText('Optional')).toBeInTheDocument();
-  });
-
-  it('renders dropdown without options', () => {
-    const { getByText, container } = render(<Dropdown id="dropdown-one" label="Dropdown Label" validationMessage="No options" options={[]} />);
-    const selectHtml = container.querySelector('select');
-    expect(getByText('No options')).toBeInTheDocument();
-    expect(selectHtml).toHaveStyleRule('border', theme.borders.invalid);
-  });
-
-  it('renders select with border by default', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" />);
-    const selectHtml = container.querySelector('select');
-    expect(selectHtml).toHaveStyleRule('border', theme.borders.component);
-  });
-
-  it('renders select without border', () => {
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsDefault} label="Dropdown Label" bordered={false} />);
-    const selectHtml = container.querySelector('select');
-    expect(selectHtml.value).toBe('Default');
-    expect(selectHtml.value).not.toBe('Second');
-    expect(selectHtml).toHaveStyleRule('border', theme.borders.transparent);
-  });
-
-  it('calls focus and blur handlers', () => {
-    const handleFocus = jest.fn();
-    const handleBlur = jest.fn();
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" handleFocus={handleFocus} handleBlur={handleBlur} />);
-    const select = container.querySelector('select');
-    fireEvent.focus(select);
-    expect(handleFocus).toHaveBeenCalled();
-    fireEvent.blur(select);
-    expect(handleBlur).toHaveBeenCalled();
-  });
-
-  it('render with prop tooltip', () => {
-    const tooltip = {
-      title: 'Tooltip heading',
-      body: 'Prefix and suffix view',
-    };
-    const { container } = render(<Dropdown id="dropdown-one" options={optionsSelected} label="Dropdown Label" prefixContent="$" tooltip={tooltip} />);
-    const tooltipExist = container.querySelector(' div[role="tooltip"]');
-    expect(tooltipExist).toBeInTheDocument();
+  it('check invalid property for dropdown', () => {
+    mockUseIsDesktopValue = false;
+    const options = [
+      {
+        checkboxId: 'A-2', title: '1Default Item - Title', checkboxDisabled: false, selected: false,
+      },
+      {
+        checkboxId: 'A-3', title: '2First Item - Title', checkboxDisabled: false, selected: true,
+      },
+    ];
+    const { container } = render(
+      <Dropdown
+        id="input-one"
+        options={options}
+        supportingElements
+        forceFullWidth
+        label="Dropdown Label"
+        selectedValue="1Default Item - Title"
+        prefixContent="Prefix"
+        validationMessage="sfsdfsdf"
+      >
+        {options.map((option, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.selected || Boolean(option.selected)} {option.title}
+          </li>
+        ))}
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+    expect(buttonDropdown).toHaveStyleRule('border', `${theme.borders.invalid}`);
   });
 });

@@ -245,7 +245,7 @@ const Input = React.forwardRef(({
   };
 
   return (
-    <StyledWrapper>
+    <StyledWrapper className="input-wrap">
       <Label forId={id} text={label} tooltip={tooltip} />
       <StyledInputContainer className="input-container">
         <StyledInputWrap
@@ -279,8 +279,8 @@ const Input = React.forwardRef(({
           {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
         </StyledInputWrap>
         <SupportingElements required={required} disabled={disabled} label={label} />
-        {dataList && <div>{dataList()}</div>}
       </StyledInputContainer>
+      {dataList && <div>{dataList()}</div>}
       <FieldValidation message={validationMessage} />
     </StyledWrapper>
   );

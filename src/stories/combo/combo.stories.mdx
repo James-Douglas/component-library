@@ -80,6 +80,7 @@ Combo is an extension of the Input component.
     const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
     const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
     const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
+    const helperMessage = text('helperMessage', 'Please start typing', tooltipGroupId);
     return (
       <FluidContainer>
         <Row>
@@ -107,6 +108,7 @@ Combo is an extension of the Input component.
                 // eslint-disable-next-line no-console
                 console.log(value)
               }}
+              helperMessage={helperMessage}
               tooltip={{
                 title,
                 body,

@@ -23,10 +23,10 @@ const Header = ({ isSticky, stuck, number }) => {
   const size = stuck ? 'small' : 'large';
   return (
     <FluidContainer>
-    <StyledHeader stuck={stuck} isSticky={isSticky}>
-      <Logo size={size} />
-      {number && <Contact number={number} size={size} />}
-    </StyledHeader>
+      <StyledHeader stuck={stuck} isSticky={isSticky}>
+        <Logo size={size} />
+        {number && <Contact number={number} size={size} />}
+      </StyledHeader>
     </FluidContainer>
   );
 };
