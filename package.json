@@ -14,6 +14,7 @@
     "tippy.js": "^5.1.1"
   },
   "scripts": {
+    "commit": "git-cz",
     "build": "npx rollup -c rollup.config.js",
     "watch": "npx rollup -c rollup.config.js -w",
     "tdd": "jest --coverage --watchAll",
@@ -125,6 +126,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
+    "commitizen": "^4.0.3",
     "cross-env": "^6.0.0",
     "cz-conventional-changelog": "3.0.2",
     "eslint": "^6.4.0",
