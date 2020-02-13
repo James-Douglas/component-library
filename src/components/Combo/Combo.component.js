@@ -286,7 +286,7 @@ const Combo = ({
       if (currentValue.length < characterMinimum) {
         return [];
       }
-      return apiData.filter((item) => item.includes(currentValue)).slice(0, renderLimit);
+      return apiData.filter((item) => item.toLowerCase().includes(currentValue.toLowerCase())).slice(0, renderLimit);
     },
     [currentValue, characterMinimum, apiData, renderLimit],
   );
