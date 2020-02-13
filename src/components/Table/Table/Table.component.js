@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import TableContext from './TableContext';
 
 const StyledComponent = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.base};
   display: table;
   border-collapse: collapse;
   border-spacing: 0;

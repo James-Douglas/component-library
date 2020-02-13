@@ -219,11 +219,12 @@ const Dropdown = ({
     },
     ref: React.createRef(),
   }));
-  const handleClickOutside = (e) => {
+
+  const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {
       setDropdownOpen(false);
     }
-  };
+  }, [node, setDropdownOpen]);
 
   const closeFieldModal = () => {
     setIsMobileModalView(false);

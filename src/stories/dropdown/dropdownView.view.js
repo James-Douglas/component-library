@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled, { css, ThemeProvider } from 'styled-components';
-import PropTypes from 'prop-types';
 import getTheme from 'utils/getTheme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/pro-regular-svg-icons/faCheck';

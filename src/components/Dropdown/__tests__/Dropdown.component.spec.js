@@ -54,9 +54,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -111,9 +111,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -163,9 +163,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} ref={option.ref} role="option" key={index} tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} ref={option.ref} role="option" key={index} tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -216,9 +216,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -274,9 +274,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -311,7 +311,7 @@ describe('Dropdown', () => {
         checkboxId: 'A-3', title: '2First Item - Title', checkboxDisabled: false, selected: true,
       },
     ];
-    const { container, getByText } = render(
+    const { container } = render(
       <Dropdown
         id="input-one"
         options={options}
@@ -322,9 +322,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -357,9 +357,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -407,9 +407,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -445,9 +445,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} onClick={(e) => onItemClick(e, index)} onKeyDown={(e) => onItemKeyDown(e, index)} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -483,9 +483,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,
@@ -515,9 +515,9 @@ describe('Dropdown', () => {
       >
         {options.map((option, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li option={option} key={index} ref={option.ref} role="option" tabIndex={index}>
-            {option.selected || Boolean(option.selected) && <FontAwesomeIcon icon={faCheck} size="xs" />}
-            {option.selected || Boolean(option.selected)} {option.title}
+          <li option={option} aria-selected={option.selected} key={index} ref={option.ref} role="option" tabIndex={index}>
+            {(option.selected || Boolean(option.selected)) && <FontAwesomeIcon icon={faCheck} size="xs" />}
+            {option.title}
           </li>
         ))}
       </Dropdown>,

@@ -210,7 +210,6 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
           key={`option-${filteredValue}`}
           role="listitem"
           data-type="list"
-          aria-selected={false}
           onMouseDown={() => handleSelectItem(filteredValue)}
           ref={filteredValuesRefs[index]}
         >
