@@ -53,7 +53,7 @@ const LayerEventManager = ({
   }, [visible, previouslyVisible, layerInfo, layerId]);
 
   const handleUserKeyPress = useCallback((event) => {
-    const { keyCode, target } = event;
+    const { keyCode } = event;
     // escape
     if (keyCode === 27 && visible) {
       if (layerInfo.top(layerId.current)) {
@@ -64,19 +64,20 @@ const LayerEventManager = ({
       }
     } else if (keyCode === 9 && visible) {
       // focus trapping
-      if (layerInfo.top(layerId.current)) {
-        const topElementId = layerInfo.layers[layerInfo.layers.length - 1];
-        const layerElement = document.getElementById(`layer-${topElementId}`);
-        if (!layerElement.contains(target)) {
-          event.preventDefault();
-          const focusable = layerElement.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-          if (focusable) {
-            focusable.focus();
-          } else {
-            layerElement.firstChild.focus();
+      setTimeout(() => {
+        if (layerInfo.top(layerId.current)) {
+          const topElementId = layerInfo.layers[layerInfo.layers.length - 1];
+          const layerElement = document.getElementById(`layer-${topElementId}`);
+          if (!layerElement.contains(document.activeElement)) {
+            const focusable = layerElement.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (focusable) {
+              focusable.focus();
+            } else {
+              layerElement.firstChild.focus();
+            }
           }
         }
-      }
+      });
     }
   }, [visible, layerInfo, handleClose]);
 
