@@ -11,6 +11,7 @@
     "@tippy.js/react": "^3.1.1",
     "prop-types": "^15.7.2",
     "react-app-polyfill": "^1.0.3",
+    "react-text-mask": "^5.4.3",
     "tippy.js": "^5.1.1"
   },
   "scripts": {
@@ -168,6 +169,7 @@
     "tailwindcss-typography": "^2.2.0"
   },
   "peerDependencies": {
+    "moment": "^2.24.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "styled-components": "^5.0.0"

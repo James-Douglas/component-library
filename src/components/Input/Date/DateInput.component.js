@@ -1,65 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import moment from 'moment';
 import Input from 'components/Input/Input.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
 import { tooltipPropTypes } from '../../Tooltip/Tooltip.component';
 
-export const valueMasking = (val, maxlength) => {
-  if (val === '') {
-    return { raw: '', parsed: '' };
-  }
+const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  color: ${({ theme }) => theme.colors.placeholderText};
+`;
 
-  let raw = val.toString().replace(/[^0-9]+/g, '');
-
-  if (raw.length > maxlength) {
-    raw = raw.substring(0, maxlength);
-  }
-
-  let parsed = parseInt(raw, 10);
-
-  if (parsed) {
-    parsed = parsed.toLocaleString();
-  } else {
-    parsed = raw;
-  }
-
-  return {
-    raw,
-    parsed,
-  };
-};
-
-const CurrencyInput = ({
+const DateInput = ({
   id,
   label,
-  placeholder,
   value,
   prefillValue,
   handleChange,
-  currencySymbol,
   bordered,
   required,
   disabled,
   autocomplete,
   tooltip,
   validationMessage,
-  maxlength,
   className,
   handleFocus,
   handleBlur,
-}) => (
-  <>
+}) => {
+  const changeHandler = (val) => {
+    const parsedDate = moment(val, 'DD/MM/YYYY', true);
+    handleChange(parsedDate);
+  };
+
+  return (
     <Input
       id={id}
       label={label}
-      type="tel"
-      handleChange={handleChange}
-      prefixContent={currencySymbol}
-      placeholder={placeholder}
+      value={value}
+      type="text"
+      handleChange={changeHandler}
+      prefixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} />}
+      mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+      guide
+      placeholder="DD/MM/YYYY"
       bordered={bordered}
       required={required}
-      maxlength={maxlength}
-      valueMasking={(val) => valueMasking(val, maxlength)}
-      value={value}
+      maxlength={11}
       prefillValue={prefillValue}
       disabled={disabled}
       validationMessage={validationMessage}
@@ -69,16 +55,17 @@ const CurrencyInput = ({
       handleFocus={handleFocus}
       handleBlur={handleBlur}
     />
-  </>
-);
+  );
+};
 
-CurrencyInput.propTypes = {
+DateInput.propTypes = {
   /**
    * Unique id for the component. Required.
    */
   id: PropTypes.string.isRequired,
   /**
-   * Custom handler to attach to the input field - used to get the value of the field for example.
+   * Handler to be called on change. This is called with a moment instance that may not be valid, you can check via
+   * moment#isValid()
    */
   handleChange: PropTypes.func.isRequired,
   /**
@@ -110,10 +97,6 @@ CurrencyInput.propTypes = {
    */
   value: PropTypes.string,
   /**
-   * The placeholder text for the input.
-   */
-  placeholder: PropTypes.string,
-  /**
    * Adds/removes a supporting element, `<span>OPTIONAL</span>` to show the field is optional.
    */
   required: PropTypes.bool,
@@ -126,35 +109,21 @@ CurrencyInput.propTypes = {
    */
   bordered: PropTypes.bool,
   /**
-   * Maximum length for the input element
-   */
-  maxlength: PropTypes.number,
-  /**
    * Turn the browsers implementation of autocompletion/memory of forms on or off.
    */
   autocomplete: PropTypes.string,
-  /**
-   * Currency symbol to be displayed within the input prefix
-   */
-  currencySymbol: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-  ]),
   /**
    * Classes to be applied to the Currency component
    */
   className: PropTypes.string,
 };
 
-CurrencyInput.defaultProps = {
-  maxlength: 15,
-  value: null,
+DateInput.defaultProps = {
+  value: '',
   tooltip: {},
   validationMessage: null,
   prefillValue: null,
-  placeholder: '',
   autocomplete: 'off',
-  currencySymbol: '',
   required: true,
   disabled: false,
   bordered: true,
@@ -164,4 +133,4 @@ CurrencyInput.defaultProps = {
   handleBlur: null,
 };
 
-export default CurrencyInput;
+export default DateInput;

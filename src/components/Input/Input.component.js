@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
+import MaskedInput from 'react-text-mask';
 
 import SRonly from '../Typography/SRonly/SRonly.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
@@ -86,7 +87,8 @@ const StyledInputClearWrap = styled.div`
   min-height: ${({ theme }) => theme.input.height};
 `;
 
-const StyledInput = styled.input`
+// eslint-disable-next-line react/jsx-props-no-spreading
+const StyledInput = styled(({ isAutofill, ...props }) => <MaskedInput {...props} />)`
   padding-left: ${({ theme }) => theme.spacing[12]};
   padding-right: ${({ theme }) => theme.spacing[36]};
   display: block;
@@ -149,21 +151,7 @@ export const renderAffix = (affixType, affixContent, bordered, isAutofill, disab
   return null;
 };
 
-export const getInitialValue = (valueMasking, value, prefillValue) => {
-  if (valueMasking && value && value.length) {
-    return valueMasking(value);
-  }
-  if (valueMasking && prefillValue && prefillValue.length) {
-    return valueMasking(prefillValue);
-  }
-  if (value) {
-    return value;
-  }
-  if (prefillValue) {
-    return prefillValue;
-  }
-  return '';
-};
+export const getInitialValue = (value, prefillValue) => value || prefillValue || '';
 
 // eslint-disable-next-line react/display-name
 const Input = React.forwardRef(({
@@ -185,13 +173,14 @@ const Input = React.forwardRef(({
   handleChange,
   handleFocus,
   handleBlur,
-  valueMasking,
+  mask,
+  guide,
   dataList,
   handleOnClick,
   className,
   disableClearIcon,
 }, ref) => {
-  const [internalValue, setInternalValue] = useState(getInitialValue(valueMasking, value, prefillValue));
+  const [internalValue, setInternalValue] = useState(getInitialValue(value, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [isFocusActive, setFocusActive] = useState(false);
@@ -204,15 +193,8 @@ const Input = React.forwardRef(({
 
   const changeHandler = (e) => {
     setIsDirty(true);
-
-    if (valueMasking) {
-      const { raw, parsed } = valueMasking(e.target.value);
-      setInternalValue(parsed || '');
-      handleChange(parsed, raw);
-    } else {
-      setInternalValue(e.target.value);
-      handleChange(e.target.value);
-    }
+    setInternalValue(e.target.value);
+    handleChange(e.target.value);
   };
 
   useEffect(() => {
@@ -222,13 +204,8 @@ const Input = React.forwardRef(({
     } else if (prefillValue && prefillValue.length) {
       valueToUse = prefillValue;
     }
-    if (valueMasking) {
-      const { parsed } = valueMasking(valueToUse);
-      setInternalValue(parsed);
-    } else {
-      setInternalValue(valueToUse);
-    }
-  }, [prefillValue, value, valueMasking]);
+    setInternalValue(valueToUse);
+  }, [prefillValue, value]);
 
   const focusHandler = () => {
     if (handleFocus) {
@@ -258,6 +235,8 @@ const Input = React.forwardRef(({
           {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
           <StyledInputClearWrap className="input-clear-wrap">
             <StyledInput
+              mask={mask}
+              guide={guide}
               id={id}
               name={id}
               type={type}
@@ -308,9 +287,13 @@ Input.propTypes = {
    */
   maxlength: PropTypes.number,
   /**
-   * Function called with the value to apply an input mask
+   * Mask to be applied to the input, see https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme
    */
-  valueMasking: PropTypes.func,
+  mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
+  /**
+   *
+   */
+  guide: PropTypes.bool,
   /**
    * Sets the value of the input
    */
@@ -390,7 +373,10 @@ Input.propTypes = {
 Input.defaultProps = {
   label: '',
   tooltip: {},
-  valueMasking: null,
+  // there is a bug in text-mask where disabling the mask (setting to false) causes the input value to not
+  // reset when the clear icon is clicked (PR:https://github.com/text-mask/text-mask/pull/831)
+  mask: (value) => Array(value.length).fill(/./),
+  guide: false,
   maxlength: null,
   type: 'text',
   placeholder: '',

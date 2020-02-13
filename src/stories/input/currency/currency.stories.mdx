@@ -1,15 +1,15 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
 
-import Currency from '../../../components/Input/Currency/Currency.component';
+import CurrencyInput from '../../../components/Input/Currency/CurrencyInput.component';
 
-<Meta title="Components|Input/Currency" component={Currency} />
+<Meta title="Components|Input/Currency" component={CurrencyInput} />
 
-# Currency
+# Currency Input
 
 <Preview>
   <Story name="currency">
-    <Currency
+    <CurrencyInput
       label="Currency input"
       id="currency-input-one"
       tooltip={{title: 'currency demo'}}
@@ -26,7 +26,7 @@ import Currency from '../../../components/Input/Currency/Currency.component';
 
 ## Props
 
-<Props of={Currency} />
+<Props of={CurrencyInput} />
 
 <Story name="currency with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
@@ -47,7 +47,7 @@ import Currency from '../../../components/Input/Currency/Currency.component';
     const bordered = boolean('bordered', true);
     const currencySymbol = text('currencySymbol', '$');
     return (
-      <Currency
+      <CurrencyInput
         label={label}
         id="currency-input-one"
         tooltip={tooltip}

@@ -1,32 +1,18 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
 
-import Container from '../../components/Grid/Container/Container.component';
-import Row from '../../components/Grid/Row/Row.component';
-import Column from '../../components/Grid/Column/Column.component';
-import Input from '../../components/Input/Input.component';
-import GreyBackgroundView from './input-on-grey-background';
-import WhiteBackgroundView from './input-on-white-background';
-import PrefixSuffix from './input-prefix-suffix';
-import InputTypes from './input-types';
-import InputStates from './input-states';
+import DateInput from '../../../components/Input/Date/DateInput.component';
 
-<Meta title="Components|Input" component={Input} />
+<Meta title="Components|Input/Date" component={DateInput} />
 
-# Input
+# Date Input
 
 <Preview>
-  <Story name="input">
-    <Input
-      label="Input demo"
-      id="input-one"
-      tooltip={{title: 'input demo'}}
-      placeholder="Placeholder one"
-      type="text"
-      bordered
-      required={false}
-      disabled={false}
-      invalid={false}
+  <Story name="date input">
+    <DateInput
+      label="Enter date"
+      id="date-input"
+      tooltip={{body: "Please enter a date"}}
       handleChange={() => {}}
     />
   </Story>
@@ -34,10 +20,9 @@ import InputStates from './input-states';
 
 ## Props
 
-<Props of={Input} />
+<Props of={DateInput} />
 
-
-<Story name="input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+<Story name="date input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
@@ -45,7 +30,7 @@ import InputStates from './input-states';
     const validationMessage = text('validationMessage', '', componentPropsId);
     const maxLength = number('maxLength', 25, componentPropsId);
     const value = text('value', '', componentPropsId);
-    const prefillValue = text('prefillValue', 'prefilled', componentPropsId);
+    const prefillValue = text('prefillValue', '01/01/2020', componentPropsId);
     const type = text('type', 'text', componentPropsId);
     const placeholder = text('placeholder', 'input demo', componentPropsId);
     const required = boolean('required', false, componentPropsId);
@@ -59,7 +44,7 @@ import InputStates from './input-states';
     const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
     const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
     return (
-      <Input
+      <DateInput
         id="input-props"
         label={label}
         tooltip={{
@@ -81,26 +66,6 @@ import InputStates from './input-states';
         prefixContent={prefixContent}
         suffixContent={suffixContent}
       />
-    );
+    )
   }}
-</Story>
-
-<Story name="input grey background"  parameters={{ docs: { disable: true } }}>
-  <GreyBackgroundView />
-</Story>
-
-<Story name="input white background"  parameters={{ docs: { disable: true } }}>
-  <WhiteBackgroundView />
-</Story>
-
-<Story name="input prefix-suffix"  parameters={{ docs: { disable: true } }}>
-  <PrefixSuffix />
-</Story>
-
-<Story name="input types"  parameters={{ docs: { disable: true } }}>
-  <InputTypes />
-</Story>
-
-<Story name="input states"  parameters={{ docs: { disable: true } }}>
-  <InputStates />
 </Story>

@@ -12,7 +12,7 @@ const colors = {
   blueLighter: '#7A98FF',
   link: '#164AD9',
   warning: '#F49E1E',
-  prechecked: '#F0E599',
+  prechecked: '#FCFAED',
   precheckedDarker: '#C39600',
   invalid: '#EF425E',
   white: '#FFFFFF',
@@ -367,7 +367,6 @@ const ctmTheme = {
     heightLarge: spacing[44],
   },
   placeholder: {
-    fontStyle: 'italic',
     fontSize: fontSize.base,
     color: colors.placeholderText,
   },
