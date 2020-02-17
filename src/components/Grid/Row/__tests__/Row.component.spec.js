@@ -1,7 +1,10 @@
 import React from 'react';
+import getTheme from 'utils/getTheme';
 import { render } from '../../../../testUtils';
 import 'jest-styled-components';
 import Row from '../Row.component';
+
+const theme = getTheme();
 
 describe('Row', () => {
   it('renders correctly without props', () => {
@@ -20,7 +23,7 @@ describe('Row', () => {
     expect(childContent).toBeInTheDocument();
   });
 
-  it('has a row class by default', () => {
+  it('has a row class and margin-bottom by default', () => {
     const { container } = render(<Row />);
 
     const row = container.querySelector('.row');
@@ -46,5 +49,31 @@ describe('Row', () => {
 
     const row = container.querySelector('.test-class');
     expect(row).toHaveStyleRule('flex-direction', 'row-reverse');
+  });
+
+  it('has default margin-bottom', () => {
+    const { container } = render(
+      <Row className="test-class">
+        <div>One</div>
+        <div>two</div>
+        <div>three</div>
+      </Row>,
+    );
+
+    const row = container.querySelector('.test-class');
+    expect(row).toHaveStyleRule('margin-bottom', theme.spacing[24]);
+  });
+
+  it('removes margin-bottom if prop is provided', () => {
+    const { container } = render(
+      <Row className="test-class" removeMarginBottom>
+        <div>One</div>
+        <div>two</div>
+        <div>three</div>
+      </Row>,
+    );
+
+    const row = container.querySelector('.test-class');
+    expect(row).toHaveStyleRule('margin-bottom', '0');
   });
 });

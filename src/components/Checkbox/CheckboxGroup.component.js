@@ -12,13 +12,8 @@ const StyledContainer = styled.div`
   width: 100%;
 `;
 
-const StyledWrapperRow = styled(Row)`
-  margin-bottom: ${({ theme }) => theme.spacing[16]};
-`;
-
 const StyledInnerRow = styled(Row)`
-  margin-left: 0;
-  margin-right: 0;
+  margin: 0;
 `;
 
 const StyledColumn = styled(Column)`
@@ -72,7 +67,7 @@ const CheckboxGroup = ({
   return (
     <>
       <Label forId={groupId} text={label} tooltip={tooltip} />
-      <StyledWrapperRow>
+      <Row removeMarginBottom>
         <Column cols={desktop ? '10' : '12'}>
           <StyledContainer id={groupId}>
             <StyledInnerRow>
@@ -81,7 +76,7 @@ const CheckboxGroup = ({
           </StyledContainer>
           <FieldValidation message={validationMessage} />
         </Column>
-      </StyledWrapperRow>
+      </Row>
     </>
   );
 };

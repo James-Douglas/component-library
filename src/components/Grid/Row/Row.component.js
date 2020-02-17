@@ -11,10 +11,13 @@ const StyledRow = styled.div`
   ${(props) => (props.reverse) && css`
     flex-direction: row-reverse;
   `}
+  margin-bottom: ${({ theme, removeMarginBottom }) => (removeMarginBottom ? 0 : theme.spacing[24])};
 `;
 
-const Row = ({ children, className, reverse }) => (
-  <StyledRow className={`row ${className}`} reverse={reverse}>
+const Row = ({
+  children, className, reverse, removeMarginBottom,
+}) => (
+  <StyledRow className={`row ${className}`} reverse={reverse} removeMarginBottom={removeMarginBottom}>
     {children}
   </StyledRow>
 );
@@ -36,11 +39,16 @@ Row.propTypes = {
     PropTypes.array,
     PropTypes.object,
   ]),
+  /**
+   * Remove the default margin-bottom
+   */
+  removeMarginBottom: PropTypes.bool,
 };
 
 Row.defaultProps = {
   className: '',
   children: [],
+  removeMarginBottom: false,
   reverse: false,
 };
 

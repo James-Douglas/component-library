@@ -115,7 +115,7 @@ const AccordionPanel = ({
         onBlur={handleBlur}
       >
         <FluidContainer>
-          <Row>
+          <Row removeMarginBottom>
             <Column cols="11">{title}</Column>
             <Column cols="1">
               <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
@@ -125,7 +125,7 @@ const AccordionPanel = ({
       </StyledAccordionHead>
       <StyledAccordionBody isVisible={isVisible} role="tabpanel">
         <FluidContainer>
-          <Row className="row-view">
+          <Row className="row-view" removeMarginBottom>
             <Column cols="12">{children}</Column>
           </Row>
         </FluidContainer>

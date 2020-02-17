@@ -64,7 +64,7 @@ const Footer = ({ disclaimer, className }) => {
   return (
     <StyledFooterContainer className={className}>
       <FluidContainer>
-        <Row>
+        <Row removeMarginBottom>
           <Column md={12} xl={10} offsetXl={1}>
             <StyledFooterBar>
               {disclaimer && (
