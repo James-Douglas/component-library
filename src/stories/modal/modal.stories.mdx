@@ -15,8 +15,13 @@ import ModalView from './modal.view';
 
 # Modal
 
-A modal appended to to the document body that can accept other components as children. State is managed in the parent component, and passed back to the modal.
-This allows the Modal component to be used with or without an overlay component.
+Renders content in a container on top of the rest of the page content. Modal can be configured with or without an overlay.
+Unlike a Drawer, Modals can always be closed by the user.
+
+## Behaviour
+
+* When Modal is visible, the `Escape` key will dismiss it.
+* Whe Modal is visible, focus is trapped within the Modals contents.
 
 **Switch to canvas view to see examples**
 

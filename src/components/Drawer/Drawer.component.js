@@ -33,29 +33,29 @@ const StyledDrawer = styled.div`
   z-index: inherit;
   box-shadow: ${({ theme }) => theme.boxShadow.lg};    
   padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[4]}`};
-  ${({ notificationSize, direction }) => direction === 'top' && css`
+  ${({ size, direction }) => direction === 'top' && css`
     animation-name: ${animateTop};
-    height: ${notificationSize};
+    height: ${size};
     width: 100%;
     top: 0;
     left: 0;
   `}
-  ${({ notificationSize, direction }) => direction === 'left' && css`
+  ${({ size, direction }) => direction === 'left' && css`
     animation-name: ${animateLeft};
-    width: ${notificationSize};
+    width: ${size};
     top:0;
     left: 0;
   `}
-  ${({ notificationSize, direction }) => direction === 'bottom' && css`
+  ${({ size, direction }) => direction === 'bottom' && css`
     animation-name: ${animateBottom};
     width: 100%;
-    height: ${notificationSize};
+    height: ${size};
     bottom: 0;
     left: 0;
   `}
-  ${({ notificationSize, direction }) => direction === 'right' && css`
+  ${({ size, direction }) => direction === 'right' && css`
     animation-name: ${animateRight};
-    width: ${notificationSize};
+    width: ${size};
     top:0;
     right: 0;
   `} 
@@ -88,12 +88,12 @@ const StyledDrawerCloseBase = styled.div`
     width: 100%;
     animation-name: ${animateBottom};
   `}
-  ${({ theme, direction, notificationSize }) => direction === 'left' && css`
-    width: calc(${notificationSize} - ${theme.spacing[8]});
+  ${({ theme, direction, size }) => direction === 'left' && css`
+    width: calc(${size} - ${theme.spacing[8]});
     animation-name: ${animateLeft};
   `}
-  ${({ direction, notificationSize }) => direction === 'right' && css`
-    width: ${notificationSize};
+  ${({ direction, size }) => direction === 'right' && css`
+    width: ${size};
     animation-name: ${animateRight};
   `} 
 `;
@@ -104,15 +104,17 @@ const StyledDrawerText = styled.div`
 const Drawer = ({
   id,
   direction,
-  notificationSize,
+  size,
   closeButton,
   children,
   iconClassName,
-  show,
+  visible,
   handleClose,
   overlay,
   overlayOpacity,
   handleOverlayClick,
+  trapFocus,
+  closeOnEsc,
 }) => {
   const drawerElement = useRef(null);
 
@@ -121,19 +123,18 @@ const Drawer = ({
   };
 
   return (
-    <LayerEventManager id={id} visible={show} handleClose={handleClose}>
+    <LayerEventManager id={id} visible={visible} handleClose={handleClose} trapFocus={trapFocus} closeOnEsc={closeOnEsc}>
       <>
-        {show && overlay && <Overlay show opacityLevel={overlayOpacity} handleClick={handleOverlayClick} />}
-        {show && (
+        {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} />}
+        {visible && (
           <StyledDrawer
-            show
-            notificationSize={notificationSize}
+            size={size}
             direction={direction}
             ref={drawerElement}
           >
             {closeButton
               && (
-                <StyledDrawerCloseBase notificationSize={notificationSize} direction={direction} show={Boolean(show)}>
+                <StyledDrawerCloseBase size={size} direction={direction}>
                   <StyledIcon className={`${iconClassName} icon-close`} onClick={IconClick} onKeyPress={IconClick} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
                     <FontAwesomeIcon icon={faTimes} size="2x" />
                   </StyledIcon>
@@ -161,7 +162,7 @@ Drawer.propTypes = {
   /**
    *  Defines height or width (depending from direction) of the slide.
    */
-  notificationSize: PropTypes.string,
+  size: PropTypes.string,
   /**
    *  The slide's content.
    */
@@ -180,7 +181,7 @@ Drawer.propTypes = {
   /**
    *  Defines drawer visibility.
    */
-  show: PropTypes.bool,
+  visible: PropTypes.bool,
   /**
    *  handleClose function, called when click close button.
    */
@@ -197,19 +198,29 @@ Drawer.propTypes = {
    * Called when the overlay is clicked
    */
   handleOverlayClick: PropTypes.func,
+  /**
+   * Traps focus to elements within the Drawer
+   */
+  trapFocus: PropTypes.bool,
+  /**
+   * Whether or not to close the Drawer when the user presses the `Esc` key
+   */
+  closeOnEsc: PropTypes.bool,
 };
 
 Drawer.defaultProps = {
   id: null,
   direction: 'right',
-  notificationSize: '80%',
+  size: '80%',
   children: '',
   closeButton: false,
   iconClassName: '',
-  show: false,
+  visible: false,
   overlay: false,
   overlayOpacity: 0.7,
   handleOverlayClick: null,
+  trapFocus: false,
+  closeOnEsc: true,
 };
 
 export default Drawer;

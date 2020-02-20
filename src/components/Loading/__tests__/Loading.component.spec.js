@@ -1,13 +1,13 @@
 import React from 'react';
 import { render, wait } from '../../../testUtils';
 import 'jest-styled-components';
-import Loading from '../Loading';
+import LoadingComponent from '../Loading.component';
 
 
 describe('Loading', () => {
   jest.setTimeout(10000);
   it('render Loading component', () => {
-    const { getByText, container } = render(<Loading />);
+    const { getByText, container } = render(<LoadingComponent />);
     const inputField = container.querySelector('.loading-message');
     expect(getByText('Loading...')).toBeInTheDocument();
     expect(inputField).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('Loading', () => {
       'Sorting by lowest fees',
     ];
     const { getByText } = render(
-      <Loading messages={messages} isDelayMessages handleLoaded={loadingDone} />,
+      <LoadingComponent messages={messages} isDelayMessages handleLoaded={loadingDone} />,
     );
     await wait(() => {
       expect(getByText('Checking your details')).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('Loading', () => {
       'Sorting by lowest fees',
     ];
     let loadVar = false;
-    const { getByText, container } = render(<Loading messages={messages} forceStop={loadVar} />);
+    const { getByText, container } = render(<LoadingComponent messages={messages} forceStop={loadVar} />);
     const progressDOM = container.querySelector('progress');
     expect(progressDOM).toHaveAttribute('value', '0');
     // wait for appearance
@@ -75,7 +75,7 @@ describe('Loading', () => {
       'Finding great transaction accounts',
       'Sorting by lowest fees',
     ];
-    const { getByText, container } = render(<Loading messages={messages} maxProgress={80} handleLoaded={loadingDone} />);
+    const { getByText, container } = render(<LoadingComponent messages={messages} maxProgress={80} handleLoaded={loadingDone} />);
 
     await wait(() => getByText('Sorting by lowest fees'));
 

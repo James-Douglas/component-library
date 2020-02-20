@@ -33,15 +33,15 @@ const Header = ({ isSticky, stuck, number }) => {
 
 Header.propTypes = {
   /**
-   * Defines if the header is sticky via boolean
+   * Defines if the header is sticky via boolean (used by StickyHeader)
    */
   isSticky: PropTypes.bool,
   /**
-   * Defines the sizing of the logo and number depending on the stuck prop
+   * Defines the sizing of the logo and number depending on the stuck prop (used by StickyHeader)
    */
   stuck: PropTypes.bool,
   /**
-   * Defines if the header displays a number on the right handside
+   * Defines if the header displays a number on the right-hand side of the Header
    */
   number: PropTypes.string,
 };

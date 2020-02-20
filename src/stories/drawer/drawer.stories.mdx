@@ -26,6 +26,19 @@ import DrawerMix from './drawerMixView';
 
 **Switch to canvas view to see examples**
 
+The Drawer component provides a way to manage content that is conditionally overlaid on the page. Props enable you to
+define the positioning and size of the `Drawer`, as well as manage a visible overlay if desired.
+
+## Behavior
+* Visibility is controlled via the `visible` prop. The Drawer will animate in/out when this prop changes.
+* A Drawer can be configured to be hidden via the `closeButton` prop. If `true` a close icon will be displayed
+which hides the Drawer on click.
+* A visible overlay can be displayed over the rest of the page via the `overlay` prop (opacity can be controlled via
+`overlayOpacity` and a `handleOverlayClick` handler is also available)
+
+### Accessibility
+* By default, a Drawer can be closed via the `Escape` key (this can be disabled via the `closeOnEsc` prop)
+
 <Story name="drawer bottom" parameters={{ docs: { disable: true } }}>
    <DrawerBottom />
 </Story>

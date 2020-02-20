@@ -9,7 +9,7 @@ import FluidContainer from '../../components/Grid/Container/FluidContainer.compo
 # Accordion
 
 A vertically stacked list of items which can be expanded or collapsed to reveal further content. In Manor, Accordions
-comprise of the Accordion component which takes AccordionPanel components as children.
+comprise of the `Accordion` component which takes `AccordionPanel` components as children.
 
 <Preview>
   <Story name="accordion" decorators={[withKnobs]}>
@@ -33,6 +33,21 @@ comprise of the Accordion component which takes AccordionPanel components as chi
     </FluidContainer>
   </Story>
 </Preview>
+
+## Behavior
+* Clicking/Tapping on an accordion panel title will open or close it's panel.
+* An open panel will close if another accordion panel is clicked/tapped.
+
+### Accessibility
+* AccordionPanels can be focused via the `Tab` key.
+* A focused AccordionPanel can be toggled via the `Space` key.
+
+## Accordion props
+<Props of={Accordion} />
+
+## AccordionPanel props
+<Props of={AccordionPanel} />
+
 
 <Story name="accordion with props" decorators={[withKnobs]} parameters={{ docs: { disable: true }, knobs: { escapeHTML: false}  }}>
   {() => {
@@ -76,9 +91,3 @@ comprise of the Accordion component which takes AccordionPanel components as chi
     );
   }}
 </Story>
-
-### Accordion props
-<Props of={Accordion} />
-
-### AccordionPanel props
-<Props of={AccordionPanel} />

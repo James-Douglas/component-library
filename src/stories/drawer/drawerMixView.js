@@ -47,14 +47,15 @@ const DrawerMix = () => {
     <>
       <Drawer
         id="1"
-        notificationSize={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '300px'}`}
-        show={show}
+        size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '300px'}`}
+        visible={show}
         direction="bottom"
         handleClose={() => { setOpenLayers(openLayers.filter((item) => item !== 'secondary')); setShow(false); }}
         iconClassName="closeIconSlide"
         closeButton
         layerType="secondary"
         drawerArray={openLayers}
+        trapFocus
       >
         <StyledDrawerContent>
           <FluidContainer className="mt-24">
@@ -134,8 +135,8 @@ const DrawerMix = () => {
         </StyledDrawerContent>
       </Drawer>
       <Drawer
-        notificationSize={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '50%'}`}
-        show={showLeft}
+        size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '50%'}`}
+        visible={showLeft}
         direction="right"
         handleClose={() => { setOpenLayers(openLayers.filter((item) => item !== 'primary')); setShowLeft(false); }}
         iconClassName="closeIconSlide"
@@ -144,6 +145,7 @@ const DrawerMix = () => {
         drawerArray={openLayers}
         overlay
         overlayOpacity={0.3}
+        trapFocus
       >
         <Container>
           <Row>

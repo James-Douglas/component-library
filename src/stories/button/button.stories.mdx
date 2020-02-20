@@ -13,12 +13,17 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 
 # Button
 
-The button can be styled with an icon, configurable for design approved modes. These are: `primary`, `secondary`,
-`text`, `link` and `footer-link`. All have an `darkMode` mode for dark backgrounds apart from `primary`.
+The Button component has six available variants: `primary`, `secondary`, `tertiary`, `text`, `link` and `footer-link`.
 
-Width is set to `100%` by default, so the button fills the width of its parent container. This can be set via the `width` prop if needed.
+The Button can be styled with an icon and can be configurable according to the design system.
 
-If a button is given a href, it will render as a link under the hood, with the same styling as the supplied variant.
+All Button variants bar `primary` have an optional `darkMode` prop for use against dark backgrounds.
+
+Button width is set to `100%` by default, so the Button fills the width of its parent container. The Button width
+attribute can be overridden via the `width` prop if desired.
+
+If the `href` prop is supplied, the underlying HTML tag will be an `a`, otherwise this will be a `button` tag. This does not
+affect the styling, which is determined via the supplied `variant`.
 
 ## Primary
 <Preview>

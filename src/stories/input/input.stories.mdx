@@ -15,6 +15,9 @@ import InputStates from './input-states';
 
 # Input
 
+The Input component allows users to input data into a field. Display and functionality can be customized in a number of
+ways, including setting prefix & suffix content, adding a mask, etc (see props).
+
 <Preview>
   <Story name="input">
     <Input
@@ -32,6 +35,18 @@ import InputStates from './input-states';
   </Story>
 </Preview>
 
+## Behaviour
+* When the input has any content, a clear input button is displayed. When clicked/tapped, the input is cleared.
+* If a placeholder is provided, it is hidden once the user inputs data.
+* If `maxLength` is provided, user input is limited to that value.
+* If a `prefillValue` is provided and no user input has been set (and no `value` has been provided), the input will be
+populated with `prefillValue` and prefilled styles will be applied.
+
+### Accessibility
+* The input field can be focused via the `Tab` key.
+* The clear button can be focused via the `Tab` key.
+* When the clear button has focus, both the `Enter` and `Space` keys can be used to clear the input field.
+
 ## Props
 
 <Props of={Input} />
@@ -43,7 +58,7 @@ import InputStates from './input-states';
     const tooltipGroupId = 'Tooltip Props';
     const label = text('label', 'input demo', componentPropsId);
     const validationMessage = text('validationMessage', '', componentPropsId);
-    const maxLength = number('maxLength', 25, componentPropsId);
+    const maxLength = number('maxLength', 25, {}, componentPropsId);
     const value = text('value', '', componentPropsId);
     const prefillValue = text('prefillValue', 'prefilled', componentPropsId);
     const type = text('type', 'text', componentPropsId);

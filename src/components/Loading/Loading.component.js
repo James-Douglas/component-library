@@ -23,7 +23,7 @@ export const StyledMessageContainer = styled.div`
   justify-content: center;
 `;
 
-const Loading = ({
+const LoadingComponent = ({
   messages,
   isDelayMessages,
   handleLoaded,
@@ -96,7 +96,7 @@ const Loading = ({
   );
 };
 
-Loading.propTypes = {
+LoadingComponent.propTypes = {
   /**
    * Set of messages to show.
    * Currently cycles through a maximum of 3 messages.
@@ -128,7 +128,7 @@ Loading.propTypes = {
   maxProgress: PropTypes.number,
 };
 
-Loading.defaultProps = {
+LoadingComponent.defaultProps = {
   messages: ['Loading...'],
   handleLoaded: null,
   isDelayMessages: false,
@@ -138,4 +138,4 @@ Loading.defaultProps = {
   maxProgress: 100,
 };
 
-export default Loading;
+export default LoadingComponent;

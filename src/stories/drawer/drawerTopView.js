@@ -34,8 +34,8 @@ const DrawerTop = () => {
   return (
     <>
       <Drawer
-        notificationSize="150px"
-        show={show}
+        size="150px"
+        visible={show}
         direction="top"
         handleClose={() => setShow(false)}
         overlay

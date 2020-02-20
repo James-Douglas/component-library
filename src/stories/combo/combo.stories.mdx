@@ -6,12 +6,15 @@ import FluidContainer from '../../components/Grid/Container/FluidContainer.compo
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 
-
 <Meta title="Components|Combo" component={Combo} />
 
 # Combo
 
-Combo is an extension of the Input component.
+The Combo component can be used to display a list of items with can be dynamically updated based on the users input. In Manor,
+the `Combo` extends `Input` and as such shares similar functionality.
+
+On mobile, the Combo presents a full screen overlay of containing the input and the options list when the user focuses
+the input field.
 
 <Preview>
   <Story name="combo preview" height="250px">
@@ -55,6 +58,36 @@ Combo is an extension of the Input component.
   </Story>
 </Preview>
 
+## Behaviour
+* When the input has any content, a clear input button is displayed. When clicked/tapped, the input is cleared.
+* When the input length meets or exceeds the given `characterMinimum` (default 3), `apiData` is filtered based on whether it
+contains the current value of the input. The first `renderLimit` (default 10) resulting matches is displayed to the user.
+* Selecting a displayed option populates the input with the selected value.
+* If the list of displayed options is displayed and the combo (or any of it's subcomponents) lose focus, the list is
+dismissed.
+
+#### Mobile specific
+* On focus of the Combo, a modal is presented on an overlay with an input field and a list container with the
+`helperMessage` displayed.
+* When the modal displaying the input field and list is displayed, tapping on the overlay will dismiss the modal and the
+current value will not update.
+* When the input field has content with a length less than `characterMinimum` the list container displays the `helperMessage`
+* When the input field has content with a length equal or greater than `characterMinimum` and matches are found
+in `apiData`, those matches are displayed (limited to `renderLimit`).
+* When the input field has content with a length equal or greater than `characterMinimum` and matches are **not** found
+in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
+
+### Accessibility
+* The combo field can be focused via the `Tab` key.
+* The clear button can be focused via the `Tab` key.
+* When the clear button has focus, both the `Enter` and `Space` keys can be used to clear the input field.
+* When the combo is focused, the `Up` and `Down` arrow keys can be used to traverse the list of options.
+* When a list item is focused, the `Enter` key can be used to select it.
+* When the combo is focused, the `Escape` key will dismiss the list of options.
+
+### Props
+<Props of={Combo} />
+
 <Story name="combo with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const componentPropsId = 'Component Props';
@@ -72,8 +105,8 @@ Combo is an extension of the Input component.
     const autoComplete = text('autoComplete', 'off', componentPropsId);
     const prefixContent = text('prefix', '', componentPropsId);
     const suffixContent = text('suffix', '', componentPropsId);
-    const renderLimit = number('renderLimit', 10, componentPropsId);
-    const characterMinimum = number('characterMinimum', 1, componentPropsId);
+    const renderLimit = number('renderLimit', 10, {}, componentPropsId);
+    const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
     const linkHref = text('linkHref', 'https://www.comparethemarket.com.au/', componentPropsId);
     const linkText = text('linkText', 'Can’t find your address?', componentPropsId)
     const title = text('title', 'input tooltip', tooltipGroupId);
@@ -123,5 +156,3 @@ Combo is an extension of the Input component.
   }}
 </Story>
 
-### Combo props
-<Props of={Combo} />

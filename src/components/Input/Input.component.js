@@ -288,6 +288,9 @@ Input.propTypes = {
   maxlength: PropTypes.number,
   /**
    * Mask to be applied to the input, see https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme
+   * Supported <input> types Please note that Text Mask supports input type of text, tel, url, password, and search. 
+   * Due to a limitation in browser API, other input types, such as email or number, cannot be supported. 
+   * However, it is normal to let the user enter an email or a number in an input type text combined the appropriate input mask.
    */
   mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
   /**
@@ -365,7 +368,7 @@ Input.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Props to be applied to cancel close button
+   * Disables the clear icon when true
    */
   disableClearIcon: PropTypes.bool,
 };

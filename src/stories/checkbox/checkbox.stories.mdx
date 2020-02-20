@@ -11,8 +11,8 @@ import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 
 # Checkbox
 
-Manor exposes both a Checkbox component and a CheckboxGroup component, the latter to be used when grouping a number
-of checkboxes together.
+Checkboxes allow users to select one or more options by clicking on the checkbox or it's label. In Manor, checkboxes can
+be used singularly via the `Checkbox` component, or can be grouped logically via the `CheckboxGroup` component.
 
 <Preview>
   <Story name="checkbox">
@@ -33,10 +33,18 @@ of checkboxes together.
   <CheckboxGroupView />
 </Story>
 
-### Props (Checkbox)
+## Behaviour
+
+* Clicking on either the checkbox or it's label will toggle the checkbox.
+
+### Accessibility
+* Checkboxes can be focused via the `Tab` key.
+* Checkboxes can be toggled via the `Space` key when focused.
+
+### Checkbox Props
 
 <Props of={Checkbox} />
 
-### Props (CheckboxGroup)
+### CheckboxGroup Props
 
 <Props of={CheckboxGroup} />

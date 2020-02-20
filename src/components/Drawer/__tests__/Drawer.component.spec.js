@@ -9,27 +9,27 @@ const theme = getTheme();
 
 describe('Drawer', () => {
   it('check content inside Drawer exist', () => {
-    const { getByText } = render(<Drawer show handleClose={() => {}}>Hello I can move!</Drawer>);
+    const { getByText } = render(<Drawer visible handleClose={() => {}}>Hello I can move!</Drawer>);
     expect(getByText('Hello I can move!')).toBeInTheDocument();
   });
   it('check default Drawer direction', () => {
-    const { container } = render(<Drawer show handleClose={() => {}} />);
+    const { container } = render(<Drawer visible handleClose={() => {}} />);
     const DrawerChild = container.firstChild.firstChild;
     expect(DrawerChild.getAttribute('direction')).toBe('right');
   });
   it('check Drawer bottom direction', () => {
-    const { container } = render(<Drawer show handleClose={() => {}} notificationSize="400px" direction="bottom" />);
+    const { container } = render(<Drawer visible handleClose={() => {}} size="400px" direction="bottom" />);
     const drawerWrapper = container.firstChild;
     expect(drawerWrapper.firstChild).toHaveStyleRule('background', '#FFFFFF');
     expect(drawerWrapper).toHaveStyle(`z-index: ${parseInt(theme.zIndex['30'], 10)}`);
   });
   it('check Drawer styles open section', () => {
-    const { container } = render(<Drawer notificationSize="20%" direction="bottom" show handleClose={() => {}}>Drawer content inside</Drawer>);
+    const { container } = render(<Drawer size="20%" direction="bottom" visible handleClose={() => {}}>Drawer content inside</Drawer>);
     const DrawerChild = container.firstChild.firstChild;
     expect(DrawerChild).toHaveStyleRule('bottom', '0');
   });
   it('check bottom Drawer', () => {
-    const { container } = render(<Drawer notificationSize="400px" direction="left" closeButton show handleClose={() => {}} />);
+    const { container } = render(<Drawer size="400px" direction="left" closeButton visible handleClose={() => {}} />);
     const animate = container.querySelector('[direction="left"]');
     expect(animate).toHaveStyleRule('width', '400px');
     expect(animate).toHaveStyleRule('top', '0');
@@ -38,7 +38,7 @@ describe('Drawer', () => {
   it('check top Drawer', () => {
     const handleCloseFun = jest.fn();
     const { container } = render(
-      <Drawer notificationSize="400px" direction="top" closeButton handleClose={handleCloseFun} show>
+      <Drawer size="400px" direction="top" closeButton handleClose={handleCloseFun} visible>
         Drawer opened
       </Drawer>,
     );
@@ -49,7 +49,7 @@ describe('Drawer', () => {
   });
   it('check left Drawer padding', () => {
     const { container } = render(
-      <Drawer notificationSize="400px" direction="left" show handleClose={() => {}}>
+      <Drawer size="400px" direction="left" visible handleClose={() => {}}>
         Drawer opened
       </Drawer>,
     );
@@ -59,7 +59,7 @@ describe('Drawer', () => {
   it('check left Drawer on escapse', () => {
     const handleCloseFun = jest.fn();
     const { container } = render(
-      <Drawer notificationSize="400px" direction="left" show handleClose={handleCloseFun}>
+      <Drawer size="400px" direction="left" visible handleClose={handleCloseFun}>
         Drawer opened
       </Drawer>,
     );
@@ -68,7 +68,7 @@ describe('Drawer', () => {
   });
   it('check right Drawer', () => {
     const { container } = render(
-      <Drawer notificationSize="400px" closeButton show handleClose={() => {}}>
+      <Drawer size="400px" closeButton visible handleClose={() => {}}>
         Drawer opened
       </Drawer>,
     );
@@ -78,7 +78,7 @@ describe('Drawer', () => {
   });
   it('check bottom Drawer ', () => {
     const { container } = render(
-      <Drawer notificationSize="400px" closeButton show handleClose={() => {}} direction="bottom">
+      <Drawer size="400px" closeButton visible handleClose={() => {}} direction="bottom">
         Drawer opened
       </Drawer>,
     );
@@ -90,8 +90,8 @@ describe('Drawer', () => {
       <>
         <Drawer
           id="1"
-          notificationSize="300px"
-          show
+          size="300px"
+          visible
           direction="bottom"
           iconClassName="closeIconSlide"
           closeButton
@@ -101,7 +101,7 @@ describe('Drawer', () => {
         </Drawer>
         <Drawer
           id="2"
-          notificationSize="300px"
+          size="300px"
           direction="right"
           iconClassName="closeIconSlide"
           closeButton
@@ -119,8 +119,8 @@ describe('Drawer', () => {
       <>
         <Drawer
           id="1"
-          notificationSize="300px"
-          show
+          size="300px"
+          visible
           direction="bottom"
           iconClassName="closeIconSlide"
           closeButton
@@ -130,8 +130,8 @@ describe('Drawer', () => {
         </Drawer>
         <Drawer
           id="2"
-          notificationSize="300px"
-          show
+          size="300px"
+          visible
           direction="right"
           iconClassName="closeIconSlide"
           closeButton

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../testUtils';
+import { fireEvent, render } from '../testUtils';
 import LayerEventManager from '../LayerEventManager';
 
 describe('LayerEventManager', () => {
@@ -13,5 +13,18 @@ describe('LayerEventManager', () => {
     expect(wrapper).toHaveStyle('z-index: 30');
     expect(wrapper).toHaveAttribute('id');
     expect(getByText('test')).toBeInTheDocument();
+  });
+  it('traps focus when trapFocus is true', () => {
+    const outsideElementFocusHandler = jest.fn();
+    const { container } = render(
+      <>
+        <button type="button" className="outside" onFocus={outsideElementFocusHandler}>button</button>
+        <LayerEventManager visible trapFocus><TestComponent /></LayerEventManager>
+      </>,
+    );
+    fireEvent.keyPress(container, { key: 'Tab', keyCode: 9 });
+    fireEvent.keyPress(container, { key: 'Tab', keyCode: 9 });
+    fireEvent.keyPress(container, { key: 'Tab', keyCode: 9 });
+    expect(outsideElementFocusHandler).not.toHaveBeenCalled();
   });
 });

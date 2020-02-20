@@ -17,16 +17,34 @@ import useIsDesktop from '../../hooks/useIsDesktop';
 
 # Dropdown
 
-The CTM Dropdown component, which is essentially a styled HTML select and it's child options - does not support multi
-select (another component will handle multi select).
+The Dropdown can be used to present users with a list of options from which they can choose. On mobile devices the
+Manor Dropdown presents a full screen overlay of selectable options when the user interacts with it.
 
 <Story name="Dropdown">
   <DropdownView />
 </Story>
 
+## Behaviour
+* Clicking/Tapping on the Dropdown causes the list of options to be displayed.
+* The currently selected option has a `tick` icon displayed next to in the dropdown list.
+* Selecting an item from the Dropdown list causes the list to be hidden and the input text to update to that of the
+selected option.
+
+#### Mobile specific
+* On focus of the Dropdown, a modal is presented on an overlay with a list of the given options.
+* When the modal displaying the options is displayed, tapping on the overlay will dismiss the modal and the current
+selection will not update.
+* When the modal displaying the options is displayed, tapping on an option will dismiss the modal and the current
+selection will update to the selected option.
+
+### Accessibility
+* The Dropdown can be focused via the `Tab` key.
+* When the Dropdown is focused, the `Up` and `Down` arrow keys can be used to traverse the list of options.
+* When a list item is focused, the `Enter` key can be used to select it.
+* When the Dropdown is focused, the `Escape` key will dismiss the list of options.
+
 ## Dropdown with props
 <Props of={Dropdown} />
-
 
 <Story name="Dropdown with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
@@ -79,7 +97,8 @@ select (another component will handle multi select).
               id={id}
               label={label}
               options={options}
-              supportingElements
+              disabled={disabled}
+              prefixContent={prefixContent}
               validationMessage={validationMessage}
               tooltip={{
                 title,

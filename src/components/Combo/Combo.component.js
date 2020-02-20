@@ -314,13 +314,13 @@ const Combo = ({
     }
   };
 
-  const comboHandleChange = (valueInput) => {
+  const comboHandleChange = useCallback((valueInput) => {
     setCurrentValue(valueInput);
     setListVisible(!!valueInput.length);
     if (handleInput) {
       handleInput(valueInput);
     }
-  };
+  }, [setCurrentValue, setListVisible, handleInput]);
 
   const handleUserKeyPress = useCallback((event) => {
     const { keyCode } = event;
@@ -437,7 +437,7 @@ const Combo = ({
   return (
     <LayerEventManager id={`LayerEventManager${id}`} visible={mobileOverlay}>
       <>
-        {mobileOverlay && (<Overlay opacityLevel={0.3} show={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
+        {mobileOverlay && (<Overlay opacityLevel={0.3} visible={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
         {(mobileOverlay || desktop) && (
           <>
             <StyledDiv

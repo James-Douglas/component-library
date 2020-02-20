@@ -310,7 +310,7 @@ const Dropdown = ({
   return (
     <LayerEventManager id={`LayerEventManagerDropdown${id}`} visible={mobileOverlay && isDropdownOpen}>
       {(mobileOverlay && isDropdownOpen) && (
-        <Overlay opacityLevel={0.3} show={mobileOverlay && isDropdownOpen} onClose={closeFieldModal} handleClick={closeFieldModal} />
+        <Overlay opacityLevel={0.3} visible={mobileOverlay && isDropdownOpen} onClose={closeFieldModal} handleClick={closeFieldModal} />
       )}
       <>
         <StyledDropdownMainWrap ref={node} onKeyDown={keyboardAccessibility}>
@@ -350,11 +350,11 @@ Dropdown.propTypes = {
    */
   id: PropTypes.string.isRequired,
   /**
-   *
+   * The options to display within the Dropdown
    */
   options: PropTypes.arrayOf(PropTypes.object),
   /**
-   * Label for the input
+   * Label for the dropdown
    */
   label: PropTypes.string,
   /**
@@ -362,7 +362,7 @@ Dropdown.propTypes = {
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
   /**
-   * Label for the Dropdown.
+   * The items to be rendered (should be `<li>` tags)
    */
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -377,7 +377,7 @@ Dropdown.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Content to be displayed as a prefix for the input
+   * Content to be displayed as a prefix for the dropdown
    */
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
@@ -395,7 +395,6 @@ Dropdown.propTypes = {
    * Function called when dropdown loses focus
    */
   handleBlur: PropTypes.func,
-
 };
 
 Dropdown.defaultProps = {

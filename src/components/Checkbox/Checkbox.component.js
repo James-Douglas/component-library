@@ -133,9 +133,11 @@ const Checkbox = ({
           id={id}
           name={id}
           type="checkbox"
+          role="checkbox"
           disabled={disabled}
           onChange={toggleEventHandler}
           checked={checked}
+          aria-checked={checked}
           onFocus={handleFocus}
           onBlur={handleBlur}
         />

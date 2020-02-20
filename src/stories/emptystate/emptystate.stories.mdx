@@ -12,7 +12,7 @@ import Column from '../../components/Grid/Column/Column.component';
 
 # EmptyState
 
-TheEmptyState
+The `EmptyState` component is to be used when no results are found based on the current filters.
 
 <Preview>
   <Story name="empty state" height="500px">
@@ -32,18 +32,24 @@ TheEmptyState
 
 <Props of={EmptyState} />
 
-<Story name="empty state with custom heading">
-  {() => {
-    return (
-      <EmptyState heading="A custom heading">
-        <div style={{fontSize: '20px', lineHeight: '30px'}}>
-          Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
-        </div>
-      </EmptyState>
-    )
-  }}
-</Story>
+### Examples
 
+#### With custom heading
+<Preview>
+  <Story name="empty state with custom heading" height="600px">
+    {() => {
+      return (
+        <EmptyState heading="A custom heading">
+          <div style={{fontSize: '20px', lineHeight: '30px'}}>
+            Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+          </div>
+        </EmptyState>
+      )
+    }}
+  </Story>
+</Preview>
+
+#### With primary button
 <Preview>
   <Story name="empty state with primary button" height="600px">
     {() => {
@@ -70,6 +76,7 @@ TheEmptyState
   </Story>
 </Preview>
 
+#### With primary & secondary buttons
 <Preview>
   <Story name="empty state with primary and secondary buttons" height="600px">
       {() => {
@@ -105,6 +112,7 @@ TheEmptyState
   </Story>
 </Preview>
 
+#### With text link
 <Preview>
     <Story name="empty state with text link" height="600px">
         {() => {

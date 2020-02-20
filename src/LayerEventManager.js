@@ -14,7 +14,7 @@ const StyledLayer = styled.span`
 `;
 
 const LayerEventManager = ({
-  id, visible, handleClose, children,
+  id, visible, closeOnEsc, trapFocus, handleClose, children,
 }) => {
   const layerInfo = useLayers();
   const theme = getTheme();
@@ -55,14 +55,14 @@ const LayerEventManager = ({
   const handleUserKeyPress = useCallback((event) => {
     const { keyCode } = event;
     // escape
-    if (keyCode === 27 && visible) {
+    if (keyCode === 27 && visible && closeOnEsc) {
       if (layerInfo.top(layerId.current)) {
         if (handleClose) {
           handleClose();
         }
         layerInfo.pop();
       }
-    } else if (keyCode === 9 && visible) {
+    } else if (keyCode === 9 && visible && trapFocus) {
       // focus trapping
       setTimeout(() => {
         if (layerInfo.top(layerId.current)) {
@@ -79,7 +79,7 @@ const LayerEventManager = ({
         }
       });
     }
-  }, [visible, layerInfo, handleClose]);
+  }, [visible, layerInfo, handleClose, closeOnEsc, trapFocus]);
 
   useLayoutEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress);
@@ -99,6 +99,8 @@ const LayerEventManager = ({
 LayerEventManager.propTypes = {
   id: PropTypes.string,
   visible: PropTypes.bool.isRequired,
+  closeOnEsc: PropTypes.bool,
+  trapFocus: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
@@ -108,6 +110,8 @@ LayerEventManager.propTypes = {
 
 LayerEventManager.defaultProps = {
   id: null,
+  closeOnEsc: true,
+  trapFocus: true,
   handleClose: null,
 };
 

@@ -25,8 +25,8 @@ const DrawerBottom = () => {
   return (
     <>
       <Drawer
-        notificationSize={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '160px'}`}
-        show={show}
+        size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '160px'}`}
+        visible={show}
         direction="bottom"
         handleClose={() => setShow(false)}
         iconClassName="closeIconSlide"

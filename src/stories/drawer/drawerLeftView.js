@@ -33,8 +33,8 @@ const DrawerLeft = () => {
   return (
     <>
       <Drawer
-        notificationSize={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '50%'}`}
-        show={show}
+        size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '50%'}`}
+        visible={show}
         handleClose={() => setShow(false)}
         iconClassName="closeIconSlide"
         direction="left"
