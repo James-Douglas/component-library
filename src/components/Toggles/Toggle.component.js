@@ -10,17 +10,19 @@ import Picture from '../Picture/Picture.component';
 const StyledTextToggleContent = styled.div`
   height: 100%;
   display: flex;
-  padding: ${({ theme }) => theme.spacing['16']}; 
+  padding: ${({ theme }) => theme.spacing['16']};
   align-items: center;
   text-align: center;
   min-height: 2.4rem;
-   ${({ rectOptions }) => rectOptions && rectOptions.align && css`
+
+  ${({ rectOptions }) => rectOptions && rectOptions.align && css`
     justify-content: ${rectOptions.align};
   `}
+
   ${({ type, theme }) => type === 'square' && css`
     justify-content: space-around;
-    width: ${theme.spacing['128']}; 
-    height: ${theme.spacing['128']}; 
+    width: ${theme.spacing['128']};
+    height: ${theme.spacing['128']};
     min-height: 12.8rem;
     padding: ${theme.spacing['8']};
   `}
@@ -32,8 +34,8 @@ const StyledIconToggleContent = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: ${({ theme }) => theme.spacing['128']}; 
-  height: ${({ theme }) => theme.spacing['128']}; 
+  width: ${({ theme }) => theme.spacing['128']};
+  height: ${({ theme }) => theme.spacing['128']};
   transition : all 200ms ease-out;
 `;
 
@@ -42,13 +44,13 @@ const StyledImageToggle = styled.div`
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  
-  width: ${({ theme }) => theme.spacing['128']}; 
-  height: ${({ theme }) => theme.spacing['128']};  
+
+  width: ${({ theme }) => theme.spacing['128']};
+  height: ${({ theme }) => theme.spacing['128']};
 `;
 
 const StyledIconContent = styled.div`
-  padding-top: ${({ theme }) => theme.spacing['32']}; 
+  padding-top: ${({ theme }) => theme.spacing['32']};
 `;
 
 const StyledPicture = styled.div`

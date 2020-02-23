@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export const StyledProgress = styled.div`
   margin-top: 1rem;
   width: 100%;
- 
+
   &[value] {
     /* Reset the default appearance */
     -webkit-appearance: none;

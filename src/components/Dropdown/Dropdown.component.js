@@ -30,7 +30,7 @@ const StyledLabel = styled.div`
   align-items: center;
   position: relative;
   height: ${({ theme }) => theme.spacing[44]};
-  padding: ${({ theme }) => (`${theme.spacing['8']} ${theme.spacing['12']}`)};
+  padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['12']}`};
   .svgArrowWrap {
     position: absolute;
     right: ${({ theme }) => theme.spacing[12]};
@@ -60,7 +60,7 @@ const StyledDropdownButton = styled.div`
     &:focus {
        border: ${({ theme }) => theme.borders.invalid};
        cursor: default;
-    } 
+    }
   `}
   ${({ disabled }) => disabled && css`
     background: ${({ theme }) => theme.colors.greyLight};
@@ -74,7 +74,7 @@ const StyledDropdownButton = styled.div`
           fill: ${({ theme }) => theme.colors.black};
         }
       }
-    } 
+    }
   `}
 `;
 
@@ -91,14 +91,14 @@ const StyledListul = styled.ul`
     position: relative;
     border: ${({ theme }) => theme.borders.transparent};
     font-size: ${({ theme }) => theme.fontSize.base};
-    padding: ${({ theme }) => (`${theme.spacing['8']} ${theme.spacing['32']}`)};
+    padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['32']}`};
     &:hover {
       cursor: pointer;
       background: ${({ theme }) => (theme.colors.greyLight)};
     }
     ${({ desktop }) => !desktop && css`
       font-size: ${({ theme }) => theme.fontSize.xl};
-      padding: ${({ theme }) => (`${theme.spacing['16']} ${theme.spacing['16']} ${theme.spacing['20']}`)};
+      padding: ${({ theme }) => `${theme.spacing['16']} ${theme.spacing['16']} ${theme.spacing['20']}`};
     `}
     &:focus {
       outline: none;

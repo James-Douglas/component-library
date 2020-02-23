@@ -8,11 +8,11 @@ const StyledCard = styled.div`
   width: 100%;
   min-width: ${({ theme }) => theme.spacing['80']};
   min-height: ${({ theme }) => theme.spacing['80']};
-  background: ${({ theme }) => theme.card.background}; 
-  box-shadow: ${({ theme }) => theme.card.shadow}; 
-  border: ${({ theme }) => theme.card.border};   
+  background: ${({ theme }) => theme.card.background};
+  box-shadow: ${({ theme }) => theme.card.shadow};
+  border: ${({ theme }) => theme.card.border};
   ${({ margin }) => applySpacing('margin', margin)};
-  ${({ padding }) => applySpacing('padding', padding)}; 
+  ${({ padding }) => applySpacing('padding', padding)};
 `;
 
 const Card = ({

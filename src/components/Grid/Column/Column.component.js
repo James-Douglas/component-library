@@ -5,14 +5,14 @@ import screens from '../../../../config/screens';
 
 // for cols='sm' or cols='md' etc
 const colDefault = css`
-  flex-basis: 0%; 
-  flex-grow: 1; 
+  flex-basis: 0%;
+  flex-grow: 1;
   max-width: 100%;
 `;
 // for sm='auto' or md='auto' etc
 const colAuto = css`
-  flex: 0 0 auto; 
-  width: auto; 
+  flex: 0 0 auto;
+  width: auto;
   max-width: 100%;
 `;
 
@@ -37,13 +37,13 @@ const StyledColumn = styled.div`
   padding-right: 1.6rem;
   align-items: ${(props) => props.valign};
   justify-content: ${(props) => props.halign};
-  
+
   ${({ cols, baseOffset }) => {
     let colStyles = '';
     if (parseInt(cols, 10) > 0) {
       colStyles += `
-        flex: ${getPercentage(cols)}; 
-        max-width: ${getPercentage(cols)};  
+        flex: ${getPercentage(cols)};
+        max-width: ${getPercentage(cols)};
       `;
     }
 
@@ -55,7 +55,7 @@ const StyledColumn = styled.div`
 
     media.forEach((oneMedia) => {
       if (cols === oneMedia.col) {
-        colStyles += `@media (min-width: ${oneMedia.minWidth}) { 
+        colStyles += `@media (min-width: ${oneMedia.minWidth}) {
           ${colDefault}
         }`;
       }
@@ -69,12 +69,12 @@ const StyledColumn = styled.div`
     let colStyles = '';
 
     if (sm === 'auto') {
-      return `${colAuto}`;
+      return colAuto;
     }
 
     if (sm) {
       colStyles += `
-          flex: ${getPercentage(sm)}; 
+          flex: ${getPercentage(sm)};
           max-width: ${getPercentage(sm)};
         `;
     }
@@ -82,6 +82,7 @@ const StyledColumn = styled.div`
     if (offsetSm) {
       colStyles += `margin-left: ${getPercentage(offsetSm)}`;
     }
+
     return colStyles;
   }}
   }
@@ -91,12 +92,12 @@ const StyledColumn = styled.div`
     let colStyles = '';
 
     if (md === 'auto') {
-      return `${colAuto}`;
+      return colAuto;
     }
 
     if (md) {
       colStyles += `
-          flex: ${getPercentage(md)}; 
+          flex: ${getPercentage(md)};
           max-width: ${getPercentage(md)};
         `;
     }
@@ -104,6 +105,7 @@ const StyledColumn = styled.div`
     if (offsetMd) {
       colStyles += `margin-left: ${getPercentage(offsetMd)}`;
     }
+
     return colStyles;
   }}
   }
@@ -113,12 +115,12 @@ const StyledColumn = styled.div`
     let colStyles = '';
 
     if (lg === 'auto') {
-      return `${colAuto}`;
+      return colAuto;
     }
 
     if (lg) {
       colStyles += `
-          flex: ${getPercentage(lg)}; 
+          flex: ${getPercentage(lg)};
           max-width: ${getPercentage(lg)};
         `;
     }
@@ -126,6 +128,7 @@ const StyledColumn = styled.div`
     if (offsetLg) {
       colStyles += `margin-left: ${getPercentage(offsetLg)}`;
     }
+
     return colStyles;
   }}
   }
@@ -135,12 +138,12 @@ const StyledColumn = styled.div`
     let colStyles = '';
 
     if (xl === 'auto') {
-      return `${colAuto}`;
+      return colAuto;
     }
 
     if (xl) {
       colStyles += `
-          flex: ${getPercentage(xl)}; 
+          flex: ${getPercentage(xl)};
           max-width: ${getPercentage(xl)};
         `;
     }
@@ -148,6 +151,7 @@ const StyledColumn = styled.div`
     if (offsetXl) {
       colStyles += `margin-left: ${getPercentage(offsetXl)}`;
     }
+
     return colStyles;
   }}
   }
@@ -157,12 +161,12 @@ const StyledColumn = styled.div`
     let colStyles = '';
 
     if (xxl === 'auto') {
-      return `${colAuto}`;
+      return colAuto;
     }
 
     if (xxl) {
       colStyles += `
-          flex: ${getPercentage(xxl)}; 
+          flex: ${getPercentage(xxl)};
           max-width: ${getPercentage(xxl)};
         `;
     }
@@ -170,6 +174,7 @@ const StyledColumn = styled.div`
     if (offsetXxl) {
       colStyles += `margin-left: ${getPercentage(offsetXxl)}`;
     }
+
     return colStyles;
   }}
   }

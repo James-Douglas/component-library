@@ -7,9 +7,10 @@ const StyledComponent = styled.div`
   display: table-row;
   vertical-align: middle;
   &:hover {
-    background: ${({ hover, theme }) => (hover ? theme.table.rowHoverBackground : 'none')}; 
+    background: ${({ hover, theme }) => (hover ? theme.table.rowHoverBackground : 'none')};
   }
 `;
+
 const TableRow = ({
   className,
   component,

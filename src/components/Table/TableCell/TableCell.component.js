@@ -6,8 +6,8 @@ import TableContext from '../Table/TableContext';
 
 const StyledComponent = styled.div`
   display: table-cell;
-  text-align: ${({ align }) => align}; 
-  vertical-align: ${({ valign }) => valign}; 
+  text-align: ${({ align }) => align};
+  vertical-align: ${({ valign }) => valign};
   padding: ${({ padding, theme }) => {
     if (padding === 'checkbox' || padding === 'medium') {
       return theme.spacing['8'];

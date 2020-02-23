@@ -23,7 +23,7 @@ const StyledContact = styled.div`
     }
     return fontSize;
   }};
-  
+
   &:hover {
    color: ${({ theme }) => theme.header.contact.hoverColor};
    fill: ${({ theme }) => theme.header.contact.hoverColor};

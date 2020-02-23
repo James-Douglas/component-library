@@ -17,10 +17,10 @@ import EmptyState from '../EmptyState/EmptyState.component';
 const StyledDropdownList = styled.div`
   position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')};
   width: ${({ theme }) => (theme.maxWidth.full)};
-  display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')}; 
-  z-index: ${({ theme }) => (theme.zIndex[40])}; 
-  background: ${({ theme }) => (theme.combo.list.background)};  
-  box-shadow: ${({ theme, desktop }) => (desktop ? theme.combo.list.shadow : '')};  
+  display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')};
+  z-index: ${({ theme }) => (theme.zIndex[40])};
+  background: ${({ theme }) => (theme.combo.list.background)};
+  box-shadow: ${({ theme, desktop }) => (desktop ? theme.combo.list.shadow : '')};
   margin-top: ${({ theme }) => (theme.spacing[8])};
   &:focus {
     outline: none;
@@ -34,9 +34,9 @@ const StyledDropdownList = styled.div`
 
 const StyledList = styled.ul`
   width: ${({ theme }) => (theme.maxWidth.full)};
-  padding: 0; 
-  z-index: ${({ theme }) => (theme.zIndex[30])}; 
-  color: ${({ theme }) => (theme.combo.list.color)}; 
+  padding: 0;
+  z-index: ${({ theme }) => (theme.zIndex[30])};
+  color: ${({ theme }) => (theme.combo.list.color)};
 `;
 
 const StyledDefault = styled.div`
@@ -47,15 +47,15 @@ const StyledListItem = styled.li`
   list-style-type: none;
   cursor: pointer;
   border: ${({ theme }) => theme.borders.transparent};
-  padding:  ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};  
-  font-size: ${({ theme }) => (theme.fontSize.base)}; 
-  color: ${({ theme }) => (theme.combo.list.item.color)}; 
+  padding:  ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};
+  font-size: ${({ theme }) => (theme.fontSize.base)};
+  color: ${({ theme }) => (theme.combo.list.item.color)};
   transition: background-color 0.4s ease;
   &:nth-last-child(1) {
-    padding-bottom:  ${({ theme }) => theme.spacing[20]};  
+    padding-bottom:  ${({ theme }) => theme.spacing[20]};
   }
   &:hover {
-    background: ${({ theme }) => theme.combo.list.item.backgroundHover}; 
+    background: ${({ theme }) => theme.combo.list.item.backgroundHover};
   }
   &:focus {
     outline: none;
@@ -67,15 +67,15 @@ const StyledButtonWrap = styled.div`
   justify-content: space-around;
   text-align: center;
   border: ${({ theme }) => theme.combo.list.border};
-  padding:  ${({ theme }) => `${theme.spacing[8]} 0`};  
+  padding:  ${({ theme }) => `${theme.spacing[8]} 0`};
   background: ${({ theme }) => (theme.combo.button.background)};
   &:focus {
     outline: none;
-    border: ${({ theme }) => theme.combo.button.borderFocus};  
-    border-width: ${({ theme }) => theme.spacing.px}; /* IE 11 specific fix */ 
+    border: ${({ theme }) => theme.combo.button.borderFocus};
+    border-width: ${({ theme }) => theme.spacing.px}; /* IE 11 specific fix */
   }
   &:hover {
-    background: ${({ theme }) => (theme.combo.button.backgroundHover)};  
+    background: ${({ theme }) => (theme.combo.button.backgroundHover)};
   }
   font-size: ${({ theme }) => theme.fontSize.base};
 `;
@@ -83,7 +83,7 @@ const StyledButtonWrap = styled.div`
 const StyledDiv = styled.div`
  ${({ desktop }) => !desktop && css`
     width: ${({ theme }) => (theme.maxWidth.full)};
-    z-index: ${({ theme }) => (theme.zIndex[40])}; 
+    z-index: ${({ theme }) => (theme.zIndex[40])};
     top: ${({ theme }) => theme.spacing[136]};
     position: fixed;
     right: ${({ theme }) => theme.spacing[16]};
@@ -107,7 +107,7 @@ const StyledDiv = styled.div`
 
 const WrapList = styled.div`
   ${({ desktop }) => !desktop && css`
-    z-index: ${({ theme }) => (theme.zIndex.entry)}; 
+    z-index: ${({ theme }) => (theme.zIndex.entry)};
     width: auto;
     right: ${({ theme }) => theme.spacing[8]};
     left: ${({ theme }) => theme.spacing[8]};
@@ -158,7 +158,7 @@ const StyledEmptyStateMessage = styled.div`
   left: ${({ theme }) => theme.spacing[16]};
   max-height: ${({ theme }) => (theme.spacing[200])};
   top: ${({ theme }) => theme.spacing[280]};
-  z-index: ${({ theme }) => (theme.zIndex[50])}; 
+  z-index: ${({ theme }) => (theme.zIndex[50])};
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.combo.list.item.color};
   text-align: center;

@@ -108,7 +108,7 @@ const baseButtonStyles = css`
 `;
 
 const primaryVariant = css`
-  ${borderStyles}; 
+  ${borderStyles};
   ${focusStyles};
   min-height: ${({ theme }) => theme.button.primary.minHeight};
   border: ${({ theme }) => theme.button.primary.border};
@@ -123,7 +123,7 @@ const primaryVariant = css`
 `;
 
 const secondaryVariant = css`
-  ${borderStyles}; 
+  ${borderStyles};
   ${focusStyles};
   background: ${({ theme }) => theme.button.secondary.background};
   border: ${({ theme }) => theme.button.secondary.border};
@@ -149,7 +149,7 @@ const secondaryVariant = css`
 `;
 
 const tertiaryVariant = css`
-  ${borderStyles}; 
+  ${borderStyles};
   ${focusStyles};
   background: ${({ theme }) => theme.button.tertiary.background};
   color: ${({ theme }) => theme.button.tertiary.color};
@@ -247,7 +247,7 @@ const footerVariant = css`
 
 const BaseTag = styled.div`
   ${baseButtonStyles}
-  
+
   ${({ variant }) => {
     switch (variant) {
       case 'primary':

@@ -9,7 +9,7 @@ import FluidContainer from '../Grid/Container/FluidContainer.component';
 
 const StyledFooterContainer = styled.footer`
   width: 100%;
-  background: ${({ theme }) => theme.footer.background}; 
+  background: ${({ theme }) => theme.footer.background};
   flex-grow: 1;
   flex-shrink: 0;
 `;
@@ -17,16 +17,16 @@ const StyledFooterContainer = styled.footer`
 const StyledFooterDisclaimer = styled.div`
   width: 100%;
   display: flex;
-  padding: ${({ theme }) => (`${theme.spacing['32']} 0 ${theme.spacing['16']} 0`)};
-  font-weight: ${({ theme }) => theme.fontWeight.normal}; 
-  font-size: ${({ theme }) => theme.fontSize.xs}; 
-  line-height: ${({ theme }) => theme.lineHeight.snug}; 
+  padding: ${({ theme }) => `${theme.spacing['32']} 0 ${theme.spacing['16']} 0`};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
 `;
 
 const StyledFooterCopy = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeight.normal}; 
-  font-size: ${({ theme }) => theme.fontSize.sm}; 
-  line-height: ${({ theme }) => theme.lineHeight.snug}; 
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
 `;
 
 const StyledFooterBar = styled.div`
@@ -35,7 +35,7 @@ const StyledFooterBar = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: ${({ theme }) => (`${theme.spacing['8']} 0 ${theme.spacing['8']} 0`)};
+  padding: ${({ theme }) => `${theme.spacing['8']} 0 ${theme.spacing['8']} 0`};
   min-height: 5.4rem;
 `;
 

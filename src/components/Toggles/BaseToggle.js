@@ -22,28 +22,34 @@ const StyledToggleInput = styled.input`
   width:0;
   height: 0;
   position: absolute;
+
   &:checked + label svg {
-    color: ${({ theme }) => theme.toggle.base.background}};
+    color: ${({ theme }) => theme.toggle.base.background};
     fill: currentColor;
     box-shadow: none;
      transition : all 200ms ease-out;
-  } 
+  }
+
   &:disabled + label:hover {
     cursor: not-allowed;
   }
+
   &:disabled + label {
     color: ${({ theme }) => theme.colors.disabled};
     border: ${({ theme }) => theme.borders.transparent};
     fill: currentColor;
   }
+
   &:checked + label {
     background: ${({ theme }) => theme.toggle.base.backgroundChecked};
     color: ${({ theme }) => theme.toggle.base.color};
     box-shadow: none;
   }
+
   &:focus + label {
     box-shadow: 0 0 2px 3px rgba(0, 123, 255, .3);
   }
+
   ${({ invalid, theme }) => invalid && css`
      & + label {
       color: ${theme.colors.invalid};

@@ -37,7 +37,8 @@ const StyledModal = styled.div`
   width: ${({ size }) => {
     if (size === 'lg') {
       return '66.666667%';
-    } if (size === 'md') {
+    }
+    if (size === 'md') {
       return '50%';
     }
     return '33.333333%';

@@ -15,7 +15,7 @@ const StyledProcessTrackerItemLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.progress.tracker.itemLinkColor};  
+  color: ${({ theme }) => theme.progress.tracker.itemLinkColor};
   div {
     transition: all 0.1s ease-out;
   }
@@ -23,6 +23,7 @@ const StyledProcessTrackerItemLink = styled.a`
     transform: scale(1.1) translate(0.3rem, 0);
   }
 `;
+
 const StyledProgressStep = styled.div`
   color: ${({ theme }) => theme.progress.tracker.progressStep.color};
   display: flex;
@@ -39,10 +40,10 @@ const StyledProgressStep = styled.div`
 
 const StyledTracker = styled.div`
   width: 100%;
-  box-shadow: ${({ theme }) => theme.boxShadow.progress}; 
-  font-size: ${({ theme }) => theme.fontSize.sm}; 
-  z-index: ${({ theme }) => theme.zIndex[50]}; 
-  position: ${({ isSticky, stuck }) => (isSticky || stuck ? 'fixed' : 'relative')}; 
+  box-shadow: ${({ theme }) => theme.boxShadow.progress};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  z-index: ${({ theme }) => theme.zIndex[50]};
+  position: ${({ isSticky, stuck }) => (isSticky || stuck ? 'fixed' : 'relative')};
   top: ${({ isSticky, stuck }) => (isSticky || stuck ? '0' : 'inherit')};
   height:  ${({ stuck }) => (stuck ? 'auto' : 'none')};
 `;
@@ -50,7 +51,7 @@ const StyledTracker = styled.div`
 const sharedStyleProgress = css`
   ${({ theme }) => theme.progress.tracker.backgroundCss};
   transition: width 0.4s ease-in-out;
-  border-radius:  ${(props) => ((props.value === 100 || props.value === '100') ? props.theme.borderRadius.none : `0 ${props.theme.borderRadius.full} ${props.theme.borderRadius.full} 0`)};  
+  border-radius:  ${(props) => ((props.value === 100 || props.value === '100') ? props.theme.borderRadius.none : `0 ${props.theme.borderRadius.full} ${props.theme.borderRadius.full} 0`)};
 `;
 
 const StyledProgress = styled.progress`
@@ -59,11 +60,11 @@ const StyledProgress = styled.progress`
   left: 0;
   height: 100%;
   width: 100%;
-  background: ${({ theme }) => theme.progress.tracker.background}; 
+  background: ${({ theme }) => theme.progress.tracker.background};
   /* ie11 */
   &[value]  {
-    background: ${({ theme }) => theme.progress.tracker.backgroundValue}; 
-    color: ${({ theme }) => theme.progress.tracker.colorValue}; 
+    background: ${({ theme }) => theme.progress.tracker.backgroundValue};
+    color: ${({ theme }) => theme.progress.tracker.colorValue};
     /* Reset the default appearance */
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -71,23 +72,23 @@ const StyledProgress = styled.progress`
     /* Get rid of default border in IE. */
     border: none;
   }
-  
+
   /* ie11 & edge remove black right border */
   &::-ms-fill {
     border-color: currentColor;
   }
-  
+
   &::-webkit-progress-bar {
-    background: ${({ theme }) => theme.progress.tracker.backgroundValue}; 
-    transition: background-color 300ms ease-in-out; 
+    background: ${({ theme }) => theme.progress.tracker.backgroundValue};
+    transition: background-color 300ms ease-in-out;
   }
 
   ::-webkit-progress-value {
     ${sharedStyleProgress}
-  }  
+  }
   ::-moz-progress-bar {
     ${sharedStyleProgress}
-  }  
+  }
 `;
 
 const StyledSteps = styled.div`
@@ -144,7 +145,6 @@ const Tracker = ({
     </StyledTracker>
   );
 };
-
 
 Tracker.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.shape({

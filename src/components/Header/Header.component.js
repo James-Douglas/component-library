@@ -8,15 +8,15 @@ import Contact from './Contact/Contact.component';
 const StyledHeader = styled.header`
   display: flex;
   width: 100%;
-  background: ${({ theme }) => (theme.header.background)}; 
-  z-index: ${({ theme }) => (theme.zIndex[50])}; 
-  height: ${({ theme, stuck }) => (stuck ? theme.header.heightStuck : theme.header.height)}; 
-  transition: ${({ stuck }) => (stuck ? 'all 200ms ease' : 'none')}; 
+  background: ${({ theme }) => (theme.header.background)};
+  z-index: ${({ theme }) => (theme.zIndex[50])};
+  height: ${({ theme, stuck }) => (stuck ? theme.header.heightStuck : theme.header.height)};
+  transition: ${({ stuck }) => (stuck ? 'all 200ms ease' : 'none')};
   box-shadow: ${({ stuck }) => (stuck ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : 'none')};
-  position: ${({ isSticky }) => (isSticky ? 'fixed' : 'inherit')}; 
+  position: ${({ isSticky }) => (isSticky ? 'fixed' : 'inherit')};
   top: ${({ isSticky }) => (isSticky ? '0' : 'inherit')};
   justify-content: space-between;
-  align-items: center;  
+  align-items: center;
 `;
 
 const Header = ({ isSticky, stuck, number }) => {

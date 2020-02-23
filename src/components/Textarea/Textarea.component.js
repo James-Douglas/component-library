@@ -26,25 +26,31 @@ const StyledTextArea = styled.textarea`
   border: ${({ theme }) => theme.borders.transparent};
   min-height: ${({ theme }) => theme.spacing[44]};
   font-size: ${({ theme }) => theme.fontSize.base};
-  ::placeholder {
+
+  &::placeholder {
     ${({ theme }) => ({ ...theme.placeholder })}
   }
+
   ${({ bordered, theme }) => bordered && css`
     border: ${theme.borders.component};
   `}
+
   ${({
     isPrefill, isDirty, disabled, theme,
   }) => (isPrefill && !isDirty && !disabled) && css`
     background: ${theme.colors.prechecked};
     border: ${theme.borders.prefill};
   `}
+
   ${({ validation, textAreaRemainChars, theme }) => (validation || textAreaRemainChars < 0) && css`
     border: ${theme.borders.invalid};
   `}
-  :focus,
-  :hover {
+
+  &:focus,
+  &:hover {
     border: ${({ theme }) => theme.borders.hover};
   }
+
   ${({ disabled }) => disabled && css`
     opacity: 0.5;
   `}

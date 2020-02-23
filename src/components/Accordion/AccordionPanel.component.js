@@ -20,10 +20,10 @@ const StyledAccordionPanel = styled.div`
     }
     return '1px solid rgba(0,0,0,.1)';
   }};
-  background: ${({ theme }) => theme.accordion.background}; 
+  background: ${({ theme }) => theme.accordion.background};
   transition: color 2s linear;
   &:focus,
-  &:active,  
+  &:active,
   &:hover {
     outline: 0;
   }
@@ -31,17 +31,17 @@ const StyledAccordionPanel = styled.div`
 
 const StyledAccordionBody = styled.div`
   line-height: ${({ theme }) => theme.lineHeight.normal};
-  margin: ${({ theme }) => theme.spacing['0']}; 
-  background: ${({ theme }) => theme.accordion.background}; 
+  margin: ${({ theme }) => theme.spacing['0']};
+  background: ${({ theme }) => theme.accordion.background};
   color: ${({ theme }) => theme.accordion.color};
   transform-origin: top;
   transition: transform 0.25s;
-  transform: ${({ isVisible }) => (isVisible ? 'translateY(0)' : 'translateY(-100%)')}; 
-  height:  ${({ isVisible }) => (isVisible ? 'auto' : 0)};                   
+  transform: ${({ isVisible }) => (isVisible ? 'translateY(0)' : 'translateY(-100%)')};
+  height:  ${({ isVisible }) => (isVisible ? 'auto' : 0)};
   padding: ${({ isVisible, theme }) => (isVisible ? `0 0 ${theme.spacing['40']}` : 0)};
   width: 100%;
   &:focus,
-  &:active,  
+  &:active,
   &:hover {
     outline: 0;
   }
@@ -51,13 +51,13 @@ const StyledAccordionHead = styled.div`
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  background: ${({ theme }) => (theme.accordion.background)}; 
-  z-index: ${(props) => (props.theme.zIndex[10])}; 
+  background: ${({ theme }) => (theme.accordion.background)};
+  z-index: ${(props) => (props.theme.zIndex[10])};
   transition: font-size 0.25s;
   padding: ${({ theme }) => `${theme.spacing[24]} 0`};
-  font-size: ${({ isVisible, theme }) => (isVisible ? theme.fontSize['2xl'] : theme.fontSize.xl)}; 
+  font-size: ${({ isVisible, theme }) => (isVisible ? theme.fontSize['2xl'] : theme.fontSize.xl)};
   &:focus,
-  &:active,  
+  &:active,
   &:hover {
     outline: 0;
   }

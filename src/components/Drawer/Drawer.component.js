@@ -28,10 +28,10 @@ const StyledDrawer = styled.div`
   overflow: auto;
   margin: 0;
   height: 100%;
-  border-top: ${({ theme }) => theme.drawer.borderTop}; 
-  background: ${({ theme }) => (theme.drawer.background)}; 
+  border-top: ${({ theme }) => theme.drawer.borderTop};
+  background: ${({ theme }) => (theme.drawer.background)};
   z-index: inherit;
-  box-shadow: ${({ theme }) => theme.boxShadow.lg};    
+  box-shadow: ${({ theme }) => theme.boxShadow.lg};
   padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[4]}`};
   ${({ size, direction }) => direction === 'top' && css`
     animation-name: ${animateTop};
@@ -58,7 +58,7 @@ const StyledDrawer = styled.div`
     width: ${size};
     top:0;
     right: 0;
-  `} 
+  `}
   animation-duration: 0.4s;
   animation-timing-function: ease;
   animation-delay: 0s;
@@ -79,7 +79,7 @@ const StyledDrawerCloseBase = styled.div`
   background: ${({ theme }) => (theme.drawer.background)};
   z-index: inherit;
   width: 100%;
-  
+
   ${({ direction }) => direction === 'top' && css`
     width: 100%;
     animation-name: ${animateTop};
@@ -95,7 +95,7 @@ const StyledDrawerCloseBase = styled.div`
   ${({ direction, size }) => direction === 'right' && css`
     width: ${size};
     animation-name: ${animateRight};
-  `} 
+  `}
 `;
 const StyledDrawerText = styled.div`
  padding-top: ${({ theme, closeButton }) => (closeButton ? theme.spacing[60] : theme.spacing[32])};

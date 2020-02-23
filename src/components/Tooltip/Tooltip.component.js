@@ -15,16 +15,17 @@ import SRonly from '../Typography/SRonly/SRonly.component';
 const StyledTooltipIcon = styled.div`
   display: inline-block;
   margin-left: ${({ theme }) => theme.spacing[8]};
-  font-size: '1.8rem'; 
+  font-size: '1.8rem';
   height: 2.4rem;
   width: 2.4rem;
-  color:  ${(props) => props.theme.colors.grey}; 
+  color:  ${(props) => props.theme.colors.grey};
   fill: currentColor;
-   ${({ theme, tippyVisible }) => tippyVisible && css`
+  outline: none;
+
+  ${({ theme, tippyVisible }) => tippyVisible && css`
     fill: currentColor;
     color: ${theme.tooltip.iconColorVisible};
   `}
-  outline: none;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -32,20 +33,24 @@ const GlobalStyle = createGlobalStyle`
     text-align: left;
     padding: 2rem;
   }
+
   .tippy-tooltip.manor-theme[data-animatefill] {
     background-color: ${({ theme }) => theme.tooltip.background} !important;
     box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.1);
   }
+
   @media screen and (min-width: 769px) {
     .tippy-tooltip.manor-theme {
       max-width: 28rem;
     }
   }
+
   @media screen and (max-width: 768px) {
     :global(.tippy-popper) {
       right: 0;
       left: 0;
     }
+
     :global(.tippy-tooltip) {
       max-width: none !important;
     }
