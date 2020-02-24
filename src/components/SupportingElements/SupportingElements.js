@@ -7,14 +7,14 @@ import SRonly from '../Typography/SRonly/SRonly.component';
 const StyledOptionalText = styled.div`
   display: flex;
   position: absolute;
-  right:0;
+  right: 0;
   padding-top: ${({ theme }) => theme.spacing[8]};
 `;
 
 const SupportingElements = ({
-  required, disabled, label, additionalContent,
+  required, disabled, label, additionalContent, validationMessage,
 }) => {
-  if ((required && !additionalContent) || disabled) return null;
+  if ((required && !additionalContent) || disabled || validationMessage) return null;
   return (
     <StyledOptionalText>
       {additionalContent}
@@ -30,13 +30,17 @@ const SupportingElements = ({
 
 SupportingElements.propTypes = {
   /**
-   * Whether the field is required, if true Optional Text does not renderu
+   * Whether the field is required, if true the 'Optional' text does not render
    */
   required: PropTypes.bool.isRequired,
   /**
    * Label for the form component
    */
   label: PropTypes.string.isRequired,
+  /**
+   * Whether the field has validationMessage
+   */
+  validationMessage: PropTypes.string,
   /**
    * Whether the field is disabled, if true Optional Text will not be rendered even if field is required
    */
@@ -50,6 +54,7 @@ SupportingElements.propTypes = {
 
 SupportingElements.defaultProps = {
   additionalContent: null,
+  validationMessage: null,
   disabled: false,
 };
 

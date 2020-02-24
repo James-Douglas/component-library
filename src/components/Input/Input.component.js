@@ -257,7 +257,7 @@ const Input = React.forwardRef(({
           </StyledInputClearWrap>
           {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
         </StyledInputWrap>
-        <SupportingElements required={required} disabled={disabled} label={label} />
+        <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
       </StyledInputContainer>
       {dataList && <div>{dataList()}</div>}
       <FieldValidation message={validationMessage} />

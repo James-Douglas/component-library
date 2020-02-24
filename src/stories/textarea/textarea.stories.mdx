@@ -28,7 +28,7 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
     const bordered = boolean('Bordered', true, componentPropsId);
     const disabled = boolean('Disabled', false, componentPropsId);
     const required = boolean('Required', false, componentPropsId);
-    const isPrefill = boolean('Prefilled', false, componentPropsId);
+    const prefillValue = text('prefillValue', '', componentPropsId);
     const rows = text('Rows', '6', componentPropsId); // can be set via the css width property
     const wrap = select('Wrap', ['hard', 'soft'], 'soft', componentPropsId);
     const readonly = boolean('Readonly', false, componentPropsId);
@@ -49,7 +49,7 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
         bordered={bordered}
         disabled={disabled}
         required={required}
-        isPrefill={isPrefill}
+        prefillValue={prefillValue}
         rows={rows}
         wrap={wrap}
         readonly={readonly}

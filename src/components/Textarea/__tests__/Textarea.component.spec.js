@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '../../../testUtils';
-import Textarea, { getRemainingLimit, getOptionalFieldContent, getRemainingCharsContent } from '../Textarea.component';
+import Textarea, { getRemainingLimit, getRemainingCharsContent } from '../Textarea.component';
 import getTheme from '../../../utils/getTheme';
 
 const theme = getTheme();
@@ -12,25 +12,6 @@ describe('getRemainingLimit()', () => {
 
   it('returns remaining limit when value provided', () => {
     expect(getRemainingLimit('test', 200)).toEqual(196);
-  });
-});
-
-describe('getOptionalFieldContent()', () => {
-  it('returns null if required is true', () => {
-    expect(getOptionalFieldContent(true, 'test', 'test label')).toBeNull();
-  });
-
-  it('returns content when required is false', () => {
-    // eslint-disable-next-line react/prop-types
-    const OptionalFieldContentContainer = ({ required, id, label }) => (
-      <>
-        {getOptionalFieldContent(required, id, label)}
-      </>
-    );
-    const { container, getByText } = render(<OptionalFieldContentContainer required={false} id="test" label="test label" />);
-    expect(container.firstChild.id).toEqual('test-optional-indicator');
-    expect(getByText('The test label field is')).toBeInTheDocument();
-    expect(getByText('Optional')).toBeInTheDocument();
   });
 });
 
@@ -179,18 +160,18 @@ describe('Textarea.component.js', () => {
     expect(textAreaElement).toHaveStyle(`border: ${theme.borders.invalid}`);
   });
 
-  it('applies prefilled styles when isPrefill is true', () => {
+  it('accepts a prefill value and renders with prefill styling', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
-      isPrefill: true,
-      value: 'Hello World',
+      prefillValue: 'autofilled value test',
     };
 
     /* eslint-disable-next-line react/jsx-props-no-spreading */
     const { container } = render(<Textarea label="test" {...props} />);
 
     const textAreaElement = container.querySelector('textarea');
+    expect(textAreaElement.value).toBe('autofilled value test');
     expect(textAreaElement).toHaveStyle(`
       background: ${theme.colors.prechecked};
       border: 1px solid ${theme.colors.precheckedDarker};

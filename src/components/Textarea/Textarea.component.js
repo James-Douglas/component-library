@@ -5,10 +5,7 @@ import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import SupportingElements from '../SupportingElements/SupportingElements';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
-
-const StyledOptionalIndicator = styled.span`
-  margin-left: 1rem;
-`;
+import usePrefill from '../../hooks/usePrefill';
 
 const StyledmaxlengthIndicator = styled.span`
   margin-right: 0.4rem;
@@ -20,6 +17,7 @@ const StyledTextAreaWrapper = styled.div`
 `;
 
 const StyledTextArea = styled.textarea`
+  resize: none;
   width: 100%;
   display: block;
   padding: 1.6rem;
@@ -34,11 +32,12 @@ const StyledTextArea = styled.textarea`
   ${({ bordered, theme }) => bordered && css`
     border: ${theme.borders.component};
   `}
-
-  ${({
-    isPrefill, isDirty, disabled, theme,
-  }) => (isPrefill && !isDirty && !disabled) && css`
+  ${({ theme, isAutofill, disabled }) => isAutofill && !disabled && css`
     background: ${theme.colors.prechecked};
+  `}
+  ${({
+    theme, bordered, isAutofill, disabled,
+  }) => (bordered && isAutofill && !disabled) && css`
     border: ${theme.borders.prefill};
   `}
 
@@ -56,22 +55,10 @@ const StyledTextArea = styled.textarea`
   `}
 `;
 
+export const getInitialValue = (value, prefillValue) => value || prefillValue || '';
+
 export function getRemainingLimit(value, charLimit) {
   return value ? charLimit - value.length : charLimit;
-}
-
-export function getOptionalFieldContent(required, id, label) {
-  if (!required) {
-    return (
-      <StyledOptionalIndicator className="subscript" id={`${id}-optional-indicator`}>
-        <span className="sr-only">
-          {`The ${label} field is `}
-        </span>
-        Optional
-      </StyledOptionalIndicator>
-    );
-  }
-  return null;
 }
 
 export function getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label) {
@@ -100,10 +87,10 @@ const Textarea = ({
   name,
   placeholder,
   value,
+  prefillValue,
   bordered,
   disabled,
   required,
-  isPrefill,
   rows,
   wrap,
   readonly,
@@ -115,15 +102,22 @@ const Textarea = ({
   className,
 }) => {
   const [isDirty, setIsDirty] = useState(false);
+  const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [charsExceed, setCharsExceed] = useState(false);
   const [charLimit, setCharLimit] = useState(null);
-  const [stateValue, setStateValue] = useState(value);
+  const [stateValue, setStateValue] = useState(getInitialValue(value, prefillValue));
   const [textAreaRemainChars, setTextAreaRemainChars] = useState(charLimit);
   const textAreaElement = useRef(null);
 
   useEffect(() => {
-    setStateValue(value);
-  }, [value]);
+    let valueToUse = '';
+    if (value && value.length) {
+      valueToUse = value;
+    } else if (prefillValue && prefillValue.length) {
+      valueToUse = prefillValue;
+    }
+    setStateValue(valueToUse);
+  }, [prefillValue, value]);
 
   useEffect(() => {
     setCharLimit(maxChars || maxLength || null);
@@ -158,14 +152,14 @@ const Textarea = ({
     validationMessageToDisplay = 'Maximum characters exceeded';
   }
 
-  const prefillStyles = isPrefill && !isDirty && !disabled ? 'manor-prefilled' : '';
   const validation = validationMessageToDisplay && validationMessageToDisplay.length;
 
   return (
     <>
       <Label forId={id} text={label} tooltip={tooltip} />
-      <StyledTextAreaWrapper className={`manor-textarea-wrapper ${className} ${prefillStyles} ${disabled ? 'disabled' : ''} ${!bordered ? 'borderless-field' : ''} `}>
+      <StyledTextAreaWrapper className={`textarea-wrapper ${className}`}>
         <StyledTextArea
+          isAutofill={isAutofill}
           ref={textAreaElement}
           value={stateValue}
           onChange={changeHandler}
@@ -180,16 +174,21 @@ const Textarea = ({
           wrap={wrap}
           readOnly={readonly}
           maxLength={maxLength}
-          isPrefill={isPrefill}
           isDirty={isDirty}
           validation={validation}
           textAreaRemainChars={textAreaRemainChars}
           bordered={bordered}
           aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
         />
+        <SupportingElements
+          validationMessage={validationMessage}
+          label={label}
+          required={required}
+          disabled={disabled}
+          additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)}
+        />
+        <FieldValidation message={validationMessage} />
       </StyledTextAreaWrapper>
-      <SupportingElements label={label} required={required} disabled={disabled} additionalContent={getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)} />
-      <FieldValidation message={validationMessage} />
     </>
   );
 };
@@ -220,6 +219,10 @@ Textarea.propTypes = {
    */
   value: PropTypes.string,
   /**
+   * Prefills the textarea and applies browser autocomplete styles
+   */
+  prefillValue: PropTypes.string,
+  /**
    * The placeholder text for the input.
    */
   placeholder: PropTypes.string,
@@ -235,10 +238,6 @@ Textarea.propTypes = {
    * Adds/removes a supporting element, `<sup>OPTIONAL</sup>` to show the field is optional.
    */
   required: PropTypes.bool,
-  /**
-   * Adds custom styling for prefilled elements.
-   */
-  isPrefill: PropTypes.bool,
   /**
    * Specifies the height of the textarea (in lines).
    */
@@ -293,7 +292,7 @@ Textarea.defaultProps = {
   bordered: true,
   disabled: false,
   required: false,
-  isPrefill: false,
+  prefillValue: '',
   rows: '',
   wrap: 'soft',
   readonly: false,

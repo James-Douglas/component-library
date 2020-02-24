@@ -22,7 +22,7 @@ const TextareaDemoView = ({
   bordered,
   disabled,
   required,
-  isPrefill,
+  prefillValue,
   rows,
   wrap,
   readonly,
@@ -45,7 +45,7 @@ const TextareaDemoView = ({
           bordered={bordered}
           disabled={disabled}
           required={required}
-          isPrefill={isPrefill}
+          prefillValue={prefillValue}
           rows={rows}
           wrap={wrap}
           readonly={readonly}
