@@ -1,4 +1,54 @@
 const colors = {
+  // Per design audit ticket, check to see if new colors are used and apply
+  brandMidnightBlue: '#001443',
+  brandDarkBlue: '#001564',
+  brandLightBlue: '#0f58ab',
+  primary50: '#e7f0fb',
+  primary100: '#c1d8ef',
+  primary200: '#8fbce9',
+  primary300: '#5a93cd',
+  primary400: '#3b80c5',
+  primary500: '#0b60b7',
+  primary600: '#004a8e',
+  primary700: '#063a6d',
+  primary800: '#042649',
+  primary900: '#021324',
+  hero50: '#e7f3ea',
+  hero300: '#57ad69',
+  hero400: '#339c48',
+  hero500: '#0f8927',
+  hero600: '#0d7522',
+  hero700: '#0b611c',
+  grey50: '#fafafa',
+  grey100: '#f6f6f6',
+  grey200: '#eeeeee',
+  grey300: '#e0e0e0',
+  grey400: '#c4c4c4',
+  grey500: '#9e9e9e',
+  grey600: '#757575',
+  grey700: '#606060',
+  grey800: '#424242',
+  grey900: '#25130e',
+  black: '#000000',
+  white: '#FFFFFF',
+  inputDisabledTextOnGray: '#606060', // grey 700
+  inputPlacholderText: '#757575', // grey 600
+  inputDisabledTextOnWhite: '#9e9e9e', // grey 500
+  inputDisabledBackground: '#eeeeee', // grey 200
+  inputPrefilled: '#fbf9ec',
+  inputPrefilledBorder: '#c39600',
+  success50: '#daf5d5',
+  success500: '#0f8927',
+  success700: '#0a5b1a',
+  error50: '#fae4e6',
+  error300: '#ef425e',
+  error500: '#d2202f',
+  error700: '#a31824',
+  warning50: '#f5eebc',
+  warning500: '#ff901d',
+  warning700: '#d66c00',
+
+  // old colors, to be deleted when new colors are integrated
   primary: '#1C3E94', // blue
   primaryLight: '#136ED2',
   primaryAA: '#001442',
@@ -7,7 +57,7 @@ const colors = {
   secondary: '#0DB14B', // green
   secondaryLighter: '#C3E4CF',
   secondaryLight: '#CFEFC2',
-  blueDark: '#001443',
+
   blueLight: '#1780F3',
   blueLighter: '#7A98FF',
   link: '#164AD9',
@@ -15,8 +65,7 @@ const colors = {
   prechecked: '#FCFAED',
   precheckedDarker: '#C39600',
   invalid: '#EF425E',
-  white: '#FFFFFF',
-  black: '#000000',
+
   grey: '#AAAAAA',
   greyLighter: '#F8F8F8',
   greyLighterAA: '#F3F3F3',
@@ -208,7 +257,7 @@ const borders = {
   component: `1px solid ${colors.greyLight}`,
   hover: `1px solid ${colors.blueLight}`,
   prefill: `1px solid ${colors.precheckedDarker}`,
-  dark: `1px solid ${colors.blueDark}`,
+  dark: `1px solid ${colors.brandMidnightBlue}`,
 };
 
 const ctmTheme = {
@@ -242,16 +291,16 @@ const ctmTheme = {
       minHeight: spacing[44],
     },
     tertiary: {
-      background: colors.blueDark,
+      background: colors.brandMidnightBlue,
       backgroundDarkMode: colors.white,
       borderDarkMode: borders.dark,
       color: colors.white,
       colorHover: colors.blueLighter,
       fill: colors.white,
       fillHover: colors.blueLighter,
-      fillDarkMode: colors.blueDark,
+      fillDarkMode: colors.brandMidnightBlue,
       fillDarkModeHover: colors.primaryLight,
-      colorDarkMode: colors.blueDark,
+      colorDarkMode: colors.brandMidnightBlue,
       borderColorDarkMode: colors.primaryLight,
       borderRadius: borderRadius.none,
     },
@@ -282,7 +331,7 @@ const ctmTheme = {
     },
   },
   callout: {
-    border: `4px solid ${colors.blueDark}`,
+    border: `4px solid ${colors.brandMidnightBlue}`,
     background: colors.white,
     backgroundGrey: colors.greyLighter,
   },
@@ -293,12 +342,12 @@ const ctmTheme = {
   },
   checkbox: {
     color: colors.white,
-    colorDisabled: colors.blueDark,
+    colorDisabled: colors.brandMidnightBlue,
     disabledOpacity: '0.5',
     border: borders.dark,
     size: spacing[24],
     background: colors.white,
-    backgroundChecked: colors.blueDark,
+    backgroundChecked: colors.brandMidnightBlue,
     backgroundDisabled: colors.greyLight,
     borderRadius: '0 0 0 1px rgba(0, 123, 255, .5)',
     contentMargin: '0 0 0 1rem',
@@ -424,13 +473,13 @@ const ctmTheme = {
   toggle: {
     base: {
       background: colors.white,
-      backgroundChecked: colors.blueDark,
+      backgroundChecked: colors.brandMidnightBlue,
       color: colors.white,
     },
   },
   tooltip: {
-    iconColor: colors.grey,
-    iconColorVisible: colors.primaryAA,
+    iconColor: colors.primary500,
+    iconColorVisible: colors.primary600,
     background: 'rgba(51, 51, 51, 0.97)',
   },
   drawer: {

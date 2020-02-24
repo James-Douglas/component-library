@@ -13,7 +13,7 @@ import styled from 'styled-components';
 const StyledBar = styled.div`
   margin-bottom: 5.4rem;
   height: 6.4rem;
-  background: ${(props) => props.theme.colors.blueDark}
+  background: ${(props) => props.theme.colors.brandMidnightBlue};
 `;
 
 const StyledCard = styled.div`

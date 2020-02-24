@@ -9,16 +9,16 @@ import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
 import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
+import { faInfoCircle } from '@fortawesome/pro-light-svg-icons/faInfoCircle';
 import SRonly from '../Typography/SRonly/SRonly.component';
 
 const StyledTooltipIcon = styled.div`
   display: inline-block;
   margin-left: ${({ theme }) => theme.spacing[8]};
-  font-size: ${({ theme }) => theme.fontSize.lg}; 
-  height: ${({ theme }) => theme.spacing[24]};
-  width: ${({ theme }) => theme.spacing[24]};
-  color:  ${(props) => props.theme.colors.grey}; 
+  font-size: ${({ theme }) => theme.fontSize.md}; 
+  height: ${({ theme }) => theme.spacing[16]};
+  width: ${({ theme }) => theme.spacing[16]};
+  color:  ${(props) => props.theme.tooltip.iconColor}; 
   fill: currentColor;
    ${({ theme, tippyVisible }) => tippyVisible && css`
     fill: currentColor;
