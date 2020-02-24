@@ -48,6 +48,28 @@ const fontSize = {
   '6xl': '6rem', // 60px
 };
 
+const fontWeight = {
+  hairline: '100',
+  thin: '200',
+  light: '300',
+  normal: '400',
+  medium: '500',
+  semibold: '600',
+  bold: '700',
+  extrabold: '800',
+  black: '900',
+};
+
+const lineHeight = {
+  none: '1',
+  tighter: '1.2',
+  tight: '1.25',
+  snug: '1.4',
+  normal: '1.5',
+  relaxed: '1.625',
+  loose: '2',
+};
+
 const spacing = {
   px: '0.1rem', //   1px
   0: '0',
@@ -133,28 +155,6 @@ const boxShadow = {
   outline: '0 0 0 0.3rem rgba(52,144,220,0.5)',
   none: 'none',
   progress: '0 0.2rem 0.4rem 0 #DDDBDB',
-};
-
-const fontWeight = {
-  hairline: '100',
-  thin: '200',
-  light: '300',
-  normal: '400',
-  medium: '500',
-  semibold: '600',
-  bold: '700',
-  extrabold: '800',
-  black: '900',
-};
-
-const lineHeight = {
-  none: '1',
-  tighter: '1.2',
-  tight: '1.25',
-  snug: '1.4',
-  normal: '1.5',
-  relaxed: '1.625',
-  loose: '2',
 };
 
 const maxWidth = {
@@ -337,8 +337,8 @@ const ctmTheme = {
     color: colors.secondaryDarker,
   },
   footer: {
-    background: colors.greyLighterAA,
-    scrollTopBorder: `1px solid ${colors.black}`,
+    background: colors.white,
+    transparent: 'transparent',
   },
   header: {
     background: colors.white,

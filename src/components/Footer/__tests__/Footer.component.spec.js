@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '../../../testUtils';
+import { render } from '../../../testUtils';
 
 import Footer from '../Footer.component';
 
@@ -8,20 +8,36 @@ describe('Footer', () => {
     const { container } = render(<Footer />);
     expect(container.innerHTML).toMatchSnapshot();
   });
-  it('renders with disclaimer text', () => {
-    const { getByText } = render(<Footer disclaimer="test disclaimer" />);
-    expect(getByText('test disclaimer')).toBeInTheDocument();
+
+  it('renders with disclaimer text and clickable links', () => {
+    const { getByText, container } = render(
+      <Footer>
+        <>test disclaimer and a <a href="https://dev.comparethemarket.com.au/" id="link">link</a></>
+      </Footer>,
+    );
+    const link = container.querySelector('#link');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', 'https://dev.comparethemarket.com.au/');
+    expect(getByText('test disclaimer and a')).toBeInTheDocument();
   });
-  it('scrolls to top on scroll-top icon click', () => {
-    const mockScroll = jest.fn();
-    global.scroll = mockScroll;
-    const { container } = render(<Footer />);
-    Object.defineProperty(window, 'pageYOffset', { value: 1000, writable: true });
-    const scrollIcon = container.querySelector('[role="scrollIcon"]');
-    fireEvent.click(scrollIcon);
-    expect(mockScroll).toHaveBeenCalled();
-    const { top, behavior } = mockScroll.mock.calls[0][0];
-    expect(top).toEqual(0);
-    expect(behavior).toEqual('smooth');
+
+  it('renders with a white bg by default', () => {
+    const { container } = render(
+      <Footer>
+        <>test disclaimer</>
+      </Footer>,
+    );
+    const footer = container.children[0].firstChild;
+    expect(footer).toHaveStyle('background: #ffffff');
+  });
+
+  it('renders with a transparent bg when the prop is supplied', () => {
+    const { container } = render(
+      <Footer background={false}>
+        <>test disclaimer</>
+      </Footer>,
+    );
+    const footer = container.children[0].firstChild;
+    expect(footer).toHaveStyle('background: transparent');
   });
 });

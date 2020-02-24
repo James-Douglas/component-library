@@ -1,107 +1,105 @@
-import React from 'react';
+import React, { useRef, useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
+import styled, { css } from 'styled-components';
 import Column from '../Grid/Column/Column.component';
 import Row from '../Grid/Row/Row.component';
-import FluidContainer from '../Grid/Container/FluidContainer.component';
+import Container from '../Grid/Container/Container.component';
+import MicroCopy from '../Typography/Microcopy/Microcopy.component';
+import throttle from '../../utils/throttle';
 
-const StyledFooterContainer = styled.footer`
+const StyledWrapper = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.footer.background};
-  flex-grow: 1;
-  flex-shrink: 0;
 `;
 
-const StyledFooterDisclaimer = styled.div`
-  width: 100%;
-  display: flex;
-  padding: ${({ theme }) => `${theme.spacing['32']} 0 ${theme.spacing['16']} 0`};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: ${({ theme }) => theme.fontSize.xs};
-  line-height: ${({ theme }) => theme.lineHeight.snug};
-`;
-
-const StyledFooterCopy = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  line-height: ${({ theme }) => theme.lineHeight.snug};
+const StyledPosition = styled.div`
+  ${({ sticky }) => sticky && css`
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  `}
+  background: ${({ theme, background }) => (background ? theme.footer.background : theme.footer.transparent)};  
 `;
 
 const StyledFooterBar = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: ${({ theme }) => `${theme.spacing['8']} 0 ${theme.spacing['8']} 0`};
   min-height: 5.4rem;
-`;
-
-const StyledFooterBarContent = styled.div`
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center; 
+  padding: ${({ theme }) => `${theme.spacing[24]} 0`};
 `;
 
-const StyledScrollTop = styled.div`
-  display: flex;
-  width: 3rem;
-  height: 3rem;
-  align-items: center;
-  justify-content: center;
-  border-radius: ${({ theme }) => (theme.borderRadius.full)};
-  padding: ${({ theme }) => (theme.spacing['8'])};
-  cursor: pointer;
-  border: ${({ theme }) => theme.footer.scrollTopBorder};
-  fill: currentColor;
+const StyledP = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.sm};
 `;
 
-const Footer = ({ disclaimer, className }) => {
+const Footer = ({
+  children, background, sticky, className,
+}) => {
   const currentYear = new Date().getFullYear();
+  const footerRef = useRef(null);
+
+  const [windowWidth, setWindowWidth] = useState();
+  const [footerHeight, setFooterHeight] = useState();
+
+  useLayoutEffect(() => {
+    if (sticky) {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      const throttledResize = throttle(handleResize, 25);
+      setFooterHeight(footerRef.current.offsetHeight);
+      window.addEventListener('resize', throttledResize);
+      return () => {
+        window.removeEventListener('resize', throttledResize);
+      };
+    }
+    return null;
+  }, [sticky, windowWidth]);
+
   return (
-    <StyledFooterContainer className={className}>
-      <FluidContainer>
-        <Row removeMarginBottom>
-          <Column md={12} xl={10} offsetXl={1}>
-            <StyledFooterBar>
-              {disclaimer && (
-              <StyledFooterDisclaimer>
-                {disclaimer}
-              </StyledFooterDisclaimer>
-              )}
-              <StyledFooterBarContent>
-                <StyledFooterCopy className="manor-body2">
-                  &copy; {currentYear} Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926
-                </StyledFooterCopy>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-                <StyledScrollTop onClick={() => window.scroll({ top: 0, behavior: 'smooth' })} role="scrollIcon">
-                  <FontAwesomeIcon icon={faChevronDown} size="lg" flip="vertical" />
-                </StyledScrollTop>
-              </StyledFooterBarContent>
-            </StyledFooterBar>
-          </Column>
-        </Row>
-      </FluidContainer>
-    </StyledFooterContainer>
+    <StyledWrapper style={{ paddingTop: footerHeight }}>
+      <StyledPosition background={background} sticky={sticky}>
+        <Container className={className}>
+          <Row removeMarginBottom>
+            <Column cols={12}>
+              <StyledFooterBar ref={footerRef}>
+                {children && <MicroCopy>{children}</MicroCopy>}
+                <StyledP>&copy; {currentYear} Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926</StyledP>
+              </StyledFooterBar>
+            </Column>
+          </Row>
+        </Container>
+      </StyledPosition>
+    </StyledWrapper>
   );
 };
 
 Footer.propTypes = {
   /**
-   * The disclaimer text to display
+   * The children of the footer component (text and links, microcopy)
    */
-  disclaimer: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  /**
+   * White background on, or set to transparent
+   */
+  background: PropTypes.bool,
   /**
    * Classes to be applied to the Footer component
    */
   className: PropTypes.string,
+  /**
+   * Set the footer to stick to the bottom of the page, regardless of content
+   */
+  sticky: PropTypes.bool,
 };
 
 Footer.defaultProps = {
-  disclaimer: null,
+  children: '',
+  background: true,
+  sticky: true,
   className: '',
 };
 
