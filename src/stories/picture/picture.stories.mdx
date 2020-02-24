@@ -9,6 +9,8 @@ import Picture from '../../components/Picture/Picture.component';
 
 Responsive picture component, designed to fit within it's containing element.
 
+**Please note: Design/UX is working on improvements to this component, including providing sizing definitions and approved image types.** 
+
 This component renders a `<picture>` tag, which contains `<source>` elements (passed in via the `srcsets` prop), and an
 `<img>` element (passed in via the `src` prop)  in order to cater to different display/device scenarios. Browsers will
 consider each `<source>` element and choose the best match based on the media query provided, if none are found (or the
@@ -26,17 +28,3 @@ browser doesn't support the `<picture>` element, such as IE11) it will fall back
 # Props
 
 <Props of={Picture} />
-
-<Story name="picture with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
-  {() => {
-    const src = text('src', '');
-    const srcsets = object('srcsets', [
-      {
-        srcset: placeholder,
-      }
-    ]);
-    const alt = text('alt', '');
-    const title = text('title', '');
-    return <Picture srcsets={srcsets} src={src} alt={alt} title={title} />
-  }}
-</Story>
