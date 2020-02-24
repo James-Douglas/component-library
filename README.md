@@ -9,10 +9,11 @@ Desigin system component library for CTM - tested on Node v10.17.0
 
 `yarn add @comparethemarketau/manor`
 
-Wrap your app in the ManorProvider
+Wrap your app in the ManorProvider & import styles
 
 ```
 import { ManorProvider } from '@comparethemarketau/manor/lib';
+import '@comparethemarketau/manor/styles.css';
 
 const App = () => (
   <ManorProvider>

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import styled, { createGlobalStyle, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Tippy from '@tippy.js/react';
 import 'tippy.js/dist/svg-arrow.css';
@@ -15,33 +15,31 @@ import SRonly from '../Typography/SRonly/SRonly.component';
 const StyledTooltipIcon = styled.div`
   display: inline-block;
   margin-left: ${({ theme }) => theme.spacing[8]};
-  font-size: '1.8rem';
-  height: 2.4rem;
-  width: 2.4rem;
-  color:  ${(props) => props.theme.colors.grey};
+  font-size: ${({ theme }) => theme.fontSize.lg}; 
+  height: ${({ theme }) => theme.spacing[24]};
+  width: ${({ theme }) => theme.spacing[24]};
+  color:  ${(props) => props.theme.colors.grey}; 
   fill: currentColor;
-  outline: none;
-
-  ${({ theme, tippyVisible }) => tippyVisible && css`
+   ${({ theme, tippyVisible }) => tippyVisible && css`
     fill: currentColor;
     color: ${theme.tooltip.iconColorVisible};
   `}
 `;
 
-const GlobalStyle = createGlobalStyle`
+const StyledTippy = styled(Tippy)`
   .manor-tooltip-content {
     text-align: left;
-    padding: 2rem;
+    padding: ${({ theme }) => theme.spacing[20]};
   }
 
-  .tippy-tooltip.manor-theme[data-animatefill] {
+  &.tippy-tooltip {
     background-color: ${({ theme }) => theme.tooltip.background} !important;
     box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.1);
   }
 
   @media screen and (min-width: 769px) {
     .tippy-tooltip.manor-theme {
-      max-width: 28rem;
+      max-width: ${({ theme }) => theme.spacing[280]};
     }
   }
 
@@ -138,10 +136,8 @@ const Tooltip = ({
   }
   return (
     <>
-      <GlobalStyle />
-      <Tippy
+      <StyledTippy
         content={getContent(title, body)}
-        theme="manor"
         interactive
         arrow={desktop}
         distance={desktop ? '0.8rem' : 0}
@@ -180,7 +176,7 @@ const Tooltip = ({
             <FontAwesomeIcon icon={faInfoCircle} />
           </>
         </StyledTooltipIcon>
-      </Tippy>
+      </StyledTippy>
     </>
   );
 };

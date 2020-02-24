@@ -162,6 +162,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-smart-asset": "^2.0.0",
+    "rollup-plugin-uglify": "^6.0.4",
     "rollup-plugin-url": "^3.0.1",
     "semantic-release": "^15.13.24",
     "styled-components": "^5.0.0",
