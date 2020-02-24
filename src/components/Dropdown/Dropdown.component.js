@@ -1,9 +1,10 @@
 import React, {
   useState,
   useRef,
-  useLayoutEffect, useEffect, useCallback,
+  useLayoutEffect,
+  useEffect,
+  useCallback, useMemo,
 } from 'react';
-
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,23 +15,24 @@ import Overlay from '../Overlay/Overlay.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 import LayerEventManager from '../../LayerEventManager';
-
+import SupportingElements from '../SupportingElements/SupportingElements';
 
 const StyledDropdownMainWrap = styled.div`
   position: relative;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: ${({ theme }) => theme.spacing[20]};
+  width: 100%;
   font-size: ${({ theme }) => theme.fontSize.base};
 `;
 
-const StyledLabel = styled.div`
+const StyledDropdownContent = styled.div`
   width: 100%;
   display: inline-flex;
   align-items: center;
   position: relative;
-  height: ${({ theme }) => theme.spacing[44]};
-  padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['12']}`};
+  height: ${({ theme }) => theme.dropdown.height};
+  padding: ${({ theme }) => (`${theme.spacing['8']} ${theme.spacing['12']}`)};
+  
   .svgArrowWrap {
     position: absolute;
     right: ${({ theme }) => theme.spacing[12]};
@@ -40,7 +42,10 @@ const StyledLabel = styled.div`
 `;
 
 const StyledDropdownButton = styled.div`
-  border: ${({ theme }) => theme.borders.component};
+  background: ${({ theme }) => theme.dropdown.background};
+  ${({ theme, bordered }) => bordered && css`
+    border: ${theme.borders.component};
+  `}
   &:hover,
   &:focus {
     border: ${({ theme }) => theme.combo.list.item.borderFocus};
@@ -115,7 +120,7 @@ const StyledList = styled.div`
   z-index: ${({ theme }) => theme.zIndex[40]};
   background: ${({ theme }) => theme.colors.white};
   top: ${({ theme }) => `calc(100% + ${theme.spacing[8]})`};
-  ${({ desktop, isDropdownOpen }) => (isDropdownOpen && !desktop) && css`
+  ${({ desktop }) => (!desktop) && css`
     max-height: initial;
     overflow: auto;
     right: ${({ theme }) => theme.spacing[8]};
@@ -127,7 +132,7 @@ const StyledList = styled.div`
     background: ${({ theme }) => theme.colors.white};
     border-radius: ${({ theme }) => theme.borderRadius.default};
     z-index: ${({ theme }) => theme.zIndex[40]};
-  `}
+  `};
 `;
 
 const StyledAffix = styled.span`
@@ -142,25 +147,40 @@ const StyledAffix = styled.span`
   background: ${({ theme }) => theme.input.background};
 `;
 
+const StyledDropdownContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const StyledPlaceholder = styled.span`
+  ${({ theme }) => ({ ...theme.placeholder })};
+`;
+
 const Dropdown = ({
   id,
-  options,
+  selectedValue,
   label,
+  placeholder,
   tooltip,
   children,
   validationMessage,
+  required,
+  bordered,
   disabled,
   prefixContent,
-  handleClick,
+  handleChange,
   handleFocus,
   handleBlur,
 }) => {
-  const node = useRef();
+  const dropdownWrapper = useRef();
+  const button = useRef();
   const desktop = useIsDesktop();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileModalView, setIsMobileModalView] = useState(false);
-  const [focusedRef, setFocusedRef] = useState(null);
+  const [focusedOptionIndex, setFocusedOptionIndex] = useState();
   const mobileOverlay = !desktop && isMobileModalView;
+  const [value, setValue] = useState(selectedValue);
+
   const handleDropdownButton = () => {
     if (!disabled) {
       setDropdownOpen(!isDropdownOpen);
@@ -183,94 +203,90 @@ const Dropdown = ({
     }
   };
 
-  const modalClose = () => {
-    toggleDropdown(false);
+  const modalClose = useCallback(() => {
+    setDropdownOpen(false);
     setIsMobileModalView(false);
-    setFocusedRef(null);
-  };
-  const toggleDropdown = (bool) => {
-    setDropdownOpen(bool);
-    !bool && setFocusedRef(null);
-  };
-  const result = options.filter((option) => option.selected);
-  const selectedValueResult = result && result[0] ? result[0].title : options[0].title;
-  const [selectedValue, setSelectedValue] = useState(selectedValueResult);
-  const [optionsArray, modifyOptionsArray] = useState(options);
-  const onItemClick = (event, index) => {
-    const currenPosition = options && options[index] ? options[index] : options[0];
-    setSelectedValue(currenPosition.title);
-    // eslint-disable-next-line no-param-reassign,no-return-assign
-    optionsArray.map((option, i) => option.selected = i === index);
-    modifyOptionsArray(optionsArray);
+    setFocusedOptionIndex(null);
+  }, [setDropdownOpen, setIsMobileModalView, setFocusedOptionIndex]);
 
-    // call parent
-    handleClick && handleClick(event, index);
-  };
-  const childrenWithProps = React.Children.map(children, (child) => React.cloneElement(child, {
-    onClick: (event) => {
-      onItemClick(event, child.props.index);
+  const onItemClick = useCallback((event, optionValue) => {
+    setValue(optionValue);
+    handleChange && handleChange(event, optionValue);
+  }, [setValue, handleChange]);
+
+  const childrenWithProps = useMemo(() => React.Children.map(children, (child) => React.cloneElement(child, {
+    selectedValue: value,
+    handleClick: (event, optionValue) => {
+      onItemClick(event, optionValue);
       modalClose();
     },
-    onKeyDown: (event) => {
+    handleKeyDown: (event, optionValue) => {
       if (event.keyCode === 13) {
-        onItemClick(event, child.props.index);
+        onItemClick(event, optionValue);
         modalClose();
       }
     },
     ref: React.createRef(),
-  }));
+  })), [children, modalClose, onItemClick, value]);
 
   const handleClickOutside = useCallback((e) => {
-    if (!node.current.contains(e.target)) {
+    if (!dropdownWrapper.current.contains(e.target)) {
       setDropdownOpen(false);
     }
-  }, [node, setDropdownOpen]);
+  }, [dropdownWrapper]);
 
-  const closeFieldModal = () => {
-    setIsMobileModalView(false);
-  };
-
-  const keyboardArrowsAccessibility = (event) => {
+  const keyboardArrowsAccessibility = useCallback((event) => {
     setDropdownOpen(true);
-    // eslint-disable-next-line no-shadow
-    const selectedIndex = childrenWithProps.findIndex((event) => event.props.option.selected);
-    if (selectedIndex > -1) {
-      setFocusedRef(selectedIndex);
-    } else {
-      setFocusedRef(null);
+    let selectedIndex = 0;
+    if (value) {
+      selectedIndex = childrenWithProps.findIndex((child) => child.props.value === value);
+    } else if (event.key === 'ArrowUp') {
+      selectedIndex = childrenWithProps.length - 1;
     }
-  };
-  const keyboardAccessibility = (event) => {
+    setFocusedOptionIndex(selectedIndex);
+  }, [childrenWithProps, value]);
+
+  useEffect(() => {
+    if (!isDropdownOpen && !value) {
+      setFocusedOptionIndex(null);
+    }
+  }, [value, isDropdownOpen]);
+
+  const keyboardAccessibility = useCallback((event) => {
     if (!disabled) {
       switch (event.key) {
-        case 'Tab':
-          break;
         case 'Escape':
-          toggleDropdown(false);
+          setDropdownOpen(false);
+          button.current.focus();
           break;
         case 'Enter':
           setDropdownOpen(!isDropdownOpen);
           break;
         case 'ArrowUp':
+          event.preventDefault();
           if (!isDropdownOpen) {
             keyboardArrowsAccessibility(event);
             return false;
           }
-          if (focusedRef === null || focusedRef === 0) {
-            setFocusedRef(childrenWithProps.length - 1);
+          if (focusedOptionIndex === null) {
+            const index = childrenWithProps.length - 1;
+            setFocusedOptionIndex(index);
           } else {
-            setFocusedRef(focusedRef - 1);
+            const index = focusedOptionIndex <= 0 ? childrenWithProps.length - 1 : focusedOptionIndex - 1;
+            setFocusedOptionIndex(index);
           }
           break;
         case 'ArrowDown':
+          event.preventDefault();
           if (!isDropdownOpen) {
             keyboardArrowsAccessibility(event);
             return false;
           }
-          if (focusedRef === null || focusedRef === childrenWithProps.length - 1) {
-            setFocusedRef(0);
+          if (focusedOptionIndex === null) {
+            setFocusedOptionIndex(0);
           } else {
-            setFocusedRef(focusedRef + 1);
+            const index = focusedOptionIndex === childrenWithProps.length - 1 ? 0 : focusedOptionIndex + 1;
+            setFocusedOptionIndex(index);
           }
           break;
         default:
@@ -278,11 +294,14 @@ const Dropdown = ({
       }
     }
     return false;
-  };
+  }, [disabled, isDropdownOpen, focusedOptionIndex, keyboardArrowsAccessibility, childrenWithProps]);
 
   useEffect(() => {
-    focusedRef !== null && childrenWithProps[focusedRef].ref && childrenWithProps[focusedRef].ref.current && childrenWithProps[focusedRef].ref.current.focus();
-  }, [childrenWithProps, focusedRef]);
+    if (focusedOptionIndex !== null) {
+      const option = childrenWithProps[focusedOptionIndex];
+      option && option.ref && option.ref.current && option.ref.current.focus();
+    }
+  }, [childrenWithProps, focusedOptionIndex]);
 
   useLayoutEffect(() => {
     // add when mounted
@@ -293,29 +312,37 @@ const Dropdown = ({
     };
   }, [handleClickOutside]);
 
-  const handleUserKeyPress = useCallback((event) => {
-    const { keyCode } = event;
-    // escape
-    if (keyCode === 27) {
-      setIsMobileModalView(false);
-    }
-  }, [setIsMobileModalView]);
+  const renderDropdownList = () => {
+    if (!isDropdownOpen) return null;
 
-  useLayoutEffect(() => {
-    window.addEventListener('keydown', handleUserKeyPress);
-    return () => {
-      window.removeEventListener('keydown', handleUserKeyPress);
-    };
-  }, [handleUserKeyPress]);
+    const renderOptions = (
+      <StyledList desktop={desktop}>
+        <StyledListul desktop={desktop}>
+          {childrenWithProps}
+        </StyledListul>
+      </StyledList>
+    );
+
+    if (mobileOverlay) {
+      return (
+        <LayerEventManager id={`LayerEventManagerDropdown${id}`} visible={mobileOverlay && isDropdownOpen}>
+          {(mobileOverlay && isDropdownOpen) && (
+            <Overlay opacityLevel={0.3} visible={mobileOverlay && isDropdownOpen} onClose={modalClose} handleClick={modalClose} />
+          )}
+          {renderOptions}
+        </LayerEventManager>
+      );
+    }
+    return renderOptions;
+  };
+
   return (
-    <LayerEventManager id={`LayerEventManagerDropdown${id}`} visible={mobileOverlay && isDropdownOpen}>
-      {(mobileOverlay && isDropdownOpen) && (
-        <Overlay opacityLevel={0.3} visible={mobileOverlay && isDropdownOpen} onClose={closeFieldModal} handleClick={closeFieldModal} />
-      )}
-      <>
-        <StyledDropdownMainWrap ref={node} onKeyDown={keyboardAccessibility}>
-          <Label forId={id} text={label} tooltip={tooltip} />
+    <>
+      <StyledDropdownMainWrap onKeyDown={keyboardAccessibility}>
+        <Label forId={id} text={label} tooltip={tooltip} />
+        <StyledDropdownContainer ref={dropdownWrapper}>
           <StyledDropdownButton
+            ref={button}
             role="button"
             onClick={handleDropdownButton}
             onFocus={handleFocusDropdownButton}
@@ -323,26 +350,24 @@ const Dropdown = ({
             tabIndex={0}
             invalid={validationMessage && validationMessage.length > 0}
             disabled={disabled}
+            bordered={bordered}
           >
-            <StyledLabel>
+            <StyledDropdownContent>
               {prefixContent && <StyledAffix>{prefixContent}</StyledAffix>}
-              <span>{selectedValue}</span>
+              <span>{value && value}</span>
+              {!value && placeholder && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
               <span className="svgArrowWrap"><FontAwesomeIcon icon={faChevronDown} size="sm" flip={isDropdownOpen ? 'vertical' : null} /></span>
-            </StyledLabel>
+            </StyledDropdownContent>
           </StyledDropdownButton>
-          {Boolean(isDropdownOpen) && (
-            <StyledList isDropdownOpen={isDropdownOpen} desktop={desktop}>
-              <StyledListul desktop={desktop}>
-                {childrenWithProps}
-              </StyledListul>
-            </StyledList>
-          )}
-        </StyledDropdownMainWrap>
+          {renderDropdownList()}
+        </StyledDropdownContainer>
+        <SupportingElements required={required} disabled={disabled} label={label} />
         <FieldValidation message={validationMessage} />
-      </>
-    </LayerEventManager>
+      </StyledDropdownMainWrap>
+    </>
   );
 };
+
 
 Dropdown.propTypes = {
   /**
@@ -350,43 +375,55 @@ Dropdown.propTypes = {
    */
   id: PropTypes.string.isRequired,
   /**
-   * The options to display within the Dropdown
-   */
-  options: PropTypes.arrayOf(PropTypes.object),
-  /**
-   * Label for the dropdown
+   * Label for the input
    */
   label: PropTypes.string,
+  /**
+   * The placeholder text for the Dropdown
+   */
+  placeholder: PropTypes.string,
   /**
    * Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
   /**
-   * The items to be rendered (should be `<li>` tags)
+   * The currently selected value of the Dropdown (use to preselect)
+   */
+  selectedValue: PropTypes.string,
+  /**
+   * Label for the Dropdown.
    */
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
   /**
+   * Display a border on the Dropdown
+   */
+  bordered: PropTypes.bool,
+  /**
+   * Adds/removes a supporting element, `<span>OPTIONAL</span>` to show the field is optional.
+   */
+  required: PropTypes.bool,
+  /**
    * Displays given validation message and invalid styles on the component when provided.
    */
   validationMessage: PropTypes.string,
   /**
-   * Disables the button via a class on its wrapper, and an attribute on the dropdown.
+   * Disables the button via a class on its wrapper, and an attribute on the dropdown
    */
   disabled: PropTypes.bool,
   /**
-   * Content to be displayed as a prefix for the dropdown
+   * Content to be displayed as a prefix for the input
    */
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
   /**
-   * Called on click of the dropdown's item
+   * Called on change of the Dropdowns selected value.
    */
-  handleClick: PropTypes.func,
+  handleChange: PropTypes.func,
   /**
    * Called on focus of the dropdown
    */
@@ -398,14 +435,17 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
-  options: [],
   label: '',
+  placeholder: '',
   tooltip: {},
+  selectedValue: null,
   children: '',
   validationMessage: '',
   disabled: false,
+  bordered: true,
+  required: true,
   prefixContent: '',
-  handleClick: null,
+  handleChange: null,
   handleFocus: null,
   handleBlur: null,
 };

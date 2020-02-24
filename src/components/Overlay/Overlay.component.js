@@ -16,7 +16,7 @@ const StyledOverlay = styled.div`
 `;
 
 const Overlay = ({ visible, opacityLevel, handleClick }) => visible && (
-  <StyledOverlay className="overlay" style={{ background: `rgba(0,0,0,${opacityLevel})` }} aria-label="overlay" tabIndex="0" role="option" aria-selected={false} onClick={handleClick} />
+  <StyledOverlay className="overlay" style={{ background: `rgba(0,0,0,${opacityLevel})` }} aria-label="overlay" tabIndex="-1" role="option" aria-selected={false} onClick={handleClick} />
 );
 
 Overlay.propTypes = {

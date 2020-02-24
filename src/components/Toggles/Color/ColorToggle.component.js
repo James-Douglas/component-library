@@ -140,6 +140,7 @@ ColorToggle.propTypes = {
   fontColor: PropTypes.string,
   /**
    * The value of the currently selected (toggled on) toggle.
+   * (`ToggleGroup` will override any value provided to this prop if in use)
    */
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**

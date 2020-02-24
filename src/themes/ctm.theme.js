@@ -325,6 +325,7 @@ const ctmTheme = {
     },
   },
   dropdown: {
+    height: spacing[44],
     color: colors.black,
     background: colors.white,
     colorDisabled: colors.disabledText,
