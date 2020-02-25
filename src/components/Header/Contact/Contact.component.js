@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useIsDesktop from 'hooks/useIsDesktop';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons/faPhoneAlt';
+import { faPhone } from '@fortawesome/pro-regular-svg-icons/faPhone';
 
-const StyledContact = styled.div`
+const StyledContact = styled.a`
   display: flex;
+  text-decoration: none;
   align-items: center;
   color: ${({ theme }) => theme.header.contact.color};
   transition: ${({ theme }) => theme.header.transition};
@@ -44,14 +45,13 @@ const StyledIconWrap = styled.span`
 
 const Contact = ({ number, size }) => {
   const isDesktop = useIsDesktop();
-  const mobileLabel = isDesktop ? number : 'Need help?';
   return (
     <>
       <StyledContact isDesktop={isDesktop} size={size} href={`tel:${number}`} target="link-target">
         <StyledIconWrap>
-          <FontAwesomeIcon icon={faPhoneAlt} size="sm" />
+          <FontAwesomeIcon icon={faPhone} size="sm" />
         </StyledIconWrap>
-        { mobileLabel }
+        { isDesktop && number }
       </StyledContact>
       <StylesdIframe title="link iframe" name="link-target" />
     </>

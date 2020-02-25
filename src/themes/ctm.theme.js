@@ -395,8 +395,8 @@ const ctmTheme = {
     height: spacing[60],
     heightStuck: spacing[44],
     contact: {
-      color: colors.greyDarkest,
-      hoverColor: colors.link,
+      color: colors.primary500,
+      hoverColor: colors.primary600,
     },
   },
   input: {

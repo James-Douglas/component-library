@@ -36,9 +36,9 @@ describe('Contact', () => {
   });
   it('renders correctly for resize', () => {
     mockUseIsDesktopValue = false;
-    const { container, getByText } = render(<Contact number="1800 000 001" />);
+    const { container, queryByText } = render(<Contact number="1800 000 001" />);
     const link = container.querySelector('[target="link-target"]');
-    expect(getByText('Need help?')).toBeInTheDocument();
+    expect(queryByText('1800 000 001')).not.toBeInTheDocument();
     expect(link).toHaveStyleRule('font-size', '1.8rem');
   });
 });

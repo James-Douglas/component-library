@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import Picture from '../Picture/Picture.component';
+import Picture, { picturePropTypes } from '../Picture/Picture.component';
 import logoMobile from '../../images/ctm-logo-mobile.svg';
 import logoDesktop from '../../images/ctm-logo-desktop.svg';
 import screens from '../../../config/screens';
@@ -18,51 +18,52 @@ const StyledLogo = styled.div`
   `}
 `;
 
-const Logo = ({ size, src, srcsets }) => (
-  <StyledLogo size={size} id="logo">
-    <a href="https://www.comparethemarket.com.au">
-      <Picture
-        src={src}
-        srcsets={srcsets}
-        alt="Compare The Market Australia Logo"
-        title="Compare The Market Australia"
-      />
-    </a>
-  </StyledLogo>
-);
+const Logo = ({ size, link, logoPicture }) => {
+  const {
+    src, srcsets, alt, title, className,
+  } = logoPicture;
+  return (
+    <StyledLogo size={size} id="logo">
+      <a href={link}>
+        <Picture
+          src={src}
+          srcsets={srcsets}
+          alt={alt}
+          title={title}
+          className={className}
+        />
+      </a>
+    </StyledLogo>
+  );
+};
 
 Logo.propTypes = {
+  /**
+   * Address for the <a> tag wrapping the logo image.
+   */
+  link: PropTypes.string,
   /**
    * Size of the logo (small = 3.2rem, large = 4.4rem)
    */
   size: PropTypes.oneOf(['small', 'large']),
-  /**
-   * src attribute for the underlying Picture component
-   */
-  src: PropTypes.string,
-  /**
-   * srcsets attribute for the underlying Picture component
-   */
-  srcsets: PropTypes.arrayOf(
-    PropTypes.shape({
-      srcset: PropTypes.string,
-      media: PropTypes.string,
-    }),
-  ),
+  logoPicture: PropTypes.shape(picturePropTypes),
 };
 
 Logo.defaultProps = {
+  link: 'https://www.comparethemarket.com.au',
   size: 'large',
-  src: logoDesktop,
-  srcsets: [
-    {
-      srcset: logoDesktop,
-      media: `(min-width: ${screens.md})`,
-    },
-    {
-      srcset: logoMobile,
-    },
-  ],
+  logoPicture: {
+    src: logoDesktop,
+    srcsets: [
+      {
+        srcset: logoDesktop,
+        media: `(min-width: ${screens.md})`,
+      },
+      {
+        srcset: logoMobile,
+      },
+    ],
+  },
 };
 
 export default Logo;
