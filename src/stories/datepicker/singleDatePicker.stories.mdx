@@ -1,0 +1,31 @@
+import { useState } from 'react';
+import moment from 'moment';
+import SingleDatePicker from '../../components/DatePicker/SingleDatePicker.component';
+
+<Meta title="Components|DatePicker|SingleDatePicker" component={SingleDatePicker} />
+
+#SingleDatePicker
+
+<Preview>
+  <Story name="single datepicker">
+    {() => {
+     const [date, setDate] = useState(moment().startOf('day'));
+      return (
+        <div style={{marginTop: '30px'}}>
+          <FluidContainer>
+            <Row>
+              <SingleDatePicker
+                dateId="single-date"
+                dateTooltip={{ title: 'Start Date' }}
+                dateAriaLabel="Select Date"
+                dateValue={date}
+                numberOfMonths={1}
+                validationMessage="The date is incorrect"
+                />
+              </Row>
+            </FluidContainer>
+          </div>
+        );
+    }}
+  </Story>
+</Preview>

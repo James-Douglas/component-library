@@ -338,7 +338,7 @@ const Combo = ({
   }, [handleUserKeyPress]);
 
   useEffect(() => {
-    isMobileModalView && textInput.current && textInput.current.focus();
+    isMobileModalView && textInput && textInput.current && textInput.current.inputElement.focus();
   }, [isMobileModalView]);
 
 

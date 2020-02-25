@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -70,14 +70,18 @@ const StyledInputWrap = styled.div`
   }) => (bordered && isAutofill && !disabled) && css`
     border: ${theme.borders.prefill};
   `}
-  ${({ theme, invalid }) => invalid && css`
-    border: ${theme.borders.invalid};
-  `}
+ 
   ${({ disabled }) => (disabled) && css`
     opacity: 0.5;
   `}
   ${({ theme, isFocusActive }) => isFocusActive && css`
     border: ${theme.borders.hover};
+  `}
+   ${({ theme, invalid }) => invalid && css`
+    border: ${theme.borders.invalid};
+    :hover {
+      border: ${theme.borders.invalid};
+    }
   `}
 `;
 
@@ -87,8 +91,8 @@ const StyledInputClearWrap = styled.div`
   min-height: ${({ theme }) => theme.input.height};
 `;
 
-// eslint-disable-next-line react/jsx-props-no-spreading
-const StyledInput = styled(({ isAutofill, ...props }) => <MaskedInput {...props} />)`
+// eslint-disable-next-line react/jsx-props-no-spreading,react/display-name,react/prop-types
+const StyledInput = styled(React.forwardRef(({ isAutofill, ...props }, ref) => <MaskedInput {...props} ref={ref} />))`
   padding-left: ${({ theme }) => theme.spacing[12]};
   padding-right: ${({ theme }) => theme.spacing[36]};
   display: block;
@@ -135,7 +139,7 @@ export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, 
   return null;
 };
 
-export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled) => {
+export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled, affixClick) => {
   if (affixType && affixContent) {
     return (
       <StyledAffix
@@ -143,6 +147,7 @@ export const renderAffix = (affixType, affixContent, bordered, isAutofill, disab
         bordered={bordered}
         isAutofill={isAutofill}
         disabled={disabled}
+        onClick={affixClick}
       >
         {affixContent}
       </StyledAffix>
@@ -185,6 +190,8 @@ const Input = React.forwardRef(({
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [isFocusActive, setFocusActive] = useState(false);
 
+  const localRef = ref || useRef(null);
+
   const clearInput = () => {
     setIsDirty(true);
     setInternalValue('');
@@ -220,6 +227,9 @@ const Input = React.forwardRef(({
     }
     setFocusActive(false);
   };
+  const affixClick = () => {
+    localRef.current.inputElement.focus();
+  };
 
   return (
     <StyledWrapper className="input-wrap">
@@ -232,7 +242,7 @@ const Input = React.forwardRef(({
           invalid={validationMessage && validationMessage.length > 0}
           isFocusActive={isFocusActive}
         >
-          {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled)}
+          {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled, affixClick)}
           <StyledInputClearWrap className="input-clear-wrap">
             <StyledInput
               mask={mask}
@@ -250,12 +260,12 @@ const Input = React.forwardRef(({
               onBlur={blurHandler}
               maxLength={maxlength}
               isAutofill={isAutofill}
-              ref={ref}
+              ref={localRef}
               className={`input-default ${className}`}
             />
             {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon)}
           </StyledInputClearWrap>
-          {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled)}
+          {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled, affixClick)}
         </StyledInputWrap>
         <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
       </StyledInputContainer>

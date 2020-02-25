@@ -26,6 +26,9 @@ const DateInput = ({
   className,
   handleFocus,
   handleBlur,
+  prefixContent,
+  suffixContent,
+  disableClearIcon,
 }) => {
   const changeHandler = (val) => {
     const parsedDate = moment(val, 'DD/MM/YYYY', true);
@@ -39,7 +42,8 @@ const DateInput = ({
       value={value}
       type="text"
       handleChange={changeHandler}
-      prefixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} />}
+      prefixContent={prefixContent}
+      suffixContent={suffixContent}
       mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
       guide
       placeholder="DD/MM/YYYY"
@@ -54,6 +58,7 @@ const DateInput = ({
       className={className}
       handleFocus={handleFocus}
       handleBlur={handleBlur}
+      disableClearIcon={disableClearIcon}
     />
   );
 };
@@ -116,6 +121,24 @@ DateInput.propTypes = {
    * Classes to be applied to the Currency component
    */
   className: PropTypes.string,
+  /**
+   * Content to be displayed as a prefix for the input
+   */
+  prefixContent: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
+  /**
+   * Content to be displayed as  suffix for the input
+   */
+  suffixContent: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
+  /**
+   * Props to be applied to cancel close button
+   */
+  disableClearIcon: PropTypes.bool,
 };
 
 DateInput.defaultProps = {
@@ -131,6 +154,9 @@ DateInput.defaultProps = {
   className: '',
   handleFocus: null,
   handleBlur: null,
+  prefixContent: '',
+  suffixContent: '',
+  disableClearIcon: false,
 };
 
 export default DateInput;

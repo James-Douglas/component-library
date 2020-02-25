@@ -60,6 +60,7 @@ const colors = {
 
   blueLight: '#1780F3',
   blueLighter: '#7A98FF',
+  blueLightest: '#E7F0FB',
   link: '#164AD9',
   warning: '#F49E1E',
   prechecked: '#FCFAED',
@@ -204,6 +205,7 @@ const boxShadow = {
   outline: '0 0 0 0.3rem rgba(52,144,220,0.5)',
   none: 'none',
   progress: '0 0.2rem 0.4rem 0 #DDDBDB',
+  box: '0px 3px 8px rgba(0, 0, 0, 0.1)',
 };
 
 const maxWidth = {
@@ -255,7 +257,7 @@ const borders = {
   transparent: '1px solid transparent',
   disabled: `1px solid ${colors.disabled}`,
   component: `1px solid ${colors.greyLight}`,
-  hover: `1px solid ${colors.blueLight}`,
+  hover: `1px solid ${colors.primary300}`,
   prefill: `1px solid ${colors.precheckedDarker}`,
   dark: `1px solid ${colors.brandMidnightBlue}`,
 };
@@ -373,6 +375,15 @@ const ctmTheme = {
       backgroundHover: colors.whiteLight,
     },
   },
+  datepicker: {
+    navigationButtonColor: colors.primary300,
+    datepickerDayColor: colors.white,
+    datepickerDayBackground: colors.primary400,
+    datepickerSelectedDayRangeColor: colors.black,
+    datepickerSelectedDayRangeBackground: colors.primary50,
+    datepickerSelectedDayEdgeBackground: colors.brandLightBlue,
+    datepickerSelectedDayEdgeBackgroundHover: colors.primary400,
+  },
   dropdown: {
     height: spacing[44],
     color: colors.black,
@@ -381,7 +392,7 @@ const ctmTheme = {
     disabledOpacity: '0.5',
     disabledSvgOpacity: '0.3',
     prefixBackground: colors.white,
-    shadow: '0px 3px 8px rgba(0, 0, 0, 0.1)',
+    shadow: boxShadow.box,
   },
   featureList: {
     color: colors.secondaryDarker,
