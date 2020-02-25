@@ -4,16 +4,15 @@ import styled, { css } from 'styled-components';
 
 const StyledBar = styled.div`
   width: 100%;
-  box-shadow: ${({ theme }) => theme.boxShadow.progress};
   font-size: ${({ theme }) => theme.fontSize.sm};
-  z-index: ${({ theme }) => (theme.zIndex[50])};
+  z-index: ${({ theme }) => (theme.zIndex[30])};
   position: ${({ isSticky, stuck }) => (isSticky || stuck ? 'fixed' : 'relative')};
   top: ${({ isSticky, stuck }) => (isSticky || stuck ? '0' : 'inherit')};
   height:  ${({ stuck }) => (stuck ? 'auto' : 'none')};
 `;
 
 const sharedStyleProgress = css`
-  ${({ theme }) => theme.progress.bar.backgroundCss};
+  background: ${({ theme }) => theme.progress.bar.progressBackground};
   transition: width 0.4s ease-in-out;
   border-radius:  ${({ theme, value }) => (value.toString() === '100' ? theme.borderRadius.none : `0 ${theme.borderRadius.full} ${theme.borderRadius.full} 0`)};
 `;
@@ -27,8 +26,7 @@ const StyledProgress = styled.progress`
   background: ${({ theme }) => theme.progress.bar.background};
   /* ie11 */
   &[value]  {
-    background: ${({ theme }) => theme.progress.bar.backgroundValue};
-    color: ${({ theme }) => theme.progress.bar.colorValue};
+    background: ${({ theme }) => theme.progress.bar.progressBackground};
     /* Reset the default appearance */
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -61,7 +59,7 @@ const StyledLabel = styled.div`
   align-items: center;
   font-weight:  ${({ theme }) => theme.fontWeight.semibold};
   animation: 0.4s ease-in-out 0.3s 1 forwardsKey;
-  height: ${({ theme }) => theme.spacing[24]};
+  height: 0.6rem;
   margin-left: ${({ value }) => `${value}vw`};
   right: ${({ value }) => (value > 10 ? '4.8rem' : '3.5rem')};
 `;
@@ -74,9 +72,7 @@ const Bar = ({
 }) => (
   <StyledBar stuck={stuck} isSticky={isSticky} value={value}>
     <StyledProgress max="100" value={value} />
-    <StyledLabel value={value}>
-      {`${value}%`}
-    </StyledLabel>
+    <StyledLabel value={value} />
   </StyledBar>
 );
 
@@ -85,10 +81,7 @@ Bar.propTypes = {
   /**
    * Percentage completed (0 - 100)
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  value: PropTypes.number.isRequired,
   /**
    * Determines if the bar should be sticky
    */
@@ -100,7 +93,6 @@ Bar.propTypes = {
 };
 
 Bar.defaultProps = {
-  value: 70,
   isSticky: false,
   stuck: false,
 };

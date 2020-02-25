@@ -42,7 +42,7 @@ const StyledTracker = styled.div`
   width: 100%;
   box-shadow: ${({ theme }) => theme.boxShadow.progress};
   font-size: ${({ theme }) => theme.fontSize.sm};
-  z-index: ${({ theme }) => theme.zIndex[50]};
+  z-index: ${({ theme }) => theme.zIndex[30]};
   position: ${({ isSticky, stuck }) => (isSticky || stuck ? 'fixed' : 'relative')};
   top: ${({ isSticky, stuck }) => (isSticky || stuck ? '0' : 'inherit')};
   height:  ${({ stuck }) => (stuck ? 'auto' : 'none')};

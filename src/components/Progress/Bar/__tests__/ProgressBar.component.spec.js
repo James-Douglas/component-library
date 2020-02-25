@@ -3,14 +3,11 @@ import { render } from '../../../../testUtils';
 import 'jest-styled-components';
 import ProgressBar from '../ProgressBar.component';
 
-describe('Bar', () => {
-  it('renders correctly with value as string', () => {
-    const { getByText } = render(<ProgressBar value="60" />);
-    expect(getByText('60%')).toBeInTheDocument();
-  });
+describe('ProgressBar', () => {
   it('renders correctly with value as number', () => {
-    const { getByText } = render(<ProgressBar value={55} />);
-    expect(getByText('55%')).toBeInTheDocument();
+    const { container } = render(<ProgressBar value={55} />);
+    const progress = container.querySelector('progress');
+    expect(progress).toHaveAttribute('value', '55');
   });
   it('should check scroll and add isSticky and stuck props', () => {
     const { container } = render(<ProgressBar value="60" isSticky stuck />);
@@ -21,22 +18,12 @@ describe('Bar', () => {
     const list = container.getElementsByTagName('progress')[0];
     expect(list).toHaveAttribute('value', '100');
   });
-  it('should check label styles', () => {
-    const { getByText } = render(<ProgressBar value="60" />);
-    expect(getByText('60%')).toHaveStyleRule('right', '4.8rem');
-  });
   it('should check styles', () => {
-    const { getByText } = render(<ProgressBar value="60" />);
-    expect(getByText('60%')).toHaveStyle(`
+    const { container } = render(<ProgressBar value="60" />);
+    const progress = container.querySelectorAll('div')[1];
+    expect(progress).toHaveStyle(`
      margin-left: 60vw;
      right: 4.8rem;
    `);
-  });
-  it('should check styles for value less than 10', () => {
-    const { getByText } = render(<ProgressBar value="6" />);
-    expect(getByText('6%')).toHaveStyle(`
-      margin-left: 6vw;
-      right: 3.5rem;
-    `);
   });
 });

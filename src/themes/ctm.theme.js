@@ -423,16 +423,8 @@ const ctmTheme = {
   progress: {
     bar: {
       background: colors.white,
-      backgroundValue: colors.greyLighterAA,
-      colorValue: colors.secondaryLight,
-      backgroundCss: `
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfefc2+0,c3e4cf+100 */
-        background: ${colors.secondaryLight};  /* Old browsers */
-        background ${`-moz-linear-gradient(left, ${colors.secondaryLight} 0%, ${colors.secondaryLighter}  100%)`}; /* FF3.6-15 */   
-        background: ${`-webkit-linear-gradient(left, ${colors.secondaryLight} 0%, ${colors.secondaryLighter}  100%)`}; /* Chrome10-25,Safari5.1-6 */
-        background: ${`linear-gradient(to right, ${colors.secondaryLight} 0%, ${colors.secondaryLighter}  100%)`}; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: ${`progid:DXImageTransform.Microsoft.gradient( startColorstr=${colors.secondaryLight}, endColorstr=${colors.secondaryLighter},GradientType=1 )`};  /* IE6-9 */
-      `,
+      backgroundValue: colors.grey300,
+      progressBackground: colors.primary400,
     },
     icon: {
       border: `2px solid ${colors.black}`,

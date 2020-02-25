@@ -23,7 +23,7 @@ Visually represents the current progress of a journey via a progress bar with a 
 
 <Story name="progress bar with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
-    const value = number('value', 66);
+    const value = number('value', 66, { range: true, min: 0, max: 100, step: 1 });
     return (
       <div>
         <div style={{ height: '120px' }}>
