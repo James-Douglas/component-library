@@ -18,7 +18,7 @@ const LayerEventManager = ({
 }) => {
   const layerInfo = useLayers();
   const theme = getTheme();
-  const zIndex = useRef(parseInt(theme.zIndex[30], 10));
+  const zIndex = useRef(parseInt(theme.zIndex[40], 10));
   const layerId = useRef(id);
   const previouslyVisible = usePrevious(visible);
 
