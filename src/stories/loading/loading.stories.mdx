@@ -52,7 +52,7 @@ _Forces the loading to end after three seconds_
     return (
       <>
         {!loadVar && <Loading {...optionalProps} handleLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
-        {loadVar && <div style={{fontSize: '30px'}}>Loading done <Button variant="secondary" handleClick={doReset} size="sm" width="125px">Reset</Button></div>}
+        {loadVar && <div style={{fontSize: '30px'}}>Loading done <Button id="test" variant="secondary" handleClick={doReset} size="sm" width="125px">Reset</Button></div>}
       </>
     )
   }}

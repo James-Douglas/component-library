@@ -1,0 +1,19 @@
+import { useState } from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Disclaimer from '../../components/Disclaimer/Disclaimer.component';
+
+<Meta title="Components|Disclaimer" component={Disclaimer} />
+
+# Disclaimer
+
+Renders a checkbox with content (supplied as children).
+
+<Preview>
+  <Story name="disclaimer">
+    <Disclaimer id="1">I'm a disclaimer <a href="www.google.com" target="_blank">link</a> that's a link</Disclaimer>
+  </Story>
+</Preview>
+
+### Disclaimer Props
+
+<Props of={Disclaimer} />

@@ -23,16 +23,12 @@ describe('generateGroup', () => {
   it('renders if there are children', () => {
     const { container } = render(
       <GroupContainer colSize="6">
-        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
-        <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
+        <Checkbox id="A-1" label="A-1 check" />
+        <Checkbox id="A-2" label="A-2 check" />
       </GroupContainer>,
     );
-
     const allLabel = container.querySelectorAll('label');
-    const content = container.querySelectorAll('.checkbox-content');
-    expect(content).toBeDefined();
     expect(allLabel.length).toBe(2);
-    expect(content.length).toBe(2);
     expect(container.innerHTML).toMatchSnapshot();
   });
 });

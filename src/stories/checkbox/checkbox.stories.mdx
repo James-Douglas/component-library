@@ -3,6 +3,7 @@ import Checkbox from '../../components/Checkbox/Checkbox.component';
 import CheckboxGroup from '../../components/Checkbox/CheckboxGroup.component';
 import CheckboxGroupView from './checkboxGroup.view';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
+import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
@@ -19,17 +20,36 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
     <FluidContainer>
       <Row>
         <Column>
-          <Checkbox id="A-1" isSelected><p>With child content (label clickable)</p></Checkbox>
-          <Checkbox id="A-2" icon={faTimes}><p>With a different icon</p></Checkbox>
-          <Checkbox id="A-4" disabled><p>disabled</p></Checkbox>
-          <Checkbox id="A-3" />
+          <Checkbox id="1" label="A checkbox" />
         </Column>
       </Row>
     </FluidContainer>
   </Story>
 </Preview>
 
-<Story name="checkbox group view" parameters={{ docs: { disable: true } }}>
+<Preview>
+  <Story name="checkbox group">
+    <FluidContainer>
+      <Row>
+        <Column>
+          <CheckboxGroup
+            label="Checkbox group example"
+            tooltip={{ title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
+            groupId="group-1"
+            colSize="12"
+            handleChange={() => {}}
+          >
+            <Checkbox id="A-1" label="One" />
+            <Checkbox id="A-2" label="Two" />
+            <Checkbox id="A-3" label="Three" />
+          </CheckboxGroup>
+        </Column>
+      </Row>
+    </FluidContainer>
+  </Story>
+</Preview>
+
+<Story name="checkbox group demo" parameters={{ docs: { disable: true } }}>
   <CheckboxGroupView />
 </Story>
 

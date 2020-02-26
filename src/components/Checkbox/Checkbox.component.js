@@ -18,12 +18,14 @@ const StyledHiddenInput = styled.input`
 `;
 
 const StyledWrap = styled.div`
+  display: flex;
   margin-bottom: ${({ theme }) => theme.spacing[12]};
   min-width: 3rem;
 `;
 
 const StyledLabel = styled.label`
   display: flex;
+  align-items: center;
   cursor: pointer;
   margin-top: 0.4rem;
   ${({ children }) => children[1] === null && css`
@@ -84,22 +86,10 @@ export const renderIcon = (icon, value) => {
   return null;
 };
 
-const renderContent = (children) => {
-  if (children) {
-    return (
-      <>
-        <StyledContent className="checkbox-content">
-          {children}
-        </StyledContent>
-      </>
-    );
-  }
-  return null;
-};
-
 const Checkbox = ({
   id,
   icon,
+  label,
   disabled,
   invalid,
   invertColour,
@@ -120,7 +110,6 @@ const Checkbox = ({
     const targValue = e.target.checked;
 
     setChecked(targValue);
-
     if (handleChange) {
       handleChange({ id, value: targValue });
     }
@@ -154,7 +143,12 @@ const Checkbox = ({
           >
             {renderIcon(icon, checked)}
           </StyledCheckbox>
-          {renderContent(children)}
+          {label
+            && (
+              <StyledContent>
+                {label}
+              </StyledContent>
+            )}
         </StyledLabel>
       </StyledWrap>
     </>
@@ -166,6 +160,10 @@ Checkbox.propTypes = {
    * The checkbox ID. This is required, as it informs the label and the value of the checkbox.
    */
   id: PropTypes.string.isRequired,
+  /**
+   * The label for the Checkbox
+   */
+  label: PropTypes.string,
   /**
    * Defines the icon needed for the checkbox.
    */
@@ -222,6 +220,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   icon: faCheck,
+  label: null,
   disabled: false,
   isSelected: false,
   invalid: false,

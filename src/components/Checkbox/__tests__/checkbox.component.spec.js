@@ -27,7 +27,7 @@ describe('renderIcon()', () => {
   });
 });
 
-describe('Checkbox.component', () => {
+describe('Checkbox', () => {
   it('renders with minimal props', () => {
     const { container } = render(<Checkbox id="test-id" />);
     expect(container.innerHTML).toMatchSnapshot();

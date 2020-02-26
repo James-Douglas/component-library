@@ -234,7 +234,7 @@ export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, 
   );
 }
 
-const Combo = ({
+const Combo = React.forwardRef(({
   id,
   label,
   apiData,
@@ -263,13 +263,12 @@ const Combo = ({
   emptyStateClassName,
   emptyStateHeading,
   helperMessage,
-}) => {
+}, ref) => {
   const [listVisible, setListVisible] = useState(false);
   const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
   const bottomButton = React.createRef();
   const desktop = useIsDesktop();
-  const textInput = React.useRef(null);
   const mobileOverlay = !desktop && isMobileModalView;
 
   const filteredValues = useMemo(
@@ -330,8 +329,8 @@ const Combo = ({
   }, [handleUserKeyPress]);
 
   useEffect(() => {
-    isMobileModalView && textInput && textInput.current && textInput.current.inputElement.focus();
-  }, [isMobileModalView]);
+    isMobileModalView && ref && ref.current && ref.current.focus();
+  }, [isMobileModalView, ref]);
 
 
   const handleOnFocus = (event) => {
@@ -467,7 +466,7 @@ const Combo = ({
                 handleChange={comboHandleChange}
                 className={className}
                 tabIndex="0"
-                ref={textInput}
+                ref={ref}
                 role="comboField"
                 dataList={() => comboDropdownList(
                   desktop,
@@ -513,7 +512,9 @@ const Combo = ({
     </LayerEventManager>
 
   );
-};
+});
+
+Combo.displayName = 'Combo';
 
 Combo.propTypes = {
   /**
