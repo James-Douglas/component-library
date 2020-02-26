@@ -17,7 +17,7 @@ which can be used to compose a group of cards.
   <Story name="card">
     <>
     <Container>
-    <Card id='mdx-card' margin={['12']} padding={['36', '12']}>
+    <Card id='mdx-card'>
       <div>
         <p>Card content</p>
       </div>
@@ -57,14 +57,14 @@ which can be used to compose a group of cards.
     const id = text('id', 'test');
     const cols = select('cols', [1,2,3,4,5,6,7,8,9,10,11,12], 3);
     const options = Object.keys(getTheme().spacing);
-    const mt = select('Margin Top', options, '8');
-    const mr = select('Margin Right', options, '0');
-    const mb = select('Margin Bottom', options, '0');
-    const ml = select('Margin Left', options, '0');
-    const pt = select('Padding Top', options, '8');
-    const pr = select('Padding Right', options, '0');
-    const pb = select('Padding Bottom', options, '0');
-    const pl = select('Padding Left', options, '8');
+    const mt = select('Margin Top', options, '4');
+    const mr = select('Margin Right', options, '4');
+    const mb = select('Margin Bottom', options, '16');
+    const ml = select('Margin Left', options, '4');
+    const pt = select('Padding Top', options, '16');
+    const pr = select('Padding Right', options, '16');
+    const pb = select('Padding Bottom', options, '16');
+    const pl = select('Padding Left', options, '16');
     const margin = [mt, mr, mb, ml];
     const padding = [pt, pr, pb, pl]
     return (

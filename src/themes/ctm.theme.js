@@ -198,12 +198,12 @@ const borderRadius = {
 };
 
 const elevation = {
-  lvl1: '0px 2px 4px rgba(208,206,206,0.5)',
-  lvl2: '0px 5px 8px rgba(0,0,0,0.05)',
-  lvl3: '0px 3px 8px rgba(0,0,0,0.1)',
-  lvl4: '0px 3px 8px rgba(0,0,0,0.2)',
-  lvl5: '0px 5px 8px rgba(0,0,0,0.2)',
-  lvl6: '0px 8px 8px rgba(0,0,0,0.2)',
+  lvl1: '0px 0.2rem 0.2rem rgba(208,206,206,0.5)',
+  lvl2: '0px 0.5rem 0.8rem rgba(0,0,0,0.05)',
+  lvl3: '0px 0.3rem 0.8rem rgba(0,0,0,0.1)',
+  lvl4: '0px 0.3rem 0.8rem rgba(0,0,0,0.2)',
+  lvl5: '0px 0.5rem 0.8rem rgba(0,0,0,0.2)',
+  lvl6: '0px 0.8rem 0.8rem rgba(0,0,0,0.2)',
   none: 'none',
 };
 
@@ -341,7 +341,7 @@ const ctmTheme = {
   card: {
     background: colors.white,
     border: borders.component,
-    shadow: boxShadow.progress,
+    shadow: elevation.lvl1,
   },
   checkbox: {
     color: colors.white,
