@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Row from '../../components/Grid/Row/Row.component';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -10,4 +11,10 @@ const StyledContainer = styled.div`
   background: ${(props) => props.bg};
 `;
 
+const StyledRow = styled(Row)`
+  background: ${(props) => props.bg};
+  padding-top: 1.5rem;
+`;
+
+export { StyledRow };
 export default StyledContainer;

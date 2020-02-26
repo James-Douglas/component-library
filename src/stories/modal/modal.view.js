@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Container from 'components/Grid/Container/Container.component';
+import Row from 'components/Grid/Row/Row.component';
+import Column from 'components/Grid/Column/Column.component';
 import Modal from 'components/Modal/Modal.component';
 import Button from 'components/Button/Button.component';
 import Checkbox from 'components/Checkbox/Checkbox.component';
@@ -28,43 +31,47 @@ const ModalView = () => {
   };
 
   return (
-    <>
-      <Button id="demo-1-btn" variant="secondary" handleClick={m1Open}>
-        Modal one
-      </Button>
-      <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="lg" overlay overlayOpacity={0.3}>
-        <h2>Email Results</h2>
-        &nbsp;
-        <p>Access these search results later from any device</p>
-        &nbsp;
-        <Input id="modal-input" label="Email address" placeholder="Enter your email address" handleChange={() => {}} />
-        &nbsp;
+    <Container>
+      <Row>
+        <Column md={4}>
+          <Button id="demo-1-btn" variant="secondary" handleClick={m1Open}>
+            Modal one
+          </Button>
+        </Column>
+        <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="lg" overlay overlayOpacity={0.3}>
+          <h2>Email Results</h2>
+          &nbsp;
+          <p>Access these search results later from any device</p>
+          &nbsp;
+          <Input id="modal-input" label="Email address" placeholder="Enter your email address" handleChange={() => {}} />
+          &nbsp;
 
 
-        <Table ariaLabel="Receive emails" size="small" ariaDescribedby="IDREF">
-          <TableBody>
-            <TableRow>
-              <TableCell align="left" valign="baseline" padding="none"><Checkbox id="chk1" /></TableCell>
-              <TableCell align="left" valign="middle"><p>I would like to receive emails about great deals on Compare the Market in the future. If you change your mind, you can unsubscribe at any time.</p></TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-        &nbsp;
-        <Button id="modal-email" variant="primary" size="lg">
-          Send Email
-        </Button>
-      </Modal>
-
-      <Button id="demo-2-btn" variant="secondary" handleClick={m2Open}>
-        Modal two
-      </Button>
-
-      <Modal id="demo-2" visible={m2Visible} handleClose={closeModals} size="sm" overlay overlayOpacity={0.3}>
-        <h2>Another modal</h2>
-        &nbsp;
-        <p>Another bit of content</p>
-      </Modal>
-    </>
+          <Table ariaLabel="Receive emails" size="small" ariaDescribedby="IDREF">
+            <TableBody>
+              <TableRow>
+                <TableCell align="left" valign="baseline" padding="none"><Checkbox id="chk1" /></TableCell>
+                <TableCell align="left" valign="middle"><p>I would like to receive emails about great deals on Compare the Market in the future. If you change your mind, you can unsubscribe at any time.</p></TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+          &nbsp;
+          <Button id="modal-email" variant="primary" size="lg">
+            Send Email
+          </Button>
+        </Modal>
+        <Column md={4}>
+          <Button id="demo-2-btn" variant="secondary" handleClick={m2Open}>
+            Modal two
+          </Button>
+        </Column>
+        <Modal id="demo-2" visible={m2Visible} handleClose={closeModals} size="sm" overlay overlayOpacity={0.3}>
+          <h2>Another modal</h2>
+          &nbsp;
+          <p>Another bit of content</p>
+        </Modal>
+      </Row>
+    </Container>
   );
 };
 

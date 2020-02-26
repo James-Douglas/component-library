@@ -292,22 +292,16 @@ const DrawerMix = () => {
               <p>This is an example of the Drawer component.</p>
               <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
                 <Button
-                  id="text-btn01"
-                  variant="tertiary"
-                  disabled={false}
-                  href="#/"
+                  id="btn01"
+                  variant="primary"
                   handleClick={() => handleClickBottom('secondary')}
-                  target="_self"
                 >
                   Open Bottom Drawer
                 </Button>
                 <Button
-                  id="text-btn01"
-                  variant="tertiary"
-                  disabled={false}
-                  href="#/"
+                  id="btn02"
+                  variant="primary"
                   handleClick={() => handleClickRight('primary')}
-                  target="_self"
                 >
                   Open Right Drawer
                 </Button>

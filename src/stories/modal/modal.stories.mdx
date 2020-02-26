@@ -38,14 +38,18 @@ Unlike a Drawer, Modals can always be closed by the user.
       setVisible(false);
     }
     return (
-      <>
-        <Button id='preview-btn' variant='secondary' handleClick={modalOpen}>
-          Modal Preview
-        </Button>
-        <Modal id='preview-modal' visible={visible} handleClose={modalClose} size="sm" overlay handleOverlayClick={overlayClickHandler}>
-          <p>Some modal content!</p>
-        </Modal>
-      </>
+      <Container>
+        <Row>
+          <Column md={4}>
+            <Button id='preview-btn' variant='secondary' handleClick={modalOpen}>
+              Modal Preview
+            </Button>
+          </Column>
+          <Modal id='preview-modal' visible={visible} handleClose={modalClose} size="sm" overlay handleOverlayClick={overlayClickHandler}>
+            <p>Some modal content!</p>
+          </Modal>
+        </Row>
+      </Container>
     )
   }}
 </Story>

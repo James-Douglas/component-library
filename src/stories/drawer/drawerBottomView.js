@@ -54,12 +54,9 @@ const DrawerBottom = () => {
               <p>This is an example of the Drawer component.</p>
               <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
                 <Button
-                  id="text-btn01"
-                  variant="tertiary"
-                  disabled={false}
-                  href="#/"
+                  id="btn01"
+                  variant="primary"
                   handleClick={() => setShow(!show)}
-                  target="_self"
                 >
                   Click me
                 </Button>

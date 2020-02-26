@@ -78,10 +78,10 @@ const DrawerLeft = () => {
               </div>
               <p style={{ marginTop: '3.2rem' }}>Interest paid Monthly, Quarterly, End of term</p>
               <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
-                <Button id="primary-btn01" variant="primary" btnSize="md" disabled={false}>
+                <Button id="primary-btn01" variant="primary">
                   Go to site
                 </Button>
-                <Button id="text-btn01" variant="link" disabled={false} href="#/" handleClick={clickMe} target="_self">
+                <Button id="text-btn01" variant="secondary" handleClick={clickMe}>
                   More info
                 </Button>
               </div>

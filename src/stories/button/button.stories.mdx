@@ -6,36 +6,93 @@ import FluidContainer from '../../components/Grid/Container/FluidContainer.compo
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 import Overline from 'components/Typography/Overline/Overline.component';
-import { default as DemoContainer } from './button-view-styles';
+import { default as DemoContainer, StyledRow } from './button-view-styles';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 
 <Meta title="Components|Button" component={Button} />
 
 # Button
 
-The Button component has six available variants: `primary`, `secondary`, `tertiary`, `text`, `link` and `footer-link`.
+The Button component has four available variants: `hero`, `primary`, `secondary`, `tertiary`.
 
 The Button can be styled with an icon and can be configurable according to the design system.
 
-All Button variants bar `primary` have an optional `darkMode` prop for use against dark backgrounds.
+All Button variants bar `tertiary` have an optional `inverted` prop for use against dark backgrounds.
 
-Button width is set to `100%` by default, so the Button fills the width of its parent container. The Button width
+Button width is set to `100%` by default, so the Button fills the width of its parent container. The width
 attribute can be overridden via the `width` prop if desired.
+
+As an escape hatch for situational styling, the style prop can be used for cases where the button needs to be aligned in a different flex position, for example.
+
+The tagtype prop can be used to set the html type attribute, for example setting the button to be a `submit` type.
 
 If the `href` prop is supplied, the underlying HTML tag will be an `a`, otherwise this will be a `button` tag. This does not
 affect the styling, which is determined via the supplied `variant`.
+
+## Hero
+<Preview>
+  <Story name="hero button">
+    <FluidContainer>
+      <Row>
+        <Column sm={4}>
+          <Button id="hero-btn01" variant="hero" href='#'>compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="hero-btn02" variant="hero" icon={faInfoCircle}>compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="hero-btn03" variant="hero" icon={faInfoCircle} iconAlign='right'>compare the market</Button>
+        </Column>
+      </Row>
+      <StyledRow bg='#0f8927'>
+        <Column sm={4}>
+          <Button id="hero-btn04" variant="hero" inverted >compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="hero-btn05" variant="hero" inverted icon={faInfoCircle}>compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="hero-btn06" variant="hero" inverted icon={faInfoCircle} iconAlign='right'>compare the market</Button>
+        </Column>
+      </StyledRow>
+      <Row>
+        <Column sm={4}>
+          <Button id="hero-btn07" variant="hero" disabled>compare the market</Button>
+        </Column>
+      </Row>
+    </FluidContainer>
+  </Story>
+</Preview>
 
 ## Primary
 <Preview>
   <Story name="primary button">
     <FluidContainer>
       <Row>
-        <Column>
-          <DemoContainer>
-            <Button id="primary-btn01" variant="primary" size="md" tagType='submit' width='250px'>compare the market</Button>
-            <Button id="primary-btn02" variant="primary" size="md" icon={faInfoCircle} iconSize='1x' width='250px'>compare the market</Button>
-            <Button id="primary-btn03" variant="primary" size="md" icon={faInfoCircle} iconSize='1x' width='250px' iconAlignRight>compare the market</Button>
-          </DemoContainer>
+        <Column sm={4}>
+          <Button id="primary-btn01" variant="primary" >compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="primary-btn02" variant="primary" icon={faInfoCircle}>compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="primary-btn03" variant="primary" icon={faInfoCircle} iconAlign='right'>compare the market</Button>
+        </Column>
+      </Row>
+      <StyledRow bg='#0b60b7'>
+        <Column sm={4}>
+          <Button id="primary-btn04" variant="primary" inverted >compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="primary-btn05" variant="primary" inverted icon={faInfoCircle}>compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="primary-btn06" variant="primary" inverted icon={faInfoCircle} iconAlign='right'>compare the market</Button>
+        </Column>
+      </StyledRow>
+      <Row>
+        <Column sm={4}>
+          <Button id="primary-btn07" variant="primary" disabled>compare the market</Button>
         </Column>
       </Row>
     </FluidContainer>
@@ -47,15 +104,30 @@ affect the styling, which is determined via the supplied `variant`.
   <Story name="secondary button">
     <FluidContainer>
       <Row>
-        <Column>
-          <DemoContainer>
-            <Button id="secondary-btn01" variant="secondary" size="md" width='250px'>Compare the market</Button>
-            <Button id="secondary-btn02" variant="secondary" darkMode size="md" width='250px'>Compare the market</Button>
-            <Button id="secondary-btn03" variant="secondary" size="sm" width='250px'>add bill</Button>
-            <Button id="secondary-btn04" variant="secondary" darkMode size="sm" width='250px'>add bill</Button>
-            <Button id="secondary-icon01" variant="secondary" size="sm" width='250px'>edit details</Button>
-            <Button id="secondary-icon02" variant="secondary" darkMode size="sm" width='250px'>edit details</Button>
-          </DemoContainer>
+        <Column sm={4}>
+          <Button id="secondary-btn01" variant="secondary" >compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="secondary-btn02" variant="secondary" icon={faInfoCircle}>compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="secondary-btn03" variant="secondary" icon={faInfoCircle} iconAlign='right'>compare the market</Button>
+        </Column>
+      </Row>
+      <StyledRow bg='#0b60b7'>
+        <Column sm={4}>
+          <Button id="secondary-btn04" variant="secondary" inverted >compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="secondary-btn05" variant="secondary" inverted icon={faInfoCircle}>compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="secondary-btn06" variant="secondary" inverted icon={faInfoCircle} iconAlign='right'>compare the market</Button>
+        </Column>
+      </StyledRow>
+      <Row>
+        <Column sm={4}>
+          <Button id="secondary-btn07" variant="secondary" disabled>compare the market</Button>
         </Column>
       </Row>
     </FluidContainer>
@@ -67,150 +139,19 @@ affect the styling, which is determined via the supplied `variant`.
   <Story name="tertiary button">
     <FluidContainer>
       <Row>
-        <Column>
-          <DemoContainer>
-            <Button id="tertiary-btn01" variant="tertiary" size="md" width='250px'>compare the market</Button>
-            <Button id="tertiary-btn01" variant="tertiary" darkMode size="md" width='250px'>compare the market</Button>
-          </DemoContainer>
+        <Column sm={4}>
+          <Button id="tertiary-btn01" variant="tertiary" >compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="tertiary-btn02" variant="tertiary" icon={faInfoCircle}>compare the market</Button>
+        </Column>
+        <Column sm={4}>
+          <Button id="tertiary-btn03" variant="tertiary" icon={faInfoCircle} iconAlign='right'>compare the market</Button>
         </Column>
       </Row>
-    </FluidContainer>
-  </Story>
-</Preview>
-
-## Text
-<Preview>
-  <Story name="text button">
-    <FluidContainer>
       <Row>
-        <Column>
-          <DemoContainer>
-            <Overline>On light backgrounds:</Overline>
-            <div style={{marginBottom: '1.5rem'}}>
-              <div style={{margin: '1.5rem'}}>
-                <Button id="text-btn01" variant="text" icon={faInfoCircle} href="#" target="_blank">compare the market</Button>
-              </div>
-              <div style={{margin: '1.5rem'}}>
-                <Button id="text-btn01" variant="text" icon={faInfoCircle} iconAlignRight href="#" target="_blank">compare the market</Button>
-              </div>
-            </div>
-            <Overline>On dark backgrounds:</Overline>
-            <DemoContainer bg='#001545' >
-             <div style={{margin: '1.5rem'}}>
-                <Button id="text-btn02" variant="text" darkMode icon={faInfoCircle} href="#" target="_blank">compare the market</Button>
-              </div>
-              <div style={{margin: '1.5rem'}}>
-                <Button id="text-btn02" variant="text" darkMode icon={faInfoCircle} iconAlignRight href="#" target="_blank">compare the market</Button>
-              </div>
-            </DemoContainer>
-          </DemoContainer>
-        </Column>
-      </Row>
-    </FluidContainer>
-  </Story>
-</Preview>
-
-## Link
-
-<Preview>
-  <Story name="link button">
-    <FluidContainer>
-      <Row>
-        <Column>
-          <DemoContainer>
-            <Overline>On light backgrounds:</Overline>
-            <div style={{marginBottom: '3rem', marginTop: '1.5rem'}}>
-              <Button id="text-btn01" variant="link" href="#" target="_blank">compare the market</Button>
-            </div>
-            <Overline>On dark backgrounds:</Overline>
-            <DemoContainer bg='#001545' >
-              <Button id="text-btn02" variant="link" darkMode href="#" target="_blank">compare the market</Button>
-            </DemoContainer>
-            <div style={{marginTop: '2rem'}}>
-              <DemoContainer >
-              <Overline>As inline text:</Overline>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. &nbsp;
-                <Button id="text-btn02" variant="link" href="#" target="_blank">compare the market</Button>
-                . Ut enim ad minim veniam, quis nostrud exercitation ea commodo consequat. &nbsp;
-                <Button id="text-btn02" variant="link" href="#" target="_blank">compare the market</Button>
-                . Duis aute irure dolor in reprehenderit.
-              </p>
-              </DemoContainer>
-            </div>
-          </DemoContainer>
-       </Column>
-      </Row>
-    </FluidContainer>
-  </Story>
-</Preview>
-
-## Footer link
-
-<Preview>
-  <Story name="footer link">
-    <FluidContainer>
-      <Row>
-        <Column>
-          <div>
-            <DemoContainer style={{padding: '0 1.2rem'}}>
-              <Overline>On light backgrounds:</Overline>
-              <div style={{padding: '1.2rem'}}>
-                <Button id="text-btn01" variant="footer-link" href="#" target="_blank">compare the market</Button>
-              </div>
-            </DemoContainer>
-            <DemoContainer>
-              <Overline>On dark backgrounds:</Overline>
-            </DemoContainer>
-            <DemoContainer bg='#333333' >
-              <div style={{padding: '1.2rem'}}>
-                <Button id="text-btn01" variant="footer-link" darkMode href="#" target="_blank">compare the market</Button>
-              </div>
-            </DemoContainer>
-            <div style={{padding: '1.2rem'}}>
-              <DemoContainer>
-                <Overline>Footer example:</Overline>
-              </DemoContainer>
-              <div style={{padding: '1.2rem',  backgroundColor: '#333333'}}>
-                <Container>
-                  <Row>
-                    <Column>
-                      <div>
-                        <Button id="button-f1" variant="footer-link" darkMode href="#" target="_blank">About us</Button>
-                        <Button id="button-f2" variant="footer-link" darkMode href="#" target="_blank">Testimonials</Button>
-                        <Button id="button-f3" variant="footer-link" darkMode href="#" target="_blank">Privacy policy</Button>
-                        <Button id="button-f4" variant="footer-link" darkMode href="#" target="_blank">Credit guide</Button>
-                      </div>
-                    </Column>
-                    <Column>
-                      <div>
-                        <Button id="button-f5" variant="footer-link" darkMode href="#" target="_blank">Media centre</Button>
-                        <Button id="button-f6" variant="footer-link" darkMode href="#" target="_blank">Contact us</Button>
-                        <Button id="button-f7" variant="footer-link" darkMode href="#" target="_blank">Website terms of use</Button>
-                        <Button id="button-f8" variant="footer-link" darkMode href="#" target="_blank">Competition terms and conditions</Button>
-                      </div>
-                    </Column>
-                    <Column>
-                      <div>
-                        <Button id="button-f5" variant="footer-link" darkMode href="#" target="_blank">Blog</Button>
-                        <Button id="button-f6" variant="footer-link" darkMode href="#" target="_blank">Products</Button>
-                        <Button id="button-f7" variant="footer-link" darkMode href="#" target="_blank">Careers</Button>
-                        <Button id="button-f8" variant="footer-link" darkMode href="#" target="_blank">Financial services guide</Button>
-                      </div>
-                    </Column>
-                    <Column>
-                      <div>
-                        <Button id="button-f5" variant="footer-link" darkMode href="#" target="_blank">Who we compare</Button>
-                        <Button id="button-f6" variant="footer-link" darkMode href="#" target="_blank">Sitemap</Button>
-                        <Button id="button-f7" variant="footer-link" darkMode href="#" target="_blank">Website terms of use</Button>
-                        <Button id="button-f8" variant="footer-link" darkMode href="#" target="_blank">Financial services guide - life insurance products</Button>
-                      </div>
-                    </Column>
-                  </Row>
-                </Container>
-               </div>
-             </div>
-          </div>
+        <Column sm={4}>
+          <Button id="tertiary-btn04" variant="tertiary" disabled>compare the market</Button>
         </Column>
       </Row>
     </FluidContainer>
@@ -224,13 +165,11 @@ affect the styling, which is determined via the supplied `variant`.
 <Story name="button with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const id = text('id', 'btn1');
-    const variant = select('variant', ['primary', 'secondary', 'text', 'link', 'footer-link'], 'primary');
-    const darkMode = boolean('darkMode', false);
-    const size = select('size', ['sm', 'md', 'lg'], 'md');
+    const variant = select('variant', ['hero', 'primary', 'secondary', 'tertiary'], 'hero');
+    const inverted = boolean('inverted', false);
     const children = text('content', 'Compare the market');
     const disabled = boolean('disabled',  false);
-    const iconSize = select('Icon size', ["lg","xs","sm","1x","2x","3x","4x","5x","6x","7x","8x","9x","10x"], '1x');
-    const iconAlignRight = boolean('iconAlignRight', false);
+    const iconAlign = select('icon align', ['left', 'right'], 'left');
     const href = text('href', '#');
     const target = text('target', '_blank');
     const rel = text('rel', '');
@@ -238,12 +177,10 @@ affect the styling, which is determined via the supplied `variant`.
       <Button
         id={id}
         variant={variant}
-        darkMode={darkMode}
-        size={size}
+        inverted={inverted}
         disabled={disabled}
         icon={faInfoCircle}
-        iconSize={iconSize}
-        iconAlignRight={iconAlignRight}
+        iconAlign={iconAlign}
         href={href}
         target={target}
         rel={rel}

@@ -81,6 +81,7 @@ const colors = {
   disabledText: '#B6B2AF',
   placeholderText: '#787673',
 };
+
 const fontFamily = '"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen",  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",  sans-serif';
 
 const fontSize = {
@@ -196,6 +197,16 @@ const borderRadius = {
   full: '999.9rem', // 9999px
 };
 
+const elevation = {
+  lvl1: '0px 2px 4px rgba(208,206,206,0.5)',
+  lvl2: '0px 5px 8px rgba(0,0,0,0.05)',
+  lvl3: '0px 3px 8px rgba(0,0,0,0.1)',
+  lvl4: '0px 3px 8px rgba(0,0,0,0.2)',
+  lvl5: '0px 5px 8px rgba(0,0,0,0.2)',
+  lvl6: '0px 8px 8px rgba(0,0,0,0.2)',
+  none: 'none',
+};
+
 const boxShadow = {
   default: 'rgba(0, 0, 0, 0.1) 0 1rem 4rem 0',
   sm: '0 0.5rem 0.5rem 0 rgba(0,0,0,.1)',
@@ -252,6 +263,10 @@ const zIndex = {
   50: '50',
 };
 
+const transition = {
+  default: 'all 200ms ease-out',
+};
+
 const borders = {
   invalid: `1px solid ${colors.invalid}`,
   transparent: '1px solid transparent',
@@ -268,68 +283,54 @@ const ctmTheme = {
     color: 'rgba(0,0,0,0.8)',
   },
   button: {
+    borderRadius: borderRadius.default,
+    fontWeight: fontWeight.bold,
+    disabledBackgound: colors.grey500,
+    disabledText: colors.white,
     shadows: {
-      default: boxShadow.sm,
-      focused: '0 0 2px 3px rgba(0, 123, 255, .3)',
-      disabled: boxShadow.no,
+      default: elevation.lvl4,
+      hover: elevation.lvl6,
+      focused: elevation.lvl3,
+      disabled: elevation.none,
+    },
+    hero: {
+      bg: colors.hero500,
+      bgHover: colors.hero600,
+      color: colors.white,
+      fill: colors.white,
+      bgInverted: colors.white,
+      bginvertedHover: colors.hero50,
+      colorInverted: colors.hero500,
+      fillInverted: colors.hero500,
     },
     primary: {
-      border: borders.transparent,
-      background: colors.secondaryDarker,
-      backgroundHover: colors.secondaryDark,
+      bg: colors.primary500,
+      bgHover: colors.primary600,
       color: colors.white,
       fill: colors.white,
-      minHeight: spacing[56],
+      bgInverted: colors.white,
+      bgInvertedHover: colors.primary50,
+      colorInverted: colors.primary500,
+      fillInverted: colors.primary500,
     },
     secondary: {
-      background: colors.white,
-      border: `1px solid ${colors.primaryAA}`,
-      borderHover: `1px solid ${colors.primaryLight}`,
-      borderDarkMode: borders.transparent,
-      color: colors.primaryAA,
-      colorHover: colors.primaryLight,
-      fill: colors.primaryAA,
-      fillHover: colors.primaryLight,
-      minHeight: spacing[44],
+      bg: colors.white,
+      bgHover: colors.primary50,
+      color: colors.primary500,
+      fill: colors.white,
+      border: `1px solid ${colors.primary500}`,
+      bgInverted: colors.primary500,
+      bgInvertedHover: colors.primary400,
+      borderInverted: `1px solid ${colors.white}`,
+      colorInverted: colors.white,
+      fillInverted: colors.white,
     },
     tertiary: {
-      background: colors.brandMidnightBlue,
-      backgroundDarkMode: colors.white,
-      borderDarkMode: borders.dark,
-      color: colors.white,
-      colorHover: colors.blueLighter,
-      fill: colors.white,
-      fillHover: colors.blueLighter,
-      fillDarkMode: colors.brandMidnightBlue,
-      fillDarkModeHover: colors.primaryLight,
-      colorDarkMode: colors.brandMidnightBlue,
-      borderColorDarkMode: colors.primaryLight,
-      borderRadius: borderRadius.none,
-    },
-    text: {
-      colorHover: colors.primaryLight,
-      fillHover: colors.primaryLight,
-      colorDarkMode: colors.white,
-      fillDarkMode: colors.white,
-      colorDarkModeHover: colors.blueLighter,
-      fillDarkModeHover: colors.blueLighter,
-    },
-    link: {
-      background: 'transparent',
-      color: colors.black,
-      fill: colors.black,
-      colorHover: colors.primaryLight,
-      colorFill: colors.primaryLight,
-      colorDarkMode: colors.white,
-      fillDarkMode: colors.white,
-      colorDarkModeHover: colors.blueLighter,
-      fillDarkModeHover: colors.blueLighter,
-    },
-    footer: {
-      colorHover: colors.black,
-      colorDarkMode: colors.white,
-      fillDarkMode: colors.white,
-      colorDarkModeHover: colors.white,
+      bg: 'transparent',
+      bgHover: colors.primary50,
+      color: colors.primary500,
+      fill: colors.primary500,
+      colorhover: colors.primary700,
     },
   },
   callout: {
@@ -503,6 +504,8 @@ const ctmTheme = {
   minWidth,
   opacity,
   zIndex,
+  transition,
+  elevation,
 };
 
 export default ctmTheme;

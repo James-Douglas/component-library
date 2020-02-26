@@ -2,11 +2,9 @@ import React, {
   useState, useMemo, useCallback, useEffect, useLayoutEffect,
 } from 'react';
 
-
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import Input from '../Input/Input.component';
-import Button from '../Button/Button.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import Overlay from '../Overlay/Overlay.component';
@@ -81,7 +79,7 @@ const StyledButtonWrap = styled.div`
 `;
 
 const StyledDiv = styled.div`
- ${({ desktop }) => !desktop && css`
+  ${({ desktop }) => !desktop && css`
     width: ${({ theme }) => (theme.maxWidth.full)};
     z-index: ${({ theme }) => (theme.zIndex[40])};
     top: ${({ theme }) => theme.spacing[136]};
@@ -89,20 +87,20 @@ const StyledDiv = styled.div`
     right: ${({ theme }) => theme.spacing[16]};
     left: ${({ theme }) => theme.spacing[16]};
     max-width: ${({ theme }) => `calc(100% - ${theme.spacing[8]})`};
-   .label {
+    .label {
       visibility: hidden;
     }
-  .input-wrap {
-    width: auto;
-    right: ${({ theme }) => theme.spacing[16]};
-    left: ${({ theme }) => theme.spacing[16]};
-    position: fixed;
-    top: ${({ theme }) => theme.spacing[162]};
-    p {
-      display: none;
+    .input-wrap {
+      width: auto;
+      right: ${({ theme }) => theme.spacing[16]};
+      left: ${({ theme }) => theme.spacing[16]};
+      position: fixed;
+      top: ${({ theme }) => theme.spacing[162]};
+      p {
+        display: none;
+      }
     }
-  }
-`}
+  `}
 `;
 
 const WrapList = styled.div`
@@ -227,15 +225,9 @@ export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, 
       {linkText && linkHref && currentPrefillValue.length >= characterMinimum
       && (
         <StyledButtonWrap ref={bottomButton} tabIndex="0" role="buttonOption" aria-selected={false}>
-          <Button
-            id="text-btn01"
-            variant="text"
-            disabled={false}
-            href={linkHref}
-            target="_blank"
-          >
+          <a href={linkHref} target="_blank">
             {linkText}
-          </Button>
+          </a>
         </StyledButtonWrap>
       )}
     </>

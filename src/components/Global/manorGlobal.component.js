@@ -81,13 +81,17 @@ export const manor = css`
     font-size: ${({ theme }) => theme.fontSize.base};
     margin:  ${({ theme }) => css`0 0 ${theme.spacing['12']}`};
   }
-  p {
+  p, a {
     line-height: ${({ theme }) => theme.lineHeight.snug};
     font-size: ${({ theme }) => theme.fontSize.base};
     margin: 0 0 ${({ theme }) => theme.spacing[12]};
   }
   p.body-secondary {
     font-size: ${({ theme }) => theme.fontSize.sm};
+  }
+  a {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.primary500};
   }
   ol, ul {
     list-style: none;

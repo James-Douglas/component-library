@@ -8,262 +8,139 @@ const StyledIcon = styled.div`
   display: inherit;
 `;
 
-const shadowStyles = css`
-  ${({ theme, variant }) => {
-    const shadowTypes = ['primary', 'secondary', 'tertiary'];
-    if (shadowTypes.includes(variant)) {
-      return css`
-        box-shadow: ${theme.button.shadows.default};
-      `;
-    }
-    return null;
-  }}
-`;
-
-const borderStyles = css`
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-`;
-
-const focusStyles = css`
-  :focus {
-    outline: none;
-    box-shadow: ${({ theme }) => theme.button.shadows.focused};
-  }
-`;
-
 const disabledStyles = css`
   cursor: not-allowed;
-  opacity: 0.6;
-  box-shadow:${({ theme }) => theme.button.shadows.disabled};
-`;
-
-const sizeStyles = {
-  sm: css`
-    min-height: 3.6rem;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    font-weight: ${({ theme }) => theme.fontWeight.bold};
-    font-size: ${({ theme }) => theme.fontSize.xs};
-  `,
-  md: css`
-    min-width: 16rem;
-    padding-top: ${({ theme }) => theme.spacing['4']};
-    padding-bottom: ${({ theme }) => theme.spacing['4']};
-  `,
-  lg: css`
-    min-width: 20rem;
-    padding-top: ${({ theme }) => theme.spacing['20']};
-    padding-bottom: ${({ theme }) => theme.spacing['20']};
-  `,
-};
-
-const baseLinkStyles = css`
-  color: ${({ theme }) => theme.button.link.color};
-  fill: ${({ theme }) => theme.button.link.fill};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: ${({ theme }) => theme.fontSize.base};
-  line-height: ${({ theme }) => theme.lineHeight.relaxed};
-  > ${StyledIcon} {
-    margin-left: 0;
-    margin-right: ${({ theme }) => theme.spacing[8]};
-    margin-top: 0.4rem;
+  background: ${({ theme }) => theme.button.disabledBackgound};
+  color: ${({ theme }) => theme.button.disabledText};
+  box-shadow: ${({ theme }) => theme.button.shadows.disabled};
+  border: none;
+  :hover {
+    box-shadow: ${({ theme }) => theme.button.shadows.disabled};
+    background: ${({ theme }) => theme.button.disabledBackgound};
   }
-  ${({ iconAlignRight, theme }) => iconAlignRight && css`
-    flex-direction: row-reverse;
-    > ${StyledIcon} {
-      margin-right: 0;
-      margin-left: ${theme.spacing[8]};
-      margin-top: 0.4rem;
-    }
-  `}
 `;
 
 const baseButtonStyles = css`
-  ${shadowStyles}
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   text-decoration: none;
-  width: 100%;
-  padding: ${({ theme }) => `${theme.spacing[12]} ${theme.spacing[12]}`};
-  margin-bottom: ${({ theme }) => theme.spacing[16]};
-  font-size: ${({ theme }) => theme.fontSize.lg};
   text-transform: Capitalize;
-  transition : all 200ms ease-out;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  width: 100%;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-style: ${({ theme }) => theme.fontWeight.normal};
+  line-height: ${({ theme }) => theme.lineHeight.tighter};
+  box-shadow: ${({ theme }) => theme.button.shadows.default};
+  border-radius: ${({ theme }) => theme.button.borderRadius};
+  padding: ${({ theme }) => theme.spacing[16]};
+  margin-bottom: ${({ theme }) => theme.spacing[16]};
+  transition: ${({ theme }) => theme.transition.default};
+  font-weight: ${({ theme }) => theme.button.fontWeight};
   > ${StyledIcon} {
-    margin-right: ${({ theme }) => theme.spacing[12]};
+    margin-right: ${({ theme }) => theme.spacing[8]};
   }
-  ${({ iconAlignRight, theme }) => iconAlignRight && css`
+  ${({ iconAlign, theme }) => iconAlign === 'right' && css`
     flex-direction: row-reverse;
     > ${StyledIcon} {
       margin-right: 0;
-      margin-left: ${theme.spacing[12]};
+      margin-left: ${theme.spacing[8]};
     }
   `}
   :focus {
     outline: none;
   }
+  :hover {
+    box-shadow: ${({ theme }) => theme.button.shadows.hover};
+  }
+  :active, :focus {
+    box-shadow: ${({ theme }) => theme.button.shadows.focused};
+  }
+`;
+
+const heroVariant = css`
+  color: ${({ theme }) => theme.button.hero.color};
+  fill: ${({ theme }) => theme.button.hero.fill};
+  background: ${({ theme }) => theme.button.hero.bg};
+  :hover {
+    background: ${({ theme }) => theme.button.hero.bgHover};
+  }
+  ${({ inverted }) => inverted && css`
+    background: ${({ theme }) => theme.button.hero.bgInverted};
+    color: ${({ theme }) => theme.button.hero.colorInverted};
+    fill: ${({ theme }) => theme.button.hero.fillInverted};
+    box-shadow: ${({ theme }) => theme.button.shadows.default};
+    :hover {
+      background: ${({ theme }) => theme.button.hero.bginvertedHover};
+    }
+  `}
 `;
 
 const primaryVariant = css`
-  ${borderStyles};
-  ${focusStyles};
-  min-height: ${({ theme }) => theme.button.primary.minHeight};
-  border: ${({ theme }) => theme.button.primary.border};
-  background: ${({ theme }) => theme.button.primary.background};
   color: ${({ theme }) => theme.button.primary.color};
   fill: ${({ theme }) => theme.button.primary.fill};
+  background: ${({ theme }) => theme.button.primary.bg};
   :hover {
-    background: ${({ theme }) => theme.button.primary.backgroundHover};
+    background: ${({ theme }) => theme.button.primary.bgHover};
   }
-  line-height: ${({ theme }) => theme.lineHeight.snug};
-  ${({ size }) => sizeStyles[size]}
+  ${({ inverted }) => inverted && css`
+    background: ${({ theme }) => theme.button.primary.bgInverted};
+    color: ${({ theme }) => theme.button.primary.colorInverted};
+    fill: ${({ theme }) => theme.button.primary.fillInverted};
+    :hover {
+      background: ${({ theme }) => theme.button.primary.bgInvertedHover};
+    }
+  `}
 `;
 
 const secondaryVariant = css`
-  ${borderStyles};
-  ${focusStyles};
-  background: ${({ theme }) => theme.button.secondary.background};
-  border: ${({ theme }) => theme.button.secondary.border};
-  font-weight: ${({ theme }) => theme.fontWeight.semibold};
   color: ${({ theme }) => theme.button.secondary.color};
   fill: ${({ theme }) => theme.button.secondary.fill};
-  min-height: ${({ theme }) => theme.button.secondary.minHeight};
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-  line-height: ${({ theme }) => theme.lineHeight.snug};
+  border: ${({ theme }) => theme.button.secondary.border};
+  background: ${({ theme }) => theme.button.secondary.bg};
   :hover {
-    border: ${({ theme }) => theme.button.secondary.borderHover};
-    fill: ${({ theme }) => theme.button.secondary.fillHover};
-    color: ${({ theme }) => theme.button.secondary.colorHover};
+    background: ${({ theme }) => theme.button.secondary.bgHover};
   }
-  ${({ darkMode, theme }) => darkMode && css`
-    border: ${theme.button.secondary.borderDarkMode};
+  ${({ inverted }) => inverted && css`
+    background: ${({ theme }) => theme.button.secondary.bgInverted};
+    color: ${({ theme }) => theme.button.secondary.colorInverted};
+    border: ${({ theme }) => theme.button.secondary.borderInverted};
+    fill: ${({ theme }) => theme.button.secondary.fillInverted};
     :hover {
-      border: ${theme.button.secondary.borderDarkMode};
+      background: ${({ theme }) => theme.button.secondary.bgInvertedHover};
     }
   `}
-  ${({ size }) => sizeStyles[size]}
 `;
 
 const tertiaryVariant = css`
-  ${borderStyles};
-  ${focusStyles};
-  background: ${({ theme }) => theme.button.tertiary.background};
+  box-shadow: none;
+  padding: ${({ theme }) => theme.spacing[8]};
   color: ${({ theme }) => theme.button.tertiary.color};
   fill: ${({ theme }) => theme.button.tertiary.fill};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  border-radius: ${({ theme }) => theme.button.tertiary.borderRadius};
-  min-height: 3.4rem;
-  line-height: ${({ theme }) => theme.lineHeight.snug};
+  background: ${({ theme }) => theme.button.tertiary.bg};
   :hover {
-    color: ${({ theme }) => theme.button.tertiary.colorHover};
-    fill: ${({ theme }) => theme.button.tertiary.fillHover};
+    background: ${({ theme }) => theme.button.tertiary.bgHover};
   }
-  ${({ darkMode, theme }) => (darkMode) && css`
-    background: ${theme.button.tertiary.backgroundDarkMode};
-    border: ${theme.button.tertiary.borderDarkMode};
-    color: ${theme.button.tertiary.colorDarkMode};
-    fill: ${theme.button.tertiary.fillDarkMode};
-    :hover {
-      border-color: ${theme.button.tertiary.borderColorDarkMode};
-      fill: ${theme.button.tertiary.fillDarkModeHover};
-    }
-  `}
-  ${({ size }) => sizeStyles[size]}
-`;
-
-const textVariant = css`
-  ${baseLinkStyles}
-  padding: 0;
-  border-radius: unset;
-  text-decoration: none;
-  font-weight: ${({ theme }) => theme.fontWeight.semibold};
-  > ${StyledIcon} {
-    margin-top: 0;
+  :focus {
+    color: ${({ theme }) => theme.button.tertiary.colorhover};
+    fill: ${({ theme }) => theme.button.tertiary.colorhover}; 
   }
-  :hover {
-    color: ${({ theme }) => theme.button.text.colorHover};
-    fill: ${({ theme }) => theme.button.text.fillHover};
-  }
-  ${({ darkMode, theme }) => darkMode && css`
-    color: ${theme.button.text.colorDarkMode};
-    fill: ${theme.button.text.fillDarkMode};
-    :hover {
-      color: ${theme.button.text.colorDarkModeHover};
-      fill: ${theme.button.text.fillDarkModeHover};
-    }
-  `}
-`;
-
-const linkVariant = css`
-  ${baseLinkStyles}
-  padding: 0;
-  border-radius: unset;
-  margin-bottom: 0;
-  text-decoration: underline;
-  background: ${({ theme }) => theme.button.link.background};
-  display: inline-block;
-  font-weight: ${({ theme }) => theme.fontWeight.semibold};
-  :hover {
-    color: ${({ theme }) => theme.button.link.colorHover};
-    fill: ${({ theme }) => theme.button.link.fillHover};
-  }
-  ${({ theme, darkMode }) => (darkMode) && css`
-    color: ${theme.button.link.colorDarkMode};
-    fill: ${theme.button.link.fillDarkMode};
-    :hover {
-      color: ${theme.button.link.colorDarkModeHover};
-      fill: ${theme.button.link.fillDarkModeHover};
-    }
-  `}
-`;
-
-const footerVariant = css`
-  ${baseLinkStyles}
-  padding: 0;
-  text-align: left;
-  border-radius: unset;
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  font-weight: ${({ theme }) => theme.fontWeight.semibold};
-  text-decoration: none;
-  display: block;
-  margin-bottom: 1rem;
-  :hover {
-    color: ${({ theme }) => theme.button.footer.colorHover};
-    text-decoration: underline;
-  }
-  ${({ darkMode, theme }) => (darkMode) && css`
-    color: ${theme.button.footer.colorDarkMode};
-    fill: ${theme.button.footer.fillDarkMode};
-    :hover {
-      color: ${theme.button.footer.colorDarkModeHover};
-    }
-  `}
 `;
 
 const BaseTag = styled.div`
   ${baseButtonStyles}
-
   ${({ variant }) => {
     switch (variant) {
+      case 'hero':
+        return heroVariant;
       case 'primary':
         return primaryVariant;
       case 'secondary':
         return secondaryVariant;
       case 'tertiary':
         return tertiaryVariant;
-      case 'text':
-        return textVariant;
-      case 'link':
-        return linkVariant;
-      case 'footer-link':
-        return footerVariant;
       default:
-        return primaryVariant;
+        return heroVariant;
     }
   }}
   ${({ disabled, href }) => (disabled && !href) && disabledStyles};
@@ -274,23 +151,15 @@ const StyledButtonWrap = styled.span`
   flex-wrap: wrap;
   flex: 0 1 100%;
   width: ${({ width }) => width};
-  ${({ isInlineBlock }) => isInlineBlock && css`
-    display: inline-block;
-  `}
-  ${({ isInlineBlock, variant }) => (isInlineBlock && variant === 'link') && css`
-    width: auto;
-  `}
 `;
 
 const Button = ({
   id,
   variant,
-  darkMode,
-  size,
+  inverted,
   disabled,
   icon,
-  iconSize,
-  iconAlignRight,
+  iconAlign,
   href,
   target,
   rel,
@@ -301,15 +170,12 @@ const Button = ({
   children,
   className,
 }) => {
-  const nonInlineTypes = ['primary', 'secondary', 'tertiary', 'footer-link'];
-  const inlineComponent = href && !nonInlineTypes.includes(variant);
-
   const renderContent = () => {
     if (icon) {
       return (
         <>
           <StyledIcon>
-            <FontAwesomeIcon icon={icon} size={iconSize} />
+            <FontAwesomeIcon icon={icon} size="1x" />
           </StyledIcon>
           {children}
         </>
@@ -327,9 +193,8 @@ const Button = ({
         onClick={handleClick}
         id={id}
         variant={variant}
-        iconAlignRight={iconAlignRight}
-        darkMode={darkMode}
-        size={size}
+        iconAlign={iconAlign}
+        inverted={inverted}
         disabled={disabled}
         href={isButton ? null : href}
         target={isButton ? null : target}
@@ -344,7 +209,7 @@ const Button = ({
   };
 
   return (
-    <StyledButtonWrap isInlineBlock={inlineComponent} variant={variant} width={width}>
+    <StyledButtonWrap variant={variant} width={width}>
       {renderButton()}
     </StyledButtonWrap>
   );
@@ -363,16 +228,11 @@ Button.propTypes = {
    * Defines the type of button to be used. Defaults to `primary`. available types are `primary`, `secondary`,
    * `tertiary`, `text`, `link`, and `footer-link`.
    */
-  variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'text', 'link', 'footer-link']),
+  variant: PropTypes.oneOf(['hero', 'primary', 'secondary', 'tertiary']),
   /**
-   * Defines the mode of the button. Change to `true` for `secondary`, `text`, `link` and `footer-link` to enable the
-   * dark mode. `primary` does not have a `darkMode`.
+   * Inverts the button. Tertiary doesn't have an inverted mode as its a ghost button
    */
-  darkMode: PropTypes.bool,
-  /**
-   * Defines the size of button to be used, `sm`, `md` and `lg`. Defaults to `md`.
-   */
-  size: PropTypes.string,
+  inverted: PropTypes.bool,
   /**
    * Defines if the button is disabled or not. Defaults to false.
    */
@@ -389,13 +249,9 @@ Button.propTypes = {
     PropTypes.string,
   ]),
   /**
-   * The icon sizing. Defaults to '2'
-   */
-  iconSize: PropTypes.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
-  /**
    * Shift the icon to the right, content to the left. Defaults to false.
    */
-  iconAlignRight: PropTypes.bool,
+  iconAlign: PropTypes.oneOf(['left', 'right']),
   /**
    * Defines the `<a>` link. Defaults to `#`.
    */
@@ -434,14 +290,12 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  variant: 'primary',
-  darkMode: false,
-  size: 'md',
+  variant: 'hero',
+  inverted: false,
   children: '',
   disabled: false,
   icon: null,
-  iconSize: '1x',
-  iconAlignRight: false,
+  iconAlign: 'left',
   href: '',
   target: '#',
   rel: '',

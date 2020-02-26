@@ -20,7 +20,7 @@ The `EmptyState` component is to be used when no results are found based on the 
       return (
         <EmptyState>
           <div style={{fontSize: '20px', lineHeight: '30px'}}>
-            Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+            <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
           </div>
         </EmptyState>
       );
@@ -41,7 +41,7 @@ The `EmptyState` component is to be used when no results are found based on the 
       return (
         <EmptyState heading="A custom heading">
           <div style={{fontSize: '20px', lineHeight: '30px'}}>
-            Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+            <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
           </div>
         </EmptyState>
       )
@@ -63,7 +63,7 @@ The `EmptyState` component is to be used when no results are found based on the 
           }}
         >
           <div style={{fontSize: '20px', lineHeight: '30px'}}>
-            Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+            <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center'}}>
             <div style={{textAlign: 'center', marginTop: '30px'}}>
@@ -90,7 +90,7 @@ The `EmptyState` component is to be used when no results are found based on the 
             }}
           >
             <div style={{fontSize: '20px', lineHeight: '30px'}}>
-              Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+              <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>
               <div style={{textAlign: 'center', marginTop: '30px'}}>
@@ -112,7 +112,7 @@ The `EmptyState` component is to be used when no results are found based on the 
   </Story>
 </Preview>
 
-#### With text link
+#### With hero button
 <Preview>
     <Story name="empty state with text link" height="600px">
         {() => {
@@ -126,11 +126,11 @@ The `EmptyState` component is to be used when no results are found based on the 
               }}
             >
               <div style={{fontSize: '20px', lineHeight: '30px'}}>
-                Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.
+                <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center'}}>
                 <div style={{textAlign: 'center', marginTop: '30px'}}>
-                   <Button id="text-btn01sdfsdf" variant="link" href="#" target="_blank">Learn more</Button>
+                   <Button id="hero" variant="hero">Learn more</Button>
                 </div>
                </div>
             </EmptyState>
