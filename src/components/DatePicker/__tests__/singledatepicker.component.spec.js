@@ -54,8 +54,8 @@ describe('SingleDatePicker', () => {
     const visibleMonths = container.getElementsByClassName('CalendarMonth');
     // 1 visible + 2 hidden
     expect(visibleMonths.length).toBe(numberOfMonths + 2);
-    fireEvent.click(getByLabelText(container, 'Thursday, February 27, 2020'), { exact: false });
-    expect(input).toHaveValue('27/02/2020');
+    fireEvent.click(getByLabelText(container, 'Tuesday, February 25, 2020'), { exact: false });
+    expect(input).toHaveValue('25/02/2020');
   });
 
   it('click outside of dropdown', () => {

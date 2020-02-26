@@ -34,6 +34,8 @@ const StyledContact = styled.a`
 const StylesdIframe = styled.iframe`
   position: absolute;
   visibility: hidden;
+  height: 0px;
+  width: 0px;
 `;
 
 const StyledIconWrap = styled.span`

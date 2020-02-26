@@ -68,12 +68,12 @@ const CheckboxGroupView = () => {
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
               >
-                <Checkbox id="A-1" label="A-1 check"/>
-                <Checkbox id="A-2" label="A-2 check"/>
-                <Checkbox id="A-3" label="A-3 check"/>
-                <Checkbox id="A-4" label="A-4 check"/>
-                <Checkbox id="A-5" label="A-5 check"/>
-                <Checkbox id="A-6" label="A-6 check"/>
+                <Checkbox id="A-1" label="A-1 check" />
+                <Checkbox id="A-2" label="A-2 check" />
+                <Checkbox id="A-3" label="A-3 check" />
+                <Checkbox id="A-4" label="A-4 check" />
+                <Checkbox id="A-5" label="A-5 check" />
+                <Checkbox id="A-6" label="A-6 check" />
               </CheckboxGroup>
             </Column>
           </Row>
@@ -86,12 +86,12 @@ const CheckboxGroupView = () => {
                 colSize="6"
                 handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
               >
-                <Checkbox id="B-1" label="B-1 check"/>
-                <Checkbox id="B-2" isSelected label="B-1 check"/>
-                <Checkbox id="B-3" label="B-1 check"/>
-                <Checkbox id="B-4" isSelected label="B-1 check"/>
-                <Checkbox id="B-5" label="B-1 check"/>
-                <Checkbox id="B-6" isSelected label="B-1 check"/>
+                <Checkbox id="B-1" label="B-1 check" />
+                <Checkbox id="B-2" isSelected label="B-1 check" />
+                <Checkbox id="B-3" label="B-1 check" />
+                <Checkbox id="B-4" isSelected label="B-1 check" />
+                <Checkbox id="B-5" label="B-1 check" />
+                <Checkbox id="B-6" isSelected label="B-1 check" />
               </CheckboxGroup>
             </Column>
           </Row>
