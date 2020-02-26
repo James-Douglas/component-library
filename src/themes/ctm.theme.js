@@ -129,6 +129,7 @@ const spacing = {
   16: '1.6rem', // 16px (just move the decimal place to the right one place)
   20: '2rem',
   24: '2.4rem',
+  28: '2.8rem',
   32: '3.2rem',
   36: '3.6rem',
   40: '4rem',
@@ -486,8 +487,10 @@ const ctmTheme = {
     background: 'rgba(51, 51, 51, 0.97)',
   },
   drawer: {
-    borderTop: `1px solid ${colors.white}`,
+    borderTop: `2px solid ${colors.primary200}`,
     background: colors.white,
+    closeIcon: colors.grey500,
+    shadow: '0px 0px 6px rgba(0, 0, 0, 0.15)',
   },
   borders,
   colors,

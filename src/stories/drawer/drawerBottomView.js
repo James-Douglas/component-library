@@ -22,24 +22,25 @@ const StyledContainer = styled(FluidContainer)`
 const DrawerBottom = () => {
   const [show, setShow] = useState(false);
   const breakpoint = useBreakpoint(false);
+
   return (
     <>
       <Drawer
         size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '160px'}`}
+        keyLine={!(breakpoint === 'xs' || breakpoint === 'sm')}
         visible={show}
         direction="bottom"
         handleClose={() => setShow(false)}
         iconClassName="closeIconSlide"
         closeButton
-        overlay
-        overlayOpacity={0.3}
+
       >
         <StyledDrawerContent>
           <FluidContainer className="mt-24">
             <Row>
               <Column cols="12" sm="12" md="12">
                 <div>
-                  <h4>Hi I am a Drawer :)</h4>
+                  <h4>Hi I am a Drawer with a keyline border on desktop, none on mobile view :)</h4>
                 </div>
               </Column>
             </Row>

@@ -2,8 +2,9 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes, css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import { faTimes } from '@fortawesome/pro-light-svg-icons/faTimes';
 import Overlay from '../Overlay/Overlay.component';
+import Container from '../Grid/Container/Container.component';
 import LayerEventManager from '../../LayerEventManager';
 
 const animateLeft = keyframes`
@@ -28,10 +29,12 @@ const StyledDrawer = styled.div`
   overflow: auto;
   margin: 0;
   height: 100%;
-  border-top: ${({ theme }) => theme.drawer.borderTop};
+  ${({ theme, keyLine }) => keyLine && css`
+    border-top: ${theme.drawer.borderTop};
+  `}
   background: ${({ theme }) => (theme.drawer.background)};
   z-index: inherit;
-  box-shadow: ${({ theme }) => theme.boxShadow.lg};
+  box-shadow: ${({ theme }) => theme.drawer.shadow};
   padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[4]}`};
   ${({ size, direction }) => direction === 'top' && css`
     animation-name: ${animateTop};
@@ -43,7 +46,7 @@ const StyledDrawer = styled.div`
   ${({ size, direction }) => direction === 'left' && css`
     animation-name: ${animateLeft};
     width: ${size};
-    top:0;
+    top: 0;
     left: 0;
   `}
   ${({ size, direction }) => direction === 'bottom' && css`
@@ -56,7 +59,7 @@ const StyledDrawer = styled.div`
   ${({ size, direction }) => direction === 'right' && css`
     animation-name: ${animateRight};
     width: ${size};
-    top:0;
+    top: 0;
     right: 0;
   `}
   animation-duration: 0.4s;
@@ -66,15 +69,23 @@ const StyledDrawer = styled.div`
   animation-direction: normal;
   animation-play-state: running;
 `;
+
 const StyledIcon = styled.div`
-  position: absolute;
-  right: ${({ theme }) => (theme.spacing[40])};
+  position: fixed; /* fallback for IE11 */
+  position: sticky;
+  float: right;
+  right: ${({ theme }) => (theme.spacing[20])};
   top: ${({ theme }) => (theme.spacing[20])};
   cursor: pointer;
   z-index: inherit;
+  svg {
+    color: ${({ theme }) => theme.drawer.closeIcon};
+    font-size: 26px;
+  }
 `;
+
 const StyledDrawerCloseBase = styled.div`
-  height: ${({ theme }) => (theme.spacing[60])};
+  height: ${({ theme }) => (theme.spacing[12])};
   position: fixed;
   background: ${({ theme }) => (theme.drawer.background)};
   z-index: inherit;
@@ -115,6 +126,7 @@ const Drawer = ({
   handleOverlayClick,
   trapFocus,
   closeOnEsc,
+  keyLine,
 }) => {
   const drawerElement = useRef(null);
 
@@ -131,18 +143,23 @@ const Drawer = ({
             size={size}
             direction={direction}
             ref={drawerElement}
+            keyLine={keyLine}
           >
             {closeButton
               && (
-                <StyledDrawerCloseBase size={size} direction={direction}>
+                <>
+                  <StyledDrawerCloseBase size={size} direction={direction} />
+
                   <StyledIcon className={`${iconClassName} icon-close`} onClick={IconClick} onKeyPress={IconClick} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
-                    <FontAwesomeIcon icon={faTimes} size="2x" />
+                    <FontAwesomeIcon icon={faTimes} />
                   </StyledIcon>
-                </StyledDrawerCloseBase>
+                </>
               )}
-            <StyledDrawerText direction={direction} closeButton={closeButton}>
-              {children}
-            </StyledDrawerText>
+            <Container>
+              <StyledDrawerText direction={direction} closeButton={closeButton}>
+                {children}
+              </StyledDrawerText>
+            </Container>
           </StyledDrawer>
         )}
       </>
@@ -206,6 +223,10 @@ Drawer.propTypes = {
    * Whether or not to close the Drawer when the user presses the `Esc` key
    */
   closeOnEsc: PropTypes.bool,
+  /**
+   * Whether or not the drawer has a 'top' border
+   */
+  keyLine: PropTypes.bool,
 };
 
 Drawer.defaultProps = {
@@ -221,6 +242,7 @@ Drawer.defaultProps = {
   handleOverlayClick: null,
   trapFocus: false,
   closeOnEsc: true,
+  keyLine: false,
 };
 
 export default Drawer;
