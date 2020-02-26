@@ -29,6 +29,30 @@ exports[`Modal renders with minimal props 1`] = `
   padding: 4rem;
 }
 
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
 <div
   class="c0 
     md

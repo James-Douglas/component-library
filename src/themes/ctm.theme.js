@@ -79,24 +79,22 @@ const colors = {
   validationBackground: '#FDE8EB',
   disabled: '#CCCCCC',
   disabledText: '#B6B2AF',
-  placeholderText: '#787673',
 };
 
 const fontFamily = '"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen",  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",  sans-serif';
 
 const fontSize = {
-  '3xs': '.8rem', // 8px
   '2xs': '1rem', // 10px
   xs: '1.2rem', // 12px
   sm: '1.4rem', // 14px
   base: '1.6rem', // 16px
   lg: '1.8rem', // 18px
   xl: '2rem', // 20px
-  '2xl': '2.4rem', // 24px
-  '3xl': '3rem', // 30px
-  '4xl': '3.4rem', // 34px
-  '5xl': '4.2rem', // 42px
-  '6xl': '6rem', // 60px
+  '2xl': '2.2rem', // 22px
+  '3xl': '2.4rem', // 24px
+  '4xl': '2.8rem', // 28px
+  '5xl': '3.2rem', // 32px
+  '6xl': '4.2rem', // 42px
 };
 
 const fontWeight = {
@@ -120,6 +118,7 @@ const lineHeight = {
   relaxed: '1.625',
   loose: '2',
 };
+
 
 const spacing = {
   px: '0.1rem', //   1px
@@ -430,7 +429,7 @@ const ctmTheme = {
   },
   placeholder: {
     fontSize: fontSize.base,
-    color: colors.placeholderText,
+    color: colors.grey600,
   },
   progress: {
     bar: {

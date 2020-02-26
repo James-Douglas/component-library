@@ -10,7 +10,30 @@ exports[`Overline.component renders correctly with minimal props 1`] = `
   letter-spacing: 0.15rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: #787673;
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
 }
 
 <div>

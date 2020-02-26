@@ -74,6 +74,30 @@ exports[`CustomToggle renders with minimal props 1`] = `
   margin-bottom: 0;
 }
 
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
 <div>
   <div
     class="c0"

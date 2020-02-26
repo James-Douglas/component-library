@@ -14,6 +14,30 @@ exports[`SRonly.component renders correctly with minimal props 1`] = `
   border-width: 0;
 }
 
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
 <div>
   <div
     class="c0"

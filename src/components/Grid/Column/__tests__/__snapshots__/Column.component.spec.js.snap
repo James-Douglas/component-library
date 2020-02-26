@@ -52,6 +52,30 @@ exports[`Column adds default styles to col if no props are passed 1`] = `
 
 }
 
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
 <div>
   <div
     class="c0 
@@ -110,6 +134,30 @@ exports[`Column allows additional classes to be passed through 1`] = `
 }
 
 @media (min-width:1900px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
 
 }
 
@@ -175,6 +223,30 @@ exports[`Column defines an offset when supplied 1`] = `
 
 }
 
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
 <div>
   <div
     class="c0 
@@ -227,6 +299,30 @@ exports[`Column defines col size when supplied 1`] = `
 }
 
 @media (min-width:1900px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
 
 }
 
@@ -289,6 +385,30 @@ exports[`Column renders children 1`] = `
 }
 
 @media (min-width:1900px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
 
 }
 
@@ -356,6 +476,30 @@ exports[`Column renders correctly without props 1`] = `
 }
 
 @media (min-width:1900px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
 
 }
 
@@ -428,6 +572,30 @@ exports[`Column resizes offsets on breakpoint 1`] = `
   .c0 {
     margin-left: 33.333333333333336%;
   }
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
 }
 
 <div>
@@ -506,6 +674,30 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
 <div>
   <div
     class="c0 
@@ -567,6 +759,30 @@ exports[`Column stacks at breakpoint lg 1`] = `
 }
 
 @media (min-width:1900px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
 
 }
 
@@ -634,6 +850,30 @@ exports[`Column stacks at breakpoint md 1`] = `
 
 }
 
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
 <div>
   <div
     class="c0 
@@ -695,6 +935,30 @@ exports[`Column stacks at breakpoint sm 1`] = `
 }
 
 @media (min-width:1900px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
 
 }
 
@@ -762,6 +1026,30 @@ exports[`Column stacks at breakpoint xl 1`] = `
 
 }
 
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
 <div>
   <div
     class="c0 
@@ -823,6 +1111,30 @@ exports[`Column stacks at breakpoint xxl 1`] = `
 }
 
 @media (min-width:1900px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
+
+}
+
+@media (min-width:992px) {
 
 }
 

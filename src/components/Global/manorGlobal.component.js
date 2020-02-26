@@ -1,5 +1,6 @@
 import { css, createGlobalStyle } from 'styled-components';
 
+import screens from '../../../config/screens';
 import SourceSansProSrc from '../../fonts/sourcesanspro-regular-webfont.woff2';
 import SourceSansProUrl from '../../fonts/sourcesanspro-regular-webfont.woff';
 
@@ -48,38 +49,68 @@ export const manor = css`
   h1, h2, h3, h4, h5, h6, p, ul, ol, ul li, ol l input, label, button, textarea, .subtitle-primary, .subtitle-secondary, .microcopy, .overline, .subscript, ::placeholder {
     font-weight: ${({ theme }) => theme.fontWeight.normal};
     font-family: SourceSansPro, Arial, sans-serif;
+    color: ${({ theme }) => theme.colors.grey900};
   }
   h1 {
-    line-height: ${({ theme }) => theme.lineHeight.tighter};
+    line-height: ${({ theme }) => theme.lineHeight.tight};
     font-size: ${({ theme }) => theme.fontSize['4xl']};
     margin:  ${({ theme }) => css`0 0 ${theme.spacing['24']}`};
+    
+    @media (min-width: ${screens.md}) {
+      line-height: ${({ theme }) => theme.lineHeight.tight};
+      font-size: ${({ theme }) => theme.fontSize['6xl']};
+    }
   }
   h2 {
-    line-height: ${({ theme }) => theme.lineHeight.tighter};
-    font-size: ${({ theme }) => theme.fontSize['4xl']};
+    line-height: ${({ theme }) => theme.lineHeight.tight};
+    font-size: ${({ theme }) => theme.fontSize['2xl']};
     margin:  ${({ theme }) => css`0 0 ${theme.spacing['20']}`};
+    
+    @media (min-width: ${screens.md}) {
+      line-height: ${({ theme }) => theme.lineHeight.tight};
+      font-size: ${({ theme }) => theme.fontSize['5xl']};
+    }
   }
   h3 {
-    line-height: ${({ theme }) => theme.lineHeight.tighter};
-    font-size: ${({ theme }) => theme.fontSize['2xl']};
-    margin:  ${({ theme }) => css`0 0 ${theme.spacing['16']}`};
-  }
-  h4 {
-    line-height: ${({ theme }) => theme.lineHeight.snug};
+    line-height: ${({ theme }) => theme.lineHeight.tight};
     font-size: ${({ theme }) => theme.fontSize.lg};
     margin:  ${({ theme }) => css`0 0 ${theme.spacing['16']}`};
+    
+    @media (min-width: ${screens.md}) {
+      line-height: ${({ theme }) => theme.lineHeight.tight};
+      font-size: ${({ theme }) => theme.fontSize['3xl']};
+    }
   }
-
-  h5 {
-    line-height: ${({ theme }) => theme.lineHeight.snug};
-    font-size: ${({ theme }) => theme.fontSize.xl};
+  h4 {
+    line-height: ${({ theme }) => theme.lineHeight.tight};
+    font-size: 1.7rem;
     margin:  ${({ theme }) => css`0 0 ${theme.spacing['16']}`};
+    
+    @media (min-width: ${screens.md}) {
+      line-height: ${({ theme }) => theme.lineHeight.tight};
+      font-size: ${({ theme }) => theme.fontSize.xl};
+    }
+  }
+  h5 {
+    line-height: ${({ theme }) => theme.lineHeight.normal};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    margin:  ${({ theme }) => css`0 0 ${theme.spacing['16']}`};
+    
+    @media (min-width: ${screens.md}) {
+      line-height: ${({ theme }) => theme.lineHeight.tight};
+      font-size: ${({ theme }) => theme.fontSize.lg};
+    }
   }
   h6 {
     font-weight: ${({ theme }) => theme.fontWeight.bold};
-    line-height: ${({ theme }) => theme.lineHeight.snug};
-    font-size: ${({ theme }) => theme.fontSize.base};
+    line-height: ${({ theme }) => theme.lineHeight.tighter};
+    font-size: ${({ theme }) => theme.fontSize.sm};
     margin:  ${({ theme }) => css`0 0 ${theme.spacing['12']}`};
+    
+    @media (min-width: ${screens.md}) {
+      line-height: ${({ theme }) => theme.lineHeight.tight};
+      font-size: ${({ theme }) => theme.fontSize.base};
+    }
   }
   p, a {
     line-height: ${({ theme }) => theme.lineHeight.snug};
@@ -124,23 +155,23 @@ export const manor = css`
   .microcopy {
     font-weight: ${({ theme }) => theme.fontWeight.normal};
     font-size: ${({ theme }) => theme.fontSize.xs};
-    line-height: ${({ theme }) => theme.lineHeight.snug};
+    line-height: ${({ theme }) => theme.lineHeight.normal};
   }
   .overline {
-    line-height: ${({ theme }) => theme.lineHeight.snug};
+    line-height: ${({ theme }) => theme.lineHeight.tight};
     font-size: ${({ theme }) => theme.fontSize['2xs']};
-    letter-spacing: 0.15rem;
+    letter-spacing: 0.02rem;
     font-weight: ${({ theme }) => theme.fontWeight.semibold};
     text-transform: uppercase;
     color: ${({ theme }) => theme.colors.placeholderText};
   }
   .subscript {
-    line-height: ${({ theme }) => theme.lineHeight.snug};
+    line-height: ${({ theme }) => theme.lineHeight.tight};
     font-size: ${({ theme }) => theme.fontSize['2xs']};
-    letter-spacing: 0.15rem;
+    letter-spacing: 0.02rem;
     font-weight: ${({ theme }) => theme.fontWeight.normal};
     text-transform: uppercase;
-    color: ${({ theme }) => theme.colors.greyDarkest};
+    color: ${({ theme }) => theme.colors.grey600};
   }
   .sr-only {
     position: absolute;
