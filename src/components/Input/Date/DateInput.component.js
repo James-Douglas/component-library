@@ -34,7 +34,6 @@ const DateInput = ({
     const parsedDate = moment(val, 'DD/MM/YYYY', true);
     handleChange(parsedDate);
   };
-
   return (
     <Input
       id={id}
@@ -154,7 +153,7 @@ DateInput.defaultProps = {
   className: '',
   handleFocus: null,
   handleBlur: null,
-  prefixContent: '',
+  prefixContent: <StyledFontAwesomeIcon icon={faCalendarAlt} />,
   suffixContent: '',
   disableClearIcon: false,
 };

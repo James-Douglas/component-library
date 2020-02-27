@@ -14,7 +14,7 @@ describe('SingleDatePicker', () => {
         dateId="start-date"
         dateTooltip={{ title: 'Start Date' }}
         dateAriaLabel="Select Date"
-        dateValue={startDate}
+        date={startDate}
         numberOfMonths={numberOfMonths}
         isDayBlocked={(day) => day.weekday() === 4}
       />,
@@ -41,7 +41,7 @@ describe('SingleDatePicker', () => {
         dateId="start-date"
         dateTooltip={{ title: 'Start Date' }}
         dateAriaLabel="Select Date"
-        dateValue={startDate}
+        date={startDate}
         numberOfMonths={numberOfMonths}
         validationMessage="Please provide correct date"
       />,
@@ -66,7 +66,7 @@ describe('SingleDatePicker', () => {
         dateId="start-date"
         dateTooltip={{ title: 'Start Date' }}
         dateAriaLabel="Select Date"
-        dateValue={startDate}
+        date={startDate}
         numberOfMonths={numberOfMonths}
         validationMessage="Please provide correct date"
       />,
@@ -97,7 +97,7 @@ describe('SingleDatePicker', () => {
         dateId="start-date"
         dateTooltip={{ title: 'Start Date' }}
         dateAriaLabel="Select Date"
-        dateValue={startDate}
+        date={startDate}
         numberOfMonths={numberOfMonths}
         validationMessage="Please provide correct date"
       />,

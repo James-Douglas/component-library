@@ -136,6 +136,7 @@ const DateRangePicker = ({
             handleChange={startDateHandleChange}
             validationMessage={startDateValidationMessageText}
             disableClearIcon
+            prefixContent=""
           />
         </StyledDateRangePickerWrap>
         <StyledDateRangePickerWrap>
@@ -150,6 +151,7 @@ const DateRangePicker = ({
             handleChange={endDateHandleChange}
             validationMessage={endDateValidationMessageText}
             disableClearIcon
+            prefixContent=""
           />
         </StyledDateRangePickerWrap>
       </StyledDateRangePicker>

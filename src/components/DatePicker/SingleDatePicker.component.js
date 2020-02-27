@@ -76,7 +76,6 @@ const SingleDatePicker = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [handleClickOutside]);
-
   return (
     <StyledDateRangePickerContainer ref={node}>
       <GlobalStyle />
@@ -87,6 +86,7 @@ const SingleDatePicker = ({
           placeholder={datePlaceholder}
           label={dateAriaLabel}
           value={selectedDate && selectedDate.format(displayFormat)}
+          prefixContent=""
           suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
           handleFocus={dateHandleFocus}
           handleChange={dateHandleChange}
