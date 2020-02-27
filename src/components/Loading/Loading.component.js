@@ -5,17 +5,15 @@ import Progress from './Progress';
 import useInterval from '../../hooks/useInterval';
 
 export const StyledContainer = styled.div`
-  background-color: transparent;
+  font-size: ${({ theme }) => theme.loading.fontSize};
+  background-color: ${({ theme }) => theme.loading.containerBackground};
   display: flex;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 150px);
-  font-size: ${({ theme }) => theme.fontSize.base};
 `;
 export const StyledInnerContainer = styled.div`
-  margin-top: 10rem;
   text-align: center;
-  width: 80rem;
+  width: 100%;
 `;
 export const StyledMessageContainer = styled.div`
   display: flex;
@@ -31,6 +29,7 @@ const LoadingComponent = ({
   delayNumber,
   className,
   maxProgress,
+  variant,
 }) => {
   const [progress, setProgress] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
@@ -90,7 +89,7 @@ const LoadingComponent = ({
             </StyledMessageContainer>
           )
         }
-        <Progress value={progress} />
+        <Progress value={progress} variant={variant} />
       </StyledInnerContainer>
     </StyledContainer>
   );
@@ -126,6 +125,10 @@ LoadingComponent.propTypes = {
    * Define a maximum percentage the loading bar can reach
    */
   maxProgress: PropTypes.number,
+  /**
+   * Defines  colors
+   */
+  variant: PropTypes.oneOf(['primary', 'secondary']),
 };
 
 LoadingComponent.defaultProps = {
@@ -136,6 +139,7 @@ LoadingComponent.defaultProps = {
   delayNumber: 30,
   className: '',
   maxProgress: 100,
+  variant: 'primary',
 };
 
 export default LoadingComponent;

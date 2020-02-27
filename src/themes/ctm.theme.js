@@ -435,6 +435,15 @@ const ctmTheme = {
     fontSize: fontSize.base,
     color: colors.grey600,
   },
+  loading: {
+    background: colors.grey300,
+    primary: colors.primary500,
+    secondary: colors.hero500,
+    fontSize: fontSize.base,
+    containerBackground: 'transparent',
+    borderRadius: borderRadius.lg,
+  },
+
   progress: {
     bar: {
       background: colors.white,

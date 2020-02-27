@@ -5,29 +5,57 @@ import { useState } from 'react';
 import Loading from '../../components/Loading/Loading.component';
 import Button from '../../components/Button/Button.component';
 
+import Container from '../../components/Grid/Container/Container.component';
+import Row from '../../components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
+
 <Meta title="Components|Loading" component={Loading} />
 
-# Loading
+# Primary Loading
 
 The Loading component can be used to provide feedback to a user whilst processing is occurring.
 
 <Preview>
-  <Story name="Loading">
+  <Story name="primary loading">
     {() => {
      return (
-        <Loading />
+       <div style={{marginTop: '100px'}}>
+        <Container>
+          <Row className="row-view">
+            <Column cols="12">
+              <Loading />
+            </Column>
+          </Row>
+        </Container>
+       </div>
       )
     }}
   </Story>
 </Preview>
 
-### Props
+# Secondary Loading
 
-<Props of={Loading} />
+<Preview>
+  <Story name="secondary loading">
+    {() => {
+     return (
+       <div style={{marginTop: '100px'}}>
+        <Container>
+          <Row className="row-view">
+            <Column cols="12">
+              <Loading variant="secondary" />
+            </Column>
+          </Row>
+        </Container>
+       </div>
+      )
+    }}
+  </Story>
+</Preview>
 
 # Loading with stop
 _Forces the loading to end after three seconds_
-<Story name="Loading with stops">
+<Story name="loading with stops">
   {() => {
     const [loadVar, isLoadVar] = useState(false);
     const doReset = () => {
@@ -50,16 +78,22 @@ _Forces the loading to end after three seconds_
       delayLoading: true
     };
     return (
-      <>
-        {!loadVar && <Loading {...optionalProps} handleLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
-        {loadVar && <div style={{fontSize: '30px'}}>Loading done <Button id="test" variant="secondary" handleClick={doReset} size="sm" width="125px">Reset</Button></div>}
-      </>
+      <div style={{marginTop: '100px'}}>
+        <Container>
+          <Row className="row-view">
+            <Column cols="12">
+              {!loadVar && <Loading {...optionalProps} handleLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
+              {loadVar && <div style={{fontSize: '30px'}}>Loading done <Button id="test" variant="secondary" handleClick={doReset} size="sm" width="125px">Reset</Button></div>}
+            </Column>
+          </Row>
+        </Container>
+      </div>
     )
   }}
 </Story>
 
 # Loading without stop
-<Story name="Loading without stops">
+<Story name="loading without stops">
   {() => {
     const [loadVar, isLoadVar] = useState(false);
     setTimeout(() => {
@@ -76,7 +110,19 @@ _Forces the loading to end after three seconds_
       delayLoading: true
     };
    return (
-      <Loading {...optionalProps} maxProgress={90} handleLoaded={() => {}} />
+    <div style={{marginTop: '100px'}}>
+       <Container>
+         <Row className="row-view">
+           <Column cols="12">
+             <Loading {...optionalProps} maxProgress={90} handleLoaded={() => {}} />
+           </Column>
+         </Row>
+       </Container>
+     </div>
     )
   }}
 </Story>
+
+### Props
+
+<Props of={Loading} />

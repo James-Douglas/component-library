@@ -3,23 +3,22 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const StyledProgress = styled.div`
-  margin-top: 1rem;
+  margin-top: ${({ theme }) => theme.spacing[12]};
   width: 100%;
-
   &[value] {
     /* Reset the default appearance */
     -webkit-appearance: none;
     appearance: none;
     border: none;
     background: none;
-    height: 8px;
+    height:  ${({ theme }) => theme.spacing[8]};
     &::-webkit-progress-bar {
-      background: ${(props) => props.theme.colors.greyLight};
-      border-radius: 8px;
+      background: ${({ theme }) => theme.loading.background};
+      border-radius: ${({ theme }) => theme.loading.borderRadius};
     }
     &::-webkit-progress-value {
-      border-radius: 8px;
-      background: ${(props) => props.theme.colors.secondary};
+      border-radius: ${({ theme }) => theme.loading.borderRadius};
+      background: ${({ theme, variant }) => theme.loading[variant]};
     }
   }
 `;
@@ -27,6 +26,7 @@ export const StyledProgress = styled.div`
 const Progress = ({
   value,
   max,
+  variant,
 }) => {
   const Component = 'progress';
 
@@ -35,6 +35,7 @@ const Progress = ({
       as={Component}
       value={value}
       max={max}
+      variant={variant}
     />
   );
 };
@@ -42,6 +43,7 @@ const Progress = ({
 Progress.propTypes = {
   value: PropTypes.number.isRequired,
   max: PropTypes.number,
+  variant: PropTypes.oneOf(['primary', 'secondary']).isRequired,
 };
 
 Progress.defaultProps = {
