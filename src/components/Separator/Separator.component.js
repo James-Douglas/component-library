@@ -9,8 +9,8 @@ const StyledHR = styled.hr`
   height: ${({ type }) => ((type === 'horizontal') ? 0 : '100%')};
   width: ${({ type }) => ((type === 'horizontal') ? '100%' : 0)};
   margin: ${({ type, theme }) => ((type === 'horizontal') ? `${theme.spacing['32']} 0` : `0 ${theme.spacing['32']}`)};
-  border-bottom: ${({ type, theme }) => ((type === 'horizontal') ? theme.progress.tracker.item.border : 'auto')};
-  border-right: ${({ type, theme }) => ((type === 'vertical') ? theme.progress.tracker.item.border : 'auto')};
+  border-bottom: ${({ type, theme }) => ((type === 'horizontal') ? theme.separator.border : 'auto')};
+  border-right: ${({ type, theme }) => ((type === 'vertical') ? theme.separator.border : 'auto')};
 `;
 
 const Separator = ({ type, className }) => (

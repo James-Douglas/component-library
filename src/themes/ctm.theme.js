@@ -470,6 +470,9 @@ const ctmTheme = {
       },
     },
   },
+  separator: {
+    border: `1px solid ${colors.grey100}`,
+  },
   slider: {
     borderTop: `1px solid ${colors.white}`,
     background: colors.white,
