@@ -14,7 +14,7 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
 <Preview>
   <Story name="accordion" decorators={[withKnobs]}>
     <div style={{marginTop: '30px'}}>
-      <Accordion collapse={false}>
+      <Accordion>
         <AccordionPanel title="Can I switch energy providers?" iconSize={'1x'}>
           <div>
             <p>
@@ -62,7 +62,7 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
    </div>);
    return (
     <div style={{marginTop: '30px'}}>
-      <Accordion>
+      <Accordion  collapse={false}>
         <AccordionPanel title={firstTitleItem} iconSize={'1x'}>
           <div>
             <p>
@@ -93,11 +93,8 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
 ## Accordion props
 <Props of={Accordion} />
 
-## AccordionPanel props
-<Props of={AccordionPanel} />
 
-
-<Story name="accordion-like with props" decorators={[withKnobs]} parameters={{ docs: { disable: true }, knobs: { escapeHTML: false}  }}>
+<Story name="accordion with props" decorators={[withKnobs]} parameters={{ docs: { disable: true }, knobs: { escapeHTML: false}  }}>
   {() => {
     const componentPropsId = 'Component Props';
     const title1 = text('First panel title', 'What are the benefits of combining your electricity and gas bills?')
