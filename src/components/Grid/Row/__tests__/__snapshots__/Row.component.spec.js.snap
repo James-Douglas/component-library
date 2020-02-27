@@ -9,9 +9,11 @@ exports[`Row renders correctly without props 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  width: 100%;
   margin-left: -1.6rem;
   margin-right: -1.6rem;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-bottom: 2.4rem;
 }
 

@@ -16,24 +16,28 @@ export const getInitialChildIndex = (children) => {
   return initialChildIndex;
 };
 
-const AccordionGroupChildren = (children, className) => {
+const AccordionGroupChildren = (children, className, collapse) => {
   // null if all Accordions are closed or index of opened Accordion
   const [childIndex, setChildIndex] = useState(() => getInitialChildIndex(children));
-  return React.Children.map(children, ((child, index) => React.cloneElement(child, {
-    show: childIndex === index,
-    className,
-    handleClickGroup: (isVisible) => {
-      setChildIndex(isVisible ? index : null);
-    },
-  })));
+  if (collapse) {
+    return React.Children.map(children, ((child, index) => React.cloneElement(child, {
+      show: childIndex === index,
+      className,
+      handleClickGroup: (isVisible) => {
+        setChildIndex(isVisible ? index : null);
+      },
+    })));
+  }
+  return children;
 };
 
 const Accordion = ({
   children,
   className,
+  collapse,
 }) => (
   <>
-    { AccordionGroupChildren(children, className) }
+    { AccordionGroupChildren(children, className, collapse) }
   </>
 );
 
@@ -55,10 +59,15 @@ Accordion.propTypes = {
    * Classes to be applied to the AccordionGroup
    */
   className: PropTypes.string,
+  /**
+   * To add accordion-like group management to a collapsible area
+   */
+  collapse: PropTypes.bool,
 };
 
 Accordion.defaultProps = {
   className: '',
+  collapse: true,
 };
 
 

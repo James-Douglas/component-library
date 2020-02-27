@@ -66,12 +66,9 @@ describe('Accordion', () => {
     );
     const accordion = container.querySelector('[role="tablist"]');
     const accordionHead = container.querySelector('[role="tab"]');
-    expect(accordion).toHaveStyleRule('border-bottom', `2px solid ${theme.colors.greyDark}`);
-    fireEvent.click(accordionHead);
-    act(() => {
-      jest.runAllTimers();
-    });
-    expect(accordion).toHaveStyleRule('border-bottom', '1px solid rgba(0,0,0,.1)');
+    expect(accordion).toHaveStyleRule('border', '1px solid transparent');
+    accordionHead.focus();
+    expect(accordion).toHaveStyleRule('border', `${theme.borders.focus}`);
   });
 
   it(' accordion after click opposite', () => {
@@ -91,13 +88,13 @@ describe('Accordion', () => {
         </AccordionPanel>
       </Accordion>,
     );
-    const accordion = container.querySelector('[role="tablist"]');
     const accordionHead = container.querySelector('[role="tab"]');
-    expect(accordion).toHaveStyleRule('border-bottom', '1px solid rgba(0,0,0,.1)');
+    const accordionBody = container.querySelector('[role="tabpanel"]');
+    expect(accordionBody).toHaveStyleRule('height', '0');
     fireEvent.click(accordionHead);
     act(() => {
       jest.runAllTimers();
     });
-    expect(accordion).toHaveStyleRule('border-bottom', `2px solid ${theme.colors.greyDark}`);
+    expect(accordionBody).toHaveStyleRule('height', '100%');
   });
 });

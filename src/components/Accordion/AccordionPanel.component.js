@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import PropTypes from 'prop-types';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import FluidContainer from '../Grid/Container/FluidContainer.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
 
 const StyledAccordionPanel = styled.div`
   overflow: hidden;
-  border: ${({ theme, isFocus }) => (isFocus ? `1px solid ${theme.colors.primaryLight}` : theme.borders.transparent)};
-  border-bottom: ${(props) => {
-    const { theme, isFocus, isVisible } = props;
-    if (isFocus) {
-      return `1px solid ${theme.colors.primaryLight}`;
-    }
-    if (isVisible) {
-      return `2px solid ${theme.colors.greyDark}`;
-    }
-    return '1px solid rgba(0,0,0,.1)';
-  }};
-  background: ${({ theme }) => theme.accordion.background};
-  transition: color 2s linear;
+  border: ${({ theme, isFocus }) => (isFocus ? `${theme.borders.focus}` : theme.borders.transparent)};
+  border-top: ${({ theme, isFocus }) => (isFocus ? `${theme.borders.focus}` : '1px solid rgba(0,0,0,.1)')};
+  margin-bottom: -1px;
   &:focus,
   &:active,
   &:hover {
@@ -32,13 +23,17 @@ const StyledAccordionPanel = styled.div`
 const StyledAccordionBody = styled.div`
   line-height: ${({ theme }) => theme.lineHeight.normal};
   margin: ${({ theme }) => theme.spacing['0']};
-  background: ${({ theme }) => theme.accordion.background};
+  background: ${({ theme }) => theme.accordion.backgroundBody};
   color: ${({ theme }) => theme.accordion.color};
-  transform-origin: top;
-  transition: transform 0.25s;
-  transform: ${({ isVisible }) => (isVisible ? 'translateY(0)' : 'translateY(-100%)')};
-  height:  ${({ isVisible }) => (isVisible ? 'auto' : 0)};
-  padding: ${({ isVisible, theme }) => (isVisible ? `0 0 ${theme.spacing['40']}` : 0)};
+  padding: ${({ theme, isVisible }) => (isVisible ? `${theme.spacing['32']} 0` : 0)};
+  height: 0;
+  transition-property: none;
+  overflow: hidden;
+  ${({ isVisible }) => isVisible && css`
+    height: 100%;
+    transition: all 0.3s ease-out;
+  `}
+    
   width: 100%;
   &:focus,
   &:active,
@@ -54,15 +49,35 @@ const StyledAccordionHead = styled.div`
   background: ${({ theme }) => (theme.accordion.background)};
   z-index: ${(props) => (props.theme.zIndex[10])};
   transition: font-size 0.25s;
-  padding: ${({ theme }) => `${theme.spacing[24]} 0`};
-  font-size: ${({ isVisible, theme }) => (isVisible ? theme.fontSize['2xl'] : theme.fontSize.xl)};
+  padding: ${({ theme }) => `${theme.spacing[20]} 0`};
+  font-size: ${({ theme }) => `${theme.fontSize['2xl']}`};
+  ${({ desktop }) => !desktop && css`
+     font-size: ${({ theme }) => `${theme.fontSize.lg}`};
+  `}
   &:focus,
   &:active,
   &:hover {
     outline: 0;
   }
 `;
-
+const StyledChevronWrap = styled.div`
+  text-align: right;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: ${({ theme }) => `${theme.accordion.chevronColor}`};
+  svg {
+    transform: rotate(0deg);
+    transition: transform 0.2s linear;
+    
+  }
+  svg.fa-flip-vertical {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+  }
+`;
 const AccordionPanel = ({
   title,
   children,
@@ -71,6 +86,7 @@ const AccordionPanel = ({
   handleClickGroup,
   className,
 }) => {
+  const desktop = useIsDesktop();
   const [isVisible, setIsVisible] = useState(show);
   const [isFocus, setIsFocus] = useState(false);
   const direction = isVisible ? 'vertical' : null;
@@ -81,7 +97,7 @@ const AccordionPanel = ({
         handleClickGroup(!isVisible);
       }
       return setIsVisible(!isVisible);
-    }, 1);
+    }, 110);
   };
 
   const toggleTrueFalseOnKey = (event) => {
@@ -101,13 +117,13 @@ const AccordionPanel = ({
   const handleBlur = () => {
     setIsFocus(false);
   };
-
   return (
-    <StyledAccordionPanel isVisible={isVisible} isFocus={isFocus} className={className} role="tablist" aria-label="Information tabs">
+    <StyledAccordionPanel isFocus={isFocus} className={className} role="tablist" aria-label="Information tabs">
       <StyledAccordionHead
         isVisible={isVisible}
         onClick={toggleTrueFalse}
         onKeyDown={toggleTrueFalseOnKey}
+        desktop={desktop}
         role="tab"
         aria-selected="true"
         tabIndex="0"
@@ -115,13 +131,16 @@ const AccordionPanel = ({
         onBlur={handleBlur}
       >
         <FluidContainer>
-          <Row removeMarginBottom>
+          <Row removeMarginBottom flexWrap="nowrap">
             <Column cols="11">{title}</Column>
             <Column cols="1">
-              <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
+              <StyledChevronWrap>
+                <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
+              </StyledChevronWrap>
             </Column>
           </Row>
         </FluidContainer>
+
       </StyledAccordionHead>
       <StyledAccordionBody isVisible={isVisible} role="tabpanel">
         <FluidContainer>

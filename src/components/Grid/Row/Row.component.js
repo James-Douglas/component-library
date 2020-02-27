@@ -5,19 +5,21 @@ import styled, { css } from 'styled-components';
 const StyledRow = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   margin-left: -1.6rem;
   margin-right: -1.6rem;
   ${(props) => (props.reverse) && css`
     flex-direction: row-reverse;
   `}
+  ${(props) => (props.flexWrap) && css`
+    flex-wrap: ${props.flexWrap};
+  `}
   margin-bottom: ${({ theme, removeMarginBottom }) => (removeMarginBottom ? 0 : theme.spacing[24])};
 `;
 
 const Row = ({
-  children, className, reverse, removeMarginBottom,
+  children, className, reverse, removeMarginBottom, flexWrap,
 }) => (
-  <StyledRow className={`row ${className}`} reverse={reverse} removeMarginBottom={removeMarginBottom}>
+  <StyledRow className={`row ${className}`} reverse={reverse} removeMarginBottom={removeMarginBottom} flexWrap={flexWrap}>
     {children}
   </StyledRow>
 );
@@ -43,6 +45,14 @@ Row.propTypes = {
    * Remove the default margin-bottom
    */
   removeMarginBottom: PropTypes.bool,
+  /**
+    * It defines whether the flex items are forced in a single line or can be flowed into multiple lines.
+  */
+  flexWrap: PropTypes.oneOf([
+    'nowrap',
+    'wrap',
+    'wrap-reverse',
+  ]),
 };
 
 Row.defaultProps = {
@@ -50,6 +60,7 @@ Row.defaultProps = {
   children: [],
   removeMarginBottom: false,
   reverse: false,
+  flexWrap: 'wrap',
 };
 
 export default Row;

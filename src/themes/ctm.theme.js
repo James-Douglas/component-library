@@ -275,12 +275,15 @@ const borders = {
   hover: `1px solid ${colors.primary300}`,
   prefill: `1px solid ${colors.precheckedDarker}`,
   dark: `1px solid ${colors.brandMidnightBlue}`,
+  focus: `1px solid ${colors.primary300}`,
 };
 
 const ctmTheme = {
   accordion: {
-    background: colors.white,
-    color: 'rgba(0,0,0,0.8)',
+    background: colors.grey100,
+    backgroundBody: colors.white,
+    color: colors.grey900,
+    chevronColor: colors.primary300,
   },
   button: {
     borderRadius: borderRadius.default,

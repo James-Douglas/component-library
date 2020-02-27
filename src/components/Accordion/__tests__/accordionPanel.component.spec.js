@@ -4,6 +4,15 @@ import {
 } from '../../../testUtils';
 import 'jest-styled-components';
 import AccordionPanel from '../AccordionPanel.component';
+import getTheme from '../../../utils/getTheme';
+
+
+const theme = getTheme();
+let mockUseIsDesktopValue = true;
+jest.mock('../../../hooks/useIsDesktop', () => ({
+  __esModule: true,
+  default: jest.fn(() => mockUseIsDesktopValue),
+}));
 
 describe('Accordion', () => {
   it('renders correctly without prop', () => {
@@ -13,18 +22,18 @@ describe('Accordion', () => {
   it('renders correctly when open accordion', () => {
     const { container } = render(<AccordionPanel show />);
     const accordion = container.querySelector('[role="tablist"]');
-    expect(accordion).toHaveStyleRule('border-bottom', '2px solid #999999');
+    expect(accordion).toHaveStyleRule('border', `${theme.borders.transparent}`);
   });
   it('renders correctly with arrow', () => {
     const { container } = render(<AccordionPanel show title="Position to purchase">Accordion</AccordionPanel>);
     const accordionMain = container.querySelector('svg');
     expect(accordionMain).toHaveAttribute('viewBox');
   });
+
   it('click on accordion head', () => {
     jest.useFakeTimers();
     const { container } = render(<AccordionPanel show />);
     const svg = container.querySelector('[role="img"]');
-
     const accordionHead = container.querySelector('[role="tab"]');
     const accordionBody = container.querySelector('[role="tabpanel"]');
     const accordion = container.querySelector('[role="tablist"]');
@@ -32,16 +41,13 @@ describe('Accordion', () => {
     act(() => {
       jest.runAllTimers();
     });
-
     expect(svg).toHaveAttribute('data-icon', 'chevron-down');
     expect(accordionBody).toHaveStyleRule('height', '0');
-    expect(accordion).toHaveStyleRule('border-bottom', '1px solid rgba(0,0,0,.1)');
     fireEvent.click(accordionHead);
     act(() => {
       jest.runAllTimers();
     });
-    expect(accordionBody).toHaveStyleRule('height', 'auto');
-    expect(accordion).toHaveStyleRule('border-bottom', '2px solid #999999');
+    expect(accordionBody).toHaveStyleRule('height', '100%');
     expect(container.querySelector('.fa-flip-vertical')).toBeInTheDocument();
   });
 
@@ -56,9 +62,9 @@ describe('Accordion', () => {
     fireEvent.keyDown(accordion, { key: 'Tab', code: 9 });
     accordionHead.focus();
     fireEvent.keyDown(accordionHead, { key: 'Enter', code: 13 });
-    expect(accordion).toHaveStyleRule('border', '1px solid #136ED2');
+    expect(accordion).toHaveStyleRule('border', `${theme.borders.focus}`);
     accordionHead.blur();
-    expect(accordion).toHaveStyleRule('border', '1px solid transparent');
+    expect(accordion).toHaveStyleRule('border', `${theme.borders.transparent}`);
   });
 
   it('check handleClickGroup function is called', () => {
@@ -84,6 +90,7 @@ describe('Accordion', () => {
     );
     const accordionHead = container.querySelector('[role="tab"]');
     const accordion = container.querySelector('[role="tablist"]');
+    expect(accordionHead).toHaveStyleRule('font-size', `${theme.fontSize['2xl']}`);
     const accordionBody = container.querySelector('[role="tabpanel"]');
     fireEvent.keyDown(accordion, { key: 'Tab', keyCode: 9 });
     accordionHead.focus();
@@ -91,11 +98,22 @@ describe('Accordion', () => {
     act(() => {
       jest.runAllTimers();
     });
-    expect(accordionBody).toHaveStyleRule('height', 'auto');
+    expect(accordionBody).toHaveStyleRule('height', '100%');
     fireEvent.keyDown(accordionHead, { key: 'Enter', keyCode: 13 });
     act(() => {
       jest.runAllTimers();
     });
     expect(accordionBody).toHaveStyleRule('height', '0');
+  });
+
+  it('check font-size on resize', () => {
+    mockUseIsDesktopValue = false;
+    const { container } = render(
+      <AccordionPanel title="Accordion title">
+        <div><p>Accordion content</p></div>
+      </AccordionPanel>,
+    );
+    const accordionHead = container.querySelector('[role="tab"]');
+    expect(accordionHead).toHaveStyleRule('font-size', `${theme.fontSize.lg}`);
   });
 });
