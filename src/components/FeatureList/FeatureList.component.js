@@ -31,7 +31,7 @@ const FeatureList = ({ features, className }) => (
   <StyledFeatureList>
     {features.map((feature) => (
       <StyledListItem key={feature} className={className}>
-        <StyledFeatureListItemIcon><FontAwesomeIcon icon={faCheck} size="xs" /></StyledFeatureListItemIcon>
+        <StyledFeatureListItemIcon><FontAwesomeIcon icon={faCheck} size="md" /></StyledFeatureListItemIcon>
         <StyledFeatureListItemText>{feature}</StyledFeatureListItemText>
       </StyledListItem>
     ))}

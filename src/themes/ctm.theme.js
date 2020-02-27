@@ -399,7 +399,7 @@ const ctmTheme = {
     shadow: boxShadow.box,
   },
   featureList: {
-    color: colors.secondaryDarker,
+    color: colors.success500,
   },
   footer: {
     background: colors.white,
