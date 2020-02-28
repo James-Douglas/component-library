@@ -114,7 +114,7 @@ describe('Dropdown', () => {
     const svg = container.querySelector('svg');
     expect(svg).toBeInTheDocument();
     const icon = container.getElementsByClassName('svgArrowWrap')[0];
-    expect(icon).toHaveStyle('right: 1.2rem');
+    expect(icon).toHaveStyle('right: 1.6rem');
   });
 
   it('click on dropdown ', () => {

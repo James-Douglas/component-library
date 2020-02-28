@@ -32,12 +32,13 @@ const StyledDropdownContent = styled.div`
   position: relative;
   height: ${({ theme }) => theme.dropdown.height};
   padding: ${({ theme }) => (`${theme.spacing['8']} ${theme.spacing['12']}`)};
+  color: ${({ theme }) => theme.dropdown.color};
   
   .svgArrowWrap {
     position: absolute;
-    right: ${({ theme }) => theme.spacing[12]};
+    right: ${({ theme }) => theme.spacing[16]};
     top: ${({ theme }) => theme.spacing[12]};
-    fill: ${({ theme }) => theme.colors.greyDarkest};
+    color ${({ theme, disabled }) => (disabled ? theme.colors.inputDisabledTextOnGray : theme.dropdown.caretFill)};
   }
 `;
 
@@ -99,15 +100,16 @@ const StyledListul = styled.ul`
     padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['36']}`};
     &:hover {
       cursor: pointer;
-      background: ${({ theme }) => (theme.colors.greyLight)};
+      background: ${({ theme }) => theme.dropdown.list.hoverBackground};
     }
     ${({ desktop }) => !desktop && css`
-      font-size: ${({ theme }) => theme.fontSize.xl};
+      font-size: ${({ theme }) => theme.fontSize.base};
+      line-height: ${({ theme }) => theme.lineHeight.tight};
       padding: ${({ theme }) => `${theme.spacing['16']} ${theme.spacing['16']} ${theme.spacing['20']}`};
     `}
     &:focus {
       outline: none;
-      border: ${({ theme }) => theme.combo.list.item.borderFocus};
+      border: ${({ theme }) => theme.dropdown.list.item.borderFocus};
     }
   }
 `;
@@ -145,6 +147,7 @@ const StyledAffix = styled.span`
   padding-right: ${({ affixType }) => (affixType === 'prefix' ? '2rem' : '')};
   padding-left: ${({ affixType }) => (affixType === 'suffix' ? '2rem' : '')};
   background: ${({ theme }) => theme.input.background};
+  color: ${({ theme }) => theme.dropdown.prefixColor};
 `;
 
 const StyledDropdownContainer = styled.div`
@@ -352,7 +355,7 @@ const Dropdown = ({
             disabled={disabled}
             bordered={bordered}
           >
-            <StyledDropdownContent>
+            <StyledDropdownContent disabled={disabled}>
               {prefixContent && <StyledAffix>{prefixContent}</StyledAffix>}
               <span>{value && value}</span>
               {!value && placeholder && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}

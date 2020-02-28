@@ -390,13 +390,21 @@ const ctmTheme = {
   },
   dropdown: {
     height: spacing[44],
-    color: colors.black,
+    color: colors.grey900,
     background: colors.white,
     colorDisabled: colors.disabledText,
     disabledOpacity: '0.5',
     disabledSvgOpacity: '0.3',
     prefixBackground: colors.white,
+    prefixColor: colors.grey600,
     shadow: boxShadow.box,
+    caretFill: colors.primary500,
+    list: {
+      hoverBackground: colors.grey100,
+      item: {
+        borderFocus: borders.hover,
+      },
+    },
   },
   featureList: {
     color: colors.success500,
