@@ -77,7 +77,6 @@ const colors = {
   greyDarker: '#666666',
   greyDarkest: '#333333',
   whiteLight: '#F4F9FE',
-  validationBackground: '#FDE8EB',
   disabled: '#CCCCCC',
   disabledText: '#B6B2AF',
 };

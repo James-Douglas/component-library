@@ -11,10 +11,9 @@ describe('FieldValidation', () => {
     expect(container).toBeEmpty();
   });
   it('renders with validation message', () => {
-    const { getByText, container } = render(<FieldValidation message="Test" />);
-    const validationContainer = container.querySelector('div');
-    expect(validationContainer).toHaveStyle(`color: ${theme.colors.invalid}`);
-    expect(validationContainer).toHaveStyle(`background: ${theme.colors.validationBackground}`);
-    expect(getByText('Test')).toBeInTheDocument();
+    const { getByText } = render(<FieldValidation message="Test" />);
+    const validation = getByText('Test').parentNode;
+    expect(validation).toHaveStyle(`color: ${theme.colors.error500}`);
+    expect(validation).toBeInTheDocument();
   });
 });

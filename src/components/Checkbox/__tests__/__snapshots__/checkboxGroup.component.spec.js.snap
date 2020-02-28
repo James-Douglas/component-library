@@ -3,31 +3,31 @@
 exports[`CheckboxGroup.component renders with minimal props 1`] = `
 "<label for=\\"test-group-id\\" class=\\"sc-AxmLO cOfPUX label\\">test</label><div class=\\"sc-AxjAm jXbLlE row \\"><div cols=\\"10\\" class=\\"sc-AxirZ hlBdTj 
         
-      \\"><div id=\\"test-group-id\\" class=\\"sc-fzpans hDRial\\"><div class=\\"sc-AxjAm bBdKfe row sc-fzplWN yyWMM\\"><div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
-        sc-fznyAO evbDO
-      \\"><div class=\\"sc-fznZeY iQmDgO\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznKkj kgqunY\\"><label for=\\"A-1\\" class=\\"sc-fzokOt liPynK\\"><div class=\\"sc-fzqBZW dUgili\\"></div></label></div></div><div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
-        sc-fznyAO evbDO
-      \\"><div class=\\"sc-fznZeY iQmDgO\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznKkj kgqunY\\"><label for=\\"A-2\\" class=\\"sc-fzokOt liPynK\\"><div class=\\"sc-fzqBZW dUgili\\"></div></label></div></div><div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
-        sc-fznyAO evbDO
-      \\"><div class=\\"sc-fznZeY iQmDgO\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznKkj kgqunY\\"><label for=\\"A-3\\" class=\\"sc-fzokOt liPynK\\"><div class=\\"sc-fzqBZW dUgili\\"></div></label></div></div></div></div></div></div>"
+      \\"><div id=\\"test-group-id\\" class=\\"sc-fzplWN jHAIBM\\"><div class=\\"sc-AxjAm bBdKfe row sc-fznyAO bRWhiY\\"><div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
+        sc-fznKkj dSAkUj
+      \\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-1\\" class=\\"sc-fzqBZW kKUJvv\\"><div class=\\"sc-fzqNJr cxOaWr\\"></div></label></div></div><div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
+        sc-fznKkj dSAkUj
+      \\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-2\\" class=\\"sc-fzqBZW kKUJvv\\"><div class=\\"sc-fzqNJr cxOaWr\\"></div></label></div></div><div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
+        sc-fznKkj dSAkUj
+      \\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-3\\" class=\\"sc-fzqBZW kKUJvv\\"><div class=\\"sc-fzqNJr cxOaWr\\"></div></label></div></div></div></div></div></div>"
 `;
 
 exports[`CheckboxGroup.component renders with props 1`] = `
 "<label for=\\"test-group-id\\" class=\\"sc-AxmLO cOfPUX label\\"></label><div class=\\"sc-AxjAm jXbLlE row \\"><div cols=\\"10\\" class=\\"sc-AxirZ hlBdTj 
         
-      \\"><div id=\\"test-group-id\\" class=\\"sc-fzpans hDRial\\"><div class=\\"sc-AxjAm bBdKfe row sc-fzplWN yyWMM\\"><div cols=\\"5\\" class=\\"sc-AxirZ dpZzFb 
-        sc-fznyAO evbDO
-      \\"><div class=\\"sc-fznZeY iQmDgO\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznKkj kgqunY\\"><label for=\\"A-1\\" class=\\"sc-fzokOt liPynK\\"><div class=\\"sc-fzqBZW dUgili\\"></div></label></div></div><div cols=\\"5\\" class=\\"sc-AxirZ dpZzFb 
-        sc-fznyAO evbDO
-      \\"><div class=\\"sc-fznZeY iQmDgO\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznKkj kgqunY\\"><label for=\\"A-2\\" class=\\"sc-fzokOt liPynK\\"><div class=\\"sc-fzqBZW dUgili\\"></div></label></div></div><div cols=\\"5\\" class=\\"sc-AxirZ dpZzFb 
-        sc-fznyAO evbDO
-      \\"><div class=\\"sc-fznZeY iQmDgO\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznKkj kgqunY\\"><label for=\\"A-3\\" class=\\"sc-fzokOt liPynK\\"><div class=\\"sc-fzqBZW dUgili\\"></div></label></div></div></div></div></div></div>"
+      \\"><div id=\\"test-group-id\\" class=\\"sc-fzplWN jHAIBM\\"><div class=\\"sc-AxjAm bBdKfe row sc-fznyAO bRWhiY\\"><div cols=\\"5\\" class=\\"sc-AxirZ dpZzFb 
+        sc-fznKkj dSAkUj
+      \\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-1\\" class=\\"sc-fzqBZW kKUJvv\\"><div class=\\"sc-fzqNJr cxOaWr\\"></div></label></div></div><div cols=\\"5\\" class=\\"sc-AxirZ dpZzFb 
+        sc-fznKkj dSAkUj
+      \\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-2\\" class=\\"sc-fzqBZW kKUJvv\\"><div class=\\"sc-fzqNJr cxOaWr\\"></div></label></div></div><div cols=\\"5\\" class=\\"sc-AxirZ dpZzFb 
+        sc-fznKkj dSAkUj
+      \\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-3\\" class=\\"sc-fzqBZW kKUJvv\\"><div class=\\"sc-fzqNJr cxOaWr\\"></div></label></div></div></div></div></div></div>"
 `;
 
 exports[`generateGroup renders if there are children 1`] = `
 "<div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
-        sc-fznyAO evbDO
-      \\"><div class=\\"sc-fznZeY iQmDgO\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznKkj kgqunY\\"><label for=\\"A-1\\" class=\\"sc-fzokOt ecMlQV\\"><div class=\\"sc-fzqBZW dUgili\\"></div><div class=\\"sc-fzqNJr dWtmRC\\">A-1 check</div></label></div></div><div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
-        sc-fznyAO evbDO
-      \\"><div class=\\"sc-fznZeY iQmDgO\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznKkj kgqunY\\"><label for=\\"A-2\\" class=\\"sc-fzokOt ecMlQV\\"><div class=\\"sc-fzqBZW dUgili\\"></div><div class=\\"sc-fzqNJr dWtmRC\\">A-2 check</div></label></div></div>"
+        sc-fznKkj dSAkUj
+      \\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-1\\" class=\\"sc-fzqBZW jXJoGM\\"><div class=\\"sc-fzqNJr cxOaWr\\"></div><div class=\\"sc-fzoyAV iDuWIw\\">A-1 check</div></label></div></div><div cols=\\"6\\" class=\\"sc-AxirZ cEFUdb 
+        sc-fznKkj dSAkUj
+      \\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-2\\" name=\\"A-2\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-2\\" class=\\"sc-fzqBZW jXJoGM\\"><div class=\\"sc-fzqNJr cxOaWr\\"></div><div class=\\"sc-fzoyAV iDuWIw\\">A-2 check</div></label></div></div>"
 `;
