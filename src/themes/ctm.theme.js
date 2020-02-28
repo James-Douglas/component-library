@@ -47,6 +47,7 @@ const colors = {
   warning50: '#f5eebc',
   warning500: '#ff901d',
   warning700: '#d66c00',
+  tooltipBackgroundDark: 'rgba(37, 19, 14, 0.95)',
 
   // old colors, to be deleted when new colors are integrated
   primary: '#1C3E94', // blue
@@ -499,7 +500,12 @@ const ctmTheme = {
   tooltip: {
     iconColor: colors.primary500,
     iconColorVisible: colors.primary600,
-    background: 'rgba(51, 51, 51, 0.97)',
+    titleTextColor: colors.white,
+    titleTextColorDark: colors.grey900,
+    bodyTextColor: colors.white,
+    bodyTextColorDark: colors.grey800,
+    background: colors.tooltipBackgroundDark,
+    backgroundLight: colors.white,
   },
   drawer: {
     borderTop: `2px solid ${colors.primary200}`,

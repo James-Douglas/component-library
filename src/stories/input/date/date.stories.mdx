@@ -2,6 +2,7 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
 
 import DateInput from '../../../components/Input/Date/DateInput.component';
+import getTooltipKnobs from '../../tooltipKnobs';
 
 <Meta title="Components|Input/Date" component={DateInput} />
 
@@ -38,11 +39,7 @@ import DateInput from '../../../components/Input/Date/DateInput.component';
     const bordered = boolean('bordered', true, componentPropsId);
     const prefixContent = text('prefixContent', undefined, componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
-    // tooltip props
-    const title = text('title', 'input tooltip', tooltipGroupId);
-    const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
-    const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
-    const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
+    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <DateInput
         id="input-props"
@@ -50,8 +47,9 @@ import DateInput from '../../../components/Input/Date/DateInput.component';
         tooltip={{
           title,
           body,
-          justifyEnd,
+          placement,
           screenReaderLabel,
+          variant
         }}
         validationMessage={validationMessage}
         maxLength={maxLength}

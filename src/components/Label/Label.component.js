@@ -14,7 +14,7 @@ const Label = ({
   forId, text, tooltip,
 }) => {
   const {
-    title, body, screenReaderLabel, placement, className,
+    title, body, screenReaderLabel, placement, variant, className,
   } = tooltip;
 
   return (
@@ -25,6 +25,7 @@ const Label = ({
         body={body}
         screenReaderLabel={screenReaderLabel}
         placement={placement}
+        variant={variant}
         className={className}
       />
     </StyledLabel>

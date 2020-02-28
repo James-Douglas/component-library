@@ -10,6 +10,7 @@ import WhiteBackgroundView from './input-on-white-background';
 import PrefixSuffix from './input-prefix-suffix';
 import InputTypes from './input-types';
 import InputStates from './input-states';
+import getTooltipKnobs from '../tooltipKnobs';
 
 <Meta title="Components|Input" component={Input} />
 
@@ -68,11 +69,7 @@ populated with `prefillValue` and prefilled styles will be applied.
     const bordered = boolean('bordered', true, componentPropsId);
     const prefixContent = text('prefixContent', '', componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
-    // tooltip props
-    const title = text('title', 'input tooltip', tooltipGroupId);
-    const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
-    const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
-    const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
+    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <Input
         id="input-props"
@@ -80,8 +77,9 @@ populated with `prefillValue` and prefilled styles will be applied.
         tooltip={{
           title,
           body,
-          justifyEnd,
+          placement,
           screenReaderLabel,
+          variant
         }}
         validationMessage={validationMessage}
         maxLength={maxLength}

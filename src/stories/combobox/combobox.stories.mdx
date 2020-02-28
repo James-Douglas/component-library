@@ -6,6 +6,7 @@ import FluidContainer from '../../components/Grid/Container/FluidContainer.compo
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import getTooltipKnobs from '../tooltipKnobs';
 
 <Meta title="Components|Combobox" component={Combobox} />
 
@@ -110,12 +111,9 @@ in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
     const suffixContent = text('suffix', '', componentPropsId);
     const renderLimit = number('renderLimit', 10, {}, componentPropsId);
     const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
-    const listInfoBoxContent = text('listInfoBoxContent', 'This is secondary information', componentPropsId);
-    const title = text('title', 'input tooltip', tooltipGroupId);
-    const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
-    const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
-    const screenReaderLabel = text('screenReaderLabel', 'input screenReaderLabel', tooltipGroupId);
     const helperMessage = text('helperMessage', 'Please start typing', tooltipGroupId);
+    const listInfoBoxContent = text('listInfoBoxContent', 'This is secondary information', componentPropsId);
+    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <FluidContainer>
         <Row>
@@ -146,8 +144,9 @@ in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
               tooltip={{
                 title,
                 body,
-                justifyEnd,
+                placement,
                 screenReaderLabel,
+                variant
               }}
             />
           </Column>

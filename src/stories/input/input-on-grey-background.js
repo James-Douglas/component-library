@@ -6,7 +6,7 @@ const GreyBackgroundView = () => {
   const tooltip = {
     title: 'Tooltip heading',
     body: 'Grey background input view',
-    justifyEnd: true,
+    variant: 'light',
   };
 
   const logValue = (value) => {

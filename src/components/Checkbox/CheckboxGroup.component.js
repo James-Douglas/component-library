@@ -101,7 +101,7 @@ CheckboxGroup.propTypes = {
   /**
    * Defines the sizing of the columns to wrap the checkboxes in.
    */
-  colSize: PropTypes.string,
+  colSize: PropTypes.oneOf(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Called whenever a checkbox is selected or deselected. Is called with an array of objects representing the currently
    selected checkboxes (in the form `{id, value}`)

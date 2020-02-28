@@ -5,7 +5,6 @@ import Tippy from '@tippy.js/react';
 import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-import Subtitle from 'components/Typography/Subtitle/Subtitle.component';
 import useIsDesktop from 'hooks/useIsDesktop';
 import useUnmountEffect from 'hooks/useUnmountEffect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +14,7 @@ import SRonly from '../Typography/SRonly/SRonly.component';
 const StyledTooltipIcon = styled.div`
   display: inline-block;
   margin-left: ${({ theme }) => theme.spacing[8]};
-  font-size: ${({ theme }) => theme.fontSize.md}; 
+  font-size: ${({ theme }) => theme.fontSize.base}; 
   height: ${({ theme }) => theme.spacing[16]};
   width: ${({ theme }) => theme.spacing[16]};
   color:  ${(props) => props.theme.tooltip.iconColor}; 
@@ -26,19 +25,52 @@ const StyledTooltipIcon = styled.div`
   `}
 `;
 
-const StyledTippy = styled(Tippy)`
-  .manor-tooltip-content {
-    text-align: left;
-    padding: ${({ theme }) => theme.spacing[20]};
-  }
+const StyledTooltipContent = styled.div`
+  text-align: left;
+  padding: ${({ theme }) => theme.spacing[12]};
+  letter-spacing: 0.02rem;
+`;
 
+const StyledTooltipTitle = styled.p`
+  color: ${({ theme, variant }) => (variant === 'dark' ? theme.tooltip.titleTextColor : theme.tooltip.titleTextColorDark)};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
+  margin: ${({ theme }) => theme.spacing[4]};
+`;
+
+const StyledTooltipBody = styled.p`
+  color: ${({ theme, variant }) => (variant === 'dark' ? theme.tooltip.bodyTextColor : theme.tooltip.bodyTextColorDark)};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
+  margin: ${({ theme }) => theme.spacing[4]};
+`;
+
+// eslint-disable-next-line react/jsx-props-no-spreading,react/display-name,react/prop-types
+const StyledTippy = styled(({ variant, ...props }) => <Tippy {...props} />)`
+  &.tippy-content {
+    padding: 0;
+  }
   &.tippy-tooltip {
-    background-color: ${({ theme }) => theme.tooltip.background} !important;
+    background-color: ${({ theme, variant }) => (variant === 'dark' ? theme.tooltip.background : theme.tooltip.backgroundLight)};
     box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.1);
   }
-
+  &.tippy-tooltip[data-placement^=right]>.tippy-arrow {
+    border-right-color: ${({ theme, variant }) => (variant === 'dark' ? theme.tooltip.background : theme.tooltip.backgroundLight)};
+  }
+  &.tippy-tooltip[data-placement^=left]>.tippy-arrow {
+    border-left-color: ${({ theme, variant }) => (variant === 'dark' ? theme.tooltip.background : theme.tooltip.backgroundLight)};
+  }
+  &.tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    border-bottom-color: ${({ theme, variant }) => (variant === 'dark' ? theme.tooltip.background : theme.tooltip.backgroundLight)};
+  }
+  &.tippy-tooltip[data-placement^=top]>.tippy-arrow {
+    border-top-color: ${({ theme, variant }) => (variant === 'dark' ? theme.tooltip.background : theme.tooltip.backgroundLight)};
+  }
+  
   @media screen and (min-width: 769px) {
-    .tippy-tooltip.manor-theme {
+    .tippy-tooltip {
       max-width: ${({ theme }) => theme.spacing[280]};
     }
   }
@@ -61,12 +93,12 @@ const StyledTippy = styled(Tippy)`
  * @param body {string} - Optional body for the tooltip
  * @returns {*}
  */
-export function getContent(title, body) {
+export function getContent(title, body, variant) {
   return (
-    <div className="manor-tooltip-content">
-      {title ? <Subtitle variant="secondary">{title}</Subtitle> : ''}
-      {body}
-    </div>
+    <StyledTooltipContent>
+      {title ? <StyledTooltipTitle variant={variant}>{title}</StyledTooltipTitle> : ''}
+      <StyledTooltipBody variant={variant}>{body}</StyledTooltipBody>
+    </StyledTooltipContent>
   );
 }
 
@@ -74,6 +106,7 @@ const Tooltip = ({
   title,
   body,
   placement,
+  variant,
   screenReaderLabel,
   className,
 }) => {
@@ -137,7 +170,7 @@ const Tooltip = ({
   return (
     <>
       <StyledTippy
-        content={getContent(title, body)}
+        content={getContent(title, body, variant)}
         interactive
         arrow={desktop}
         distance={desktop ? '0.8rem' : 0}
@@ -151,6 +184,8 @@ const Tooltip = ({
         placement={placement}
         maxWidth={500}
         delay={125}
+        variant={variant}
+        className={className}
       >
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <StyledTooltipIcon
@@ -170,6 +205,7 @@ const Tooltip = ({
               hideTooltip();
             }
           }}
+          className={className}
         >
           <>
             <SRonly>{screenReaderLabel}</SRonly>
@@ -210,6 +246,10 @@ export const tooltipPropTypes = {
     'right-start', 'right-end',
   ]),
   /**
+   * Light or dark variant (see design system documentation for use cases)
+   */
+  variant: PropTypes.oneOf(['dark', 'light']),
+  /**
    * Classes to be applied to the Tooltip component
    */
   className: PropTypes.string,
@@ -220,6 +260,7 @@ const defaultProps = {
   body: '',
   screenReaderLabel: '',
   placement: 'right',
+  variant: 'dark',
   className: '',
 };
 

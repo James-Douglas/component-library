@@ -1,4 +1,5 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
 import Checkbox from '../../components/Checkbox/Checkbox.component';
 import CheckboxGroup from '../../components/Checkbox/CheckboxGroup.component';
 import CheckboxGroupView from './checkboxGroup.view';
@@ -7,6 +8,7 @@ import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import getTooltipKnobs from '../tooltipKnobs';
 
 <Meta title="Components|Checkbox" component={Checkbox} />
 
@@ -68,3 +70,51 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
 ### CheckboxGroup Props
 
 <Props of={CheckboxGroup} />
+
+<Story name="checkbox with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const checkboxGroupPropsId = 'CheckboxGroup props';
+    const checkboxAPropsId = 'Checkbox A props';
+    const checkboxBPropsId = 'Checkbox B props';
+    const tooltipGroupId = 'Tooltip Props';
+    //checkbox group
+    const groupId = text('groupId', 'checkbox-with-props', checkboxGroupPropsId);
+    const label = text('label', 'Checkbox group label', checkboxGroupPropsId);
+    const validationMessage = text('validationMessage', '', checkboxGroupPropsId);
+    const colSize = text('colSize', '6', checkboxGroupPropsId);
+    //checkbox A
+    const checkboxAId = text('id', 'checkbox-a', checkboxAPropsId);
+    const checkboxALabel = text('label', 'Checkbox A', checkboxAPropsId);
+    const checkboxADisabled = boolean('disabled', false, checkboxAPropsId);
+    const checkboxAIsSelected = boolean('isSelected', false, checkboxAPropsId);
+    const checkboxAInvalid = boolean('invalid', false, checkboxAPropsId);
+    const checkboxAInvertColor = boolean('invertColour', false, checkboxAPropsId);
+   //checkbox B
+    const checkboxBId = text('id', 'checkbox-b', checkboxBPropsId);
+    const checkboxBLabel = text('label', 'Checkbox B', checkboxBPropsId);
+    const checkboxBDisabled = boolean('disabled', false, checkboxBPropsId);
+    const checkboxBIsSelected = boolean('isSelected', false, checkboxBPropsId);
+    const checkboxBInvalid = boolean('invalid', false, checkboxBPropsId);
+    const checkboxBInvertColor = boolean('invertColour', false, checkboxBPropsId);
+    const { title, body, placement, screenReaderLabel, variant } = getTooltipKnobs(tooltipGroupId);
+    return (
+      <CheckboxGroup
+        groupId={groupId}
+        label={label}
+        validationMessage={validationMessage}
+        colSize={colSize}
+        handleChange={()=>{}}
+        tooltip={{
+          title,
+          body,
+          placement,
+          screenReaderLabel,
+          variant
+        }}
+      >
+        <Checkbox id={checkboxAId} label={checkboxALabel} disabled={checkboxADisabled} isSelected={checkboxAIsSelected} invalid={checkboxAInvalid} invertColour={checkboxAInvertColor} />
+        <Checkbox id={checkboxBId} label={checkboxBLabel} disabled={checkboxBDisabled} isSelected={checkboxBIsSelected} invalid={checkboxBInvalid} invertColour={checkboxBInvertColor} />
+      </CheckboxGroup>
+    )
+  }}
+</Story>
