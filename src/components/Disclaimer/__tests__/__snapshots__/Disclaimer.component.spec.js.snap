@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Disclaimer renders with minimal props 1`] = `"<div class=\\"sc-AxgMl eQWDUc\\"><div class=\\"sc-AxirZ kLStni\\"><input id=\\"test\\" name=\\"test\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-AxjAm eESUYP\\"><label for=\\"test\\" class=\\"sc-AxiKw eyjiWN\\"><div class=\\"sc-AxhCb eSiZZL\\"></div></label></div><div class=\\"sc-AxheI eZyqwF\\"></div></div>"`;
+exports[`Disclaimer renders with minimal props 1`] = `"<div class=\\"sc-AxmLO hZOgzU\\"><div invalid=\\"\\"><div class=\\"sc-AxhUy gyfTuz\\"><input id=\\"test\\" name=\\"test\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-AxhCb iViStI\\"><label for=\\"test\\" class=\\"sc-AxheI glhpBW\\"><div class=\\"sc-AxgMl ikUgkU\\"></div></label></div></div><div class=\\"sc-fzozJi diXxGW\\"></div></div>"`;

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
 import Checkbox from '../../components/Checkbox/Checkbox.component';
@@ -19,13 +20,33 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
 
 <Preview>
   <Story name="checkbox">
-    <FluidContainer>
-      <Row>
-        <Column>
-          <Checkbox id="1" label="A checkbox" />
-        </Column>
-      </Row>
-    </FluidContainer>
+    {() => {
+      const [ error, setError ] = useState('Please check the box');
+      const handler = (obj) => {
+        if ( obj.value) {
+          setError('')
+        } else {
+          setError('Please check the box')
+        }
+      }
+      return (
+        <FluidContainer>
+          <Row> 
+            <Column md={4}>
+              <Checkbox id="chk1" label="A checkbox" />
+              <Checkbox id="chk2" label="A selected checkbox" isSelected/>
+            </Column>
+            <Column md={4}>
+              <Checkbox id="chk3" label="A prefilled checkbox" prefillValue />
+              <Checkbox id="chk4" label="An errored checkbox" validationMessage={error} handleChange={(obj) => {handler(obj)}}/>
+            </Column>
+            <Column md={4}>
+              <Checkbox id="chk5" label="A disabled checkbox" disabled />
+            </Column>
+          </Row>
+        </FluidContainer>
+      )
+    }}
   </Story>
 </Preview>
 

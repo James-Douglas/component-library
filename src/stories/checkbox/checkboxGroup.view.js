@@ -13,7 +13,6 @@ const StyledGridView = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1.5rem;
-  font-size: ${(props) => props.theme.fontSize.base};
   line-height: ${(props) => props.theme.lineHeight.relaxed};
   font-weight: ${(props) => props.theme.fontWeight.normal};
 `;
@@ -21,9 +20,11 @@ const StyledGridView = styled.div`
 const StyledResults = styled.div`
   min-height: 120px;
   width: 100%;
-  background: #143D96;
-  color: white;
+  background: #0b60b7;
   padding: 2rem;
+  p {
+    color: white;
+  }
 `;
 
 const g1 = 'checkbox-group-a';
@@ -46,7 +47,7 @@ const CheckboxGroupView = () => {
     } else {
       updateCheckboxGroupB(selectedCheckboxes);
       if (selectedCheckboxes.length) {
-        setValidationMessageGroupB('Sorry, but selecting anything in this checkbox will trigger a validation message, for science!');
+        setValidationMessageGroupB('Sorry, but selecting anything in this checkbox will trigger a validation message!');
       } else {
         setValidationMessageGroupB(null);
       }

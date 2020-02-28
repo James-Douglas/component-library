@@ -4,6 +4,9 @@ import Tabs, { renderChildren } from '../Tabs.component';
 import TabButton from '../TabButton.component';
 import TabPanel from '../TabPanel.component';
 import TabsContext from '../TabsContext';
+import getTheme from '../../../utils/getTheme';
+
+const theme = getTheme();
 
 /* renderChildren
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -127,7 +130,7 @@ describe('Tabs', () => {
 
     const tabsContainer = container.querySelector('.tabs-container');
 
-    expect(tabsContainer).toHaveStyle('border: 1px solid #DDDDDD'); // greyLight from theme.js
+    expect(tabsContainer).toHaveStyle(`border: 1px solid ${theme.colors.grey300}`); // greyLight from theme.js
     expect(container).toMatchSnapshot();
   });
 

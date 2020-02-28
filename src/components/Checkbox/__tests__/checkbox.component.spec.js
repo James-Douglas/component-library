@@ -66,7 +66,7 @@ describe('Checkbox', () => {
     const { container } = render(
       <Checkbox
         id="test-id"
-        invalid
+        validationMessage="error"
       >
         <p>child content</p>
       </Checkbox>,
@@ -77,7 +77,7 @@ describe('Checkbox', () => {
     const labelStyle = label.firstChild;
     fireEvent.click(label, { button: 0 });
 
-    expect(labelStyle).toHaveStyle(`border: ${theme.borders.invalid}`);
+    expect(labelStyle).toHaveStyle(`border: ${theme.checkbox.invalid}`);
     expect(checkbox.getAttribute('disabled')).toBe(null);
     expect(container.querySelector('#child-content')).toBeDefined();
     expect(container.getElementsByTagName('svg')).toBeDefined();

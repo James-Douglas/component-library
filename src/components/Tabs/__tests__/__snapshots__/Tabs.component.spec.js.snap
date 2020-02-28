@@ -141,7 +141,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
 exports[`Tabs renders a border 1`] = `
 <div>
   <div
-    class="sc-AxirZ hDhBdZ 
+    class="sc-AxirZ eTYKFo 
     tabs-container
     
   "
