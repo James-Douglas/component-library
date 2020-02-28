@@ -1,8 +1,8 @@
 import React, {
   useState, useMemo, useCallback, useEffect, useLayoutEffect,
 } from 'react';
-
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled, { css } from 'styled-components';
 import Input from '../Input/Input.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
@@ -44,8 +44,12 @@ const StyledDefault = styled.div`
 const StyledListItem = styled.li`
   list-style-type: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: ${({ theme }) => theme.spacing[52]};
   border: ${({ theme }) => theme.borders.transparent};
-  padding:  ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};
+  padding:  ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[40]}`};
   font-size: ${({ theme }) => (theme.fontSize.base)};
   color: ${({ theme }) => (theme.combo.list.item.color)};
   transition: background-color 0.4s ease;
@@ -59,6 +63,13 @@ const StyledListItem = styled.li`
     outline: none;
     border: ${({ theme }) => theme.combo.list.item.borderFocus};
   }
+`;
+
+const StyledIconWrap = styled.span`
+  position: absolute;
+  left: ${({ theme }) => theme.spacing[16]};
+  margin-right: ${({ theme }) => theme.spacing[16]};
+  color: ${({ theme }) => theme.colors.grey400};
 `;
 
 const StyledButtonWrap = styled.div`
@@ -114,7 +125,7 @@ const WrapList = styled.div`
     top: ${({ theme }) => theme.spacing[148]};
     background: ${({ theme }) => theme.colors.white};
     border-radius: ${({ theme }) => theme.borderRadius.default};
-    padding-top: ${({ theme }) => theme.spacing[80]};
+    padding-top: ${({ theme }) => theme.spacing[72]};
     max-height: initial;
     overflow: hidden;
     &:after {
@@ -136,7 +147,6 @@ const StyledComboListWrap = styled.div`
     width: ${({ theme }) => (theme.maxWidth.full)};
     max-width: ${({ theme }) => (theme.maxWidth.full)};
     height: ${({ theme }) => (theme.minHeight.full)};
-    padding-top: ${({ theme }) => (theme.spacing[12])};
   `}
 `;
 
@@ -171,8 +181,8 @@ const StyledEmptyStateMessage = styled.div`
 
 export function comboDropdownList(
   desktop,
-  linkText,
-  linkHref,
+  listInfoBoxContent,
+  listIcon,
   bottomButton,
   currentPrefillValue,
   characterMinimum,
@@ -190,16 +200,16 @@ export function comboDropdownList(
       <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
         <StyledComboListWrap desktop={desktop}>
           <StyledComboList desktop={desktop}>
-            {!emptyState && comboDataList(filteredValues, handleSelectItem, filteredValuesRefs)}
+            {!emptyState && comboDataList(filteredValues, handleSelectItem, filteredValuesRefs, listIcon)}
           </StyledComboList>
-          {!emptyState && <div>{blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, bottomButton)}</div>}
+          {!emptyState && <div>{listInfoBox(listInfoBoxContent, currentPrefillValue, characterMinimum, bottomButton)}</div>}
         </StyledComboListWrap>
       </StyledDropdownList>
     </WrapList>
   );
 }
 
-export function comboDataList(filteredValues, handleSelectItem, filteredValuesRefs) {
+export function comboDataList(filteredValues, handleSelectItem, filteredValuesRefs, listIcon) {
   return (
     <StyledList>
       {filteredValues.map((filteredValue, index) => (
@@ -211,6 +221,11 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
           onMouseDown={() => handleSelectItem(filteredValue)}
           ref={filteredValuesRefs[index]}
         >
+          {listIcon && (
+            <StyledIconWrap>
+              <FontAwesomeIcon icon={listIcon} size="sm" />
+            </StyledIconWrap>
+          )}
           {filteredValue}
         </StyledListItem>
       ))}
@@ -218,26 +233,24 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
   );
 }
 
-
-export function blueBottomBand(linkText, currentPrefillValue, characterMinimum, linkHref, bottomButton) {
+export function listInfoBox(listInfoBoxContent, currentPrefillValue, characterMinimum, bottomButton) {
   return (
     <>
-      {linkText && linkHref && currentPrefillValue.length >= characterMinimum
+      {listInfoBoxContent && currentPrefillValue.length >= characterMinimum
       && (
         <StyledButtonWrap ref={bottomButton} tabIndex="0" role="buttonOption" aria-selected={false}>
-          <a href={linkHref} target="_blank">
-            {linkText}
-          </a>
+          { listInfoBoxContent }
         </StyledButtonWrap>
       )}
     </>
   );
 }
 
-const Combo = React.forwardRef(({
+const Combobox = React.forwardRef(({
   id,
   label,
   apiData,
+  listIcon,
   placeholder,
   validationMessage,
   value,
@@ -250,8 +263,7 @@ const Combo = React.forwardRef(({
   disabled,
   characterMinimum,
   renderLimit,
-  linkText,
-  linkHref,
+  listInfoBoxContent,
   tooltip,
   className,
   handleChange,
@@ -267,6 +279,7 @@ const Combo = React.forwardRef(({
   const [listVisible, setListVisible] = useState(false);
   const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
+  const [focusedRef, setFocusedRef] = useState(null);
   const bottomButton = React.createRef();
   const desktop = useIsDesktop();
   const mobileOverlay = !desktop && isMobileModalView;
@@ -286,13 +299,14 @@ const Combo = React.forwardRef(({
     [filteredValues],
   );
 
-  const [focusedRef, setFocusedRef] = useState(null);
-  const onFieldClick = (valueInput) => {
+  const setMobileFocus = () => {
     setIsMobileModalView(true);
   };
+
   const closeFieldModal = () => {
     setIsMobileModalView(false);
   };
+
   const handleSelectItem = (selectedValue) => {
     setCurrentValue(selectedValue);
     setListVisible(false);
@@ -332,7 +346,6 @@ const Combo = React.forwardRef(({
     isMobileModalView && ref && ref.current && ref.current.focus();
   }, [isMobileModalView, ref]);
 
-
   const handleOnFocus = (event) => {
     if (
       // ignore tooltip icon
@@ -355,8 +368,7 @@ const Combo = React.forwardRef(({
       }
     }
   };
-  const emptyStateCondition = currentValue.length < characterMinimum;
-  const noResultCondition = filteredValues.length === 0 && currentValue.length >= characterMinimum;
+
   const keyboardAccessibility = (event) => {
     const closestLink = event.target.getElementsByTagName('a')[0];
     switch (event.key) {
@@ -376,7 +388,7 @@ const Combo = React.forwardRef(({
       case 'ArrowUp':
         if (currentValue.length >= characterMinimum) {
           if (focusedRef === null) {
-            if (linkText && linkHref) {
+            if (listInfoBoxContent) {
               if (document.activeElement === bottomButton.current) {
                 setFocusedRef(filteredValues.length - 1);
                 filteredValuesRefs[filteredValues.length - 1].current.focus();
@@ -389,7 +401,7 @@ const Combo = React.forwardRef(({
               filteredValuesRefs[filteredValues.length - 1].current.focus();
             }
           } else if (focusedRef === 0) {
-            if (linkText && linkHref) {
+            if (listInfoBoxContent) {
               setFocusedRef(null);
               bottomButton.current.focus();
             } else {
@@ -405,7 +417,7 @@ const Combo = React.forwardRef(({
       case 'ArrowDown':
         if (currentValue.length >= characterMinimum) {
           if (focusedRef === filteredValues.length - 1) {
-            if (linkText && linkHref) {
+            if (listInfoBoxContent) {
               setFocusedRef(null);
               bottomButton.current.focus();
             } else {
@@ -425,6 +437,10 @@ const Combo = React.forwardRef(({
         break;
     }
   };
+
+  const emptyStateCondition = currentValue.length < characterMinimum;
+  const noResultCondition = filteredValues.length === 0 && currentValue.length >= characterMinimum;
+
   return (
     <LayerEventManager id={`LayerEventManager${id}`} visible={mobileOverlay}>
       <>
@@ -470,8 +486,8 @@ const Combo = React.forwardRef(({
                 role="comboField"
                 dataList={() => comboDropdownList(
                   desktop,
-                  linkText,
-                  linkHref,
+                  listInfoBoxContent,
+                  listIcon,
                   bottomButton,
                   currentValue,
                   characterMinimum,
@@ -499,9 +515,9 @@ const Combo = React.forwardRef(({
               validationMessage={validationMessage}
               prefixContent={prefixContent}
               suffixContent={suffixContent}
-              handleOnClick={onFieldClick}
+              handleOnClick={setMobileFocus}
               handleChange={() => {}}
-              handleFocus={onFieldClick}
+              handleFocus={setMobileFocus}
               disableClearIcon
               tabIndex="0"
               role="comboMobileField"
@@ -514,9 +530,9 @@ const Combo = React.forwardRef(({
   );
 });
 
-Combo.displayName = 'Combo';
+Combobox.displayName = 'Combo';
 
-Combo.propTypes = {
+Combobox.propTypes = {
   /**
    * The Combo ID. Required as it informs the label and value of the underlying input.
    */
@@ -549,6 +565,10 @@ Combo.propTypes = {
     PropTypes.string,
     PropTypes.node,
   ]),
+  /**
+   * Renders the given (FontAwesome) icon next to options in the list
+   */
+  listIcon: PropTypes.node,
   /**
    * Placeholder value to be displayed in the Combo component.
    */
@@ -604,13 +624,13 @@ Combo.propTypes = {
    */
   renderLimit: PropTypes.number,
   /**
-   * Defines text content for the blue bar link at the bottom of the list
+   * Content to be displayed in the blue bar at the bottom of the options list, if not supplied, the blue bar
+   * will not be displayed.
    */
-  linkText: PropTypes.string,
-  /**
-   * Defines href for the for linkText
-   */
-  linkHref: PropTypes.string,
+  listInfoBoxContent: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
   /**
    * Define a tooltip to be displayed alongside this component. See Tooltip props for details.
    */
@@ -642,9 +662,10 @@ Combo.propTypes = {
   helperMessage: PropTypes.string,
 };
 
-Combo.defaultProps = {
+Combobox.defaultProps = {
   label: '',
   apiData: [],
+  listIcon: null,
   placeholder: '',
   validationMessage: null,
   bordered: true,
@@ -657,8 +678,7 @@ Combo.defaultProps = {
   autocomplete: 'off',
   characterMinimum: 3,
   renderLimit: 10,
-  linkHref: '',
-  linkText: '',
+  listInfoBoxContent: '',
   tooltip: {},
   className: '',
   handleInput: null,
@@ -671,4 +691,4 @@ Combo.defaultProps = {
   helperMessage: 'Please start typing',
 };
 
-export default Combo;
+export default Combobox;

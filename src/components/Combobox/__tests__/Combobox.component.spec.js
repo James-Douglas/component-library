@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '../../../testUtils';
-import Combo from '../Combo.component';
+import Combobox from '../Combobox.component';
 import 'jest-styled-components';
 import getTheme from '../../../utils/getTheme';
 
@@ -16,7 +16,17 @@ jest.mock('../../../hooks/useIsDesktop', () => ({
 
 describe('Combo', () => {
   it('renders correct number options', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="que" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="que"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     const list = container.getElementsByTagName('li');
@@ -24,19 +34,50 @@ describe('Combo', () => {
   });
 
   it('renders no options', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="nope" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="nope"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+      />,
+    );
     const list = container.getElementsByTagName('li');
     expect(list.length).toBe(0);
   });
 
   it('renders correct changed characterMinimum', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pres" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pres"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const list = container.getElementsByTagName('li')[0];
     expect(list).toBeUndefined();
   });
 
   it('on input, set value func is called', () => {
-    const { container } = render(<Combo handleChange={() => {}} label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('input');
     fireEvent.change(inputField, { target: { value: 'prese' } });
     expect(inputField).toHaveValue('prese');
@@ -47,7 +88,19 @@ describe('Combo', () => {
   it('calls focus and blur handlers when provided', () => {
     const handleFocus = jest.fn();
     const handleBlur = jest.fn();
-    const { container } = render(<Combo handleFocus={handleFocus} handleBlur={handleBlur} handleChange={() => {}} label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleFocus={handleFocus}
+        handleBlur={handleBlur}
+        handleChange={() => {}}
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('input');
     fireEvent.focus(inputField);
     expect(handleFocus).toHaveBeenCalled();
@@ -56,26 +109,70 @@ describe('Combo', () => {
   });
 
   it('renders with value', () => {
-    const { container } = render(<Combo handleChange={() => {}} value="presentation dfsdf que ffgddfg" prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        value="presentation dfsdf que ffgddfg"
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const { value } = container.querySelector('#combo-id-first');
     expect(value).toEqual('presentation dfsdf que ffgddfg');
   });
 
   it('renders correct with link text', () => {
-    const { getByText, container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { getByText, container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent="Can’t find your address?"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     expect(getByText('Can’t find your address?')).toBeInTheDocument();
   });
 
-  it('renders correct with blue band', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pre" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+  it('renders correct with list info box', () => {
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pre"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const link = container.getElementsByTagName('a')[0];
     expect(link).toBeUndefined();
   });
 
   it('renders correct when click', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     const currentItem = container.getElementsByTagName('li')[0];
@@ -86,7 +183,18 @@ describe('Combo', () => {
 
   it('selects an item passed it via callback', () => {
     const onSelectCb = jest.fn();
-    const { container } = render(<Combo handleChange={onSelectCb} label="First Combo label" prefillValue="pre" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} />);
+    const { container } = render(
+      <Combobox
+        handleChange={onSelectCb}
+        label="First Combo label"
+        prefillValue="pre"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     const currentItem = container.getElementsByTagName('li')[0];
@@ -98,14 +206,37 @@ describe('Combo', () => {
 
   it('selects an item passed it via callback', () => {
     const onInputCb = jest.fn();
-    const { container } = render(<Combo handleInput={onInputCb} handleChange={() => {}} label="First Combo label" prefillValue="pre" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} />);
+    const { container } = render(
+      <Combobox
+        handleInput={onInputCb}
+        handleChange={() => {}}
+        label="First Combo label"
+        prefillValue="pre"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+      />,
+    );
     const inputField = container.querySelector('input');
     fireEvent.change(inputField, { target: { value: 'present' } });
     expect(inputField.value).toBe('present');
   });
 
-  it('renders correct when clickddsf', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+  it('renders correct when click', () => {
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     const currentItem = container.getElementsByTagName('li')[0];
@@ -115,7 +246,18 @@ describe('Combo', () => {
   });
 
   it('renders correct when click on second', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent="Can’t find your address?"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     const currentItem = container.getElementsByTagName('li')[1];
@@ -125,14 +267,35 @@ describe('Combo', () => {
   });
 
   it('renders correct with link', () => {
-    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container, getByText } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
-    expect(getByText('Can’t find your address?').closest('a')).toHaveAttribute('href', 'https://www.comparethemarket.com.au/');
+    expect(getByText('Compare The Market')).toHaveAttribute('href', 'https://www.comparethemarket.com.au');
   });
 
   it('accessibility - arrow up', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
@@ -144,7 +307,19 @@ describe('Combo', () => {
   });
 
   it('accessibility - default case ', () => {
-    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const { container, getByText } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pr"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
     const inputField = container.querySelector('input');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'e', code: 69 });
@@ -152,7 +327,18 @@ describe('Combo', () => {
   });
 
   it('renders correct opposite characterMinimum and visibility list', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     const list = container.getElementsByTagName('li');
@@ -164,34 +350,88 @@ describe('Combo', () => {
   });
 
   it('renders correct with link href', () => {
-    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container, getByText } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     expect(getByText('Can’t find your address?')).toBeInTheDocument();
   });
 
   it('renders correct with link href', () => {
-    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container, getByText } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     expect(getByText('Can’t find your address?')).toBeInTheDocument();
   });
 
   it('renders correct without link', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     expect(container).not.toHaveClass('item-manual-lookup');
   });
 
   it('check default border property', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputWrap = container.querySelector('input').parentNode;
     expect(inputWrap).toHaveStyleRule(`border: ${theme.borders.component}`);
   });
 
   it('renders correct when focus and blur', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputWrap = container.querySelector('input').parentNode;
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
@@ -201,7 +441,18 @@ describe('Combo', () => {
   });
 
   it('accessibility - arrow down', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
@@ -219,7 +470,17 @@ describe('Combo', () => {
   });
 
   it('accessibility - goes by list and exit', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     const listwrap = container.querySelector('[role="listwrap"]');
     inputField.focus();
@@ -240,7 +501,17 @@ describe('Combo', () => {
   });
 
   it('accessibility - Check arrowDown condition when length more', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pre" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pre"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
@@ -249,7 +520,17 @@ describe('Combo', () => {
   });
 
   it('accessibility - Check arrowDown condition when length more', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pre" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pre"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
@@ -258,7 +539,17 @@ describe('Combo', () => {
   });
 
   it('accessibility - goes up by list and exit', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
@@ -276,7 +567,17 @@ describe('Combo', () => {
   });
 
   it('accessibility - ArrowUp maxLength condition', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pr"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
@@ -285,7 +586,18 @@ describe('Combo', () => {
   });
 
   it('accessibility - arrow up and continue focus on blue button', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
@@ -306,7 +618,18 @@ describe('Combo', () => {
   });
 
   it('accessibility - arrow down then  click enter', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('input');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
@@ -316,7 +639,18 @@ describe('Combo', () => {
   });
 
   it('accessibility - click enter', () => {
-    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} />);
+    const { container, getByText } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+      />,
+    );
     const inputField = container.querySelector('input');
     inputField.focus();
     const link = container.getElementsByTagName('a')[0];
@@ -325,12 +659,24 @@ describe('Combo', () => {
     expect(optionItem).toHaveFocus();
     fireEvent.keyDown(optionItem, { key: 'Enter', keyCode: 13 });
     expect(link).toHaveFocus();
-    expect(getByText('Can’t find your address?').closest('a')).toHaveAttribute('href', 'https://www.comparethemarket.com.au/');
+    expect(getByText('Compare The Market')).toHaveAttribute('href', 'https://www.comparethemarket.com.au');
     fireEvent.keyDown(link, { key: 'Enter', code: 13 });
   });
 
   it('accessibility - click tab', () => {
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="prese" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={5} tooltip={{ title: 'Combo component' }} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="prese"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={5}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
     const inputField = container.querySelector('input');
     const clearButton = container.querySelector('.input-clear-button');
     inputField.focus();
@@ -343,7 +689,19 @@ describe('Combo', () => {
   });
 
   it('accessibility - default case ', () => {
-    const { container, getByText } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const { container, getByText } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pr"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
     const inputField = container.querySelector('input');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'e', code: 69 });
@@ -352,7 +710,19 @@ describe('Combo', () => {
 
   it('check mobile version exit on esc', () => {
     mockUseIsDesktopValue = false;
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pr"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
     const inputField = container.querySelector('#mobilecombo-id-first');
     inputField.click();
     const overlay = container.querySelector('[role="option"]');
@@ -364,7 +734,19 @@ describe('Combo', () => {
 
   it('close overlay when choose item', () => {
     mockUseIsDesktopValue = false;
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pr"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
     const inputField = container.querySelector('#mobilecombo-id-first');
     inputField.click();
     const inputDefaultField = container.querySelector('#combo-id-first');
@@ -377,19 +759,43 @@ describe('Combo', () => {
   });
   it('check padding', () => {
     mockUseIsDesktopValue = false;
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pr"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
     const inputField = container.querySelector('#mobilecombo-id-first');
     inputField.click();
     const inputDefaultField = container.querySelector('#combo-id-first');
     inputDefaultField.focus();
     expect(inputDefaultField).toHaveFocus();
     const listitem = container.querySelectorAll('[role="listitem"]')[0];
-    expect(listitem).toHaveStyleRule('padding', `${theme.spacing[8]} ${theme.spacing[12]}`);
+    expect(listitem).toHaveStyleRule('padding', `${theme.spacing[8]} ${theme.spacing[40]}`);
     expect(listitem).toHaveStyleRule('cursor', 'pointer');
   });
   it('check on item close', () => {
     mockUseIsDesktopValue = false;
-    const { container } = render(<Combo handleChange={() => {}} prefillValue="pr" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} />);
+    const { container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="pr"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
     const inputField = container.querySelector('#mobilecombo-id-first');
     inputField.click();
     const inputDefaultField = container.querySelector('#combo-id-first');
@@ -404,7 +810,20 @@ describe('Combo', () => {
   });
   it('empty state check condition ', () => {
     mockUseIsDesktopValue = false;
-    const { getByText, container } = render(<Combo handleChange={() => {}} prefillValue="" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} helperMessage="Please start typing" tooltip={{ title: 'Combo component' }} />);
+    const { getByText, container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue=""
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        helperMessage="Please start typing"
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
     const inputField = container.querySelector('#mobilecombo-id-first');
     inputField.click();
     const emptyState = getByText('Please start typing');
@@ -414,7 +833,20 @@ describe('Combo', () => {
   });
   it('no results check condition ', () => {
     mockUseIsDesktopValue = false;
-    const { getByText, container } = render(<Combo handleChange={() => {}} prefillValue="random" label="First Combo label" apiData={apiData} id="combo-id-first" linkHref="https://www.comparethemarket.com.au/" linkText="Can’t find your address?" required={false} characterMinimum={2} tooltip={{ title: 'Combo component' }} emptyStateHeading="Sorry, no results found" />);
+    const { getByText, container } = render(
+      <Combobox
+        handleChange={() => {}}
+        prefillValue="random"
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+        emptyStateHeading="Sorry, no results found"
+      />,
+    );
     const inputField = container.querySelector('#mobilecombo-id-first');
     inputField.click();
     const emptyState = getByText('Sorry, no results found');

@@ -1,19 +1,20 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
-import Combo from '../../components/Combo/Combo.component.js';
+import Combobox from '../../components/Combobox/Combobox.component.js';
 import fakeApiData from './jsonPlaceholder';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
-<Meta title="Components|Combo" component={Combo} />
+<Meta title="Components|Combobox" component={Combobox} />
 
-# Combo
+# Combobox
 
-The Combo component can be used to display a list of items with can be dynamically updated based on the users input. In Manor,
-the `Combo` extends `Input` and as such shares similar functionality.
+The Combobox component can be used to display a list of items with can be dynamically updated based on the users input. In Manor,
+the `Combobox` extends `Input` and as such shares similar functionality.
 
-On mobile, the Combo presents a full screen overlay of containing the input and the options list when the user focuses
+On mobile, the Combobox presents a full screen overlay of containing the input and the options list when the user focuses
 the input field.
 
 <Preview>
@@ -24,8 +25,8 @@ the input field.
        <FluidContainer>
            <Row>
              <Column>
-                <Combo
-                  label="Example Combo label"
+                <Combobox
+                  label="Example Combobox label"
                   apiData={apiData}
                   id="combo-id-first"
                   value="ser"
@@ -37,10 +38,12 @@ the input field.
                     alt: 'alt text',
                     title: 'no results found',
                   }}
-                  tooltip={{ title: 'Combo component' }}
+                  tooltip={{ title: 'Combobox component' }}
                   emptyStateHeading = "Sorry, no results found"
                   emptyStateChildren='Try adjusting your search to find what you are looking for.'
                   helperMessage='Please enter your address in the field above and we will try locate it.'
+                  listIcon={faMapMarkerAlt}
+                  listInfoBoxContent={(<>Can’t find your address? <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
                   handleChange={(value) => {
                     // eslint-disable-next-line no-console
                     console.log(value)
@@ -63,11 +66,11 @@ the input field.
 * When the input length meets or exceeds the given `characterMinimum` (default 3), `apiData` is filtered based on whether it
 contains the current value of the input. The first `renderLimit` (default 10) resulting matches is displayed to the user.
 * Selecting a displayed option populates the input with the selected value.
-* If the list of displayed options is displayed and the combo (or any of it's subcomponents) lose focus, the list is
+* If the list of displayed options is displayed and the Combobox (or any of it's subcomponents) lose focus, the list is
 dismissed.
 
 #### Mobile specific
-* On focus of the Combo, a modal is presented on an overlay with an input field and a list container with the
+* On focus of the Combobox, a modal is presented on an overlay with an input field and a list container with the
 `helperMessage` displayed.
 * When the modal displaying the input field and list is displayed, tapping on the overlay will dismiss the modal and the
 current value will not update.
@@ -78,23 +81,23 @@ in `apiData`, those matches are displayed (limited to `renderLimit`).
 in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
 
 ### Accessibility
-* The combo field can be focused via the `Tab` key.
+* The Combobox field can be focused via the `Tab` key.
 * The clear button can be focused via the `Tab` key.
 * When the clear button has focus, both the `Enter` and `Space` keys can be used to clear the input field.
-* When the combo is focused, the `Up` and `Down` arrow keys can be used to traverse the list of options.
+* When the Combobox is focused, the `Up` and `Down` arrow keys can be used to traverse the list of options.
 * When a list item is focused, the `Enter` key can be used to select it.
-* When the combo is focused, the `Escape` key will dismiss the list of options.
+* When the Combobox is focused, the `Escape` key will dismiss the list of options.
 
 ### Props
-<Props of={Combo} />
+<Props of={Combobox} />
 
-<Story name="combo with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+<Story name="Combobox with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
     const apiData = fakeApiData.map((obj) => obj.title);
-    const id = text('id', 'combo-demo', componentPropsId);
-    const label = text('label', 'Example Combo', componentPropsId);
+    const id = text('id', 'Combobox-demo', componentPropsId);
+    const label = text('label', 'Example Combobox', componentPropsId);
     const value = text('value', '', componentPropsId);
     const placeholder = text('placeholder', 'Placeholder', componentPropsId);
     const required = boolean('required', true, componentPropsId);
@@ -107,8 +110,7 @@ in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
     const suffixContent = text('suffix', '', componentPropsId);
     const renderLimit = number('renderLimit', 10, {}, componentPropsId);
     const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
-    const linkHref = text('linkHref', 'https://www.comparethemarket.com.au/', componentPropsId);
-    const linkText = text('linkText', 'Can’t find your address?', componentPropsId)
+    const listInfoBoxContent = text('listInfoBoxContent', 'This is secondary information', componentPropsId);
     const title = text('title', 'input tooltip', tooltipGroupId);
     const body = text('body', 'this is a tooltip for the input component', tooltipGroupId);
     const justifyEnd = boolean('justifyEnd', false, tooltipGroupId);
@@ -119,7 +121,7 @@ in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
         <Row>
           <Column>
           <div style={{height: '300px'}}></div>
-            <Combo
+            <Combobox
               id={id}
               label={label}
               value={value}
@@ -135,8 +137,7 @@ in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
               characterMinimum={characterMinimum}
               renderLimit={renderLimit}
               apiData={apiData}
-              linkHref={linkHref}
-              linkText={linkText}
+              listInfoBoxContent={listInfoBoxContent}
               handleChange={(value) => {
                 // eslint-disable-next-line no-console
                 console.log(value)

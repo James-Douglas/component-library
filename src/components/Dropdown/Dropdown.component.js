@@ -96,7 +96,7 @@ const StyledListul = styled.ul`
     position: relative;
     border: ${({ theme }) => theme.borders.transparent};
     font-size: ${({ theme }) => theme.fontSize.base};
-    padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['32']}`};
+    padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['36']}`};
     &:hover {
       cursor: pointer;
       background: ${({ theme }) => (theme.colors.greyLight)};
