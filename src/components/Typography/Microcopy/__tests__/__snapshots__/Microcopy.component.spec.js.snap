@@ -7,27 +7,27 @@ exports[`Microcopy.component renders correctly with minimal props 1`] = `
   line-height: 1.4;
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 

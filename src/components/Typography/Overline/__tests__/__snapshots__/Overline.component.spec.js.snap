@@ -12,27 +12,27 @@ exports[`Overline.component renders correctly with minimal props 1`] = `
   text-transform: uppercase;
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 

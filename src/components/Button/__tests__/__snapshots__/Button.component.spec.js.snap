@@ -69,27 +69,27 @@ exports[`Button renders correctly with minimal props 1`] = `
   width: 100%;
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -191,27 +191,27 @@ exports[`Button renders with props 1`] = `
   width: 100%;
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 

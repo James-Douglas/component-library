@@ -53,27 +53,27 @@ exports[`BaseToggle renders with minimal props 1`] = `
   box-shadow: 0 0 2px 3px rgba(0,123,255,.3);
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 

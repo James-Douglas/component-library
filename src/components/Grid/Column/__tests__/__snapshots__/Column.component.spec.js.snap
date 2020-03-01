@@ -32,15 +32,11 @@ exports[`Column adds default styles to col if no props are passed 1`] = `
   max-width: 100%;
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -48,31 +44,35 @@ exports[`Column adds default styles to col if no props are passed 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -117,15 +117,11 @@ exports[`Column allows additional classes to be passed through 1`] = `
   max-width: 100%;
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -133,31 +129,35 @@ exports[`Column allows additional classes to be passed through 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -203,15 +203,11 @@ exports[`Column defines an offset when supplied 1`] = `
   max-width: 100%;
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -219,31 +215,35 @@ exports[`Column defines an offset when supplied 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -282,15 +282,11 @@ exports[`Column defines col size when supplied 1`] = `
   max-width: 41.66666666666667%;
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -298,31 +294,35 @@ exports[`Column defines col size when supplied 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -368,15 +368,11 @@ exports[`Column renders children 1`] = `
   max-width: 100%;
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -384,31 +380,35 @@ exports[`Column renders children 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -459,15 +459,11 @@ exports[`Column renders correctly without props 1`] = `
   max-width: 100%;
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -475,31 +471,35 @@ exports[`Column renders correctly without props 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -544,25 +544,25 @@ exports[`Column resizes offsets on breakpoint 1`] = `
   max-width: 100%;
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
   .c0 {
     margin-left: 66.66666666666667%;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width:720px) {
   .c0 {
     margin-left: 58.333333333333336%;
   }
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
   .c0 {
     margin-left: 50%;
   }
 }
 
-@media (min-width:1200px) {
+@media (min-width:1400px) {
   .c0 {
     margin-left: 41.66666666666667%;
   }
@@ -574,27 +574,27 @@ exports[`Column resizes offsets on breakpoint 1`] = `
   }
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -629,7 +629,7 @@ exports[`Column resizes on breakpoint 1`] = `
   justify-content: initial;
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
   .c0 {
     -webkit-flex: 66.66666666666667%;
     -ms-flex: 66.66666666666667%;
@@ -638,7 +638,7 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
-@media (min-width:768px) {
+@media (min-width:720px) {
   .c0 {
     -webkit-flex: 58.333333333333336%;
     -ms-flex: 58.333333333333336%;
@@ -647,7 +647,7 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
   .c0 {
     -webkit-flex: 50%;
     -ms-flex: 50%;
@@ -656,7 +656,7 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
-@media (min-width:1200px) {
+@media (min-width:1400px) {
   .c0 {
     -webkit-flex: 41.66666666666667%;
     -ms-flex: 41.66666666666667%;
@@ -674,27 +674,27 @@ exports[`Column resizes on breakpoint 1`] = `
   }
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -729,7 +729,7 @@ exports[`Column stacks at breakpoint lg 1`] = `
   justify-content: initial;
 }
 
-@media (min-width:1200px) {
+@media (min-width:1400px) {
   .c0 {
     -webkit-flex-basis: 0%;
     -ms-flex-preferred-size: 0%;
@@ -742,15 +742,11 @@ exports[`Column stacks at breakpoint lg 1`] = `
   }
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -758,31 +754,35 @@ exports[`Column stacks at breakpoint lg 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -817,7 +817,7 @@ exports[`Column stacks at breakpoint md 1`] = `
   justify-content: initial;
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
   .c0 {
     -webkit-flex-basis: 0%;
     -ms-flex-preferred-size: 0%;
@@ -830,15 +830,11 @@ exports[`Column stacks at breakpoint md 1`] = `
   }
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -846,31 +842,35 @@ exports[`Column stacks at breakpoint md 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -905,7 +905,7 @@ exports[`Column stacks at breakpoint sm 1`] = `
   justify-content: initial;
 }
 
-@media (min-width:768px) {
+@media (min-width:720px) {
   .c0 {
     -webkit-flex-basis: 0%;
     -ms-flex-preferred-size: 0%;
@@ -918,15 +918,11 @@ exports[`Column stacks at breakpoint sm 1`] = `
   }
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -934,31 +930,35 @@ exports[`Column stacks at breakpoint sm 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -1006,15 +1006,11 @@ exports[`Column stacks at breakpoint xl 1`] = `
   }
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -1022,31 +1018,35 @@ exports[`Column stacks at breakpoint xl 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
@@ -1094,15 +1094,11 @@ exports[`Column stacks at breakpoint xxl 1`] = `
   }
 }
 
-@media (min-width:576px) {
+@media (min-width:375px) {
 
 }
 
-@media (min-width:768px) {
-
-}
-
-@media (min-width:992px) {
+@media (min-width:720px) {
 
 }
 
@@ -1110,31 +1106,35 @@ exports[`Column stacks at breakpoint xxl 1`] = `
 
 }
 
+@media (min-width:1400px) {
+
+}
+
 @media (min-width:1900px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
-@media (min-width:992px) {
+@media (min-width:1200px) {
 
 }
 
