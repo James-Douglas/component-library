@@ -36,7 +36,6 @@ describe('Accordion', () => {
     const svg = container.querySelector('[role="img"]');
     const accordionHead = container.querySelector('[role="tab"]');
     const accordionBody = container.querySelector('[role="tabpanel"]');
-    const accordion = container.querySelector('[role="tablist"]');
     fireEvent.click(accordionHead);
     act(() => {
       jest.runAllTimers();

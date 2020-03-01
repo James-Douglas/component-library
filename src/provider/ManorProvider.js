@@ -13,6 +13,7 @@ const LayerContext = createContext({
 });
 
 const ManorProvider = (props) => {
+  const { children, disableGlobalStyles } = props;
   const [layers, setLayers] = useState([]);
 
   const layerInfo = useMemo(() => ({
@@ -28,11 +29,10 @@ const ManorProvider = (props) => {
     contains: (layer) => layers.includes(layer),
   }), [layers, setLayers]);
 
-  const { children } = props;
   return (
     <>
       <ThemeProvider theme={getTheme()}>
-        <ManorGlobalStyles />
+        {!disableGlobalStyles && <ManorGlobalStyles />}
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <LayerContext.Provider value={layerInfo} {...props}>
           {children}
@@ -44,6 +44,10 @@ const ManorProvider = (props) => {
 
 ManorProvider.propTypes = {
   /**
+   * Disables the injection of global styles.
+   */
+  disableGlobalStyles: PropTypes.bool,
+  /**
    * The child content
    */
   children: PropTypes.oneOfType([
@@ -54,6 +58,7 @@ ManorProvider.propTypes = {
 };
 
 ManorProvider.defaultProps = {
+  disableGlobalStyles: false,
   children: [],
 };
 
