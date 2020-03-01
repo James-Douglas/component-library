@@ -40,7 +40,7 @@ const LayerEventManager = ({
 
   useEffect(() => {
     if (visible && !layerInfo.contains(layerId.current)) {
-      zIndex.current = parseInt(theme.zIndex[30], 10) + layerInfo.push(layerId.current);
+      zIndex.current = parseInt(theme.zIndex[40], 10) + layerInfo.push(layerId.current);
     }
   }, [visible, theme, layerInfo, layerId]);
 

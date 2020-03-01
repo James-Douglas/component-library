@@ -22,7 +22,7 @@ const ManorProvider = (props) => {
       if (!layers.includes(layer)) {
         setLayers(layers.concat([layer]));
       }
-      return layers.length;
+      return layers.length + 1;
     },
     pop: () => setLayers(layers.length > 1 ? layers.slice(0, layers.length - 1) : []),
     top: (layer) => layers.length > 0 && layers[layers.length - 1] === layer,
