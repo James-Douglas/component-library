@@ -38,15 +38,12 @@ const ModalView = () => {
             Modal one
           </Button>
         </Column>
-        <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="lg" overlay overlayOpacity={0.3}>
-          <h2>Email Results</h2>
+        <Modal id="demo-1" visible={m1Visible} handleClose={closeModals} size="lg" overlay overlayOpacity={0.3} title="Email Results">
           &nbsp;
           <p>Access these search results later from any device</p>
           &nbsp;
           <Input id="modal-input" label="Email address" placeholder="Enter your email address" handleChange={() => {}} />
           &nbsp;
-
-
           <Table ariaLabel="Receive emails" size="small" ariaDescribedby="IDREF">
             <TableBody>
               <TableRow>
@@ -65,8 +62,7 @@ const ModalView = () => {
             Modal two
           </Button>
         </Column>
-        <Modal id="demo-2" visible={m2Visible} handleClose={closeModals} size="sm" overlay overlayOpacity={0.3}>
-          <h2>Another modal</h2>
+        <Modal id="demo-2" visible={m2Visible} handleClose={closeModals} size="sm" overlay overlayOpacity={0.3} title="Another modal">
           &nbsp;
           <p>Another bit of content</p>
         </Modal>

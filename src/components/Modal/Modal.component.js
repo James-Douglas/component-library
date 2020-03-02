@@ -34,9 +34,10 @@ const StyledModal = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.boxShadow.lg};
   z-index: inherit;
+  max-width: 745px;
   width: ${({ size }) => {
     if (size === 'lg') {
-      return '66.666667%';
+      return '62%';
     }
     if (size === 'md') {
       return '50%';
@@ -53,25 +54,38 @@ const StyledModal = styled.div`
 
 const StyledCloseIcon = styled.div`
   position: absolute;
-  right: ${({ theme }) => theme.spacing[20]};
-  top: ${({ theme }) => theme.spacing[24]};
   cursor: pointer;
   z-index: inherit;
   opacity: 0.5;
+  right: ${({ theme }) => theme.spacing[24]};
+  top: ${({ theme }) => theme.spacing[24]};
+  font-size: ${({ theme }) => theme.fontSize['3xl']};
 `;
 
 const StyledContent = styled.div`
-  padding: ${({ theme }) => theme.spacing[40]};
+  padding: ${({ theme }) => `${theme.spacing[20]} ${theme.spacing[24]} ${theme.spacing[32]}`};
+`;
+
+const StyledContentChildren = styled.div`
+  margin-top: ${({ theme }) => theme.spacing[28]};
 `;
 
 const Modal = ({
-  id, visible, handleClose, size, className, children, overlay, overlayOpacity, handleOverlayClick,
+  id,
+  title,
+  visible,
+  handleClose,
+  size,
+  className,
+  children,
+  overlay,
+  overlayOpacity,
+  handleOverlayClick,
 }) => {
   const classNames = `
     ${size}
     ${className}
   `;
-
   return (
     <LayerEventManager id={id} visible={visible} handleClose={handleClose} trapFocus>
       <>
@@ -81,10 +95,11 @@ const Modal = ({
             <StyledAlignment visible={visible}>
               <StyledModal id={id} className={classNames} size={size}>
                 <StyledCloseIcon className="icon-close" onClick={handleClose} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false">
-                  <FontAwesomeIcon icon={faTimes} size="2x" />
+                  <FontAwesomeIcon icon={faTimes} />
                 </StyledCloseIcon>
-                <StyledContent className="content">
-                  {children}
+                <StyledContent>
+                  {title && <h2>{title}</h2>}
+                  <StyledContentChildren>{children}</StyledContentChildren>
                 </StyledContent>
               </StyledModal>
             </StyledAlignment>
@@ -136,6 +151,10 @@ Modal.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * The title text
+   */
+  title: PropTypes.node,
 };
 
 Modal.defaultProps = {
@@ -148,6 +167,7 @@ Modal.defaultProps = {
   overlay: false,
   overlayOpacity: 0.7,
   handleOverlayClick: null,
+  title: '',
 };
 
 export default Modal;

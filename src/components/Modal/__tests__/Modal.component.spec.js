@@ -58,7 +58,7 @@ describe('Modal', () => {
     const sizeClass = baseElement.querySelector('.lg');
     const modal = baseElement.querySelector('#test-modal');
 
-    expect(modal).toHaveStyleRule('width', '66.666667%');
+    expect(modal).toHaveStyleRule('width', '62%');
     expect(sizeClass).toBeInTheDocument();
   });
 

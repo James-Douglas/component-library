@@ -78,10 +78,8 @@ const StyledIcon = styled.div`
   top: ${({ theme }) => (theme.spacing[20])};
   cursor: pointer;
   z-index: inherit;
-  svg {
-    color: ${({ theme }) => theme.drawer.closeIcon};
-    font-size: 26px;
-  }
+  color: ${({ theme }) => theme.drawer.closeIcon};
+  font-size: ${({ theme }) => theme.fontSize['3xl']};
 `;
 
 const StyledDrawerCloseBase = styled.div`

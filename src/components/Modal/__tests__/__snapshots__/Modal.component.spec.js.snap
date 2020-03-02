@@ -5,6 +5,7 @@ exports[`Modal renders with minimal props 1`] = `
   background: #FFFFFF;
   box-shadow: 0 1.5rem 3rem 0 rgba(0,0,0,0.11),0 0.5rem 1.5rem 0 rgba(0,0,0,0.08);
   z-index: inherit;
+  max-width: 745px;
   width: 50%;
   min-height: 30rem;
   height: auto;
@@ -18,15 +19,20 @@ exports[`Modal renders with minimal props 1`] = `
 
 .c1 {
   position: absolute;
-  right: 2rem;
-  top: 2.4rem;
   cursor: pointer;
   z-index: inherit;
   opacity: 0.5;
+  right: 2.4rem;
+  top: 2.4rem;
+  font-size: 2.4rem;
 }
 
 .c2 {
-  padding: 4rem;
+  padding: 2rem 2.4rem 3.2rem;
+}
+
+.c3 {
+  margin-top: 2.8rem;
 }
 
 @media (min-width:1200px) {
@@ -69,7 +75,7 @@ exports[`Modal renders with minimal props 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="svg-inline--fa fa-times fa-w-10 fa-2x "
+      class="svg-inline--fa fa-times fa-w-10 "
       data-icon="times"
       data-prefix="far"
       focusable="false"
@@ -84,7 +90,12 @@ exports[`Modal renders with minimal props 1`] = `
     </svg>
   </div>
   <div
-    class="c2 content"
-  />
+    class="c2"
+  >
+    
+    <div
+      class="c3"
+    />
+  </div>
 </div>
 `;
