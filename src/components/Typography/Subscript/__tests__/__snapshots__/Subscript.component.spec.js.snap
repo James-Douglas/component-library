@@ -10,7 +10,7 @@ exports[`Subscript.component renders correctly with minimal props 1`] = `
   letter-spacing: 0.15rem;
   font-weight: 400;
   text-transform: uppercase;
-  color: #333333;
+  color: #757575;
 }
 
 @media (min-width:1200px) {

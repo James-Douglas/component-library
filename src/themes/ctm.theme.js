@@ -274,7 +274,7 @@ const borders = {
   component: `1px solid ${colors.grey300}`,
   hover: `1px solid ${colors.primary300}`,
   active: `1px solid ${colors.primary500}`,
-  prefill: `1px solid ${colors.precheckedDarker}`,
+  prefill: `1px solid ${colors.inputPrefilledBorder}`,
   dark: `1px solid ${colors.brandMidnightBlue}`,
   focus: `1px solid ${colors.primary500}`,
 };
@@ -441,7 +441,7 @@ const ctmTheme = {
     },
   },
   label: {
-    color: colors.black,
+    color: colors.grey900,
   },
   logo: {
     heightSmall: spacing[32],

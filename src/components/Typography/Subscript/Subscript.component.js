@@ -9,7 +9,7 @@ const StyledSubscript = styled.p`
   letter-spacing: 0.15rem;
   font-weight: ${({ theme }) => theme.fontWeight.normal};
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.greyDarkest};
+  color: ${({ theme }) => theme.colors.grey600};
 `;
 
 const Subscript = ({

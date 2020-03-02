@@ -68,6 +68,7 @@ populated with `prefillValue` and prefilled styles will be applied.
     const disabled = boolean('disabled', false, componentPropsId);
     const bordered = boolean('bordered', true, componentPropsId);
     const prefixContent = text('prefixContent', '', componentPropsId);
+    const prefixBlock = boolean('prefixBlock', false, componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
@@ -92,6 +93,7 @@ populated with `prefillValue` and prefilled styles will be applied.
         disabled={disabled}
         bordered={bordered}
         prefixContent={prefixContent}
+        prefixBlock={prefixBlock}
         suffixContent={suffixContent}
       />
     );

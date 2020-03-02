@@ -35,10 +35,12 @@ const StyledAffix = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width:  ${({ theme }) => theme.spacing[48]};
   padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};
   height: ${({ theme }) => theme.input.height};
-  padding-right: ${({ affixType }) => (affixType === 'prefix' ? '0.5rem' : '')};
-  padding-left: ${({ affixType }) => (affixType === 'suffix' ? '0.5rem' : '')};
+  ${({ prefixBlock, isAutofill, theme }) => prefixBlock && !isAutofill && css`
+    background: ${theme.colors.grey100};
+  `}
 `;
 
 const StyledInputContainer = styled.div`
@@ -88,7 +90,8 @@ const StyledInputWrap = styled.div`
 const StyledInputClearWrap = styled.div`
   position: relative;
   width: 100%;
-  min-height: ${({ theme }) => theme.input.height};
+  min-height: ${({ theme }) => `calc(${theme.input.height} + 0.1rem)`};
+  margin-right: 0.1rem;
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading,react/display-name,react/prop-types
@@ -139,7 +142,7 @@ export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, 
   return null;
 };
 
-export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled, affixClick) => {
+export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled, affixClick, prefixBlock) => {
   if (affixType && affixContent) {
     return (
       <StyledAffix
@@ -148,6 +151,7 @@ export const renderAffix = (affixType, affixContent, bordered, isAutofill, disab
         isAutofill={isAutofill}
         disabled={disabled}
         onClick={affixClick}
+        prefixBlock={prefixBlock}
       >
         {affixContent}
       </StyledAffix>
@@ -172,6 +176,7 @@ const Input = React.forwardRef(({
   disabled,
   bordered,
   prefixContent,
+  prefixBlock,
   suffixContent,
   autocomplete,
   maxlength,
@@ -242,7 +247,7 @@ const Input = React.forwardRef(({
           invalid={validationMessage && validationMessage.length > 0}
           isFocusActive={isFocusActive}
         >
-          {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled, affixClick)}
+          {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled, affixClick, prefixBlock)}
           <StyledInputClearWrap className="input-clear-wrap">
             <StyledInput
               mask={mask}
@@ -363,6 +368,10 @@ Input.propTypes = {
     PropTypes.node,
   ]),
   /**
+   * Display the Block style prefix (grey background)
+   */
+  prefixBlock: PropTypes.bool,
+  /**
    * Content to be displayed as  suffix for the input
    */
   suffixContent: PropTypes.oneOfType([
@@ -396,6 +405,7 @@ Input.defaultProps = {
   value: '',
   prefillValue: '',
   prefixContent: '',
+  prefixBlock: false,
   suffixContent: '',
   autocomplete: 'off',
   handleFocus: null,
