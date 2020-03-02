@@ -11,13 +11,20 @@ const StyledEmptyState = styled.div`
 `;
 
 const StyledEmptyStateWrap = styled.div`
-  max-height: 375px;
-  max-width: 375px;
+  max-height: 350px;
+  max-width: 350px;
   text-align: center;
   & > * {
     margin-bottom: ${({ theme, desktop }) => (desktop ? theme.spacing[32] : theme.spacing[16])};
   }
 `;
+
+const StyledPictureContainer = styled.div`
+   margin-bottom: ${({ theme }) => theme.spacing[32]};
+   height: 100%;
+   
+`;
+
 
 const EmptyState = ({
   children,
@@ -36,8 +43,10 @@ const EmptyState = ({
   return (
     <StyledEmptyState className={className}>
       <StyledEmptyStateWrap desktop={desktop} className={className}>
-        <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
-        <h3>{heading}</h3>
+        <StyledPictureContainer>
+          <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
+        </StyledPictureContainer>
+        <h2>{heading}</h2>
         <div>
           {children}
         </div>

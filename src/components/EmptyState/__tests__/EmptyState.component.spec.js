@@ -35,7 +35,7 @@ describe('Empty State', () => {
   it('renders a custom heading', () => {
     const customHeading = 'A custom heading';
     const { container } = render(<EmptyState heading={customHeading} />);
-    const headingText = container.querySelector('h3').innerHTML;
+    const headingText = container.querySelector('h2').innerHTML;
     expect(headingText).toBe(customHeading);
   });
 });

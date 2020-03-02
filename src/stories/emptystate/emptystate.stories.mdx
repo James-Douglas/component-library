@@ -7,6 +7,7 @@ import EmptyState from '../../components/EmptyState/EmptyState.component';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
+import useIsDesktop from '../../hooks/useIsDesktop';
 
 <Meta title="Components|EmptyState" component={EmptyState} />
 
@@ -18,11 +19,13 @@ The `EmptyState` component is to be used when no results are found based on the 
   <Story name="empty state" height="500px">
     {() => {
       return (
-        <EmptyState>
-          <div style={{fontSize: '20px', lineHeight: '30px'}}>
-            <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
-          </div>
-        </EmptyState>
+        <div style={{marginTop: '32px'}}>
+          <EmptyState>
+            <div style={{fontSize: '20px', lineHeight: '30px'}}>
+              <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
+            </div>
+          </EmptyState>
+        </div>
       );
     }}
   </Story>
@@ -39,11 +42,13 @@ The `EmptyState` component is to be used when no results are found based on the 
   <Story name="empty state with custom heading" height="600px">
     {() => {
       return (
-        <EmptyState heading="A custom heading">
-          <div style={{fontSize: '20px', lineHeight: '30px'}}>
-            <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
-          </div>
-        </EmptyState>
+        <div style={{marginTop: '32px'}}>
+          <EmptyState heading="A custom heading">
+            <div style={{fontSize: '20px', lineHeight: '30px'}}>
+              <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
+            </div>
+          </EmptyState>
+        </div>
       )
     }}
   </Story>
@@ -53,34 +58,10 @@ The `EmptyState` component is to be used when no results are found based on the 
 <Preview>
   <Story name="empty state with primary button" height="600px">
     {() => {
+      const desktop = useIsDesktop();
+      const buttonWidth = desktop ? 'auto' : '100%';
       return (
-        <EmptyState
-          picture={{
-            src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
-            srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
-            alt: 'alt text',
-            title: 'no results found',
-          }}
-        >
-          <div style={{fontSize: '20px', lineHeight: '30px'}}>
-            <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center'}}>
-            <div style={{textAlign: 'center', marginTop: '30px'}}>
-              <Button id="primary-btn01" variant="primary" size="sm" tagType='submit' width='120px'>Learn more</Button>
-            </div>
-           </div>
-        </EmptyState>
-      );
-    }}
-  </Story>
-</Preview>
-
-#### With primary & secondary buttons
-<Preview>
-  <Story name="empty state with primary and secondary buttons" height="600px">
-      {() => {
-        return (
+        <div style={{marginTop: '32px'}}>
           <EmptyState
             picture={{
               src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
@@ -93,30 +74,25 @@ The `EmptyState` component is to be used when no results are found based on the 
               <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>
-              <div style={{textAlign: 'center', marginTop: '30px'}}>
-               <Container>
-                 <Row>
-                   <Column cols={6}>
-                      <Button id="primary-btn02" variant="primary" size="sm" tagType='submit' width='120px'>Learn more</Button>
-                    </Column>
-                   <Column cols={6}>
-                      <Button id="primary-btn03" variant="secondary" size="sm" tagType='submit' width='120px'>Learn more</Button>
-                   </Column>
-                 </Row>
-               </Container>
+              <div style={{textAlign: 'center', marginTop: '30px', flex: 'initial', width: `${buttonWidth}`}}>
+                <Button id="primary-btn01" variant="primary" tagType='submit'>Learn more</Button>
               </div>
              </div>
           </EmptyState>
-        );
-      }}
+        </div>
+      );
+    }}
   </Story>
 </Preview>
 
-#### With hero button
+#### With primary & secondary buttons
 <Preview>
-    <Story name="empty state with text link" height="600px">
-        {() => {
-          return (
+  <Story name="empty state with primary and secondary buttons" height="600px">
+      {() => {
+        const desktop = useIsDesktop();
+        const buttonWidth = desktop ? 'auto' : '100%';
+        return (
+          <div style={{marginTop: '32px'}}>
             <EmptyState
               picture={{
                 src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
@@ -130,10 +106,55 @@ The `EmptyState` component is to be used when no results are found based on the 
               </div>
               <div style={{ display: 'flex', justifyContent: 'center'}}>
                 <div style={{textAlign: 'center', marginTop: '30px'}}>
-                   <Button id="hero" variant="hero">Learn more</Button>
+                 <Container>
+                   <Row>
+                     <Column md={6} sm={12}>
+                       <div style={{whiteSpace: 'nowrap'}}>
+                          <Button id="primary-btn01" variant="primary" size="sm" >Learn more</Button>
+                        </div>
+                      </Column>
+                     <Column md={6} sm={12}>
+                        <div style={{whiteSpace: 'nowrap'}}>
+                          <Button id="primary-btn03" variant="tertiary" size="md" style={{margin: 0, display: 'inline-block', padding: '1.2rem'}}>Learn more</Button>
+                        </div>
+                     </Column>
+                   </Row>
+                 </Container>
                 </div>
                </div>
             </EmptyState>
+          </div>
+        );
+      }}
+  </Story>
+</Preview>
+
+#### With hero button
+<Preview>
+    <Story name="empty state with text link" height="600px">
+        {() => {
+          const desktop = useIsDesktop();
+          const buttonWidth = desktop ? 'auto' : '100%';
+          return (
+            <div style={{marginTop: '32px'}}>
+              <EmptyState
+                picture={{
+                  src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
+                  srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
+                  alt: 'alt text',
+                  title: 'no results found',
+                }}
+              >
+                <div style={{fontSize: '20px', lineHeight: '30px'}}>
+                  <p>Try <a href="#" title="link">adjusting your search or filter</a> to find what you are looking for.</p>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center'}}>
+                  <div style={{textAlign: 'center', marginTop: '30px', flex: 'initial', width: `${buttonWidth}`}}>
+                    <Button id="hero" variant="hero" tagType='submit'>Learn more</Button>
+                  </div>
+                </div>
+              </EmptyState>
+            </div>
           );
         }}
       </Story>
