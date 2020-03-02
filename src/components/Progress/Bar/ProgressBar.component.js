@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 
 const StyledBar = styled.div`
   width: 100%;
+  height: 0.6rem;
   font-size: ${({ theme }) => theme.fontSize.sm};
   z-index: ${({ theme }) => (theme.zIndex[30])};
   position: ${({ isSticky, stuck }) => (isSticky || stuck ? 'fixed' : 'relative')};
@@ -23,10 +24,9 @@ const StyledProgress = styled.progress`
   left: 0;
   height: 100%;
   width: 100%;
-  background: ${({ theme }) => theme.progress.bar.background};
-  /* ie11 */
+  /* IE-11 styling */
+  color: ${({ theme }) => theme.progress.bar.progressBackground};
   &[value]  {
-    background: ${({ theme }) => theme.progress.bar.progressBackground};
     /* Reset the default appearance */
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -34,36 +34,23 @@ const StyledProgress = styled.progress`
     /* Get rid of default border in IE. */
     border: none;
   }
+  
+  ::-webkit-progress-bar {
+    background: ${({ theme }) => theme.progress.bar.backgroundValue};
+  }
+  ::-webkit-progress-value {
+    ${sharedStyleProgress}
+  }
 
   /* ie11 & edge remove black right border */
   &::-ms-fill {
     border-color: currentColor;
   }
 
-  &::-webkit-progress-bar {
-    background: ${({ theme }) => theme.progress.bar.backgroundValue};
-    transition: background-color 300ms ease-in-out;
-  }
-
-  ::-webkit-progress-value {
-    ${sharedStyleProgress}
-  }
   ::-moz-progress-bar {
     ${sharedStyleProgress}
   }
 `;
-
-const StyledLabel = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  font-weight:  ${({ theme }) => theme.fontWeight.semibold};
-  animation: 0.4s ease-in-out 0.3s 1 forwardsKey;
-  height: 0.6rem;
-  margin-left: ${({ value }) => `${value}vw`};
-  right: ${({ value }) => (value > 10 ? '4.8rem' : '3.5rem')};
-`;
-
 
 const Bar = ({
   value,
@@ -72,7 +59,6 @@ const Bar = ({
 }) => (
   <StyledBar stuck={stuck} isSticky={isSticky} value={value}>
     <StyledProgress max="100" value={value} />
-    <StyledLabel value={value} />
   </StyledBar>
 );
 

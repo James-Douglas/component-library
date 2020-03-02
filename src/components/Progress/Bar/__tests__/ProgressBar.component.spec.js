@@ -18,12 +18,4 @@ describe('ProgressBar', () => {
     const list = container.getElementsByTagName('progress')[0];
     expect(list).toHaveAttribute('value', '100');
   });
-  it('should check styles', () => {
-    const { container } = render(<ProgressBar value="60" />);
-    const progress = container.querySelectorAll('div')[1];
-    expect(progress).toHaveStyle(`
-     margin-left: 60vw;
-     right: 4.8rem;
-   `);
-  });
 });
