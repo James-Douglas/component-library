@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup.component renders with minimal props 1`] = `
-"<label for=\\"test-group-id\\" class=\\"sc-AxmLO cOfPUX label\\">test</label><div class=\\"sc-AxjAm jXbLlE row \\"><div cols=\\"10\\" class=\\"sc-AxirZ bqXgZh 
+"<label for=\\"test-group-id\\" class=\\"sc-AxmLO cOfPUX label\\">test</label><div class=\\"sc-AxjAm PwlS row \\"><div cols=\\"10\\" class=\\"sc-AxirZ bqXgZh 
         
-      \\"><div id=\\"test-group-id\\" class=\\"sc-fzplWN jHAIBM\\"><div class=\\"sc-AxjAm bBdKfe row sc-fznyAO bRWhiY\\"><div cols=\\"6\\" class=\\"sc-AxirZ fdkuXV 
+      \\"><div id=\\"test-group-id\\" class=\\"sc-fzplWN jHAIBM\\"><div class=\\"sc-AxjAm boucMs row sc-fznyAO bRWhiY\\"><div cols=\\"6\\" class=\\"sc-AxirZ fdkuXV 
         sc-fznKkj dSAkUj
       \\"><div invalid=\\"\\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-1\\" class=\\"sc-fzqNJr iEwMcY\\"><div class=\\"sc-fzqBZW cWODNZ\\"></div></label></div></div></div><div cols=\\"6\\" class=\\"sc-AxirZ fdkuXV 
         sc-fznKkj dSAkUj
@@ -13,9 +13,9 @@ exports[`CheckboxGroup.component renders with minimal props 1`] = `
 `;
 
 exports[`CheckboxGroup.component renders with props 1`] = `
-"<label for=\\"test-group-id\\" class=\\"sc-AxmLO cOfPUX label\\"></label><div class=\\"sc-AxjAm jXbLlE row \\"><div cols=\\"10\\" class=\\"sc-AxirZ bqXgZh 
+"<label for=\\"test-group-id\\" class=\\"sc-AxmLO cOfPUX label\\"></label><div class=\\"sc-AxjAm PwlS row \\"><div cols=\\"10\\" class=\\"sc-AxirZ bqXgZh 
         
-      \\"><div id=\\"test-group-id\\" class=\\"sc-fzplWN jHAIBM\\"><div class=\\"sc-AxjAm bBdKfe row sc-fznyAO bRWhiY\\"><div cols=\\"5\\" class=\\"sc-AxirZ hLxfNh 
+      \\"><div id=\\"test-group-id\\" class=\\"sc-fzplWN jHAIBM\\"><div class=\\"sc-AxjAm boucMs row sc-fznyAO bRWhiY\\"><div cols=\\"5\\" class=\\"sc-AxirZ hLxfNh 
         sc-fznKkj dSAkUj
       \\"><div invalid=\\"\\"><div class=\\"sc-fzokOt GTdvt\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fznZeY kkuFkc\\"><label for=\\"A-1\\" class=\\"sc-fzqNJr iEwMcY\\"><div class=\\"sc-fzqBZW cWODNZ\\"></div></label></div></div></div><div cols=\\"5\\" class=\\"sc-AxirZ hLxfNh 
         sc-fznKkj dSAkUj

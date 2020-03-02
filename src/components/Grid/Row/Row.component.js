@@ -14,6 +14,7 @@ const StyledRow = styled.div`
     flex-wrap: ${props.flexWrap};
   `}
   margin-bottom: ${({ theme, removeMarginBottom }) => (removeMarginBottom ? 0 : theme.spacing[24])};
+  width: 100%; /* IE 11 fix */
 `;
 
 const Row = ({
