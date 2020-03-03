@@ -15,7 +15,12 @@ exports[`Row renders correctly without props 1`] = `
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-bottom: 2.4rem;
-  width: 100%;
+}
+
+@media screen and (-ms-high-contrast:active),(-ms-high-contrast:none) {
+  .c0 {
+    width: 100%;
+  }
 }
 
 @media (min-width:1200px) {
