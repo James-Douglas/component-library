@@ -73,6 +73,7 @@ UX holds the account info, where you can log in and grab the key. When set up, i
 ```
   import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
 ```
+Check the react package for more usage examples [here](https://github.com/FortAwesome/react-fontawesome)
 
 ## Whitelabeling
 Whitelabeling can be achieved via theme files and Manor has been developed with this capability. 
