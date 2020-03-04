@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import getTheme from 'utils/getTheme';
 
 const StyledMicrocopy = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.normal};
@@ -12,11 +11,9 @@ const StyledMicrocopy = styled.p`
 const Microcopy = ({
   children,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledMicrocopy>
-      {children}
-    </StyledMicrocopy>
-  </ThemeProvider>
+  <StyledMicrocopy>
+    {children}
+  </StyledMicrocopy>
 );
 
 Microcopy.propTypes = {

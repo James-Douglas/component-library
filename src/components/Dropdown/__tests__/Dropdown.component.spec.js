@@ -2,11 +2,10 @@ import React from 'react';
 import 'jest-styled-components';
 import { act } from 'react-dom/test-utils';
 import { fireEvent, render } from '../../../testUtils';
-import getTheme from '../../../utils/getTheme';
 import Dropdown from '../Dropdown.component';
 import DropdownItem from '../DropdownItem.component';
+import theme from '../../../themes/ctm.theme';
 
-const theme = getTheme();
 let mockUseIsDesktopValue = true;
 jest.mock('../../../hooks/useIsDesktop', () => ({
   __esModule: true,

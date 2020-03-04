@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import getTheme from 'utils/getTheme';
 
 const StyledSubscript = styled.p`
   line-height: ${({ theme }) => theme.lineHeight.snug};
@@ -15,11 +14,9 @@ const StyledSubscript = styled.p`
 const Subscript = ({
   children,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledSubscript>
-      {children}
-    </StyledSubscript>
-  </ThemeProvider>
+  <StyledSubscript>
+    {children}
+  </StyledSubscript>
 );
 
 Subscript.propTypes = {

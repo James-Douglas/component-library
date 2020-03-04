@@ -1,10 +1,9 @@
 import React, {
   useCallback, useEffect, useLayoutEffect, useRef,
 } from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import { useLayers } from './provider/ManorProvider';
-import getTheme from './utils/getTheme';
 import usePrevious from './hooks/usePrevious';
 
 const StyledLayer = styled.span`
@@ -14,10 +13,9 @@ const StyledLayer = styled.span`
 `;
 
 const LayerEventManager = ({
-  id, visible, closeOnEsc, trapFocus, handleClose, children,
+  id, visible, closeOnEsc, trapFocus, handleClose, children, theme,
 }) => {
   const layerInfo = useLayers();
-  const theme = getTheme();
   const zIndex = useRef(parseInt(theme.zIndex[40], 10));
   const layerId = useRef(id);
   const previouslyVisible = usePrevious(visible);
@@ -106,6 +104,8 @@ LayerEventManager.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
   handleClose: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 LayerEventManager.defaultProps = {
@@ -113,6 +113,7 @@ LayerEventManager.defaultProps = {
   closeOnEsc: true,
   trapFocus: true,
   handleClose: null,
+  theme: {},
 };
 
-export default LayerEventManager;
+export default withTheme(LayerEventManager);

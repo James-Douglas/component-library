@@ -1,28 +1,29 @@
 import applySpacing, { spacingPropTypes } from '../applySpacing';
+import theme from '../../themes/ctm.theme';
 
 describe('applySpacing()', () => {
   it('applies spacing from an array to a css margin declaration', () => {
-    const result = applySpacing('margin', ['24']);
+    const result = applySpacing(theme, 'margin', ['24']);
     expect(result).toEqual('margin: 2.4rem');
   });
 
   it('applies spacing from an array with multiple values to a css margin declaration', () => {
-    const result = applySpacing('margin', ['24', '4', '8', '16']);
+    const result = applySpacing(theme, 'margin', ['24', '4', '8', '16']);
     expect(result).toEqual('margin: 2.4rem 0.4rem 0.8rem 1.6rem');
   });
 
   it('applies spacing from an array to a css padding declaration', () => {
-    const result = applySpacing('padding', ['4']);
+    const result = applySpacing(theme, 'padding', ['4']);
     expect(result).toEqual('padding: 0.4rem');
   });
 
   it('applies spacing from an array with multiple values to a css padding declaration', () => {
-    const result = applySpacing('padding', ['20', '8', '40', '16']);
+    const result = applySpacing(theme, 'padding', ['20', '8', '40', '16']);
     expect(result).toEqual('padding: 2rem 0.8rem 4rem 1.6rem');
   });
 
   it('replaces an invalid value with 0', () => {
-    const result = applySpacing('padding', ['21', '8', '40', '16']);
+    const result = applySpacing(theme, 'padding', ['21', '8', '40', '16']);
     expect(result).toEqual('padding: 0 0.8rem 4rem 1.6rem');
   });
 });

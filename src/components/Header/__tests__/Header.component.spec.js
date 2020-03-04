@@ -2,9 +2,7 @@ import React from 'react';
 import { render } from '../../../testUtils';
 import Header from '../Header.component';
 import 'jest-styled-components';
-import getTheme from '../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../themes/ctm.theme';
 
 let mockUseIsStickyValue = true;
 jest.mock('../../../hooks/useIsSticky', () => ({

@@ -4,7 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { ManorGlobalStyles } from '../components/Global/manorGlobal.component';
-import getTheme from '../utils/getTheme';
+import CTMTheme from '../themes/ctm.theme';
 
 const noop = () => {};
 
@@ -13,7 +13,9 @@ const LayerContext = createContext({
 });
 
 const ManorProvider = (props) => {
-  const { children, disableGlobalStyles } = props;
+  const {
+    theme, children, disableGlobalStyles, ...otherProps
+  } = props;
   const [layers, setLayers] = useState([]);
 
   const layerInfo = useMemo(() => ({
@@ -31,10 +33,10 @@ const ManorProvider = (props) => {
 
   return (
     <>
-      <ThemeProvider theme={getTheme()}>
+      <ThemeProvider theme={theme}>
         {!disableGlobalStyles && <ManorGlobalStyles />}
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <LayerContext.Provider value={layerInfo} {...props}>
+        <LayerContext.Provider value={layerInfo} {...otherProps}>
           {children}
         </LayerContext.Provider>
       </ThemeProvider>
@@ -43,6 +45,8 @@ const ManorProvider = (props) => {
 };
 
 ManorProvider.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
   /**
    * Disables the injection of global styles.
    */
@@ -58,6 +62,7 @@ ManorProvider.propTypes = {
 };
 
 ManorProvider.defaultProps = {
+  theme: CTMTheme,
   disableGlobalStyles: false,
   children: [],
 };

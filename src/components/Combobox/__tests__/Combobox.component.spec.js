@@ -2,9 +2,8 @@ import React from 'react';
 import { fireEvent, render } from '../../../testUtils';
 import Combobox from '../Combobox.component';
 import 'jest-styled-components';
-import getTheme from '../../../utils/getTheme';
+import theme from '../../../themes/ctm.theme';
 
-const theme = getTheme();
 const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fugiat veniam minus', 'et presentation tempora', 'xfque dfsdf', 'presentation dfsdf que ffgddfg', 'presentation dfsdf que'];
 
 

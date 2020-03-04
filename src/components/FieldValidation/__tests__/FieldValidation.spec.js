@@ -1,9 +1,7 @@
 import React from 'react';
 import { render } from '../../../testUtils';
 import FieldValidation from '../FieldValidation.component';
-import getTheme from '../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../themes/ctm.theme';
 
 describe('FieldValidation', () => {
   it('does not render when message is not provided', () => {

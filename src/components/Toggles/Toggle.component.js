@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BaseToggle from './BaseToggle';
 import ToggleLabel from './ToggleLabel';
@@ -67,41 +66,35 @@ export function getPictureToggleContent(pictureOptions, label) {
     title,
   } = pictureOptions;
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledImageToggle>
-        <StyledPicture>
-          <Picture
-            src={src}
-            srcsets={srcsets}
-            alt={alt}
-            title={title}
-          />
-        </StyledPicture>
-        <span>{label}</span>
-      </StyledImageToggle>
-    </ThemeProvider>
+    <StyledImageToggle>
+      <StyledPicture>
+        <Picture
+          src={src}
+          srcsets={srcsets}
+          alt={alt}
+          title={title}
+        />
+      </StyledPicture>
+      <span>{label}</span>
+    </StyledImageToggle>
   );
 }
 
 
 export function getIconToggleContent(icon, iconSize, label) {
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledIconToggleContent>
-        <FontAwesomeIcon icon={icon} size={iconSize} />
-        <StyledIconContent>{label}</StyledIconContent>
-      </StyledIconToggleContent>
-    </ThemeProvider>
+    <StyledIconToggleContent>
+      <FontAwesomeIcon icon={icon} size={iconSize} />
+      <StyledIconContent>{label}</StyledIconContent>
+    </StyledIconToggleContent>
   );
 }
 
 export function getTextToggleContent(type, rectOptions, label) {
   return (
-    <ThemeProvider theme={getTheme()}>
-      <StyledTextToggleContent type={type} rectOptions={rectOptions}>
-        {label}
-      </StyledTextToggleContent>
-    </ThemeProvider>
+    <StyledTextToggleContent type={type} rectOptions={rectOptions}>
+      {label}
+    </StyledTextToggleContent>
   );
 }
 
@@ -144,23 +137,21 @@ const Toggle = ({
     }
   };
   return (
-    <ThemeProvider theme={getTheme()}>
-      <BaseToggle
-        id={id}
-        type={type}
-        value={value}
-        name={name}
-        selectedValue={selectedValue}
-        invalid={invalid}
-        disabled={disabled}
-        handleToggle={toggleHandler}
-        handleFocus={handleFocus}
-        handleBlur={handleBlur}
-        rectOptions={rectOptions}
-      >
-        {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
-      </BaseToggle>
-    </ThemeProvider>
+    <BaseToggle
+      id={id}
+      type={type}
+      value={value}
+      name={name}
+      selectedValue={selectedValue}
+      invalid={invalid}
+      disabled={disabled}
+      handleToggle={toggleHandler}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
+      rectOptions={rectOptions}
+    >
+      {getToggleContent(icon, iconSize, pictureOptions, id, type, rectOptions, label)}
+    </BaseToggle>
   );
 };
 

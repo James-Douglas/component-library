@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import getTheme from 'utils/getTheme';
 
 const StyledBodyText = styled.p`
   line-height: ${({ theme }) => theme.lineHeight.snug};
@@ -20,11 +19,9 @@ const BodyText = ({
   variant,
   children,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledBodyText variant={variant}>
-      {children}
-    </StyledBodyText>
-  </ThemeProvider>
+  <StyledBodyText variant={variant}>
+    {children}
+  </StyledBodyText>
 );
 
 BodyText.propTypes = {

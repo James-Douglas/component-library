@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { createGlobalStyle } from 'styled-components';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 
@@ -88,32 +87,30 @@ const ColorToggle = ({
   const displayLabel = getDisplayLabel(label, backgroundColor);
 
   return (
-    <ThemeProvider theme={getTheme()}>
-      <>
-        <GlobalStyle />
-        <div className={`scoped-toggle ${fontColor}`}>
-          <BaseToggle
-            id={id}
-            type="custom"
-            value={value}
-            name={name}
-            selectedValue={selectedValue}
-            invalid={invalid}
-            disabled={disabled}
-            handleToggle={toggleHandler}
-            handleFocus={handleFocus}
-            handleBlur={handleBlur}
-          >
-            <ToggleLabel id={id}>
-              <StyledColourToggle>
-                <StyledContent>{displayLabel}</StyledContent>
-                <StyledBorderColour style={animationStyle} />
-              </StyledColourToggle>
-            </ToggleLabel>
-          </BaseToggle>
-        </div>
-      </>
-    </ThemeProvider>
+    <>
+      <GlobalStyle />
+      <div className={`scoped-toggle ${fontColor}`}>
+        <BaseToggle
+          id={id}
+          type="custom"
+          value={value}
+          name={name}
+          selectedValue={selectedValue}
+          invalid={invalid}
+          disabled={disabled}
+          handleToggle={toggleHandler}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
+        >
+          <ToggleLabel id={id}>
+            <StyledColourToggle>
+              <StyledContent>{displayLabel}</StyledContent>
+              <StyledBorderColour style={animationStyle} />
+            </StyledColourToggle>
+          </ToggleLabel>
+        </BaseToggle>
+      </div>
+    </>
   );
 };
 

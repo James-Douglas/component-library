@@ -1,13 +1,10 @@
 import React from 'react';
 import 'jest-styled-components';
-import { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
 import { render, fireEvent } from '../../../testUtils';
 import Input, {
   renderClearIcon, renderAffix,
 } from '../Input.component';
-
-const theme = getTheme();
+import theme from '../../../themes/ctm.theme';
 
 const SvgUkFlag = () => (
   <svg width="30" height="21" xmlns="http://www.w3.org/2000/svg">
@@ -41,9 +38,9 @@ describe('renderClearIcon()', () => {
     // eslint-disable-next-line react/prop-types
     value, clearInput, isAutofill, label,
   }) => (
-    <ThemeProvider theme={getTheme()}>
+    <>
       {renderClearIcon(value, clearInput, isAutofill, label)}
-    </ThemeProvider>
+    </>
   );
 
   it('does not render an clearIcon if the value.length is over 0', () => {
@@ -66,9 +63,9 @@ describe('renderAffix()', () => {
     // eslint-disable-next-line react/prop-types
     affixType, affixContent, bordered, isAutofill, disabled,
   }) => (
-    <ThemeProvider theme={getTheme()}>
+    <>
       {renderAffix(affixType, affixContent, bordered, isAutofill, disabled)}
-    </ThemeProvider>
+    </>
   );
 
   it('does not render a prefix or suffix if its not supplied', () => {

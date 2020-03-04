@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import getTheme from 'utils/getTheme';
 
 const StyledSubtitle = styled.p`
   ${({ variant, theme }) => variant === 'primary' && css`
@@ -20,11 +19,9 @@ const Subtitle = ({
   variant,
   children,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledSubtitle variant={variant}>
-      {children}
-    </StyledSubtitle>
-  </ThemeProvider>
+  <StyledSubtitle variant={variant}>
+    {children}
+  </StyledSubtitle>
 );
 
 Subtitle.propTypes = {

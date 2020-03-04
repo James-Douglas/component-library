@@ -1,9 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '../../../testUtils';
 import Textarea, { getRemainingLimit, getRemainingCharsContent } from '../Textarea.component';
-import getTheme from '../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../themes/ctm.theme';
 
 describe('getRemainingLimit()', () => {
   it('returns charLimit when no value given', () => {

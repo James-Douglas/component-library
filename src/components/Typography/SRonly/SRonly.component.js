@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import getTheme from 'utils/getTheme';
 
 const StyledSr = styled.div`
   position: absolute;
@@ -18,11 +17,9 @@ const StyledSr = styled.div`
 const SRonly = ({
   children,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledSr>
-      {children}
-    </StyledSr>
-  </ThemeProvider>
+  <StyledSr>
+    {children}
+  </StyledSr>
 );
 
 SRonly.propTypes = {

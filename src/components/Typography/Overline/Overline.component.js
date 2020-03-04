@@ -1,7 +1,6 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import getTheme from 'utils/getTheme';
 
 const StyledOverline = styled.p`
   line-height: ${({ theme }) => theme.lineHeight.snug};
@@ -15,11 +14,9 @@ const StyledOverline = styled.p`
 const Overline = ({
   children,
 }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledOverline>
-      {children}
-    </StyledOverline>
-  </ThemeProvider>
+  <StyledOverline>
+    {children}
+  </StyledOverline>
 );
 
 Overline.propTypes = {

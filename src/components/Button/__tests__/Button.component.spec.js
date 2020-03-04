@@ -3,9 +3,7 @@ import 'jest-styled-components';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 import { render } from '../../../testUtils';
 import Button from '../Button.component';
-import getTheme from '../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../themes/ctm.theme';
 
 describe('Button', () => {
   it('renders correctly with minimal props', () => {

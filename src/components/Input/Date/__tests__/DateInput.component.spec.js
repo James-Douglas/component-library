@@ -1,9 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '../../../../testUtils';
 import DateInput from '../DateInput.component';
-import getTheme from '../../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../../themes/ctm.theme';
 
 describe('DateInput', () => {
   it('renders with minimal props', () => {

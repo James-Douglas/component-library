@@ -1,10 +1,8 @@
 import React from 'react';
-import getTheme from 'utils/getTheme';
 import { render } from '../../../../testUtils';
+import theme from '../../../../themes/ctm.theme';
 import 'jest-styled-components';
 import Row from '../Row.component';
-
-const theme = getTheme();
 
 describe('Row', () => {
   it('renders correctly without props', () => {

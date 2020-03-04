@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 
 const StyledContainer = styled.div`
   width: ${({ theme }) => theme.maxWidth.full};
@@ -15,11 +14,9 @@ const StyledContainer = styled.div`
 `;
 
 const Container = ({ children, className }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledContainer className={className}>
-      {children}
-    </StyledContainer>
-  </ThemeProvider>
+  <StyledContainer className={className}>
+    {children}
+  </StyledContainer>
 );
 
 Container.propTypes = {

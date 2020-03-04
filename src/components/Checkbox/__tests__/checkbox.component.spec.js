@@ -2,9 +2,7 @@ import React from 'react';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 import { render, fireEvent } from '../../../testUtils';
 import Checkbox, { renderIcon } from '../Checkbox.component';
-import getTheme from '../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../themes/ctm.theme';
 
 describe('renderIcon()', () => {
   // eslint-disable-next-line react/prop-types

@@ -1,12 +1,12 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import getTheme from '../../utils/getTheme';
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import theme from '../../themes/ctm.theme';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 import ColorDisplay from './ColorDisplay';
 import ColorUsageTable from './ColorUsageTable';
 
-<Meta title="Docs|Colors" />
+<Meta title="Foundation/Colors" />
 
 # CTM Color Guidelines
 
@@ -18,7 +18,7 @@ sufficient colour contrast between elements so that people with low vision can s
 
 <Story name="Primary Color Palette">
   {() => {
-    const { colors } = getTheme();
+    const { colors } = theme;
     const primaryColors = [
       {
         name: 'primary50',
@@ -90,7 +90,7 @@ sufficient colour contrast between elements so that people with low vision can s
             </Column>
           ))}
         </Row>
-        <h4>Usage</h4>
+       <h4>Usage</h4>
         <Row>
           <Column cols={12}>
             <ColorUsageTable colors={primaryColors} />
@@ -105,7 +105,7 @@ sufficient colour contrast between elements so that people with low vision can s
 
 <Story name="Base Color Palette">
   {() => {
-    const { colors } = getTheme();
+    const { colors } = theme;
     const blackWhiteColors = [
       {
         name: 'black',
@@ -219,7 +219,7 @@ sufficient colour contrast between elements so that people with low vision can s
 
 <Story name="Functional Color Palette">
   {() => {
-    const { colors } = getTheme();
+    const { colors } = theme;
     const success = [
       {
         name: 'success50',
@@ -345,7 +345,7 @@ sufficient colour contrast between elements so that people with low vision can s
 
 <Story name="Hero Color Palette">
   {() => {
-    const { colors } = getTheme();
+    const { colors } = theme;
     const hero = [
       {
         name: 'hero50',

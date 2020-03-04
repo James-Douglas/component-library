@@ -11,8 +11,8 @@ const StyledCard = styled.div`
   background: ${({ theme }) => theme.card.background};
   box-shadow: ${({ theme }) => theme.card.shadow};
   border: ${({ theme }) => theme.card.border};
-  ${({ margin }) => applySpacing('margin', margin)};
-  ${({ padding }) => applySpacing('padding', padding)};
+  ${({ margin, theme }) => applySpacing(theme, 'margin', margin)};
+  ${({ padding, theme }) => applySpacing(theme, 'padding', padding)};
 `;
 
 const Card = ({

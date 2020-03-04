@@ -2,9 +2,7 @@ import React from 'react';
 import { render } from '../../../testUtils';
 import Notification from '../Notification.component';
 import 'jest-styled-components';
-import getTheme from '../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../themes/ctm.theme';
 
 describe('Notification()', () => {
   it('Notification renders with minimal props', () => {

@@ -3,9 +3,7 @@ import { act, fireEvent, render } from '../../../testUtils';
 import 'jest-styled-components';
 import AccordionPanel from '../AccordionPanel.component';
 import Accordion from '../Accordion.component';
-import getTheme from '../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../themes/ctm.theme';
 
 describe('Accordion', () => {
   it('renders correctly without prop', () => {

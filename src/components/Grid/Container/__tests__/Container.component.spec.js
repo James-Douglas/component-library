@@ -2,9 +2,7 @@ import React from 'react';
 import { render } from '../../../../testUtils';
 import 'jest-styled-components';
 import Container from '../Container.component';
-import getTheme from '../../../../utils/getTheme';
-
-const theme = getTheme();
+import theme from '../../../../themes/ctm.theme';
 
 describe('Container', () => {
   it('renders correctly without props', () => {

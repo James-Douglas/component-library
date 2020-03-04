@@ -1,9 +1,9 @@
-import getTheme from 'utils/getTheme';
+import baseTheme from '../themes/ctm.theme';
 
 const spacingPropTypes = (props, propName, componentName) => {
   // eslint-disable-next-line react/destructuring-assignment
   const values = props[propName];
-  const spacing = Object.keys(getTheme().spacing);
+  const spacing = Object.keys(baseTheme.spacing);
 
   if (values === undefined || values.length === 0) return null;
 
@@ -24,12 +24,12 @@ const spacingPropTypes = (props, propName, componentName) => {
   return null;
 };
 
-const applySpacing = (spacingType, spacingValue) => {
-  const theme = getTheme();
+const applySpacing = (theme, spacingType, spacingValue) => {
   const validCSS = spacingValue.map((v) => (theme.spacing[v] !== undefined ? theme.spacing[v] : '0'));
   const parsedResult = `${spacingType}: ${validCSS.join(' ')}`;
   return parsedResult;
 };
+
 
 export { spacingPropTypes };
 export default applySpacing;

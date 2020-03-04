@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 
 const StyledToggleLabel = styled.label`
   height: 100%;
@@ -23,11 +22,9 @@ const StyledContent = styled.div`
 `;
 
 const ToggleLabel = ({ id, children }) => (
-  <ThemeProvider theme={getTheme()}>
-    <StyledToggleLabel htmlFor={id}>
-      <StyledContent>{children}</StyledContent>
-    </StyledToggleLabel>
-  </ThemeProvider>
+  <StyledToggleLabel htmlFor={id}>
+    <StyledContent>{children}</StyledContent>
+  </StyledToggleLabel>
 );
 
 ToggleLabel.propTypes = {

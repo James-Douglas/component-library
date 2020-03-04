@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, css } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled, { css } from 'styled-components';
 
 const StyledToggle = styled.div`
   display: flex;
@@ -104,35 +103,32 @@ const BaseToggle = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <ThemeProvider theme={getTheme()}>
-      <StyledToggle
-        style={getInlineStyles(type, rectOptions)}
-        onClick={() => {
-          toggleElement.current.click();
-          toggleElement.current.focus();
-        }}
+    <StyledToggle
+      style={getInlineStyles(type, rectOptions)}
+      onClick={() => {
+        toggleElement.current.click();
+        toggleElement.current.focus();
+      }}
+      invalid={invalid}
+      ref={wrapperElement}
+      className={className}
+    >
+      <StyledToggleInput
+        tabIndex={0}
+        ref={toggleElement}
         invalid={invalid}
-        ref={wrapperElement}
-        className={className}
-      >
-        <StyledToggleInput
-          tabIndex={0}
-          ref={toggleElement}
-          invalid={invalid}
-          id={id}
-          type="radio"
-          onChange={() => handleToggle(value)}
-          checked={selectedValue === value}
-          disabled={disabled}
-          name={name}
-          value={value}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        />
-        {children}
-      </StyledToggle>
-    </ThemeProvider>
-
+        id={id}
+        type="radio"
+        onChange={() => handleToggle(value)}
+        checked={selectedValue === value}
+        disabled={disabled}
+        name={name}
+        value={value}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+      {children}
+    </StyledToggle>
   );
 };
 

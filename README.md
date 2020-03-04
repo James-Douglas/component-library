@@ -1,7 +1,5 @@
 # Manor component Library
-Desigin system component library for CTM - tested on Node v10.17.0
-
-[View Manor components on Storybook](https://services.dev.comparethemarket.cloud/manor/)
+Design system component library for CTM - tested on Node v10.17.0
 
 ## Usage
 
@@ -76,28 +74,21 @@ UX holds the account info, where you can log in and grab the key. When set up, i
 Check the react package for more usage examples [here](https://github.com/FortAwesome/react-fontawesome)
 
 ## Whitelabeling
-Whitelabeling can be achieved via theme files and Manor has been developed with this capability. 
-
-### Adding a theme
-
-Add the theme file in `src/themes` and the export to `src/themes/index`. It's recommended to copy the contents of the CTM
-theme file (remember to rename the object) and then override values where necessary.
-
-Update the `getTheme` function (`src/utils/getTheme.js`) - importing your new theme and checking `process.env.MANOR_THEME`
-for your theme name.
-
-Finally, so that the theme can be referenced within applications, add an entry for the new theme in the copy() section
-of the rollup config, as below:
-
-```
-copy({
-        targets: [
-          { src: 'src/themes/ctm.theme.js', dest: 'lib'},
-          { src: 'src/themes/choosi.theme.js', dest: 'lib'}
-        ]
-      }),
-```
+Whitelabeling can be achieved via theming and Manor has been developed with this capability. 
 
 ### Using a theme
 
-Simply set the `process.env.MANOR_THEME` to your theme name when running your app.
+The easiest way to theme is to import the base (CTM) theme, override variables as desired, then pass the modified theme to `ManorProvider`:
+
+```
+//app.js
+import theme from '@comparethemarketau/manor/lib/themes';
+
+theme.colors.primary50 = '#3deb34';
+theme.accordion.background = 'red';
+theme.borders.component = '2px solid yellow';
+
+<ManorProvider theme={theme}>
+    <App />
+</ManorProvider>
+```

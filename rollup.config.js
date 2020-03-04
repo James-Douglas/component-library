@@ -109,7 +109,6 @@ const buildLibrary = () => {
     plugins: [
       babel({ exclude: "node_modules/**" }),
       commonjs(),
-      uglify(),
       filesize()
     ]
   });
@@ -125,7 +124,6 @@ const buildLibrary = () => {
     plugins: [
       babel({ exclude: "node_modules/**" }),
       commonjs(),
-      uglify(),
       filesize()
     ]
   });

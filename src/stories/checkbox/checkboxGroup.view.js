@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import getTheme from 'utils/getTheme';
+import styled from 'styled-components';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import CheckboxGroup from '../../components/Checkbox/CheckboxGroup.component';
@@ -55,75 +54,72 @@ const CheckboxGroupView = () => {
   };
 
   return (
-    <ThemeProvider theme={getTheme()}>
+    <StyledGridView>
+      <Container>
+        <Row>
+          <Column offset={2} cols={10}>
+            <CheckboxGroup
+              label="Group A"
+              tooltip={{ title: 'Group A', body: 'This is a tooltip for group A' }}
+              validationMessage={validationMessageGroupA}
+              groupId={g1}
+              colSize="6"
+              handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
+            >
+              <Checkbox id="A-1" label="A-1 check" />
+              <Checkbox id="A-2" label="A-2 check" />
+              <Checkbox id="A-3" label="A-3 check" />
+              <Checkbox id="A-4" label="A-4 check" />
+              <Checkbox id="A-5" label="A-5 check" />
+              <Checkbox id="A-6" label="A-6 check" />
+            </CheckboxGroup>
+          </Column>
+        </Row>
+        <Row>
+          <Column offset={2} cols={10}>
+            <CheckboxGroup
+              label="Group B"
+              validationMessage={validationMessageGroupB}
+              groupId={g2}
+              colSize="6"
+              handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
+            >
+              <Checkbox id="B-1" label="B-1 check" />
+              <Checkbox id="B-2" isSelected label="B-1 check" />
+              <Checkbox id="B-3" label="B-1 check" />
+              <Checkbox id="B-4" isSelected label="B-1 check" />
+              <Checkbox id="B-5" label="B-1 check" />
+              <Checkbox id="B-6" isSelected label="B-1 check" />
+            </CheckboxGroup>
+          </Column>
+        </Row>
 
-      <StyledGridView>
-        <Container>
-          <Row>
-            <Column offset={2} cols={10}>
-              <CheckboxGroup
-                label="Group A"
-                tooltip={{ title: 'Group A', body: 'This is a tooltip for group A' }}
-                validationMessage={validationMessageGroupA}
-                groupId={g1}
-                colSize="6"
-                handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
-              >
-                <Checkbox id="A-1" label="A-1 check" />
-                <Checkbox id="A-2" label="A-2 check" />
-                <Checkbox id="A-3" label="A-3 check" />
-                <Checkbox id="A-4" label="A-4 check" />
-                <Checkbox id="A-5" label="A-5 check" />
-                <Checkbox id="A-6" label="A-6 check" />
-              </CheckboxGroup>
-            </Column>
-          </Row>
-          <Row>
-            <Column offset={2} cols={10}>
-              <CheckboxGroup
-                label="Group B"
-                validationMessage={validationMessageGroupB}
-                groupId={g2}
-                colSize="6"
-                handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
-              >
-                <Checkbox id="B-1" label="B-1 check" />
-                <Checkbox id="B-2" isSelected label="B-1 check" />
-                <Checkbox id="B-3" label="B-1 check" />
-                <Checkbox id="B-4" isSelected label="B-1 check" />
-                <Checkbox id="B-5" label="B-1 check" />
-                <Checkbox id="B-6" isSelected label="B-1 check" />
-              </CheckboxGroup>
-            </Column>
-          </Row>
-
-          <Row>
-            <Column offset={2} cols={10}>
-              <StyledResults>
-                {checkboxGroupA.length || checkboxGroupB.length
-                  ? (
-                    <>
-                      <p>
-                        {g1}
-                        :
-                        {' '}
-                        {checkboxGroupA.map((checkbox) => checkbox.id).join(', ')}
-                      </p>
-                      <p>
-                        {g2}
-                        :
-                        {' '}
-                        {checkboxGroupB.map((checkbox) => checkbox.id).join(', ')}
-                      </p>
-                    </>
-                  )
-                  : <p>Nothing selected</p>}
-              </StyledResults>
-            </Column>
-          </Row>
-        </Container>
-      </StyledGridView>
-    </ThemeProvider>
+        <Row>
+          <Column offset={2} cols={10}>
+            <StyledResults>
+              {checkboxGroupA.length || checkboxGroupB.length
+                ? (
+                  <>
+                    <p>
+                      {g1}
+                      :
+                      {' '}
+                      {checkboxGroupA.map((checkbox) => checkbox.id).join(', ')}
+                    </p>
+                    <p>
+                      {g2}
+                      :
+                      {' '}
+                      {checkboxGroupB.map((checkbox) => checkbox.id).join(', ')}
+                    </p>
+                  </>
+                )
+                : <p>Nothing selected</p>}
+            </StyledResults>
+          </Column>
+        </Row>
+      </Container>
+    </StyledGridView>
   );
 };
 

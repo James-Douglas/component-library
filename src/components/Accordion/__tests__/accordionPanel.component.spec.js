@@ -4,10 +4,8 @@ import {
 } from '../../../testUtils';
 import 'jest-styled-components';
 import AccordionPanel from '../AccordionPanel.component';
-import getTheme from '../../../utils/getTheme';
+import theme from '../../../themes/ctm.theme';
 
-
-const theme = getTheme();
 let mockUseIsDesktopValue = true;
 jest.mock('../../../hooks/useIsDesktop', () => ({
   __esModule: true,
