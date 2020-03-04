@@ -49,6 +49,14 @@ const colors = {
   warning700: '#d66c00',
   tooltipBackgroundDark: 'rgba(37, 19, 14, 0.95)',
 
+  // opacity colors
+  black25: 'rgba(0,0,0,0.25)',
+  black50: 'rgba(0,0,0,0.50)',
+  black75: 'rgba(0,0,0,0.75)',
+  white25: 'rgba(255,255,255,0.25)',
+  white50: 'rgba(255,255,255,0.50)',
+  white75: 'rgba(255,255,255,0.75)',
+
   // old colors, to be deleted when new colors are integrated
   primary: '#1C3E94', // blue
   primaryLight: '#136ED2',
@@ -496,7 +504,7 @@ const ctmTheme = {
     },
   },
   separator: {
-    border: `1px solid ${colors.grey100}`,
+    border: `1px solid ${colors.black25}`,
   },
   slider: {
     borderTop: `1px solid ${colors.white}`,
