@@ -249,6 +249,7 @@ const minHeight = {
 
 const minWidth = {
   0: '0',
+  xs: '32rem',
   full: '100%',
 };
 
@@ -455,6 +456,13 @@ const ctmTheme = {
     heightSmall: spacing[32],
     heightLarge: spacing[44],
   },
+  notification: {
+    shadow: elevation.lvl3,
+    success: colors.success500,
+    warning: colors.warning500,
+    error: colors.error500,
+    general: colors.primary500,
+  },
   placeholder: {
     fontSize: fontSize.base,
     color: colors.grey600,
@@ -467,7 +475,6 @@ const ctmTheme = {
     containerBackground: 'transparent',
     borderRadius: borderRadius.lg,
   },
-
   progress: {
     bar: {
       background: colors.white,

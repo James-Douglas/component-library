@@ -1,0 +1,65 @@
+import { useState } from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, boolean} from '@storybook/addon-knobs';
+import Notification from '../../components/Notification/Notification.component';
+import Container from '../../components/Grid/Container/Container.component';
+import Row from '../../components/Grid/Row/Row.component';
+import Column from '../../components/Grid/Column/Column.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowLeft } from '@fortawesome/pro-regular-svg-icons/faLongArrowLeft';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
+
+<Meta title="Components|Notifications/Toast" component={Notification} />
+
+# Toast Notifications
+
+### Please note that this component has additional features requested in the latest design system, and as such this component can only currently be used as a single notification.
+
+<Preview>
+  <Story name="toast notification">
+    {() => {
+      const [ demo1, setDemo1 ] = useState(true);
+      return (
+        <Container>
+          <div style={{marginTop: '120px', width: '50%'}}>
+          <Row>
+            <Column offset="1" cols="10">
+              {demo1 &&
+                <Notification 
+                  type='toast' 
+                  variant="general" 
+                  title="Notification title goes here"
+                  content="This is a toast message"
+                  position='top'
+                  primaryAction={
+                    {
+                      content: 'Action goes here' ,
+                      link: '#',
+                    }
+                  }
+                  icon 
+                  closeButton 
+                  handleClose={() => setDemo1(false)}
+                >
+                </Notification>
+              }
+              {!demo1 && (
+                <div style={{fontSize: '30px'}}>
+                  <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                  <br />
+                  Top Notification hidden
+                </div>
+              )}
+            </Column>
+          </Row>
+          </div>
+        </Container>
+      );
+    }}
+  </Story>
+</Preview>
+
+
+<Props of={Notification} />
+
+
