@@ -14,10 +14,7 @@ const StyledRow = styled.div`
     flex-wrap: ${props.flexWrap};
   `}
   margin-bottom: ${({ theme, removeMarginBottom }) => (removeMarginBottom ? 0 : theme.spacing[24])};
-  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
-   /* IE10+ specific styles */  
-   width: 100%;
-  }
+  width: 100%;
 `;
 
 const Row = ({
