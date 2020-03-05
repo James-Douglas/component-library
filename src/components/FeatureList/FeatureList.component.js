@@ -6,10 +6,13 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 
 const StyledFeatureList = styled.ul`
   margin-left: 0;
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  padding-inline-start: 0;
 `;
 
 const StyledListItem = styled.li`
   display: flex;
+  margin-left: 0;
   margin-bottom: ${({ theme }) => theme.spacing[4]};
 `;
 
@@ -31,7 +34,7 @@ const FeatureList = ({ features, className }) => (
   <StyledFeatureList>
     {features.map((feature) => (
       <StyledListItem key={feature} className={className}>
-        <StyledFeatureListItemIcon><FontAwesomeIcon icon={faCheck} size="md" /></StyledFeatureListItemIcon>
+        <StyledFeatureListItemIcon><FontAwesomeIcon icon={faCheck} /></StyledFeatureListItemIcon>
         <StyledFeatureListItemText>{feature}</StyledFeatureListItemText>
       </StyledListItem>
     ))}

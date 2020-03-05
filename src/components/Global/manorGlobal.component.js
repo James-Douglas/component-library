@@ -125,14 +125,15 @@ export const manor = css`
     color: ${({ theme }) => theme.colors.primary500};
   }
   ol, ul {
-    list-style: none;
-    margin: 0;
+    margin: 0 0 ${({ theme }) => theme.spacing[12]} 0;
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    font-size: ${({ theme }) => theme.fontSize.base};
   }
   ul {
-    padding: ${({ theme }) => theme.spacing[16]};
-    line-height: ${({ theme }) => theme.lineHeight.tighter};
-    font-size: ${({ theme }) => theme.fontSize.sm};
-    list-style-type: disc;
+    list-style-type: square;
+  }
+  ul ul, ol ol {
+    padding-left: ${({ theme }) => theme.spacing[20]};
   }
   button {
     margin: 0;
