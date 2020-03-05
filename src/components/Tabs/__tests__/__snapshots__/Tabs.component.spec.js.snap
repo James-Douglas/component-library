@@ -49,7 +49,7 @@ exports[`TabButton renders multuple TabButtons 1`] = `
 exports[`TabPanel renders a TabPanel 1`] = `
 <div>
   <div
-    class="sc-AxhCb cDnbAX 
+    class="sc-AxhCb jJyYkE 
     tab-panel
     
   "
@@ -65,7 +65,7 @@ exports[`TabPanel renders a TabPanel 1`] = `
 exports[`TabPanel renders additional classNames 1`] = `
 <div>
   <div
-    class="sc-AxhCb cDnbAX 
+    class="sc-AxhCb jJyYkE 
     tab-panel
     test classes
   "
@@ -76,7 +76,7 @@ exports[`TabPanel renders additional classNames 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb cDnbAX 
+    class="sc-AxhCb jJyYkE 
     tab-panel
     another-class
   "
@@ -92,7 +92,7 @@ exports[`TabPanel renders additional classNames 1`] = `
 exports[`TabPanel renders multiple TabPanels 1`] = `
 <div>
   <div
-    class="sc-AxhCb cDnbAX 
+    class="sc-AxhCb jJyYkE 
     tab-panel
     
   "
@@ -103,7 +103,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb cDnbAX 
+    class="sc-AxhCb jJyYkE 
     tab-panel
     
   "
@@ -114,7 +114,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb cDnbAX 
+    class="sc-AxhCb jJyYkE 
     tab-panel
     
   "
@@ -125,7 +125,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb cDnbAX 
+    class="sc-AxhCb jJyYkE 
     tab-panel
     
   "
@@ -141,14 +141,14 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
 exports[`Tabs renders a border 1`] = `
 <div>
   <div
-    class="sc-AxirZ eTYKFo 
+    class="sc-AxirZ iFHeZY 
     tabs-container
     
   "
     style="min-height: initial;"
   >
     <div
-      class="sc-AxiKw kdpPxa tab-button-wrap"
+      class="sc-AxiKw htLnzH tab-button-wrap"
     >
       <button
         class="sc-AxjAm leWZQ 
@@ -176,7 +176,7 @@ exports[`Tabs renders a border 1`] = `
       </button>
     </div>
     <div
-      class="sc-AxhCb dbtUZC 
+      class="sc-AxhCb hIZTYF 
     tab-panel
     
   "
@@ -187,7 +187,7 @@ exports[`Tabs renders a border 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb cDnbAX 
+      class="sc-AxhCb jJyYkE 
     tab-panel
     
   "
@@ -207,14 +207,14 @@ exports[`Tabs renders a border 1`] = `
 exports[`Tabs renders additional classNames 1`] = `
 <div>
   <div
-    class="sc-AxirZ cLOGnr 
+    class="sc-AxirZ glZudf 
     tabs-container
     test classes
   "
     style="min-height: initial;"
   >
     <div
-      class="sc-AxiKw kdpPxa tab-button-wrap"
+      class="sc-AxiKw htLnzH tab-button-wrap"
     >
       <button
         class="sc-AxjAm leWZQ 
@@ -242,7 +242,7 @@ exports[`Tabs renders additional classNames 1`] = `
       </button>
     </div>
     <div
-      class="sc-AxhCb dbtUZC 
+      class="sc-AxhCb hIZTYF 
     tab-panel
     
   "
@@ -253,7 +253,7 @@ exports[`Tabs renders additional classNames 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb cDnbAX 
+      class="sc-AxhCb jJyYkE 
     tab-panel
     
   "
@@ -273,14 +273,14 @@ exports[`Tabs renders additional classNames 1`] = `
 exports[`Tabs renders correctly with minimal props 1`] = `
 <div>
   <div
-    class="sc-AxirZ cLOGnr 
+    class="sc-AxirZ glZudf 
     tabs-container
     
   "
     style="min-height: initial;"
   >
     <div
-      class="sc-AxiKw kdpPxa tab-button-wrap"
+      class="sc-AxiKw htLnzH tab-button-wrap"
     >
       <button
         class="sc-AxjAm leWZQ 
@@ -308,7 +308,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
       </button>
     </div>
     <div
-      class="sc-AxhCb dbtUZC 
+      class="sc-AxhCb hIZTYF 
     tab-panel
     
   "
@@ -319,7 +319,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb cDnbAX 
+      class="sc-AxhCb jJyYkE 
     tab-panel
     
   "

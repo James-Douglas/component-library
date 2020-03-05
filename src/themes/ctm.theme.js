@@ -520,6 +520,12 @@ const ctmTheme = {
   table: {
     rowHoverBackground: colors.greyLighter,
   },
+  tabs: {
+    titleFontSize: fontSize.base,
+    titleFontWeight: fontWeight.semibold,
+    titleColor: colors.primary900,
+    background: colors.white,
+  },
   toggle: {
     base: {
       background: colors.white,

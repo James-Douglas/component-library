@@ -6,12 +6,17 @@ import TabsContext from './TabsContext';
 const StyledPanel = styled.div`
   margin-top: 0;
   height: 100%;
+  padding: ${({ theme }) => theme.spacing[24]};
   ${({ activeTab, name }) => activeTab !== name && css`
     display: none;
   `}
 `;
 
-const TabPanel = ({ name, className, children }) => {
+const TabPanel = ({
+  name,
+  className,
+  children,
+}) => {
   const tabContext = useContext(TabsContext);
 
   const classNames = `
@@ -49,6 +54,5 @@ TabPanel.defaultProps = {
   className: '',
   children: '',
 };
-
 
 export default TabPanel;

@@ -8,31 +8,23 @@ import Container from 'components/Grid/Container/Container.component';
 import Row from 'components/Grid/Row/Row.component';
 import Column from 'components/Grid/Column/Column.component';
 import Dropdown from 'components/Dropdown/Dropdown.component';
+import DropdownItem from '../../components/Dropdown/DropdownItem.component';
 import Button from 'components/Button/Button.component';
 
 <Meta title="Components/Tabs" components={[Tabs, TabButton, TabPanel]} />
 
 # Tabs
 
-Todo:
-  * write content
-  * add storybook knobs
-
-
 <Preview>
   <Story name="tabs">
-    <Tabs startingTab="refine-results-1" bordered>
-      <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
-      <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
-      <TabPanel name="refine-results-1">
-        <div className="bg-off-white p-16">
-          <p>Tab one content</p>
-        </div>
+    <Tabs startingTab="primary-tab" bordered>
+      <TabButton name="primary-tab">Tab one title</TabButton>
+      <TabButton name="secondary-tab">Tab two title</TabButton>
+      <TabPanel name="primary-tab">
+        <p>Tab one content</p>
       </TabPanel>
-      <TabPanel name="edit-details-1">
-        <div className="bg-off-white p-16">
-          <p>Tab two content</p>
-        </div>
+      <TabPanel name="secondary-tab">
+        <p>Tab two content</p>
       </TabPanel>
     </Tabs>
   </Story>
@@ -49,43 +41,38 @@ Todo:
 
 <Story name="tabs demo" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
-    const options = [
-      { value: 'First', title: 'First Item - Title' },
-      { value: 'Second', title: 'Second Item - Title' },
-      { value: 'Third', title: 'Third Item - Title' },
-    ];
-    const defaultOption = {
-      hasDefaultOption: true,
-      value: 'default',
-      disabled: false,
-      hidden: false,
-    };
     return (
       <Container>
         <Row>
           <Column offset="1" cols="8">
-            <Tabs startingTab="refine-results-1" bordered minHeight="500px">
-              <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
-              <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
-              <TabPanel name="refine-results-1">
-                <div className="custom-bg bg-grey-lighter p-24 -mb-16" style={{background: '#f3f3f3', padding: '2.4rem'}}>
-                  <Dropdown id="input-one" value="First" options={options} supportingElements required label="Dropdown Label" defaultOption={defaultOption} />
-                </div>
-                <div style={{background: '#FFFFFF', padding: '2.4rem'}}>
-                  <p>View Type</p>
-                  <Button id="secondary-btn01" variant="secondary" >
-                    button 1
-                  </Button>
-                  <Button id="secondary-btn02" variant="secondary" >
-                    button 2
-                  </Button>
-                </div>
+            <Tabs startingTab="primary-tab" bordered minHeight="500px">
+              <TabButton name="primary-tab">Tab one title</TabButton>
+              <TabButton name="secondary-tab">Tab two title</TabButton>
+              <TabPanel name="primary-tab">
+                <Dropdown
+                  id="tabs-dropdown"
+                  label="Dropdown Label"
+                  placeholder="Please select an item"
+                  tooltip={{ title: 'A dropdown tooltip!' }}
+                  handleChange={(event, value) => { console.log(`selected: ${value}`); }}
+                  prefixContent={<SvgAusFlag />}
+                >
+                  <DropdownItem value="Default Item - Title" />
+                  <DropdownItem value="First Item - Title" />
+                  <DropdownItem value="Second Item - Title" />
+                  <DropdownItem value="Third Item - Title" />
+                </Dropdown>
+                <p>View Type</p>
+                <Button id="secondary-btn01" variant="secondary" >
+                  button 1
+                </Button>
+                <Button id="secondary-btn02" variant="secondary" >
+                  button 2
+                </Button>
               </TabPanel>
-              <TabPanel name="edit-details-1">
-                <div style={{background: '#FFFFFF', padding: '2.4rem'}}>
-                  <p>Tab two content</p>
-                  <p>stuff</p>
-                </div>
+              <TabPanel name="secondary-tab">
+                <p>Tab two content</p>
+                <p>Components and custom elements can go here</p>
               </TabPanel>
             </Tabs>
           </Column>

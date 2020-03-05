@@ -7,7 +7,7 @@ import TabsContext from './TabsContext';
 const StyledTabsContainer = styled.div`
   width: 100%;
   min-width: 18rem;
-  box-shadow: ${({ theme }) => theme.boxShadow.sm};
+  box-shadow: ${({ theme }) => theme.tabs.shadow};
   ${({ theme, bordered }) => bordered && css`
     border: ${theme.borders.component};
   `}
@@ -15,8 +15,12 @@ const StyledTabsContainer = styled.div`
 
 const StyledTabButtonWrap = styled.div`
   display: flex;
-  color: ${({ theme }) => theme.colors.primaryAA};
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.tabs.background};
+  button {
+    color: ${({ theme }) => theme.tabs.titleColor};
+    font-size: ${({ theme }) => theme.tabs.titleFontSize};
+    font-weight: ${({ theme }) => theme.tabs.titleFontWeight};
+  }
 `;
 
 export const renderChildren = (children) => {
