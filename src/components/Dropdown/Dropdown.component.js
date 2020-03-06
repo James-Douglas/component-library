@@ -274,13 +274,7 @@ const Dropdown = ({
             keyboardArrowsAccessibility(event);
             return false;
           }
-          if (focusedOptionIndex === null) {
-            const index = childrenWithProps.length - 1;
-            setFocusedOptionIndex(index);
-          } else {
-            const index = focusedOptionIndex <= 0 ? childrenWithProps.length - 1 : focusedOptionIndex - 1;
-            setFocusedOptionIndex(index);
-          }
+          setFocusedOptionIndex(focusedOptionIndex <= 0 ? childrenWithProps.length - 1 : focusedOptionIndex - 1);
           break;
         case 'ArrowDown':
           event.preventDefault();
@@ -288,12 +282,7 @@ const Dropdown = ({
             keyboardArrowsAccessibility(event);
             return false;
           }
-          if (focusedOptionIndex === null) {
-            setFocusedOptionIndex(0);
-          } else {
-            const index = focusedOptionIndex === childrenWithProps.length - 1 ? 0 : focusedOptionIndex + 1;
-            setFocusedOptionIndex(index);
-          }
+          setFocusedOptionIndex(focusedOptionIndex === childrenWithProps.length - 1 ? 0 : focusedOptionIndex + 1);
           break;
         default:
           break;
@@ -331,19 +320,19 @@ const Dropdown = ({
 
     if (mobileOverlay) {
       return (
-        <LayerEventManager id={`LayerEventManagerDropdown${id}`} visible={mobileOverlay && isDropdownOpen}>
+        <>
           {(mobileOverlay && isDropdownOpen) && (
             <Overlay opacityLevel={0.3} visible={mobileOverlay && isDropdownOpen} onClose={modalClose} handleClick={modalClose} />
           )}
           {renderOptions}
-        </LayerEventManager>
+        </>
       );
     }
     return renderOptions;
   };
 
   return (
-    <>
+    <LayerEventManager id={`LayerEventManagerDropdown${id}`} visible={mobileOverlay && isDropdownOpen}>
       <StyledDropdownMainWrap onKeyDown={keyboardAccessibility}>
         <Label htmlFor={id} text={label} tooltip={tooltip} />
         <StyledDropdownContainer ref={dropdownWrapper}>
@@ -370,7 +359,7 @@ const Dropdown = ({
         <SupportingElements required={required} disabled={disabled} label={label} />
         <FieldValidation message={validationMessage} />
       </StyledDropdownMainWrap>
-    </>
+    </LayerEventManager>
   );
 };
 

@@ -58,7 +58,7 @@ const StyledIcon = styled.div`
   right: ${({ theme }) => theme.spacing[20]}; 
   top:  ${({ theme }) => theme.spacing[16]};
   cursor: pointer;
-  z-index: ${({ theme }) => theme.zIndex[50]};
+  z-index: ${({ theme }) => theme.zIndex[10]};
   opacity: 0.5;
 `;
 

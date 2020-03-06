@@ -16,7 +16,6 @@ const StyledDropdownList = styled.div`
   position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')};
   width: ${({ theme }) => (theme.maxWidth.full)};
   display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')};
-  z-index: ${({ theme }) => (theme.zIndex[40])};
   background: ${({ theme }) => (theme.combo.list.background)};
   box-shadow: ${({ theme, desktop }) => (desktop ? theme.combo.list.shadow : '')};
   margin-top: ${({ theme }) => (theme.spacing[8])};
@@ -28,13 +27,16 @@ const StyledDropdownList = styled.div`
     max-height: ${({ theme }) => (theme.minHeight.full)};;
     margin: 0;
   `}
+  
+  z-index: ${({ theme }) => (theme.zIndex[40])};
 `;
 
 const StyledList = styled.ul`
   width: ${({ theme }) => (theme.maxWidth.full)};
   padding: 0;
-  z-index: ${({ theme }) => (theme.zIndex[30])};
   color: ${({ theme }) => (theme.combo.list.color)};
+  
+  z-index: ${({ theme }) => (theme.zIndex[30])};
 `;
 
 const StyledDefault = styled.div`
@@ -92,7 +94,6 @@ const StyledButtonWrap = styled.div`
 const StyledDiv = styled.div`
   ${({ desktop }) => !desktop && css`
     width: ${({ theme }) => (theme.maxWidth.full)};
-    z-index: ${({ theme }) => (theme.zIndex[40])};
     top: ${({ theme }) => theme.spacing[136]};
     position: fixed;
     right: ${({ theme }) => theme.spacing[16]};
@@ -111,12 +112,12 @@ const StyledDiv = styled.div`
         display: none;
       }
     }
+    z-index: ${({ theme }) => (theme.zIndex[40])};
   `}
 `;
 
 const WrapList = styled.div`
   ${({ desktop }) => !desktop && css`
-    z-index: ${({ theme }) => (theme.zIndex.entry)};
     width: auto;
     right: ${({ theme }) => theme.spacing[8]};
     left: ${({ theme }) => theme.spacing[8]};
@@ -137,6 +138,7 @@ const WrapList = styled.div`
       height: ${({ theme }) => (theme.spacing[72])};
       background: ${({ theme }) => theme.colors.whiteLight};
     }
+    z-index: ${({ theme }) => (theme.zIndex.entry)};
   `}
 `;
 
@@ -166,7 +168,6 @@ const StyledEmptyStateMessage = styled.div`
   left: ${({ theme }) => theme.spacing[16]};
   max-height: ${({ theme }) => (theme.spacing[200])};
   top: ${({ theme }) => theme.spacing[280]};
-  z-index: ${({ theme }) => (theme.zIndex[50])};
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.combo.list.item.color};
   text-align: center;
@@ -177,6 +178,8 @@ const StyledEmptyStateMessage = styled.div`
   .empty-state-wrap {
     max-height: ${({ theme }) => (theme.spacing[100])};
   }
+  
+   z-index: ${({ theme }) => (theme.zIndex[50])};
 `;
 
 export function comboDropdownList(
@@ -442,68 +445,30 @@ const Combobox = React.forwardRef(({
   const noResultCondition = filteredValues.length === 0 && currentValue.length >= characterMinimum;
 
   return (
-    <LayerEventManager id={`LayerEventManager${id}`} visible={mobileOverlay}>
-      <>
-        {mobileOverlay && (<Overlay opacityLevel={0.3} visible={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
-        {(mobileOverlay || desktop) && (
-          <>
-            <StyledDiv
-              onFocus={handleOnFocus}
-              onBlur={handleOnBlur}
-              onKeyDown={keyboardAccessibility}
-              desktop={desktop}
-            >
-              {emptyStateCondition && mobileOverlay && <StyledEmptyStateMessage>{helperMessage}</StyledEmptyStateMessage>}
-              {noResultCondition && mobileOverlay && (
-                <StyledEmptyStateMessage>
-                  <EmptyState
-                    picture={emptyStatePicture}
-                    className={`${emptyStateClassName} empty-state-wrap`}
-                    heading={emptyStateHeading}
-                  >
-                    {emptyStateChildren}
-                  </EmptyState>
-                </StyledEmptyStateMessage>
-              )}
-              <Input
-                id={id}
-                tooltip={tooltip}
-                placeholder={placeholder}
-                label={label}
-                value={currentValue}
-                prefillValue={prefillValue}
-                bordered={bordered}
-                required={required}
-                disabled={disabled}
-                validationMessage={validationMessage}
-                prefixContent={prefixContent}
-                suffixContent={suffixContent}
-                autocomplete={autocomplete}
-                handleChange={comboHandleChange}
-                className={className}
-                tabIndex="0"
-                ref={ref}
-                role="comboField"
-                dataList={() => comboDropdownList(
-                  desktop,
-                  listInfoBoxContent,
-                  listIcon,
-                  bottomButton,
-                  currentValue,
-                  characterMinimum,
-                  filteredValues,
-                  handleSelectItem,
-                  filteredValuesRefs,
-                  listVisible,
-                )}
-              />
-            </StyledDiv>
-          </>
-        )}
-        {!desktop && (
-          <StyledDefault>
+    <LayerEventManager id={`LayerEventManager${id}`} visible={mobileOverlay && isMobileModalView}>
+      {mobileOverlay && isMobileModalView && (<Overlay opacityLevel={0.3} visible={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
+      {(mobileOverlay || desktop) && (
+        <>
+          <StyledDiv
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+            onKeyDown={keyboardAccessibility}
+            desktop={desktop}
+          >
+            {emptyStateCondition && mobileOverlay && <StyledEmptyStateMessage>{helperMessage}</StyledEmptyStateMessage>}
+            {noResultCondition && mobileOverlay && (
+              <StyledEmptyStateMessage>
+                <EmptyState
+                  picture={emptyStatePicture}
+                  className={`${emptyStateClassName} empty-state-wrap`}
+                  heading={emptyStateHeading}
+                >
+                  {emptyStateChildren}
+                </EmptyState>
+              </StyledEmptyStateMessage>
+            )}
             <Input
-              id={`mobile${id}`}
+              id={id}
               tooltip={tooltip}
               placeholder={placeholder}
               label={label}
@@ -515,16 +480,52 @@ const Combobox = React.forwardRef(({
               validationMessage={validationMessage}
               prefixContent={prefixContent}
               suffixContent={suffixContent}
-              handleOnClick={setMobileFocus}
-              handleChange={() => {}}
-              handleFocus={setMobileFocus}
-              disableClearIcon
+              autocomplete={autocomplete}
+              handleChange={comboHandleChange}
+              className={className}
               tabIndex="0"
-              role="comboMobileField"
+              ref={ref}
+              role="comboField"
+              dataList={() => comboDropdownList(
+                desktop,
+                listInfoBoxContent,
+                listIcon,
+                bottomButton,
+                currentValue,
+                characterMinimum,
+                filteredValues,
+                handleSelectItem,
+                filteredValuesRefs,
+                listVisible,
+              )}
             />
-          </StyledDefault>
-        )}
-      </>
+          </StyledDiv>
+        </>
+      )}
+      {!desktop && (
+        <StyledDefault>
+          <Input
+            id={`mobile${id}`}
+            tooltip={tooltip}
+            placeholder={placeholder}
+            label={label}
+            value={currentValue}
+            prefillValue={prefillValue}
+            bordered={bordered}
+            required={required}
+            disabled={disabled}
+            validationMessage={validationMessage}
+            prefixContent={prefixContent}
+            suffixContent={suffixContent}
+            handleOnClick={setMobileFocus}
+            handleChange={() => {}}
+            handleFocus={setMobileFocus}
+            disableClearIcon
+            tabIndex="0"
+            role="comboMobileField"
+          />
+        </StyledDefault>
+      )}
     </LayerEventManager>
 
   );

@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useEffect, useLayoutEffect, useRef,
+  useCallback, useEffect, useLayoutEffect, useState,
 } from 'react';
 import styled, { withTheme } from 'styled-components';
 import PropTypes from 'prop-types';
@@ -16,8 +16,8 @@ const LayerEventManager = ({
   id, visible, closeOnEsc, trapFocus, handleClose, children, theme,
 }) => {
   const layerInfo = useLayers();
-  const zIndex = useRef(parseInt(theme.zIndex[40], 10));
-  const layerId = useRef(id);
+  const [zIndex, setZIndex] = useState(parseInt(theme.zIndex[10], 10));
+  const [layerId, setLayerId] = useState(id);
   const previouslyVisible = usePrevious(visible);
 
   useEffect(() => {
@@ -31,30 +31,31 @@ const LayerEventManager = ({
       return generatedId.replace(/\s/g, '');
     };
 
-    if (!layerId.current) {
-      layerId.current = id || generateId();
+    if (!layerId) {
+      setLayerId(id || generateId());
     }
-  }, [id, layerInfo]);
+  }, [id, layerId, layerInfo]);
 
   useEffect(() => {
-    if (visible && !layerInfo.contains(layerId.current)) {
-      zIndex.current = parseInt(theme.zIndex[40], 10) + layerInfo.push(layerId.current);
+    if (visible && !layerInfo.contains(layerId)) {
+      setZIndex(parseInt(theme.zIndex[50], 10) + layerInfo.push(layerId));
     }
   }, [visible, theme, layerInfo, layerId]);
 
   // If the modal/drawer is closed a way outside of LayerEventManager's knowledge
   // (i.e. not via escape button), remove the layer from the stack
   useEffect(() => {
-    if (!visible && previouslyVisible && layerInfo.top(layerId.current)) {
+    if (!visible && previouslyVisible && layerInfo.top(layerId)) {
+      setZIndex(parseInt(theme.zIndex[10], 10));
       layerInfo.pop();
     }
-  }, [visible, previouslyVisible, layerInfo, layerId]);
+  }, [visible, previouslyVisible, layerInfo, layerId, theme.zIndex]);
 
   const handleUserKeyPress = useCallback((event) => {
     const { keyCode } = event;
     // escape
     if (keyCode === 27 && visible && closeOnEsc) {
-      if (layerInfo.top(layerId.current)) {
+      if (layerInfo.top(layerId)) {
         if (handleClose) {
           handleClose();
         }
@@ -63,7 +64,7 @@ const LayerEventManager = ({
     } else if (keyCode === 9 && visible && trapFocus) {
       // focus trapping
       setTimeout(() => {
-        if (layerInfo.top(layerId.current)) {
+        if (layerInfo.top(layerId)) {
           const topElementId = layerInfo.layers[layerInfo.layers.length - 1];
           const layerElement = document.getElementById(`layer-${topElementId}`);
           if (!layerElement.contains(document.activeElement)) {
@@ -77,7 +78,7 @@ const LayerEventManager = ({
         }
       });
     }
-  }, [visible, layerInfo, handleClose, closeOnEsc, trapFocus]);
+  }, [visible, closeOnEsc, trapFocus, layerInfo, layerId, handleClose]);
 
   useLayoutEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress);
@@ -86,9 +87,8 @@ const LayerEventManager = ({
     };
   }, [handleUserKeyPress]);
 
-
   return (
-    <StyledLayer zIndex={zIndex.current} id={`layer-${layerId.current}`}>
+    <StyledLayer zIndex={zIndex} id={`layer-${layerId}`}>
       { children }
     </StyledLayer>
   );

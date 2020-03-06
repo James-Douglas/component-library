@@ -7,7 +7,7 @@ const StyledHeader = styled.header`
   display: flex;
   width: 100%;
   background: ${({ theme }) => (theme.header.background)};
-  z-index: ${({ theme }) => (theme.zIndex[50])};
+  z-index: ${({ theme }) => (theme.zIndex[10])};
   height: ${({ theme, stuck }) => (stuck ? theme.header.heightStuck : theme.header.height)};
   transition: ${({ stuck }) => (stuck ? 'all 200ms ease' : 'none')};
   box-shadow: ${({ stuck }) => (stuck ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : 'none')};

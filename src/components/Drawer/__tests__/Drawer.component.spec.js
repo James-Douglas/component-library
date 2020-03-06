@@ -19,7 +19,7 @@ describe('Drawer', () => {
     const { container } = render(<Drawer visible handleClose={() => {}} size="400px" direction="bottom" />);
     const drawerWrapper = container.firstChild;
     expect(drawerWrapper.firstChild).toHaveStyleRule('background', '#FFFFFF');
-    expect(drawerWrapper).toHaveStyle('z-index: 41');
+    expect(drawerWrapper).toHaveStyle('z-index: 52');
   });
   it('check Drawer styles open section', () => {
     const { container } = render(<Drawer size="20%" direction="bottom" visible handleClose={() => {}}>Drawer content inside</Drawer>);
@@ -111,7 +111,7 @@ describe('Drawer', () => {
     );
 
     const bottomDirectionDrawerLayer = container.querySelector('#layer-1');
-    expect(bottomDirectionDrawerLayer).toHaveStyle('z-index: 41');
+    expect(bottomDirectionDrawerLayer).toHaveStyle('z-index: 51');
 
     render(
       <>
@@ -142,6 +142,6 @@ describe('Drawer', () => {
     );
 
     const rightDirectionDrawerLayer = container.querySelector('#layer-2');
-    expect(rightDirectionDrawerLayer).toHaveStyle('z-index: 42');
+    expect(rightDirectionDrawerLayer).toHaveStyle('z-index: 52');
   });
 });
