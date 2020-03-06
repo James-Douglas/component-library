@@ -5,6 +5,7 @@ import CTMLogo from '../../components/Logo/CTMLogo.component';
 import StickyHeader from '../../components/Header/StickyHeader.component';
 import HeaderView from './header.view';
 import StickyHeaderView from './stickyHeader.view';
+import StyledBackground from '../input/view-styles';
 
 <Meta title="Components/Header" components={[Header, StickyHeader]}/>
 
@@ -19,7 +20,9 @@ The examples are best view in canvas mode.
 
 <Preview>
  <Story name="header">
-    <Header number="1800 123 456" logo={<CTMLogo />} />
+    <StyledBackground color="grey">
+      <Header number="1800 123 456" logo={<CTMLogo />} />
+    </StyledBackground>
  </Story>
 </Preview>
 
@@ -35,7 +38,9 @@ The examples are best view in canvas mode.
 
 <Preview>
  <Story name="sticky header">
-  <StickyHeader number="1800 123 456" logo={<CTMLogo />} />
+   <StyledBackground color="grey">
+     <StickyHeader number="1800 123 456" logo={<CTMLogo />} />
+   </StyledBackground>
  </Story>
 </Preview>
 
