@@ -92,3 +92,4 @@ theme.borders.component = '2px solid yellow';
     <App />
 </ManorProvider>
 ```
+
