@@ -15,15 +15,13 @@ which can be used to compose a group of cards.
 
 <Preview>
   <Story name="card">
-    <>
-    <Container>
-    <Card id='mdx-card'>
-      <div>
-        <p>Card content</p>
-      </div>
-    </Card>
-    </Container>
-    </>
+    <div style={{ padding: '2%' }}>
+      <Card id='mdx-card'>
+        <div>
+          <p>Card content</p>
+        </div>
+      </Card>
+    </div>
   </Story>
 </Preview>
 
@@ -34,18 +32,20 @@ which can be used to compose a group of cards.
 
 <Preview>
   <Story name="card group">
-    <CardGroup id='mdx-card-group' cols={2} cardProps={{margin:['4'], padding:['12']}}>
-      <Card id='mdx-card-1'>
-        <div>
-          <p>Card A</p>
-        </div>
-      </Card>
-      <Card id='mdx-card-2'>
-        <div>
-          <p>Card B</p>
-        </div>
-      </Card>
-    </CardGroup>
+    <div style={{ padding: '2%'}}>
+      <CardGroup id='mdx-card-group' cols={2} cardProps={{margin:['4'], padding:['12']}}>
+        <Card id='mdx-card-1'>
+          <div>
+            <p>Card A</p>
+          </div>
+        </Card>
+        <Card id='mdx-card-2'>
+          <div>
+            <p>Card B</p>
+          </div>
+        </Card>
+      </CardGroup>
+    </div>
   </Story>
 </Preview>
 
@@ -68,68 +68,70 @@ which can be used to compose a group of cards.
     const margin = [mt, mr, mb, ml];
     const padding = [pt, pr, pb, pl]
     return (
+      <div style={{ padding: '2%' }}>
       <CardGroup id={id} cols={cols} cardProps={{margin, padding}}>
-        <Card id='card-a'>
-          <div>
-            <p>Card A</p>
-          </div>
-        </Card>
-        <Card id='card-b'>
-          <div>
-            <p>Card B</p>
-          </div>
-        </Card>
-        <Card id='card-c'>
-          <div>
-            <p>Card C</p>
-          </div>
-        </Card>
-        <Card id='card-d'>
-          <div>
-            <p>Card D</p>
-          </div>
-        </Card>
-        <Card id='card-e'>
-          <div>
-            <p>Card E</p>
-          </div>
-        </Card>
-        <Card id='card-f'>
-          <div>
-            <p>Card F</p>
-          </div>
-        </Card>
-        <Card id='card-g'>
-          <div>
-            <p>Card G</p>
-          </div>
-        </Card>
-        <Card id='card-h'>
-          <div>
-            <p>Card H</p>
-          </div>
-        </Card>
-        <Card id='card-i'>
-          <div>
-            <p>Card I</p>
-          </div>
-        </Card>
-        <Card id='card-j'>
-          <div>
-            <p>Card J</p>
-          </div>
-        </Card>
-        <Card id='card-k'>
-          <div>
-            <p>Card K</p>
-          </div>
-        </Card>
-        <Card id='card-l'>
-          <div>
-            <p>Card L</p>
-          </div>
-        </Card>
-      </CardGroup>
+          <Card id='card-a'>
+            <div>
+              <p>Card A</p>
+            </div>
+          </Card>
+          <Card id='card-b'>
+            <div>
+              <p>Card B</p>
+            </div>
+          </Card>
+          <Card id='card-c'>
+            <div>
+              <p>Card C</p>
+            </div>
+          </Card>
+          <Card id='card-d'>
+            <div>
+              <p>Card D</p>
+            </div>
+          </Card>
+          <Card id='card-e'>
+            <div>
+              <p>Card E</p>
+            </div>
+          </Card>
+          <Card id='card-f'>
+            <div>
+              <p>Card F</p>
+            </div>
+          </Card>
+          <Card id='card-g'>
+            <div>
+              <p>Card G</p>
+            </div>
+          </Card>
+          <Card id='card-h'>
+            <div>
+              <p>Card H</p>
+            </div>
+          </Card>
+          <Card id='card-i'>
+            <div>
+              <p>Card I</p>
+            </div>
+          </Card>
+          <Card id='card-j'>
+            <div>
+              <p>Card J</p>
+            </div>
+          </Card>
+          <Card id='card-k'>
+            <div>
+              <p>Card K</p>
+            </div>
+          </Card>
+          <Card id='card-l'>
+            <div>
+              <p>Card L</p>
+            </div>
+          </Card>
+        </CardGroup>
+      </div>
     )
   }}
 </Story>

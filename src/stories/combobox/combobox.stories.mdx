@@ -23,40 +23,42 @@ the input field.
   {() => {
     const apiData = fakeApiData.map((obj) => obj.title);
     return (
-       <FluidContainer>
-           <Row>
-             <Column>
-                <Combobox
-                  label="Example Combobox label"
-                  apiData={apiData}
-                  id="combo-id-first"
-                  value="ser"
-                  required={false}
-                  renderLimit={3}
-                  emptyStatePicture={{
-                    src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
-                    srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
-                    alt: 'alt text',
-                    title: 'no results found',
-                  }}
-                  tooltip={{ title: 'Combobox component' }}
-                  emptyStateHeading = "Sorry, no results found"
-                  emptyStateChildren='Try adjusting your search to find what you are looking for.'
-                  helperMessage='Please enter your address in the field above and we will try locate it.'
-                  listIcon={faMapMarkerAlt}
-                  listInfoBoxContent={(<>Can’t find your address? <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-                  handleChange={(value) => {
-                    // eslint-disable-next-line no-console
-                    console.log(value)
-                  }}
-                  handleInput={(value) => {
-                    // eslint-disable-next-line no-console
-                    console.log(value)
-                  }}
-                />
-            </Column>
-          </Row>
-       </FluidContainer>
+      <div style={{ padding: '2%' }}>
+         <FluidContainer>
+             <Row>
+               <Column>
+                  <Combobox
+                    label="Example Combobox label"
+                    apiData={apiData}
+                    id="combo-id-first"
+                    value="ser"
+                    required={false}
+                    renderLimit={3}
+                    emptyStatePicture={{
+                      src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
+                      srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
+                      alt: 'alt text',
+                      title: 'no results found',
+                    }}
+                    tooltip={{ title: 'Combobox component' }}
+                    emptyStateHeading = "Sorry, no results found"
+                    emptyStateChildren='Try adjusting your search to find what you are looking for.'
+                    helperMessage='Please enter your address in the field above and we will try locate it.'
+                    listIcon={faMapMarkerAlt}
+                    listInfoBoxContent={(<>Can’t find your address? <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+                    handleChange={(value) => {
+                      // eslint-disable-next-line no-console
+                      console.log(value)
+                    }}
+                    handleInput={(value) => {
+                      // eslint-disable-next-line no-console
+                      console.log(value)
+                    }}
+                  />
+              </Column>
+            </Row>
+         </FluidContainer>
+      </div>
     );
   }}
   </Story>
@@ -115,43 +117,44 @@ in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
     const listInfoBoxContent = text('listInfoBoxContent', 'This is secondary information', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
-      <FluidContainer>
-        <Row>
-          <Column>
-          <div style={{height: '300px'}}></div>
-            <Combobox
-              id={id}
-              label={label}
-              value={value}
-              placeholder={placeholder}
-              required={required}
-              disabled={disabled}
-              bordered={bordered}
-              validationMessage={validationMessage}
-              prefillValue={prefillValue}
-              autoComplete={autoComplete}
-              prefixContent={prefixContent}
-              suffixContent={suffixContent}
-              characterMinimum={characterMinimum}
-              renderLimit={renderLimit}
-              apiData={apiData}
-              listInfoBoxContent={listInfoBoxContent}
-              handleChange={(value) => {
-                // eslint-disable-next-line no-console
-                console.log(value)
-              }}
-              helperMessage={helperMessage}
-              tooltip={{
-                title,
-                body,
-                placement,
-                screenReaderLabel,
-                variant
-              }}
-            />
-          </Column>
-        </Row>
-      </FluidContainer>
+      <div style={{ padding: '2%'}}>
+        <FluidContainer>
+          <Row>
+            <Column>
+              <Combobox
+                id={id}
+                label={label}
+                value={value}
+                placeholder={placeholder}
+                required={required}
+                disabled={disabled}
+                bordered={bordered}
+                validationMessage={validationMessage}
+                prefillValue={prefillValue}
+                autoComplete={autoComplete}
+                prefixContent={prefixContent}
+                suffixContent={suffixContent}
+                characterMinimum={characterMinimum}
+                renderLimit={renderLimit}
+                apiData={apiData}
+                listInfoBoxContent={listInfoBoxContent}
+                handleChange={(value) => {
+                  // eslint-disable-next-line no-console
+                  console.log(value)
+                }}
+                helperMessage={helperMessage}
+                tooltip={{
+                  title,
+                  body,
+                  placement,
+                  screenReaderLabel,
+                  variant
+                }}
+              />
+            </Column>
+          </Row>
+        </FluidContainer>
+      </div>
     );
   }}
 </Story>

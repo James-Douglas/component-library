@@ -17,16 +17,18 @@ import Button from 'components/Button/Button.component';
 
 <Preview>
   <Story name="tabs">
-    <Tabs startingTab="primary-tab" bordered>
-      <TabButton name="primary-tab">Tab one title</TabButton>
-      <TabButton name="secondary-tab">Tab two title</TabButton>
-      <TabPanel name="primary-tab">
-        <p>Tab one content</p>
-      </TabPanel>
-      <TabPanel name="secondary-tab">
-        <p>Tab two content</p>
-      </TabPanel>
-    </Tabs>
+    <div style={{padding: '2%'}}>
+      <Tabs startingTab="primary-tab" bordered>
+        <TabButton name="primary-tab">Tab one title</TabButton>
+        <TabButton name="secondary-tab">Tab two title</TabButton>
+        <TabPanel name="primary-tab">
+          <p>Tab one content</p>
+        </TabPanel>
+        <TabPanel name="secondary-tab">
+          <p>Tab two content</p>
+        </TabPanel>
+      </Tabs>
+    </div>
   </Story>
 </Preview>
 
@@ -42,6 +44,7 @@ import Button from 'components/Button/Button.component';
 <Story name="tabs demo" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     return (
+    <div style={{padding: '2%'}}>
       <Container>
         <Row>
           <Column offset="1" cols="8">
@@ -78,6 +81,7 @@ import Button from 'components/Button/Button.component';
           </Column>
         </Row>
       </Container>
+    </div>
     );
   }}
 </Story>

@@ -11,7 +11,9 @@ The FeatureList component can be used to render a simple list of features/benefi
 
 <Preview>
   <Story name="feature list">
-    <FeatureList features={['Visa Debit', 'Paywave', 'Apple Pay']} />
+    <div style={{ padding: '2%'}}>
+      <FeatureList features={['Visa Debit', 'Paywave', 'Apple Pay']} />
+    </div>
   </Story>
 </Preview>
 
@@ -23,7 +25,9 @@ The FeatureList component can be used to render a simple list of features/benefi
   {() => {
     const features = array('features', ['Visa Debit', 'Paywave', 'Apple Pay'])
     return (
-      <FeatureList features={features} />
+      <div style={{ padding: '2%'}}>
+        <FeatureList features={features} />
+      </div>
     );
   }}
 </Story>

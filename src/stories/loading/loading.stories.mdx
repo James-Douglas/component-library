@@ -19,15 +19,9 @@ The Loading component can be used to provide feedback to a user whilst processin
   <Story name="primary loading">
     {() => {
      return (
-       <div style={{marginTop: '100px'}}>
-        <Container>
-          <Row className="row-view">
-            <Column cols="12">
-              <Loading />
-            </Column>
-          </Row>
-        </Container>
-       </div>
+      <div style={{ padding: '2%' }}>
+         <Loading />
+      </div>
       )
     }}
   </Story>
@@ -39,15 +33,9 @@ The Loading component can be used to provide feedback to a user whilst processin
   <Story name="secondary loading">
     {() => {
      return (
-       <div style={{marginTop: '100px'}}>
-        <Container>
-          <Row className="row-view">
-            <Column cols="12">
-              <Loading variant="secondary" />
-            </Column>
-          </Row>
-        </Container>
-       </div>
+      <div style={{ padding: '2%'}}>
+        <Loading variant="secondary" />
+      </div>
       )
     }}
   </Story>
@@ -78,15 +66,9 @@ _Forces the loading to end after three seconds_
       delayLoading: true
     };
     return (
-      <div style={{marginTop: '100px'}}>
-        <Container>
-          <Row className="row-view">
-            <Column cols="12">
-              {!loadVar && <Loading {...optionalProps} handleLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
-              {loadVar && <div style={{fontSize: '30px'}}>Loading done <Button id="test" variant="secondary" handleClick={doReset} size="sm" width="125px">Reset</Button></div>}
-            </Column>
-          </Row>
-        </Container>
+      <div style={{ padding: '2%' }}>
+          {!loadVar && <Loading {...optionalProps} handleLoaded={() => {}} forceStop={loadVar} isDelayMessages />}
+          {loadVar && <div style={{fontSize: '30px'}}>Loading done <Button id="test" variant="secondary" handleClick={doReset} size="sm" width="125px">Reset</Button></div>}
       </div>
     )
   }}
@@ -110,14 +92,8 @@ _Forces the loading to end after three seconds_
       delayLoading: true
     };
    return (
-    <div style={{marginTop: '100px'}}>
-       <Container>
-         <Row className="row-view">
-           <Column cols="12">
-             <Loading {...optionalProps} maxProgress={90} handleLoaded={() => {}} />
-           </Column>
-         </Row>
-       </Container>
+    <div style={{ padding: '2%' }}>
+       <Loading {...optionalProps} maxProgress={90} handleLoaded={() => {}} />
      </div>
     )
   }}

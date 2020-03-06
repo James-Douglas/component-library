@@ -5,7 +5,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 export const StyledCalendar = styled.div`
   position: absolute;
   z-index: ${({ theme }) => theme.zIndex[40]};
-  top: ${({ theme }) => theme.spacing[72]};
+  top: ${({ theme }) => theme.spacing[80]};
 `;
 export const StyledDateRangePickerContainer = styled.div`
   position: relative;

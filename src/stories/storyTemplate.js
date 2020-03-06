@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Container from '../components/Grid/Container/Container.component';
-
 const StoryTemplate = ({ background, children }) => (
-  <div className={`${background} wrapper manor-rich-text`}>
-    <Container>
+  <div style={{ padding: '2%', background: '#f6f6f6' }}>
+    <div style={{ background: 'white' }}>
       {children}
-    </Container>
+    </div>
   </div>
 );
 

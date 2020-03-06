@@ -20,36 +20,38 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
 
 <Preview>
   <Story name="table">
-    <FluidContainer>
-      <Row>
-        <Column>
-          <div>
-            <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
-              <TableHead>
-                <TableRow>
-                  <TableCell colspan={2}>TableHeader</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell align="left" component="th">Fees</TableCell>
-                  <TableCell align="left">$39/year</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left" component="th">Rate</TableCell>
-                  <TableCell align="left">3.78%</TableCell>
-                </TableRow>
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                 <TableCell colspan={2}>TableFooter</TableCell>
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </div>
-       </Column>
-      </Row>
-    </FluidContainer>
+    <div style={{ padding: '2%' }}>
+      <FluidContainer>
+        <Row>
+          <Column>
+            <div>
+              <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
+                <TableHead>
+                  <TableRow>
+                    <TableCell colspan={2}>TableHeader</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell align="left" component="th">Fees</TableCell>
+                    <TableCell align="left">$39/year</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell align="left" component="th">Rate</TableCell>
+                    <TableCell align="left">3.78%</TableCell>
+                  </TableRow>
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                   <TableCell colspan={2}>TableFooter</TableCell>
+                  </TableRow>
+                </TableFooter>
+              </Table>
+            </div>
+         </Column>
+        </Row>
+      </FluidContainer>
+    </div>
   </Story>
 </Preview>
 
@@ -107,7 +109,7 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
         value: 'Weekly, fortnightly',
       }];
     return (
-      <div style={{ width: '100%', marginTop: '1rem' }}>
+      <div style={{ padding: '2%' }}>
         <Container>
           <Row className="row-view">
             <Column cols="4" sm="12" md="4">

@@ -30,6 +30,7 @@ describe('DateRangePicker', () => {
     expect(endDateLabel).toBeInTheDocument();
   });
   it('renders correct number options when focus on end date', () => {
+    const handleChangeF = jest.fn();
     const startDate = moment('2020-03-20T00:00:00.000');
     const endDate = moment('2020-04-20T00:00:00.000');
     const numberOfMonths = 3;
@@ -42,6 +43,7 @@ describe('DateRangePicker', () => {
         endDateId="end-date"
         endDateTooltip={{ title: 'End Date' }}
         endDateAriaLabel="End Date"
+        handleChange={handleChangeF}
         endDateValue={endDate}
         numberOfMonths={numberOfMonths}
         endDateValidationMessageText="Please enter correct date"
@@ -59,7 +61,12 @@ describe('DateRangePicker', () => {
     expect(visibleMonths.length).toBe(numberOfMonths + 2);
     const datepickerWrapAfterFocus = container.querySelector('[role=application]');
     expect(datepickerWrapAfterFocus).toBeInTheDocument();
-    fireEvent.click(getByLabelText(container, 'Tuesday, April 28, 2020', { exact: false }));
+    act(() => {
+      endDateInput.focus();
+      fireEvent.click(getByLabelText(container, 'Tuesday, April 28, 2020', { exact: false }));
+    });
+    expect(handleChangeF).toHaveBeenCalled();
+    expect(visibleMonths.length).toBe(0);
     expect(endDateInput).toHaveValue('28/04/2020');
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
   });
@@ -277,9 +284,33 @@ describe('DateRangePicker', () => {
   });
 
   it('check default value in date', () => {
-    const displayFormat = 'DD/MM/YYYY';
-    const startDate = moment().startOf('day').format(displayFormat);
-    const endDate = moment().add(7, 'days').format(displayFormat);
+    const handleChangeF = jest.fn();
+    const startDate = moment('2020-03-20T00:00:00.000');
+    const endDate = moment('2020-04-20T00:00:00.000');
+    const numberOfMonths = 3;
+    const { container } = render(
+      <DateRangePicker
+        startDateId="start-date"
+        startDateAriaLabel="Start Date"
+        startDateValue={startDate}
+        handleChange={handleChangeF}
+        endDateId="end-date"
+        endDateValue={endDate}
+        endDateAriaLabel="End Date"
+        numberOfMonths={numberOfMonths}
+        endDateValidationMessage="Please enter correct s date"
+        startDateValidationMessage="Please enter correct e date"
+      />,
+    );
+    const startDateInput = container.querySelector('#start-date');
+    act(() => {
+      startDateInput.focus();
+    });
+    fireEvent.keyDown(startDateInput, { key: 'Tab', keyCode: 9 });
+    const calendarArea = container.querySelector('[role="calendar"]');
+    expect(calendarArea).toHaveFocus();
+  });
+  it('check accessibility esc', () => {
     const numberOfMonths = 3;
     const { container } = render(
       <DateRangePicker
@@ -294,9 +325,12 @@ describe('DateRangePicker', () => {
         startDateValidationMessage="Please enter correct e date"
       />,
     );
-    const endDateInput = container.querySelector('#end-date');
     const startDateInput = container.querySelector('#start-date');
-    expect(startDateInput).toHaveValue(startDate);
-    expect(endDateInput).toHaveValue(endDate);
+    fireEvent.keyDown(startDateInput, { key: 'Tab', keyCode: 9 });
+    startDateInput.focus();
+    const visibleMonths = container.getElementsByClassName('CalendarMonth');
+    expect(visibleMonths.length).toBe(numberOfMonths + 2);
+    fireEvent.keyDown(startDateInput, { key: 'Escape', keyCode: 27 });
+    expect(visibleMonths.length).toBe(0);
   });
 });

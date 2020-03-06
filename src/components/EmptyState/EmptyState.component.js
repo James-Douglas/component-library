@@ -11,8 +11,7 @@ const StyledEmptyState = styled.div`
 `;
 
 const StyledEmptyStateWrap = styled.div`
-  max-height: 350px;
-  max-width: 350px;
+  max-width: 350px; 
   text-align: center;
   & > * {
     margin-bottom: ${({ theme, desktop }) => (desktop ? theme.spacing[32] : theme.spacing[16])};
@@ -22,7 +21,8 @@ const StyledEmptyStateWrap = styled.div`
 const StyledPictureContainer = styled.div`
    margin-bottom: ${({ theme }) => theme.spacing[32]};
    height: 100%;
-   
+   max-height: 350px;
+   max-width: 350px; 
 `;
 
 

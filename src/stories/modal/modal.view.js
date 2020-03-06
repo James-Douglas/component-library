@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Container from 'components/Grid/Container/Container.component';
 import Row from 'components/Grid/Row/Row.component';
 import Column from 'components/Grid/Column/Column.component';
 import Modal from 'components/Modal/Modal.component';
 import Button from 'components/Button/Button.component';
 import Checkbox from 'components/Checkbox/Checkbox.component';
 import Input from 'components/Input/Input.component';
+import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 import Table from '../../components/Table/Table/Table.component';
 import TableBody from '../../components/Table/TableBody/TableBody.component';
 import TableRow from '../../components/Table/TableRow/TableRow.component';
@@ -31,7 +31,7 @@ const ModalView = () => {
   };
 
   return (
-    <Container>
+    <FluidContainer>
       <Row>
         <Column md={4}>
           <Button id="demo-1-btn" variant="secondary" handleClick={m1Open}>
@@ -67,7 +67,7 @@ const ModalView = () => {
           <p>Another bit of content</p>
         </Modal>
       </Row>
-    </Container>
+    </FluidContainer>
   );
 };
 

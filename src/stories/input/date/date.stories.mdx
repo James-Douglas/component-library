@@ -10,12 +10,14 @@ import getTooltipKnobs from '../../tooltipKnobs';
 
 <Preview>
   <Story name="date input">
-    <DateInput
-      label="Enter date"
-      id="date-input"
-      tooltip={{body: "Please enter a date"}}
-      handleChange={() => {}}
-    />
+    <div style={{ padding: '2%' }}>
+      <DateInput
+        label="Enter date"
+        id="date-input"
+        tooltip={{body: "Please enter a date"}}
+        handleChange={() => {}}
+      />
+    </div>
   </Story>
 </Preview>
 
@@ -41,29 +43,31 @@ import getTooltipKnobs from '../../tooltipKnobs';
     const suffixContent = text('suffixContent', '', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
-      <DateInput
-        id="input-props"
-        label={label}
-        tooltip={{
-          title,
-          body,
-          placement,
-          screenReaderLabel,
-          variant
-        }}
-        validationMessage={validationMessage}
-        maxLength={maxLength}
-        value={value}
-        prefillValue={prefillValue}
-        type={type}
-        placeholder={placeholder}
-        required={required}
-        handleChange={() => {}}
-        disabled={disabled}
-        bordered={bordered}
-        prefixContent={prefixContent}
-        suffixContent={suffixContent}
-      />
+      <div style={{ padding: '2%' }}>
+        <DateInput
+          id="input-props"
+          label={label}
+          tooltip={{
+            title,
+            body,
+            placement,
+            screenReaderLabel,
+            variant
+          }}
+          validationMessage={validationMessage}
+          maxLength={maxLength}
+          value={value}
+          prefillValue={prefillValue}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          handleChange={() => {}}
+          disabled={disabled}
+          bordered={bordered}
+          prefixContent={prefixContent}
+          suffixContent={suffixContent}
+        />
+      </div>
     )
   }}
 </Story>

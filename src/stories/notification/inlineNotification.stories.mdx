@@ -8,6 +8,7 @@ import Column from '../../components/Grid/Column/Column.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowLeft } from '@fortawesome/pro-regular-svg-icons/faLongArrowLeft';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
+import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
 <Meta title="Components|Notifications/Inline" component={Notification} />
 
@@ -22,83 +23,15 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
       const [ demo2, setDemo2 ] = useState(true);
       const [ demo3, setDemo3 ] = useState(true);
       return (
-        <Container>
-          <Row>
-            <Column offset="1" cols="10">
-              {demo1 &&
-                <Notification
-                  variant="general" 
-                  title="Notification title goes here"
-                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
-                  primaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  secondaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  icon 
-                  closeButton 
-                  handleClose={() => setDemo1(false)}
-                >
-                </Notification>
-              }
-              {!demo1 && (
-                <div style={{fontSize: '30px'}}>
-                  <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                  <br />
-                  Top Notification hidden
-                </div>
-              )}
-            </Column>
-          </Row>
-          <Row>
-            <Column offset="1" cols="10">
-              {demo2 &&
-                <Notification
-                  variant="general" 
-                  title="Notification title goes here"
-                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
-                  primaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  secondaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  icon 
-                  closeButton 
-                  handleClose={() => setDemo2(false)}
-                >
-                </Notification>
-              }
-                {!demo2 && (
-                  <div style={{fontSize: '30px'}}>
-                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo2(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                    <br />
-                    Middle Notification hidden
-                  </div>
-                )}
-            </Column>
-          </Row>
-          <Row>
-            <Column offset="1" cols="10">
-              <div style={{width: '50%'}}>
-                {demo3 &&
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column offset="1" cols="10">
+                {demo1 &&
                   <Notification
-                    variant="general" 
+                    variant="general"
                     title="Notification title goes here"
-                    content="Provider will capture the full description"
+                    content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
                     primaryAction={
                       {
                         content: 'Action goes here' ,
@@ -111,22 +44,92 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
                         link: '#',
                       }
                     }
-                    icon 
-                    closeButton 
-                    handleClose={() => setDemo3(false)}
-                  />
+                    icon
+                    closeButton
+                    handleClose={() => setDemo1(false)}
+                  >
+                  </Notification>
                 }
-                {!demo3 && (
+                {!demo1 && (
                   <div style={{fontSize: '30px'}}>
-                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo3(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
                     <br />
-                    Bottom Notification hidden
+                    Top Notification hidden
                   </div>
                 )}
-              </div>
-            </Column>
-          </Row>
-        </Container>
+              </Column>
+            </Row>
+            <Row>
+              <Column offset="1" cols="10">
+                {demo2 &&
+                  <Notification
+                    variant="general"
+                    title="Notification title goes here"
+                    content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                    primaryAction={
+                      {
+                        content: 'Action goes here' ,
+                        link: '#',
+                      }
+                    }
+                    secondaryAction={
+                      {
+                        content: 'Action goes here' ,
+                        link: '#',
+                      }
+                    }
+                    icon
+                    closeButton
+                    handleClose={() => setDemo2(false)}
+                  >
+                  </Notification>
+                }
+                  {!demo2 && (
+                    <div style={{fontSize: '30px'}}>
+                      <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo2(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                      <br />
+                      Middle Notification hidden
+                    </div>
+                  )}
+              </Column>
+            </Row>
+            <Row>
+              <Column offset="1" cols="10">
+                <div style={{width: '50%'}}>
+                  {demo3 &&
+                    <Notification
+                      variant="general"
+                      title="Notification title goes here"
+                      content="Provider will capture the full description"
+                      primaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
+                      }
+                      secondaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
+                      }
+                      icon
+                      closeButton
+                      handleClose={() => setDemo3(false)}
+                    />
+                  }
+                  {!demo3 && (
+                    <div style={{fontSize: '30px'}}>
+                      <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo3(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                      <br />
+                      Bottom Notification hidden
+                    </div>
+                  )}
+                </div>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </div>
       );
     }}
   </Story>
@@ -141,111 +144,113 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
       const [ demo2, setDemo2 ] = useState(true);
       const [ demo3, setDemo3 ] = useState(true);
       return (
-        <Container>
-          <Row>
-            <Column offset="1" cols="10">
-              {demo1 &&
-                <Notification
-                  variant="success" 
-                  title="Notification title goes here"
-                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
-                  primaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  secondaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  icon 
-                  closeButton 
-                  handleClose={() => setDemo1(false)}
-                >
-                </Notification>
-              }
-              {!demo1 && (
-                <div style={{fontSize: '30px'}}>
-                  <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                  <br />
-                  Top Notification hidden
-                </div>
-              )}
-            </Column>
-          </Row>
-          <Row>
-            <Column offset="1" cols="10">
-              {demo2 &&
-                <Notification
-                  variant="success" 
-                  title="Notification title goes here"
-                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
-                  primaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  secondaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  icon 
-                  closeButton 
-                  handleClose={() => setDemo2(false)}
-                >
-                </Notification>
-              }
-                {!demo2 && (
-                  <div style={{fontSize: '30px'}}>
-                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo2(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                    <br />
-                    Middle Notification hidden
-                  </div>
-                )}
-            </Column>
-          </Row>
-          <Row>
-            <Column offset="1" cols="10">
-              <div style={{width: '50%'}}>
-                {demo3 &&
-                  <Notification 
-                    variant="success" 
-                    title="Notification title goes here"
-                    content="Provider will capture the full description"
-                    primaryAction={
-                      {
-                        content: 'Action goes here' ,
-                        link: '#',
+         <div style={{ padding: '2%' }}>
+            <FluidContainer>
+              <Row>
+                <Column offset="1" cols="10">
+                  {demo1 &&
+                    <Notification
+                      variant="success"
+                      title="Notification title goes here"
+                      content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                      primaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
                       }
-                    }
-                    secondaryAction={
-                      {
-                        content: 'Action goes here' ,
-                        link: '#',
+                      secondaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
                       }
+                      icon
+                      closeButton
+                      handleClose={() => setDemo1(false)}
+                    >
+                    </Notification>
+                  }
+                  {!demo1 && (
+                    <div style={{fontSize: '30px'}}>
+                      <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                      <br />
+                      Top Notification hidden
+                    </div>
+                  )}
+                </Column>
+              </Row>
+              <Row>
+                <Column offset="1" cols="10">
+                  {demo2 &&
+                    <Notification
+                      variant="success"
+                      title="Notification title goes here"
+                      content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                      primaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
+                      }
+                      secondaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
+                      }
+                      icon
+                      closeButton
+                      handleClose={() => setDemo2(false)}
+                    >
+                    </Notification>
+                  }
+                    {!demo2 && (
+                      <div style={{fontSize: '30px'}}>
+                        <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo2(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                        <br />
+                        Middle Notification hidden
+                      </div>
+                    )}
+                </Column>
+              </Row>
+              <Row>
+                <Column offset="1" cols="10">
+                  <div style={{width: '50%'}}>
+                    {demo3 &&
+                      <Notification
+                        variant="success"
+                        title="Notification title goes here"
+                        content="Provider will capture the full description"
+                        primaryAction={
+                          {
+                            content: 'Action goes here' ,
+                            link: '#',
+                          }
+                        }
+                        secondaryAction={
+                          {
+                            content: 'Action goes here' ,
+                            link: '#',
+                          }
+                        }
+                        icon
+                        closeButton
+                        handleClose={() => setDemo3(false)}
+                      />
                     }
-                    icon 
-                    closeButton 
-                    handleClose={() => setDemo3(false)}
-                  />
-                }
-                {!demo3 && (
-                  <div style={{fontSize: '30px'}}>
-                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo3(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                    <br />
-                    Bottom Notification hidden
+                    {!demo3 && (
+                      <div style={{fontSize: '30px'}}>
+                        <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo3(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                        <br />
+                        Bottom Notification hidden
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </Column>
-          </Row>
-        </Container>
+                </Column>
+              </Row>
+            </FluidContainer>
+        </div>
       );
     }}
   </Story>
@@ -260,83 +265,15 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
       const [ demo2, setDemo2 ] = useState(true);
       const [ demo3, setDemo3 ] = useState(true);
       return (
-        <Container>
-          <Row>
-            <Column offset="1" cols="10">
-              {demo1 &&
-                <Notification
-                  variant="warning" 
-                  title="Notification title goes here"
-                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
-                  primaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  secondaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  icon 
-                  closeButton 
-                  handleClose={() => setDemo1(false)}
-                >
-                </Notification>
-              }
-              {!demo1 && (
-                <div style={{fontSize: '30px'}}>
-                  <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                  <br />
-                  Top Notification hidden
-                </div>
-              )}
-            </Column>
-          </Row>
-          <Row>
-            <Column offset="1" cols="10">
-              {demo2 &&
-                <Notification
-                  variant="warning" 
-                  title="Notification title goes here"
-                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
-                  primaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  secondaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  icon 
-                  closeButton 
-                  handleClose={() => setDemo2(false)}
-                >
-                </Notification>
-              }
-                {!demo2 && (
-                  <div style={{fontSize: '30px'}}>
-                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo2(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                    <br />
-                    Middle Notification hidden
-                  </div>
-                )}
-            </Column>
-          </Row>
-          <Row>
-            <Column offset="1" cols="10">
-              <div style={{width: '50%'}}>
-                {demo3 &&
-                  <Notification 
-                    variant="warning" 
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column offset="1" cols="10">
+                {demo1 &&
+                  <Notification
+                    variant="warning"
                     title="Notification title goes here"
-                    content="Provider will capture the full description"
+                    content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
                     primaryAction={
                       {
                         content: 'Action goes here' ,
@@ -349,22 +286,92 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
                         link: '#',
                       }
                     }
-                    icon 
-                    closeButton 
-                    handleClose={() => setDemo3(false)}
-                  />
+                    icon
+                    closeButton
+                    handleClose={() => setDemo1(false)}
+                  >
+                  </Notification>
                 }
-                {!demo3 && (
+                {!demo1 && (
                   <div style={{fontSize: '30px'}}>
-                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo3(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
                     <br />
-                    Bottom Notification hidden
+                    Top Notification hidden
                   </div>
                 )}
-              </div>
-            </Column>
-          </Row>
-        </Container>
+              </Column>
+            </Row>
+            <Row>
+              <Column offset="1" cols="10">
+                {demo2 &&
+                  <Notification
+                    variant="warning"
+                    title="Notification title goes here"
+                    content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                    primaryAction={
+                      {
+                        content: 'Action goes here' ,
+                        link: '#',
+                      }
+                    }
+                    secondaryAction={
+                      {
+                        content: 'Action goes here' ,
+                        link: '#',
+                      }
+                    }
+                    icon
+                    closeButton
+                    handleClose={() => setDemo2(false)}
+                  >
+                  </Notification>
+                }
+                  {!demo2 && (
+                    <div style={{fontSize: '30px'}}>
+                      <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo2(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                      <br />
+                      Middle Notification hidden
+                    </div>
+                  )}
+              </Column>
+            </Row>
+            <Row>
+              <Column offset="1" cols="10">
+                <div style={{width: '50%'}}>
+                  {demo3 &&
+                    <Notification
+                      variant="warning"
+                      title="Notification title goes here"
+                      content="Provider will capture the full description"
+                      primaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
+                      }
+                      secondaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
+                      }
+                      icon
+                      closeButton
+                      handleClose={() => setDemo3(false)}
+                    />
+                  }
+                  {!demo3 && (
+                    <div style={{fontSize: '30px'}}>
+                      <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo3(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                      <br />
+                      Bottom Notification hidden
+                    </div>
+                  )}
+                </div>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </div>
       );
     }}
   </Story>
@@ -377,83 +384,15 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
       const [ demo2, setDemo2 ] = useState(true);
       const [ demo3, setDemo3 ] = useState(true);
       return (
-        <Container>
-          <Row>
-            <Column offset="1" cols="10">
-              {demo1 &&
-                <Notification
-                  variant="error" 
-                  title="Notification title goes here"
-                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
-                  primaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  secondaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  icon 
-                  closeButton 
-                  handleClose={() => setDemo1(false)}
-                >
-                </Notification>
-              }
-              {!demo1 && (
-                <div style={{fontSize: '30px'}}>
-                  <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                  <br />
-                  Top Notification hidden
-                </div>
-              )}
-            </Column>
-          </Row>
-          <Row>
-            <Column offset="1" cols="10">
-              {demo2 &&
-                <Notification
-                  variant="error" 
-                  title="Notification title goes here"
-                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
-                  primaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  secondaryAction={
-                    {
-                      content: 'Action goes here' ,
-                      link: '#',
-                    }
-                  }
-                  icon 
-                  closeButton 
-                  handleClose={() => setDemo2(false)}
-                >
-                </Notification>
-              }
-                {!demo2 && (
-                  <div style={{fontSize: '30px'}}>
-                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo2(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
-                    <br />
-                    Middle Notification hidden
-                  </div>
-                )}
-            </Column>
-          </Row>
-          <Row>
-            <Column offset="1" cols="10">
-              <div style={{width: '50%'}}>
-                {demo3 &&
-                  <Notification 
-                    variant="error" 
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column offset="1" cols="10">
+                {demo1 &&
+                  <Notification
+                    variant="error"
                     title="Notification title goes here"
-                    content="Provider will capture the full description"
+                    content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
                     primaryAction={
                       {
                         content: 'Action goes here' ,
@@ -466,22 +405,92 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
                         link: '#',
                       }
                     }
-                    icon 
-                    closeButton 
-                    handleClose={() => setDemo3(false)}
-                  />
+                    icon
+                    closeButton
+                    handleClose={() => setDemo1(false)}
+                  >
+                  </Notification>
                 }
-                {!demo3 && (
+                {!demo1 && (
                   <div style={{fontSize: '30px'}}>
-                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo3(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                    <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo1(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
                     <br />
-                    Bottom Notification hidden
+                    Top Notification hidden
                   </div>
                 )}
-              </div>
-            </Column>
-          </Row>
-        </Container>
+              </Column>
+            </Row>
+            <Row>
+              <Column offset="1" cols="10">
+                {demo2 &&
+                  <Notification
+                    variant="error"
+                    title="Notification title goes here"
+                    content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                    primaryAction={
+                      {
+                        content: 'Action goes here' ,
+                        link: '#',
+                      }
+                    }
+                    secondaryAction={
+                      {
+                        content: 'Action goes here' ,
+                        link: '#',
+                      }
+                    }
+                    icon
+                    closeButton
+                    handleClose={() => setDemo2(false)}
+                  >
+                  </Notification>
+                }
+                  {!demo2 && (
+                    <div style={{fontSize: '30px'}}>
+                      <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo2(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                      <br />
+                      Middle Notification hidden
+                    </div>
+                  )}
+              </Column>
+            </Row>
+            <Row>
+              <Column offset="1" cols="10">
+                <div style={{width: '50%'}}>
+                  {demo3 &&
+                    <Notification
+                      variant="error"
+                      title="Notification title goes here"
+                      content="Provider will capture the full description"
+                      primaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
+                      }
+                      secondaryAction={
+                        {
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }
+                      }
+                      icon
+                      closeButton
+                      handleClose={() => setDemo3(false)}
+                    />
+                  }
+                  {!demo3 && (
+                    <div style={{fontSize: '30px'}}>
+                      <a href="#" title="" style={{fontSize: '14px'}} target="_self" onClick={() => setDemo3(true)}><span style={{marginRight: '5px'}}><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></span>Return Notification</a>
+                      <br />
+                      Bottom Notification hidden
+                    </div>
+                  )}
+                </div>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </div>
       );
     }}
   </Story>

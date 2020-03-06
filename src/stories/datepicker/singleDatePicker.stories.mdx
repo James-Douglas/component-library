@@ -14,19 +14,21 @@ import Column from '../../components/Grid/Column/Column.component';
     {() => {
      const [date, setDate] = useState(moment('2020-02-18T00:00:00.000'));
       return (
-      <div style={{marginTop: '30px'}}>
-        <FluidContainer>
-          <Row>
-            <SingleDatePicker
-              dateId="single-date"
-              dateTooltip={{ title: 'Start Date' }}
-              dateAriaLabel="Select Date"
-              date={date}
-              numberOfMonths={1}
-              validationMessage="The date is incorrect"
-              />
-            </Row>
-          </FluidContainer>
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column>
+                <SingleDatePicker
+                  dateId="single-date"
+                  dateTooltip={{ title: 'Start Date' }}
+                  dateAriaLabel="Select Date"
+                  date={date}
+                  numberOfMonths={1}
+                  validationMessage="The date is incorrect"
+                  />
+               </Column>
+              </Row>
+            </FluidContainer>
         </div>
       );
     }}

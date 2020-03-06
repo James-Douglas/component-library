@@ -21,7 +21,7 @@ const colors = {
   hero700: '#0b611c',
   grey50: '#fafafa',
   grey100: '#f6f6f6',
-  grey200: '#eeeeee',
+  grey200: '#f6f6f6',
   grey300: '#dadada',
   grey400: '#c4c4c4',
   grey500: '#9e9e9e',
@@ -34,7 +34,7 @@ const colors = {
   inputDisabledTextOnGray: '#606060', // grey 700
   inputPlacholderText: '#757575', // grey 600
   inputDisabledTextOnWhite: '#9e9e9e', // grey 500
-  inputDisabledBackground: '#eeeeee', // grey 200
+  inputDisabledBackground: '#f6f6f6', // grey 200
   inputPrefilled: '#fbf9ec',
   inputPrefilledBorder: '#c39600',
   success50: '#daf5d5',

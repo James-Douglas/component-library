@@ -13,7 +13,7 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
 
 <Preview>
   <Story name="accordion" decorators={[withKnobs]}>
-    <div style={{marginTop: '30px'}}>
+    <div style={{ padding: '2%' }}>
       <Accordion>
         <AccordionPanel title="Can I switch energy providers?" iconSize={'1x'}>
           <div>
@@ -61,7 +61,7 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
      Can I switch energy providers?
    </div>);
    return (
-    <div style={{marginTop: '30px'}}>
+    <div style={{ padding: '2%'}}>
       <Accordion  collapse={false}>
         <AccordionPanel title={firstTitleItem} iconSize={'1x'}>
           <div>
@@ -101,7 +101,7 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
     const title2 = text('Second panel title', 'Can I switch energy providers?');
     const collapse = boolean('collapse', true, componentPropsId);
     return (
-      <div style={{marginTop: '30px'}}>
+      <div style={{ padding: '2%'}}>
         <Accordion collapse={collapse}>
           <AccordionPanel title={title1} iconSize='1x'>
             <div>

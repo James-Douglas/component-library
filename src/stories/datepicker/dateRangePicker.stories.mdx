@@ -15,21 +15,28 @@ import Column from '../../components/Grid/Column/Column.component';
       const [startDate, setStartDate] = useState(moment('2020-03-20T00:00:00.000'));
       const [endDate, setEndDate] = useState(moment('2020-04-20T00:00:00.000'));
       return (
-        <div style={{marginTop: '30px'}}>
-          <DateRangePicker
-            startDateId="start-date"
-            startDateTooltip={{ title: 'Start Date' }}
-            startDateAriaLabel="Start Date"
-            startDateValue={startDate}
-            endDateId="end-date"
-            endDateTooltip={{ title: 'End Date' }}
-            endDateAriaLabel="End Date"
-            endDateValue={endDate}
-            numberOfMonths={2}
-            endDateValidationMessage="Incorrect end date"
-            startDateValidationMessage="Incorrect start date"
-            isDayBlocked={(day) => day.weekday() === 4}
-          />
+        <div style={{ padding: '2%' }}>
+           <FluidContainer>
+            <Row>
+              <Column>
+                <DateRangePicker
+                  startDateId="start-date"
+                  startDateTooltip={{ title: 'Start Date' }}
+                  startDateAriaLabel="Start Date"
+                  startDateValue={startDate}
+                  endDateId="end-date"
+                  endDateTooltip={{ title: 'End Date' }}
+                  endDateAriaLabel="End Date"
+                  endDateValue={endDate}
+                  numberOfMonths={2}
+                  endDateValidationMessage="Incorrect end date"
+                  startDateValidationMessage="Incorrect start date"
+                  isDayBlocked={(day) => day.weekday() === 4}
+                  handleChange={(dates) => console.log('handleChange', dates)}
+                />
+                </Column>
+              </Row>
+            </FluidContainer>
         </div>
       );
     }}

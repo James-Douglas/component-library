@@ -29,13 +29,15 @@ Then you'll need to set an environment variable with the auth key, e.g `export N
       const iconArr = [faChevronDown, faTimes, faInfoCircle, faCheck, faPhoneAlt];
       const renderIcons = () => {
         return iconArr.map((elem) => {
-          const { iconName } = elem;
+         const { iconName } = elem;
          return (
-           <div key={iconName} style={{display: 'flex', width: '8.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', alignItems: 'center', textAlign: 'center', flexDirection: 'column'}}>
-             <FontAwesomeIcon icon={elem} size='4x' key={iconName}/>
-              <div style={{marginTop: '1.5rem'}}>
-                <Overline>{iconName}</Overline>
-              </div>
+            <div style={{ padding: '2%'}}>
+             <div key={iconName} style={{display: 'flex', width: '8.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', alignItems: 'center', textAlign: 'center', flexDirection: 'column'}}>
+               <FontAwesomeIcon icon={elem} size='4x' key={iconName}/>
+                <div style={{marginTop: '1.5rem'}}>
+                  <Overline>{iconName}</Overline>
+                </div>
+             </div>
            </div>
          )
        })

@@ -30,21 +30,23 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
         }
       }
       return (
-        <FluidContainer>
-          <Row>
-            <Column md={4}>
-              <Checkbox id="chk1" label="A checkbox" />
-              <Checkbox id="chk2" label="A selected checkbox" isSelected/>
-            </Column>
-            <Column md={4}>
-              <Checkbox id="chk3" label="A prefilled checkbox" prefillValue />
-              <Checkbox id="chk4" label="An errored checkbox" validationMessage={error} handleChange={(obj) => {handler(obj)}}/>
-            </Column>
-            <Column md={4}>
-              <Checkbox id="chk5" label="A disabled checkbox" disabled />
-            </Column>
-          </Row>
-        </FluidContainer>
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column md={4}>
+                <Checkbox id="chk1" label="A checkbox" />
+                <Checkbox id="chk2" label="A selected checkbox" isSelected/>
+              </Column>
+              <Column md={4}>
+                <Checkbox id="chk3" label="A prefilled checkbox" prefillValue />
+                <Checkbox id="chk4" label="An errored checkbox" validationMessage={error} handleChange={(obj) => {handler(obj)}}/>
+              </Column>
+              <Column md={4}>
+                <Checkbox id="chk5" label="A disabled checkbox" disabled />
+              </Column>
+            </Row>
+          </FluidContainer>
+        </div>
       )
     }}
   </Story>
@@ -52,28 +54,32 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
 
 <Preview>
   <Story name="checkbox group">
-    <FluidContainer>
-      <Row>
-        <Column>
-          <CheckboxGroup
-            label="Checkbox group example"
-            tooltip={{ title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
-            groupId="group-1"
-            colSize="12"
-            handleChange={() => {}}
-          >
-            <Checkbox id="A-1" label="One" />
-            <Checkbox id="A-2" label="Two" />
-            <Checkbox id="A-3" label="Three" />
-          </CheckboxGroup>
-        </Column>
-      </Row>
-    </FluidContainer>
+    <div style={{ padding: '2%' }}>
+      <FluidContainer>
+        <Row>
+          <Column>
+            <CheckboxGroup
+              label="Checkbox group example"
+              tooltip={{ title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
+              groupId="group-1"
+              colSize="12"
+              handleChange={() => {}}
+            >
+              <Checkbox id="A-1" label="One" />
+              <Checkbox id="A-2" label="Two" />
+              <Checkbox id="A-3" label="Three" />
+            </CheckboxGroup>
+          </Column>
+        </Row>
+      </FluidContainer>
+    </div>
   </Story>
 </Preview>
 
 <Story name="checkbox group demo" parameters={{ docs: { disable: true } }}>
-  <CheckboxGroupView />
+  <div style={{ padding: '2%'}}>
+     <CheckboxGroupView />
+  </div>
 </Story>
 
 ## Behaviour
@@ -119,23 +125,25 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
     const checkboxBInvertColor = boolean('invertColour', false, checkboxBPropsId);
     const { title, body, placement, screenReaderLabel, variant } = getTooltipKnobs(tooltipGroupId);
     return (
-      <CheckboxGroup
-        groupId={groupId}
-        label={label}
-        validationMessage={validationMessage}
-        colSize={colSize}
-        handleChange={()=>{}}
-        tooltip={{
-          title,
-          body,
-          placement,
-          screenReaderLabel,
-          variant
-        }}
-      >
-        <Checkbox id={checkboxAId} label={checkboxALabel} disabled={checkboxADisabled} isSelected={checkboxAIsSelected} invalid={checkboxAInvalid} invertColour={checkboxAInvertColor} />
-        <Checkbox id={checkboxBId} label={checkboxBLabel} disabled={checkboxBDisabled} isSelected={checkboxBIsSelected} invalid={checkboxBInvalid} invertColour={checkboxBInvertColor} />
-      </CheckboxGroup>
+      <div style={{ padding: '2%' }}>
+        <CheckboxGroup
+          groupId={groupId}
+          label={label}
+          validationMessage={validationMessage}
+          colSize={colSize}
+          handleChange={()=>{}}
+          tooltip={{
+            title,
+            body,
+            placement,
+            screenReaderLabel,
+            variant
+          }}
+        >
+          <Checkbox id={checkboxAId} label={checkboxALabel} disabled={checkboxADisabled} isSelected={checkboxAIsSelected} invalid={checkboxAInvalid} invertColour={checkboxAInvertColor} />
+          <Checkbox id={checkboxBId} label={checkboxBLabel} disabled={checkboxBDisabled} isSelected={checkboxBIsSelected} invalid={checkboxBInvalid} invertColour={checkboxBInvertColor} />
+        </CheckboxGroup>
+      </div>
     )
   }}
 </Story>

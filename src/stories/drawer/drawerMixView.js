@@ -12,14 +12,11 @@ import Modal from '../../components/Modal/Modal.component';
 const StyledCard = styled.div`
   text-align: center;
   padding: 4rem;
-  border: 1px solid ${(props) => props.theme.colors.greyLight};
 `;
 const StyledDrawerContent = styled.div`
   padding: 2rem 2rem 0 2rem;
 `;
-const StyledContainer = styled(FluidContainer)`
-  background: ${(props) => props.theme.colors.greyLight};
-`;
+
 
 const DrawerMix = () => {
   const [show, setShow] = useState(false);
@@ -284,7 +281,7 @@ const DrawerMix = () => {
           </Row>
         </Container>
       </Drawer>
-      <StyledContainer>
+      <div>
         <Row className="row-view">
           <Column cols="12" valign="center">
             <StyledCard>
@@ -309,7 +306,7 @@ const DrawerMix = () => {
             </StyledCard>
           </Column>
         </Row>
-      </StyledContainer>
+      </div>
     </>
   );
 };

@@ -21,18 +21,20 @@ ways, including setting prefix & suffix content, adding a mask, etc (see props).
 
 <Preview>
   <Story name="input">
-    <Input
-      label="Input demo"
-      id="input-one"
-      tooltip={{title: 'input demo'}}
-      placeholder="Placeholder one"
-      type="text"
-      bordered
-      required={false}
-      disabled={false}
-      invalid={false}
-      handleChange={() => {}}
-    />
+    <div style={{ padding: '2%' }}>
+      <Input
+        label="Input demo"
+        id="input-one"
+        tooltip={{title: 'input demo'}}
+        placeholder="Placeholder one"
+        type="text"
+        bordered
+        required={false}
+        disabled={false}
+        invalid={false}
+        handleChange={() => {}}
+      />
+    </div>
   </Story>
 </Preview>
 
@@ -72,30 +74,32 @@ populated with `prefillValue` and prefilled styles will be applied.
     const suffixContent = text('suffixContent', '', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
-      <Input
-        id="input-props"
-        label={label}
-        tooltip={{
-          title,
-          body,
-          placement,
-          screenReaderLabel,
-          variant
-        }}
-        validationMessage={validationMessage}
-        maxLength={maxLength}
-        value={value}
-        prefillValue={prefillValue}
-        type={type}
-        placeholder={placeholder}
-        required={required}
-        handleChange={() => {}}
-        disabled={disabled}
-        bordered={bordered}
-        prefixContent={prefixContent}
-        prefixBlock={prefixBlock}
-        suffixContent={suffixContent}
-      />
+      <div style={{ padding: '2%' }}>
+        <Input
+          id="input-props"
+          label={label}
+          tooltip={{
+            title,
+            body,
+            placement,
+            screenReaderLabel,
+            variant
+          }}
+          validationMessage={validationMessage}
+          maxLength={maxLength}
+          value={value}
+          prefillValue={prefillValue}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          handleChange={() => {}}
+          disabled={disabled}
+          bordered={bordered}
+          prefixContent={prefixContent}
+          prefixBlock={prefixBlock}
+          suffixContent={suffixContent}
+        />
+      </div>
     );
   }}
 </Story>

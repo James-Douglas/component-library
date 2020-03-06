@@ -12,7 +12,9 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
 
 <Preview>
   <Story name="textarea">
-    <TextArea id='demo' bordered />
+    <div style={{ padding: '2%' }}>
+      <TextArea id='demo' bordered />
+    </div>
   </Story>
 </Preview>
 
@@ -35,16 +37,8 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
     const maxLength = text('maxlength', '', componentPropsId);
     const maxChars = text('maxchars', '500', componentPropsId);
     const validationMessage = text('validationMessage', '', componentPropsId);
-    const { title, body, placement, screenReaderLabel, variant } = getTootipKnobs(tooltipGroupId);
     return (
       <TextArea
-        tooltip={{
-          title,
-          body,
-          placement,
-          screenReaderLabel,
-          variant
-        }}
         id={id}
         name={name}
         label={label}

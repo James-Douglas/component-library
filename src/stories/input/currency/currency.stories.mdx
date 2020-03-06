@@ -10,18 +10,20 @@ import getTooltipKnobs from '../../tooltipKnobs';
 
 <Preview>
   <Story name="currency">
-    <CurrencyInput
-      label="Currency input"
-      id="currency-input-one"
-      tooltip={{title: 'currency demo'}}
-      placeholder="12345"
-      currencySymbol="$"
-      bordered
-      required={false}
-      disabled={false}
-      invalid={false}
-      handleChange={() => {}}
-    />
+    <div style={{ padding: '2%' }}>
+      <CurrencyInput
+        label="Currency input"
+        id="currency-input-one"
+        tooltip={{title: 'currency demo'}}
+        placeholder="12345"
+        currencySymbol="$"
+        bordered
+        required={false}
+        disabled={false}
+        invalid={false}
+        handleChange={() => {}}
+      />
+    </div>
   </Story>
 </Preview>
 
@@ -45,27 +47,29 @@ import getTooltipKnobs from '../../tooltipKnobs';
     const currencySymbol = text('currencySymbol', '$', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant } = getTooltipKnobs(tooltipGroupId);
     return (
-      <CurrencyInput
-        label={label}
-        id="currency-input-one"
-        tooltip={{
-          title,
-          body,
-          placement,
-          screenReaderLabel,
-          variant
-        }}
-        validationMessage={validationMessage}
-        maxLength={maxLength}
-        value={value}
-        prefillValue={prefillValue}
-        placeholder={placeholder}
-        currencySymbol={currencySymbol}
-        bordered={bordered}
-        required={required}
-        disabled={disabled}
-        handleChange={() => {}}
-      />
+      <div style={{ padding: '2%' }}>
+        <CurrencyInput
+          label={label}
+          id="currency-input-one"
+          tooltip={{
+            title,
+            body,
+            placement,
+            screenReaderLabel,
+            variant
+          }}
+          validationMessage={validationMessage}
+          maxLength={maxLength}
+          value={value}
+          prefillValue={prefillValue}
+          placeholder={placeholder}
+          currencySymbol={currencySymbol}
+          bordered={bordered}
+          required={required}
+          disabled={disabled}
+          handleChange={() => {}}
+        />
+      </div>
     )
   }}
 </Story>

@@ -10,6 +10,7 @@ import Container from 'components/Grid/Container/Container.component';
 import Row from 'components/Grid/Row/Row.component';
 import Column from 'components/Grid/Column/Column.component';
 import ModalView from './modal.view';
+import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
 <Meta title="Components/Modal" component={Modal} />
 
@@ -29,33 +30,33 @@ Unlike a Drawer, Modals can always be closed by the user.
   {() => {
     const [ visible, setVisible ] = useState(false);
     const [ visibleModal, setVisibleModal ] = useState(false);
-    console.log('visible', visible)
-     console.log('visibleModal', visibleModal)
     return (
-      <Container>
-        <Row>
-          <Column>
-            <Button id='preview-btn' variant='secondary' handleClick={() => setVisible(!visible)}>Modal Preview</Button>
-          </Column>
-          <Column>
-            <Button id='preview-btn2' variant='secondary' handleClick={() => setVisibleModal(!visibleModal)}>Modal Preview With actions</Button>
-          </Column>
-          <Modal id='preview-modal' visible={visible} handleClose={() => {setVisible(false)}} size="sm" overlay handleOverlayClick={() => setVisible(false)} title="Modal title goes here">
-            <p> It is the percentage of money you borrow for a home loan compared to the value of the property. It is used to assess your risk factor as a borrower; lenders will calculate your LVR before deciding whether or to approve you for a home loan. Home loans which are over 80% LVR are considered high risk. As a result, most lenders will charge extra fees, such as Lender’s Mortgage Insurance (LMI), in order to protect themselves in case you default.</p>
-          </Modal>
-         <Modal id='preview-modal2' visible={visibleModal} handleClose={() => setVisibleModal(false)} size="sm" overlay handleOverlayClick={() => setVisibleModal(false)}  title="Modal title goes here">
-           <div style={{maxHeight: '250px', overflow: 'auto' }}>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</p>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</p>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</p>
-            </div>
-            <div style={{display: 'flex', justifyContent: 'flex-end', borderTop: '1px solid red', padding: '30px 24px 0', margin: '30px -24px 0', borderTop: '1px solid #f6f6f6'}}>
-               <div style={{display: 'inherit', marginRight: '20px'}}><Button id="tertiary-btn01" variant="tertiary" style={{margin: 0, display: 'inline-block', padding: '1.2rem'}}>Secondary Action</Button></div>
-               <div style={{display: 'inline-block'}}><Button id="secondary-btn01" variant="primary" style={{margin: 0, display: 'inline-block', padding: '1.2rem'}}>Primary Action</Button></div>
-            </div>
-          </Modal>
-        </Row>
-      </Container>
+      <div style={{ padding: '2%' }}>
+        <FluidContainer>
+          <Row>
+            <Column>
+              <Button id='preview-btn' variant='secondary' handleClick={() => setVisible(!visible)}>Modal Preview</Button>
+            </Column>
+            <Column>
+              <Button id='preview-btn2' variant='secondary' handleClick={() => setVisibleModal(!visibleModal)}>Modal Preview With actions</Button>
+            </Column>
+            <Modal id='preview-modal' visible={visible} handleClose={() => {setVisible(false)}} size="sm" overlay handleOverlayClick={() => setVisible(false)} title="Modal title goes here">
+              <p> It is the percentage of money you borrow for a home loan compared to the value of the property. It is used to assess your risk factor as a borrower; lenders will calculate your LVR before deciding whether or to approve you for a home loan. Home loans which are over 80% LVR are considered high risk. As a result, most lenders will charge extra fees, such as Lender’s Mortgage Insurance (LMI), in order to protect themselves in case you default.</p>
+            </Modal>
+           <Modal id='preview-modal2' visible={visibleModal} handleClose={() => setVisibleModal(false)} size="sm" overlay handleOverlayClick={() => setVisibleModal(false)}  title="Modal title goes here">
+             <div style={{maxHeight: '250px', overflow: 'auto' }}>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</p>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</p>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</p>
+              </div>
+              <div style={{display: 'flex', justifyContent: 'flex-end', borderTop: '1px solid red', padding: '30px 24px 0', margin: '30px -24px 0', borderTop: '1px solid #f6f6f6'}}>
+                 <div style={{display: 'inherit', marginRight: '20px'}}><Button id="tertiary-btn01" variant="tertiary" style={{margin: 0, display: 'inline-block', padding: '1.2rem'}}>Secondary Action</Button></div>
+                 <div style={{display: 'inline-block'}}><Button id="secondary-btn01" variant="primary" style={{margin: 0, display: 'inline-block', padding: '1.2rem'}}>Primary Action</Button></div>
+              </div>
+            </Modal>
+          </Row>
+        </FluidContainer>
+      </div>
     )
   }}
 </Story>
@@ -81,5 +82,7 @@ Unlike a Drawer, Modals can always be closed by the user.
 </Story>
 
 <Story name="Mock modal" parameters={{ docs: { disable: true } }}>
-  <ModalView />
+  <div style={{ padding: '2%' }}>
+    <ModalView />
+  </div>
 </Story>

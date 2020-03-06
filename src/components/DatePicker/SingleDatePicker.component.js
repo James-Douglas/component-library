@@ -16,6 +16,9 @@ import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 const StyledDateRangePickerWrap = styled.div`
   width: ${({ theme }) => theme.spacing[176]};
   margin-right: ${({ theme }) => theme.spacing[24]};
+  .date-input-calendar {
+    padding-right: ${({ theme }) => theme.spacing[12]};
+  }
   .input-wrap {
     label {
       path {
@@ -68,14 +71,23 @@ const SingleDatePicker = ({
     }
   }, [node, setIsVisisble]);
 
+  const escFunction = useCallback((event) => {
+    if (event.keyCode === 27) {
+      setIsVisisble(false);
+    }
+  }, []);
+
+
   useLayoutEffect(() => {
     // add when mounted
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', escFunction);
     // return function to be called when unmounted
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', escFunction);
     };
-  }, [handleClickOutside]);
+  }, [handleClickOutside, escFunction]);
   return (
     <StyledDateRangePickerContainer ref={node}>
       <GlobalStyle />
@@ -92,6 +104,7 @@ const SingleDatePicker = ({
           handleChange={dateHandleChange}
           disableClearIcon
           validationMessage={validationMessageDate}
+          className="date-input-calendar"
         />
       </StyledDateRangePickerWrap>
       {isVisisble && (

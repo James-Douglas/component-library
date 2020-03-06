@@ -1,6 +1,7 @@
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, {
+  createRef,
   useCallback,
   useLayoutEffect,
   useState,
@@ -19,6 +20,9 @@ import { GlobalStyle, StyledCalendar, StyledDateRangePickerContainer } from './s
 const StyledDateRangePickerWrap = styled.div`
   width: ${({ theme }) => theme.spacing[176]};
   margin-right: ${({ theme }) => theme.spacing[24]};
+  .date-input-calendar {
+    padding-right: ${({ theme }) => theme.spacing[12]};
+  }
   .input-wrap {
     label {
       path {
@@ -64,6 +68,7 @@ const DateRangePicker = ({
   const [isVisisble, setIsVisisble] = useState(false);
   const [startDateValidationMessageText, setStartDateValidationMessage] = useState(null);
   const [endDateValidationMessageText, setEndDateValidationMessage] = useState(null);
+  const calendarArea = createRef();
   const focusHandler = (value) => {
     setFocusedInput(value || START_DATE);
   };
@@ -84,12 +89,22 @@ const DateRangePicker = ({
     setIsVisisble(true);
     setFocusedInput(range);
   };
+
   const startDateHandleFocus = () => {
     fieldNameHandleFocus(START_DATE);
   };
+
+  const keyboardAccessibilityFromDate = (event) => {
+    if (event.key === 'Tab') {
+      setIsVisisble(true);
+      calendarArea && calendarArea.current && calendarArea.current.focus();
+    }
+  };
+
   const endDateHandleFocus = () => {
     fieldNameHandleFocus(END_DATE);
   };
+
   const startDateHandleChange = (value) => {
     if (value.isValid()) {
       setStartDate(value);
@@ -98,6 +113,7 @@ const DateRangePicker = ({
     value.isValid() && setStartDateValidationMessage(null);
     !value.isValid() && setStartDateValidationMessage(startDateValidationMessage);
   };
+
   const endDateHandleChange = (value) => {
     if (value.isValid()) {
       setEndDate(value);
@@ -106,25 +122,35 @@ const DateRangePicker = ({
     value.isValid() && setEndDateValidationMessage(null);
     !value.isValid() && setEndDateValidationMessage(endDateValidationMessage);
   };
+
   const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {
       setIsVisisble(false);
     }
   }, [node, setIsVisisble]);
 
+  const escFunction = useCallback((event) => {
+    if (event.keyCode === 27) {
+      setIsVisisble(false);
+    }
+  }, []);
+
   useLayoutEffect(() => {
     // add when mounted
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', escFunction);
     // return function to be called when unmounted
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', escFunction);
     };
-  }, [handleClickOutside]);
+  }, [escFunction, handleClickOutside]);
+
   return (
     <StyledDateRangePickerContainer ref={node}>
       <GlobalStyle />
       <StyledDateRangePicker>
-        <StyledDateRangePickerWrap>
+        <StyledDateRangePickerWrap onKeyDown={keyboardAccessibilityFromDate}>
           <DateInput
             id={startDateId}
             tooltip={startDateTooltip}
@@ -137,6 +163,7 @@ const DateRangePicker = ({
             validationMessage={startDateValidationMessageText}
             disableClearIcon
             prefixContent=""
+            className="date-input-calendar"
           />
         </StyledDateRangePickerWrap>
         <StyledDateRangePickerWrap>
@@ -152,11 +179,18 @@ const DateRangePicker = ({
             validationMessage={endDateValidationMessageText}
             disableClearIcon
             prefixContent=""
+            className="date-input-calendar"
           />
         </StyledDateRangePickerWrap>
       </StyledDateRangePicker>
       {isVisisble && (
-        <StyledCalendar endDateAriaLabel={endDateAriaLabel} startDateAriaLabel={startDateAriaLabel}>
+        <StyledCalendar
+          endDateAriaLabel={endDateAriaLabel}
+          startDateAriaLabel={startDateAriaLabel}
+          ref={calendarArea}
+          tabIndex={0}
+          role="calendar"
+        >
           <RSDayPickerRange
             startDate={startDate} // momentPropTypes.momentObj or null,
             endDate={endDate} // momentPropTypes.momentObj or null,

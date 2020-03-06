@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { fireEvent, render, getByLabelText } from '../../../testUtils';
 import SingleDatePicker from '../SingleDatePicker.component';
 import 'jest-styled-components';
+import DateRangePicker from '../DateRangePicker.component';
 
 describe('SingleDatePicker', () => {
   it('renders correct number options', () => {
@@ -88,6 +89,36 @@ describe('SingleDatePicker', () => {
     expect(visibleMonths.length).toBe(0);
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
   });
+  it('check default value in date', () => {
+    const handleChangeF = jest.fn();
+    const startDate = moment('2020-03-20T00:00:00.000');
+    const endDate = moment('2020-04-20T00:00:00.000');
+    const numberOfMonths = 3;
+    const { container } = render(
+      <SingleDatePicker
+        dateId="start-date"
+        dateTooltip={{ title: 'Start Date' }}
+        dateAriaLabel="Select Date"
+        date={startDate}
+        numberOfMonths={numberOfMonths}
+        handleChange={handleChangeF}
+        validationMessage="Please provide correct date"
+      />,
+    );
+    const startDateInput = container.querySelector('#start-date');
+    const input = container.querySelector('#start-date');
+    act(() => {
+      input.focus();
+    });
+    const visibleMonths = container.getElementsByClassName('CalendarMonth');
+    expect(visibleMonths.length).toBe(numberOfMonths + 2);
+    act(() => {
+      fireEvent.change(startDateInput, { target: { value: '08/03/2020' } });
+    });
+    expect(handleChangeF).toHaveBeenCalled();
+    expect(visibleMonths.length).toBe(0);
+    expect(startDateInput).toHaveValue('08/03/2020');
+  });
 
   it('insert invalid start date, get error', () => {
     const startDate = moment('2020-03-20T00:00:00.000');
@@ -110,5 +141,29 @@ describe('SingleDatePicker', () => {
       fireEvent.change(input, { target: { value: '04/03/202' } });
     });
     expect(getByText('Please provide correct date')).toBeInTheDocument();
+  });
+
+  it('check accessibility esc', () => {
+    const startDate = moment('2020-03-20T00:00:00.000');
+    const numberOfMonths = 3;
+    const { container, getByText } = render(
+      <SingleDatePicker
+        dateId="start-date"
+        dateAriaLabel="Select Date"
+        date={startDate}
+        numberOfMonths={numberOfMonths}
+        validationMessage="Please provide correct date"
+      />,
+    );
+    const datepickerWrapBeforeFocus = container.querySelector('[role=application]');
+    expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
+    const input = container.querySelector('#start-date');
+    act(() => {
+      input.focus();
+    });
+    const visibleMonths = container.getElementsByClassName('CalendarMonth');
+    expect(visibleMonths.length).toBe(numberOfMonths + 2);
+    fireEvent.keyDown(input, { key: 'Escape', keyCode: 27 });
+    expect(visibleMonths.length).toBe(0);
   });
 });
