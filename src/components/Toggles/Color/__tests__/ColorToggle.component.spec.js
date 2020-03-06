@@ -43,16 +43,10 @@ describe('ColorToggle', () => {
     const { getByText, container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" />);
     expect(container.innerHTML).toMatchSnapshot();
     expect(getByText('Black')).toBeInTheDocument();
-    const wrapper = container.querySelector('.scoped-toggle');
-    expect(wrapper).toHaveClass('black');
+    expect(container.querySelector('i')).toHaveStyle('background-color: black');
     const input = container.querySelector('input');
     expect(input).toHaveAttribute('id', 'test-a');
     expect(input).toHaveAttribute('tabIndex', '0');
-  });
-
-  it('applies fontColor when provided', () => {
-    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" fontColor="white" />);
-    expect(container.querySelector('.scoped-toggle')).toHaveClass('white');
   });
 
   it('calls handleToggle when change event fires', () => {
@@ -63,6 +57,7 @@ describe('ColorToggle', () => {
     expect(onToggleCb).toHaveBeenCalled();
     expect(onToggleCb.mock.calls[0][0]).toEqual('ttt');
   });
+
   it('calls focus and blur handlers', () => {
     const handleFocus = jest.fn();
     const handleBlur = jest.fn();

@@ -17,9 +17,7 @@ const StyledValidationWrapper = styled.div`
   margin-left: ${({ theme }) => theme.spacing[8]};
 `;
 
-export const getType = (children) => (children.find(({ props }) => props && props.label && props.label.length > 25) ? 'rectangle' : 'square');
-
-export const getChildren = (children, type, name, selectedToggleValue, handleToggle, rectOptions, validationMessage) => (
+export const getChildren = (children, name, selectedToggleValue, handleToggle, validationMessage, contentWidth, contentHeight) => (
   children.map((child, index) => {
     const key = `toggle-${child.props.id || index}`;
     const propsToAdd = {
@@ -27,11 +25,13 @@ export const getChildren = (children, type, name, selectedToggleValue, handleTog
       name,
       selectedValue: selectedToggleValue,
       handleToggle,
-      type,
       invalid: !!validationMessage && validationMessage.length > 0,
+      contentWidth,
+      contentHeight,
     };
-    if (!child.props.id) propsToAdd.id = key;
-    if (type === 'rectangle') propsToAdd.rectOptions = rectOptions;
+    if (!child.props.id) {
+      propsToAdd.id = key;
+    }
     return React.cloneElement(child, propsToAdd);
   })
 );
@@ -45,11 +45,11 @@ const ToggleGroup = ({
   handleToggle,
   selectedValue,
   children,
-  rectOptions,
+  contentWidth,
+  contentHeight,
   className,
 }) => {
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
-  const type = getType(children);
 
   const toggleHandler = (value) => {
     setSelectedToggleValue(value);
@@ -60,9 +60,9 @@ const ToggleGroup = ({
 
   return (
     <>
-      <Label forId={id} text={label} tooltip={tooltip} />
+      <Label htmlFor={id} text={label} tooltip={tooltip} />
       <StyledToggleGroup id={id} className={className}>
-        {getChildren(children, type, name, selectedToggleValue, toggleHandler, rectOptions, validationMessage)}
+        {getChildren(children, name, selectedToggleValue, toggleHandler, validationMessage, contentWidth, contentHeight)}
       </StyledToggleGroup>
       <StyledValidationWrapper>
         <FieldValidation message={validationMessage} />
@@ -101,13 +101,9 @@ ToggleGroup.propTypes = {
    */
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Options object for rectangular toggles (see Toggle documentation)
+   * The toggles to be rendered. They should all be the same type of toggle (`TextToggle`, `IconToggle`, etc).
+   * Mixing toggles will result in undefined behaviour and violate the design system. Please don't.
    */
-  rectOptions: PropTypes.shape({
-    align: PropTypes.oneOf(['center', 'left', 'right']),
-    col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    height: PropTypes.number,
-  }),
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -118,6 +114,18 @@ ToggleGroup.propTypes = {
       PropTypes.node,
     ])),
   ]),
+  /**
+   * For use with TextToggles (setting this prop has no effect for other toggle types)
+   * Controls the width of the content container within the TextToggle, this can be used to ensure all
+   * TextToggles maintain the same width.
+   */
+  contentWidth: PropTypes.string,
+  /**
+   * For use with TextToggles (setting this prop has no effect for other toggle types)
+   * Controls the height of the content container within the TextToggle, this can be used to ensure all
+   * TextToggles maintain the same height.
+   */
+  contentHeight: PropTypes.string,
   /**
    * Classes to be applied to the ToggleGroup component
    */
@@ -130,12 +138,9 @@ ToggleGroup.defaultProps = {
   validationMessage: null,
   id: null,
   selectedValue: null,
-  rectOptions: {
-    align: 'center',
-    col: 1,
-    height: 8,
-  },
   children: [],
+  contentWidth: null,
+  contentHeight: null,
   className: '',
 };
 

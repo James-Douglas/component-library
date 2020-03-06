@@ -66,7 +66,7 @@ const CheckboxGroup = ({
 
   return (
     <>
-      <Label forId={groupId} text={label} tooltip={tooltip} />
+      <Label htmlFor={groupId} text={label} tooltip={tooltip} />
       <Row removeMarginBottom>
         <Column cols={desktop ? '10' : '12'}>
           <StyledContainer id={groupId}>

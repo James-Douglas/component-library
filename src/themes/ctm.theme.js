@@ -277,7 +277,7 @@ const transition = {
 };
 
 const borders = {
-  invalid: `1px solid ${colors.invalid}`,
+  invalid: `1px solid ${colors.error500}`,
   transparent: '1px solid transparent',
   disabled: `1px solid ${colors.disabled}`,
   component: `1px solid ${colors.grey300}`,
@@ -529,8 +529,10 @@ const ctmTheme = {
   toggle: {
     base: {
       background: colors.white,
-      backgroundChecked: colors.brandMidnightBlue,
-      color: colors.white,
+      backgroundChecked: colors.primary500,
+      color: colors.primary500,
+      colorChecked: colors.white,
+
     },
   },
   tooltip: {

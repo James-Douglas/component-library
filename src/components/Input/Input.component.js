@@ -238,7 +238,7 @@ const Input = React.forwardRef(({
 
   return (
     <StyledWrapper className="input-wrap">
-      <Label forId={id} text={label} tooltip={tooltip} />
+      <Label htmlFor={id} text={label} tooltip={tooltip} />
       <StyledInputContainer className="input-container">
         <StyledInputWrap
           isAutofill={isAutofill}

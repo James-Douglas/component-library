@@ -1,0 +1,24 @@
+import { Meta, Preview, Story, Props } from '@storybook/addon-docs/blocks';
+import ToggleGroup from '../../components/Toggles/ToggleGroup.component';
+import TextToggle from '../../components/Toggles/Text/TextToggle.component';
+
+<Meta title="Components|Toggles/ToggleGroup" component={ToggleGroup} />
+
+# ToggleGroup
+
+The ToggleGroup component manages a group of related toggles. It is intended that in most cases when using toggles you will
+wrap them in a ToggleGroup. The ToggleGroup manages labels, validation, tooltips, as well as selection events.
+
+<Preview>
+  <Story name="togglegroup">
+    <ToggleGroup label="ToggleGroup demo" name="togglegroup" handleToggle={() => {}} contentWidth="10rem">
+      <TextToggle value="1" id="one" label="One" />
+      <TextToggle value="2" id="two" label="Two" />
+      <TextToggle value="3" id="three" label="Three" />
+    </ToggleGroup>
+  </Story>
+</Preview>
+
+## Props
+<Props of={ToggleGroup} />
+

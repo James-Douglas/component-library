@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 
@@ -31,12 +31,6 @@ const StyledBorderColour = styled.i`
 
 const StyledContent = styled.span`
   z-index: ${({ theme }) => (theme.zIndex['20'])};
-`;
-
-const GlobalStyle = createGlobalStyle`
-  .scoped-toggle.white input:checked + label {
-    color: white;
-  }
 `;
 
 export function getDisplayBackgroundColor(backgroundColor) {
@@ -87,30 +81,26 @@ const ColorToggle = ({
   const displayLabel = getDisplayLabel(label, backgroundColor);
 
   return (
-    <>
-      <GlobalStyle />
-      <div className={`scoped-toggle ${fontColor}`}>
-        <BaseToggle
-          id={id}
-          type="custom"
-          value={value}
-          name={name}
-          selectedValue={selectedValue}
-          invalid={invalid}
-          disabled={disabled}
-          handleToggle={toggleHandler}
-          handleFocus={handleFocus}
-          handleBlur={handleBlur}
-        >
-          <ToggleLabel id={id}>
-            <StyledColourToggle>
-              <StyledContent>{displayLabel}</StyledContent>
-              <StyledBorderColour style={animationStyle} />
-            </StyledColourToggle>
-          </ToggleLabel>
-        </BaseToggle>
-      </div>
-    </>
+    <BaseToggle
+      id={id}
+      type="custom"
+      value={value}
+      name={name}
+      selectedValue={selectedValue}
+      checkedFontColor={fontColor}
+      invalid={invalid}
+      disabled={disabled}
+      handleToggle={toggleHandler}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
+    >
+      <ToggleLabel id={id}>
+        <StyledColourToggle>
+          <StyledContent>{displayLabel}</StyledContent>
+          <StyledBorderColour style={animationStyle} />
+        </StyledColourToggle>
+      </ToggleLabel>
+    </BaseToggle>
   );
 };
 

@@ -14,7 +14,7 @@ const StyledLabel = styled.label`
 `;
 
 const Label = ({
-  forId, text, tooltip,
+  htmlFor, text, tooltip,
 }) => {
   const {
     title, body, screenReaderLabel, placement, variant, className,
@@ -22,7 +22,7 @@ const Label = ({
 
   return (
     <StyledLabelContainer>
-      <StyledLabel htmlFor={forId} className="label">
+      <StyledLabel htmlFor={htmlFor} className="label">
         {text}
         <Tooltip
           title={title}
@@ -38,13 +38,22 @@ const Label = ({
 };
 
 Label.propTypes = {
-  forId: PropTypes.string,
+  /**
+   * ID of the component the label is for
+   */
+  htmlFor: PropTypes.string,
+  /**
+   * Text for the label
+   */
   text: PropTypes.string,
+  /**
+   * Tooltip to be displayed
+   */
   tooltip: PropTypes.shape(tooltipPropTypes),
 };
 
 Label.defaultProps = {
-  forId: null,
+  htmlFor: null,
   text: '',
   tooltip: {},
 };

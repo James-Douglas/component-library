@@ -16,13 +16,13 @@ describe('Label', () => {
   });
 
   it('renders correctly with tooltip prop', () => {
-    const { container } = render(<Label text="Label" tooltip={tooltip} forId="LabelId" fullWidth />);
+    const { container } = render(<Label text="Label" tooltip={tooltip} htmlFor="LabelId" fullWidth />);
     const svg = container.querySelector('svg');
     expect(svg).toBeInTheDocument();
   });
 
   it('renders correctly without tooltip prop', () => {
-    const { container } = render(<Label text="Label" forId="LabelId" />);
+    const { container } = render(<Label text="Label" htmlFor="LabelId" />);
     const svg = container.querySelector('svg');
     expect(svg).not.toBeInTheDocument();
   });

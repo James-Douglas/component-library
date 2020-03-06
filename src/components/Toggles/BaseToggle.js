@@ -9,11 +9,9 @@ const StyledToggle = styled.div`
   border: ${({ theme, invalid }) => (invalid ? theme.borders.invalid : theme.borders.component)};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin: ${({ theme }) => `0 ${theme.spacing['16']} ${theme.spacing['16']} 0`};
-  margin-bottom: ${({ theme }) => theme.spacing['16']};
   background: ${({ theme }) => theme.toggle.base.background};
   box-shadow: ${({ theme }) => theme.boxShadow.sm};
   line-height: ${({ theme }) => theme.lineHeight.normal};
-  min-width: 12.8rem;
 `;
 
 const StyledToggleInput = styled.input`
@@ -21,12 +19,21 @@ const StyledToggleInput = styled.input`
   width:0;
   height: 0;
   position: absolute;
-
+  
+  + label {
+    color: ${({ theme }) => theme.toggle.base.color};
+  }
+  
   &:checked + label svg {
-    color: ${({ theme }) => theme.toggle.base.background};
+    color: ${({ theme }) => theme.toggle.base.colorChecked};
     fill: currentColor;
     box-shadow: none;
-     transition : all 200ms ease-out;
+  }
+  
+  &:checked + label div {
+    background: ${({ theme }) => theme.toggle.base.backgroundChecked};
+    color: ${({ checkedFontColor, theme }) => checkedFontColor || theme.toggle.base.colorChecked};
+    box-shadow: none;
   }
 
   &:disabled + label:hover {
@@ -37,12 +44,6 @@ const StyledToggleInput = styled.input`
     color: ${({ theme }) => theme.colors.disabled};
     border: ${({ theme }) => theme.borders.transparent};
     fill: currentColor;
-  }
-
-  &:checked + label {
-    background: ${({ theme }) => theme.toggle.base.backgroundChecked};
-    color: ${({ theme }) => theme.toggle.base.color};
-    box-shadow: none;
   }
 
   &:focus + label {
@@ -61,31 +62,8 @@ const StyledToggleInput = styled.input`
   `}
 `;
 
-const columns = {
-  1: '100%', 2: '50%', 3: '33.33%', 4: '25%', 5: '20%',
-};
-
-export function getInlineStyles(type, rectOptions) {
-  if (type !== 'rectangle') return {};
-
-  const { col, height, align } = rectOptions;
-
-  const inlineStyles = {
-    height: `${height}rem`,
-    alignItems: `${align}`,
-  };
-
-  if (col > 0) {
-    inlineStyles.width = columns[col];
-    inlineStyles.flexBasis = columns[col];
-  }
-
-  return inlineStyles;
-}
-
 const BaseToggle = ({
   id,
-  type,
   value,
   name,
   selectedValue,
@@ -94,17 +72,14 @@ const BaseToggle = ({
   handleToggle,
   handleFocus,
   handleBlur,
-  rectOptions,
+  checkedFontColor,
   children,
   className,
 }) => {
   const wrapperElement = useRef(null);
   const toggleElement = useRef(null);
-
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <StyledToggle
-      style={getInlineStyles(type, rectOptions)}
       onClick={() => {
         toggleElement.current.click();
         toggleElement.current.focus();
@@ -112,6 +87,7 @@ const BaseToggle = ({
       invalid={invalid}
       ref={wrapperElement}
       className={className}
+      checked={selectedValue === value}
     >
       <StyledToggleInput
         tabIndex={0}
@@ -126,9 +102,11 @@ const BaseToggle = ({
         value={value}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        checkedFontColor={checkedFontColor}
       />
       {children}
     </StyledToggle>
+
   );
 };
 
@@ -137,10 +115,6 @@ BaseToggle.propTypes = {
    * Unique identifier for the toggle
    */
   id: PropTypes.string.isRequired,
-  /**
-   * Type of the toggle
-   */
-  type: PropTypes.oneOf(['square', 'rectangle', 'custom']).isRequired,
   /**
    * Value applied to the input field
    */
@@ -175,13 +149,10 @@ BaseToggle.propTypes = {
    */
   handleBlur: PropTypes.func,
   /**
-   * Options object for rendering rectangular toggles]
+   * Used by the `Color` toggle to override the checked label's font color for when displaying
+   * light colors where white text is difficult to discern.
    */
-  rectOptions: PropTypes.shape({
-    align: PropTypes.oneOf(['center', 'left', 'right']),
-    col: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    height: PropTypes.number,
-  }),
+  checkedFontColor: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
 };
@@ -191,11 +162,7 @@ BaseToggle.defaultProps = {
   selectedValue: null,
   invalid: false,
   disabled: false,
-  rectOptions: {
-    align: 'center',
-    col: 1,
-    height: 8,
-  },
+  checkedFontColor: null,
   children: [],
   className: '',
   handleFocus: null,

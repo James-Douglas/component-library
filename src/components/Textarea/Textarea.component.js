@@ -156,7 +156,7 @@ const Textarea = ({
 
   return (
     <>
-      <Label forId={id} text={label} tooltip={tooltip} />
+      <Label htmlFor={id} text={label} tooltip={tooltip} />
       <StyledTextAreaWrapper className={`textarea-wrapper ${className}`}>
         <StyledTextArea
           isAutofill={isAutofill}

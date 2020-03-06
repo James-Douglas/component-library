@@ -12,7 +12,6 @@ import ignoreImport from "rollup-plugin-ignore-import";
 import smartAsset from "rollup-plugin-smart-asset";
 import url from 'rollup-plugin-url';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import { uglify } from "rollup-plugin-uglify";
 
 const ouputDir = "lib";
 
@@ -92,7 +91,6 @@ const buildLibrary = () => {
       }),
       babel({ exclude: "node_modules/**" }),
       commonjs(),
-      uglify(),
       filesize()
     ]
   }];

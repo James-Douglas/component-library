@@ -1,32 +1,12 @@
 import React from 'react';
 import { render, fireEvent } from '../../../testUtils';
-import ToggleGroup, { getType, getChildren } from '../ToggleGroup.component';
-import Toggle from '../Toggle.component';
+import ToggleGroup, { getChildren } from '../ToggleGroup.component';
+import TextToggle from '../Text/TextToggle.component';
 import 'jest-styled-components';
-
-describe('getType()', () => {
-  it('returns square when all labels have length <= 25 chars', () => {
-    const children = [
-      { label: 'test a' },
-      { label: 'test b' },
-      { label: 'test c' },
-    ];
-    expect(getType(children)).toBe('square');
-  });
-
-  it('returns rectangle when a label has length > 25 chars', () => {
-    const children = [
-      { props: { label: 'test a' } },
-      { props: { label: 'test b' } },
-      { props: { label: 'test ccccccccccccccccccccc' } },
-    ];
-    expect(getType(children)).toBe('rectangle');
-  });
-});
 
 describe('getChildren()', () => {
   let tempID = 'temp-id';
-  const getTestChildren = (data) => data.map((child) => React.cloneElement(<Toggle id={tempID} label="test-label" value="test-value" />, { ...child }));
+  const getTestChildren = (data) => data.map((child) => React.cloneElement(<TextToggle id={tempID} label="test-label" value="test-value" />, { ...child }));
   const didToggleCb = jest.fn();
 
   it('returns cloned children with base props added', () => {
@@ -37,9 +17,9 @@ describe('getChildren()', () => {
         value: 'val-a',
       },
     ]);
-    const result = getChildren(testChildren, 'square', 'test-group', null, didToggleCb, null);
+    const result = getChildren(testChildren, 'test-group', null, didToggleCb, null, '10rem', '10rem');
     const {
-      name, id, selectedValue, handleToggle, type, value,
+      name, id, selectedValue, handleToggle, value, contentWidth, contentHeight,
     } = result[0].props;
 
     expect(name).toEqual('test-group');
@@ -47,7 +27,8 @@ describe('getChildren()', () => {
     expect(id).toEqual('a');
     expect(selectedValue).toEqual(null);
     expect(handleToggle).toEqual(didToggleCb);
-    expect(type).toEqual('square');
+    expect(contentWidth).toEqual('10rem');
+    expect(contentHeight).toEqual('10rem');
   });
 
   it('adds id if none provided', () => {
@@ -57,21 +38,9 @@ describe('getChildren()', () => {
         label: 'test toggle a',
       },
     ]);
-    const result = getChildren(testChildren, 'square', 'test-group', null, didToggleCb, null);
+    const result = getChildren(testChildren, 'test-group', null, didToggleCb, null, null, null);
     const { id } = result[0].props;
     expect(id).toEqual('toggle-0');
-  });
-
-  it('adds rectOptions if required', () => {
-    const expectedRectOptions = { align: 'left' };
-    const testChildren = getTestChildren([
-      {
-        label: 'test toggle a',
-      },
-    ]);
-    const result = getChildren(testChildren, 'rectangle', 'test-group', null, didToggleCb, expectedRectOptions);
-    const { rectOptions } = result[0].props;
-    expect(rectOptions).toEqual(expectedRectOptions);
   });
 });
 
@@ -89,8 +58,8 @@ describe('ToggleGroup', () => {
     const onToggleCb = jest.fn();
     const { container } = render(
       <ToggleGroup name="test-toggle-group-b" handleToggle={onToggleCb}>
-        <Toggle label="test toggle a" value="a" id="a" />
-        <Toggle label="test toggle b" value="b" id="b" />
+        <TextToggle label="test toggle a" value="a" id="a" />
+        <TextToggle label="test toggle b" value="b" id="b" />
       </ToggleGroup>,
     );
     const toggleA = container.querySelector('#a');
@@ -104,8 +73,8 @@ describe('ToggleGroup', () => {
     const tooltip = { title: 'test' };
     const { container } = render(
       <ToggleGroup name="test-toggle-group-b" handleToggle={handleChangeCb} tooltip={tooltip}>
-        <Toggle label="test toggle a" id="a" value="val-1" />
-        <Toggle label="test toggle b" id="b" value="val-2" />
+        <TextToggle label="test toggle a" id="a" value="val-1" />
+        <TextToggle label="test toggle b" id="b" value="val-2" />
       </ToggleGroup>,
     );
     const tooltipWrapper = container.querySelector('[role="tooltip"]');
