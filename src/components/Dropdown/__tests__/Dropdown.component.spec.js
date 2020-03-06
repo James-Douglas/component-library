@@ -19,9 +19,9 @@ describe('Dropdown', () => {
         id="input-one"
         label="Dropdown Label"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
-        <DropdownItem value="3First Item - Title" id="3" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+        <DropdownItem value="3First" id="3">3First Item - Title</DropdownItem>
       </Dropdown>,
     );
 
@@ -45,7 +45,6 @@ describe('Dropdown', () => {
     const focusItem2 = listItems[1];
     expect(focusItem2).toHaveFocus();
 
-
     fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
     const focusItem3 = listItems[2];
     expect(focusItem3).toHaveFocus();
@@ -60,9 +59,9 @@ describe('Dropdown', () => {
         id="input-one"
         label="Dropdown Label"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
-        <DropdownItem value="3First Item - Title" id="3" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+        <DropdownItem value="3First" id="3">3First Item - Title</DropdownItem>
       </Dropdown>,
     );
     const buttonDropdown = container.querySelector('[role="button"]');
@@ -96,8 +95,8 @@ describe('Dropdown', () => {
         id="input-one"
         label="Dropdown Label"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
       </Dropdown>,
     );
     const evt = new Event('mousedown', { bubbles: false, cancelable: false, composed: false });
@@ -112,8 +111,8 @@ describe('Dropdown', () => {
     expect(listItemsUpdated.length).toBe(0);
     const svg = container.querySelector('svg');
     expect(svg).toBeInTheDocument();
-    const icon = container.getElementsByClassName('svgArrowWrap')[0];
-    expect(icon).toHaveStyle('right: 1.6rem');
+    const iconWrap = container.querySelector('svg').parentElement;
+    expect(iconWrap).toHaveStyle('right: 1.6rem');
   });
 
   it('click on dropdown ', () => {
@@ -122,8 +121,8 @@ describe('Dropdown', () => {
         id="input-one"
         label="Dropdown Label"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
       </Dropdown>,
     );
 
@@ -147,9 +146,9 @@ describe('Dropdown', () => {
         forceFullWidth
         label="Dropdown Label"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
-        <DropdownItem value="3First Item - Title" id="3" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+        <DropdownItem value="3First" id="3">3First Item - Title</DropdownItem>
       </Dropdown>,
     );
     const buttonDropdown = container.querySelector('[role="button"]');
@@ -180,8 +179,8 @@ describe('Dropdown', () => {
         id="input-one"
         label="Dropdown Label"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
       </Dropdown>,
     );
     const buttonDropdown = container.querySelector('[role="button"]');
@@ -199,8 +198,8 @@ describe('Dropdown', () => {
         id="input-one"
         label="Dropdown Label"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
       </Dropdown>,
     );
     const buttonDropdown = container.querySelector('[role="button"]');
@@ -229,8 +228,8 @@ describe('Dropdown', () => {
         id="input-one"
         label="Dropdown Label"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
       </Dropdown>,
     );
     const buttonDropdown = container.querySelector('[role="button"]');
@@ -241,7 +240,7 @@ describe('Dropdown', () => {
     expect(overlay).not.toBeInTheDocument();
   });
 
-  it('check disbaled property for dropdown', () => {
+  it('check disabled property for dropdown', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
       <Dropdown
@@ -249,8 +248,8 @@ describe('Dropdown', () => {
         label="Dropdown Label"
         disabled
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
       </Dropdown>,
     );
     const buttonDropdown = container.querySelector('[role="button"]');
@@ -270,8 +269,8 @@ describe('Dropdown', () => {
         label="Dropdown Label"
         prefixContent="Prefix"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
       </Dropdown>,
     );
     expect(getByText('Prefix')).toBeInTheDocument();
@@ -286,11 +285,51 @@ describe('Dropdown', () => {
         prefixContent="Prefix"
         validationMessage="sfsdfsdf"
       >
-        <DropdownItem value="1Default Item - Title" id="1" />
-        <DropdownItem value="2First Item - Title" id="2" />
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
       </Dropdown>,
     );
     const buttonDropdown = container.querySelector('[role="button"]');
     expect(buttonDropdown).toHaveStyleRule('border', `${theme.borders.invalid}`);
+  });
+
+  it('renders with a selectedValue', () => {
+    const { getByText } = render(
+      <Dropdown
+        id="input-one"
+        label="Dropdown Label"
+        selectedValue="2First"
+      >
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+      </Dropdown>,
+    );
+
+    expect(getByText('2First Item - Title')).toBeInTheDocument();
+  });
+  it('renders selected a new value after initial prefill', () => {
+    const valueCb = jest.fn();
+    const { getByText, container } = render(
+      <Dropdown
+        id="input-one"
+        label="Dropdown Label"
+        selectedValue="2First"
+        handleChange={valueCb}
+      >
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+      </Dropdown>,
+    );
+
+    expect(getByText('2First Item - Title')).toBeInTheDocument();
+
+    const buttonDropdown = container.querySelector('[role="button"]');
+    fireEvent.click(buttonDropdown);
+    const listItems = container.querySelectorAll('li');
+    expect(listItems.length).toBe(2);
+    fireEvent.click(listItems[0]);
+    expect(getByText('1Default Item - Title')).toBeInTheDocument();
+    expect(valueCb.mock.calls.length).toBe(1);
+    expect(valueCb.mock.calls[0][1]).toBe('1Default');
   });
 });

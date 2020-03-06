@@ -25,6 +25,16 @@ const StyledDropdownMainWrap = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base};
 `;
 
+const StyledSvgArrow = styled.span`
+  position: absolute;
+  right: ${({ theme }) => theme.spacing[16]};
+  top: ${({ theme }) => theme.spacing[12]};
+  color: ${({ theme, disabled }) => (disabled ? theme.colors.inputDisabledTextOnGray : theme.dropdown.caretFill)};
+  &:hover {
+    fill: ${({ theme, disabled }) => (disabled ? theme.colors.black : theme.colors.blueLight)};
+  }
+`;
+
 const StyledDropdownContent = styled.div`
   width: 100%;
   display: inline-flex;
@@ -33,13 +43,6 @@ const StyledDropdownContent = styled.div`
   height: ${({ theme }) => theme.dropdown.height};
   padding: ${({ theme }) => (`${theme.spacing['8']} ${theme.spacing['12']}`)};
   color: ${({ theme }) => theme.dropdown.color};
-  
-  .svgArrowWrap {
-    position: absolute;
-    right: ${({ theme }) => theme.spacing[16]};
-    top: ${({ theme }) => theme.spacing[12]};
-    color ${({ theme, disabled }) => (disabled ? theme.colors.inputDisabledTextOnGray : theme.dropdown.caretFill)};
-  }
 `;
 
 const StyledDropdownButton = styled.div`
@@ -54,11 +57,6 @@ const StyledDropdownButton = styled.div`
   }
   &:hover {
     cursor: pointer;
-    .svgArrowWrap {
-      path {
-        fill: ${({ theme }) => theme.colors.blueLight};
-      }
-    }
   }
   ${({ invalid }) => invalid && css`
     border: ${({ theme }) => theme.borders.invalid};
@@ -75,11 +73,6 @@ const StyledDropdownButton = styled.div`
     &:focus {
        border: ${({ theme }) => theme.borders.disabled};
        cursor: default;
-       .svgArrowWrap {
-        path {
-          fill: ${({ theme }) => theme.colors.black};
-        }
-      }
     }
   `}
 `;
@@ -212,25 +205,35 @@ const Dropdown = ({
     setFocusedOptionIndex(null);
   }, [setDropdownOpen, setIsMobileModalView, setFocusedOptionIndex]);
 
-  const onItemClick = useCallback((event, optionValue) => {
+  // click handler for dropdownItems
+  const onItemClick = useCallback((event, optionValue, option) => {
     setValue(optionValue);
-    handleChange && handleChange(event, optionValue);
+    setOption(option);
+    handleChange && handleChange(event, optionValue, option);
   }, [setValue, handleChange]);
 
+  // map dropdownItems with additional props
   const childrenWithProps = useMemo(() => React.Children.map(children, (child) => React.cloneElement(child, {
     selectedValue: value,
+    optionValue: child.props.children,
     handleClick: (event, optionValue) => {
-      onItemClick(event, optionValue);
+      onItemClick(event, optionValue, child.props.children);
       modalClose();
     },
     handleKeyDown: (event, optionValue) => {
       if (event.keyCode === 13) {
-        onItemClick(event, optionValue);
+        onItemClick(event, optionValue, child.props.children);
         modalClose();
       }
     },
     ref: React.createRef(),
   })), [children, modalClose, onItemClick, value]);
+
+
+  // preselect an item
+  const preSelected = childrenWithProps.find((child) => child.props.value === selectedValue);
+
+  const [option, setOption] = useState(preSelected ? preSelected.props.optionValue : null);
 
   const handleClickOutside = useCallback((e) => {
     if (!dropdownWrapper.current.contains(e.target)) {
@@ -301,8 +304,8 @@ const Dropdown = ({
 
   useEffect(() => {
     if (focusedOptionIndex !== null) {
-      const option = childrenWithProps[focusedOptionIndex];
-      option && option.ref && option.ref.current && option.ref.current.focus();
+      const currentOption = childrenWithProps[focusedOptionIndex];
+      currentOption && currentOption.ref && currentOption.ref.current && currentOption.ref.current.focus();
     }
   }, [childrenWithProps, focusedOptionIndex]);
 
@@ -357,9 +360,9 @@ const Dropdown = ({
           >
             <StyledDropdownContent disabled={disabled}>
               {prefixContent && <StyledAffix>{prefixContent}</StyledAffix>}
-              <span>{value && value}</span>
+              {option && <span>{option}</span>}
               {!value && placeholder && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-              <span className="svgArrowWrap"><FontAwesomeIcon icon={faChevronDown} size="sm" flip={isDropdownOpen ? 'vertical' : null} /></span>
+              <StyledSvgArrow disabled={disabled}><FontAwesomeIcon icon={faChevronDown} size="sm" flip={isDropdownOpen ? 'vertical' : null} /></StyledSvgArrow>
             </StyledDropdownContent>
           </StyledDropdownButton>
           {renderDropdownList()}

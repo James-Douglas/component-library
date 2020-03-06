@@ -22,7 +22,12 @@ const StyledListItem = styled.li`
 `;
 
 const DropdownItem = React.forwardRef(({
-  id, value, handleClick, handleKeyDown, selectedValue,
+  id,
+  value,
+  children,
+  handleClick,
+  handleKeyDown,
+  selectedValue,
 }, ref) => {
   const desktop = useIsDesktop();
 
@@ -39,9 +44,19 @@ const DropdownItem = React.forwardRef(({
   };
 
   return (
-    <StyledListItem ref={ref} id={id} role="listbox" onClick={clickHandler} onKeyDown={keyDownHandler} active={selectedValue === value} desktop={desktop} tabIndex="0">
+    <StyledListItem
+      ref={ref}
+      id={id}
+      role="listbox"
+      value={value}
+      onClick={clickHandler}
+      onKeyDown={keyDownHandler}
+      active={selectedValue === value}
+      desktop={desktop}
+      tabIndex="0"
+    >
       {selectedValue === value && <FontAwesomeIcon icon={faCheck} size="xs" />}
-      {value}
+      {children}
     </StyledListItem>
   );
 });
@@ -54,7 +69,11 @@ DropdownItem.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * THe content to be rendered
+   * The content to be rendered
+   */
+  children: PropTypes.string.isRequired,
+  /**
+   * The value associated with the content
    */
   value: PropTypes.string.isRequired,
   /**
