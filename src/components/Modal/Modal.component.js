@@ -35,6 +35,7 @@ const StyledModal = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow.lg};
   z-index: inherit;
   max-width: 745px;
+  min-width: 350px;
   width: ${({ size }) => {
     if (size === 'lg') {
       return '62%';

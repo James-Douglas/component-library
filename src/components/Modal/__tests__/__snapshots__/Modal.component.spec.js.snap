@@ -6,6 +6,7 @@ exports[`Modal renders with minimal props 1`] = `
   box-shadow: 0 1.5rem 3rem 0 rgba(0,0,0,0.11),0 0.5rem 1.5rem 0 rgba(0,0,0,0.08);
   z-index: inherit;
   max-width: 745px;
+  min-width: 350px;
   width: 50%;
   min-height: 30rem;
   height: auto;
