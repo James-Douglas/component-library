@@ -1,10 +1,11 @@
 import React from 'react';
 import StickyHeader from '../../components/Header/StickyHeader.component';
+import CTMLogo from '../../components/Logo/CTMLogo.component';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
 const HeaderView = () => (
   <div>
-    <StickyHeader number="1800 123 456" />
+    <StickyHeader number="1800 123 456" logo={<CTMLogo />} />
     <FluidContainer>
       <div className="full scrollable w-auto" style={{ marginTop: '60px' }}>
         <div className="hero">

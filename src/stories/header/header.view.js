@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from '../../components/Header/Header.component';
+import CTMLogo from '../../components/Logo/CTMLogo.component';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
 const HeaderView = () => (
   <div>
-    <Header number="1800 123 456" />
+    <Header number="1800 123 456" logo={<CTMLogo />} />
     <FluidContainer>
       <div className="full scrollable w-auto">
         <div className="hero">

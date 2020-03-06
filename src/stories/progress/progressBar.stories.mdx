@@ -2,6 +2,7 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
 import ProgressBar from '../../components/Progress/Bar/ProgressBar.component';
 import Header from '../../components/Header/Header.component';
+import CTMLogo from '../../components/Logo/CTMLogo.component';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
 <Meta title="Components/Progress/Bar" component={ProgressBar} />
@@ -21,13 +22,13 @@ Visually represents the current progress of a journey via a progress bar with a 
 ## Props
 <Props of={ProgressBar} />
 
-<Story name="progress bar with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+<Story name="progress bar demo" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const value = number('value', 66, { range: true, min: 0, max: 100, step: 1 });
     return (
       <div>
         <div style={{ height: '120px' }}>
-          <Header number="1800 123 456" />
+          <Header number="1800 123 456" logo={<CTMLogo />} />
           <ProgressBar value={value} />
         </div>
         <FluidContainer>

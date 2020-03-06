@@ -1,7 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, number, object } from '@storybook/addon-knobs';
-import { linkTo } from '@storybook/addon-links'
 import StickyProgressTracker from '../../components/Progress/Tracker/StickyProgressTracker.component';
+import CTMLogo from '../../components/Logo/CTMLogo.component';
 import Header from '../../components/Header/Header.component';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
@@ -20,7 +20,7 @@ import FluidContainer from '../../components/Grid/Container/FluidContainer.compo
 ## Props
 <Props of={StickyProgressTracker} />
 
-<Story name="sticky progress tracker with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+<Story name="sticky progress tracker demo" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const value = number('value', 66);
     const steps = [
@@ -32,7 +32,7 @@ import FluidContainer from '../../components/Grid/Container/FluidContainer.compo
     return (
       <div>
         <div style={{ height: '120px' }}>
-          <Header number="1800 123 456" />
+          <Header number="1800 123 456" logo={<CTMLogo />} />
           <StickyProgressTracker value={value} steps={steps} />
         </div>
         <FluidContainer >

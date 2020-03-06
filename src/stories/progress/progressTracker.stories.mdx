@@ -1,6 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, number, object } from '@storybook/addon-knobs';
 import ProgressTracker from '../../components/Progress/Tracker/ProgressTracker.component';
+import CTMLogo from '../../components/Logo/CTMLogo.component';
 import Header from '../../components/Header/Header.component';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
@@ -22,7 +23,7 @@ also have active and disabled states.
 ## Props
 <Props of={ProgressTracker} />
 
-<Story name="progress tracker with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+<Story name="progress tracker demo" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const steps = [
       object('step 1', { label: 'About You', url: '#label', active: true }),
@@ -33,7 +34,7 @@ also have active and disabled states.
     return (
       <div>
         <div style={{ height: '120px' }}>
-          <Header number="1800 123 456" />
+          <Header number="1800 123 456" logo={<CTMLogo />} />
           <ProgressTracker steps={steps} />
         </div>
         <FluidContainer>

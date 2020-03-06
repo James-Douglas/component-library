@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Footer from '../../components/Footer/Footer.component';
 import StickyHeader from '../../components/Header/StickyHeader.component';
+import CTMLogo from '../../components/Logo/CTMLogo.component';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
@@ -35,7 +36,7 @@ const StyledRow = styled(Row)`
 
 const FooterView = () => (
   <StyledBackground>
-    <StickyHeader number="1800 123 456" />
+    <StickyHeader number="1800 123 456" logo={<CTMLogo />} />
     <Container>
       <StyledRow>
         <Column md={12}>

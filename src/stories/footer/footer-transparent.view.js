@@ -5,6 +5,7 @@ import StickyHeader from '../../components/Header/StickyHeader.component';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
+import CTMLogo from '../../components/Logo/CTMLogo.component';
 
 const disclaimerText = (
   <span>Exchange rates displayed are updated daily at approximately 4:15 pm (AEST)
@@ -35,7 +36,7 @@ const StyledInnerContainer = styled.div`
 
 const FooterTransparentView = () => (
   <StyledBackground>
-    <StickyHeader number="1800 123 456" />
+    <StickyHeader number="1800 123 456" logo={<CTMLogo />} />
     <Container>
       <Row>
         <Column md={12}>

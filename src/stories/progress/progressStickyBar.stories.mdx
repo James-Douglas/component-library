@@ -1,7 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
-import { linkTo } from '@storybook/addon-links';
 import StickyProgressBar from '../../components/Progress/Bar/StickyProgressBar.component';
+import CTMLogo from '../../components/Logo/CTMLogo.component';
 import Header from '../../components/Header/Header.component';
 import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 
@@ -20,13 +20,13 @@ import FluidContainer from '../../components/Grid/Container/FluidContainer.compo
 ## Props
 <Props of={StickyProgressBar} />
 
-<Story name="sticky progress bar with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+<Story name="sticky progress bar demo" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const value = number('value', 66);
     return (
       <div>
         <div style={{ height: '120px' }}>
-          <Header number="1800 123 456" />
+          <Header number="1800 123 456" logo={<CTMLogo />}/>
           <StickyProgressBar value="60" />
         </div>
         <FluidContainer>

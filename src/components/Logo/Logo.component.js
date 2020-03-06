@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import Picture, { picturePropTypes } from '../Picture/Picture.component';
-import logoMobile from '../../images/ctm-logo-mobile.svg';
-import logoDesktop from '../../images/ctm-logo-desktop.svg';
-import screens from '../../../config/screens';
 
 const StyledLogo = styled.div`
   transition: all 200ms ease;
@@ -18,10 +15,10 @@ const StyledLogo = styled.div`
   `}
 `;
 
-const Logo = ({ size, link, logoPicture }) => {
+const Logo = ({ size, link, picture }) => {
   const {
     src, srcsets, alt, title, className,
-  } = logoPicture;
+  } = picture;
   return (
     <StyledLogo size={size} id="logo">
       <a href={link}>
@@ -46,24 +43,12 @@ Logo.propTypes = {
    * Size of the logo (small = 3.2rem, large = 4.4rem)
    */
   size: PropTypes.oneOf(['small', 'large']),
-  logoPicture: PropTypes.shape(picturePropTypes),
+  picture: PropTypes.shape(picturePropTypes).isRequired,
 };
 
 Logo.defaultProps = {
   link: 'https://www.comparethemarket.com.au',
   size: 'large',
-  logoPicture: {
-    src: logoDesktop,
-    srcsets: [
-      {
-        srcset: logoDesktop,
-        media: `(min-width: ${screens.md})`,
-      },
-      {
-        srcset: logoMobile,
-      },
-    ],
-  },
 };
 
 export default Logo;

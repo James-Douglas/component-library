@@ -1,6 +1,6 @@
 import { create } from '@storybook/theming/create';
 import ctmTheme from '../src/themes/ctm.theme';
-import logo from '../src/images/ctm-logo-desktop.svg';
+import logo from '../src/images/ctm-logo-inline.svg';
 
 export default create({
   base: 'light',
