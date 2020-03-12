@@ -318,7 +318,6 @@ const Dropdown = ({
       </StyledList>
     );
 
-    if (mobileOverlay) {
       return (
         <>
           {(mobileOverlay && isDropdownOpen) && (
@@ -327,8 +326,6 @@ const Dropdown = ({
           {renderOptions}
         </>
       );
-    }
-    return renderOptions;
   };
 
   return (
