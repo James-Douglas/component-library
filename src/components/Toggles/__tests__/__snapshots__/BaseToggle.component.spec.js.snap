@@ -44,7 +44,7 @@ exports[`BaseToggle renders with minimal props 1`] = `
 }
 
 .c1:disabled + label {
-  color: #CCCCCC;
+  color: #dadada;
   border: 1px solid transparent;
   fill: currentColor;
 }

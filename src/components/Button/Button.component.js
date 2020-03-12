@@ -61,17 +61,17 @@ const baseButtonStyles = css`
 const heroVariant = css`
   color: ${({ theme }) => theme.button.hero.color};
   fill: ${({ theme }) => theme.button.hero.fill};
-  background: ${({ theme }) => theme.button.hero.bg};
+  background: ${({ theme }) => theme.button.hero.background};
   :hover {
-    background: ${({ theme }) => theme.button.hero.bgHover};
+    background: ${({ theme }) => theme.button.hero.backgroundHover};
   }
   ${({ inverted }) => inverted && css`
-    background: ${({ theme }) => theme.button.hero.bgInverted};
+    background: ${({ theme }) => theme.button.hero.backgroundInverted};
     color: ${({ theme }) => theme.button.hero.colorInverted};
     fill: ${({ theme }) => theme.button.hero.fillInverted};
     box-shadow: ${({ theme }) => theme.button.shadows.default};
     :hover {
-      background: ${({ theme }) => theme.button.hero.bginvertedHover};
+      background: ${({ theme }) => theme.button.hero.backgroundInvertedHover};
     }
   `}
 `;
@@ -79,16 +79,16 @@ const heroVariant = css`
 const primaryVariant = css`
   color: ${({ theme }) => theme.button.primary.color};
   fill: ${({ theme }) => theme.button.primary.fill};
-  background: ${({ theme }) => theme.button.primary.bg};
+  background: ${({ theme }) => theme.button.primary.background};
   :hover {
-    background: ${({ theme }) => theme.button.primary.bgHover};
+    background: ${({ theme }) => theme.button.primary.backgroundHover};
   }
   ${({ inverted }) => inverted && css`
-    background: ${({ theme }) => theme.button.primary.bgInverted};
+    background: ${({ theme }) => theme.button.primary.backgroundInverted};
     color: ${({ theme }) => theme.button.primary.colorInverted};
     fill: ${({ theme }) => theme.button.primary.fillInverted};
     :hover {
-      background: ${({ theme }) => theme.button.primary.bgInvertedHover};
+      background: ${({ theme }) => theme.button.primary.backgroundInvertedHover};
     }
   `}
 `;
@@ -97,17 +97,17 @@ const secondaryVariant = css`
   color: ${({ theme }) => theme.button.secondary.color};
   fill: ${({ theme }) => theme.button.secondary.fill};
   border: ${({ theme }) => theme.button.secondary.border};
-  background: ${({ theme }) => theme.button.secondary.bg};
+  background: ${({ theme }) => theme.button.secondary.background};
   :hover {
-    background: ${({ theme }) => theme.button.secondary.bgHover};
+    background: ${({ theme }) => theme.button.secondary.backgroundHover};
   }
   ${({ inverted }) => inverted && css`
-    background: ${({ theme }) => theme.button.secondary.bgInverted};
+    background: ${({ theme }) => theme.button.secondary.backgroundInverted};
     color: ${({ theme }) => theme.button.secondary.colorInverted};
     border: ${({ theme }) => theme.button.secondary.borderInverted};
     fill: ${({ theme }) => theme.button.secondary.fillInverted};
     :hover {
-      background: ${({ theme }) => theme.button.secondary.bgInvertedHover};
+      background: ${({ theme }) => theme.button.secondary.backgroundInvertedHover};
     }
   `}
 `;
@@ -117,9 +117,9 @@ const tertiaryVariant = css`
   padding: ${({ theme }) => theme.spacing[8]};
   color: ${({ theme }) => theme.button.tertiary.color};
   fill: ${({ theme }) => theme.button.tertiary.fill};
-  background: ${({ theme }) => theme.button.tertiary.bg};
+  background: ${({ theme }) => theme.button.tertiary.background};
   :hover {
-    background: ${({ theme }) => theme.button.tertiary.bgHover};
+    background: ${({ theme }) => theme.button.tertiary.backgroundHover};
   }
   :focus {
     color: ${({ theme }) => theme.button.tertiary.colorhover};

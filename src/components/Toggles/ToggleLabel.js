@@ -10,7 +10,7 @@ const StyledToggleLabel = styled.label`
   position: relative;
   transition : all 200ms ease-out;
   &:hover {
-    color: ${({ theme }) => theme.colors.blueLight};
+    color: ${({ theme }) => theme.toggle.base.labelColorHover};
   }
 `;
 
@@ -19,6 +19,9 @@ const StyledContent = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: ${({ theme }) => theme.fontSize.sm};
   margin-bottom: 0;
+  &:hover {
+    box-shadow: ${({ theme }) => theme.toggle.base.shadowHover};
+  }
 `;
 
 const ToggleLabel = ({ id, children }) => (

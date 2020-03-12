@@ -171,8 +171,7 @@ describe('Textarea.component.js', () => {
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement.value).toBe('autofilled value test');
     expect(textAreaElement).toHaveStyle(`
-      background: ${theme.colors.prechecked};
-      border: 1px solid ${theme.colors.precheckedDarker};
+      background: ${theme.colors.inputPrefilled};
     `);
   });
 

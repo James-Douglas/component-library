@@ -30,9 +30,6 @@ const StyledSvgArrow = styled.span`
   right: ${({ theme }) => theme.spacing[16]};
   top: ${({ theme }) => theme.spacing[12]};
   color: ${({ theme, disabled }) => (disabled ? theme.colors.inputDisabledTextOnGray : theme.dropdown.caretFill)};
-  &:hover {
-    fill: ${({ theme, disabled }) => (disabled ? theme.colors.black : theme.colors.blueLight)};
-  }
 `;
 
 const StyledDropdownContent = styled.div`
@@ -67,7 +64,7 @@ const StyledDropdownButton = styled.div`
     }
   `}
   ${({ disabled }) => disabled && css`
-    background: ${({ theme }) => theme.colors.greyLight};
+    background: ${({ theme }) => theme.dropdown.backgroundDisabled};
     border: ${({ theme }) => theme.borders.disabled};
     &:hover,
     &:focus {

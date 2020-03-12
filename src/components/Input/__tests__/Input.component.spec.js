@@ -88,7 +88,7 @@ describe('renderAffix()', () => {
     const prefix = getByText('?');
     const element = container.querySelector('span');
     expect(prefix).toBeInTheDocument();
-    expect(element).not.toHaveStyleRule('background', theme.colors.prechecked);
+    expect(element).not.toHaveStyleRule('background', theme.colors.inputPrefilled);
   });
 
   it('can render a component via prop', () => {
@@ -223,7 +223,7 @@ describe('Input.component', () => {
     const inputFieldWrap = container.querySelector('.input-container');
     const inputWrap = inputFieldWrap.firstChild;
 
-    expect(inputWrap).toHaveStyleRule(`background: ${theme.colors.prechecked}`);
+    expect(inputWrap).toHaveStyleRule(`background: ${theme.colors.inputPrefilled}`);
     expect(inputField.value).toBe('autofilled value test');
     expect(inputWrap).toHaveStyleRule(`border: ${theme.borders.component}`);
   });

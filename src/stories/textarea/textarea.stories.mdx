@@ -38,23 +38,25 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
     const maxChars = text('maxchars', '500', componentPropsId);
     const validationMessage = text('validationMessage', '', componentPropsId);
     return (
-      <TextArea
-        id={id}
-        name={name}
-        label={label}
-        placeholder={placeholder}
-        value={textareaValue}
-        bordered={bordered}
-        disabled={disabled}
-        required={required}
-        prefillValue={prefillValue}
-        rows={rows}
-        wrap={wrap}
-        readonly={readonly}
-        maxChars={maxChars}
-        maxLength={maxLength}
-        validationMessage={validationMessage}
-      />
+      <div style={{ padding: '2%' }}>
+        <TextArea
+          id={id}
+          name={name}
+          label={label}
+          placeholder={placeholder}
+          value={textareaValue}
+          bordered={bordered}
+          disabled={disabled}
+          required={required}
+          prefillValue={prefillValue}
+          rows={rows}
+          wrap={wrap}
+          readonly={readonly}
+          maxChars={maxChars}
+          maxLength={maxLength}
+          validationMessage={validationMessage}
+        />
+      </div>
     );
   }}
 </Story>

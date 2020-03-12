@@ -19,7 +19,7 @@ const StyledBar = styled.div`
 const StyledCard = styled.div`
   text-align: center;
   padding: 4rem;
-  border: 1px solid ${(props) => props.theme.colors.greyLight};
+  border: 1px solid ${(props) => props.theme.colors.grey100};
   max-width: 600px;
   margin: auto;
 `;

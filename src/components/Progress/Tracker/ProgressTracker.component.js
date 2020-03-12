@@ -63,7 +63,7 @@ const StyledProgress = styled.progress`
   background: ${({ theme }) => theme.progress.tracker.background};
   /* ie11 */
   &[value]  {
-    background: ${({ theme }) => theme.progress.tracker.backgroundValue};
+    background:  ${({ theme }) => theme.progress.tracker.background};
     color: ${({ theme }) => theme.progress.tracker.colorValue};
     /* Reset the default appearance */
     -webkit-appearance: none;

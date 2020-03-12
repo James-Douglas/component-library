@@ -44,7 +44,7 @@ exports[`CustomToggle renders with minimal props 1`] = `
 }
 
 .c1:disabled + label {
-  color: #CCCCCC;
+  color: #dadada;
   border: 1px solid transparent;
   fill: currentColor;
 }
@@ -64,7 +64,7 @@ exports[`CustomToggle renders with minimal props 1`] = `
 }
 
 .c2:hover {
-  color: #1780F3;
+  color: #5a93cd;
 }
 
 .c3 {
@@ -72,6 +72,10 @@ exports[`CustomToggle renders with minimal props 1`] = `
   font-weight: 700;
   font-size: 1.4rem;
   margin-bottom: 0;
+}
+
+.c3:hover {
+  box-shadow: 0px 0.5rem 0.8rem rgba(0,0,0,0.2);
 }
 
 @media (min-width:1200px) {

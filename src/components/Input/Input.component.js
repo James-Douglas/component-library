@@ -52,7 +52,7 @@ const StyledInputWrap = styled.div`
   display: flex;
   background: ${({ theme }) => theme.input.background};
   ${({ theme, isAutofill, disabled }) => (isAutofill && !disabled) && css`
-    background: ${theme.colors.prechecked};
+    background: ${theme.colors.inputPrefilled};
   `}
   border: ${({ theme }) => theme.borders.transparent};
   :hover {
@@ -118,7 +118,7 @@ const StyledInput = styled(React.forwardRef(({ isAutofill, ...props }, ref) => <
     outline: 0;
   }
   ${({ theme, isAutofill, disabled }) => isAutofill && !disabled && css`
-    background: ${theme.colors.prechecked};
+    background: ${theme.colors.inputPrefilled};
   `}
 `;
 

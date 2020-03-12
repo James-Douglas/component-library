@@ -136,7 +136,7 @@ const WrapList = styled.div`
       top: 0;
       width: ${({ theme }) => (theme.maxWidth.full)};
       height: ${({ theme }) => (theme.spacing[72])};
-      background: ${({ theme }) => theme.colors.whiteLight};
+      background: ${({ theme }) => theme.combo.button.background};
     }
     z-index: ${({ theme }) => (theme.zIndex.entry)};
   `}

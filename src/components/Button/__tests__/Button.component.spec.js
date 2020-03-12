@@ -19,7 +19,7 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(getByText('test content')).toBeDefined();
-    expect(btn).toHaveStyleRule('background', theme.button.hero.bg);
+    expect(btn).toHaveStyleRule('background', theme.button.hero.background);
     expect(btn).toHaveStyleRule('flex-direction', 'row-reverse');
     expect(btn).toHaveStyleRule('box-shadow', theme.button.shadows.default);
     expect(container).toMatchSnapshot();
@@ -34,7 +34,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
     expect(btn).not.toHaveStyle('flex-direction: row-reverse');
-    expect(btn).toHaveStyleRule('background', theme.button.hero.bg);
+    expect(btn).toHaveStyleRule('background', theme.button.hero.background);
   });
 
   it('renders an inverted hero button', () => {
@@ -46,7 +46,7 @@ describe('Button', () => {
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
     expect(btn).not.toHaveStyle('flex-direction: row-reverse');
-    expect(btn).toHaveStyleRule('background', theme.button.hero.bgInverted);
+    expect(btn).toHaveStyleRule('background', theme.button.hero.backgroundInverted);
   });
 
   it('renders a hero button as a link when the props are supplied', () => {
@@ -57,7 +57,7 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('A');
-    expect(btn).toHaveStyleRule('background', theme.button.hero.bg);
+    expect(btn).toHaveStyleRule('background', theme.button.hero.background);
   });
 
   it('renders a primary button', () => {
@@ -68,7 +68,7 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
-    expect(btn).toHaveStyleRule('background', theme.button.primary.bg);
+    expect(btn).toHaveStyleRule('background', theme.button.primary.background);
     expect(btn).toHaveStyleRule('color', theme.button.primary.color);
   });
 
@@ -80,7 +80,7 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
-    expect(btn).toHaveStyleRule('background', theme.button.primary.bgInverted);
+    expect(btn).toHaveStyleRule('background', theme.button.primary.backgroundInverted);
     expect(btn).toHaveStyleRule('color', theme.button.primary.colorInverted);
   });
 
@@ -92,7 +92,7 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn.nodeName).toBe('BUTTON');
-    expect(btn).toHaveStyleRule('background', theme.button.secondary.bg);
+    expect(btn).toHaveStyleRule('background', theme.button.secondary.background);
     expect(btn).toHaveStyleRule('border', theme.button.secondary.border);
   });
 
@@ -103,7 +103,7 @@ describe('Button', () => {
       </Button>,
     );
     const btn = container.querySelector('#test-id');
-    expect(btn).toHaveStyleRule('background', theme.button.secondary.bg);
+    expect(btn).toHaveStyleRule('background', theme.button.secondary.background);
     expect(btn.nodeName).toBe('A');
     expect(btn).toHaveStyleRule('border', theme.button.secondary.border);
   });

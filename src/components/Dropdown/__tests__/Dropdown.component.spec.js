@@ -253,7 +253,7 @@ describe('Dropdown', () => {
       </Dropdown>,
     );
     const buttonDropdown = container.querySelector('[role="button"]');
-    expect(buttonDropdown).toHaveStyleRule('background', `${theme.colors.greyLight}`);
+    expect(buttonDropdown).toHaveStyleRule('background', `${theme.dropdown.backgroundDisabled}`);
     expect(buttonDropdown).toHaveStyleRule('border', `${theme.borders.disabled}`);
     buttonDropdown.focus();
     buttonDropdown.click();

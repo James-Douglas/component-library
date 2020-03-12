@@ -27,7 +27,7 @@ const disclaimerText = (
 
 const StyledBackground = styled.div`
   height: 100%;
-  background: ${({ theme }) => theme.colors.greyLighterAA};
+  background: ${({ theme }) => theme.colors.grey100};
 `;
 
 const StyledInnerContainer = styled.div`

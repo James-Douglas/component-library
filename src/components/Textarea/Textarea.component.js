@@ -33,7 +33,7 @@ const StyledTextArea = styled.textarea`
     border: ${theme.borders.component};
   `}
   ${({ theme, isAutofill, disabled }) => isAutofill && !disabled && css`
-    background: ${theme.colors.prechecked};
+    background: ${theme.colors.inputPrefilled};
   `}
   ${({
     theme, bordered, isAutofill, disabled,

@@ -3,7 +3,7 @@
 exports[`TabButton renders a TabButton 1`] = `
 <div>
   <button
-    class="sc-AxjAm CtKif 
+    class="sc-AxjAm gNCOzR 
     tab-button
     
   "
@@ -20,7 +20,7 @@ exports[`TabButton renders a TabButton 1`] = `
 exports[`TabButton renders multuple TabButtons 1`] = `
 <div>
   <button
-    class="sc-AxjAm CtKif 
+    class="sc-AxjAm gNCOzR 
     tab-button
     
   "
@@ -32,7 +32,7 @@ exports[`TabButton renders multuple TabButtons 1`] = `
     </p>
   </button>
   <button
-    class="sc-AxjAm CtKif 
+    class="sc-AxjAm gNCOzR 
     tab-button
     
   "
@@ -151,7 +151,7 @@ exports[`Tabs renders a border 1`] = `
       class="sc-AxiKw htLnzH tab-button-wrap"
     >
       <button
-        class="sc-AxjAm leWZQ 
+        class="sc-AxjAm iMBunz 
     tab-button
     active
   "
@@ -163,7 +163,7 @@ exports[`Tabs renders a border 1`] = `
         </p>
       </button>
       <button
-        class="sc-AxjAm CtKif 
+        class="sc-AxjAm gNCOzR 
     tab-button
     
   "
@@ -217,7 +217,7 @@ exports[`Tabs renders additional classNames 1`] = `
       class="sc-AxiKw htLnzH tab-button-wrap"
     >
       <button
-        class="sc-AxjAm leWZQ 
+        class="sc-AxjAm iMBunz 
     tab-button
     active
   "
@@ -229,7 +229,7 @@ exports[`Tabs renders additional classNames 1`] = `
         </p>
       </button>
       <button
-        class="sc-AxjAm CtKif 
+        class="sc-AxjAm gNCOzR 
     tab-button
     
   "
@@ -283,7 +283,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
       class="sc-AxiKw htLnzH tab-button-wrap"
     >
       <button
-        class="sc-AxjAm leWZQ 
+        class="sc-AxjAm iMBunz 
     tab-button
     active
   "
@@ -295,7 +295,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
         </p>
       </button>
       <button
-        class="sc-AxjAm CtKif 
+        class="sc-AxjAm gNCOzR 
     tab-button
     
   "

@@ -38,7 +38,7 @@ const StyledNotification = styled.div`
   ${({ position, type }) => (type === 'toast' ? css`${position}: 0; right: 0;` : null)};
   ${({ theme, type }) => type === 'toast' && css`min-width: ${theme.minWidth.xs};`};
   ${({ theme, type }) => type !== 'hint' && css`box-shadow: ${theme.notification.shadow};`}
-  color: ${({ theme }) => theme.colors.greyDarker};
+  color: ${({ theme }) => theme.notification.color};
 `;
 
 const StyledNotificationImage = styled.div`

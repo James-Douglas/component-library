@@ -43,7 +43,7 @@ exports[`Button renders correctly with minimal props 1`] = `
 }
 
 .c1:hover {
-  box-shadow: 0px 0.8rem 0.8rem rgba(0,0,0,0.2);
+  box-shadow: 0px 0.5rem 0.8rem rgba(0,0,0,0.2);
 }
 
 .c1:active,
@@ -165,7 +165,7 @@ exports[`Button renders with props 1`] = `
 }
 
 .c1:hover {
-  box-shadow: 0px 0.8rem 0.8rem rgba(0,0,0,0.2);
+  box-shadow: 0px 0.5rem 0.8rem rgba(0,0,0,0.2);
 }
 
 .c1:active,

@@ -13,8 +13,8 @@ const StyledListItem = styled.li`
   }
 
   ${({ active, desktop }) => (active && !desktop) && css`
-    color: ${({ theme }) => theme.colors.blueLight};
-    background: ${({ theme }) => theme.colors.greyLighter};
+    color: ${({ theme }) => theme.dropdown.colorActive};
+    background: ${({ theme }) => theme.dropdown.backgroundActive};
      svg {
       display: none;
      }

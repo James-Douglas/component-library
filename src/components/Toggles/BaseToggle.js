@@ -41,7 +41,7 @@ const StyledToggleInput = styled.input`
   }
 
   &:disabled + label {
-    color: ${({ theme }) => theme.colors.disabled};
+    color: ${({ theme }) => theme.toggle.base.colorDisabled};
     border: ${({ theme }) => theme.borders.transparent};
     fill: currentColor;
   }
@@ -52,11 +52,11 @@ const StyledToggleInput = styled.input`
 
   ${({ invalid, theme }) => invalid && css`
      & + label {
-      color: ${theme.colors.invalid};
+      color: ${theme.colors.error300};
       fill: currentColor;
      }
      &:checked + label {
-      color:  ${theme.colors.invalid};
+      color:  ${theme.colors.error300};
       fill: currentColor;
     }
   `}

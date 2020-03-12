@@ -56,37 +56,6 @@ const colors = {
   white25: 'rgba(255,255,255,0.25)',
   white50: 'rgba(255,255,255,0.50)',
   white75: 'rgba(255,255,255,0.75)',
-
-  // old colors, to be deleted when new colors are integrated
-  primary: '#1C3E94', // blue
-  primaryLight: '#136ED2',
-  primaryAA: '#001442',
-  secondaryDark: '#319639',
-  secondaryDarker: '#36A93F',
-  secondary: '#0DB14B', // green
-  secondaryLighter: '#C3E4CF',
-  secondaryLight: '#CFEFC2',
-
-  blueLight: '#1780F3',
-  blueLighter: '#7A98FF',
-  blueLightest: '#E7F0FB',
-  link: '#164AD9',
-  warning: '#F49E1E',
-  prechecked: '#FCFAED',
-  precheckedDarker: '#C39600',
-  invalid: '#EF425E',
-
-  grey: '#AAAAAA',
-  greyLighter: '#F8F8F8',
-  greyLighterAA: '#F3F3F3',
-  greyLight: '#DDDDDD',
-  greyLightAA: '#D7D7D7',
-  greyDark: '#999999',
-  greyDarker: '#666666',
-  greyDarkest: '#333333',
-  whiteLight: '#F4F9FE',
-  disabled: '#CCCCCC',
-  disabledText: '#B6B2AF',
 };
 
 const fontFamily = '"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen",  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",  sans-serif';
@@ -279,7 +248,7 @@ const transition = {
 const borders = {
   invalid: `1px solid ${colors.error500}`,
   transparent: '1px solid transparent',
-  disabled: `1px solid ${colors.disabled}`,
+  disabled: `1px solid ${colors.grey300}`,
   component: `1px solid ${colors.grey300}`,
   hover: `1px solid ${colors.primary300}`,
   active: `1px solid ${colors.primary500}`,
@@ -302,54 +271,49 @@ const ctmTheme = {
     disabledText: colors.white,
     shadows: {
       default: elevation.lvl4,
-      hover: elevation.lvl6,
+      hover: elevation.lvl5,
       focused: elevation.lvl3,
       disabled: elevation.none,
     },
     hero: {
-      bg: colors.hero500,
-      bgHover: colors.hero600,
+      background: colors.hero500,
+      backgroundHover: colors.hero600,
       color: colors.white,
       fill: colors.white,
-      bgInverted: colors.white,
-      bginvertedHover: colors.hero50,
+      backgroundInverted: colors.white,
+      backgroundInvertedHover: colors.hero50,
       colorInverted: colors.hero500,
       fillInverted: colors.hero500,
     },
     primary: {
-      bg: colors.primary500,
-      bgHover: colors.primary600,
+      background: colors.primary500,
+      backgroundHover: colors.primary600,
       color: colors.white,
       fill: colors.white,
-      bgInverted: colors.white,
-      bgInvertedHover: colors.primary50,
+      backgroundInverted: colors.white,
+      backgroundInvertedHover: colors.primary50,
       colorInverted: colors.primary500,
       fillInverted: colors.primary500,
     },
     secondary: {
-      bg: colors.white,
-      bgHover: colors.primary50,
+      background: colors.white,
+      backgroundHover: colors.primary50,
       color: colors.primary500,
       fill: colors.white,
       border: `1px solid ${colors.primary500}`,
-      bgInverted: colors.primary500,
-      bgInvertedHover: colors.primary400,
+      backgroundInverted: colors.primary500,
+      backgroundInvertedHover: colors.primary400,
       borderInverted: `1px solid ${colors.white}`,
       colorInverted: colors.white,
       fillInverted: colors.white,
     },
     tertiary: {
-      bg: 'transparent',
-      bgHover: colors.primary50,
+      background: 'transparent',
+      backgroundHover: colors.primary50,
       color: colors.primary500,
       fill: colors.primary500,
       colorhover: colors.primary700,
     },
-  },
-  callout: {
-    border: `4px solid ${colors.brandMidnightBlue}`,
-    background: colors.white,
-    backgroundGrey: colors.greyLighter,
   },
   card: {
     background: colors.white,
@@ -370,7 +334,7 @@ const ctmTheme = {
     size: spacing[24],
     background: colors.white,
     backgroundChecked: colors.primary500,
-    backgroundDisabled: colors.greyLight,
+    backgroundDisabled: colors.grey300,
     shadow: '0 0 0 1px rgba(0, 123, 255, .5)',
     borderRadius: borderRadius.sm,
     contentMargin: '0 0 0 1rem',
@@ -384,16 +348,16 @@ const ctmTheme = {
       background: colors.white,
       shadow: boxShadow.md,
       item: {
-        color: colors.greyDarker,
-        backgroundHover: colors.greyLighter,
+        color: colors.grey700,
+        backgroundHover: colors.grey100,
         borderFocus: borders.hover,
       },
     },
     button: {
       border: borders.transparent,
-      background: colors.whiteLight,
+      background: colors.primary50,
       borderFocus: borders.hover,
-      backgroundHover: colors.whiteLight,
+      backgroundHover: colors.primary50,
     },
   },
   datepicker: {
@@ -409,13 +373,15 @@ const ctmTheme = {
     height: spacing[44],
     color: colors.grey900,
     background: colors.white,
-    colorDisabled: colors.disabledText,
+    backgroundDisabled: colors.grey100,
     disabledOpacity: '0.5',
     disabledSvgOpacity: '0.3',
     prefixBackground: colors.white,
     prefixColor: colors.grey600,
     shadow: boxShadow.box,
     caretFill: colors.primary500,
+    colorActive: colors.brandLightBlue,
+    backgroundActive: colors.grey100,
     list: {
       hoverBackground: colors.grey100,
       item: {
@@ -444,9 +410,9 @@ const ctmTheme = {
     height: spacing[44],
     color: colors.black,
     clearButton: {
-      hoverColor: colors.blueLight,
-      color: colors.greyLight,
-      colorAutofill: colors.greyDark,
+      hoverColor: colors.primary500,
+      color: colors.grey300,
+      colorAutofill: colors.grey500,
     },
   },
   label: {
@@ -457,6 +423,7 @@ const ctmTheme = {
     heightLarge: spacing[44],
   },
   notification: {
+    color: colors.grey700,
     shadow: elevation.lvl3,
     success: colors.success500,
     warning: colors.warning500,
@@ -483,30 +450,30 @@ const ctmTheme = {
     },
     icon: {
       border: `2px solid ${colors.black}`,
-      borderDisabled: `2px solid ${colors.greyDark}`,
-      disabledColor: colors.greyDark,
+      borderDisabled: `2px solid ${colors.grey500}`,
+      disabledColor: colors.grey500,
       activeColor: colors.white,
       activeBackground: colors.black,
     },
     tracker: {
       background: colors.white,
-      backgroundValue: colors.greyLighterAA,
-      colorValue: colors.secondaryLight,
+      backgroundValue: colors.grey100,
+      colorValue: colors.primary50,
       backgroundCss: `
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfefc2+0,c3e4cf+100 */
-        background: ${colors.secondaryLight};  /* Old browsers   */
-        background ${`-moz-linear-gradient(left, ${colors.secondaryLight} 0%, ${colors.secondaryLighter}  100%)`}; /* FF3.6-15 */   
-        background: ${`-webkit-linear-gradient(left, ${colors.secondaryLight} 0%, ${colors.secondaryLighter}  100%)`}; /* Chrome10-25,Safari5.1-6 */
-        background: ${`linear-gradient(to right, ${colors.secondaryLight} 0%, ${colors.secondaryLighter}  100%)`}; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: ${`progid:DXImageTransform.Microsoft.gradient( startColorstr=${colors.secondaryLight}, endColorstr=${colors.secondaryLighter},GradientType=1 )`};  /* IE6-9 */
+        background: ${colors.primary50};  /* Old browsers   */
+        background ${`-moz-linear-gradient(left, ${colors.primary50} 0%, ${colors.primary100}  100%)`}; /* FF3.6-15 */   
+        background: ${`-webkit-linear-gradient(left, ${colors.primary50} 0%, ${colors.primary100}  100%)`}; /* Chrome10-25,Safari5.1-6 */
+        background: ${`linear-gradient(to right, ${colors.primary50} 0%, ${colors.primary100}  100%)`}; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: ${`progid:DXImageTransform.Microsoft.gradient( startColorstr=${colors.primary50}, endColorstr=${colors.primary100},GradientType=1 )`};  /* IE6-9 */
       `,
       itemLinkColor: colors.black,
       progressStep: {
         color: colors.black,
-        disabledColor: colors.greyDark,
+        disabledColor: colors.grey500,
       },
       item: {
-        border: `1px solid ${colors.greyLightAA}`,
+        border: `1px solid ${colors.grey300}`,
       },
     },
   },
@@ -518,7 +485,7 @@ const ctmTheme = {
     background: colors.white,
   },
   table: {
-    rowHoverBackground: colors.greyLighter,
+    rowHoverBackground: colors.grey100,
   },
   tabs: {
     titleFontSize: fontSize.base,
@@ -528,11 +495,13 @@ const ctmTheme = {
   },
   toggle: {
     base: {
+      labelColorHover: colors.primary300,
       background: colors.white,
       backgroundChecked: colors.primary500,
       color: colors.primary500,
       colorChecked: colors.white,
-
+      colorDisabled: colors.grey300,
+      shadowHover: elevation.lvl5,
     },
   },
   tooltip: {
