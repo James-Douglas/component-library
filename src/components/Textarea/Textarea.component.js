@@ -142,7 +142,7 @@ const Textarea = ({
     setIsDirty(true);
     setStateValue(event.target.value);
     if (handleChange) {
-      handleChange({ id, stateValue });
+      handleChange(event.target.value);
     }
   };
 
