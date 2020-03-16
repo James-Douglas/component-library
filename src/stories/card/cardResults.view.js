@@ -5,7 +5,6 @@ import Card from '../../components/Card/Card.component';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
-import StoryTemplate from '../storyTemplate';
 import Button from '../../components/Button/Button.component';
 
 
@@ -178,20 +177,18 @@ const CardResultsView = ({ background }) => {
   ));
 
   return (
-    <StoryTemplate background={background}>
-      <Container>
-        <Row>
-          <Column offset={10} cols={2}>
-            <Button id="toggle-button" variant="secondary" handleClick={toggleView}>
-              {`Toggle ${isGrid ? 'List' : 'Grid'}`}
-            </Button>
-          </Column>
-        </Row>
-        <CardGroup id="test" cols={isGrid ? 3 : 1}>
-          {isGrid ? renderGridView(cardData) : renderListView(cardData)}
-        </CardGroup>
-      </Container>
-    </StoryTemplate>
+    <Container>
+      <Row>
+        <Column offset={10} cols={2}>
+          <Button id="toggle-button" variant="secondary" handleClick={toggleView}>
+            {`Toggle ${isGrid ? 'List' : 'Grid'}`}
+          </Button>
+        </Column>
+      </Row>
+      <CardGroup id="test" cols={isGrid ? 3 : 1}>
+        {isGrid ? renderGridView(cardData) : renderListView(cardData)}
+      </CardGroup>
+    </Container>
   );
 };
 export default CardResultsView;

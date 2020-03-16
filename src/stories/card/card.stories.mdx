@@ -5,6 +5,7 @@ import CardGroup from '../../components/Card/CardGroup.component.js';
 import CardResultsView from './cardResults.view';
 import Container from '../../components/Grid/Container/Container.component'
 import theme from '../../themes/ctm.theme';
+import StyledBackground from '../view-styles';
 
 <Meta title="Components/Cards" component={Card} />
 
@@ -69,7 +70,7 @@ which can be used to compose a group of cards.
     const padding = [pt, pr, pb, pl]
     return (
       <div style={{ padding: '2%' }}>
-      <CardGroup id={id} cols={cols} cardProps={{margin, padding}}>
+        <CardGroup id={id} cols={cols} cardProps={{margin, padding}}>
           <Card id='card-a'>
             <div>
               <p>Card A</p>
@@ -137,5 +138,9 @@ which can be used to compose a group of cards.
 </Story>
 
 <Story name="mock results" parameters={{ docs: { disable: true } }}>
-  <CardResultsView />
+  <StyledBackground color="grey">
+    <div style={{ padding: '2%' }}>
+      <CardResultsView />
+    </div>
+  </StyledBackground>
 </Story>

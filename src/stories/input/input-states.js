@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../components/Input/Input.component';
-import StyledBackground from './view-styles';
+import StyledBackground from '../view-styles';
 
 /* eslint-disable no-console */
 
