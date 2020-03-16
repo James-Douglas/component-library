@@ -446,7 +446,7 @@ const ctmTheme = {
     bar: {
       background: colors.white,
       backgroundValue: colors.grey300,
-      progressBackground: colors.primary400,
+      progressBackground: colors.primary500,
     },
     icon: {
       border: `2px solid ${colors.black}`,
