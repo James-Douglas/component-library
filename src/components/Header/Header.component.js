@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
   height: ${({ theme, stuck }) => (stuck ? theme.header.heightStuck : theme.header.height)};
   transition: ${({ stuck }) => (stuck ? 'all 200ms ease' : 'none')};
   box-shadow: ${({ stuck }) => (stuck ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' : 'none')};
-  position: ${({ isSticky }) => (isSticky ? 'fixed' : 'absolute')};
+  position: ${({ isSticky }) => (isSticky ? 'fixed' : 'inherit')};
   left: 0;
   top: 0;
   padding-left: ${({ theme }) => theme.spacing[16]};

@@ -51,10 +51,12 @@ things to break and can be confusing to debug)*:
     * `cd /path/to/your_project/node_modules/react-dom && yarn link`
     * `cd /path/to/your_project/node_modules/styled-components && yarn link`
 2. In Manor, use the linked libraries from step 1:
-    * `cd /path/to/manor && yarn link react && yarn link react-dom && yarn link styled-components`
+    * `cd /path/to/manor-react && yarn link react && yarn link react-dom && yarn link styled-components`
 3. Rebuild Manor
-    * `cd /path/to/manor && yarn build`
-4. Link Manor in your project
+    * `cd /path/to/manor-react && yarn build`
+4. Link the manor library
+    * `cd /path/to/manor-react && yarn link`
+5. Link Manor in your project
     & `cd /path/to/your_project && yarn link @comparethemarketau/manor`     
 
 

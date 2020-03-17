@@ -315,14 +315,14 @@ const Dropdown = ({
       </StyledList>
     );
 
-      return (
-        <>
-          {(mobileOverlay && isDropdownOpen) && (
-            <Overlay opacityLevel={0.3} visible={mobileOverlay && isDropdownOpen} onClose={modalClose} handleClick={modalClose} />
-          )}
-          {renderOptions}
-        </>
-      );
+    return (
+      <>
+        {(mobileOverlay && isDropdownOpen) && (
+        <Overlay opacityLevel={0.3} visible={mobileOverlay && isDropdownOpen} onClose={modalClose} handleClick={modalClose} />
+        )}
+        {renderOptions}
+      </>
+    );
   };
 
   return (
