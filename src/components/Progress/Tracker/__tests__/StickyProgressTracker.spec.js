@@ -1,6 +1,7 @@
 import React from 'react';
-import { render } from '../../../../testUtils';
+import { fireEvent, render } from '../../../../testUtils';
 import StickyProgressTracker from '../StickyProgressTracker.component';
+import 'jest-styled-components';
 
 let mockUseIsDesktopValue = true;
 jest.mock('../../../../hooks/useIsDesktop', () => ({
@@ -28,5 +29,13 @@ describe('StickyTracker', () => {
     const { queryByText } = render(<StickyProgressTracker value="60" steps={props.steps} />);
     const item = queryByText('Your Cover');
     expect(item).not.toBeInTheDocument();
+  });
+  it('checking scroll on sticky progress bar', () => {
+    const { container } = render(<StickyProgressTracker value={30} />);
+    expect(container.firstChild).toHaveStyleRule('position', 'relative');
+    fireEvent.scroll(window, { target: { scrollY: 59 } });
+    expect(container.firstChild).toHaveStyleRule('position', 'relative');
+    fireEvent.scroll(window, { target: { scrollY: 61 } });
+    expect(container.firstChild).toHaveStyleRule('position', 'fixed');
   });
 });

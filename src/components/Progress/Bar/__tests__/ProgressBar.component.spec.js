@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../../testUtils';
+import { render, fireEvent } from '../../../../testUtils';
 import 'jest-styled-components';
 import ProgressBar from '../ProgressBar.component';
 
@@ -17,5 +17,13 @@ describe('ProgressBar', () => {
     const { container } = render(<ProgressBar value={100} />);
     const list = container.getElementsByTagName('progress')[0];
     expect(list).toHaveAttribute('value', '100');
+  });
+  it('checking scroll on progress bar', () => {
+    const { container } = render(<ProgressBar value={100} />);
+    expect(container.firstChild).toHaveStyleRule('position', 'relative');
+    fireEvent.scroll(window, { target: { scrollY: 5 } });
+    expect(container.firstChild).toHaveStyleRule('position', 'relative');
+    fireEvent.scroll(window, { target: { scrollY: 500 } });
+    expect(container.firstChild).toHaveStyleRule('position', 'relative');
   });
 });
