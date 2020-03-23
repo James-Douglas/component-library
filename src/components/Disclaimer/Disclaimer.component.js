@@ -7,7 +7,6 @@ import Checkbox from '../Checkbox/Checkbox.component';
 
 const StyledWrapper = styled.div`
   display: flex;
-  padding: ${({ theme }) => theme.spacing[20]};
 `;
 
 const StyledContent = styled.div`
@@ -27,10 +26,10 @@ const Disclaimer = ({
     setChecked(isSelected);
   }, [isSelected]);
 
-  const changeHandler = ({ value }) => {
-    setChecked(value);
+  const changeHandler = () => {
+    setChecked(!checked);
     if (handleChange) {
-      handleChange(value);
+      handleChange(id);
     }
   };
 

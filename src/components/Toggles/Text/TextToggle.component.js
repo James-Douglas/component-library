@@ -44,6 +44,7 @@ const TextToggle = ({
   handleToggle,
   handleFocus,
   handleBlur,
+  handleClick,
 }) => {
   const toggleHandler = () => {
     if (handleToggle) {
@@ -61,6 +62,7 @@ const TextToggle = ({
       handleToggle={toggleHandler}
       handleFocus={handleFocus}
       handleBlur={handleBlur}
+      handleClick={handleClick}
     >
       <ToggleLabel id={id}>
         <StyledWrapper>
@@ -132,6 +134,10 @@ TextToggle.propTypes = {
    * Handler function call on blur of the toggle
    */
   handleBlur: PropTypes.func,
+  /**
+   * Handler function called on click of the toggle
+   */
+  handleClick: PropTypes.func,
 };
 
 TextToggle.defaultProps = {
@@ -145,6 +151,7 @@ TextToggle.defaultProps = {
   handleToggle: null,
   handleFocus: null,
   handleBlur: null,
+  handleClick: null,
 };
 
 export default TextToggle;

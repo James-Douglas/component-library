@@ -17,7 +17,7 @@ const StyledValidationWrapper = styled.div`
   margin-left: ${({ theme }) => theme.spacing[8]};
 `;
 
-export const getChildren = (children, name, selectedToggleValue, handleToggle, validationMessage, contentWidth, contentHeight) => (
+export const getChildren = (children, name, selectedToggleValue, handleToggle, handleClick, validationMessage, contentWidth, contentHeight) => (
   children.map((child, index) => {
     const key = `toggle-${child.props.id || index}`;
     const propsToAdd = {
@@ -25,6 +25,7 @@ export const getChildren = (children, name, selectedToggleValue, handleToggle, v
       name,
       selectedValue: selectedToggleValue,
       handleToggle,
+      handleClick,
       invalid: !!validationMessage && validationMessage.length > 0,
       contentWidth,
       contentHeight,
@@ -43,6 +44,7 @@ const ToggleGroup = ({
   id,
   name,
   handleToggle,
+  handleClick,
   selectedValue,
   children,
   contentWidth,
@@ -62,7 +64,7 @@ const ToggleGroup = ({
     <>
       <Label htmlFor={id} text={label} tooltip={tooltip} />
       <StyledToggleGroup id={id} className={className}>
-        {getChildren(children, name, selectedToggleValue, toggleHandler, validationMessage, contentWidth, contentHeight)}
+        {getChildren(children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight)}
       </StyledToggleGroup>
       <StyledValidationWrapper>
         <FieldValidation message={validationMessage} />
@@ -80,6 +82,10 @@ ToggleGroup.propTypes = {
    * Handler function called when a toggle is toggled on with the value of the toggle.
    */
   handleToggle: PropTypes.func.isRequired,
+  /**
+   * Handler function called when a toggle is clicked with the value of the toggle.
+   */
+  handleClick: PropTypes.func,
   /**
    * Label for the ToggleGroup.
    */
@@ -134,6 +140,7 @@ ToggleGroup.propTypes = {
 
 ToggleGroup.defaultProps = {
   label: '',
+  handleClick: null,
   tooltip: {},
   validationMessage: null,
   id: null,

@@ -57,15 +57,4 @@ describe('ColorToggle', () => {
     expect(onToggleCb).toHaveBeenCalled();
     expect(onToggleCb.mock.calls[0][0]).toEqual('ttt');
   });
-
-  it('calls focus and blur handlers', () => {
-    const handleFocus = jest.fn();
-    const handleBlur = jest.fn();
-    const { container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" fontColor="white" handleToggle={() => {}} handleFocus={handleFocus} handleBlur={handleBlur} />);
-    const input = container.querySelector('input');
-    fireEvent.focus(input);
-    expect(handleFocus).toHaveBeenCalled();
-    fireEvent.blur(input);
-    expect(handleBlur).toHaveBeenCalled();
-  });
 });

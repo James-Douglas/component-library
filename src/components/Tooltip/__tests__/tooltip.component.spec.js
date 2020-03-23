@@ -53,8 +53,8 @@ describe('Tooltip', () => {
   it('renders tooltip click', () => {
     const { container } = render(<Tooltip body="test tooltip content" />);
     const toolTip = container.querySelector('[role="tooltip"]');
-    toolTip.click();
-    const toolTipBlack = container.querySelector('.tippy-popper');
+    fireEvent.click(toolTip);
+    const toolTipBlack = document.querySelector('.tippy-popper');
     expect(toolTipBlack).toBeInTheDocument();
   });
 
@@ -62,7 +62,7 @@ describe('Tooltip', () => {
     const { container, getByText } = render(<Tooltip body="test tooltip content" />);
     const toolTip = container.querySelector('[role="tooltip"]');
     fireEvent.mouseOver(toolTip);
-    const toolTipBlack = container.querySelector('.tippy-popper');
+    const toolTipBlack = document.querySelector('.tippy-popper');
     expect(toolTipBlack).toHaveStyle('visibility: visible');
     expect(getByText('test tooltip content')).toBeInTheDocument();
     fireEvent.mouseLeave(toolTip);
@@ -89,10 +89,10 @@ describe('Tooltip', () => {
   });
 
   it('tooltip on click body', async () => {
-    const { container } = render(<Tooltip body="test tooltip content" />);
+    render(<Tooltip body="test tooltip content" />);
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
-    const tooltipElement = container.querySelector('.tippy-popper');
+    const tooltipElement = document.querySelector('.tippy-popper');
     act(() => {
       document.body.click();
     });

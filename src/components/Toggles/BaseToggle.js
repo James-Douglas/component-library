@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
@@ -72,31 +72,45 @@ const BaseToggle = ({
   handleToggle,
   handleFocus,
   handleBlur,
+  handleClick,
   checkedFontColor,
   children,
   className,
 }) => {
+  const [checked, setChecked] = useState(selectedValue);
   const wrapperElement = useRef(null);
-  const toggleElement = useRef(null);
+
+  useEffect(() => {
+    setChecked(selectedValue === value);
+  }, [selectedValue, value]);
+
+  const changeHandler = (e) => {
+    const targetChecked = e.target.checked;
+    setChecked(targetChecked);
+    handleToggle(value);
+  };
+
+  const clickHandler = () => {
+    if (handleClick) {
+      handleClick(value);
+    }
+  };
+
   return (
     <StyledToggle
-      onClick={() => {
-        toggleElement.current.click();
-        toggleElement.current.focus();
-      }}
       invalid={invalid}
       ref={wrapperElement}
       className={className}
-      checked={selectedValue === value}
+      checked={checked}
     >
       <StyledToggleInput
         tabIndex={0}
-        ref={toggleElement}
         invalid={invalid}
         id={id}
         type="radio"
-        onChange={() => handleToggle(value)}
-        checked={selectedValue === value}
+        onChange={changeHandler}
+        onClick={clickHandler}
+        checked={checked}
         disabled={disabled}
         name={name}
         value={value}
@@ -141,13 +155,17 @@ BaseToggle.propTypes = {
    */
   handleToggle: PropTypes.func.isRequired,
   /**
-   * Handler function call on focus of the toggle
+   * Handler function called on focus of the toggle
    */
   handleFocus: PropTypes.func,
   /**
-   * Handler function call on blur of the toggle
+   * Handler function called on blur of the toggle
    */
   handleBlur: PropTypes.func,
+  /**
+   * Handler function called on click of the toggle
+   */
+  handleClick: PropTypes.func,
   /**
    * Used by the `Color` toggle to override the checked label's font color for when displaying
    * light colors where white text is difficult to discern.
@@ -167,6 +185,7 @@ BaseToggle.defaultProps = {
   className: '',
   handleFocus: null,
   handleBlur: null,
+  handleClick: null,
 };
 
 export default BaseToggle;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '../../../../testUtils';
+import { render } from '../../../../testUtils';
 import ImageToggle, { getImageToggleContent } from '../ImageToggle.component';
 
 describe('getImageToggleContent()', () => {
@@ -59,38 +59,5 @@ describe('ImageToggle', () => {
     expect(img).toHaveAttribute('src', '/test/test.jpg');
     expect(img).toHaveAttribute('alt', 'test alt');
     expect(img).toHaveAttribute('title', 'test title');
-  });
-
-  it('calls handleToggle when a toggle is selected', () => {
-    const handleToggle = jest.fn();
-    const { container } = render(
-      <ImageToggle
-        id="test-picture-toggle"
-        title="toggle title"
-        description="test description"
-        value="test"
-        name="toggles"
-        src="/test/test.jpg"
-        alt="test alt"
-        pictureTitle="test title"
-        toggleTitle="test title"
-        handleToggle={handleToggle}
-      />,
-    );
-    const element = container.firstChild;
-    fireEvent.click(element);
-    expect(handleToggle).toHaveBeenCalled();
-    expect(handleToggle.mock.calls[0][0]).toEqual('test');
-  });
-
-  it('calls focus and blur handlers', () => {
-    const handleFocus = jest.fn();
-    const handleBlur = jest.fn();
-    const { container } = render(<ImageToggle id="test" value="testt" handleFocus={handleFocus} handleBlur={handleBlur} />);
-    const input = container.querySelector('input');
-    fireEvent.focus(input);
-    expect(handleFocus).toHaveBeenCalled();
-    fireEvent.blur(input);
-    expect(handleBlur).toHaveBeenCalled();
   });
 });

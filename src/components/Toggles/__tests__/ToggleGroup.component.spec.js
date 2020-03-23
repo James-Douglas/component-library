@@ -8,7 +8,7 @@ describe('getChildren()', () => {
   let tempID = 'temp-id';
   const getTestChildren = (data) => data.map((child) => React.cloneElement(<TextToggle id={tempID} label="test-label" value="test-value" />, { ...child }));
   const didToggleCb = jest.fn();
-
+  const clickCb = jest.fn();
   it('returns cloned children with base props added', () => {
     const testChildren = getTestChildren([
       {
@@ -17,9 +17,9 @@ describe('getChildren()', () => {
         value: 'val-a',
       },
     ]);
-    const result = getChildren(testChildren, 'test-group', null, didToggleCb, null, '10rem', '10rem');
+    const result = getChildren(testChildren, 'test-group', null, didToggleCb, clickCb, null, '10rem', '10rem');
     const {
-      name, id, selectedValue, handleToggle, value, contentWidth, contentHeight,
+      name, id, selectedValue, handleToggle, handleClick, value, contentWidth, contentHeight,
     } = result[0].props;
 
     expect(name).toEqual('test-group');
@@ -27,6 +27,7 @@ describe('getChildren()', () => {
     expect(id).toEqual('a');
     expect(selectedValue).toEqual(null);
     expect(handleToggle).toEqual(didToggleCb);
+    expect(handleClick).toEqual(clickCb);
     expect(contentWidth).toEqual('10rem');
     expect(contentHeight).toEqual('10rem');
   });
@@ -66,6 +67,25 @@ describe('ToggleGroup', () => {
     fireEvent.click(toggleA);
     expect(onToggleCb).toHaveBeenCalled();
     expect(onToggleCb.mock.calls[0][0]).toEqual('a');
+  });
+
+  it('calls handleClick on toggle click', () => {
+    const onToggleCb = jest.fn();
+    const onClickCb = jest.fn();
+    const { container } = render(
+      <ToggleGroup name="test-toggle-group-b" handleToggle={onToggleCb} handleClick={onClickCb}>
+        <TextToggle label="test toggle a" value="a" id="a" />
+        <TextToggle label="test toggle b" value="b" id="b" />
+      </ToggleGroup>,
+    );
+    const toggleA = container.querySelector('#a');
+    fireEvent.click(toggleA);
+    fireEvent.click(toggleA);
+    expect(onToggleCb).toHaveBeenCalledTimes(1);
+    expect(onToggleCb.mock.calls[0][0]).toEqual('a');
+    expect(onClickCb).toHaveBeenCalledTimes(2);
+    expect(onClickCb.mock.calls[0][0]).toEqual('a');
+    expect(onClickCb.mock.calls[1][0]).toEqual('a');
   });
 
   it('renders with tooltip', () => {

@@ -67,6 +67,7 @@ const IconToggle = ({
   handleToggle,
   handleFocus,
   handleBlur,
+  handleClick,
   icon,
 }) => {
   const toggleHandler = () => {
@@ -86,6 +87,7 @@ const IconToggle = ({
       handleToggle={toggleHandler}
       handleFocus={handleFocus}
       handleBlur={handleBlur}
+      handleClick={handleClick}
     >
       {getToggleContent(id, icon, title, description)}
     </BaseToggle>
@@ -140,6 +142,10 @@ IconToggle.propTypes = {
    */
   handleBlur: PropTypes.func,
   /**
+   * Handler function called on click of the toggle
+   */
+  handleClick: PropTypes.func,
+  /**
    * Icon from fontAweseom to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).
    */
   icon: PropTypes.oneOfType([
@@ -161,6 +167,7 @@ IconToggle.defaultProps = {
   handleToggle: null,
   handleFocus: null,
   handleBlur: null,
+  handleClick: null,
   icon: null,
 };
 

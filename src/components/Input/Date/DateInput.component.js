@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import moment from 'moment';
 import Input from 'components/Input/Input.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
@@ -29,38 +28,32 @@ const DateInput = ({
   prefixContent,
   suffixContent,
   disableClearIcon,
-}) => {
-  const changeHandler = (val) => {
-    const parsedDate = moment(val, 'DD/MM/YYYY', true);
-    handleChange(parsedDate);
-  };
-  return (
-    <Input
-      id={id}
-      label={label}
-      value={value}
-      type="text"
-      handleChange={changeHandler}
-      prefixContent={prefixContent}
-      suffixContent={suffixContent}
-      mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
-      guide
-      placeholder="DD/MM/YYYY"
-      bordered={bordered}
-      required={required}
-      maxlength={11}
-      prefillValue={prefillValue}
-      disabled={disabled}
-      validationMessage={validationMessage}
-      autocomplete={autocomplete}
-      tooltip={tooltip}
-      className={className}
-      handleFocus={handleFocus}
-      handleBlur={handleBlur}
-      disableClearIcon={disableClearIcon}
-    />
-  );
-};
+}) => (
+  <Input
+    id={id}
+    label={label}
+    value={value}
+    type="text"
+    handleChange={handleChange}
+    prefixContent={prefixContent}
+    suffixContent={suffixContent}
+    mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+    guide
+    placeholder="DD/MM/YYYY"
+    bordered={bordered}
+    required={required}
+    maxlength={11}
+    prefillValue={prefillValue}
+    disabled={disabled}
+    validationMessage={validationMessage}
+    autocomplete={autocomplete}
+    tooltip={tooltip}
+    className={className}
+    handleFocus={handleFocus}
+    handleBlur={handleBlur}
+    disableClearIcon={disableClearIcon}
+  />
+);
 
 DateInput.propTypes = {
   /**

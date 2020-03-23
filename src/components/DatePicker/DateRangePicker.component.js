@@ -106,21 +106,23 @@ const DateRangePicker = ({
   };
 
   const startDateHandleChange = (value) => {
-    if (value.isValid()) {
-      setStartDate(value);
+    const parsed = moment(value, displayFormat, true);
+    if (parsed.isValid()) {
+      setStartDate(parsed);
       setFocusedInput(END_DATE);
     }
-    value.isValid() && setStartDateValidationMessage(null);
-    !value.isValid() && setStartDateValidationMessage(startDateValidationMessage);
+    parsed.isValid() && setStartDateValidationMessage(null);
+    !parsed.isValid() && setStartDateValidationMessage(startDateValidationMessage);
   };
 
   const endDateHandleChange = (value) => {
-    if (value.isValid()) {
-      setEndDate(value);
+    const parsed = moment(value, displayFormat, true);
+    if (parsed.isValid()) {
+      setEndDate(parsed);
       setIsVisisble(false);
     }
-    value.isValid() && setEndDateValidationMessage(null);
-    !value.isValid() && setEndDateValidationMessage(endDateValidationMessage);
+    parsed.isValid() && setEndDateValidationMessage(null);
+    !parsed.isValid() && setEndDateValidationMessage(endDateValidationMessage);
   };
 
   const handleClickOutside = useCallback((e) => {

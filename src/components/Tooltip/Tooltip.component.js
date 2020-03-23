@@ -70,19 +70,13 @@ const StyledTippy = styled(({ variant, ...props }) => <Tippy {...props} />)`
   }
   
   @media screen and (min-width: 769px) {
-    .tippy-tooltip {
-      max-width: ${({ theme }) => theme.spacing[280]};
+    &.tippy-tooltip {
+      max-width: ${({ theme }) => theme.spacing[280]} !important;
     }
   }
-
   @media screen and (max-width: 768px) {
-    :global(.tippy-popper) {
-      right: 0;
-      left: 0;
-    }
-
-    :global(.tippy-tooltip) {
-      max-width: none !important;
+    &.tippy-tooltip {
+      width: 97vw;
     }
   }
 `;
@@ -123,7 +117,9 @@ const Tooltip = ({
   };
 
   const showTooltip = () => {
-    setTippyVisible(true);
+    if (!tippyVisible) {
+      setTippyVisible(true);
+    }
   };
 
   const addOnShowListeners = () => {
@@ -167,13 +163,13 @@ const Tooltip = ({
   if (!title && !body) {
     return null;
   }
+
   return (
     <>
       <StyledTippy
         content={getContent(title, body, variant)}
-        interactive
-        arrow={desktop}
-        distance={desktop ? '0.8rem' : 0}
+        arrow
+        distance="1rem"
         animation="scale"
         duration={[150, 75]}
         hideOnClick={false}
@@ -181,7 +177,7 @@ const Tooltip = ({
         onCreate={(instance) => setTippyInstance(instance)}
         onShow={onTippyShow}
         visible={tippyVisible}
-        placement={placement}
+        placement={desktop ? placement : 'bottom'}
         maxWidth={500}
         delay={125}
         variant={variant}
@@ -261,7 +257,7 @@ const defaultProps = {
   screenReaderLabel: '',
   placement: 'right',
   variant: 'dark',
-  className: '',
+  className: 'ctm-tooltip',
 };
 
 Tooltip.propTypes = tooltipPropTypes;

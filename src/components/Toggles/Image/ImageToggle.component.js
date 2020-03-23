@@ -71,6 +71,7 @@ const ImageToggle = ({
   handleToggle,
   handleFocus,
   handleBlur,
+  handleClick,
   src,
   srcsets,
   alt,
@@ -92,6 +93,7 @@ const ImageToggle = ({
       handleToggle={toggleHandler}
       handleFocus={handleFocus}
       handleBlur={handleBlur}
+      handleClick={handleClick}
     >
       {getImageToggleContent(src, srcsets, alt, pictureTitle, id, title, description)}
     </BaseToggle>
@@ -146,6 +148,10 @@ ImageToggle.propTypes = {
    */
   handleBlur: PropTypes.func,
   /**
+   * Handler function called on click of the toggle
+   */
+  handleClick: PropTypes.func,
+  /**
    * src attribute passed to the Picture component
    * (see `Picture` component documentation - this attribute is a fallback for
    * older browsers)
@@ -177,6 +183,7 @@ ImageToggle.defaultProps = {
   handleToggle: null,
   handleFocus: null,
   handleBlur: null,
+  handleClick: null,
   src: '',
   srcsets: [],
   alt: '',

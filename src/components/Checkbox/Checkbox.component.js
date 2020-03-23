@@ -142,7 +142,7 @@ const Checkbox = ({
     setInternalValue(targValue);
 
     if (handleChange) {
-      handleChange({ id, value: targValue });
+      handleChange(id);
     }
   };
 

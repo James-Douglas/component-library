@@ -75,8 +75,8 @@ describe('DateInput', () => {
 
     expect(handler).toHaveBeenCalled();
     expect(handler.mock.calls.length).toBe(2);
-    expect(handler.mock.calls[0][0].isValid()).toBeFalsy();
-    expect(handler.mock.calls[1][0].isValid()).toBeTruthy();
+    expect(handler.mock.calls[0][0]).toBe('11/13/2000');
+    expect(handler.mock.calls[1][0]).toBe('11/12/2000');
   });
 
   it('calls focus and blur handlers', () => {

@@ -56,14 +56,15 @@ const SingleDatePicker = ({
     setIsVisisble(true);
   };
   const dateHandleChange = (value) => {
-    if (value.isValid()) {
-      setSelectedDate(value);
+    const parsed = moment(value, displayFormat, true);
+    if (parsed.isValid()) {
+      setSelectedDate(parsed);
       setIsVisisble(false);
       setValidationMessageDate(null);
     } else {
       setValidationMessageDate(validationMessage);
     }
-    handleChange && handleChange({ id: dateId, value });
+    handleChange && handleChange(parsed);
   };
   const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {

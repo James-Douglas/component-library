@@ -94,7 +94,8 @@ describe('Checkbox', () => {
   });
 
   it('checks on click', () => {
-    const { container } = render(<Checkbox id="test-id" disabled={false} invertColour />);
+    const changeHandler = jest.fn();
+    const { container } = render(<Checkbox id="test-id" disabled={false} invertColour handleChange={changeHandler} />);
 
     const checkbox = container.querySelector('#test-id');
     const label = container.querySelector('label');
@@ -102,6 +103,8 @@ describe('Checkbox', () => {
     fireEvent.click(label, { button: 0 });
 
     expect(checkbox.checked).toBe(true);
+    expect(changeHandler).toHaveBeenCalledTimes(1);
+    expect(changeHandler.mock.calls[0][0]).toBe('test-id');
   });
 
   it('click is disabled when disabled prop is supplied', () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Row from '../Grid/Row/Row.component';
@@ -21,10 +21,10 @@ const StyledColumn = styled(Column)`
   padding-right: 0;
 `;
 
-export const generateGroup = (colSize, children, callback) => {
+export const generateGroup = (colSize, children, callback, selectedCheckboxes) => {
   if (children) {
     return children.map((child) => {
-      const component = React.cloneElement(child, { handleChange: callback });
+      const component = React.cloneElement(child, { handleChange: callback, isSelected: selectedCheckboxes.includes(child.props.id) });
       return (
         <StyledColumn cols={colSize} key={`key-${child.props.id}`}>
           {component}
@@ -42,26 +42,30 @@ const CheckboxGroup = ({
   groupId,
   colSize,
   handleChange,
+  selected,
   children,
 }) => {
-  const initialSelected = children.map((child) => (child.props.isSelected ? { id: child.props.id, value: child.props.isSelected } : undefined)).filter(Boolean);
-
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState(initialSelected);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState(selected);
   const desktop = useIsDesktop(false);
+  const didMount = useRef(false);
 
-  const handleCheckboxClick = ({ id, value }) => {
-    const exists = selectedCheckboxes.find((checkbox) => checkbox.id === id);
-    if (value && !exists) {
-      const newSelectedCheckboxes = [...selectedCheckboxes, { id, value }];
+  const handleCheckboxClick = (id) => {
+    const exists = selectedCheckboxes.includes(id);
+    if (!exists) {
+      const newSelectedCheckboxes = [...selectedCheckboxes, id];
       setSelectedCheckboxes(newSelectedCheckboxes);
-    } else if (!value && exists) {
-      const newSelectedCheckboxes = selectedCheckboxes.filter((selectedCheckbox) => selectedCheckbox.id !== id);
+    } else {
+      const newSelectedCheckboxes = selectedCheckboxes.filter((selectedCheckbox) => selectedCheckbox !== id);
       setSelectedCheckboxes(newSelectedCheckboxes);
     }
   };
 
   useEffect(() => {
-    handleChange(selectedCheckboxes);
+    if (didMount.current) {
+      handleChange(selectedCheckboxes);
+    } else {
+      didMount.current = true;
+    }
   }, [handleChange, selectedCheckboxes]);
 
   return (
@@ -71,7 +75,7 @@ const CheckboxGroup = ({
         <Column cols={desktop ? '10' : '12'}>
           <StyledContainer id={groupId}>
             <StyledInnerRow>
-              {generateGroup(colSize, children, handleCheckboxClick)}
+              {generateGroup(colSize, children, handleCheckboxClick, selectedCheckboxes)}
             </StyledInnerRow>
           </StyledContainer>
           <FieldValidation message={validationMessage} />
@@ -108,6 +112,10 @@ CheckboxGroup.propTypes = {
    */
   handleChange: PropTypes.func,
   /**
+   * Sets the selected checkboxes
+   */
+  selected: PropTypes.arrayOf(PropTypes.string),
+  /**
    * The child Checkbox components to render in the CheckboxGroup
    */
   children: (props, propname, componentName) => componentName === 'Checkbox',
@@ -119,6 +127,7 @@ CheckboxGroup.defaultProps = {
   validationMessage: null,
   colSize: '6',
   handleChange: () => { },
+  selected: [],
   children: [],
 };
 

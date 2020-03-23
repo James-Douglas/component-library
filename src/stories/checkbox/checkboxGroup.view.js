@@ -30,8 +30,8 @@ const g1 = 'checkbox-group-a';
 const g2 = 'checkbox-group-b';
 
 const CheckboxGroupView = () => {
-  const [checkboxGroupA, updateCheckboxGroupA] = useState([]);
-  const [checkboxGroupB, updateCheckboxGroupB] = useState([{ id: 'B-2', value: true }]);
+  const [checkboxGroupA, updateCheckboxGroupA] = useState(['A-1', 'A-6']);
+  const [checkboxGroupB, updateCheckboxGroupB] = useState(['B-2']);
   const [validationMessageGroupA, setValidationMessageGroupA] = useState('');
   const [validationMessageGroupB, setValidationMessageGroupB] = useState('');
 
@@ -65,6 +65,7 @@ const CheckboxGroupView = () => {
               groupId={g1}
               colSize="6"
               handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
+              selected={checkboxGroupA}
             >
               <Checkbox id="A-1" label="A-1 check" />
               <Checkbox id="A-2" label="A-2 check" />
@@ -83,13 +84,14 @@ const CheckboxGroupView = () => {
               groupId={g2}
               colSize="6"
               handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
+              selected={checkboxGroupB}
             >
               <Checkbox id="B-1" label="B-1 check" />
-              <Checkbox id="B-2" isSelected label="B-1 check" />
+              <Checkbox id="B-2" label="B-1 check" />
               <Checkbox id="B-3" label="B-1 check" />
-              <Checkbox id="B-4" isSelected label="B-1 check" />
+              <Checkbox id="B-4" label="B-1 check" />
               <Checkbox id="B-5" label="B-1 check" />
-              <Checkbox id="B-6" isSelected label="B-1 check" />
+              <Checkbox id="B-6" label="B-1 check" />
             </CheckboxGroup>
           </Column>
         </Row>
@@ -104,13 +106,13 @@ const CheckboxGroupView = () => {
                       {g1}
                       :
                       {' '}
-                      {checkboxGroupA.map((checkbox) => checkbox.id).join(', ')}
+                      {checkboxGroupA.map((checkbox) => checkbox).join(', ')}
                     </p>
                     <p>
                       {g2}
                       :
                       {' '}
-                      {checkboxGroupB.map((checkbox) => checkbox.id).join(', ')}
+                      {checkboxGroupB.map((checkbox) => checkbox).join(', ')}
                     </p>
                   </>
                 )

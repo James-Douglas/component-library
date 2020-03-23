@@ -32,6 +32,7 @@ const StyledDropdownList = styled.div`
 `;
 
 const StyledList = styled.ul`
+  margin: 0;
   width: ${({ theme }) => (theme.maxWidth.full)};
   padding: 0;
   color: ${({ theme }) => (theme.combo.list.color)};

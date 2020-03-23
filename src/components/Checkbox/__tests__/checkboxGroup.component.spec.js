@@ -8,7 +8,7 @@ describe('generateGroup', () => {
   // eslint-disable-next-line react/prop-types
   const GroupContainer = ({ colSize, children }) => (
     <>
-      {generateGroup(colSize, children)}
+      {generateGroup(colSize, children, null, [])}
     </>
   );
 
@@ -89,10 +89,10 @@ describe('CheckboxGroup.component', () => {
 
   it('accepts a prefill value', () => {
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5">
-        <Checkbox id="A-1" isSelected><p>A-1 check</p></Checkbox>
+      <CheckboxGroup groupId="test-group-id" colSize="5" selected={['A-1', 'A-3']}>
+        <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
-        <Checkbox id="A-3" isSelected><p>A-3 check</p></Checkbox>
+        <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
       </CheckboxGroup>,
     );
 

@@ -5,7 +5,7 @@ import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 
 const CustomToggle = ({
-  id, value, name, selectedValue, invalid, disabled, handleToggle, handleFocus, handleBlur, children,
+  id, value, name, selectedValue, invalid, disabled, handleToggle, handleFocus, handleBlur, handleClick, children,
 }) => {
   const toggleHandler = () => {
     if (handleToggle) {
@@ -25,6 +25,7 @@ const CustomToggle = ({
       handleToggle={toggleHandler}
       handleFocus={handleFocus}
       handleBlur={handleBlur}
+      handleClick={handleClick}
     >
       <ToggleLabel id={id}>
         {children}
@@ -71,6 +72,10 @@ CustomToggle.propTypes = {
    * Handler function call on blur of the toggle
    */
   handleBlur: PropTypes.func,
+  /**
+   * Handler function called on click of the toggle
+   */
+  handleClick: PropTypes.func,
   children: PropTypes.node,
 };
 
@@ -83,6 +88,7 @@ CustomToggle.defaultProps = {
   children: [],
   handleFocus: null,
   handleBlur: null,
+  handleClick: null,
 };
 
 export default CustomToggle;
