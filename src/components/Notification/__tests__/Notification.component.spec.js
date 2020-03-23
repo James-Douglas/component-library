@@ -141,9 +141,8 @@ describe('Notification()', () => {
     );
     const childDiv = container.firstChild;
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
-    expect(childDiv).toHaveStyleRule('position', 'absolute');
-    expect(childDiv).toHaveStyleRule('bottom', '0');
-    expect(childDiv).toHaveStyleRule('min-width', `${theme.minWidth.xs}`);
+    expect(childDiv).toHaveStyleRule('position', 'relative');
+    expect(childDiv).toHaveStyleRule('width', `${theme.minWidth.xs}`);
     expect(childDiv).toHaveStyleRule('box-shadow', theme.notification.shadow);
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${theme.colors.primary500}`);
     expect(infoIcon).toBeInTheDocument();

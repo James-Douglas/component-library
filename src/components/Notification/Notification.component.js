@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faInfoCircle,
@@ -12,6 +11,7 @@ import {
   faTimes,
 }
   from '@fortawesome/pro-regular-svg-icons/';
+import { useToasts } from '../../contexts/ToastContext';
 
 const notificationIcon = (variant) => {
   switch (variant) {
@@ -27,6 +27,7 @@ const notificationIcon = (variant) => {
 };
 
 const StyledNotification = styled.div`
+  position: relative;
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: ${({ theme }) => theme.fontWeight.normal};
   line-height: ${({ theme }) => theme.lineHeight.tight};
@@ -34,9 +35,10 @@ const StyledNotification = styled.div`
   padding: ${({ theme, icon, type }) => `${theme.spacing[8]} ${theme.spacing[20]} ${theme.spacing[8]} ${(icon && type !== 'hint') ? 0 : theme.spacing[20]}`};
   background: ${({ theme }) => theme.colors.white};
   display: flex;
-  position: ${({ type }) => (type === 'toast' ? 'absolute' : 'relative')};
-  ${({ position, type }) => (type === 'toast' ? css`${position}: 0; right: 0;` : null)};
-  ${({ theme, type }) => type === 'toast' && css`min-width: ${theme.minWidth.xs};`};
+  ${({ theme, type }) => type === 'toast' && css`
+    width: ${theme.minWidth.xs};
+    margin-bottom: ${theme.spacing[16]};
+  `};
   ${({ theme, type }) => type !== 'hint' && css`box-shadow: ${theme.notification.shadow};`}
   color: ${({ theme }) => theme.notification.color};
 `;
@@ -99,6 +101,7 @@ const StyledSpan = styled.span`
 `;
 
 const Notification = ({
+  id,
   type,
   variant,
   position,
@@ -112,18 +115,7 @@ const Notification = ({
   className,
   autoClose,
 }) => {
-  const [active, setActive] = useState(true);
-
-  useEffect(() => {
-    if (autoClose !== null) {
-      const timeout = setTimeout(() => {
-        setActive(false);
-      }, autoClose);
-      return () => clearTimeout(timeout);
-    }
-    return undefined;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { removeToast } = useToasts();
 
   const iconHandler = () => {
     if (handleClose) {
@@ -133,20 +125,26 @@ const Notification = ({
 
   const iconVariant = notificationIcon(variant);
 
+  useEffect(() => {
+    if (autoClose && type === 'toast') {
+      setTimeout(() => {
+        removeToast(id);
+      }, autoClose);
+    }
+  }, [autoClose, id, removeToast]);
+
   return (
     <>
-      {active
-      && (
       <StyledNotification type={type} variant={variant} position={position} icon={icon} className={className}>
         {(closeButton && type !== 'hint') && (
-        <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
-          <FontAwesomeIcon icon={faTimes} size="lg" />
-        </StyledIcon>
+          <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
+            <FontAwesomeIcon icon={faTimes} size="lg" />
+          </StyledIcon>
         )}
         {(icon && type !== 'hint') && (
-        <StyledNotificationImage variant={variant}>
-          <FontAwesomeIcon icon={iconVariant} size="lg" />
-        </StyledNotificationImage>
+          <StyledNotificationImage variant={variant}>
+            <FontAwesomeIcon icon={iconVariant} size="lg" />
+          </StyledNotificationImage>
         )}
         <StyledNotificationContentWrap>
           <StyledHeading type={type}>
@@ -163,12 +161,15 @@ const Notification = ({
           </StyledActions>
         </StyledNotificationContentWrap>
       </StyledNotification>
-      )}
     </>
   );
 };
 
 Notification.propTypes = {
+  /**
+   * Id of the component (generated id for toasts only)
+   */
+  id: PropTypes.string,
   /**
    * Title of the component
    */
@@ -228,11 +229,11 @@ Notification.propTypes = {
    */
   icon: PropTypes.bool,
   /**
-   *  Defines close button visibility(by default it's hidden).
+   * Defines close button visibility(by default it's hidden).
    */
   closeButton: PropTypes.bool,
   /**
-   *  Called when click close button.
+   * Called when click close button.
    */
   handleClose: PropTypes.func,
   /**
@@ -240,7 +241,7 @@ Notification.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * autoClose
+   * AutoClose for Toast notifications
    */
   autoClose: PropTypes.PropTypes.oneOf([
     5000,
@@ -251,6 +252,7 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
+  id: '',
   title: '',
   content: '',
   primaryAction: null,

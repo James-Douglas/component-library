@@ -1,44 +1,28 @@
-import React, {
-  createContext, useContext, useMemo, useState,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { ManorGlobalStyles } from '../components/Global/manorGlobal.component';
 import CTMTheme from '../themes/ctm.theme';
 
-const noop = () => {};
+import ToastContext from '../contexts/ToastContext';
+import LayerContext from '../contexts/LayerContext';
 
-const LayerContext = createContext({
-  layers: null, push: noop, pop: noop, top: noop,
-});
+/* const ToastContext = createContext(); */
 
 const ManorProvider = (props) => {
   const {
-    theme, children, disableGlobalStyles, ...otherProps
+    theme, children, disableGlobalStyles,
   } = props;
-  const [layers, setLayers] = useState([]);
-
-  const layerInfo = useMemo(() => ({
-    layers,
-    push: (layer) => {
-      if (!layers.includes(layer)) {
-        setLayers(layers.concat([layer]));
-      }
-      return layers.length + 1;
-    },
-    pop: () => setLayers(layers.length > 1 ? layers.slice(0, layers.length - 1) : []),
-    top: (layer) => layers.length > 0 && layers[layers.length - 1] === layer,
-    contains: (layer) => layers.includes(layer),
-  }), [layers, setLayers]);
 
   return (
     <>
       <ThemeProvider theme={theme}>
         {!disableGlobalStyles && <ManorGlobalStyles />}
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <LayerContext.Provider value={layerInfo} {...otherProps}>
-          {children}
-        </LayerContext.Provider>
+        <LayerContext>
+          <ToastContext>
+            {children}
+          </ToastContext>
+        </LayerContext>
       </ThemeProvider>
     </>
   );
@@ -68,5 +52,3 @@ ManorProvider.defaultProps = {
 };
 
 export default ManorProvider;
-
-export const useLayers = () => useContext(LayerContext);

@@ -7,7 +7,7 @@ import React from 'react';
 import ManorProvider from '../src/provider/ManorProvider';
 
 addDecorator(withA11y);
-addDecorator(storyFn => <ManorProvider>{storyFn()}</ManorProvider>);
+addDecorator(StoryFn => <ManorProvider><StoryFn /></ManorProvider>);
 
 addParameters({
   options: {
@@ -31,5 +31,4 @@ function loadStories() {
 }
 
 configure(loadStories, module);
-
 

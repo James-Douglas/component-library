@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import styled, { withTheme } from 'styled-components';
 import PropTypes from 'prop-types';
-import { useLayers } from './provider/ManorProvider';
+import { useLayers } from './contexts/LayerContext';
 import usePrevious from './hooks/usePrevious';
 
 const StyledLayer = styled.span`
