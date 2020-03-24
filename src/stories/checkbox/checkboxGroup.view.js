@@ -32,24 +32,24 @@ const g2 = 'checkbox-group-b';
 const CheckboxGroupView = () => {
   const [checkboxGroupA, updateCheckboxGroupA] = useState(['A-1', 'A-6']);
   const [checkboxGroupB, updateCheckboxGroupB] = useState(['B-2']);
-  const [validationMessageGroupA, setValidationMessageGroupA] = useState('');
-  const [validationMessageGroupB, setValidationMessageGroupB] = useState('');
+  const [validationMessageGroupA, setValidationMessageGroupA] = useState(checkboxGroupA.length > 0 ? 'Oops that doesn\'t seem right' : '');
+  const [validationMessageGroupB, setValidationMessageGroupB] = useState(checkboxGroupB.length > 0 ? 'Sorry, but selecting anything in this checkbox will trigger a validation message!' : '');
 
-  const handleGroupSelection = (selectedCheckboxes, group) => {
-    if (group === g1) {
-      updateCheckboxGroupA(selectedCheckboxes);
-      if (selectedCheckboxes.length) {
-        setValidationMessageGroupA('Oops that doesn\'t seem right');
-      } else {
-        setValidationMessageGroupA(null);
-      }
+  const handleGroupA = (selectedCheckboxes) => {
+    updateCheckboxGroupA(selectedCheckboxes);
+    if (selectedCheckboxes.length) {
+      setValidationMessageGroupA('Oops that doesn\'t seem right');
     } else {
-      updateCheckboxGroupB(selectedCheckboxes);
-      if (selectedCheckboxes.length) {
-        setValidationMessageGroupB('Sorry, but selecting anything in this checkbox will trigger a validation message!');
-      } else {
-        setValidationMessageGroupB(null);
-      }
+      setValidationMessageGroupA(null);
+    }
+  };
+
+  const handleGroupB = (selectedCheckboxes) => {
+    updateCheckboxGroupB(selectedCheckboxes);
+    if (selectedCheckboxes.length) {
+      setValidationMessageGroupB('Sorry, but selecting anything in this checkbox will trigger a validation message!');
+    } else {
+      setValidationMessageGroupB(null);
     }
   };
 
@@ -64,7 +64,7 @@ const CheckboxGroupView = () => {
               validationMessage={validationMessageGroupA}
               groupId={g1}
               colSize="6"
-              handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g1)}
+              handleChange={(selectedCheckboxes) => handleGroupA(selectedCheckboxes)}
               selected={checkboxGroupA}
             >
               <Checkbox id="A-1" label="A-1 check" />
@@ -83,15 +83,15 @@ const CheckboxGroupView = () => {
               validationMessage={validationMessageGroupB}
               groupId={g2}
               colSize="6"
-              handleChange={(selectedCheckboxes) => handleGroupSelection(selectedCheckboxes, g2)}
+              handleChange={(selectedCheckboxes) => handleGroupB(selectedCheckboxes)}
               selected={checkboxGroupB}
             >
               <Checkbox id="B-1" label="B-1 check" />
-              <Checkbox id="B-2" label="B-1 check" />
-              <Checkbox id="B-3" label="B-1 check" />
-              <Checkbox id="B-4" label="B-1 check" />
-              <Checkbox id="B-5" label="B-1 check" />
-              <Checkbox id="B-6" label="B-1 check" />
+              <Checkbox id="B-2" label="B-2 check" />
+              <Checkbox id="B-3" label="B-3 check" />
+              <Checkbox id="B-4" label="B-4 check" />
+              <Checkbox id="B-5" label="B-5 check" />
+              <Checkbox id="B-6" label="B-6 check" />
             </CheckboxGroup>
           </Column>
         </Row>

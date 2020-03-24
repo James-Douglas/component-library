@@ -22,8 +22,8 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
   <Story name="checkbox">
     {() => {
       const [ error, setError ] = useState('Please check the box');
-      const handler = (obj) => {
-        if ( obj.value) {
+      const handler = (id, value) => {
+        if (value) {
           setError('')
         } else {
           setError('Please check the box')
@@ -39,7 +39,7 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
               </Column>
               <Column md={4}>
                 <Checkbox id="chk3" label="A prefilled checkbox" prefillValue />
-                <Checkbox id="chk4" label="An errored checkbox" validationMessage={error} handleChange={(obj) => {handler(obj)}}/>
+                <Checkbox id="chk4" label="An errored checkbox" validationMessage={error} handleChange={(id, value) => { handler(id, value)} }/>
               </Column>
               <Column md={4}>
                 <Checkbox id="chk5" label="A disabled checkbox" disabled />
@@ -63,11 +63,23 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
               tooltip={{ title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
               groupId="group-1"
               colSize="12"
-              handleChange={() => {}}
+              handleChange={(checkboxes) => {console.warn(checkboxes)}}
             >
               <Checkbox id="A-1" label="One" />
               <Checkbox id="A-2" label="Two" />
               <Checkbox id="A-3" label="Three" />
+            </CheckboxGroup>
+             <CheckboxGroup
+              label="Another checkbox group example"
+              tooltip={{ title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
+              groupId="group-2"
+              colSize="12"
+              handleChange={(checkboxes) => {console.warn(checkboxes)}}
+            >
+              <Checkbox id="x-1" label="One" />
+              <Checkbox id="x-2" label="Two" />
+              <Checkbox id="x-3" label="Three" />
+              <Checkbox id="x-4" label="Four" />
             </CheckboxGroup>
           </Column>
         </Row>

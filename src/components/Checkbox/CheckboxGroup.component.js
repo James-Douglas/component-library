@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useRef, useCallback,
+} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Row from '../Grid/Row/Row.component';
@@ -49,7 +51,7 @@ const CheckboxGroup = ({
   const desktop = useIsDesktop(false);
   const didMount = useRef(false);
 
-  const handleCheckboxClick = (id) => {
+  const handleCheckboxClick = useCallback((id) => {
     const exists = selectedCheckboxes.includes(id);
     if (!exists) {
       const newSelectedCheckboxes = [...selectedCheckboxes, id];
@@ -58,7 +60,7 @@ const CheckboxGroup = ({
       const newSelectedCheckboxes = selectedCheckboxes.filter((selectedCheckbox) => selectedCheckbox !== id);
       setSelectedCheckboxes(newSelectedCheckboxes);
     }
-  };
+  }, [selectedCheckboxes]);
 
   useEffect(() => {
     if (didMount.current) {
@@ -107,8 +109,8 @@ CheckboxGroup.propTypes = {
    */
   colSize: PropTypes.oneOf(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
-   * Called whenever a checkbox is selected or deselected. Is called with an array of objects representing the currently
-   selected checkboxes (in the form `{id, value}`)
+   * Called whenever a checkbox is selected or deselected. It is called with an array of ids representing the currently
+   selected checkboxes)
    */
   handleChange: PropTypes.func,
   /**

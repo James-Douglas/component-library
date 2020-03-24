@@ -142,12 +142,12 @@ const Checkbox = ({
     setInternalValue(targValue);
 
     if (handleChange) {
-      handleChange(id);
+      handleChange(id, targValue);
     }
   };
 
   return (
-    <div invalid={validationMessage && validationMessage.length > 0}>
+    <>
       <StyledWrap>
         <StyledHiddenInput
           id={id}
@@ -184,7 +184,7 @@ const Checkbox = ({
         </StyledLabel>
       </StyledWrap>
       <FieldValidation message={validationMessage} />
-    </div>
+    </>
 
   );
 };
@@ -220,7 +220,7 @@ Checkbox.propTypes = {
   /**
    * Prefills the checkbox and applies browser autocomplete styles
    */
-  prefillValue: PropTypes.string,
+  prefillValue: PropTypes.bool,
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
@@ -252,7 +252,7 @@ Checkbox.defaultProps = {
   label: null,
   disabled: false,
   isSelected: false,
-  prefillValue: '',
+  prefillValue: false,
   validationMessage: '',
   invertColour: false,
   handleChange: null,
