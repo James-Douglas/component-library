@@ -10,7 +10,7 @@ Renders a checkbox with content (supplied as children).
 
 <Preview>
   <Story name="disclaimer">
-    <Disclaimer id="1">I'm a disclaimer <a href="www.google.com" target="_blank">link</a> that's a link</Disclaimer>
+    <Disclaimer handleChange={(checked) => {console.log('Disclaimer checked:', checked)}} id="1">I'm a disclaimer <a href="www.google.com" target="_blank">link</a> that's a link</Disclaimer>
   </Story>
 </Preview>
 

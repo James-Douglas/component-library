@@ -29,7 +29,7 @@ const Disclaimer = ({
   const changeHandler = () => {
     setChecked(!checked);
     if (handleChange) {
-      handleChange(id);
+      handleChange(!checked);
     }
   };
 
