@@ -131,7 +131,7 @@ const Notification = ({
         removeToast(id);
       }, autoClose);
     }
-  }, [autoClose, id, removeToast]);
+  }, [autoClose, id, removeToast, type]);
 
   return (
     <>

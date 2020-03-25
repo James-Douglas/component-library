@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { fireEvent, render, getByLabelText } from '../../../testUtils';
 import SingleDatePicker from '../SingleDatePicker.component';
 import 'jest-styled-components';
-import DateRangePicker from '../DateRangePicker.component';
+
 
 describe('SingleDatePicker', () => {
   it('renders correct number options', () => {
@@ -92,7 +92,6 @@ describe('SingleDatePicker', () => {
   it('check default value in date', () => {
     const handleChangeF = jest.fn();
     const startDate = moment('2020-03-20T00:00:00.000');
-    const endDate = moment('2020-04-20T00:00:00.000');
     const numberOfMonths = 3;
     const { container } = render(
       <SingleDatePicker
@@ -146,7 +145,7 @@ describe('SingleDatePicker', () => {
   it('check accessibility esc', () => {
     const startDate = moment('2020-03-20T00:00:00.000');
     const numberOfMonths = 3;
-    const { container, getByText } = render(
+    const { container } = render(
       <SingleDatePicker
         dateId="start-date"
         dateAriaLabel="Select Date"

@@ -10,7 +10,7 @@ describe('ProgressBar', () => {
     expect(progress).toHaveAttribute('value', '55');
   });
   it('should check scroll and add isSticky and stuck props', () => {
-    const { container } = render(<ProgressBar value="60" isSticky stuck />);
+    const { container } = render(<ProgressBar value={60} isSticky stuck />);
     expect(container.firstChild).toHaveStyleRule('position', 'fixed');
   });
   it('should check progress value', () => {

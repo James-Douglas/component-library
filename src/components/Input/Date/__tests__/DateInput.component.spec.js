@@ -87,6 +87,7 @@ describe('DateInput', () => {
         id="test-id"
         handleFocus={focusHandler}
         handleBlur={blurHandler}
+        handleChange={() => {}}
       />,
     );
     const currencyInput = container.querySelector('input');

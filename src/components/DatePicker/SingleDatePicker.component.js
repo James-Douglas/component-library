@@ -22,7 +22,7 @@ const StyledDateRangePickerWrap = styled.div`
   .input-wrap {
     label {
       path {
-         fill: ${({ theme }) => theme.datepicker.navigationButtonColor};
+        fill: ${({ theme }) => theme.datepicker.navigationButtonColor};
       }
     }
   }
@@ -55,6 +55,7 @@ const SingleDatePicker = ({
   const dateHandleFocus = () => {
     setIsVisisble(true);
   };
+
   const dateHandleChange = (value) => {
     const parsed = moment(value, displayFormat, true);
     if (parsed.isValid()) {
@@ -66,6 +67,7 @@ const SingleDatePicker = ({
     }
     handleChange && handleChange(parsed);
   };
+
   const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {
       setIsVisisble(false);
@@ -78,7 +80,6 @@ const SingleDatePicker = ({
     }
   }, []);
 
-
   useLayoutEffect(() => {
     // add when mounted
     document.addEventListener('mousedown', handleClickOutside);
@@ -89,6 +90,7 @@ const SingleDatePicker = ({
       document.removeEventListener('keydown', escFunction);
     };
   }, [handleClickOutside, escFunction]);
+
   return (
     <StyledDateRangePickerContainer ref={node}>
       <GlobalStyle />
@@ -145,7 +147,10 @@ SingleDatePicker.propTypes = {
   /**
    * Sets the value of the date input
    */
-  date: PropTypes.string,
+  date: PropTypes.oneOfType([
+    PropTypes.instanceOf(moment),
+    PropTypes.string,
+  ]),
   /**
    * Sets the number of months
    */

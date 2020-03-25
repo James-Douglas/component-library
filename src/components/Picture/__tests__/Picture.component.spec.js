@@ -1,23 +1,23 @@
 import React from 'react';
 import { render } from '../../../testUtils';
 import Picture from '../Picture.component';
-import placeholder from '../../../images/placeholder.png';
+import Placeholder from '../../../images/placeholder.png';
 
 describe('Picture', () => {
   it('does not render without required src prop', () => {
-    const { container } = render(<Picture />);
+    const { container } = render(<Picture src="" />);
     expect(container).toBeEmpty();
   });
 
   it('renders with minimal props', () => {
-    const { container } = render(<Picture src={placeholder} />);
+    const { container } = render(<Picture src={Placeholder} />);
     const img = container.querySelector('img');
     expect(img).toBeDefined();
     expect(img.getAttribute('src')).toEqual('placeholder.png');
   });
 
   it('renders with srcsets', () => {
-    const { container } = render(<Picture src={placeholder} srcsets={[{ srcset: placeholder, media: 'min-width: 768px' }]} />);
+    const { container } = render(<Picture src={Placeholder} srcsets={[{ srcset: Placeholder, media: 'min-width: 768px' }]} />);
     const img = container.querySelector('img');
     expect(img).toBeDefined();
     const source = container.querySelector('source');
@@ -27,7 +27,7 @@ describe('Picture', () => {
   });
 
   it('renders with title and alt props', () => {
-    const { container } = render(<Picture src={placeholder} srcsets={[{ srcset: placeholder, media: 'min-width: 768px' }]} alt="test" title="Test" />);
+    const { container } = render(<Picture src={Placeholder} srcsets={[{ srcset: Placeholder, media: 'min-width: 768px' }]} alt="test" title="Test" />);
     const img = container.querySelector('img');
     expect(img.getAttribute('alt')).toEqual('test');
     expect(img.getAttribute('title')).toEqual('Test');

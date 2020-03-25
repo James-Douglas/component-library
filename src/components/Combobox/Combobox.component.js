@@ -570,7 +570,14 @@ Combobox.propTypes = {
   /**
    * Renders the given (FontAwesome) icon next to options in the list
    */
-  listIcon: PropTypes.node,
+  listIcon: PropTypes.oneOfType([
+    PropTypes.shape({
+      prefix: PropTypes.string,
+      iconName: PropTypes.string,
+      icon: PropTypes.array,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * Placeholder value to be displayed in the Combo component.
    */

@@ -121,7 +121,10 @@ CurrencyInput.propTypes = {
   /**
    * Sets the value of the input
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   /**
    * The placeholder text for the input.
    */

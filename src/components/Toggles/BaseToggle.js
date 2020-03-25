@@ -77,7 +77,7 @@ const BaseToggle = ({
   children,
   className,
 }) => {
-  const [checked, setChecked] = useState(selectedValue);
+  const [checked, setChecked] = useState(selectedValue || false);
   const wrapperElement = useRef(null);
 
   useEffect(() => {
