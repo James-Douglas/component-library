@@ -23,10 +23,13 @@ const App = () => (
 Import components as required
 
 ```
-import { Header } from '@comparethemarketau/manor/lib'
+import { Header, Footer } from '@comparethemarketau/manor/lib'
 
 render = () => (
-  <Header />
+  <>
+    <Header />
+    <Footer />
+  </>
 );
 ```
 
