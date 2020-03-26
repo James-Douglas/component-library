@@ -31,9 +31,9 @@ describe('processTrackerItemLink()', () => {
   it('checking scroll on progress bar', () => {
     const { container } = render(<ProgressTracker value={100} />);
     expect(container.firstChild).toHaveStyleRule('position', 'relative');
-    fireEvent.scroll(window, { target: { scrollY: 5 } });
+    fireEvent.scroll(window, { target: { pageYOffset: 5 } });
     expect(container.firstChild).toHaveStyleRule('position', 'relative');
-    fireEvent.scroll(window, { target: { scrollY: 500 } });
+    fireEvent.scroll(window, { target: { pageYOffset: 500 } });
     expect(container.firstChild).toHaveStyleRule('position', 'relative');
   });
 });

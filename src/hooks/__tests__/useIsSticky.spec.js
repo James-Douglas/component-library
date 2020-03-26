@@ -13,7 +13,7 @@ describe('useIsSticky', () => {
 
     const { result } = renderHook(() => useIsSticky(initialOffset));
     // set scroll
-    global.window.scrollY = scrollTop;
+    global.window.pageYOffset = scrollTop;
     // trigger scroll event
     act(() => {
       map.scroll();
@@ -32,7 +32,7 @@ describe('useIsSticky', () => {
 
     const { result } = renderHook(() => useIsSticky(initialOffset));
     // set scroll
-    global.window.scrollY = scrollTop;
+    global.window.pageYOffset = scrollTop;
     // trigger scroll event
     act(() => {
       map.scroll();

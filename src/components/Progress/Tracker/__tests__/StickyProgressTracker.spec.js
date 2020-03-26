@@ -33,9 +33,9 @@ describe('StickyTracker', () => {
   it('checking scroll on sticky progress bar', () => {
     const { container } = render(<StickyProgressTracker value={30} />);
     expect(container.firstChild).toHaveStyleRule('position', 'relative');
-    fireEvent.scroll(window, { target: { scrollY: 59 } });
+    fireEvent.scroll(window, { target: { pageYOffset: 59 } });
     expect(container.firstChild).toHaveStyleRule('position', 'relative');
-    fireEvent.scroll(window, { target: { scrollY: 61 } });
+    fireEvent.scroll(window, { target: { pageYOffset: 61 } });
     expect(container.firstChild).toHaveStyleRule('position', 'fixed');
   });
 });

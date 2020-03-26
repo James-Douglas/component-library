@@ -9,7 +9,7 @@ export default function useScrollPosition(offsetYStart = 0) {
     const handleScroll = () => {
       let stuck = false;
       if (isBrowser) {
-        stuck = window.scrollY > offsetYStart;
+        stuck = window.pageYOffset > offsetYStart;
       }
       setIsSticky(stuck);
     };
