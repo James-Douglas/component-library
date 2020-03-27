@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
+import useId from '../../../hooks/useId';
 
 const StyledColourToggle = styled.div`
   display: flex;
@@ -57,7 +58,7 @@ export function getDisplayLabel(label, backgroundColor) {
 }
 
 const ColorToggle = ({
-  id,
+  id: propsId,
   label,
   backgroundColor,
   fontColor,
@@ -71,12 +72,12 @@ const ColorToggle = ({
   handleBlur,
   handleClick,
 }) => {
+  const id = useId(propsId);
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
     }
   };
-
   const displayBackgroundColor = getDisplayBackgroundColor(backgroundColor);
   const animationStyle = getAnimationStyle(value, selectedValue, displayBackgroundColor);
   const displayLabel = getDisplayLabel(label, backgroundColor);
@@ -108,9 +109,9 @@ const ColorToggle = ({
 
 ColorToggle.propTypes = {
   /**
-   * Unique identifier for the toggle
+   * Unique identifier for the ColorToggle
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * The background color for the toggle
    */
@@ -163,6 +164,7 @@ ColorToggle.propTypes = {
 };
 
 ColorToggle.defaultProps = {
+  id: null,
   label: null,
   fontColor: 'black',
   name: '',

@@ -6,6 +6,7 @@ import Label from '../Label/Label.component';
 import SupportingElements from '../SupportingElements/SupportingElements';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 import usePrefill from '../../hooks/usePrefill';
+import useId from '../../hooks/useId';
 
 const StyledmaxlengthIndicator = styled.span`
   margin-right: 0.4rem;
@@ -83,7 +84,7 @@ const Textarea = ({
   label,
   tooltip,
   validationMessage,
-  id,
+  id: propsId,
   name,
   placeholder,
   value,
@@ -101,6 +102,7 @@ const Textarea = ({
   handleBlur,
   className,
 }) => {
+  const id = useId(propsId);
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [charsExceed, setCharsExceed] = useState(false);
@@ -195,9 +197,9 @@ const Textarea = ({
 
 Textarea.propTypes = {
   /**
-   * Unique id for the component. Required for the label to match the input.
+   * Unique identifier for the Textarea
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Label for the Textarea.
    */
@@ -283,6 +285,7 @@ Textarea.propTypes = {
 };
 
 Textarea.defaultProps = {
+  id: null,
   label: '',
   tooltip: {},
   validationMessage: null,

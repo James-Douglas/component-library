@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import usePrefill from '../../hooks/usePrefill';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
+import useId from '../../hooks/useId';
 
 const StyledHiddenInput = styled.input`
   border: 0;
@@ -112,7 +113,7 @@ export const renderIcon = (icon, value) => {
 export const getInitialValue = (isSelected, prefillValue) => isSelected || prefillValue || false;
 
 const Checkbox = ({
-  id,
+  id: propsId,
   icon,
   label,
   disabled,
@@ -128,6 +129,7 @@ const Checkbox = ({
   const [internalValue, setInternalValue] = useState(getInitialValue(isSelected, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, isSelected, isDirty);
+  const id = useId(propsId);
 
   useEffect(() => {
     if (!prefillValue) {
@@ -191,9 +193,9 @@ const Checkbox = ({
 
 Checkbox.propTypes = {
   /**
-   * The checkbox ID. This is required, as it informs the label and the value of the checkbox.
+   * Unique identifier for the checkbox.
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * The label for the Checkbox
    */
@@ -248,6 +250,7 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
+  id: null,
   icon: faCheck,
   label: null,
   disabled: false,

@@ -5,6 +5,7 @@ import styled, { withTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import { useLayers } from './contexts/LayerContext';
 import usePrevious from './hooks/usePrevious';
+import useId from './hooks/useId';
 
 const StyledLayer = styled.span`
   z-index: ${({ zIndex }) => zIndex};
@@ -13,49 +14,32 @@ const StyledLayer = styled.span`
 `;
 
 const LayerEventManager = ({
-  id, visible, closeOnEsc, trapFocus, handleClose, children, theme,
+  id: propsId, visible, closeOnEsc, trapFocus, handleClose, children, theme,
 }) => {
+  const id = useId(propsId);
   const layerInfo = useLayers();
   const [zIndex, setZIndex] = useState(parseInt(theme.zIndex[10], 10));
-  const [layerId, setLayerId] = useState(id);
   const previouslyVisible = usePrevious(visible);
-
   useEffect(() => {
-    const generateId = () => {
-      const now = Date.now();
-      const rand = Math.floor(Math.random() * Math.floor(999999));
-      const generatedId = now.toString() + rand;
-      if (layerInfo.layers && layerInfo.layers.includes(generatedId)) {
-        return generateId();
-      }
-      return generatedId.replace(/\s/g, '');
-    };
-
-    if (!layerId) {
-      setLayerId(id || generateId());
+    if (visible && !layerInfo.contains(id)) {
+      setZIndex(parseInt(theme.zIndex[50], 10) + layerInfo.push(id));
     }
-  }, [id, layerId, layerInfo]);
-
-  useEffect(() => {
-    if (visible && !layerInfo.contains(layerId)) {
-      setZIndex(parseInt(theme.zIndex[50], 10) + layerInfo.push(layerId));
-    }
-  }, [visible, theme, layerInfo, layerId]);
+  }, [visible, theme, layerInfo, id]);
 
   // If the modal/drawer is closed a way outside of LayerEventManager's knowledge
   // (i.e. not via escape button), remove the layer from the stack
   useEffect(() => {
-    if (!visible && previouslyVisible && layerInfo.top(layerId)) {
+    if (!visible && previouslyVisible && layerInfo.top(id)) {
       setZIndex(parseInt(theme.zIndex[10], 10));
       layerInfo.pop();
     }
-  }, [visible, previouslyVisible, layerInfo, layerId, theme.zIndex]);
+  }, [visible, previouslyVisible, layerInfo, id, theme.zIndex]);
 
   const handleUserKeyPress = useCallback((event) => {
     const { keyCode } = event;
     // escape
     if (keyCode === 27 && visible && closeOnEsc) {
-      if (layerInfo.top(layerId)) {
+      if (layerInfo.top(id)) {
         if (handleClose) {
           handleClose();
         }
@@ -64,7 +48,7 @@ const LayerEventManager = ({
     } else if (keyCode === 9 && visible && trapFocus) {
       // focus trapping
       setTimeout(() => {
-        if (layerInfo.top(layerId)) {
+        if (layerInfo.top(id)) {
           const topElementId = layerInfo.layers[layerInfo.layers.length - 1];
           const layerElement = document.getElementById(`layer-${topElementId}`);
           if (!layerElement.contains(document.activeElement)) {
@@ -78,7 +62,7 @@ const LayerEventManager = ({
         }
       });
     }
-  }, [visible, closeOnEsc, trapFocus, layerInfo, layerId, handleClose]);
+  }, [visible, closeOnEsc, trapFocus, layerInfo, id, handleClose]);
 
   useLayoutEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress);
@@ -88,7 +72,7 @@ const LayerEventManager = ({
   }, [handleUserKeyPress]);
 
   return (
-    <StyledLayer zIndex={zIndex} id={`layer-${layerId}`}>
+    <StyledLayer zIndex={zIndex} id={`layer-${id}`}>
       { children }
     </StyledLayer>
   );

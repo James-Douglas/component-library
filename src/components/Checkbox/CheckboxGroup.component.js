@@ -9,6 +9,7 @@ import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
+import useId from '../../hooks/useId';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -41,12 +42,13 @@ const CheckboxGroup = ({
   label,
   tooltip,
   validationMessage,
-  groupId,
+  groupId: propsGroupId,
   colSize,
   handleChange,
   selected,
   children,
 }) => {
+  const groupId = useId(propsGroupId);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState(selected);
   const desktop = useIsDesktop(false);
   const didMount = useRef(false);
@@ -89,11 +91,11 @@ const CheckboxGroup = ({
 
 CheckboxGroup.propTypes = {
   /**
-   * The checkbox ID. This is required, as it informs the label and the value of the checkbox.
+   * Unique identifier for the CheckboxGroup.
    */
-  groupId: PropTypes.string.isRequired,
+  groupId: PropTypes.string,
   /**
-   * Label for the ToggleGroup.
+   * Label for the CheckboxGroup.
    */
   label: PropTypes.string,
   /**
@@ -124,6 +126,7 @@ CheckboxGroup.propTypes = {
 };
 
 CheckboxGroup.defaultProps = {
+  groupId: null,
   label: '',
   tooltip: {},
   validationMessage: null,

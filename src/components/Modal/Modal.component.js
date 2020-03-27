@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 import Overlay from '../Overlay/Overlay.component';
 import LayerEventManager from '../../LayerEventManager';
+import useId from '../../hooks/useId';
 
 const StyledAlignment = styled.div`
   width: 100%;
@@ -72,7 +73,7 @@ const StyledContentChildren = styled.div`
 `;
 
 const Modal = ({
-  id,
+  id: propsId,
   title,
   visible,
   handleClose,
@@ -83,6 +84,7 @@ const Modal = ({
   overlayOpacity,
   handleOverlayClick,
 }) => {
+  const id = useId(propsId);
   const classNames = `
     ${size}
     ${className}
@@ -112,8 +114,8 @@ const Modal = ({
 
 Modal.propTypes = {
   /**
-   * The id of the modal
-   */
+   * Unique identifier for the modal
+  */
   id: PropTypes.string,
   /**
    * Bool for modal opening/closing. Handled via state in the parent component

@@ -1,18 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
+import useId from '../../../hooks/useId';
 
 const CustomToggle = ({
-  id, value, name, selectedValue, invalid, disabled, handleToggle, handleFocus, handleBlur, handleClick, children,
+  id: propsId,
+  value,
+  name,
+  selectedValue,
+  invalid,
+  disabled,
+  handleToggle,
+  handleFocus,
+  handleBlur,
+  handleClick,
+  children,
 }) => {
+  const id = useId(propsId);
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
     }
   };
-
   return (
     <BaseToggle
       id={id}
@@ -36,9 +46,9 @@ const CustomToggle = ({
 
 CustomToggle.propTypes = {
   /**
-   * Unique identifier for the toggle
+   * Unique identifier for the CustomToggle
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Value applied to the input field
    */
@@ -80,6 +90,7 @@ CustomToggle.propTypes = {
 };
 
 CustomToggle.defaultProps = {
+  id: null,
   name: '',
   selectedValue: null,
   invalid: false,

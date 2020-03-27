@@ -47,7 +47,7 @@ validation, tooltips and selection events.
       <Container>
         <ToggleGroup label="Images" name="toggleGroupC" tooltip={tooltip} handleToggle={handleToggle}>
           {makes.map((make, i) => (
-            <ImageToggle value={i} id={names[i]} key={`toggle-${names[i]}`} title={names[i]} src={make} alt={`${names[i]} logo`} title={names[i]} />
+            <ImageToggle value={i} key={`toggle-${names[i]}`} title={names[i]} src={make} alt={`${names[i]} logo`} title={names[i]} />
           ))}
         </ToggleGroup>
       </Container>

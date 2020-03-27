@@ -12,6 +12,7 @@ import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
 import { GlobalStyle, StyledCalendar, StyledDateRangePickerContainer } from './styled';
 import DateInput from '../Input/Date/DateInput.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
+import useId from '../../hooks/useId';
 
 const StyledDateRangePickerWrap = styled.div`
   width: ${({ theme }) => theme.spacing[176]};
@@ -36,7 +37,7 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 const SingleDatePicker = ({
-  dateId,
+  dateId: propsDateId,
   dateTooltip,
   datePlaceholder,
   dateAriaLabel,
@@ -46,6 +47,7 @@ const SingleDatePicker = ({
   isDayBlocked,
   handleChange,
 }) => {
+  const dateId = useId(propsDateId);
   const node = useRef();
   const [selectedDate, setSelectedDate] = useState(date || moment().startOf('day'));
   const displayFormat = 'DD/MM/YYYY';
@@ -129,9 +131,9 @@ const SingleDatePicker = ({
 
 SingleDatePicker.propTypes = {
   /**
-   * The input ID for the date input. Required as it informs the label and value of the underlying input.
+   * Unique identifier for the date input.
    */
-  dateId: PropTypes.string.isRequired,
+  dateId: PropTypes.string,
   /**
    * Define a tooltip to be displayed alongside this component. See Tooltip props for details.
    */
@@ -170,6 +172,7 @@ SingleDatePicker.propTypes = {
 };
 
 SingleDatePicker.defaultProps = {
+  dateId: null,
   dateTooltip: {},
   datePlaceholder: '',
   dateAriaLabel: '',

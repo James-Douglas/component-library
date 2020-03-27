@@ -19,7 +19,7 @@ describe('Drawer', () => {
     const { container } = render(<Drawer visible handleClose={() => {}} size="400px" direction="bottom" />);
     const drawerWrapper = container.firstChild;
     expect(drawerWrapper.firstChild).toHaveStyleRule('background', '#FFFFFF');
-    expect(drawerWrapper).toHaveStyle('z-index: 52');
+    expect(drawerWrapper).toHaveStyle('z-index: 51');
   });
   it('check Drawer styles open section', () => {
     const { container } = render(<Drawer size="20%" direction="bottom" visible handleClose={() => {}}>Drawer content inside</Drawer>);

@@ -4,13 +4,13 @@ import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import MaskedInput from 'react-text-mask';
-
 import SRonly from '../Typography/SRonly/SRonly.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import usePrefill from '../../hooks/usePrefill';
 import Label from '../Label/Label.component';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 import SupportingElements from '../SupportingElements/SupportingElements';
+import useId from '../../hooks/useId';
 
 const StyledWrapper = styled.div`
   margin-bottom: 2rem;
@@ -164,10 +164,10 @@ export const getInitialValue = (value, prefillValue) => value || prefillValue ||
 
 // eslint-disable-next-line react/display-name
 const Input = React.forwardRef(({
+  id: propsId,
   label,
   tooltip,
   validationMessage,
-  id,
   type,
   placeholder,
   value,
@@ -190,6 +190,7 @@ const Input = React.forwardRef(({
   className,
   disableClearIcon,
 }, ref) => {
+  const id = useId(propsId);
   const [internalValue, setInternalValue] = useState(getInitialValue(value, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
@@ -235,7 +236,6 @@ const Input = React.forwardRef(({
   const affixClick = () => {
     localRef.current.inputElement.focus();
   };
-
   return (
     <StyledWrapper className="input-wrap">
       <Label htmlFor={id} text={label} tooltip={tooltip} />
@@ -282,9 +282,9 @@ const Input = React.forwardRef(({
 
 Input.propTypes = {
   /**
-   * Unique id for the component. Required.
+   * UUnique identifier for the Input
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Custom handler to attach to the input field - used to get the value of the field for example.
    */
@@ -393,6 +393,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  id: null,
   label: '',
   tooltip: {},
   // there is a bug in text-mask where disabling the mask (setting to false) causes the input value to not

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import useId from '../../hooks/useId';
 
 const StyledToggle = styled.div`
   display: flex;
@@ -63,7 +64,7 @@ const StyledToggleInput = styled.input`
 `;
 
 const BaseToggle = ({
-  id,
+  id: propsId,
   value,
   name,
   selectedValue,
@@ -77,6 +78,7 @@ const BaseToggle = ({
   children,
   className,
 }) => {
+  const id = useId(propsId);
   const [checked, setChecked] = useState(selectedValue || false);
   const wrapperElement = useRef(null);
 
@@ -126,9 +128,9 @@ const BaseToggle = ({
 
 BaseToggle.propTypes = {
   /**
-   * Unique identifier for the toggle
+   * Unique identifier for the BaseToggle
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Value applied to the input field
    */
@@ -176,6 +178,7 @@ BaseToggle.propTypes = {
 };
 
 BaseToggle.defaultProps = {
+  id: null,
   name: '',
   selectedValue: null,
   invalid: false,

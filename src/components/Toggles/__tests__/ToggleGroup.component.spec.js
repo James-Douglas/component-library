@@ -5,7 +5,7 @@ import TextToggle from '../Text/TextToggle.component';
 import 'jest-styled-components';
 
 describe('getChildren()', () => {
-  let tempID = 'temp-id';
+  const tempID = 'temp-id';
   const getTestChildren = (data) => data.map((child) => React.cloneElement(<TextToggle id={tempID} label="test-label" value="test-value" />, { ...child }));
   const didToggleCb = jest.fn();
   const clickCb = jest.fn();
@@ -17,7 +17,7 @@ describe('getChildren()', () => {
         value: 'val-a',
       },
     ]);
-    const result = getChildren(testChildren, 'test-group', null, didToggleCb, clickCb, null, '10rem', '10rem');
+    const result = getChildren('group-id', testChildren, 'test-group', null, didToggleCb, clickCb, null, '10rem', '10rem');
     const {
       name, id, selectedValue, handleToggle, handleClick, value, contentWidth, contentHeight,
     } = result[0].props;
@@ -31,24 +31,13 @@ describe('getChildren()', () => {
     expect(contentWidth).toEqual('10rem');
     expect(contentHeight).toEqual('10rem');
   });
-
-  it('adds id if none provided', () => {
-    tempID = '';
-    const testChildren = getTestChildren([
-      {
-        label: 'test toggle a',
-      },
-    ]);
-    const result = getChildren(testChildren, 'test-group', null, didToggleCb, null, null, null);
-    const { id } = result[0].props;
-    expect(id).toEqual('toggle-0');
-  });
 });
 
 
 describe('ToggleGroup', () => {
   it('renders with minimal props', () => {
     const { container } = render(<ToggleGroup
+      id="toggle-group"
       name="test-toggle-group"
       handleToggle={() => {}}
     />);

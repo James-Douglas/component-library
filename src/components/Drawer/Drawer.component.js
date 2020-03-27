@@ -6,6 +6,7 @@ import { faTimes } from '@fortawesome/pro-light-svg-icons/faTimes';
 import Overlay from '../Overlay/Overlay.component';
 import Container from '../Grid/Container/Container.component';
 import LayerEventManager from '../../LayerEventManager';
+import useId from '../../hooks/useId';
 
 const animateLeft = keyframes`
   from { left: -100% }
@@ -111,7 +112,7 @@ const StyledDrawerText = styled.div`
 `;
 
 const Drawer = ({
-  id,
+  id: propsId,
   direction,
   size,
   closeButton,
@@ -126,6 +127,7 @@ const Drawer = ({
   closeOnEsc,
   keyLine,
 }) => {
+  const id = useId(propsId);
   const drawerElement = useRef(null);
 
   const IconClick = () => {
@@ -167,7 +169,7 @@ const Drawer = ({
 
 Drawer.propTypes = {
   /**
-   * unique id
+   *  Unique identifier for the Drawer
    */
   id: PropTypes.string,
   /**

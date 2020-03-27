@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
+import useId from '../../../hooks/useId';
 
 const StyledIconToggleContent = styled.div`
   display: flex;
@@ -56,7 +57,7 @@ export function getToggleContent(id, icon, title, description) {
 }
 
 const IconToggle = ({
-  id,
+  id: propsId,
   title,
   description,
   value,
@@ -70,6 +71,7 @@ const IconToggle = ({
   handleClick,
   icon,
 }) => {
+  const id = useId(propsId);
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
@@ -97,9 +99,9 @@ const IconToggle = ({
 
 IconToggle.propTypes = {
   /**
-   * Unique identifier for the toggle
+   * Unique identifier for the IconToggle
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Label for the toggle
    */
@@ -159,6 +161,7 @@ IconToggle.propTypes = {
 };
 
 IconToggle.defaultProps = {
+  id: null,
   name: '',
   description: '',
   selectedValue: null,

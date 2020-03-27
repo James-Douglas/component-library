@@ -5,13 +5,14 @@ import Input from 'components/Input/Input.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
 import { tooltipPropTypes } from '../../Tooltip/Tooltip.component';
+import useId from '../../../hooks/useId';
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.colors.placeholderText};
 `;
 
 const DateInput = ({
-  id,
+  id: propsId,
   label,
   value,
   prefillValue,
@@ -28,38 +29,41 @@ const DateInput = ({
   prefixContent,
   suffixContent,
   disableClearIcon,
-}) => (
-  <Input
-    id={id}
-    label={label}
-    value={value}
-    type="text"
-    handleChange={handleChange}
-    prefixContent={prefixContent}
-    suffixContent={suffixContent}
-    mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
-    guide
-    placeholder="DD/MM/YYYY"
-    bordered={bordered}
-    required={required}
-    maxlength={11}
-    prefillValue={prefillValue}
-    disabled={disabled}
-    validationMessage={validationMessage}
-    autocomplete={autocomplete}
-    tooltip={tooltip}
-    className={className}
-    handleFocus={handleFocus}
-    handleBlur={handleBlur}
-    disableClearIcon={disableClearIcon}
-  />
-);
+}) => {
+  const id = useId(propsId);
+  return (
+    <Input
+      id={id}
+      label={label}
+      value={value}
+      type="text"
+      handleChange={handleChange}
+      prefixContent={prefixContent}
+      suffixContent={suffixContent}
+      mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+      guide
+      placeholder="DD/MM/YYYY"
+      bordered={bordered}
+      required={required}
+      maxlength={11}
+      prefillValue={prefillValue}
+      disabled={disabled}
+      validationMessage={validationMessage}
+      autocomplete={autocomplete}
+      tooltip={tooltip}
+      className={className}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
+      disableClearIcon={disableClearIcon}
+    />
+  );
+};
 
 DateInput.propTypes = {
   /**
-   * Unique id for the component. Required.
+   * Unique id for the Date input
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Handler to be called on change. This is called with a moment instance that may not be valid, you can check via
    * moment#isValid()
@@ -134,6 +138,7 @@ DateInput.propTypes = {
 };
 
 DateInput.defaultProps = {
+  id: null,
   value: '',
   tooltip: {},
   validationMessage: null,

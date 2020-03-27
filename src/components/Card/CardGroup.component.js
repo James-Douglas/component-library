@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Card from './Card.component';
 import { spacingPropTypes } from '../../utils/applySpacing';
+import useId from '../../hooks/useId';
 
 const StyledCardGroup = styled.div`
   display: flex;
@@ -19,26 +20,33 @@ const StyledCardGroupChildren = styled.div`
   padding-left: ${({ theme }) => theme.spacing['8']};
 `;
 
-const getChildren = (children, cols, { margin, padding }, className) => children.map((child) => (
+const getChildren = (children, cols, { margin, padding }, className) => children.map((child, index) => (
   // eslint-disable-next-line react/no-array-index-key
-  <StyledCardGroupChildren cols={cols} key={`card-group-${child.props.id}`}>
+  <StyledCardGroupChildren cols={cols} key={`card-group-${index}`}>
     {React.cloneElement(child, { margin, padding, className })}
   </StyledCardGroupChildren>
 ));
 
 const CardGroup = ({
-  cols, children, id, cardProps, className,
-}) => (
-  <StyledCardGroup id={id}>
-    {getChildren(children, cols, cardProps, className)}
-  </StyledCardGroup>
-);
+  id: propsId,
+  cols,
+  children,
+  cardProps,
+  className,
+}) => {
+  const id = useId(propsId);
+  return (
+    <StyledCardGroup id={id}>
+      {getChildren(children, cols, cardProps, className)}
+    </StyledCardGroup>
+  );
+};
 
 CardGroup.propTypes = {
   /**
-   * Unique identifier for the CardGroup element
+   * Unique identifier for the CardGroup
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Number of cols to spread cards into
    */
@@ -70,6 +78,7 @@ CardGroup.propTypes = {
 };
 
 CardGroup.defaultProps = {
+  id: null,
   cols: 1,
   children: [],
   cardProps: {},

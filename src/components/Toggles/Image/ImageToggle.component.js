@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 import Picture from '../../Picture/Picture.component';
+import useId from '../../../hooks/useId';
 
 const StyledImageToggle = styled.div`
   display: flex;
@@ -60,7 +61,7 @@ export function getImageToggleContent(src, srcsets, alt, pictureTitle, id, toggl
 }
 
 const ImageToggle = ({
-  id,
+  id: propsId,
   title,
   description,
   value,
@@ -82,6 +83,7 @@ const ImageToggle = ({
       handleToggle(value);
     }
   };
+  const id = useId(propsId);
   return (
     <BaseToggle
       id={id}
@@ -103,9 +105,9 @@ const ImageToggle = ({
 
 ImageToggle.propTypes = {
   /**
-   * Unique identifier for the toggle
+   * Unique identifier for the ImageToggle
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Label for the toggle
    */
@@ -175,6 +177,7 @@ ImageToggle.propTypes = {
 };
 
 ImageToggle.defaultProps = {
+  id: null,
   name: '',
   description: '',
   selectedValue: null,

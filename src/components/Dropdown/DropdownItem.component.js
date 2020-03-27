@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/pro-regular-svg-icons/faCheck';
 import useIsDesktop from '../../hooks/useIsDesktop';
+import useId from '../../hooks/useId';
 
 const StyledListItem = styled.li`
   svg {
@@ -22,13 +23,14 @@ const StyledListItem = styled.li`
 `;
 
 const DropdownItem = React.forwardRef(({
-  id,
+  id: propsId,
   value,
   children,
   handleClick,
   handleKeyDown,
   selectedValue,
 }, ref) => {
+  const id = useId(propsId);
   const desktop = useIsDesktop();
 
   const clickHandler = (event) => {

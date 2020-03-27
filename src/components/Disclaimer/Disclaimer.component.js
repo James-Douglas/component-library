@@ -4,6 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Checkbox from '../Checkbox/Checkbox.component';
+import useId from '../../hooks/useId';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -17,8 +18,9 @@ const StyledContent = styled.div`
 `;
 
 const Disclaimer = ({
-  id, isSelected, children, handleChange, handleFocus, handleBlur,
+  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur,
 }) => {
+  const id = useId(propsId);
   const content = createRef();
   const [checked, setChecked] = useState(isSelected);
 
@@ -55,9 +57,9 @@ const Disclaimer = ({
 
 Disclaimer.propTypes = {
   /**
-   * Applied to the disclaimers' checkbox
+   * Unique identifier for the disclaimers' checkbox
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Defines the Disclaimers checked state.
    */
@@ -85,6 +87,7 @@ Disclaimer.propTypes = {
 };
 
 Disclaimer.defaultProps = {
+  id: null,
   children: [],
   isSelected: false,
   handleChange: null,

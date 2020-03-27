@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import useId from '../../hooks/useId';
 
 const StyledToggleLabel = styled.label`
   height: 100%;
@@ -24,20 +25,25 @@ const StyledContent = styled.div`
   }
 `;
 
-const ToggleLabel = ({ id, children }) => (
-  <StyledToggleLabel htmlFor={id}>
-    <StyledContent>{children}</StyledContent>
-  </StyledToggleLabel>
-);
+const ToggleLabel = ({ id: propsId, children }) => {
+  const id = useId(propsId);
+  return (
+    <StyledToggleLabel htmlFor={id}>
+      <StyledContent>{children}</StyledContent>
+    </StyledToggleLabel>
+  );
+};
 
 ToggleLabel.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
     PropTypes.node,
   ]).isRequired,
 };
-
+ToggleLabel.defaultProps = {
+  id: null,
+};
 
 export default ToggleLabel;

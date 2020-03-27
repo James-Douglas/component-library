@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import applySpacing, { spacingPropTypes } from 'utils/applySpacing';
+import useId from '../../hooks/useId';
 
 const StyledCard = styled.div`
   display: flex;
@@ -16,18 +17,25 @@ const StyledCard = styled.div`
 `;
 
 const Card = ({
-  id, children, margin, padding, className,
-}) => (
-  <StyledCard id={id} margin={margin} padding={padding} className={className}>
-    {children}
-  </StyledCard>
-);
+  id: propsId,
+  children,
+  margin,
+  padding,
+  className,
+}) => {
+  const id = useId(propsId);
+  return (
+    <StyledCard id={id} margin={margin} padding={padding} className={className}>
+      {children}
+    </StyledCard>
+  );
+};
 
 Card.propTypes = {
   /**
    * Unique identifier for the card
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Card content
    */
@@ -47,6 +55,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
+  id: null,
   children: [],
   margin: ['4', '4', '16'],
   padding: ['16'],

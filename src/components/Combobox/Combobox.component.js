@@ -11,6 +11,7 @@ import Overlay from '../Overlay/Overlay.component';
 import LayerEventManager from '../../LayerEventManager';
 import { picturePropTypes } from '../Picture/Picture.component';
 import EmptyState from '../EmptyState/EmptyState.component';
+import useId from '../../hooks/useId';
 
 const StyledDropdownList = styled.div`
   position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')};
@@ -251,7 +252,7 @@ export function listInfoBox(listInfoBoxContent, currentPrefillValue, characterMi
 }
 
 const Combobox = React.forwardRef(({
-  id,
+  id: propsId,
   label,
   apiData,
   listIcon,
@@ -280,6 +281,7 @@ const Combobox = React.forwardRef(({
   emptyStateHeading,
   helperMessage,
 }, ref) => {
+  const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
   const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
@@ -536,9 +538,9 @@ Combobox.displayName = 'Combo';
 
 Combobox.propTypes = {
   /**
-   * The Combo ID. Required as it informs the label and value of the underlying input.
+   * Unique identifier for the Combobox
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Custom handler to attach to the combo field - used to get the value of the selected combo item.
    */
@@ -672,6 +674,7 @@ Combobox.propTypes = {
 };
 
 Combobox.defaultProps = {
+  id: null,
   label: '',
   apiData: [],
   listIcon: null,

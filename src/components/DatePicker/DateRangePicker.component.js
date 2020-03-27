@@ -16,6 +16,7 @@ import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
 import DateInput from '../Input/Date/DateInput.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import { GlobalStyle, StyledCalendar, StyledDateRangePickerContainer } from './styled';
+import useId from '../../hooks/useId';
 
 const StyledDateRangePickerWrap = styled.div`
   width: ${({ theme }) => theme.spacing[176]};
@@ -43,12 +44,12 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 const DateRangePicker = ({
-  startDateId,
+  startDateId: propsStartDateId,
   startDateTooltip,
   startDatePlaceholder,
   startDateAriaLabel,
   startDateValue,
-  endDateId,
+  endDateId: propsEndDateId,
   endDateTooltip,
   endDatePlaceholder,
   endDateAriaLabel,
@@ -59,6 +60,8 @@ const DateRangePicker = ({
   isDayBlocked,
   handleChange,
 }) => {
+  const startDateId = useId(propsStartDateId);
+  const endDateId = useId(propsEndDateId);
   const containerRef = React.useRef();
   const node = containerRef;
   const displayFormat = 'DD/MM/YYYY';
@@ -211,13 +214,13 @@ const DateRangePicker = ({
 
 DateRangePicker.propTypes = {
   /**
-   * The input ID for the start date input. Required as it informs the label and value of the underlying input.
+   *  Unique identifier for the start date input.
    */
-  startDateId: PropTypes.string.isRequired,
+  startDateId: PropTypes.string,
   /**
-   * The input ID for the end date input. Required as it informs the label and value of the underlying input.
+   *   Unique identifier for end date input.
    */
-  endDateId: PropTypes.string.isRequired,
+  endDateId: PropTypes.string,
   /**
    * Define a tooltip to be displayed alongside this component. See Tooltip props for details.
    */
@@ -279,6 +282,8 @@ DateRangePicker.propTypes = {
 };
 
 DateRangePicker.defaultProps = {
+  startDateId: null,
+  endDateId: null,
   startDateTooltip: {},
   startDatePlaceholder: '',
   startDateAriaLabel: '',

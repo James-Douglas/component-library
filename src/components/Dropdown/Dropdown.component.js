@@ -3,7 +3,8 @@ import React, {
   useRef,
   useLayoutEffect,
   useEffect,
-  useCallback, useMemo,
+  useCallback,
+  useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
@@ -16,6 +17,7 @@ import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 import LayerEventManager from '../../LayerEventManager';
 import SupportingElements from '../SupportingElements/SupportingElements';
+import useId from '../../hooks/useId';
 
 const StyledDropdownMainWrap = styled.div`
   position: relative;
@@ -150,7 +152,7 @@ const StyledPlaceholder = styled.span`
 `;
 
 const Dropdown = ({
-  id,
+  id: propsId,
   selectedValue,
   label,
   placeholder,
@@ -165,6 +167,7 @@ const Dropdown = ({
   handleFocus,
   handleBlur,
 }) => {
+  const id = useId(propsId);
   const dropdownWrapper = useRef();
   const button = useRef();
   const desktop = useIsDesktop();
@@ -381,9 +384,9 @@ const Dropdown = ({
 
 Dropdown.propTypes = {
   /**
-   * Unique id for the component. Required.
+   * Unique identifier for the dropdown
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Label for the input
    */
@@ -445,6 +448,7 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
+  id: null,
   label: '',
   placeholder: '',
   tooltip: {},

@@ -55,7 +55,7 @@ which can be used to compose a group of cards.
 
 <Story name="card with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
-    const id = text('id', 'test');
+    const id = text('id', undefined);
     const cols = select('cols', [1,2,3,4,5,6,7,8,9,10,11,12], 3);
     const options = Object.keys(theme.spacing);
     const mt = select('Margin Top', options, '4');
@@ -71,12 +71,12 @@ which can be used to compose a group of cards.
     return (
       <div style={{ padding: '2%' }}>
         <CardGroup id={id} cols={cols} cardProps={{margin, padding}}>
-          <Card id='card-a'>
+          <Card>
             <div>
               <p>Card A</p>
             </div>
           </Card>
-          <Card id='card-b'>
+          <Card>
             <div>
               <p>Card B</p>
             </div>

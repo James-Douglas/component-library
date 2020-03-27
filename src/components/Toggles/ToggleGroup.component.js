@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
+import useId from '../../hooks/useId';
 
 const StyledToggleGroup = styled.div`
   width: 100%;
@@ -17,9 +18,19 @@ const StyledValidationWrapper = styled.div`
   margin-left: ${({ theme }) => theme.spacing[8]};
 `;
 
-export const getChildren = (children, name, selectedToggleValue, handleToggle, handleClick, validationMessage, contentWidth, contentHeight) => (
+export const getChildren = (
+  groupId,
+  children,
+  name,
+  selectedToggleValue,
+  handleToggle,
+  handleClick,
+  validationMessage,
+  contentWidth,
+  contentHeight,
+) => (
   children.map((child, index) => {
-    const key = `toggle-${child.props.id || index}`;
+    const key = `toggle-${groupId}-${index}`;
     const propsToAdd = {
       key,
       name,
@@ -30,18 +41,15 @@ export const getChildren = (children, name, selectedToggleValue, handleToggle, h
       contentWidth,
       contentHeight,
     };
-    if (!child.props.id) {
-      propsToAdd.id = key;
-    }
     return React.cloneElement(child, propsToAdd);
   })
 );
 
 const ToggleGroup = ({
+  id: propsId,
   label,
   tooltip,
   validationMessage,
-  id,
   name,
   handleToggle,
   handleClick,
@@ -51,20 +59,19 @@ const ToggleGroup = ({
   contentHeight,
   className,
 }) => {
+  const groupId = useId(propsId);
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
-
   const toggleHandler = (value) => {
     setSelectedToggleValue(value);
     if (handleToggle) {
       handleToggle(value);
     }
   };
-
   return (
     <>
-      <Label htmlFor={id} text={label} tooltip={tooltip} />
-      <StyledToggleGroup id={id} className={className}>
-        {getChildren(children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight)}
+      <Label htmlFor={groupId} text={label} tooltip={tooltip} />
+      <StyledToggleGroup id={groupId} className={className}>
+        {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight)}
       </StyledToggleGroup>
       <StyledValidationWrapper>
         <FieldValidation message={validationMessage} />
@@ -74,6 +81,10 @@ const ToggleGroup = ({
 };
 
 ToggleGroup.propTypes = {
+  /**
+   * Unique identifier for the toggle group
+   */
+  id: PropTypes.string,
   /**
    * Name property to be passed to the toggles - required for the underlying radio buttons
    */
@@ -98,10 +109,6 @@ ToggleGroup.propTypes = {
    * Displays given validation message and invalid styles on the component when provided.
    */
   validationMessage: PropTypes.string,
-  /**
-   * Unique identifier for the toggle group
-   */
-  id: PropTypes.string,
   /**
    * Value of the currently selected toggle (use to pre-select)
    */
@@ -139,11 +146,11 @@ ToggleGroup.propTypes = {
 };
 
 ToggleGroup.defaultProps = {
+  id: null,
   label: '',
   handleClick: null,
   tooltip: {},
   validationMessage: null,
-  id: null,
   selectedValue: null,
   children: [],
   contentWidth: null,

@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useId from '../../hooks/useId';
 
 const StyledIcon = styled.div`
   pointer-events: none;
@@ -154,7 +155,7 @@ const StyledButtonWrap = styled.span`
 `;
 
 const Button = ({
-  id,
+  id: propsId,
   variant,
   inverted,
   disabled,
@@ -170,6 +171,7 @@ const Button = ({
   children,
   className,
 }) => {
+  const id = useId(propsId);
   const renderContent = () => {
     if (icon) {
       return (
@@ -183,10 +185,8 @@ const Button = ({
     }
     return <>{children}</>;
   };
-
   const renderButton = () => {
     const isButton = !href.length > 0;
-
     return (
       <BaseTag
         as={isButton ? 'button' : 'a'}
@@ -219,7 +219,7 @@ Button.propTypes = {
   /**
    * Unique identifier for the button
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * The button/link contents
    */
@@ -290,6 +290,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  id: null,
   variant: 'hero',
   inverted: false,
   children: '',

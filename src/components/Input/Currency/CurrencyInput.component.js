@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Input from 'components/Input/Input.component';
 import { tooltipPropTypes } from '../../Tooltip/Tooltip.component';
 import { getInitialValue } from '../Input.component';
+import useId from '../../../hooks/useId';
 
 const CurrencyInput = ({
-  id,
+  id: propsId,
   label,
   placeholder,
   value,
@@ -23,6 +24,7 @@ const CurrencyInput = ({
   handleFocus,
   handleBlur,
 }) => {
+  const id = useId(propsId);
   const [internalValue, setInternalValue] = useState(getInitialValue(value, prefillValue));
 
   const changeHandler = useCallback((val) => {
@@ -87,9 +89,9 @@ const CurrencyInput = ({
 
 CurrencyInput.propTypes = {
   /**
-   * Unique id for the component. Required.
+   *  Unique id for the Currency input
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /**
    * Custom handler to attach to the input field - used to get the value of the field for example.
    */
@@ -163,6 +165,7 @@ CurrencyInput.propTypes = {
 };
 
 CurrencyInput.defaultProps = {
+  id: null,
   maxlength: 15,
   value: null,
   tooltip: {},

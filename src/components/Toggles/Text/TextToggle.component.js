@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
+import useId from '../../../hooks/useId';
 
 const StyledWrapper = styled.div`
   padding: ${({ theme }) => theme.spacing['36']};
@@ -32,7 +33,7 @@ const StyledContent = styled.div`
 `;
 
 const TextToggle = ({
-  id,
+  id: propsId,
   label,
   value,
   name,
@@ -46,6 +47,7 @@ const TextToggle = ({
   handleBlur,
   handleClick,
 }) => {
+  const id = useId(propsId);
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
@@ -80,7 +82,10 @@ TextToggle.propTypes = {
   /**
    * Unique identifier for the toggle
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.number),
+  ]),
   /**
    * The text content to render in the toggle
    */
@@ -141,6 +146,7 @@ TextToggle.propTypes = {
 };
 
 TextToggle.defaultProps = {
+  id: null,
   name: '',
   label: '',
   contentWidth: null,

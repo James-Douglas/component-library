@@ -18,7 +18,6 @@ const prefixSuffixView = () => {
       <Input
         label="Your email address"
         tooltip={tooltip}
-        id="input-email"
         placeholder="example@email.com"
         type="email"
         bordered
