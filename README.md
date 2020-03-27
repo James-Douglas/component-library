@@ -33,6 +33,8 @@ render = () => (
 );
 ```
 
+Additionally you can use various hooks by importing them the same way, where available
+
 ## Development
 
 - `yarn storybook` - runs storybook for development
