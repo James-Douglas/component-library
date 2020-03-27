@@ -5,7 +5,8 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import theme from '../../../themes/ctm.theme';
 import { render } from '../../../testUtils';
 import ToastManager from '../ToastManager.component';
-import ToastProvider, { useToasts } from '../../../contexts/ToastContext';
+import ToastProvider from '../../../providers/ToastProvider';
+import useToasts from '../../../contexts/Toast/useToasts';
 import 'jest-styled-components';
 
 describe('ToastManager()', () => {

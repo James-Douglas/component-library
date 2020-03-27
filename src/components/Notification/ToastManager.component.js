@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 import styled, { keyframes } from 'styled-components';
-import { useToasts } from '../../contexts/ToastContext';
+import useToasts from '../../contexts/Toast/useToasts';
 import Notification from './Notification.component';
 
 const slideIn = keyframes`

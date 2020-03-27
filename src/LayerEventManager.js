@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import styled, { withTheme } from 'styled-components';
 import PropTypes from 'prop-types';
-import { useLayers } from './contexts/LayerContext';
+import useLayers from './contexts/Layer/useLayers';
 import usePrevious from './hooks/usePrevious';
 import useId from './hooks/useId';
 

@@ -10,8 +10,7 @@ import Column from '../../components/Grid/Column/Column.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowLeft } from '@fortawesome/pro-regular-svg-icons/faLongArrowLeft';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
-import { useToasts } from '../../contexts/ToastContext';
-
+import useToasts from '../../contexts/Toast/useToasts';
 
 <Meta title="Components|Notifications/Toast" component={Notification} />
 
@@ -24,7 +23,6 @@ import { useToasts } from '../../contexts/ToastContext';
     {() => {
       const [ demo1, setDemo1 ] = useState(true);
       const { addToast } = useToasts();
-      
       return (
         <div style={{ padding: '2%' }}>
           <Container>

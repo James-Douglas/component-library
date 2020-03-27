@@ -1,13 +1,7 @@
-import React, {
-  createContext, useContext, useMemo, useState,
-} from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const noop = () => {};
-
-const LayerContext = createContext({
-  layers: null, push: noop, pop: noop, top: noop,
-});
+import LayerContext from '../contexts/Layer/layer.context';
 
 const LayerProvider = ({ children, ...otherProps }) => {
   const [layers, setLayers] = useState([]);
@@ -25,7 +19,6 @@ const LayerProvider = ({ children, ...otherProps }) => {
     contains: (layer) => layers.includes(layer),
   }), [layers, setLayers]);
 
-
   return (
     <>
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -36,13 +29,11 @@ const LayerProvider = ({ children, ...otherProps }) => {
   );
 };
 
-export default LayerProvider;
-
-export const useLayers = () => useContext(LayerContext);
-
 LayerProvider.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
 };
+
+export default LayerProvider;

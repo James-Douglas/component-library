@@ -1,8 +1,8 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
-const ToastContext = createContext();
+import ToastContext from '../contexts/Toast/toast.context';
 
 const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
@@ -27,14 +27,11 @@ const ToastProvider = ({ children }) => {
   );
 };
 
-export default ToastProvider;
-
-export const useToasts = () => useContext(ToastContext);
-
-
 ToastProvider.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
 };
+
+export default ToastProvider;

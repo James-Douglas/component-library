@@ -2,7 +2,7 @@
 import {
   render, fireEvent, wait, act,
 } from '@testing-library/react';
-import ManorProvider from './provider/ManorProvider';
+import ManorProvider from './providers/ManorProvider';
 
 const customRender = (ui, options) => render(ui, { wrapper: ManorProvider, ...options });
 

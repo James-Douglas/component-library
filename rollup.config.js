@@ -41,7 +41,7 @@ const makeModuleIndex = modules => {
     const [fileName] = /([^\/]+$)/.exec(importDir);
     const moduleName = fileName.replace(/(?:\.\w*)*\.js/gm, "", "");
     return `export { default as ${moduleName} } from "./${importDir}";`;
-  })
+  });
   fs.writeFileSync("src/modules.js", paths.join("\n"));
 };
 
@@ -49,11 +49,12 @@ const buildLibrary = () => {
   // gather our modules
   const components = glob.sync(`${__dirname}/src/components/**/*.component.js`);
   const hooks = glob.sync(`${__dirname}/src/hooks/use*.js`);
-  const provider = glob.sync(`${__dirname}/src/provider/ManorProvider.js`);
-  const modules = [...components, ...hooks, ...provider];
+  // currently we only wish to export the ManorProvider - the others are internal
+  const provider = glob.sync(`${__dirname}/src/providers/ManorProvider.js`);
+  const useContexts = glob.sync(`${__dirname}/src/contexts/**/use*.js`);
+  const modules = [...components, ...hooks, ...provider, ...useContexts];
   // create the modules index
   makeModuleIndex(modules);
-  // gather our rollup config
 
   // add the modules index config to the config map
   const config = [{

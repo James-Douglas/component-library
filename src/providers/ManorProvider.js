@@ -4,10 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { ManorGlobalStyles } from '../components/Global/manorGlobal.component';
 import CTMTheme from '../themes/ctm.theme';
 
-import ToastContext from '../contexts/ToastContext';
-import LayerContext from '../contexts/LayerContext';
-
-/* const ToastContext = createContext(); */
+import ToastProvider from './ToastProvider';
+import LayerProvider from './LayerProvider';
 
 const ManorProvider = (props) => {
   const {
@@ -18,11 +16,11 @@ const ManorProvider = (props) => {
     <>
       <ThemeProvider theme={theme}>
         {!disableGlobalStyles && <ManorGlobalStyles />}
-        <LayerContext>
-          <ToastContext>
+        <LayerProvider>
+          <ToastProvider>
             {children}
-          </ToastContext>
-        </LayerContext>
+          </ToastProvider>
+        </LayerProvider>
       </ThemeProvider>
     </>
   );

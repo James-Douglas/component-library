@@ -4,7 +4,7 @@ import { withA11y } from '@storybook/addon-a11y';
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import React from 'react';
-import ManorProvider from '../src/provider/ManorProvider';
+import ManorProvider from '../src/providers/ManorProvider';
 
 addDecorator(withA11y);
 addDecorator(StoryFn => <ManorProvider><StoryFn /></ManorProvider>);

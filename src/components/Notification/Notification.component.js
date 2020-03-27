@@ -11,7 +11,7 @@ import {
   faTimes,
 }
   from '@fortawesome/pro-regular-svg-icons/';
-import { useToasts } from '../../contexts/ToastContext';
+import useToasts from '../../contexts/Toast/useToasts';
 
 const notificationIcon = (variant) => {
   switch (variant) {
