@@ -256,6 +256,9 @@ const Dropdown = ({
   }, [value, isDropdownOpen]);
 
   const keyboardAccessibility = useCallback((event) => {
+    const upFocusedOptionIndex = typeof focusedOptionIndex === 'undefined' ? childrenWithProps.length : focusedOptionIndex;
+    const downFocusedOptionIndex = typeof focusedOptionIndex === 'undefined' ? -1 : focusedOptionIndex;
+
     if (!disabled) {
       switch (event.key) {
         case 'Escape':
@@ -271,7 +274,7 @@ const Dropdown = ({
             keyboardArrowsAccessibility(event);
             return false;
           }
-          setFocusedOptionIndex(focusedOptionIndex <= 0 ? childrenWithProps.length - 1 : focusedOptionIndex - 1);
+          setFocusedOptionIndex(upFocusedOptionIndex <= 0 ? childrenWithProps.length - 1 : upFocusedOptionIndex - 1);
           break;
         case 'ArrowDown':
           event.preventDefault();
@@ -279,10 +282,28 @@ const Dropdown = ({
             keyboardArrowsAccessibility(event);
             return false;
           }
-          setFocusedOptionIndex(focusedOptionIndex === childrenWithProps.length - 1 ? 0 : focusedOptionIndex + 1);
+          setFocusedOptionIndex(downFocusedOptionIndex === childrenWithProps.length - 1 ? 0 : downFocusedOptionIndex + 1);
           break;
         default:
           break;
+      }
+      if (
+        // Alphabet upper case
+        (event.keyCode >= 65 && event.keyCode <= 90)
+        // Alphabet lower case
+        || (event.keyCode >= 97 && event.keyCode <= 122)) {
+        event.stopPropagation();
+        // search from focused element
+        let letterOptionIndex = childrenWithProps.findIndex((child, index) => index > (focusedOptionIndex || 0) && child.props.optionValue.charAt(0).toLowerCase() === event.key.toLowerCase());
+        if (letterOptionIndex > -1) {
+          setFocusedOptionIndex(letterOptionIndex);
+        } else {
+          // otherwise search from start
+          letterOptionIndex = childrenWithProps.findIndex((child) => child.props.optionValue.charAt(0).toLowerCase() === event.key.toLowerCase());
+          if (letterOptionIndex > -1) {
+            setFocusedOptionIndex(letterOptionIndex);
+          }
+        }
       }
     }
     return false;

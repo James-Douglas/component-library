@@ -332,4 +332,40 @@ describe('Dropdown', () => {
     expect(valueCb.mock.calls.length).toBe(1);
     expect(valueCb.mock.calls[0][1]).toBe('1Default');
   });
+
+  it('check keyboard functionality  - letters', () => {
+    const valueCb = jest.fn();
+    const { getByText, container } = render(
+      <Dropdown
+        id="input-one"
+        label="Dropdown Label"
+        selectedValue="2First"
+        handleChange={valueCb}
+      >
+        <DropdownItem value="Default">Default Item - Title</DropdownItem>
+        <DropdownItem value="First">First Item - Title</DropdownItem>
+        <DropdownItem value="Second">Second Item - Title</DropdownItem>
+        <DropdownItem value="Third">Third Item - Title</DropdownItem>
+        <DropdownItem value="TRex">Tyrannosaurus Rex</DropdownItem>
+        <DropdownItem value="Tutu">Tutu Train</DropdownItem>
+      </Dropdown>,
+    );
+    const buttonDropdown = container.querySelector('[role="button"]');
+
+    fireEvent.keyDown(buttonDropdown, { key: 'Tab', keyCode: 9 });
+    buttonDropdown.focus();
+    fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
+    // when we type t first time
+    fireEvent.keyDown(buttonDropdown, { key: 't', keyCode: 84 });
+    expect(getByText('Third Item - Title')).toHaveFocus();
+    // when we type t second time
+    fireEvent.keyDown(buttonDropdown, { key: 'T', keyCode: 84 });
+    expect(getByText('Tyrannosaurus Rex')).toHaveFocus();
+    // when we type t third time
+    fireEvent.keyDown(buttonDropdown, { key: 't', keyCode: 84 });
+    expect(getByText('Tutu Train')).toHaveFocus();
+    // when we type t 4th time
+    fireEvent.keyDown(buttonDropdown, { key: 't', keyCode: 84 });
+    expect(getByText('Third Item - Title')).toHaveFocus();
+  });
 });
