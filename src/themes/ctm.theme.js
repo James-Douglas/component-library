@@ -233,6 +233,7 @@ const opacity = {
 const zIndex = {
   auto: 'auto',
   entry: '-1',
+  max: '2147483647', // reserved for toast notifications
   0: '0',
   10: '10',
   20: '20',

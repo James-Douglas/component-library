@@ -18,10 +18,11 @@ const slideIn = keyframes`
 `;
 
 const StyledContainer = styled.div`
-    position: absolute;
+    position: fixed;
     top: ${({ theme }) => theme.spacing[76]};
     right: 0;
     overflow: hidden;
+    z-index: ${({ theme }) => theme.zIndex.max};
 `;
 
 const StyledWrap = styled.div`
