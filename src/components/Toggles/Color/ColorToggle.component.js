@@ -125,7 +125,7 @@ ColorToggle.propTypes = {
    */
   label: PropTypes.string,
   /**
-   * The color of the label text
+   * The color of the toggle when it is selected
    */
   fontColor: PropTypes.string,
   /**

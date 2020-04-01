@@ -10,7 +10,7 @@ import ToggleGroup from '../../../components/Toggles/ToggleGroup.component';
 # TextToggle
 
 The TextToggle can be used for rendering toggles that consist only of text content. To enable control over line breaking,
-the `label` prop can be provided with HTML/JSX, please ensure your usage is therefore compliant with the design system.
+the `title` prop can be provided with HTML/JSX, please ensure your usage is therefore compliant with the design system.
 
 <Preview>
   <Story name="text toggles">
@@ -20,10 +20,10 @@ the `label` prop can be provided with HTML/JSX, please ensure your usage is ther
       return (
         <Container>
           <ToggleGroup label="Square toggles" name="toggleGroupA" tooltip={tooltip} handleToggle={handleToggle} contentWidth="16rem" contentHeight="4rem">
-            <TextToggle value="1" id="one" label={<span>Less than <br />$90,000</span>} />
-            <TextToggle value="2" id="two" label={<span>Between <br /> $90,001 - $105,000</span>} />
-            <TextToggle value="3" id="three" label={<span>Between <br /> $105,001 - $120,000</span>} />
-            <TextToggle value="4" id="four" label={<span>Over $120,000</span>} />
+            <TextToggle value="1" id="one" title={<span>Less than <br />$90,000</span>} />
+            <TextToggle value="2" id="two" title={<span>Between <br /> $90,001 - $105,000</span>} />
+            <TextToggle value="3" id="three" title={<span>Between <br /> $105,001 - $120,000</span>} />
+            <TextToggle value="4" id="four" title={<span>Over $120,000</span>} />
           </ToggleGroup>
         </Container>
       );

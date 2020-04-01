@@ -49,6 +49,30 @@ describe('ColorToggle', () => {
     expect(input).toHaveAttribute('tabIndex', '0');
   });
 
+  it('renders with #333333 fontColor', () => {
+    const { getByText, container } = render(<ColorToggle backgroundColor="black" id="test-a" fontColor="#333333" value="ttt" />);
+    expect(container.innerHTML).toMatchSnapshot();
+    expect(getByText('Black')).toBeInTheDocument();
+    expect(container.querySelector('i')).toHaveStyle('background-color: black');
+    const input = container.querySelector('input');
+    expect(input).toHaveAttribute('id', 'test-a');
+    expect(input).toHaveAttribute('tabIndex', '0');
+    expect(container.querySelector('span')).toHaveStyle('color: rgb(51, 51, 51');
+    expect();
+  });
+
+  it('renders with #FFFFFF fontColor', () => {
+    const { getByText, container } = render(<ColorToggle backgroundColor="black" id="test-a" fontColor="#FFFFFF" value="ttt" />);
+    expect(container.innerHTML).toMatchSnapshot();
+    expect(getByText('Black')).toBeInTheDocument();
+    expect(container.querySelector('i')).toHaveStyle('background-color: black');
+    const input = container.querySelector('input');
+    expect(input).toHaveAttribute('id', 'test-a');
+    expect(input).toHaveAttribute('tabIndex', '0');
+    expect(container.querySelector('span')).toHaveStyle('color: rgb(255, 255, 255');
+    expect();
+  });
+
   it('calls handleToggle when change event fires', () => {
     const onToggleCb = jest.fn();
     const { container } = render(<ColorToggle backgroundColor="black" id="test-a" value="ttt" fontColor="white" handleToggle={onToggleCb} />);

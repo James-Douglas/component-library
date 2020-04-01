@@ -34,7 +34,7 @@ const StyledContent = styled.div`
 
 const TextToggle = ({
   id: propsId,
-  label,
+  title,
   value,
   name,
   contentWidth,
@@ -69,7 +69,7 @@ const TextToggle = ({
       <ToggleLabel id={id}>
         <StyledWrapper>
           <StyledTextToggleContent contentWidth={contentWidth} contentHeight={contentHeight}>
-            <StyledContent>{label}</StyledContent>
+            <StyledContent>{title}</StyledContent>
           </StyledTextToggleContent>
         </StyledWrapper>
       </ToggleLabel>
@@ -89,7 +89,7 @@ TextToggle.propTypes = {
   /**
    * The text content to render in the toggle
    */
-  label: PropTypes.oneOfType([
+  title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
     PropTypes.node,
@@ -148,7 +148,7 @@ TextToggle.propTypes = {
 TextToggle.defaultProps = {
   id: null,
   name: '',
-  label: '',
+  title: '',
   contentWidth: null,
   contentHeight: null,
   selectedValue: null,

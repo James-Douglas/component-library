@@ -6,7 +6,7 @@ import 'jest-styled-components';
 
 describe('getChildren()', () => {
   const tempID = 'temp-id';
-  const getTestChildren = (data) => data.map((child) => React.cloneElement(<TextToggle id={tempID} label="test-label" value="test-value" />, { ...child }));
+  const getTestChildren = (data) => data.map((child) => React.cloneElement(<TextToggle id={tempID} title="test-label" value="test-value" />, { ...child }));
   const didToggleCb = jest.fn();
   const clickCb = jest.fn();
   it('returns cloned children with base props added', () => {
@@ -48,8 +48,8 @@ describe('ToggleGroup', () => {
     const onToggleCb = jest.fn();
     const { container } = render(
       <ToggleGroup name="test-toggle-group-b" handleToggle={onToggleCb}>
-        <TextToggle label="test toggle a" value="a" id="a" />
-        <TextToggle label="test toggle b" value="b" id="b" />
+        <TextToggle title="test toggle a" value="a" id="a" />
+        <TextToggle title="test toggle b" value="b" id="b" />
       </ToggleGroup>,
     );
     const toggleA = container.querySelector('#a');
@@ -82,8 +82,8 @@ describe('ToggleGroup', () => {
     const tooltip = { title: 'test' };
     const { container } = render(
       <ToggleGroup name="test-toggle-group-b" handleToggle={handleChangeCb} tooltip={tooltip}>
-        <TextToggle label="test toggle a" id="a" value="val-1" />
-        <TextToggle label="test toggle b" id="b" value="val-2" />
+        <TextToggle title="test toggle a" id="a" value="val-1" />
+        <TextToggle title="test toggle b" id="b" value="val-2" />
       </ToggleGroup>,
     );
     const tooltipWrapper = container.querySelector('[role="tooltip"]');

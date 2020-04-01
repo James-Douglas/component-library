@@ -4,7 +4,7 @@ import TextToggle from '../TextToggle.component';
 
 describe('TextToggle', () => {
   it('renders with props', () => {
-    const { container } = render(<TextToggle id="test" value="test" label="hello" />);
+    const { container } = render(<TextToggle id="test" value="test" title="hello" />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 });
