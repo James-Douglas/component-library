@@ -4,37 +4,15 @@ import React, {
   useCallback, useLayoutEffect, useRef, useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { DayPickerSingleDateController as RDSingleDatePicker } from 'react-dates';
 import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
-import { GlobalStyle, StyledCalendar, StyledDateRangePickerContainer } from './styled';
+import { GlobalStyle, StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
 import DateInput from '../Input/Date/DateInput.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import useId from '../../hooks/useId';
 
-const StyledDateRangePickerWrap = styled.div`
-  width: ${({ theme }) => theme.spacing[176]};
-  margin-right: ${({ theme }) => theme.spacing[24]};
-  .date-input-calendar {
-    padding-right: ${({ theme }) => theme.spacing[12]};
-  }
-  .input-wrap {
-    label {
-      path {
-        fill: ${({ theme }) => theme.datepicker.navigationButtonColor};
-      }
-    }
-  }
-`;
-
-const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  max-width: ${({ theme }) => theme.spacing[16]};
-  path {
-    fill: ${({ theme }) => theme.datepicker.navigationButtonColor};
-  }
-`;
+import { StyledDateRangePickerWrap, StyledFontAwesomeIcon } from './SingleDatePicker.styles';
 
 const SingleDatePicker = ({
   dateId: propsDateId,

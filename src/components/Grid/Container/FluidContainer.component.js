@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StyledContainer = styled.div`
-  width: 100%;
-  margin: auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
-`;
+import StyledContainer from './FluidContainer.styles';
 
 const FluidContainer = ({ children, className }) => (
   <StyledContainer className={className}>

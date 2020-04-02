@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import StyledTableBody from './TableBody.styles';
 
 const tablelvl2 = {
   variant: 'body',
 };
 
-const StyledComponent = styled.div`
-  display: table-row-group;
-`;
 const TableBody = ({
   component,
   children,
@@ -18,12 +15,12 @@ const TableBody = ({
   const Component = component || 'tbody';
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <StyledComponent
+      <StyledTableBody
         as={Component}
         className={className}
       >
         {children || null}
-      </StyledComponent>
+      </StyledTableBody>
     </Tablelvl2Context.Provider>
   );
 };

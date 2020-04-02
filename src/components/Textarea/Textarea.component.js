@@ -1,60 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import SupportingElements from '../SupportingElements/SupportingElements';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 import usePrefill from '../../hooks/usePrefill';
 import useId from '../../hooks/useId';
-
-const StyledmaxlengthIndicator = styled.span`
-  margin-right: 0.4rem;
-`;
-
-const StyledTextAreaWrapper = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
-const StyledTextArea = styled.textarea`
-  resize: none;
-  width: 100%;
-  display: block;
-  padding: 1.6rem;
-  border: ${({ theme }) => theme.borders.transparent};
-  min-height: ${({ theme }) => theme.spacing[44]};
-  font-size: ${({ theme }) => theme.fontSize.base};
-
-  &::placeholder {
-    ${({ theme }) => ({ ...theme.placeholder })}
-  }
-
-  ${({ bordered, theme }) => bordered && css`
-    border: ${theme.borders.component};
-  `}
-  ${({ theme, isAutofill, disabled }) => isAutofill && !disabled && css`
-    background: ${theme.colors.inputPrefilled};
-  `}
-  ${({
-    theme, bordered, isAutofill, disabled,
-  }) => (bordered && isAutofill && !disabled) && css`
-    border: ${theme.borders.prefill};
-  `}
-
-  ${({ validation, textAreaRemainChars, theme }) => (validation || textAreaRemainChars < 0) && css`
-    border: ${theme.borders.invalid};
-  `}
-
-  &:focus,
-  &:hover {
-    border: ${({ theme }) => theme.borders.hover};
-  }
-
-  ${({ disabled }) => disabled && css`
-    opacity: 0.5;
-  `}
-`;
+import {
+  StyledmaxlengthIndicator,
+  StyledTextAreaWrapper,
+  StyledTextArea,
+} from './Textarea.styles';
 
 export const getInitialValue = (value, prefillValue) => value || prefillValue || '';
 

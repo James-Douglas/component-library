@@ -1,19 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StyledOverlay = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: ${({ theme }) => theme.zIndex[30]};
-  margin: 0;
-  padding: 0;
-`;
+import StyledOverlay from './Overlay.styles';
 
 const Overlay = ({ visible, opacityLevel, handleClick }) => visible && (
   <StyledOverlay className="overlay" style={{ background: `rgba(0,0,0,${opacityLevel})` }} aria-label="overlay" tabIndex="-1" role="option" aria-selected={false} onClick={handleClick} />

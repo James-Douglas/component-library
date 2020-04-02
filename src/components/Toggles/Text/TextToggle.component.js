@@ -1,36 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 import useId from '../../../hooks/useId';
 
-const StyledWrapper = styled.div`
-  padding: ${({ theme }) => theme.spacing['36']};
-`;
-
-const StyledTextToggleContent = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: ${({ theme }) => theme.fontSize.base};
-  line-height: ${({ theme }) => theme.lineHeight.tight};
-  min-height: ${({ theme }) => theme.spacing[20]};
-  text-align: center;
-  
-  ${({ contentWidth }) => contentWidth && css`
-    width: ${contentWidth};
-  `};
-  
-  ${({ contentHeight }) => contentHeight && css`
-    height: ${contentHeight};
-  `};
-`;
-
-const StyledContent = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-`;
+import { StyledContent, StyledTextToggleContent, StyledWrapper } from './TextToggle.styles';
 
 const TextToggle = ({
   id: propsId,

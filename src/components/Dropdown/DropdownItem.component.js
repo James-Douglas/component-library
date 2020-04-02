@@ -1,26 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/pro-regular-svg-icons/faCheck';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import useId from '../../hooks/useId';
-
-const StyledListItem = styled.li`
-  svg {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-  }
-
-  ${({ active, desktop }) => (active && !desktop) && css`
-    color: ${({ theme }) => theme.dropdown.colorActive};
-    background: ${({ theme }) => theme.dropdown.backgroundActive};
-     svg {
-      display: none;
-     }
-  `}
-`;
+import StyledListItem from './DropdownItem.styles';
 
 const DropdownItem = React.forwardRef(({
   id: propsId,

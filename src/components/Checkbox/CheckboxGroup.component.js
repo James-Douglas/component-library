@@ -2,27 +2,14 @@ import React, {
   useState, useEffect, useRef, useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Row from '../Grid/Row/Row.component';
 import Column from '../Grid/Column/Column.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
+import { StyledColumn, StyledContainer, StyledInnerRow } from './CheckboxGroup.styles';
 import useId from '../../hooks/useId';
-
-const StyledContainer = styled.div`
-  width: 100%;
-`;
-
-const StyledInnerRow = styled(Row)`
-  margin: 0;
-`;
-
-const StyledColumn = styled(Column)`
-  padding-left: 0;
-  padding-right: 0;
-`;
 
 export const generateGroup = (colSize, children, callback, selectedCheckboxes) => {
   if (children) {

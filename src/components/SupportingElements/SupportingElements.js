@@ -1,15 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Subscript from '../Typography/Subscript/Subscript.component';
 import SRonly from '../Typography/SRonly/SRonly.component';
-
-const StyledOptionalText = styled.div`
-  display: flex;
-  position: absolute;
-  right: 0;
-  padding-top: ${({ theme }) => theme.spacing[8]};
-`;
+import StyledOptionalText from './SupportingElements.styles';
 
 const SupportingElements = ({
   required, disabled, label, additionalContent, validationMessage,

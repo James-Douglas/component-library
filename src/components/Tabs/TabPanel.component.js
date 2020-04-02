@@ -1,16 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
 import TabsContext from './TabsContext';
-
-const StyledPanel = styled.div`
-  margin-top: 0;
-  height: 100%;
-  padding: ${({ theme }) => theme.spacing[24]};
-  ${({ activeTab, name }) => activeTab !== name && css`
-    display: none;
-  `}
-`;
+import StyledTabPanel from './TabPanel.styles';
 
 const TabPanel = ({
   name,
@@ -25,9 +16,9 @@ const TabPanel = ({
   `;
 
   return (
-    <StyledPanel className={classNames} activeTab={tabContext.activeTab} name={name}>
+    <StyledTabPanel className={classNames} activeTab={tabContext.activeTab} name={name}>
       {children}
-    </StyledPanel>
+    </StyledTabPanel>
   );
 };
 

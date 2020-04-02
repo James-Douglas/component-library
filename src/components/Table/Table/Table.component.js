@@ -1,16 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
 import TableContext from './TableContext';
-
-const StyledComponent = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.base};
-  display: table;
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-`;
+import StyledTable from './Table.styles';
 
 const Table = ({
   className,
@@ -27,14 +18,14 @@ const Table = ({
 
   return (
     <TableContext.Provider value={table}>
-      <StyledComponent
+      <StyledTable
         as={Component}
         className={className}
         aria-label={ariaLabel}
         aria-describedby={ariaDescribedby}
       >
         {children || null}
-      </StyledComponent>
+      </StyledTable>
     </TableContext.Provider>
   );
 };

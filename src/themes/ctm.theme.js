@@ -165,6 +165,7 @@ const spacing = {
   252: '25.2rem',
   256: '25.6rem',
   280: '28rem',
+  360: '36rem',
 };
 const borderRadius = {
   none: '0',
@@ -324,7 +325,7 @@ const ctmTheme = {
   checkbox: {
     color: colors.white,
     colorDisabled: colors.brandMidnightBlue,
-    disabledOpacity: '0.5',
+    disabledOpacity: opacity[50],
     border: borders.component,
     borderHover: borders.hover,
     active: borders.active,
@@ -390,6 +391,10 @@ const ctmTheme = {
       },
     },
   },
+  emptyState: {
+    maxWidth: spacing[360],
+    maxHeight: spacing[360],
+  },
   featureList: {
     color: colors.success500,
   },
@@ -399,6 +404,7 @@ const ctmTheme = {
   },
   header: {
     background: colors.white,
+    shadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
     height: spacing[60],
     heightStuck: spacing[44],
     contact: {
@@ -422,6 +428,10 @@ const ctmTheme = {
   logo: {
     heightSmall: spacing[32],
     heightLarge: spacing[44],
+  },
+  modal: {
+    maxHeight: spacing[36],
+    maxWidth: '745px',
   },
   notification: {
     color: colors.grey700,
@@ -447,6 +457,7 @@ const ctmTheme = {
     bar: {
       background: colors.white,
       backgroundValue: colors.grey300,
+      height: spacing[6],
       progressBackground: colors.primary500,
     },
     icon: {
@@ -503,6 +514,7 @@ const ctmTheme = {
       colorChecked: colors.white,
       colorDisabled: colors.grey300,
       shadowHover: elevation.lvl5,
+      labelShadow: '0 0 2px 3px rgba(0, 123, 255, .3)',
     },
   },
   tooltip: {

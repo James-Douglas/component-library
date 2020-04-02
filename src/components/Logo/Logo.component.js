@@ -1,19 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
 import Picture, { picturePropTypes } from '../Picture/Picture.component';
-
-const StyledLogo = styled.div`
-  transition: all 200ms ease;
-
-  ${({ theme, size }) => size === 'large' && css`
-    height: ${theme.logo.heightLarge}; /* 44px */
-  `}
-
-  ${({ theme, size }) => size === 'small' && css`
-    height: ${theme.logo.heightSmall}; /* 32px */
-  `}
-`;
+import StyledLogo from './Logo.styles';
 
 const Logo = ({ size, link, picture }) => {
   const {

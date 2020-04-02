@@ -1,25 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Progress from './Progress';
 import useInterval from '../../hooks/useInterval';
-
-export const StyledContainer = styled.div`
-  font-size: ${({ theme }) => theme.loading.fontSize};
-  background-color: ${({ theme }) => theme.loading.containerBackground};
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-export const StyledInnerContainer = styled.div`
-  text-align: center;
-  width: 100%;
-`;
-export const StyledMessageContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import { StyledContainer, StyledInnerContainer, StyledMessageContainer } from './Loading.styles';
 
 const LoadingComponent = ({
   messages,

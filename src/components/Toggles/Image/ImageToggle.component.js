@@ -1,43 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 import Picture from '../../Picture/Picture.component';
 import useId from '../../../hooks/useId';
 
-const StyledImageToggle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: ${({ theme }) => theme.spacing['160']};
-  height: ${({ theme }) => theme.spacing['160']};
-  padding: ${({ theme }) => theme.spacing['16']};
-`;
-
-const StyledPicture = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: ${({ theme }) => theme.fontSize['2xs']};
-  height: ${({ theme }) => theme.spacing['80']};
-  width: ${({ theme }) => theme.spacing['80']};
-`;
-
-const StyledIconContent = styled.div`
-  padding-top: ${({ theme }) => theme.spacing['8']};
-  font-size: ${({ theme }) => theme.fontSize.base};
-  line-height: ${({ theme }) => theme.lineHeight.tight};
-`;
-
-const StyledTitle = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-`;
-
-const StyledDescription = styled.div`
-  color: ${({ theme }) => theme.colors.grey800};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-`;
+import {
+  StyledDescription, StyledIconContent, StyledImageToggle, StyledPicture, StyledTitle,
+} from './ImageToggle.styles';
 
 export function getImageToggleContent(src, srcsets, alt, pictureTitle, id, toggleTitle, description) {
   return (

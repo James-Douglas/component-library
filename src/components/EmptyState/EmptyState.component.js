@@ -1,30 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Picture, { picturePropTypes } from '../Picture/Picture.component';
 import placeholder from '../../images/sergei.png';
 import useIsDesktop from '../../hooks/useIsDesktop';
-
-const StyledEmptyState = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const StyledEmptyStateWrap = styled.div`
-  max-width: 350px; 
-  text-align: center;
-  & > * {
-    margin-bottom: ${({ theme, desktop }) => (desktop ? theme.spacing[32] : theme.spacing[16])};
-  }
-`;
-
-const StyledPictureContainer = styled.div`
-   margin-bottom: ${({ theme }) => theme.spacing[32]};
-   height: 100%;
-   max-height: 350px;
-   max-width: 350px; 
-`;
-
+import { StyledEmptyState, StyledEmptyStateWrap, StyledPictureContainer } from './EmptyState.styles';
 
 const EmptyState = ({
   children,

@@ -1,37 +1,13 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
 import Column from '../Grid/Column/Column.component';
 import Row from '../Grid/Row/Row.component';
 import Container from '../Grid/Container/Container.component';
 import MicroCopy from '../Typography/Microcopy/Microcopy.component';
 import throttle from '../../utils/throttle';
-
-const StyledWrapper = styled.div`
-  width: 100%;
-`;
-
-const StyledPosition = styled.div`
-  ${({ sticky }) => sticky && css`
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  `}
-  background: ${({ theme, background }) => (background ? theme.footer.background : theme.footer.transparent)};  
-`;
-
-const StyledFooterBar = styled.div`
-  min-height: 5.4rem;
-  width: 100%;
-  text-align: center; 
-  padding: ${({ theme }) => `${theme.spacing[24]} 0`};
-`;
-
-const StyledP = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.sm};
-`;
+import {
+  StyledFooterBar, StyledP, StyledPosition, StyledWrapper,
+} from './Footer.styles';
 
 const Footer = ({
   children, background, sticky, className,

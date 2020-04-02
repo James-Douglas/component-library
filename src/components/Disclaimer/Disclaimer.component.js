@@ -2,20 +2,9 @@ import React, {
   createRef, useEffect, useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Checkbox from '../Checkbox/Checkbox.component';
 import useId from '../../hooks/useId';
-
-const StyledWrapper = styled.div`
-  display: flex;
-`;
-
-const StyledContent = styled.div`
-  margin-top: 0.6rem;
-  margin-left: ${({ theme }) => theme.spacing[12]};
-  cursor: pointer;
-  font-size: ${({ theme }) => theme.fontSize.base};
-`;
+import { StyledContent, StyledWrapper } from './Disclaimer.styles';
 
 const Disclaimer = ({
   id: propsId, isSelected, children, handleChange, handleFocus, handleBlur,

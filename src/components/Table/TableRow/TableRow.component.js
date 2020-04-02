@@ -1,15 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StyledComponent = styled.div`
-  color: inherit;
-  display: table-row;
-  vertical-align: middle;
-  &:hover {
-    background: ${({ hover, theme }) => (hover ? theme.table.rowHoverBackground : 'none')};
-  }
-`;
+import StyledTableRow from './TableRow.styles';
 
 const TableRow = ({
   className,
@@ -19,16 +10,15 @@ const TableRow = ({
 }) => {
   const Component = component || 'tr';
   return (
-    <StyledComponent
+    <StyledTableRow
       as={Component}
       hover={hover}
       className={className}
     >
       {children || null}
-    </StyledComponent>
+    </StyledTableRow>
   );
 };
-
 
 TableRow.propTypes = {
   /**

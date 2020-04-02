@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Input from 'components/Input/Input.component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
 import { tooltipPropTypes } from '../../Tooltip/Tooltip.component';
 import useId from '../../../hooks/useId';
 
-const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  color: ${({ theme }) => theme.colors.placeholderText};
-`;
+import StyledFontAwesomeIcon from './DateInput.styles';
 
 const DateInput = ({
   id: propsId,

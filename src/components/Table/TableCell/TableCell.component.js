@@ -1,24 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import TableContext from '../Table/TableContext';
-
-const StyledComponent = styled.div`
-  display: table-cell;
-  text-align: ${({ align }) => align};
-  vertical-align: ${({ valign }) => valign};
-  padding: ${({ padding, theme }) => {
-    if (padding === 'checkbox' || padding === 'medium') {
-      return theme.spacing['8'];
-    }
-    if (padding === 'small') {
-      return theme.spacing['4'];
-    }
-    return 'none';
-  }
-};
-`;
+import StyledTableCell from './TableCell.styles';
 
 const TableCell = ({
   className,
@@ -43,7 +27,7 @@ const TableCell = ({
   }
 
   return (
-    <StyledComponent
+    <StyledTableCell
       as={Component}
       padding={padding || table.size}
       valign={valign}
@@ -53,7 +37,7 @@ const TableCell = ({
       rowSpan={rowspan}
     >
       {children || null}
-    </StyledComponent>
+    </StyledTableCell>
   );
 };
 

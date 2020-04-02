@@ -1,12 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
-const StyledMicrocopy = styled.p`
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: ${({ theme }) => theme.fontSize.xs};
-  line-height: ${({ theme }) => theme.lineHeight.snug};
-`;
+import StyledMicrocopy from './Microcopy.styles';
 
 const Microcopy = ({
   children,

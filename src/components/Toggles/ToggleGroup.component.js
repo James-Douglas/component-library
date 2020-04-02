@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
 import useId from '../../hooks/useId';
-
-const StyledToggleGroup = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-`;
-
-const StyledValidationWrapper = styled.div`
-  width: 100%;
-  margin-left: ${({ theme }) => theme.spacing[8]};
-`;
+import { StyledToggleGroup, StyledValidationWrapper } from './ToggleGroup.styles';
 
 export const getChildren = (
   groupId,

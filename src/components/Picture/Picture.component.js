@@ -1,17 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StyledPicture = styled.picture`
-  height: 100%;
-`;
-
-const StyledImg = styled.img`
-  height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: left;
-`;
+import {
+  StyledPicture,
+  StyledImg,
+} from './Picture.styles';
 
 const Picture = ({
   src, srcsets, alt, title, className,

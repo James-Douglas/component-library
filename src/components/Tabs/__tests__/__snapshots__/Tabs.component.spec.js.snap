@@ -49,7 +49,7 @@ exports[`TabButton renders multuple TabButtons 1`] = `
 exports[`TabPanel renders a TabPanel 1`] = `
 <div>
   <div
-    class="sc-AxhCb jJyYkE 
+    class="sc-AxhCb eYFifc 
     tab-panel
     
   "
@@ -65,7 +65,7 @@ exports[`TabPanel renders a TabPanel 1`] = `
 exports[`TabPanel renders additional classNames 1`] = `
 <div>
   <div
-    class="sc-AxhCb jJyYkE 
+    class="sc-AxhCb eYFifc 
     tab-panel
     test classes
   "
@@ -76,7 +76,7 @@ exports[`TabPanel renders additional classNames 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb jJyYkE 
+    class="sc-AxhCb eYFifc 
     tab-panel
     another-class
   "
@@ -92,7 +92,7 @@ exports[`TabPanel renders additional classNames 1`] = `
 exports[`TabPanel renders multiple TabPanels 1`] = `
 <div>
   <div
-    class="sc-AxhCb jJyYkE 
+    class="sc-AxhCb eYFifc 
     tab-panel
     
   "
@@ -103,7 +103,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb jJyYkE 
+    class="sc-AxhCb eYFifc 
     tab-panel
     
   "
@@ -114,7 +114,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb jJyYkE 
+    class="sc-AxhCb eYFifc 
     tab-panel
     
   "
@@ -125,7 +125,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb jJyYkE 
+    class="sc-AxhCb eYFifc 
     tab-panel
     
   "
@@ -141,7 +141,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
 exports[`Tabs renders a border 1`] = `
 <div>
   <div
-    class="sc-AxirZ iFHeZY 
+    class="sc-AxirZ boLNog 
     tabs-container
     
   "
@@ -187,7 +187,7 @@ exports[`Tabs renders a border 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb jJyYkE 
+      class="sc-AxhCb eYFifc 
     tab-panel
     
   "
@@ -253,7 +253,7 @@ exports[`Tabs renders additional classNames 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb jJyYkE 
+      class="sc-AxhCb eYFifc 
     tab-panel
     
   "
@@ -319,7 +319,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb jJyYkE 
+      class="sc-AxhCb eYFifc 
     tab-panel
     
   "

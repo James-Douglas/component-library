@@ -1,17 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Tooltip, { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-
-const StyledLabelContainer = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing[8]};
-`;
-
-const StyledLabel = styled.label`
-  font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.label.color};
-  width: 100%;
-`;
+import { StyledLabel, StyledLabelContainer } from './Label.styles';
 
 const Label = ({
   htmlFor, text, tooltip,
