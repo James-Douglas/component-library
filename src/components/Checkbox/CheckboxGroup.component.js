@@ -8,7 +8,7 @@ import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import FieldValidation from '../FieldValidation/FieldValidation.component';
-import { StyledColumn, StyledContainer, StyledInnerRow } from './CheckboxGroup.styles';
+import { StyledContainer, StyledInnerRow } from './CheckboxGroup.styles';
 import useId from '../../hooks/useId';
 
 export const generateGroup = (colSize, children, callback, selectedCheckboxes) => {
@@ -16,9 +16,9 @@ export const generateGroup = (colSize, children, callback, selectedCheckboxes) =
     return children.map((child) => {
       const component = React.cloneElement(child, { handleChange: callback, isSelected: selectedCheckboxes.includes(child.props.id) });
       return (
-        <StyledColumn cols={colSize} key={`key-${child.props.id}`}>
+        <Column cols={colSize} key={`key-${child.props.id}`}>
           {component}
-        </StyledColumn>
+        </Column>
       );
     });
   }
@@ -63,7 +63,7 @@ const CheckboxGroup = ({
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
       <Row removeMarginBottom>
-        <Column cols={desktop ? '10' : '12'}>
+        <Column cols={desktop ? 10 : 12}>
           <StyledContainer id={groupId}>
             <StyledInnerRow>
               {generateGroup(colSize, children, handleCheckboxClick, selectedCheckboxes)}

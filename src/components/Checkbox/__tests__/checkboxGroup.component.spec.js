@@ -19,7 +19,7 @@ describe('generateGroup', () => {
 
   it('renders if there are children', () => {
     const { container } = render(
-      <GroupContainer colSize="6">
+      <GroupContainer colSize={6}>
         <Checkbox id="A-1" label="A-1 check" />
         <Checkbox id="A-2" label="A-2 check" />
       </GroupContainer>,
@@ -45,7 +45,7 @@ describe('CheckboxGroup.component', () => {
   it('renders with props', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleChange={mockTestClick}>
+      <CheckboxGroup groupId="test-group-id" colSize={5} handleChange={mockTestClick}>
         <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
@@ -72,7 +72,7 @@ describe('CheckboxGroup.component', () => {
   it('checks on click', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+      <CheckboxGroup groupId="test-group-id" colSize={5} handleClick={mockTestClick}>
         <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
@@ -89,7 +89,7 @@ describe('CheckboxGroup.component', () => {
 
   it('accepts a prefill value', () => {
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" selected={['A-1', 'A-3']}>
+      <CheckboxGroup groupId="test-group-id" colSize={5} selected={['A-1', 'A-3']}>
         <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
@@ -107,7 +107,7 @@ describe('CheckboxGroup.component', () => {
   it('does not check when disabled', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" handleClick={mockTestClick}>
+      <CheckboxGroup groupId="test-group-id" colSize={5} handleClick={mockTestClick}>
         <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3" disabled><p>A-3 check</p></Checkbox>
@@ -128,7 +128,7 @@ describe('CheckboxGroup.component', () => {
       body: 'Prefix and suffix view',
     };
     const { container } = render(
-      <CheckboxGroup groupId="test-group-id" colSize="5" tooltip={tooltip}>
+      <CheckboxGroup groupId="test-group-id" colSize={5} tooltip={tooltip}>
         <Checkbox id="A-1"><p>A-1 check</p></Checkbox>
         <Checkbox id="A-2"><p>A-2 check</p></Checkbox>
         <Checkbox id="A-3"><p>A-3 check</p></Checkbox>

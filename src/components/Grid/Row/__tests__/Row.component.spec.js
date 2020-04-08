@@ -21,7 +21,7 @@ describe('Row', () => {
     expect(childContent).toBeInTheDocument();
   });
 
-  it('has a row class and margin-bottom by default', () => {
+  it('has a row class by default', () => {
     const { container } = render(<Row />);
 
     const row = container.querySelector('.row');

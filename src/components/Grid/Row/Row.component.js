@@ -1,13 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StyledRow from './Row.styles';
+import StyledFlexRow from './Row.styles';
 
 const Row = ({
-  children, className, reverse, removeMarginBottom, flexWrap,
+  children,
+  className,
+  reverse,
+  removeMarginBottom,
+  flexWrap,
+  justify,
 }) => (
-  <StyledRow className={`row ${className}`} reverse={reverse} removeMarginBottom={removeMarginBottom} flexWrap={flexWrap}>
+  <StyledFlexRow
+    justify={justify}
+    className={`row ${className}`}
+    reverse={reverse}
+    removeMarginBottom={removeMarginBottom}
+    flexWrap={flexWrap}
+  >
     {children}
-  </StyledRow>
+  </StyledFlexRow>
 );
 
 Row.propTypes = {
@@ -32,12 +43,24 @@ Row.propTypes = {
    */
   removeMarginBottom: PropTypes.bool,
   /**
-    * It defines whether the flex items are forced in a single line or can be flowed into multiple lines.
-  */
+   * It defines whether the flex items are forced in a single line or can be flowed into multiple lines.
+   */
   flexWrap: PropTypes.oneOf([
     'nowrap',
     'wrap',
     'wrap-reverse',
+  ]),
+  /**
+   * Defines alignment of a column
+   */
+  justify: PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'space-around',
+    'space-between',
+    'initial',
+    'inherit',
   ]),
 };
 
@@ -47,6 +70,7 @@ Row.defaultProps = {
   removeMarginBottom: false,
   reverse: false,
   flexWrap: 'wrap',
+  justify: 'flex-start',
 };
 
 export default Row;

@@ -39,7 +39,7 @@ const FooterTransparentView = () => (
     <StickyHeader number="1800 123 456" logo={<CTMLogo />} />
     <Container>
       <Row>
-        <Column md={12}>
+        <Column cols={12}>
           <StyledInnerContainer>
             <h1>Example Headline - Footer with a transparent background</h1>
             <p>

@@ -4,7 +4,6 @@ import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs
 import Checkbox from '../../components/Checkbox/Checkbox.component';
 import CheckboxGroup from '../../components/Checkbox/CheckboxGroup.component';
 import CheckboxGroupView from './checkboxGroup.view';
-import FluidContainer from '../../components/Grid/Container/FluidContainer.component';
 import Container from '../../components/Grid/Container/Container.component';
 import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
@@ -31,21 +30,21 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
       }
       return (
         <div style={{ padding: '2%' }}>
-          <FluidContainer>
+          <Container>
             <Row>
-              <Column md={4}>
+              <Column cols={4}>
                 <Checkbox id="chk1" label="A checkbox" />
                 <Checkbox id="chk2" label="A selected checkbox" isSelected/>
               </Column>
-              <Column md={4}>
+              <Column cols={4}>
                 <Checkbox id="chk3" label="A prefilled checkbox" prefillValue />
                 <Checkbox id="chk4" label="An errored checkbox" validationMessage={error} handleChange={(id, value) => { handler(id, value)} }/>
               </Column>
-              <Column md={4}>
+              <Column cols={4}>
                 <Checkbox id="chk5" label="A disabled checkbox" disabled />
               </Column>
             </Row>
-          </FluidContainer>
+          </Container>
         </div>
       )
     }}
@@ -55,14 +54,14 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
 <Preview>
   <Story name="checkbox group">
     <div style={{ padding: '2%' }}>
-      <FluidContainer>
+      <Container>
         <Row>
           <Column>
             <CheckboxGroup
               label="Checkbox group example"
               tooltip={{ title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
               groupId="group-1"
-              colSize="12"
+              colSize={12}
               handleChange={(checkboxes) => {console.warn(checkboxes)}}
             >
               <Checkbox id="A-1" label="One" />
@@ -73,7 +72,7 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
               label="Another checkbox group example"
               tooltip={{ title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
               groupId="group-2"
-              colSize="12"
+              colSize={12}
               handleChange={(checkboxes) => {console.warn(checkboxes)}}
             >
               <Checkbox id="x-1" label="One" />
@@ -83,7 +82,7 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
             </CheckboxGroup>
           </Column>
         </Row>
-      </FluidContainer>
+      </Container>
     </div>
   </Story>
 </Preview>
@@ -120,7 +119,7 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
     const groupId = text('groupId', 'checkbox-with-props', checkboxGroupPropsId);
     const label = text('label', 'Checkbox group label', checkboxGroupPropsId);
     const validationMessage = text('validationMessage', '', checkboxGroupPropsId);
-    const colSize = text('colSize', '6', checkboxGroupPropsId);
+    const colSize = number('colSize', 6, {}, checkboxGroupPropsId);
     //checkbox A
     const checkboxAId = text('id', 'checkbox-a', checkboxAPropsId);
     const checkboxALabel = text('label', 'Checkbox A', checkboxAPropsId);

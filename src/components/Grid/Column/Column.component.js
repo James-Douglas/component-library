@@ -4,44 +4,60 @@ import StyledColumn from './Column.styles';
 
 const Column = ({
   cols,
+  xs,
   sm,
   md,
   lg,
-  xl,
-  xxl,
   offset,
-  offsetSm,
-  offsetMd,
-  offsetLg,
-  offsetXl,
-  offsetXxl,
+  xsOffset,
+  smOffset,
+  mdOffset,
+  lgOffset,
   children,
   className,
   valign,
   halign,
-}) => (
-  <StyledColumn
-    cols={cols}
-    sm={sm}
-    md={md}
-    lg={lg}
-    xl={xl}
-    xxl={xxl}
-    baseOffset={offset}
-    offsetSm={offsetSm}
-    offsetMd={offsetMd}
-    offsetLg={offsetLg}
-    offsetXl={offsetXl}
-    offsetXxl={offsetXxl}
-    valign={valign}
-    halign={halign}
-    className={`
+}) => {
+  const colMode = (prop) => {
+    // if cols has been defined, and the xs - lg prop is not false or a number, set via cols prop
+    if (cols && prop !== false && typeof prop !== 'number') {
+      return (cols);
+    }
+    // take the prop xs - lg prop if it exists
+    if (prop || prop === false) {
+      return prop;
+    }
+    // default to auto sizing columns
+    return true;
+  };
+
+  const offsetMode = (prop) => {
+    if (offset && prop === null) {
+      return (offset);
+    }
+    return prop;
+  };
+
+  return (
+    <StyledColumn
+      xs={colMode(xs)}
+      sm={colMode(sm)}
+      md={colMode(md)}
+      lg={colMode(lg)}
+      xsOffset={offsetMode(xsOffset)}
+      smOffset={offsetMode(smOffset)}
+      mdOffset={offsetMode(mdOffset)}
+      lgOffset={offsetMode(lgOffset)}
+      valign={valign}
+      halign={halign}
+      className={`
         ${className}
       `}
-  >
-    {children}
-  </StyledColumn>
-);
+    >
+      {children}
+    </StyledColumn>
+  );
+};
 
 Column.propTypes = {
   /**
@@ -49,89 +65,61 @@ Column.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Width in columns (across all breakpoints where a specific width [sm, md, lg, xl, xxl] has not been given)
+   * Col size for all breakpoints
    */
-  cols: PropTypes.oneOfType([
-    PropTypes.string,
+  cols: PropTypes.number,
+  /**
+   * Width in columns at xs screen sizes.
+   * if true - enable auto sizing. If false, hide column otherwise specifiy amount of cols
+   */
+  xs: PropTypes.oneOfType([
+    PropTypes.bool,
     PropTypes.number,
   ]),
   /**
    * Width in columns at sm screen sizes.
+   * if true - enable auto sizing. If false, hide column otherwise specifiy amount of cols
    */
   sm: PropTypes.oneOfType([
-    PropTypes.string,
+    PropTypes.bool,
     PropTypes.number,
   ]),
   /**
    * Width in columns at md screen sizes.
+   * if true - enable auto sizing. If false, hide column otherwise specifiy amount of cols
    */
   md: PropTypes.oneOfType([
-    PropTypes.string,
+    PropTypes.bool,
     PropTypes.number,
   ]),
   /**
    * Width in columns at lg screen sizes.
+   * if true - enable auto sizing. If false, hide column otherwise specifiy amount of cols
    */
   lg: PropTypes.oneOfType([
-    PropTypes.string,
+    PropTypes.bool,
     PropTypes.number,
   ]),
   /**
-   * Width in columns at xl screen sizes.
+   * offset for all breakpoints
    */
-  xl: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  offset: PropTypes.number,
   /**
-   * Width in columns at xxl screen sizes.
+   * Offset in columns at the xs screen size.
    */
-  xxl: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  /**
-   * Offset in columns (across all breakpoints where a specific offset [sm, md, lg, xl, xxl] has not been given)
-   */
-  offset: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  xsOffset: PropTypes.number,
   /**
    * Offset in columns at the sm screen size.
    */
-  offsetSm: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  smOffset: PropTypes.number,
   /**
    * Offset in columns at the md screen size.
    */
-  offsetMd: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  mdOffset: PropTypes.number,
   /**
    * Offset in columns at the lg screen size.
    */
-  offsetLg: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  /**
-   * Offset in columns at the xl screen size.
-   */
-  offsetXl: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  /**
-   * Offset in columns at the xxl screen size.
-   */
-  offsetXxl: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  lgOffset: PropTypes.number,
   /**
    * The column contents.
    */
@@ -165,21 +153,19 @@ Column.propTypes = {
 
 Column.defaultProps = {
   className: '',
-  cols: 0,
-  sm: 0,
-  md: 0,
-  lg: 0,
-  xl: 0,
-  xxl: 0,
-  offset: 0,
-  offsetSm: 0,
-  offsetMd: 0,
-  offsetLg: 0,
-  offsetXl: 0,
-  offsetXxl: 0,
-  children: [],
+  cols: null,
+  xs: null,
+  sm: null,
+  md: null,
+  lg: null,
+  offset: null,
+  xsOffset: null,
+  smOffset: null,
+  mdOffset: null,
+  lgOffset: null,
   valign: 'stretch',
   halign: 'initial',
+  children: [],
 };
 
 export default Column;

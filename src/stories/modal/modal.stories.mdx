@@ -34,10 +34,10 @@ Unlike a Drawer, Modals can always be closed by the user.
       <div style={{ padding: '2%' }}>
         <FluidContainer>
           <Row>
-            <Column>
+            <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
               <Button id='preview-btn' variant='secondary' handleClick={() => setVisible(!visible)}>Modal Preview</Button>
             </Column>
-            <Column>
+            <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
               <Button id='preview-btn2' variant='secondary' handleClick={() => setVisibleModal(!visibleModal)}>Modal Preview With actions</Button>
             </Column>
             <Modal id='preview-modal' visible={visible} handleClose={() => {setVisible(false)}} size="sm" overlay handleOverlayClick={() => setVisible(false)} title="Modal title goes here">

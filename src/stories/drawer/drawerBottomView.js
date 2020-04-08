@@ -32,9 +32,9 @@ const DrawerBottom = () => {
 
       >
         <StyledDrawerContent>
-          <FluidContainer className="mt-24">
+          <FluidContainer>
             <Row>
-              <Column cols="12" sm="12" md="12">
+              <Column cols={12}>
                 <div>
                   <h4>Hi I am a Drawer with a keyline border on desktop, none on mobile view :)</h4>
                 </div>
@@ -45,7 +45,7 @@ const DrawerBottom = () => {
       </Drawer>
       <div>
         <Row className="row-view">
-          <Column cols="12" valign="center">
+          <Column cols={12} valign="center">
             <StyledCard>
               <h4>Basic Drawer demo</h4>
               <p>This is an example of the Drawer component.</p>

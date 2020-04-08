@@ -57,13 +57,13 @@ const CheckboxGroupView = () => {
     <StyledGridView>
       <Container>
         <Row>
-          <Column offset={2} cols={10}>
+          <Column xsOffset={2} cols={10}>
             <CheckboxGroup
               label="Group A"
               tooltip={{ title: 'Group A', body: 'This is a tooltip for group A' }}
               validationMessage={validationMessageGroupA}
               groupId={g1}
-              colSize="6"
+              colSize={6}
               handleChange={(selectedCheckboxes) => handleGroupA(selectedCheckboxes)}
               selected={checkboxGroupA}
             >
@@ -77,12 +77,12 @@ const CheckboxGroupView = () => {
           </Column>
         </Row>
         <Row>
-          <Column offset={2} cols={10}>
+          <Column xsOffset={2} cols={10}>
             <CheckboxGroup
               label="Group B"
               validationMessage={validationMessageGroupB}
               groupId={g2}
-              colSize="6"
+              colSize={6}
               handleChange={(selectedCheckboxes) => handleGroupB(selectedCheckboxes)}
               selected={checkboxGroupB}
             >
@@ -97,7 +97,7 @@ const CheckboxGroupView = () => {
         </Row>
 
         <Row>
-          <Column offset={2} cols={10}>
+          <Column xsOffset={2} cols={10}>
             <StyledResults>
               {checkboxGroupA.length || checkboxGroupB.length
                 ? (

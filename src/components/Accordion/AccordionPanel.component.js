@@ -68,8 +68,8 @@ const AccordionPanel = ({
       >
         <FluidContainer>
           <Row removeMarginBottom flexWrap="nowrap">
-            <Column cols="11">{title}</Column>
-            <Column cols="1">
+            <Column cols={11}>{title}</Column>
+            <Column cols={1}>
               <StyledChevronWrap>
                 <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
               </StyledChevronWrap>
@@ -81,7 +81,7 @@ const AccordionPanel = ({
       <StyledAccordionBody isVisible={isVisible} role="tabpanel">
         <FluidContainer>
           <Row className="row-view" removeMarginBottom>
-            <Column cols="12">{children}</Column>
+            <Column cols={12}>{children}</Column>
           </Row>
         </FluidContainer>
       </StyledAccordionBody>

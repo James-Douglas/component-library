@@ -55,9 +55,9 @@ const DrawerMix = () => {
         trapFocus
       >
         <StyledDrawerContent>
-          <FluidContainer className="mt-24">
+          <FluidContainer>
             <Row>
-              <Column cols="12" sm="12" md="12">
+              <Column cols={12}>
                 <div>
                   <h4>Hi I am a Drawer :)</h4>
                   <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
@@ -146,7 +146,7 @@ const DrawerMix = () => {
       >
         <Container>
           <Row>
-            <Column cols="12" sm="12" md="12">
+            <Column cols={12}>
               <div>
                 <h4>Hi I am a right drawer :)</h4>
                 <Button id="demo-1-btn" variant="secondary" handleClick={() => setModalVisible(true)}>
@@ -283,7 +283,7 @@ const DrawerMix = () => {
       </Drawer>
       <div>
         <Row className="row-view">
-          <Column cols="12" valign="center">
+          <Column cols={12} valign="center">
             <StyledCard>
               <h4>Basic Drawer demo</h4>
               <p>This is an example of the Drawer component.</p>

@@ -33,7 +33,7 @@ const ModalView = () => {
   return (
     <FluidContainer>
       <Row>
-        <Column md={4}>
+        <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
           <Button id="demo-1-btn" variant="secondary" handleClick={m1Open}>
             Modal one
           </Button>
@@ -57,7 +57,7 @@ const ModalView = () => {
             Send Email
           </Button>
         </Modal>
-        <Column md={4}>
+        <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
           <Button id="demo-2-btn" variant="secondary" handleClick={m2Open}>
             Modal two
           </Button>

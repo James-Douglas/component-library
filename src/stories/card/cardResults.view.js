@@ -7,7 +7,6 @@ import Row from '../../components/Grid/Row/Row.component';
 import Column from '../../components/Grid/Column/Column.component';
 import Button from '../../components/Button/Button.component';
 
-
 const cardData = [
   {
     id: 'a',
@@ -35,7 +34,6 @@ const cardData = [
   },
 ];
 
-
 const StyledManorOverline = styled.span`
   line-height: 1.4;
   font-size: 1rem;
@@ -44,9 +42,7 @@ const StyledManorOverline = styled.span`
   color: #787673;
 `;
 
-
-// eslint-disable-next-line react/prop-types
-const CardResultsView = ({ background }) => {
+const CardResultsView = () => {
   const [isGrid, setIsGrid] = useState(false);
 
   const toggleView = () => {
@@ -75,20 +71,20 @@ const CardResultsView = ({ background }) => {
             </Column>
           </Row>
           <Row>
-            <Column offset={2} cols={4}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
-            <Column cols={4}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
+            <Column offset={2} auto><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
+            <Column><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
           </Row>
           <Row>
-            <Column offset={2} cols={4}><p>{card.advRate}</p></Column>
-            <Column cols={4}><p>{card.compRate}</p></Column>
+            <Column offset={2} auto><p>{card.advRate}</p></Column>
+            <Column><p>{card.compRate}</p></Column>
           </Row>
           <Row>
-            <Column offset={2} cols={4}><StyledManorOverline>Fees</StyledManorOverline></Column>
-            <Column cols={4}><StyledManorOverline>Repayments</StyledManorOverline></Column>
+            <Column offset={2} auto><StyledManorOverline>Fees</StyledManorOverline></Column>
+            <Column><StyledManorOverline>Repayments</StyledManorOverline></Column>
           </Row>
           <Row>
-            <Column offset={2} cols={4}><p>{card.fees}</p></Column>
-            <Column cols={4}><p>{card.repayments}</p></Column>
+            <Column offset={2} auto><p>{card.fees}</p></Column>
+            <Column><p>{card.repayments}</p></Column>
           </Row>
           <Row>
             <Column offset={2} cols={8}>
@@ -129,10 +125,10 @@ const CardResultsView = ({ background }) => {
               <Container>
                 <Row>
                   <Column cols={4}><h6>{card.name}</h6></Column>
-                  <Column cols={2}><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
-                  <Column cols={2}><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
-                  <Column cols={2}><StyledManorOverline>Fees</StyledManorOverline></Column>
-                  <Column cols={2}><StyledManorOverline>Repayments</StyledManorOverline></Column>
+                  <Column><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
+                  <Column><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
+                  <Column><StyledManorOverline>Fees</StyledManorOverline></Column>
+                  <Column><StyledManorOverline>Repayments</StyledManorOverline></Column>
                 </Row>
                 <Row>
                   <Column cols={4}>
@@ -141,16 +137,16 @@ const CardResultsView = ({ background }) => {
                       et dolore magna aliqua.
                     </p>
                   </Column>
-                  <Column cols={2}>
+                  <Column>
                     <p>{card.advRate}</p>
                   </Column>
-                  <Column cols={2}>
+                  <Column>
                     <p>{card.compRate}</p>
                   </Column>
-                  <Column cols={2}>
+                  <Column>
                     <p>{card.fees}</p>
                   </Column>
-                  <Column cols={2}>
+                  <Column>
                     <p>{card.repayments}</p>
                   </Column>
                 </Row>

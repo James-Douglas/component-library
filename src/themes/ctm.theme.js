@@ -1,3 +1,17 @@
+const flexboxgrid = {
+  // Defaults
+  gridSize: 12, // columns
+  gutterWidth: 1, // rem
+  outerMargin: 2, // rem
+  mediaQuery: 'only screen',
+  breakpoints: {
+    xs: 0, // em
+    sm: 48, // em or 768px
+    md: 64, // em or 1024px
+    lg: 75, // em or 1200px
+  },
+};
+
 const colors = {
   // Per design audit ticket, check to see if new colors are used and apply
   brandMidnightBlue: '#001443',
@@ -549,6 +563,7 @@ const ctmTheme = {
   zIndex,
   transition,
   elevation,
+  flexboxgrid,
 };
 
 export default ctmTheme;

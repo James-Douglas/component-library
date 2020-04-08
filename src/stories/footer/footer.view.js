@@ -39,7 +39,7 @@ const FooterView = () => (
     <StickyHeader number="1800 123 456" logo={<CTMLogo />} />
     <Container>
       <StyledRow>
-        <Column md={12}>
+        <Column cols={12}>
 
           <h1>Example Headline - Footer with white background</h1>
           <p>

@@ -43,7 +43,7 @@ const DrawerTop = () => {
       >
         <StyledDrawerContent>
           <Row>
-            <Column cols="12" sm="12" md="12">
+            <Column cols={12}>
               <div>
                 <h4>Hi I am a top drawer :)</h4>
               </div>
@@ -54,7 +54,7 @@ const DrawerTop = () => {
       <StyledBar />
       <Container>
         <Row className="row-view">
-          <Column cols="12" sm="12" md="12">
+          <Column cols={12}>
             <StyledCard>
               <h5>Term Deposit Name</h5>
               <p>It has survived not only five centuries, but also the leap into electronic typesetting,
@@ -63,15 +63,15 @@ const DrawerTop = () => {
               <div style={{ marginTop: '4.8rem' }}>
                 <Container>
                   <Row className="row-view">
-                    <Column cols="5">
+                    <Column cols={5}>
                       <p style={{ color: '#818181' }}>Interest rate</p>
                       <Row className="row-view">
-                        <Column className="col-auto"><h4 style={{ margin: '0' }}>2&nbsp;months</h4></Column>
-                        <Column className="col-auto" halign="center"><Tooltip title="some title" body="some body" /></Column>
+                        <Column><h4 style={{ margin: '0' }}>2&nbsp;months</h4></Column>
+                        <Column halign="center"><Tooltip title="some title" body="some body" /></Column>
                       </Row>
                     </Column>
-                    <Column cols="2" className="items-center"><Separator type="vertical" /></Column>
-                    <Column cols="5"><p style={{ color: '#818181' }}>Term</p> <h4>2 months</h4></Column>
+                    <Column cols={2} className="items-center"><Separator type="vertical" /></Column>
+                    <Column cols={5}><p style={{ color: '#818181' }}>Term</p> <h4>2 months</h4></Column>
                   </Row>
                 </Container>
               </div>
