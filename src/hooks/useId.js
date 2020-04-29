@@ -1,8 +1,8 @@
-import { v4 as uuidv4 } from 'uuid';
+import cuid from 'cuid';
 import { useMemo } from 'react';
 
 const useId = (propsId) => {
-  const randomId = useMemo(() => uuidv4(), []);
+  const randomId = useMemo(() => cuid(), []);
   return propsId || randomId;
 };
 
