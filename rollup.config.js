@@ -1,16 +1,16 @@
 import glob from "glob";
 import fs from "fs";
 import path from "path";
-import babel from "rollup-plugin-babel";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from "@rollup/plugin-commonjs";
 import postcss from "rollup-plugin-postcss";
 import filesize from "rollup-plugin-filesize";
 import localResolve from "rollup-plugin-local-resolve";
 import includePaths from "rollup-plugin-includepaths";
 import ignoreImport from "rollup-plugin-ignore-import";
 import smartAsset from "rollup-plugin-smart-asset";
-import url from 'rollup-plugin-url';
+import url from '@rollup/plugin-url';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const ouputDir = "lib";
@@ -38,9 +38,10 @@ rmdir(ouputDir);
 const makeModuleIndex = modules => {
   let paths = modules.map(f => {
     const importDir = path.relative(`${process.cwd()}/src`, f);
-    const [fileName] = /([^\/]+$)/.exec(importDir);
+    const [fileName] = /[^\/|^\\\\]+$/.exec(importDir);
     const moduleName = fileName.replace(/(?:\.\w*)*\.js/gm, "", "");
-    return `export { default as ${moduleName} } from "./${importDir}";`;
+    const importDirFormatted = `"${importDir.split(/[\\\/]/g).join(path.posix.sep)}"`;
+    return `export { default as ${moduleName} } from ${importDirFormatted};`;
   });
   fs.writeFileSync("src/modules.js", paths.join("\n"));
 };
@@ -90,7 +91,7 @@ const buildLibrary = () => {
         url: "copy",
         keepImport: true
       }),
-      babel({ exclude: "node_modules/**" }),
+      babel({ exclude: "node_modules/**", babelHelpers: 'bundled' }),
       commonjs(),
       filesize()
     ]
@@ -106,7 +107,7 @@ const buildLibrary = () => {
       }
     ],
     plugins: [
-      babel({ exclude: "node_modules/**" }),
+      babel({ exclude: "node_modules/**", babelHelpers: 'bundled' }),
       commonjs(),
       filesize()
     ]
@@ -121,7 +122,7 @@ const buildLibrary = () => {
       }
     ],
     plugins: [
-      babel({ exclude: "node_modules/**" }),
+      babel({ exclude: "node_modules/**", babelHelpers: 'bundled' }),
       commonjs(),
       filesize()
     ]
