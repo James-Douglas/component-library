@@ -1,5 +1,5 @@
 # Manor component Library
-Design system component library for CTM - tested on Node v10.17.0
+Design system component library for CTM - tested on Node v10.17.0, v12.6.0
 
 ## Usage
 
