@@ -9,6 +9,6 @@ describe('useId', () => {
   it('returns not presented id', () => {
     const { result } = renderHook(() => useId());
     expect(result.current).toBeTruthy();
-    expect(result.current.length).toEqual(25);
+    expect(result.current.length).toEqual(36);
   });
 });

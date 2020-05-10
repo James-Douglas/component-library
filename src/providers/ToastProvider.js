@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import cuid from 'cuid';
+const uuidv4 = require('uuid/v4');
 import PropTypes from 'prop-types';
 
 import ToastContext from '../contexts/Toast/toast.context';
@@ -8,7 +8,7 @@ const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   const addToast = (props) => {
-    const id = cuid();
+    const id = uuidv4();
     const toast = { props, id };
     setToasts([...toasts, toast]);
     return id;
