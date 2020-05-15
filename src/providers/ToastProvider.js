@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-const uuidv4 = require('uuid/v4');
 import PropTypes from 'prop-types';
 
 import ToastContext from '../contexts/Toast/toast.context';
+
+const uuidv4 = require('uuid/v4');
 
 const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);

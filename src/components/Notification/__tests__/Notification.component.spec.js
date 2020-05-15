@@ -14,7 +14,7 @@ describe('Notification()', () => {
     expect(getByText('The insurance provider')).toBeInTheDocument();
   });
 
-  it('Notification variant general, type inline - renders by default default', () => {
+  it('Notification variant general, type inline - renders by default', () => {
     const { container } = render(
       <Notification
         title="Notification title goes here"
@@ -28,6 +28,54 @@ describe('Notification()', () => {
     expect(childDiv).toHaveStyleRule('box-shadow', theme.notification.shadow);
     expect(childDiv).toHaveStyleRule('position', 'relative');
     expect(infoIcon).toBeInTheDocument();
+  });
+
+  it('renders a background on hint notification if prop is supplied', () => {
+    const { container } = render(
+      <Notification
+        type="hint"
+        variant="warning"
+        background
+        title="Notification title goes here"
+        content="Provider will capture the full description."
+        icon
+      />,
+    );
+    const childDiv = container.firstChild;
+    expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${theme.colors.warning500}`);
+    expect(childDiv).toHaveStyleRule('background', `${theme.colors.warning50}`);
+  });
+
+  it('renders the title with the same color as the border', () => {
+    const { container } = render(
+      <Notification
+        type="hint"
+        variant="error"
+        title="Notification title goes here"
+        content="Provider will capture the full description."
+        icon
+      />,
+    );
+    const childDiv = container.firstChild;
+    const heading = container.querySelector('p');
+    expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${theme.colors.error500}`);
+    expect(heading).toHaveStyleRule('color', `${theme.colors.error500}`);
+  });
+
+  it('does not render the title as the same color as the border if its variant={"warning"}', () => {
+    const { container } = render(
+      <Notification
+        type="hint"
+        variant="warning"
+        title="Notification title goes here"
+        content="Provider will capture the full description."
+        icon
+      />,
+    );
+    const childDiv = container.firstChild;
+    const heading = container.querySelector('p');
+    expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${theme.colors.warning500}`);
+    expect(heading).toHaveStyleRule('color', `${theme.colors.grey800}`);
   });
 
   it('Notification variant error', () => {

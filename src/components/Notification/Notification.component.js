@@ -8,7 +8,7 @@ import {
   faExclamationTriangle,
   faEngineWarning,
   faTimes,
-} from '@fortawesome/pro-regular-svg-icons/';
+} from '@fortawesome/pro-light-svg-icons';
 
 import {
   StyledActions,
@@ -51,6 +51,7 @@ const Notification = ({
   handleClose,
   className,
   autoClose,
+  background,
 }) => {
   const { removeToast } = useToasts();
 
@@ -72,7 +73,7 @@ const Notification = ({
 
   return (
     <>
-      <StyledNotification type={type} variant={variant} position={position} icon={icon} className={className}>
+      <StyledNotification type={type} variant={variant} position={position} icon={icon} background={background} className={className}>
         {(closeButton && type !== 'hint') && (
           <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
             <FontAwesomeIcon icon={faTimes} size="lg" />
@@ -84,18 +85,24 @@ const Notification = ({
           </StyledNotificationImage>
         )}
         <StyledNotificationContentWrap>
-          <StyledHeading type={type}>
-            {title}
-          </StyledHeading>
-          <StyledContent>
+          {title
+            && (
+              <StyledHeading type={type} variant={variant}>
+                {title}
+              </StyledHeading>
+            )}
+          <StyledContent title={title} type={type}>
             {content}
           </StyledContent>
-          <StyledActions>
-            {(primaryAction && type !== 'hint')
-              && <a href={primaryAction.link}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></StyledFontAwesomeWrap>{primaryAction.content}</a>}
-            {(secondaryAction && type !== 'hint')
-              && <a href={secondaryAction.link}><StyledSpan><FontAwesomeIcon icon={faInfoCircle} size="1x" /></StyledSpan>{secondaryAction.content}</a>}
-          </StyledActions>
+          {(primaryAction || secondaryAction)
+            && (
+              <StyledActions>
+                {(primaryAction && type !== 'hint')
+                  && <a href={primaryAction.link}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></StyledFontAwesomeWrap>{primaryAction.content}</a>}
+                {(secondaryAction && type !== 'hint')
+                  && <a href={secondaryAction.link}><StyledSpan><FontAwesomeIcon icon={faInfoCircle} size="1x" /></StyledSpan>{secondaryAction.content}</a>}
+              </StyledActions>
+            )}
         </StyledNotificationContentWrap>
       </StyledNotification>
     </>
@@ -186,6 +193,10 @@ Notification.propTypes = {
     15000,
     20000,
   ]),
+  /**
+   * Background color for notification - only available for hint variants
+   */
+  background: PropTypes.bool,
 };
 
 Notification.defaultProps = {
@@ -202,7 +213,7 @@ Notification.defaultProps = {
   className: '',
   autoClose: null,
   position: null,
-
+  background: false,
 };
 
 export default Notification;
