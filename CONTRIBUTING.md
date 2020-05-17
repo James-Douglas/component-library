@@ -1,3 +1,4 @@
+# 
 # Contributing Guidelines
 
 ## General
@@ -43,5 +44,10 @@ Please ensure:
 ## Releasing
 Releasing is done by Bamboo using the semantic-release package. To trigger a release of the manor library you must merge 
 a feature branch to Master. **Unfortunately** this may not always happen due to the way Github does squash merges 
-(https://github.com/semantic-release/semantic-release/issues/734). Currently we haven't resolved this and are working around 
-it by merging a single commit (properly formatted) after the fact to get it to release.
+(https://github.com/semantic-release/semantic-release/issues/734). 
+
+To resolve the above, please ensure your merge commit follows this structure:
+
+`feat(componentName): change summary/ticket number here`
+
+You can then remove the description field, and merge your changes to trigger a release
