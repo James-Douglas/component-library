@@ -117,7 +117,7 @@ CheckboxGroup.defaultProps = {
   label: '',
   tooltip: {},
   validationMessage: null,
-  colSize: '6',
+  colSize: 6,
   handleChange: () => { },
   selected: [],
   children: [],

@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faInfoCircle as faInfoCircleRegular,
+  faLongArrowLeft,
+} from '@fortawesome/pro-regular-svg-icons/';
+import {
   faInfoCircle,
   faCheckCircle,
-  faLongArrowLeft,
   faExclamationTriangle,
   faEngineWarning,
   faTimes,
@@ -100,7 +103,7 @@ const Notification = ({
                 {(primaryAction && type !== 'hint')
                   && <a href={primaryAction.link}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></StyledFontAwesomeWrap>{primaryAction.content}</a>}
                 {(secondaryAction && type !== 'hint')
-                  && <a href={secondaryAction.link}><StyledSpan><FontAwesomeIcon icon={faInfoCircle} size="1x" /></StyledSpan>{secondaryAction.content}</a>}
+                  && <a href={secondaryAction.link}><StyledSpan><FontAwesomeIcon icon={faInfoCircleRegular} size="1x" /></StyledSpan>{secondaryAction.content}</a>}
               </StyledActions>
             )}
         </StyledNotificationContentWrap>

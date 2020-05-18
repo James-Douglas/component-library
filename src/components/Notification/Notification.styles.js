@@ -66,14 +66,15 @@ export const StyledContent = styled.p`
   font-size: ${({ theme }) => theme.fontSize.sm};
   color: ${({ theme }) => theme.colors.grey800};
   width: 95%;
-  ${({ type }) => type === 'hint' && css`
+  &:last-of-type {
     margin-bottom: 0;
-  `}
+  }
 `;
 
 export const StyledActions = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: ${({ theme }) => theme.spacing[12]};
   a {
     font-size: ${({ theme }) => theme.fontSize.sm};
     margin-bottom: 0;
