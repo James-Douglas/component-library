@@ -273,6 +273,7 @@ const borders = {
   prefill: `1px solid ${colors.inputPrefilledBorder}`,
   dark: `1px solid ${colors.brandMidnightBlue}`,
   focus: `1px solid ${colors.primary500}`,
+  expressive: `1px solid ${colors.primary300}`,
 };
 
 const ctmTheme = {
@@ -437,9 +438,12 @@ const ctmTheme = {
       color: colors.grey300,
       colorAutofill: colors.grey500,
     },
+    expressive: colors.primary500,
+    expressiveDisabled: colors.grey50,
   },
   label: {
     color: colors.grey900,
+    inField: colors.grey600,
   },
   logo: {
     heightSmall: spacing[32],

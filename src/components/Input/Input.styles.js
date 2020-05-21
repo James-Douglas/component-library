@@ -1,9 +1,38 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import MaskedInput from 'react-text-mask';
+import { StyledLabel } from '../Label/Label.styles';
+
+const labelAnimation = (props) => keyframes`
+    0% { 
+      visibility: hidden;
+      top: 12px;
+    }
+    100% { 
+      top: ${props.breakpoint === 'xl' || props.breakpoint === 'xxl' ? '7px' : '5px'};
+      visibility: visible;
+    }
+  `;
+
+const pseudoBorder = ({ theme }) => css`
+  content: "";
+  width: 1px;
+  height: 0%;
+  background: ${theme.input.expressive};
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 0.2s all ease-in;
+`;
 
 export const StyledWrapper = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: ${({ theme, inFieldLabel }) => (inFieldLabel ? theme.spacing[48] : theme.spacing[20])};
+  ${({ inputValue, inFieldLabel, breakpoint }) => (inputValue && inFieldLabel) && css`
+    ${StyledLabel} {
+      animation : ${labelAnimation(breakpoint)} 0.2s 1 ease-in-out;
+      animation-fill-mode: forwards;
+    }
+  `}
 `;
 
 export const StyledClearIcon = styled.button`
@@ -12,7 +41,10 @@ export const StyledClearIcon = styled.button`
   right: 0;
   width: ${({ theme }) => theme.spacing[44]};
   height: ${({ theme }) => theme.spacing[44]};
-  transition: .2s ease-in-out all;
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive) || (breakpoint === 'xxl' && expressive)) && css`
+    height: ${theme.spacing[56]};
+  `}
+  transition: ${({ theme }) => theme.transition.default};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
   color: ${({ theme, isAutofill }) => (isAutofill ? theme.input.clearButton.colorAutofill : theme.input.clearButton.color)};
   :hover {
@@ -26,11 +58,17 @@ export const StyledAffix = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width:  ${({ theme }) => theme.spacing[48]};
+  min-width: ${({ theme, expressive }) => (expressive ? theme.spacing[16] : theme.spacing[48])};
   padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};
   height: ${({ theme }) => theme.input.height};
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive) || (breakpoint === 'xxl' && expressive)) && css`
+    height: ${theme.spacing[56]};
+  `}
   ${({ prefixBlock, isAutofill, theme }) => prefixBlock && !isAutofill && css`
     background: ${theme.colors.grey100};
+  `}
+  ${({ theme, expressive, affixType }) => expressive && css`
+    color: ${affixType === 'suffix' ? `${theme.colors.primary500}` : `${theme.colors.grey600}`};
   `}
 `;
 
@@ -42,38 +80,69 @@ export const StyledInputContainer = styled.div`
 export const StyledInputWrap = styled.div`
   display: flex;
   background: ${({ theme }) => theme.input.background};
-  ${({ theme, isAutofill, disabled }) => (isAutofill && !disabled) && css`
+  ${({
+    theme, isAutofill, disabled, expressive,
+  }) => (isAutofill && !disabled && !expressive) && css`
     background: ${theme.colors.inputPrefilled};
   `}
   border: ${({ theme }) => theme.borders.transparent};
-  :hover {
-    border: ${({ theme, disabled }) => (disabled ? '' : theme.borders.hover)};
-  }
-  ::placeholder {
-    ${({ theme }) => ({ ...theme.placeholder })};
-  }
+  ${({ expressive }) => !expressive && css`
+    :hover {
+      border: ${({ theme, disabled }) => (disabled ? '' : theme.borders.hover)};
+    }
+  `}
   [disabled] {
-    background: ${({ theme }) => theme.input.background};
+    background: ${({ theme, expressive }) => (expressive ? theme.input.expressiveDisabled : theme.input.background)};
   }
-  ${({ theme, bordered }) => bordered && css`
+  ${({ theme, bordered, expressive }) => (bordered && !expressive) && css`
     border: ${theme.borders.component};
   `}
+  ${({ theme, expressive, disabled }) => expressive && css`
+    border-bottom: ${disabled ? theme.borders.disabled : theme.borders.expressive};
+    &:before {
+      ${pseudoBorder};
+    }
+    &:hover:before {
+      ${({ inputValue }) => (!disabled && !inputValue) && css`
+        height: 100%;
+      `}
+    }
+  `}
   ${({
-    theme, bordered, isAutofill, disabled,
-  }) => (bordered && isAutofill && !disabled) && css`
+    theme, bordered, isAutofill, disabled, expressive,
+  }) => (bordered && isAutofill && !disabled && !expressive) && css`
     border: ${theme.borders.prefill};
   `}
- 
   ${({ disabled }) => (disabled) && css`
     opacity: 0.5;
   `}
-  ${({ theme, isFocusActive }) => isFocusActive && css`
+  ${({ theme, isFocusActive, expressive }) => (isFocusActive && !expressive) && css`
     border: ${theme.borders.hover};
   `}
-   ${({ theme, invalid }) => invalid && css`
+  ${({ theme, invalid, expressive }) => (invalid && !expressive) && css`
     border: ${theme.borders.invalid};
     :hover {
       border: ${theme.borders.invalid};
+    }
+  `}
+  ${({ theme, invalid, expressive }) => (invalid && expressive) && css`
+    border-bottom: ${theme.borders.invalid};
+    &:before {
+      ${pseudoBorder};
+      height: 100%;
+      background: ${theme.colors.error500};
+    }
+  `}
+  ${({ theme, isAutofill, expressive }) => (isAutofill && expressive) && css`
+    border-bottom: ${theme.borders.prefill};
+    &:before {
+      content: "";
+      width: 1px;
+      height: 100%;
+      background: ${theme.colors.inputPrefilledBorder};
+      position: absolute;
+      bottom: 0;
+      left: 0;
     }
   `}
 `;
@@ -82,11 +151,26 @@ export const StyledInputClearWrap = styled.div`
   position: relative;
   width: 100%;
   min-height: ${({ theme }) => `calc(${theme.input.height} + 0.1rem)`};
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive) || (breakpoint === 'xxl' && expressive)) && css`
+    height: 'calc(${theme.spacing[56]} + 0.1rem)'};
+  `}
   margin-right: 0.1rem;
+  ${({ theme, expressive }) => expressive && css`
+    & input {
+      padding-left: ${theme.spacing[8]};
+    }
+  `}
+  ${({ theme, expressive, inputValue }) => (expressive && inputValue) && css`
+    & input {
+      transition: ${theme.transition.default};
+      padding-top: 16px;
+    }
+  `}
+
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading,react/display-name,react/prop-types
-export const StyledInput = styled(React.forwardRef(({ isAutofill, ...props }, ref) => <MaskedInput {...props} ref={ref} />))`
+export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ...props }, ref) => <MaskedInput {...props} ref={ref} />))`
   padding-left: ${({ theme }) => theme.spacing[12]};
   padding-right: ${({ theme }) => theme.spacing[36]};
   display: block;
@@ -94,6 +178,13 @@ export const StyledInput = styled(React.forwardRef(({ isAutofill, ...props }, re
   font-size: ${({ theme }) => theme.fontSize.base};
   border: ${({ theme }) => theme.borders.transparent};
   height: ${({ theme }) => theme.input.height};
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive) || (breakpoint === 'xxl' && expressive)) && css`
+    height: ${theme.spacing[56]};
+    font-size: ${theme.fontSize.xl};
+    ::placeholder {
+      font-size: ${theme.fontSize.xl};
+    }
+  `}
   -moz-appearance: textfield;
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
@@ -108,7 +199,9 @@ export const StyledInput = styled(React.forwardRef(({ isAutofill, ...props }, re
   :hover {
     outline: 0;
   }
-  ${({ theme, isAutofill, disabled }) => isAutofill && !disabled && css`
+  ${({
+    theme, isAutofill, disabled, expressive,
+  }) => (isAutofill && !disabled && !expressive) && css`
     background: ${theme.colors.inputPrefilled};
   `}
 `;

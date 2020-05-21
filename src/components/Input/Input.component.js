@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
-
+import useBreakpoint from '../../hooks/useBreakpoint';
 import SRonly from '../Typography/SRonly/SRonly.component';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import usePrefill from '../../hooks/usePrefill';
@@ -15,7 +15,7 @@ import {
   StyledAffix, StyledClearIcon, StyledInput, StyledInputClearWrap, StyledInputContainer, StyledInputWrap, StyledWrapper,
 } from './Input.styles';
 
-export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, disableClearIcon) => {
+export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint) => {
   if (value && value.length && !disableClearIcon) {
     return (
       <StyledClearIcon
@@ -26,6 +26,8 @@ export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, 
         className={`
           input-clear-button
         `}
+        breakpoint={breakpoint}
+        expressive={expressive}
       >
         <SRonly>Clears the{label}{' '}field.</SRonly>
         <FontAwesomeIcon icon={faTimesCircle} size="lg" />
@@ -35,7 +37,7 @@ export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, 
   return null;
 };
 
-export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled, affixClick, prefixBlock) => {
+export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint) => {
   if (affixType && affixContent) {
     return (
       <StyledAffix
@@ -44,7 +46,9 @@ export const renderAffix = (affixType, affixContent, bordered, isAutofill, disab
         isAutofill={isAutofill}
         disabled={disabled}
         onClick={affixClick}
-        prefixBlock={prefixBlock}
+        prefixBlock={affixType === 'prefix' && prefixBlock}
+        expressive={expressive}
+        breakpoint={breakpoint}
       >
         {affixContent}
       </StyledAffix>
@@ -59,6 +63,7 @@ export const getInitialValue = (value, prefillValue) => value || prefillValue ||
 const Input = React.forwardRef(({
   id: propsId,
   label,
+  inFieldLabel,
   tooltip,
   validationMessage,
   type,
@@ -82,13 +87,14 @@ const Input = React.forwardRef(({
   handleOnClick,
   className,
   disableClearIcon,
+  expressive,
 }, ref) => {
   const id = useId(propsId);
   const [internalValue, setInternalValue] = useState(getInitialValue(value, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [isFocusActive, setFocusActive] = useState(false);
-
+  const breakpoint = useBreakpoint();
   const localRef = ref || useRef(null);
 
   const clearInput = () => {
@@ -126,12 +132,15 @@ const Input = React.forwardRef(({
     }
     setFocusActive(false);
   };
+
   const affixClick = () => {
     localRef.current.inputElement.focus();
   };
+
   return (
-    <StyledWrapper className="input-wrap">
-      <Label htmlFor={id} text={label} tooltip={tooltip} />
+    <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint}>
+      {!expressive
+        && <Label htmlFor={id} text={label} tooltip={tooltip} />}
       <StyledInputContainer className="input-container">
         <StyledInputWrap
           isAutofill={isAutofill}
@@ -139,9 +148,13 @@ const Input = React.forwardRef(({
           bordered={bordered}
           invalid={validationMessage && validationMessage.length > 0}
           isFocusActive={isFocusActive}
+          expressive={expressive}
+          inputValue={internalValue}
         >
-          {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled, affixClick, prefixBlock)}
-          <StyledInputClearWrap className="input-clear-wrap">
+          {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
+          <StyledInputClearWrap className="input-clear-wrap" expressive={expressive} inputValue={internalValue} breakpoint={breakpoint}>
+            {expressive
+              && <Label htmlFor={id} text={label} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
             <StyledInput
               mask={mask}
               guide={guide}
@@ -160,10 +173,12 @@ const Input = React.forwardRef(({
               isAutofill={isAutofill}
               ref={localRef}
               className={`input-default ${className}`}
+              expressive={expressive}
+              breakpoint={breakpoint}
             />
-            {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon)}
+            {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint)}
           </StyledInputClearWrap>
-          {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled, affixClick)}
+          {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
         </StyledInputWrap>
         <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
       </StyledInputContainer>
@@ -175,7 +190,7 @@ const Input = React.forwardRef(({
 
 Input.propTypes = {
   /**
-   * UUnique identifier for the Input
+   * Unique identifier for the Input
    */
   id: PropTypes.string,
   /**
@@ -187,6 +202,10 @@ Input.propTypes = {
    */
   label: PropTypes.string,
   /**
+   * Places the label within the field (used in expressive inputs)
+   */
+  inFieldLabel: PropTypes.bool,
+  /**
    * Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
@@ -196,13 +215,13 @@ Input.propTypes = {
   maxlength: PropTypes.number,
   /**
    * Mask to be applied to the input, see https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme
-   * Supported <input> types Please note that Text Mask supports input type of text, tel, url, password, and search.
+   * Supported input types Please note that Text Mask supports input type of text, tel, url, password, and search.
    * Due to a limitation in browser API, other input types, such as email or number, cannot be supported.
    * However, it is normal to let the user enter an email or a number in an input type text combined the appropriate input mask.
    */
   mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
   /**
-   *
+   * Sets the guide mode
    */
   guide: PropTypes.bool,
   /**
@@ -283,11 +302,16 @@ Input.propTypes = {
    * Disables the clear icon when true
    */
   disableClearIcon: PropTypes.bool,
+  /**
+   * Adds the 'expressive input' styling, used in conjuction with the 'infield label' prop
+   */
+  expressive: PropTypes.bool,
 };
 
 Input.defaultProps = {
   id: null,
   label: '',
+  inFieldLabel: false,
   tooltip: {},
   // there is a bug in text-mask where disabling the mask (setting to false) causes the input value to not
   // reset when the clear icon is clicked (PR:https://github.com/text-mask/text-mask/pull/831)
@@ -312,6 +336,7 @@ Input.defaultProps = {
   handleOnClick: null,
   className: '',
   disableClearIcon: false,
+  expressive: false,
 };
 
 export default Input;

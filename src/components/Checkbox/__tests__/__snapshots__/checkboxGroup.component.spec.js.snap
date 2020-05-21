@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup.component renders with minimal props 1`] = `
-"<div class=\\"sc-fzpans eRyONo\\"><label for=\\"test-group-id\\" class=\\"sc-fzplWN bksoqG label\\">test</label></div><div class=\\"sc-AxirZ sc-AxhCb euYxHK row \\"><div class=\\"sc-AxiKw sc-AxhUy LASJT 
+"<div class=\\"sc-fzpans wTRiS\\"><label for=\\"test-group-id\\" class=\\"sc-fzplWN lezwjC label\\">test</label></div><div class=\\"sc-AxirZ sc-AxhCb euYxHK row \\"><div class=\\"sc-AxiKw sc-AxhUy LASJT 
         
       \\"><div id=\\"test-group-id\\" class=\\"sc-fzokOt bjmRIa\\"><div class=\\"sc-AxirZ sc-AxhCb fmyLxU row sc-fzqBZW daebPH\\"><div class=\\"sc-AxiKw sc-AxhUy jDPveP 
         
@@ -13,7 +13,7 @@ exports[`CheckboxGroup.component renders with minimal props 1`] = `
 `;
 
 exports[`CheckboxGroup.component renders with props 1`] = `
-"<div class=\\"sc-fzpans eRyONo\\"><label for=\\"test-group-id\\" class=\\"sc-fzplWN bksoqG label\\"></label></div><div class=\\"sc-AxirZ sc-AxhCb euYxHK row \\"><div class=\\"sc-AxiKw sc-AxhUy LASJT 
+"<div class=\\"sc-fzpans wTRiS\\"><label for=\\"test-group-id\\" class=\\"sc-fzplWN lezwjC label\\"></label></div><div class=\\"sc-AxirZ sc-AxhCb euYxHK row \\"><div class=\\"sc-AxiKw sc-AxhUy LASJT 
         
       \\"><div id=\\"test-group-id\\" class=\\"sc-fzokOt bjmRIa\\"><div class=\\"sc-AxirZ sc-AxhCb fmyLxU row sc-fzqBZW daebPH\\"><div class=\\"sc-AxiKw sc-AxhUy cyAzeP 
         
