@@ -54,7 +54,7 @@ const ToggleGroup = ({
     if (handleToggle) {
       handleToggle(value);
     }
-  }, [setSelectedToggleValue, handleToggle, value]);
+  }, [setSelectedToggleValue, handleToggle]);
   // If the selected value externally changes we want to reflect this in our toggle selection state
   useEffect(() => {
     setSelectedToggleValue(selectedValue);
