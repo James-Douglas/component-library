@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
 import Label from '../Label/Label.component';
@@ -49,12 +49,16 @@ const ToggleGroup = ({
 }) => {
   const groupId = useId(propsId);
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
-  const toggleHandler = (value) => {
+  const toggleHandler = useCallback((value) => {
     setSelectedToggleValue(value);
     if (handleToggle) {
       handleToggle(value);
     }
-  };
+  }, [setSelectedToggleValue, handleToggle, value]);
+  // If the selected value externally changes we want to reflect this in our toggle selection state
+  useEffect(() => {
+    setSelectedToggleValue(selectedValue);
+  }, [selectedValue, setSelectedToggleValue]);
   return (
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
