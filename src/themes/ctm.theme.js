@@ -549,6 +549,9 @@ const ctmTheme = {
       shadowHover: elevation.lvl5,
       labelShadow: '0 0 2px 3px rgba(0, 123, 255, .3)',
     },
+    button: {
+      text: colors.grey900,
+    },
   },
   tooltip: {
     iconColor: colors.primary500,

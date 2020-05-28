@@ -20,6 +20,7 @@ const TextToggle = ({
   handleFocus,
   handleBlur,
   handleClick,
+  button,
 }) => {
   const id = useId(propsId);
   const toggleHandler = () => {
@@ -39,9 +40,10 @@ const TextToggle = ({
       handleFocus={handleFocus}
       handleBlur={handleBlur}
       handleClick={handleClick}
+      button={button}
     >
-      <ToggleLabel id={id}>
-        <StyledWrapper>
+      <ToggleLabel id={id} button={button}>
+        <StyledWrapper button={button}>
           <StyledTextToggleContent contentWidth={contentWidth} contentHeight={contentHeight}>
             <StyledContent>{title}</StyledContent>
           </StyledTextToggleContent>
@@ -117,6 +119,10 @@ TextToggle.propTypes = {
    * Handler function called on click of the toggle
    */
   handleClick: PropTypes.func,
+  /**
+   * Whether or not to render the container as a button.
+   */
+  button: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 TextToggle.defaultProps = {
@@ -132,6 +138,7 @@ TextToggle.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   handleClick: null,
+  button: null,
 };
 
 export default TextToggle;

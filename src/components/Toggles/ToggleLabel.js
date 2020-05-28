@@ -3,17 +3,18 @@ import PropTypes from 'prop-types';
 import useId from '../../hooks/useId';
 import { StyledContent, StyledToggleLabel } from './ToggleLabel.styles';
 
-const ToggleLabel = ({ id: propsId, children }) => {
+const ToggleLabel = ({ id: propsId, button, children }) => {
   const id = useId(propsId);
   return (
     <StyledToggleLabel htmlFor={id}>
-      <StyledContent>{children}</StyledContent>
+      <StyledContent button={button}>{children}</StyledContent>
     </StyledToggleLabel>
   );
 };
 
 ToggleLabel.propTypes = {
   id: PropTypes.string,
+  button: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -23,6 +24,7 @@ ToggleLabel.propTypes = {
 
 ToggleLabel.defaultProps = {
   id: null,
+  button: null,
 };
 
 export default ToggleLabel;

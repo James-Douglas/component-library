@@ -1,15 +1,26 @@
 import styled, { css } from 'styled-components';
 
+const buttonOverrides = ({ button, theme }) => css`
+  ${button === 'flex' && css`flex: auto;`};
+  margin-left: -1px;
+  box-shadow: none;
+  &:hover {
+    border: ${theme.borders.hover};
+    z-index: 1;
+  }
+`;
+
 export const StyledToggle = styled.div`
   display: flex;
   position: relative;
   cursor: pointer;
   border: ${({ theme, invalid }) => (invalid ? theme.borders.invalid : theme.borders.component)};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin: ${({ theme }) => `0 ${theme.spacing['16']} ${theme.spacing['16']} 0`};
+  margin: ${({ button, theme }) => (button ? 0 : `0 ${theme.spacing['16']} ${theme.spacing['16']} 0`)};
   background: ${({ theme }) => theme.toggle.base.background};
   box-shadow: ${({ theme }) => theme.boxShadow.sm};
   line-height: ${({ theme }) => theme.lineHeight.normal};
+  ${({ button }) => button && buttonOverrides}
 `;
 
 export const StyledToggleInput = styled.input`

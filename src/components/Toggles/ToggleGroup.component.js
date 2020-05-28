@@ -16,6 +16,7 @@ export const getChildren = (
   validationMessage,
   contentWidth,
   contentHeight,
+  buttons,
 ) => (
   children.map((child, index) => {
     const key = `toggle-${groupId}-${index}`;
@@ -28,6 +29,7 @@ export const getChildren = (
       invalid: !!validationMessage && validationMessage.length > 0,
       contentWidth,
       contentHeight,
+      button: buttons,
     };
     return React.cloneElement(child, propsToAdd);
   })
@@ -46,6 +48,7 @@ const ToggleGroup = ({
   contentWidth,
   contentHeight,
   className,
+  buttons,
 }) => {
   const groupId = useId(propsId);
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
@@ -62,8 +65,8 @@ const ToggleGroup = ({
   return (
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
-      <StyledToggleGroup id={groupId} className={className}>
-        {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight)}
+      <StyledToggleGroup id={groupId} className={className} buttons={buttons} contentWidth={contentWidth}>
+        {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight, buttons)}
       </StyledToggleGroup>
       <StyledValidationWrapper>
         <FieldValidation message={validationMessage} />
@@ -135,6 +138,10 @@ ToggleGroup.propTypes = {
    * Classes to be applied to the ToggleGroup component
    */
   className: PropTypes.string,
+  /**
+   * Whether or not the group should be rendered as segmented buttons.
+   */
+  buttons: PropTypes.oneOfType(['Flex', PropTypes.bool]),
 };
 
 ToggleGroup.defaultProps = {
@@ -148,6 +155,7 @@ ToggleGroup.defaultProps = {
   contentWidth: null,
   contentHeight: null,
   className: '',
+  buttons: null,
 };
 
 export default ToggleGroup;

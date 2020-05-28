@@ -1,7 +1,13 @@
 import styled, { css } from 'styled-components';
 
+const buttonOverrides = css`
+  padding: ${({ theme }) => theme.spacing[16]};
+  color: ${({ theme }) => theme.toggle.button.text};
+`;
+
 export const StyledWrapper = styled.div`
-  padding: ${({ theme }) => theme.spacing['36']};
+  padding: ${({ theme }) => theme.spacing[36]};
+  ${({ button }) => button && buttonOverrides}
 `;
 
 export const StyledTextToggleContent = styled.div`

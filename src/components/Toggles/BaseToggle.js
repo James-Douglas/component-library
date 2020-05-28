@@ -17,6 +17,7 @@ const BaseToggle = ({
   checkedFontColor,
   children,
   className,
+  button,
 }) => {
   const id = useId(propsId);
   const [checked, setChecked] = useState(selectedValue || false);
@@ -44,6 +45,7 @@ const BaseToggle = ({
       ref={wrapperElement}
       className={className}
       checked={checked}
+      button={button}
     >
       <StyledToggleInput
         tabIndex={0}
@@ -115,6 +117,10 @@ BaseToggle.propTypes = {
   checkedFontColor: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
+  /**
+   * Used by the `Button` toggle to determine if the toggle needs to be styled like a button.
+   */
+  button: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 BaseToggle.defaultProps = {
@@ -129,6 +135,7 @@ BaseToggle.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   handleClick: null,
+  button: null,
 };
 
 export default BaseToggle;
