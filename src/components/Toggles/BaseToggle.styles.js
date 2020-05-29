@@ -4,6 +4,9 @@ const buttonOverrides = ({ button, theme }) => css`
   ${button === 'flex' && css`flex: auto;`};
   margin-left: -1px;
   box-shadow: none;
+  &:not(:first-child) {
+    border-left: ${theme.borders.component};
+  }
   &:hover {
     border: ${theme.borders.hover};
     z-index: 1;
@@ -43,6 +46,7 @@ export const StyledToggleInput = styled.input`
     background: ${({ theme }) => theme.toggle.base.backgroundChecked};
     color: ${({ checkedFontColor, theme }) => checkedFontColor || theme.toggle.base.colorChecked};
     box-shadow: none;
+    ${({ theme, button }) => button && css` font-weight: ${theme.fontWeight.semibold}`}
   }
 
   &:disabled + label:hover {

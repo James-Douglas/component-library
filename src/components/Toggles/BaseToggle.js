@@ -61,6 +61,7 @@ const BaseToggle = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         checkedFontColor={checkedFontColor}
+        button={button}
       />
       {children}
     </StyledToggle>

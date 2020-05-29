@@ -45,7 +45,7 @@ const TextToggle = ({
       <ToggleLabel id={id} button={button}>
         <StyledWrapper button={button}>
           <StyledTextToggleContent contentWidth={contentWidth} contentHeight={contentHeight}>
-            <StyledContent>{title}</StyledContent>
+            <StyledContent button={button}>{title}</StyledContent>
           </StyledTextToggleContent>
         </StyledWrapper>
       </ToggleLabel>
