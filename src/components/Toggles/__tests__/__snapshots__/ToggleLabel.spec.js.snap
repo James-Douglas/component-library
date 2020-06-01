@@ -3,7 +3,7 @@
 exports[`ToggleLabel renders with minimal props 1`] = `
 <div>
   <label
-    class="sc-AxjAm kIBWnh"
+    class="sc-AxjAm gwcMxF"
     for="test"
   >
     <div
