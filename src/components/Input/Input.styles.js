@@ -22,7 +22,7 @@ const pseudoBorder = ({ theme }) => css`
   position: absolute;
   bottom: 0;
   left: 0;
-  transition: 0.2s all ease-in;
+  transition: 0.1s all ease-in;
 `;
 
 export const StyledWrapper = styled.div`
@@ -99,6 +99,9 @@ export const StyledInputWrap = styled.div`
   `}
   ${({ theme, expressive, disabled }) => expressive && css`
     border-bottom: ${disabled ? theme.borders.disabled : theme.borders.expressive};
+    &:hover {
+      border-bottom: ${theme.borders.hover};
+    }
     &:before {
       ${pseudoBorder};
     }
@@ -125,8 +128,16 @@ export const StyledInputWrap = styled.div`
       border: ${theme.borders.invalid};
     }
   `}
+  ${({ theme, isFocusActive, expressive }) => (isFocusActive && expressive) && css`
+    border-bottom: ${theme.borders.active};
+    transition: 0.1s border ease-in;
+  `}
   ${({ theme, invalid, expressive }) => (invalid && expressive) && css`
     border-bottom: ${theme.borders.invalid};
+    transition: 0.1s border ease-in;
+    :hover {
+      border-bottom: ${theme.borders.invalid};
+    }
     &:before {
       ${pseudoBorder};
       height: 100%;
@@ -135,6 +146,10 @@ export const StyledInputWrap = styled.div`
   `}
   ${({ theme, isAutofill, expressive }) => (isAutofill && expressive) && css`
     border-bottom: ${theme.borders.prefill};
+    transition: 0.1s border ease-in;
+    :hover {
+      border-bottom: ${theme.borders.prefill};
+    }
     &:before {
       content: "";
       width: 1px;

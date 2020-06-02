@@ -273,7 +273,7 @@ const borders = {
   prefill: `1px solid ${colors.inputPrefilledBorder}`,
   dark: `1px solid ${colors.brandMidnightBlue}`,
   focus: `1px solid ${colors.primary500}`,
-  expressive: `1px solid ${colors.primary300}`,
+  expressive: `1px solid ${colors.primary200}`,
 };
 
 const ctmTheme = {
