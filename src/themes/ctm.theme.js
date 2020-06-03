@@ -8,7 +8,8 @@ const flexboxgrid = {
     xs: 0, // em
     sm: 48, // em or 768px
     md: 64, // em or 1024px
-    lg: 75, // em or 1200px
+    lg: 75, // em or 1200px,
+    xl: 90, // em or 1440px
   },
 };
 

@@ -7,27 +7,27 @@ exports[`BodyText.component renders correctly with minimal props 1`] = `
   font-size: 1.6rem;
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 

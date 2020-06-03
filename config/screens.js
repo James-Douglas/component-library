@@ -1,10 +1,9 @@
 const screens = {
   xs: "375px",
-  sm: "720px",
-  md: "1200px",
-  lg: "1400px",
-  xl: "1900px",
-  xxl: "2560px"
+  sm: "768px",
+  md: "1024px",
+  lg: "1200px",
+  xl: "1440px"
 };
 
 export default screens;

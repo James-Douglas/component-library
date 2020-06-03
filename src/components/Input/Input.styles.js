@@ -9,7 +9,7 @@ const labelAnimation = (props) => keyframes`
       top: 12px;
     }
     100% { 
-      top: ${props.breakpoint === 'xl' || props.breakpoint === 'xxl' ? '7px' : '5px'};
+      top: ${props.breakpoint === 'xl' ? '7px' : '5px'};
       visibility: visible;
     }
   `;
@@ -41,7 +41,7 @@ export const StyledClearIcon = styled.button`
   right: 0;
   width: ${({ theme }) => theme.spacing[44]};
   height: ${({ theme }) => theme.spacing[44]};
-  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive) || (breakpoint === 'xxl' && expressive)) && css`
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive)) && css`
     height: ${theme.spacing[56]};
   `}
   transition: ${({ theme }) => theme.transition.default};
@@ -61,7 +61,7 @@ export const StyledAffix = styled.span`
   min-width: ${({ theme, expressive }) => (expressive ? theme.spacing[16] : theme.spacing[48])};
   padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};
   height: ${({ theme }) => theme.input.height};
-  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive) || (breakpoint === 'xxl' && expressive)) && css`
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive)) && css`
     height: ${theme.spacing[56]};
   `}
   ${({ prefixBlock, isAutofill, theme }) => prefixBlock && !isAutofill && css`
@@ -166,7 +166,7 @@ export const StyledInputClearWrap = styled.div`
   position: relative;
   width: 100%;
   min-height: ${({ theme }) => `calc(${theme.input.height} + 0.1rem)`};
-  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive) || (breakpoint === 'xxl' && expressive)) && css`
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive)) && css`
     height: 'calc(${theme.spacing[56]} + 0.1rem)'};
   `}
   margin-right: 0.1rem;
@@ -193,7 +193,7 @@ export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ..
   font-size: ${({ theme }) => theme.fontSize.base};
   border: ${({ theme }) => theme.borders.transparent};
   height: ${({ theme }) => theme.input.height};
-  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive) || (breakpoint === 'xxl' && expressive)) && css`
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive)) && css`
     height: ${theme.spacing[56]};
     font-size: ${theme.fontSize.xl};
     ::placeholder {

@@ -8,27 +8,27 @@ exports[`Container allows additional classes to be passed through 1`] = `
   padding-right: 1.6rem;
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
@@ -47,27 +47,27 @@ exports[`Container has a container class by default and NO fixed class 1`] = `
   padding-right: 1.6rem;
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
@@ -86,27 +86,27 @@ exports[`Container renders children 1`] = `
   padding-right: 1.6rem;
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
@@ -131,27 +131,27 @@ exports[`Container renders correctly without props 1`] = `
   padding-right: 1.6rem;
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 

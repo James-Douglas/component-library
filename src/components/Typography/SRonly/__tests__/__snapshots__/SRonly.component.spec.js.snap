@@ -14,27 +14,27 @@ exports[`SRonly.component renders correctly with minimal props 1`] = `
   border-width: 0;
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 

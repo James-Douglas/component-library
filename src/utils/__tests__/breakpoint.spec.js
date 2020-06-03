@@ -6,7 +6,6 @@ jest.mock('../../../config/screens', () => ({
   md: '992px',
   lg: '1200px',
   xl: '1900px',
-  xxl: '2560px',
 }));
 
 let windowSpy;
@@ -49,18 +48,9 @@ describe('getBreakpoint()', () => {
     }));
     expect(getBreakpoint()).toEqual('xl');
   });
-  it('returns xxl for xxl screen', () => {
-    windowSpy.mockImplementation(() => ({
-      innerWidth: 1901,
-    }));
-    expect(getBreakpoint()).toEqual('xxl');
-  });
 });
 
 describe('isDesktop()', () => {
-  it('returns true when breakpoint is xxl', () => {
-    expect(isDesktop('xxl')).toBeTruthy();
-  });
   it('returns true when breakpoint is xl', () => {
     expect(isDesktop('xl')).toBeTruthy();
   });

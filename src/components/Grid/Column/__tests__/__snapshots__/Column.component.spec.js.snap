@@ -137,27 +137,27 @@ exports[`Column renders correctly without props 1`] = `
   }
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 

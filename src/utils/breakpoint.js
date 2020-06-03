@@ -5,9 +5,6 @@ const breakpoints = Object.assign({}, ...Object.keys(screens).map((key) => ({ [k
 function getBreakpoint() {
   const width = window.innerWidth;
 
-  if (width > breakpoints.xl) {
-    return 'xxl';
-  }
   if (width > breakpoints.lg) {
     return 'xl';
   }
@@ -23,7 +20,7 @@ function getBreakpoint() {
   return 'xs';
 }
 function isDesktop(breakpoint = getBreakpoint()) {
-  return ['md', 'lg', 'xl', 'xxl'].includes(breakpoint);
+  return ['md', 'lg', 'xl'].includes(breakpoint);
 }
 
 export { getBreakpoint, isDesktop };

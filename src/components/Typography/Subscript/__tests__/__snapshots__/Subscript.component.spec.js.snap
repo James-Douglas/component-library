@@ -13,27 +13,27 @@ exports[`Subscript.component renders correctly with minimal props 1`] = `
   color: #757575;
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
-@media (min-width:1200px) {
+@media (min-width:1024px) {
 
 }
 
