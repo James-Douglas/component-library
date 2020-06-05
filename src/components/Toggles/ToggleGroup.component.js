@@ -141,7 +141,7 @@ ToggleGroup.propTypes = {
   /**
    * Whether or not the group should be rendered as segmented buttons.
    */
-  buttons: PropTypes.oneOfType(['Flex', PropTypes.bool]),
+  buttons: PropTypes.oneOfType([ PropTypes.oneOf(['flex']), PropTypes.bool, ])
 };
 
 ToggleGroup.defaultProps = {
