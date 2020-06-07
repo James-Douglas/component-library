@@ -45,7 +45,6 @@ const Textarea = ({
   placeholder,
   value,
   prefillValue,
-  bordered,
   disabled,
   required,
   rows,
@@ -135,7 +134,6 @@ const Textarea = ({
           isDirty={isDirty}
           validation={validation}
           textAreaRemainChars={textAreaRemainChars}
-          bordered={bordered}
           aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
         />
         <SupportingElements
@@ -184,10 +182,6 @@ Textarea.propTypes = {
    * The placeholder text for the input.
    */
   placeholder: PropTypes.string,
-  /**
-   * The input field border style.
-   */
-  bordered: PropTypes.bool,
   /**
    * Disables the button via a class on its wrapper, and an attribute on the input.
    */
@@ -248,7 +242,6 @@ Textarea.defaultProps = {
   name: '',
   value: '',
   placeholder: '',
-  bordered: true,
   disabled: false,
   required: false,
   prefillValue: '',

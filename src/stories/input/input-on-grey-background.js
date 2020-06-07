@@ -22,7 +22,6 @@ const GreyBackgroundView = () => {
         tooltip={tooltip}
         placeholder="Placeholder one"
         type="text"
-        bordered={false}
         required={false}
         handleChange={(value) => logValue(value)}
       />
@@ -32,7 +31,6 @@ const GreyBackgroundView = () => {
         tooltip={tooltip}
         placeholder="Placeholder two"
         type="text"
-        bordered={false}
         required={false}
         handleChange={(value) => logValue(value)}
       />

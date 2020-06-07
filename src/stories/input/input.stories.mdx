@@ -28,7 +28,6 @@ ways, including setting prefix & suffix content, adding a mask, etc (see props).
         tooltip={{title: 'input demo'}}
         placeholder="Placeholder one"
         type="text"
-        bordered
         required={false}
         disabled={false}
         invalid={false}
@@ -68,7 +67,6 @@ populated with `prefillValue` and prefilled styles will be applied.
     const placeholder = text('placeholder', 'placeholder text', componentPropsId);
     const required = boolean('required', false, componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
-    const bordered = boolean('bordered', true, componentPropsId);
     const prefixContent = text('prefixContent', '', componentPropsId);
     const prefixBlock = boolean('prefixBlock', false, componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
@@ -94,7 +92,6 @@ populated with `prefillValue` and prefilled styles will be applied.
           required={required}
           handleChange={() => {}}
           disabled={disabled}
-          bordered={bordered}
           prefixContent={prefixContent}
           prefixBlock={prefixBlock}
           suffixContent={suffixContent}

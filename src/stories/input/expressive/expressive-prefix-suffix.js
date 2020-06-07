@@ -18,7 +18,6 @@ const prefixSuffixView = () => {
         id="input-one"
         placeholder="Placeholder"
         type="text"
-        bordered
         required={false}
         disabled={false}
         prefixContent={<FontAwesomeIcon icon={faFolder} />}
@@ -31,7 +30,6 @@ const prefixSuffixView = () => {
         id="input-two"
         placeholder="Placeholder two"
         type="text"
-        bordered
         required={false}
         disabled={false}
         prefixContent="prefix"
@@ -43,7 +41,6 @@ const prefixSuffixView = () => {
         id="input-three"
         placeholder="Placeholder three"
         type="text"
-        bordered
         required={false}
         disabled={false}
         suffixContent="suffix"

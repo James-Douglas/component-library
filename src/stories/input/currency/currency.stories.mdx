@@ -17,7 +17,6 @@ import getTooltipKnobs from '../../tooltipKnobs';
         tooltip={{title: 'currency demo'}}
         placeholder="12345"
         currencySymbol="$"
-        bordered
         required={false}
         disabled={false}
         invalid={false}
@@ -39,11 +38,10 @@ import getTooltipKnobs from '../../tooltipKnobs';
     const validationMessage = text('validationMessage', '', componentPropsId);
     const maxLength = number('maxLength', 25, {}, componentPropsId);
     const value = text('value', '', componentPropsId);
-    const prefillValue = text('prefillValue', '1', componentPropsId);
+    const prefillValue = text('prefillValue', '12', componentPropsId);
     const placeholder = text('placeholder', '12345', componentPropsId);
     const required = boolean('required', false, componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
-    const bordered = boolean('bordered', true, componentPropsId);
     const currencySymbol = text('currencySymbol', '$', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant } = getTooltipKnobs(tooltipGroupId);
     return (
@@ -64,10 +62,9 @@ import getTooltipKnobs from '../../tooltipKnobs';
           prefillValue={prefillValue}
           placeholder={placeholder}
           currencySymbol={currencySymbol}
-          bordered={bordered}
           required={required}
           disabled={disabled}
-          handleChange={() => {}}
+          handleChange={(value) => {console.warn('currency return value', value)}}
         />
       </div>
     )

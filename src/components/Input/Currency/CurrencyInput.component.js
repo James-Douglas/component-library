@@ -13,7 +13,6 @@ const CurrencyInput = ({
   prefillValue,
   handleChange,
   currencySymbol,
-  bordered,
   required,
   disabled,
   autocomplete,
@@ -70,7 +69,6 @@ const CurrencyInput = ({
       handleChange={changeHandler}
       prefixContent={currencySymbol}
       placeholder={placeholder}
-      bordered={bordered}
       required={required}
       maxlength={maxlength}
       mask={maskFunc}
@@ -140,10 +138,6 @@ CurrencyInput.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * The input field border style.
-   */
-  bordered: PropTypes.bool,
-  /**
    * Maximum length for the input element
    */
   maxlength: PropTypes.number,
@@ -176,7 +170,6 @@ CurrencyInput.defaultProps = {
   currencySymbol: '',
   required: true,
   disabled: false,
-  bordered: true,
   label: '',
   className: '',
   handleFocus: null,

@@ -13,7 +13,6 @@ const DateInput = ({
   value,
   prefillValue,
   handleChange,
-  bordered,
   required,
   disabled,
   autocomplete,
@@ -39,7 +38,6 @@ const DateInput = ({
       mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
       guide
       placeholder="DD/MM/YYYY"
-      bordered={bordered}
       required={required}
       maxlength={11}
       prefillValue={prefillValue}
@@ -102,10 +100,6 @@ DateInput.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * The input field border style.
-   */
-  bordered: PropTypes.bool,
-  /**
    * Turn the browsers implementation of autocompletion/memory of forms on or off.
    */
   autocomplete: PropTypes.string,
@@ -142,7 +136,6 @@ DateInput.defaultProps = {
   autocomplete: 'off',
   required: true,
   disabled: false,
-  bordered: true,
   label: '',
   className: '',
   handleFocus: null,

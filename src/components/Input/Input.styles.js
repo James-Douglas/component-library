@@ -80,11 +80,7 @@ export const StyledInputContainer = styled.div`
 export const StyledInputWrap = styled.div`
   display: flex;
   background: ${({ theme }) => theme.input.background};
-  ${({
-    theme, isAutofill, disabled, expressive,
-  }) => (isAutofill && !disabled && !expressive) && css`
-    background: ${theme.colors.inputPrefilled};
-  `}
+  transition: border 0.1s ease-in-out;
   border: ${({ theme }) => theme.borders.transparent};
   ${({ expressive }) => !expressive && css`
     :hover {
@@ -94,13 +90,13 @@ export const StyledInputWrap = styled.div`
   [disabled] {
     background: ${({ theme, expressive }) => (expressive ? theme.input.expressiveDisabled : theme.input.background)};
   }
-  ${({ theme, bordered, expressive }) => (bordered && !expressive) && css`
+  ${({ theme, expressive }) => !expressive && css`
     border: ${theme.borders.component};
   `}
   ${({ theme, expressive, disabled }) => expressive && css`
     border-bottom: ${disabled ? theme.borders.disabled : theme.borders.expressive};
     &:hover {
-      border-bottom: ${theme.borders.hover};
+      border-bottom: ${disabled ? theme.borders.disabled : theme.borders.hover};
     }
     &:before {
       ${pseudoBorder};
@@ -112,15 +108,15 @@ export const StyledInputWrap = styled.div`
     }
   `}
   ${({
-    theme, bordered, isAutofill, disabled, expressive,
-  }) => (bordered && isAutofill && !disabled && !expressive) && css`
+    theme, isAutofill, disabled, expressive,
+  }) => (isAutofill && !disabled && !expressive) && css`
     border: ${theme.borders.prefill};
   `}
   ${({ disabled }) => (disabled) && css`
     opacity: 0.5;
   `}
   ${({ theme, isFocusActive, expressive }) => (isFocusActive && !expressive) && css`
-    border: ${theme.borders.hover};
+    border: ${theme.borders.active};
   `}
   ${({ theme, invalid, expressive }) => (invalid && !expressive) && css`
     border: ${theme.borders.invalid};
@@ -214,9 +210,4 @@ export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ..
   :hover {
     outline: 0;
   }
-  ${({
-    theme, isAutofill, disabled, expressive,
-  }) => (isAutofill && !disabled && !expressive) && css`
-    background: ${theme.colors.inputPrefilled};
-  `}
 `;

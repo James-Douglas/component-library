@@ -38,7 +38,6 @@ const Dropdown = ({
   children,
   validationMessage,
   required,
-  bordered,
   disabled,
   prefixContent,
   handleChange,
@@ -241,7 +240,6 @@ const Dropdown = ({
             tabIndex={0}
             invalid={validationMessage && validationMessage.length > 0}
             disabled={disabled}
-            bordered={bordered}
           >
             <StyledDropdownContent disabled={disabled}>
               {prefixContent && <StyledAffix>{prefixContent}</StyledAffix>}
@@ -289,10 +287,6 @@ Dropdown.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   /**
-   * Display a border on the Dropdown
-   */
-  bordered: PropTypes.bool,
-  /**
    * Adds/removes a supporting element, `<span>OPTIONAL</span>` to show the field is optional.
    */
   required: PropTypes.bool,
@@ -334,7 +328,6 @@ Dropdown.defaultProps = {
   children: '',
   validationMessage: '',
   disabled: false,
-  bordered: true,
   required: true,
   prefixContent: '',
   handleChange: null,

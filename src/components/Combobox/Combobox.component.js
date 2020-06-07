@@ -101,7 +101,6 @@ const Combobox = React.forwardRef(({
   validationMessage,
   value,
   prefillValue,
-  bordered,
   prefixContent,
   suffixContent,
   autocomplete,
@@ -318,7 +317,6 @@ const Combobox = React.forwardRef(({
               label={label}
               value={currentValue}
               prefillValue={prefillValue}
-              bordered={bordered}
               required={required}
               disabled={disabled}
               validationMessage={validationMessage}
@@ -355,7 +353,6 @@ const Combobox = React.forwardRef(({
             label={label}
             value={currentValue}
             prefillValue={prefillValue}
-            bordered={bordered}
             required={required}
             disabled={disabled}
             validationMessage={validationMessage}
@@ -438,10 +435,6 @@ Combobox.propTypes = {
    */
   prefillValue: PropTypes.string,
   /**
-   * Styles the input with a border
-   */
-  bordered: PropTypes.bool,
-  /**
    * Sets the autocomplete attribute on the input element
    */
   autocomplete: PropTypes.string,
@@ -521,7 +514,6 @@ Combobox.defaultProps = {
   listIcon: null,
   placeholder: '',
   validationMessage: null,
-  bordered: true,
   required: false,
   disabled: false,
   value: '',

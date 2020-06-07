@@ -46,7 +46,7 @@ export const manor = css`
   *, *:before, *:after {
     box-sizing: inherit;
   }
-  h1, h2, h3, h4, h5, h6, p, ul, ol, ul li, ol l input, label, button, textarea, .subtitle-primary, .subtitle-secondary, .microcopy, .overline, .subscript, ::placeholder {
+  h1, h2, h3, h4, h5, h6, p, ul, ol, ul li, ol li, input, label, button, textarea, .subtitle-primary, .subtitle-secondary, .microcopy, .overline, .subscript, ::placeholder {
     font-weight: ${({ theme }) => theme.fontWeight.normal};
     font-family: SourceSansPro, Arial, sans-serif;
     color: ${({ theme }) => theme.colors.grey900};

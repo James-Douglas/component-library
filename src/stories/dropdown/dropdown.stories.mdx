@@ -100,7 +100,6 @@ selection will update to the selected option.
     const validationMessage = text('validationMessage', '', componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
     const required = boolean('required', false, componentPropsId);
-    const bordered = boolean('bordered', true, componentPropsId);
     const prefixContent = text('prefix', '', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
@@ -114,7 +113,6 @@ selection will update to the selected option.
                 required={required}
                 disabled={disabled}
                 selectedValue="Second"
-                bordered={bordered}
                 prefixContent={prefixContent}
                 validationMessage={validationMessage}
                 tooltip={{

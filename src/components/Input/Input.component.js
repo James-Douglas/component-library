@@ -37,12 +37,11 @@ export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, 
   return null;
 };
 
-export const renderAffix = (affixType, affixContent, bordered, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint) => {
+export const renderAffix = (affixType, affixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint) => {
   if (affixType && affixContent) {
     return (
       <StyledAffix
         affixType={affixType}
-        bordered={bordered}
         isAutofill={isAutofill}
         disabled={disabled}
         onClick={affixClick}
@@ -72,7 +71,6 @@ const Input = React.forwardRef(({
   prefillValue,
   required,
   disabled,
-  bordered,
   prefixContent,
   prefixBlock,
   suffixContent,
@@ -145,13 +143,12 @@ const Input = React.forwardRef(({
         <StyledInputWrap
           isAutofill={isAutofill}
           disabled={disabled}
-          bordered={bordered}
           invalid={validationMessage && validationMessage.length > 0}
           isFocusActive={isFocusActive}
           expressive={expressive}
           inputValue={internalValue}
         >
-          {renderAffix('prefix', prefixContent, bordered, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
+          {renderAffix('prefix', prefixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
           <StyledInputClearWrap className="input-clear-wrap" expressive={expressive} inputValue={internalValue} breakpoint={breakpoint}>
             {expressive
               && <Label htmlFor={id} text={label} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
@@ -178,7 +175,7 @@ const Input = React.forwardRef(({
             />
             {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint)}
           </StyledInputClearWrap>
-          {renderAffix('suffix', suffixContent, bordered, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
+          {renderAffix('suffix', suffixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
         </StyledInputWrap>
         <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
       </StyledInputContainer>
@@ -252,10 +249,6 @@ Input.propTypes = {
    * Displays given validation message and invalid styles on the component when provided.
    */
   validationMessage: PropTypes.string,
-  /**
-   * The input field border style.
-   */
-  bordered: PropTypes.bool,
   /**
    * Turn the browsers implementation of autocompletion/memory of forms on or off.
    */
@@ -331,7 +324,6 @@ Input.defaultProps = {
   required: true,
   disabled: false,
   validationMessage: '',
-  bordered: true,
   dataList: null,
   handleOnClick: null,
   className: '',

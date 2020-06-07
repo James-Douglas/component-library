@@ -15,7 +15,6 @@ export const StyledDropdownList = styled.div`
     max-height: ${({ theme }) => (theme.minHeight.full)};;
     margin: 0;
   `}
-  
   z-index: ${({ theme }) => (theme.zIndex[40])};
 `;
 

@@ -20,7 +20,6 @@ const prefixSuffixView = () => {
         tooltip={tooltip}
         placeholder="example@email.com"
         type="email"
-        bordered
         disabled={false}
         handleChange={(value) => logValue(value)}
       />
@@ -31,7 +30,6 @@ const prefixSuffixView = () => {
         id="input-mobile"
         placeholder="(04)x xxx xxxx"
         type="tel"
-        bordered
         disabled={false}
         handleChange={(value) => logValue(value)}
       />
@@ -42,7 +40,6 @@ const prefixSuffixView = () => {
         id="input-age"
         placeholder="e.g 25"
         type="number"
-        bordered
         disabled={false}
         handleChange={(value) => logValue(value)}
       />
@@ -53,7 +50,6 @@ const prefixSuffixView = () => {
         id="input-long-label"
         placeholder="Placeholder value"
         type="text"
-        bordered
         disabled={false}
         handleChange={(value) => logValue(value)}
       />

@@ -30,9 +30,6 @@ const SvgUkFlag = () => (
   </svg>
 );
 
-/* renderClearIcon()
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
 describe('renderClearIcon()', () => {
   const ClearIconContainer = ({
     // eslint-disable-next-line react/prop-types
@@ -55,16 +52,13 @@ describe('renderClearIcon()', () => {
   });
 });
 
-/* renderAffix()
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
 describe('renderAffix()', () => {
   const AffixContainer = ({
     // eslint-disable-next-line react/prop-types
-    affixType, affixContent, bordered, isAutofill, disabled,
+    affixType, affixContent, isAutofill, disabled,
   }) => (
     <>
-      {renderAffix(affixType, affixContent, bordered, isAutofill, disabled)}
+      {renderAffix(affixType, affixContent, isAutofill, disabled)}
     </>
   );
 
@@ -74,12 +68,12 @@ describe('renderAffix()', () => {
   });
 
   it('renders a prefix when supplied', () => {
-    const { getByText } = render(<AffixContainer affixType="prefix" affixContent="?" bordered />);
+    const { getByText } = render(<AffixContainer affixType="prefix" affixContent="?" />);
     expect(getByText('?')).toBeInTheDocument();
   });
 
   it('renders a suffix when supplied', () => {
-    const { getByText } = render(<AffixContainer affixType="suffix" affixContent="?!" bordered />);
+    const { getByText } = render(<AffixContainer affixType="suffix" affixContent="?!" />);
     expect(getByText('?!')).toBeInTheDocument();
   });
 
@@ -92,13 +86,10 @@ describe('renderAffix()', () => {
   });
 
   it('can render a component via prop', () => {
-    const { container } = render(<AffixContainer affixType="suffix" bordered affixContent={<SvgUkFlag />} />);
+    const { container } = render(<AffixContainer affixType="suffix" affixContent={<SvgUkFlag />} />);
     expect(container.querySelector('svg')).toBeInTheDocument();
   });
 });
-
-/* Input.component
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 describe('Input.component', () => {
   it('renders with minimal props', () => {
@@ -132,24 +123,6 @@ describe('Input.component', () => {
     expect(inputWrap).toHaveStyleRule('border', theme.borders.component);
     expect(inputInvalid).toBe(null);
     expect(container.innerHTML).toMatchSnapshot();
-  });
-
-  it('renders an unbordered input', () => {
-    const { container } = render(
-      <Input
-        id="test-id"
-        type="text"
-        placeholder="placeholder test"
-        bordered={false}
-        handleChange={() => {}}
-      />,
-    );
-
-    const inputFieldWrap = container.querySelector('.input-container');
-    const inputWrap = inputFieldWrap.firstChild;
-
-    expect(inputWrap).not.toHaveStyleRule('border', theme.borders.component);
-    expect(inputWrap).toHaveStyleRule('border', theme.borders.transparent);
   });
 
   it('renders an invalid input', () => {
@@ -223,7 +196,6 @@ describe('Input.component', () => {
     const inputFieldWrap = container.querySelector('.input-container');
     const inputWrap = inputFieldWrap.firstChild;
 
-    expect(inputWrap).toHaveStyleRule(`background: ${theme.colors.inputPrefilled}`);
     expect(inputField.value).toBe('autofilled value test');
     expect(inputWrap).toHaveStyleRule(`border: ${theme.borders.component}`);
   });
@@ -307,27 +279,26 @@ describe('Input.component', () => {
     expect(blurCb.mock.calls[0][0]).toBe(undefined);
   });
 
-  it('applies border on blur when border is false', () => {
+  it('applies border on blur', () => {
     const { container } = render(
       <Input
         id="test-id"
         type="text"
         placeholder="placeholder test"
         handleChange={() => {}}
-        bordered={false}
       />,
     );
     const inputFieldWrap = container.querySelector('.input-container');
     const inputWrap = inputFieldWrap.firstChild;
     const inputField = container.querySelector('#test-id');
-    expect(inputWrap).toHaveStyleRule('border', theme.borders.transparent);
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.component);
     inputField.focus();
-    expect(inputWrap).toHaveStyleRule('border', theme.borders.hover);
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.active);
     inputField.blur();
-    expect(inputWrap).toHaveStyleRule('border', theme.borders.transparent);
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.component);
   });
 
-  it('applies border on blur when border is true', () => {
+  it('applies border on blur when prefill is true', () => {
     const { container } = render(
       <Input
         label="[Fieldset label] With tooltip"
@@ -346,7 +317,7 @@ describe('Input.component', () => {
     const inputWrap = inputFieldWrap.firstChild;
     const inputField = container.querySelector('#input-one');
     inputField.focus();
-    expect(inputWrap).toHaveStyleRule('border', theme.borders.hover);
+    expect(inputWrap).toHaveStyleRule('border', theme.borders.active);
     inputField.blur();
     expect(inputWrap).toHaveStyleRule('border', theme.borders.prefill);
   });

@@ -29,7 +29,6 @@ const WhiteBackgroundView = () => {
           id="input-one"
           placeholder="Placeholder one"
           type="text"
-          bordered
           required={false}
           disabled={false}
           validationMessage={isValid ? '' : 'Please enter a valid email address'}
@@ -40,7 +39,6 @@ const WhiteBackgroundView = () => {
           id="input-two"
           placeholder="Placeholder two"
           type="text"
-          bordered
           required={false}
           disabled={false}
           handleChange={(value) => logValue(value)}

@@ -13,7 +13,7 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
 <Preview>
   <Story name="textarea">
     <div style={{ padding: '2%' }}>
-      <TextArea id='demo' bordered />
+      <TextArea id='demo' />
     </div>
   </Story>
 </Preview>
@@ -27,7 +27,6 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
     const label = text('label', 'Label', componentPropsId);
     const placeholder = text('placeholder', 'Placeholder Text', componentPropsId);
     const textareaValue = text('value', '', componentPropsId);
-    const bordered = boolean('bordered', true, componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
     const required = boolean('required', false, componentPropsId);
     const prefillValue = text('prefillValue', '', componentPropsId);
@@ -45,7 +44,6 @@ The CTM Textarea component, which is essentially a styled HTML textarea.
           label={label}
           placeholder={placeholder}
           value={textareaValue}
-          bordered={bordered}
           disabled={disabled}
           required={required}
           prefillValue={prefillValue}

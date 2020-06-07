@@ -27,9 +27,7 @@ export const StyledDropdownContent = styled.div`
 
 export const StyledDropdownButton = styled.div`
   background: ${({ theme }) => theme.dropdown.background};
-  ${({ theme, bordered }) => bordered && css`
-    border: ${theme.borders.component};
-  `}
+  border: ${({ theme }) => theme.borders.component};
   &:hover,
   &:focus {
     border: ${({ theme }) => theme.combo.list.item.borderFocus};

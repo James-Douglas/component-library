@@ -15,7 +15,6 @@ const GreyBackgroundView = () => {
         label="Input one"
         placeholder="Placeholder one"
         type="text"
-        bordered={false}
         required={false}
         handleChange={(value) => logValue(value)}
       />
@@ -24,7 +23,6 @@ const GreyBackgroundView = () => {
         label="Input two"
         placeholder="Placeholder two"
         type="text"
-        bordered={false}
         required={false}
         handleChange={(value) => logValue(value)}
       />
