@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-field-validation",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Manor FieldValidation component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -24,7 +24,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.0.9"
+    "@comparethemarketau/manor-themes": "^0.1.0"
   },
   "peerDependencies": {
     "react": "^16.11.0",
