@@ -7,16 +7,42 @@ import getTooltipKnobs from '../../tooltipKnobs';
 
 # Date Input
 
+### Default
+
 <Preview>
-  <Story name="date input">
-    <div style={{ padding: '2%' }}>
-      <DateInput
-        label="Enter date"
-        tooltip={{body: "Please enter a date"}}
-        handleChange={() => {}}
-      />
-    </div>
+  <Story name="date input default">
+    <DateInput
+      label="Enter date"
+      tooltip={{body: "Please enter a date"}}
+      handleChange={() => {}}
+    />
   </Story>
+</Preview>
+
+### Month/Year
+
+<Preview>
+  <Story name="date input month/year">
+    <DateInput
+      label="Enter date"
+      tooltip={{body: "Please enter a date"}}
+      handleChange={() => {}}
+      format="MM/YYYY"
+    />
+</Story>
+</Preview>
+
+### Year Only
+
+<Preview>
+  <Story name="date input year">
+    <DateInput
+      label="Enter date"
+      tooltip={{body: "Please enter a date"}}
+      handleChange={() => {}}
+      format="YYYY"
+    />
+</Story>
 </Preview>
 
 ## Props

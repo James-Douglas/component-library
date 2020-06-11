@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '../../../../testUtils';
 import DateInput from '../DateInput.component';
-import theme from '../../../Themes/ctm.theme';
+import theme from '../../../../themes/ctm.theme';
 
 describe('DateInput', () => {
   it('renders with minimal props', () => {
@@ -133,3 +133,4 @@ describe('DateInput', () => {
     expect(input.value).toEqual('01/2000');
   });
 });
+ 

@@ -24,8 +24,10 @@ const DateInput = ({
   prefixContent,
   suffixContent,
   disableClearIcon,
+  format,
 }) => {
   const id = useId(propsId);
+  const mask = format.split('').map((x) => (x === '/' ? x : /\d/));
   return (
     <Input
       id={id}
@@ -35,9 +37,9 @@ const DateInput = ({
       handleChange={handleChange}
       prefixContent={prefixContent}
       suffixContent={suffixContent}
-      mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+      mask={mask}
       guide
-      placeholder="DD/MM/YYYY"
+      placeholder={format}
       required={required}
       maxlength={11}
       prefillValue={prefillValue}
@@ -125,6 +127,16 @@ DateInput.propTypes = {
    * Props to be applied to cancel close button
    */
   disableClearIcon: PropTypes.bool,
+  /**
+   * Format of date string.
+   */
+  format: PropTypes.oneOfType([
+    'DD/MM/YYYY',
+    'DD/MM/YY',
+    'MM/YYYY',
+    'MM/YY',
+    'YYYY',
+  ]),
 };
 
 DateInput.defaultProps = {
@@ -143,6 +155,7 @@ DateInput.defaultProps = {
   prefixContent: <StyledFontAwesomeIcon icon={faCalendarAlt} />,
   suffixContent: '',
   disableClearIcon: false,
+  format: 'DD/MM/YYYY',
 };
 
 export default DateInput;
