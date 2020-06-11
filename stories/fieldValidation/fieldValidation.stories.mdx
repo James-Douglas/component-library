@@ -1,0 +1,20 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { FieldValidation } from '@comparethemarketau/manor-field-validation';
+
+<Meta title="Components/FieldValidation" component={FieldValidation} />
+
+# FieldValidation
+
+Renders styled validation error message. Included in form components automatically when a validationMessage is supplied.
+
+<Preview>
+  <Story name="field validation">
+    <div style={{ padding: '2%' }}>
+      <FieldValidation message="Please enter a valid email" />
+    </div>
+  </Story>
+</Preview>
+
+### Props
+
+<Props of={FieldValidation} />

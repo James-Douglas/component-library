@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Footer renders with minimal props 1`] = `
-"<div class=\\"sc-Axmtr iyERoH\\" style=\\"padding-top: 0px;\\"><div class=\\"sc-AxmLO ccbdFi\\"><div class=\\"sc-AxgMl fTGSEA\\"><div class=\\"sc-AxirZ sc-AxhUy jUSTSf row \\"><div class=\\"sc-AxiKw sc-AxhCb esAhIm 
-        
-      \\"><div class=\\"sc-fzozJi gvfQzD\\"><p class=\\"sc-fzoLsD cfbfkW\\">© 2020 Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926</p></div></div></div></div></div></div>"
-`;

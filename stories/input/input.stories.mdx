@@ -1,0 +1,119 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
+import { Container, Row, Column } from '@comparethemarketau/manor-grid';
+import { Input } from '@comparethemarketau/manor-input';
+import GreyBackgroundView from './input-on-grey-background';
+import WhiteBackgroundView from './input-on-white-background';
+import PrefixSuffix from './input-prefix-suffix';
+import InputTypes from './input-types';
+import InputStates from './input-states';
+import getTooltipKnobs from '../tooltipKnobs';
+
+<Meta title="Components/Input" component={Input} />
+
+# Input
+
+The Input component allows users to input data into a field. Display and functionality can be customized in a number of
+ways, including setting prefix & suffix content, adding a mask, etc (see props).
+
+<Preview>
+  <Story name="input">
+    <div style={{ padding: '2%' }}>
+      <Input
+        label="Input demo"
+        id="input-one"
+        tooltip={{title: 'input demo'}}
+        placeholder="Placeholder one"
+        type="text"
+        required={false}
+        disabled={false}
+        invalid={false}
+        handleChange={() => {}}
+      />
+    </div>
+  </Story>
+</Preview>
+
+## Behaviour
+* When the input has any content, a clear input button is displayed. When clicked/tapped, the input is cleared.
+* If a placeholder is provided, it is hidden once the user inputs data.
+* If `maxLength` is provided, user input is limited to that value.
+* If a `prefillValue` is provided and no user input has been set (and no `value` has been provided), the input will be
+populated with `prefillValue` and prefilled styles will be applied.
+
+### Accessibility
+* The input field can be focused via the `Tab` key.
+* The clear button can be focused via the `Tab` key.
+* When the clear button has focus, both the `Enter` and `Space` keys can be used to clear the input field.
+
+## Props
+
+<Props of={Input} />
+
+
+<Story name="input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const componentPropsId = 'Component Props';
+    const tooltipGroupId = 'Tooltip Props';
+    const label = text('label', 'input demo', componentPropsId);
+    const validationMessage = text('validationMessage', '', componentPropsId);
+    const maxLength = number('maxLength', 25, {}, componentPropsId);
+    const value = text('value', '', componentPropsId);
+    const prefillValue = text('prefillValue', 'prefilled', componentPropsId);
+    const type = text('type', 'text', componentPropsId);
+    const placeholder = text('placeholder', 'placeholder text', componentPropsId);
+    const required = boolean('required', false, componentPropsId);
+    const disabled = boolean('disabled', false, componentPropsId);
+    const prefixContent = text('prefixContent', '', componentPropsId);
+    const prefixBlock = boolean('prefixBlock', false, componentPropsId);
+    const suffixContent = text('suffixContent', '', componentPropsId);
+    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
+    return (
+      <div style={{ padding: '2%' }}>
+        <Input
+          id="input-props"
+          label={label}
+          tooltip={{
+            title,
+            body,
+            placement,
+            screenReaderLabel,
+            variant
+          }}
+          validationMessage={validationMessage}
+          maxLength={maxLength}
+          value={value}
+          prefillValue={prefillValue}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          handleChange={() => {}}
+          disabled={disabled}
+          prefixContent={prefixContent}
+          prefixBlock={prefixBlock}
+          suffixContent={suffixContent}
+        />
+      </div>
+    );
+  }}
+</Story>
+
+<Story name="input grey background"  parameters={{ docs: { disable: true } }}>
+  <GreyBackgroundView />
+</Story>
+
+<Story name="input white background"  parameters={{ docs: { disable: true } }}>
+  <WhiteBackgroundView />
+</Story>
+
+<Story name="input prefix-suffix"  parameters={{ docs: { disable: true } }}>
+  <PrefixSuffix />
+</Story>
+
+<Story name="input types"  parameters={{ docs: { disable: true } }}>
+  <InputTypes />
+</Story>
+
+<Story name="input states"  parameters={{ docs: { disable: true } }}>
+  <InputStates />
+</Story>

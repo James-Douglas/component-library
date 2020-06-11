@@ -1,0 +1,134 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import styled from 'styled-components';
+
+import { Container } from '@comparethemarketau/manor-grid';
+import { CustomToggle, ToggleGroup } from '@comparethemarketau/manor-toggles';
+import { Picture } from '@comparethemarketau/manor-picture';
+
+import DEFAULT from '../../../images/medicare-cards/default.jpg';
+import INTERIM from '../../../images/medicare-cards/interim.jpg';
+import RECIPROCAL from '../../../images/medicare-cards/reciprocal.jpg';
+import OTHER from '../../../images/medicare-cards/other.png';
+
+<Meta title="Components|Toggles/Custom" component={CustomToggle} />
+
+## CustomToggle
+
+A CustomToggle allows you to define the contents of the toggle yourself. Please consult the design system/UX to ensure
+consistency with the design system is maintained.
+
+<Preview>
+  <Story name="custom toggle demo">
+    {() => {
+      const StyledPictureContainer = styled.div`
+        height: 14.2rem;
+        width: 21.9rem;
+      `;
+      const StyledOtherContainer = styled.div`
+        padding-top: 2rem;
+        height: 12rem;
+        width: 21.9rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.2;
+      `;
+      const StyledLabelContainer = styled.div`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 6rem;
+      `;
+      const StyledMedicareToggle = styled.div`
+        height: 19.5rem;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      `;
+      const tooltip = {
+        title: 'test',
+      };
+      return (
+         <Container>
+           <ToggleGroup label="Medicare toggles" name="toggleGroupA" tooltip={tooltip} handleToggle={(value) => console.log(`TOGGLE SELECTED: ${value} `)}>
+             <CustomToggle
+               name="image"
+               id="green"
+               value="green"
+             >
+               <div className="medicare-toggle">
+                 <StyledPictureContainer>
+                   <Picture
+                     src={DEFAULT}
+                     srcsets={[{ srcset: DEFAULT }]}
+                   />
+                 </StyledPictureContainer>
+                 <StyledLabelContainer>
+                   <strong>Green</strong>
+                 </StyledLabelContainer>
+               </div>
+             </CustomToggle>
+             <CustomToggle
+               name="image"
+               id="blue"
+               value="blue"
+             >
+               <div className="medicare-toggle">
+                 <StyledPictureContainer>
+                   <Picture
+                     src={INTERIM}
+                     srcsets={[{ srcset: INTERIM }]}
+                   />
+                 </StyledPictureContainer>
+                 <StyledLabelContainer>
+                   <strong>Blue</strong>
+                   <span>(Interim)</span>
+                 </StyledLabelContainer>
+               </div>
+             </CustomToggle>
+             <CustomToggle
+               name="image"
+               id="yellow"
+               value="yellow"
+             >
+               <StyledMedicareToggle>
+                 <StyledPictureContainer>
+                   <Picture
+                     src={RECIPROCAL}
+                     srcsets={[{ srcset: RECIPROCAL }]}
+                   />
+                 </StyledPictureContainer>
+                 <StyledLabelContainer>
+                   <strong>Green/Yellow</strong>
+                   <span>(Reciprocal - Visitor)</span>
+                 </StyledLabelContainer>
+               </StyledMedicareToggle>
+             </CustomToggle>
+             <CustomToggle
+               name="image"
+               id="other"
+               value="other"
+             >
+               <StyledMedicareToggle>
+                 <StyledOtherContainer>
+                   <Picture
+                     src={OTHER}
+                     srcsets={[{ srcset: OTHER }]}
+                   />
+                 </StyledOtherContainer>
+                 <StyledLabelContainer>
+                   <strong>Other</strong>
+                 </StyledLabelContainer>
+               </StyledMedicareToggle>
+             </CustomToggle>
+           </ToggleGroup>
+         </Container>
+      );
+    }}
+  </Story>
+</Preview>
+
+## Props
+<Props of={CustomToggle} />

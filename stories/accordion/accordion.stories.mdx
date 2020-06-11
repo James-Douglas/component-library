@@ -1,0 +1,144 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, object } from '@storybook/addon-knobs';
+import { Accordion, AccordionPanel } from '@comparethemarketau/manor-accordion';
+import { FluidContainer } from '@comparethemarketau/manor-grid';
+
+<Meta title="Components/Accordion" component={Accordion} />
+
+# Accordion
+
+A vertically stacked list of items which can be expanded or collapsed to reveal further content. In Manor, Accordions
+comprise of the `Accordion` component which takes `AccordionPanel` components as children.
+
+<Preview>
+  <Story name="accordion" decorators={[withKnobs]}>
+    <div style={{ padding: '2%' }}>
+      <Accordion>
+        <AccordionPanel title="Can I switch energy providers?" iconSize={'1x'}>
+          <div>
+            <p>
+              If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+              able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+              electricity and gas comparison service. Just enter a few details about your property and power usage to
+              compare electricity and gas plans that are suitable for you.
+            </p>
+          </div>
+        </AccordionPanel>
+         <AccordionPanel title="Can I switch energy providers?" iconSize={'1x'}>
+          <div>
+            <p>
+              If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+              able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+              electricity and gas comparison service. Just enter a few details about your property and power usage to
+              compare electricity and gas plans that are suitable for you.
+            </p>
+          </div>
+        </AccordionPanel>
+      </Accordion>
+    </div>
+  </Story>
+</Preview>
+
+## Behavior
+* Clicking/Tapping on an accordion panel title will open or close it's panel.
+* An open panel will close if another accordion panel is clicked/tapped.
+
+### Accessibility
+* AccordionPanels can be focused via the `Tab` key.
+* A focused AccordionPanel can be toggled via the `Space` key.
+
+
+<Preview>
+  <Story name="independent accordion panels" decorators={[withKnobs]}>
+  {() => {
+  const  firstTitleItem = (<div>
+    <span style={{background: 'white', border: '1px solid #e0e0e0', borderRadius: '100px', width: '48px', height: '48px', display: 'inline-block', textAlign: 'center', lineHeight: '44px', verticalAlign: 'middle', marginRight: '16px' }}>1</span>
+    Can I switch energy providers?
+  </div>);
+  const  secondTitleItem = (<div>
+     <span style={{background: 'white', border: '1px solid #e0e0e0', borderRadius: '100px', width: '48px', height: '48px', display: 'inline-block', textAlign: 'center', lineHeight: '44px', verticalAlign: 'middle', marginRight: '16px' }}>2</span>
+     Can I switch energy providers?
+   </div>);
+   return (
+    <div style={{ padding: '2%'}}>
+      <Accordion  collapse={false}>
+        <AccordionPanel title={firstTitleItem} iconSize={'1x'}>
+          <div>
+            <p>
+               If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+               able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+               electricity and gas comparison service. Just enter a few details about your property and power usage to
+               compare electricity and gas plans that are suitable for you.
+            </p>
+          </div>
+        </AccordionPanel>
+        <AccordionPanel  title={secondTitleItem} iconSize={'1x'}>
+          <div>
+            <p>
+              If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+              able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+              electricity and gas comparison service. Just enter a few details about your property and power usage to
+              compare electricity and gas plans that are suitable for you.
+            </p>
+          </div>
+        </AccordionPanel>
+      </Accordion>
+     </div>
+    )
+    }}
+  </Story>
+</Preview>
+
+## Accordion props
+<Props of={Accordion} />
+
+
+<Story name="accordion with props" decorators={[withKnobs]} parameters={{ docs: { disable: true }, knobs: { escapeHTML: false}  }}>
+  {() => {
+    const componentPropsId = 'Component Props';
+    const title1 = text('First panel title', 'What are the benefits of combining your electricity and gas bills?')
+    const title2 = text('Second panel title', 'Can I switch energy providers?');
+    const collapse = boolean('collapse', true, componentPropsId);
+    return (
+      <div style={{ padding: '2%'}}>
+        <Accordion collapse={collapse}>
+          <AccordionPanel title={title1} iconSize='1x'>
+            <div>
+              <p>
+                Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
+                events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
+                of damage to cars, property, and even people.
+              </p>
+              <h6>What does car insurance cover?</h6>
+              <p>
+                It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
+                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
+                 vehicle as a result of collisions, fire, theft, and weather events. Most policies will vary in coverage (and
+                 price), which is why it’s important to review your options carefully.
+               </p>
+             </div>
+          </AccordionPanel>
+          <AccordionPanel title={title2} iconSize='1x'>
+             <div>
+                <p>
+                  If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+                  able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+                  electricity and gas comparison service. Just enter a few details about your property and power usage to
+                  compare electricity and gas plans that are suitable for you.
+                </p>
+              </div>
+          </AccordionPanel>
+        </Accordion>
+      </div>
+    );
+  }}
+</Story>
+
+# Accordion Panel
+
+A vertically stacked list of items which can be expanded or collapsed to reveal further content. In Manor, Accordions
+comprise of the Accordion component which takes AccordionPanel components as children.
+
+### AccordionPanel props
+<Props of={AccordionPanel} />
+

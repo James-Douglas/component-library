@@ -1,0 +1,68 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
+import { DateInput } from '@comparethemarketau/manor-input';
+import getTooltipKnobs from '../../tooltipKnobs';
+
+<Meta title="Components/Input/Date" component={DateInput} />
+
+# Date Input
+
+<Preview>
+  <Story name="date input">
+    <div style={{ padding: '2%' }}>
+      <DateInput
+        label="Enter date"
+        tooltip={{body: "Please enter a date"}}
+        handleChange={() => {}}
+      />
+    </div>
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={DateInput} />
+
+<Story name="date input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const componentPropsId = 'Component Props';
+    const tooltipGroupId = 'Tooltip Props';
+    const label = text('label', 'input demo', componentPropsId);
+    const validationMessage = text('validationMessage', '', componentPropsId);
+    const maxLength = number('maxLength', 25, {}, componentPropsId);
+    const value = text('value', '', componentPropsId);
+    const prefillValue = text('prefillValue', '01/01/2020', componentPropsId);
+    const type = text('type', 'text', componentPropsId);
+    const placeholder = text('placeholder', 'input demo', componentPropsId);
+    const required = boolean('required', false, componentPropsId);
+    const disabled = boolean('disabled', false, componentPropsId);
+    const prefixContent = text('prefixContent', undefined, componentPropsId);
+    const suffixContent = text('suffixContent', '', componentPropsId);
+    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
+    return (
+      <div style={{ padding: '2%' }}>
+        <DateInput
+          label={label}
+          tooltip={{
+            title,
+            body,
+            placement,
+            screenReaderLabel,
+            variant
+          }}
+          validationMessage={validationMessage}
+          maxLength={maxLength}
+          value={value}
+          prefillValue={prefillValue}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          handleChange={() => {}}
+          disabled={disabled}
+          prefixContent={prefixContent}
+          suffixContent={suffixContent}
+        />
+      </div>
+    )
+  }}
+</Story>

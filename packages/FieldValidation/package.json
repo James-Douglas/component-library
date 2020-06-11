@@ -1,0 +1,34 @@
+{
+  "name": "@comparethemarketau/manor-field-validation",
+  "version": "0.0.9",
+  "description": "Manor FieldValidation component",
+  "main": "lib/index.cjs.js",
+  "author": "Compare The Market",
+  "license": "Proprietary",
+  "scripts": {
+    "build": "rollup -c '../../rollup.config.js'",
+    "tdd": "jest --coverage --watchAll",
+    "test": "cross-env JEST_SILENT_REPORTER_DOTS=true jest --reporters=jest-silent-reporter --coverage --watchAll",
+    "test:ci": "cross-env CI=true jest",
+    "prepare": "cp package.json lib/ && cp CHANGELOG.md lib/"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.comparethemarket.com.au/repository/platform-packages/",
+    "access": "public",
+    "tag": "latest"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@comparethemarketau/manor-themes": "^0.0.9"
+  },
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "styled-components": "^5.0.0"
+  }
+}

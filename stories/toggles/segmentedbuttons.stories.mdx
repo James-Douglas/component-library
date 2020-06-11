@@ -1,0 +1,72 @@
+import { useState } from 'react';
+import { Meta, Preview, Story, Props } from '@storybook/addon-docs/blocks';
+import { ToggleGroup, TextToggle } from '@comparethemarketau/manor-toggles';
+
+<Meta title="Components|Toggles/Segmented Buttons" component={ToggleGroup} />
+
+# Segmented Buttons
+
+Segmented Buttons are ToggleGroups containing instances of TextToggles that are styled to look
+like groups of Buttons. Think of it as a "Theme" for a group of toggle inputs.
+Provide a `buttons` prop to a ToggleGroup to make this happen.
+
+### Fixed Width
+<Preview>
+  <Story name="Fixed Width">
+    {() => {
+      const [error, setError] = useState('');
+      return (
+        <ToggleGroup
+          buttons
+          tooltip={{ title: 'Tooltip', body: 'This is a Tooltip' }}
+          validationMessage={error}
+          contentWidth="15rem"
+          label="Field Label"
+          name="togglegroup1"
+          handleToggle={v => setError(`Button ${v} is selected!`)}
+        >
+          <TextToggle value="1" title="One" />
+          <TextToggle value="2" title="Two" />
+          <TextToggle value="3" title="Three" />
+        </ToggleGroup>
+      )
+    }}
+  </Story>
+</Preview>
+
+### Auto Width
+<Preview>
+  <Story name="Auto Width">
+    <ToggleGroup
+      buttons
+      tooltip={{ title: 'Tooltip', body: 'This is a Tooltip' }}
+      label="Field Label"
+      name="togglegroup2"
+      handleToggle={() => {}}
+    >
+      <TextToggle value="1" title="One" />
+      <TextToggle value="2" title="Two" />
+      <TextToggle value="3" title="Three" />
+    </ToggleGroup>
+  </Story>
+</Preview>
+
+### Flex Width
+<Preview>
+  <Story name="Flex Width">
+    <ToggleGroup
+      buttons="flex"
+      tooltip={{ title: 'Tooltip', body: 'This is a Tooltip' }}
+      label="Field Label"
+      name="togglegroup3"
+      handleToggle={() => {}}
+    >
+      <TextToggle value="1" title="One" />
+      <TextToggle value="2" title="Two" />
+      <TextToggle value="3" title="Three" />
+    </ToggleGroup>
+  </Story>
+</Preview>
+
+### Props
+<Props of={ToggleGroup} />

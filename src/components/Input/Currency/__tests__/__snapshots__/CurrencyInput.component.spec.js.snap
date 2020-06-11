@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`CurrencyInput renders with minimal props 1`] = `"<div class=\\"sc-fznyAO hqKROg input-wrap\\"><div class=\\"sc-AxheI cHxiiX\\"><label for=\\"test-id\\" class=\\"sc-Axmtr kDLAFV label\\"></label></div><div class=\\"sc-fzokOt fSgORI input-container\\"><div class=\\"sc-fzqBZW eWDcDR\\"><div class=\\"sc-fzqNJr hpgsLs input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" placeholder=\\"\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-fzoyAV fKHfRI input-default \\" breakpoint=\\"md\\" value=\\"\\"></div></div></div></div>"`;

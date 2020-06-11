@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input.component renders with minimal props 1`] = `"<div class=\\"sc-fzqBZW cVMCxf input-wrap\\"><div class=\\"sc-fzpans wTRiS\\"><label for=\\"test-id\\" class=\\"sc-fzplWN lezwjC label\\"></label></div><div class=\\"sc-fzoLag eWQgpy input-container\\"><div class=\\"sc-fzoXzr cFrwWo\\"><div class=\\"sc-fzpjYC cLKRoP input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"\\" autocomplete=\\"off\\" class=\\"sc-fznxsB fwUbhS input-default \\" breakpoint=\\"md\\" value=\\"\\"></div></div></div></div>"`;
+
+exports[`Input.component renders with props 1`] = `"<div class=\\"sc-fzqBZW cVMCxf input-wrap\\"><div class=\\"sc-fzpans wTRiS\\"><label for=\\"test-id\\" class=\\"sc-fzplWN lezwjC label\\">input label</label></div><div class=\\"sc-fzoLag eWQgpy input-container\\"><div class=\\"sc-fzoXzr cFrwWo\\"><div class=\\"sc-fzpjYC cLKRoP input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"text\\" placeholder=\\"placeholder test\\" autocomplete=\\"on\\" class=\\"sc-fznxsB fwUbhS input-default \\" breakpoint=\\"md\\" value=\\"\\"></div></div></div></div>"`;

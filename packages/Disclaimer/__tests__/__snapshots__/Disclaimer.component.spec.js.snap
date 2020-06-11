@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Disclaimer renders with minimal props 1`] = `"<div class=\\"sc-fzqNqU joUTxN\\"><div class=\\"sc-AxhUy gyfTuz\\"><input id=\\"test\\" name=\\"test\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-AxhCb iViStI\\"><label for=\\"test\\" class=\\"sc-AxheI glhpBW\\"><div class=\\"sc-AxgMl ikUgkU\\"></div></label></div><div class=\\"sc-fzoyTs dTvWYF\\"></div></div>"`;

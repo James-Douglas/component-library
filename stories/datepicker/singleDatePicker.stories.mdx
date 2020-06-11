@@ -1,0 +1,37 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { useState } from 'react';
+import { SingleDatePicker } from '@comparethemarketau/manor-date-picker';
+import moment from 'moment';
+import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
+
+<Meta title="Components/DatePicker/SingleDatePicker" component={SingleDatePicker} />
+
+# Single Date Picker
+<Preview>
+  <Story name="single date picker" height="500px">
+    {() => {
+     const [date, setDate] = useState(moment('2020-02-18T00:00:00.000'));
+      return (
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column>
+                <SingleDatePicker
+                  dateId="single-date"
+                  dateTooltip={{ title: 'Start Date' }}
+                  dateAriaLabel="Select Date"
+                  date={date}
+                  numberOfMonths={1}
+                  validationMessage="The date is incorrect"
+                  />
+               </Column>
+              </Row>
+            </FluidContainer>
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+### Props
+<Props of={SingleDatePicker} />

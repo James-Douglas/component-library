@@ -4,7 +4,7 @@ import { withA11y } from '@storybook/addon-a11y';
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import React from 'react';
-import ManorProvider from '../src/providers/ManorProvider';
+import ManorProvider from '../packages/Provider/ManorProvider';
 
 addDecorator(withA11y);
 addDecorator(StoryFn => <ManorProvider><StoryFn /></ManorProvider>);
@@ -25,7 +25,7 @@ addParameters({
 
 function loadStories() {
   const allExports = [];
-  const req = require.context('../src/stories', true, /\.stories\.(js|mdx)$/);
+  const req = require.context('../stories', true, /\.stories\.(js|mdx)$/);
   req.keys().forEach((fname) => allExports.push(req(fname)));
   return allExports;
 }
