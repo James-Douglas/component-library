@@ -54,7 +54,7 @@ exports[`Row renders correctly without props 1`] = `
 
 <div>
   <div
-    class="sc-AxirZ c0 row "
+    class="sc-AxhCb c0 row "
   />
 </div>
 `;

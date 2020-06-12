@@ -7,15 +7,15 @@ const uuidv4 = require('uuid/v4');
 const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
-  const addToast = (props) => {
+  const addToast = (toast) => {
     const id = uuidv4();
-    const toast = { props, id };
-    setToasts([...toasts, toast]);
+    const clonedToast = React.cloneElement(toast, { id });
+    setToasts([...toasts, clonedToast]);
     return id;
   };
 
   const removeToast = (id) => {
-    setToasts((prevState) => prevState.filter((n) => n.id !== id));
+    setToasts((prevState) => prevState.filter((n) => n.props.id !== id));
   };
 
   const toastInfo = { addToast, removeToast, toasts };

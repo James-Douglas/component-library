@@ -1,4 +1,4 @@
 import Notification from './Notification.component';
-import ToastManager from './ToastManager.component';
+import ToastNotification from './ToastNotification.component';
 
-export { Notification, ToastManager };
+export { Notification, ToastNotification };

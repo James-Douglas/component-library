@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { useToasts } from '@comparethemarketau/manor-provider';
+import { ToastNotification } from '@comparethemarketau/manor-notification';
 import { render } from '../../../testUtils';
+import useToasts from '../contexts/Toast/useToasts';
 import ToastManager from '../ToastManager.component';
-import ToastProvider from '../../Provider/ToastProvider';
+import ToastProvider from '../ToastProvider';
 import 'jest-styled-components';
 
 describe('ToastManager()', () => {
@@ -39,25 +40,23 @@ describe('ToastManager()', () => {
 
     act(() => {
       result.current.addToast(
-        {
-          type: 'toast',
-          variant: 'general',
-          title: 'General Toast Message',
-          content: 'This will auto dissmiss in 5 seconds',
-          primaryAction: {
+        <ToastNotification
+          variant="general"
+          title="General Toast Message"
+          content="This will auto dismiss in 5 seconds"
+          primaryAction={{
             content: 'Action goes here',
             link: '#',
-          },
-          icon: true,
-          closeButton: true,
-          autoClose: 5000,
-        },
+          }}
+          icon
+          closeButton
+          autoClose={5000}
+        />,
       );
     });
     const toastArray = result.current.toasts;
 
     expect(toastArray).toHaveLength(1);
-    expect(result.current.toasts[0].props.type).toBe('toast');
     expect(result.current.toasts[0].props.variant).toBe('general');
     expect(result.current.toasts[0].props.title).toBe('General Toast Message');
   });
@@ -77,19 +76,18 @@ describe('ToastManager()', () => {
     let toastID = '';
     act(() => {
       toastID = result.current.addToast(
-        {
-          type: 'toast',
-          variant: 'general',
-          title: 'General Toast Message',
-          content: 'This will auto dissmiss in 5 seconds',
-          primaryAction: {
+        <ToastNotification
+          variant="general"
+          title="General Toast Message"
+          content="This will auto dismiss in 5 seconds"
+          primaryAction={{
             content: 'Action goes here',
             link: '#',
-          },
-          icon: true,
-          closeButton: true,
-          autoClose: 5000,
-        },
+          }}
+          icon
+          closeButton
+          autoClose={5000}
+        />,
       );
     });
 

@@ -2,16 +2,28 @@ import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, boolean} from '@storybook/addon-knobs';
 import { Button } from '@comparethemarketau/manor-button';
-import { Notification, ToastManager } from '@comparethemarketau/manor-notification';
+import { ToastNotification, ToastManager } from '@comparethemarketau/manor-notification';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
+import { useToasts } from '@comparethemarketau/manor-provider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowLeft } from '@fortawesome/pro-regular-svg-icons/faLongArrowLeft';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
-import { useToasts } from '@comparethemarketau/manor-provider';
 
 <Meta title="Components|Notifications/Toast" component={Notification} />
 
 # Toast Notifications
+
+### Installation
+`yarn add @comparethemarketau/manor-notification`
+
+### Usage
+Import the Notification component and useToasts. Note that `useToasts` is in the manor-provider package,
+this is due to ManorProvider injecting a context provider for toast management for you.
+
+```
+import { ToastNotification } from '@comparethemarketau/manor-notification';
+import { useToasts } from '@comparethemarketau/manor-provider';
+```
 
 <Preview>
   <Story name="toast notification">
@@ -21,57 +33,53 @@ import { useToasts } from '@comparethemarketau/manor-provider';
       return (
         <div style={{ padding: '2%' }}>
           <Container>
-            <ToastManager />
-            <div style={{marginTop: '120px', width: '50%'}}>
+            <div style={{marginTop: '60px', width: '50%'}}>
             <Row>
               <Column xsOffset={6} cols={10}>
                 <Button id='general-toast' handleClick={() => {
                   addToast(
-                    {
-                      type: 'toast',
-                      variant: "general",
-                      title:"General Toast Message",
-                      content:"This will auto dissmiss in 5 seconds",
-                      primaryAction: {
-                        content: 'Action goes here' ,
+                    <ToastNotification
+                      variant="general"
+                      title="General Toast Message"
+                      content="This will auto dismiss in 5 seconds"
+                      primaryAction={{
+                        content: 'Action goes here',
                         link: '#',
-                      },
-                      icon: true,
-                      closeButton: true,
-                      autoClose: 5000
-                    }
+                      }}
+                      icon={true}
+                      closeButton={true}
+                      autoClose={5000}
+                    />
                   )
                 }}>General Toast - timeout in 5 seconds</Button>
                 <Button id='success-toast' handleClick={() => {
                   addToast(
-                    {
-                      type: 'toast',
-                      variant: "success",
-                      title:"Success!",
-                      content:"Great",
-                      primaryAction: {
+                    <ToastNotification
+                      variant="success"
+                      title="Success!"
+                      content="Great"
+                      primaryAction={{
                         content: 'Action goes here' ,
                         link: '#',
-                      },
-                      icon: true,
-                      closeButton: true,
-                    }
+                      }}
+                      icon={true}
+                      closeButton={true}
+                    />
                   )
                 }}>Success toast - no timeout </Button>
                 <Button id='warning-toast' handleClick={() => {
                   addToast(
-                    {
-                      type: 'toast',
-                      variant: "warning",
-                      title:"Warning!",
-                      content:"Something needs your attention",
-                      primaryAction: {
+                    <ToastNotification
+                      variant="warning"
+                      title="Warning!"
+                      content="Something needs your attention"
+                      primaryAction={{
                         content: 'Action goes here' ,
                         link: '#',
-                      },
-                      icon: true,
-                      closeButton: true,
-                    }
+                      }}
+                      icon={true}
+                      closeButton={true}
+                    />
                   )
                 }}>Warning toast - no timeout </Button>
               </Column>
@@ -84,7 +92,7 @@ import { useToasts } from '@comparethemarketau/manor-provider';
   </Story>
 </Preview>
 
-
-<Props of={Notification} />
+### Props
+<Props of={ToastNotification} />
 
 

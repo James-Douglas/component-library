@@ -34,7 +34,7 @@ exports[`Button renders correctly with minimal props 1`] = `
   background: #0f8927;
 }
 
-.c1 > .sc-AxjAm {
+.c1 > .sc-AxiKw {
   margin-right: 0.8rem;
 }
 
