@@ -33,7 +33,6 @@ describe('getChildren()', () => {
   });
 });
 
-
 describe('ToggleGroup', () => {
   it('renders with minimal props', () => {
     const { container } = render(<ToggleGroup

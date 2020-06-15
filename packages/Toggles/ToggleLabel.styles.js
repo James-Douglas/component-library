@@ -6,7 +6,6 @@ const buttonOverrides = css`
   }
 `;
 
-
 export const StyledToggleLabel = styled.label`
   height: 100%;
   width: 100%;

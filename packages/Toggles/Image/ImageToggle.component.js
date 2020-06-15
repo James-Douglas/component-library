@@ -72,7 +72,6 @@ const ImageToggle = ({
   );
 };
 
-
 ImageToggle.propTypes = {
   /**
    * Unique identifier for the ImageToggle

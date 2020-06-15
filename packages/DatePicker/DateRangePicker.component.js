@@ -274,5 +274,4 @@ DateRangePicker.defaultProps = {
   handleChange: null,
 };
 
-
 export default DateRangePicker;

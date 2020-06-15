@@ -161,5 +161,4 @@ SingleDatePicker.defaultProps = {
   isDayBlocked: undefined,
 };
 
-
 export default SingleDatePicker;

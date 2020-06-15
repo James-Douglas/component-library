@@ -69,7 +69,6 @@ describe('Tooltip', () => {
     expect(toolTipBlack).toHaveStyle('visibility: hidden');
   });
 
-
   it('renders tooltip correctly', () => {
     const { container, getByText } = render(<Tooltip body="test tooltip content" />);
     const tooltipTriggerElement = container.querySelector('svg');
@@ -98,7 +97,6 @@ describe('Tooltip', () => {
     });
     expect(tooltipElement).not.toBeVisible();
   });
-
 
   it('dismisses tooltip on click outside', () => {
     render(<Tooltip body="test tooltip content" />);

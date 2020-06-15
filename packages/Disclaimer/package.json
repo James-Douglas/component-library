@@ -10,7 +10,7 @@
     "tdd": "jest --coverage --watchAll",
     "test": "cross-env JEST_SILENT_REPORTER_DOTS=true jest --reporters=jest-silent-reporter --coverage --watchAll",
     "test:ci": "cross-env CI=true jest",
-    "prepare": "cp package.json lib/ && cp CHANGELOG.md lib/"
+    "prepare": "cp package.json lib/ && cp README.md lib/ && cp CHANGELOG.md lib/"
   },
   "dependencies": {
     "@comparethemarketau/manor-checkbox": "^0.2.1",

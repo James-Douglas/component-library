@@ -113,7 +113,6 @@ const lineHeight = {
   loose: '2',
 };
 
-
 const spacing = {
   px: '0.1rem', //   1px
   0: '0',

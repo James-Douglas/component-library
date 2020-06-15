@@ -8,6 +8,54 @@ Welcome to Manor, the implementation of the CTM Design System: [Bento](https://z
 Manor components are published independently, you can add components to your project as required, however they all require 
 the ManorProvider component to be at the root of your application (see next section)
 
+### Available Packages
+
+#### UI Components
+
+| Component(s) | Package | Notes |
+| --- | --- | --- |
+| Accordion, AccordionPanel | [Accordion](packages/Accordion/README.md) |  |
+| Button | [Button](packages/Button/README.md) | |
+| Card, CardGroup | [Card](packages/Card/README.md) | |
+| Checkbox, CheckboxGroup | [Checkbox](packages/Checkbox/README.md) | |
+| Combobox | [Combobox](packages/Combobox/README.md) | |
+| SingleDatePicker, DateRangePicker | [DatePicker](packages/DatePicker/README.md) | |
+| Disclaimer | [Disclaimer](packages/Disclaimer/README.md) | |
+| Drawer | [Drawer](packages/Drawer/README.md) | |
+| Dropdown, DropdownItem | [Dropdown](packages/Dropdown/README.md) | |
+| EmptyState | [EmptyState](packages/EmptyState/README.md) | |
+| FeatureList| [FeatureList](packages/FeatureList/README.md) | |
+| FieldValidation | [FieldValidation](packages/FieldValidation/README.md) | Built in to all Manor form components - you probably don't need 
+to import this yourself |
+| Footer | [Footer](packages/Footer/README.md) | |
+| Container, FluidContainer, Row, Column | [Grid](packages/Grid/README.md) | |
+| Header, StickyHeader | [Header](packages/Header/README.md) | |
+| Input, DateInput, CurrencyInput, ExpressiveInput | [Input](packages/Input/README.md) | |
+| Label | [Label](packages/Label/README.md) | |
+| Loading, Progress | [Loading](packages/Loading/README.md) | |
+| Logo, CTMLogo | [Logo](packages/Logo/README.md) | |
+| Modal | [Modal](packages/Modal/README.md) | |
+| Notification, ToastNotification | [Notification](packages/Notification/README.md) | |
+| Overlay | [Overlay](packages/Overlay/README.md) | |
+| Picture | [Picture](packages/Picture/README.md) | |
+| ProgressBar, StickyProgressBar, ProgressIcon, ProgressTracker, StickyProgressTracker, TrackerItem | [Progress](packages/Progress/README.md) | |
+| ManorProvider | [Provider](packages/Provider/README.md) | This component should wrap your application, required by all Manor components. |
+| Separator | [Separator](packages/Separator/README.md) | |
+| SupportingElement | [SupportingElements](packages/SupportingElements/README.md) | Built in to all Manor form components - you probably don't need to import this yourself  |
+| Table, TableBody, TableCell, TableFooter, TableHeader, TableRow | [Table](packages/Table/README.md) | |
+| Tabs, TabButton, TabPanel | [Tabs](packages/Tabs/README.md) | |
+| Textarea | [Textarea](packages/Textarea/README.md) | |
+| BodyText, Microcopy, Overline, SROnly, Subscript, Subtitle | [Typography](packages/Typography/README.md) | |
+
+#### Others
+
+| Package | Description |
+| --- | --- |
+| [Hooks](packages/Hooks/README.md) | A variety of hooks used in Manor, published for convenience. |
+| [Themes](packages/Themes/README.md) | Theme files |
+| [Utils](packages/Utils/README.md) | Utilities used in Manor, published for convenience. |
+| [Global](packages/Global/README.md) | Global styles component, ManorProvider injects this so you probably don't need to |  
+import it yourself.
 
 ### Installation
 
@@ -38,6 +86,8 @@ render = () => (
   </>
 );
 ```
+
+
 
 Additionally you can use various hooks by importing them the same way, where available (see the @comparethemarketau/manor-hooks package)
 

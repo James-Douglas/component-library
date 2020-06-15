@@ -105,7 +105,6 @@ const Dropdown = ({
     ref: React.createRef(),
   })), [children, modalClose, onItemClick, value]);
 
-
   // preselect an item
   const preSelected = childrenWithProps.find((child) => child.props.value === selectedValue);
 
@@ -255,7 +254,6 @@ const Dropdown = ({
     </LayerEventManager>
   );
 };
-
 
 Dropdown.propTypes = {
   /**

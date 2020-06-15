@@ -3,7 +3,6 @@ import { fireEvent } from '@testing-library/react';
 import { render } from '../../../testUtils';
 import Overlay from '../Overlay.component';
 
-
 describe('Overlay', () => {
   it('renders with minimal props', () => {
     const { container } = render(<Overlay visible />);

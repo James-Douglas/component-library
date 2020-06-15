@@ -3,7 +3,6 @@ import { render } from '../../../testUtils';
 import Label from '../Label.component';
 import 'jest-styled-components';
 
-
 describe('Label', () => {
   const tooltip = {
     title: 'Tooltip heading',

@@ -151,7 +151,6 @@ describe('DateRangePicker', () => {
       />,
     );
 
-
     const input = container.querySelector('#start-date');
     const datepickerWrapBeforeFocus = container.querySelector('[role="application"]');
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();

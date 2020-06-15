@@ -146,7 +146,6 @@ describe('Table', () => {
     expect(thead).toBeInTheDocument();
   });
 
-
   it('renders correctly Table tr with hover', () => {
     const { container } = render(
       <Table size="small">

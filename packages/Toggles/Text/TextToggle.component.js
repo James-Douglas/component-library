@@ -53,7 +53,6 @@ const TextToggle = ({
   );
 };
 
-
 TextToggle.propTypes = {
   /**
    * Unique identifier for the toggle

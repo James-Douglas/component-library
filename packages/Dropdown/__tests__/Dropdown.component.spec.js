@@ -172,7 +172,6 @@ describe('Dropdown', () => {
     expect(AllItems.length).toBe(0);
   });
 
-
   it('accessibility check for edgecase', () => {
     const { container } = render(
       <Dropdown

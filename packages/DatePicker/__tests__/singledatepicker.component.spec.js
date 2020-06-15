@@ -5,7 +5,6 @@ import { fireEvent, render, getByLabelText } from '../../../testUtils';
 import SingleDatePicker from '../SingleDatePicker.component';
 import 'jest-styled-components';
 
-
 describe('SingleDatePicker', () => {
   it('renders correct number options', () => {
     const startDate = moment('2020-02-18T00:00:00.000');

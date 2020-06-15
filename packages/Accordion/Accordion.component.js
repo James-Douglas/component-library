@@ -70,5 +70,4 @@ Accordion.defaultProps = {
   collapse: true,
 };
 
-
 export default Accordion;

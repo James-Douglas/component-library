@@ -25,7 +25,6 @@ import {
   StyledSpan,
 } from './Notification.styles';
 
-
 const notificationIcon = (variant) => {
   switch (variant) {
     case 'success':

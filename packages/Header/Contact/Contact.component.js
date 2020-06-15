@@ -30,5 +30,4 @@ Contact.defaultProps = {
   size: 'large',
 };
 
-
 export default Contact;

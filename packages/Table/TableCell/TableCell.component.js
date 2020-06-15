@@ -41,7 +41,6 @@ const TableCell = ({
   );
 };
 
-
 TableCell.propTypes = {
   /**
    * Extend the styles applied to the component.

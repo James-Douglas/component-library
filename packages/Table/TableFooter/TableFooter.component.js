@@ -25,7 +25,6 @@ const TableFooter = ({
   );
 };
 
-
 TableFooter.propTypes = {
   /**
    * The content of the table, normally `td`.

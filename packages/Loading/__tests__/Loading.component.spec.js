@@ -3,7 +3,6 @@ import { render, wait } from '../../../testUtils';
 import 'jest-styled-components';
 import LoadingComponent from '../Loading.component';
 
-
 describe('Loading', () => {
   jest.setTimeout(10000);
   it('render Loading component', () => {

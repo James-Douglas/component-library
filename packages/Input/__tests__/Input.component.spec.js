@@ -6,7 +6,6 @@ import Input, {
   renderClearIcon, renderAffix,
 } from '../Input.component';
 
-
 const SvgUkFlag = () => (
   <svg width="30" height="21" xmlns="http://www.w3.org/2000/svg">
     <defs>

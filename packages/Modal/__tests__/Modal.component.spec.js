@@ -23,7 +23,6 @@ describe('Modal', () => {
     expect(modal).not.toBeInTheDocument();
   });
 
-
   it('renders children and renders other components', () => {
     const { baseElement } = render(
       <Modal id="test-modal" visible>

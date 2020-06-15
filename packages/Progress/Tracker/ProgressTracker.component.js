@@ -40,7 +40,6 @@ export function processTrackerItems(steps, isDesktop) {
   );
 }
 
-
 const Tracker = ({
   steps,
   isSticky,

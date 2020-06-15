@@ -64,7 +64,6 @@ const IconToggle = ({
   );
 };
 
-
 IconToggle.propTypes = {
   /**
    * Unique identifier for the IconToggle

@@ -6,7 +6,6 @@ import { fireEvent, render } from '../../../testUtils';
 
 const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fugiat veniam minus', 'et presentation tempora', 'xfque dfsdf', 'presentation dfsdf que ffgddfg', 'presentation dfsdf que'];
 
-
 let mockUseIsDesktopValue = true;
 jest.mock('../../Hooks/useIsDesktop', () => ({
   __esModule: true,

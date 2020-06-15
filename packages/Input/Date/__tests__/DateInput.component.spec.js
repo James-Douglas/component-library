@@ -107,7 +107,6 @@ describe('DateInput', () => {
       />,
     );
 
-
     const input = container.querySelector('input');
     expect(input.value).toBe('01/2019');
 

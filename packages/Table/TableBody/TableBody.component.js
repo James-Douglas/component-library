@@ -25,7 +25,6 @@ const TableBody = ({
   );
 };
 
-
 TableBody.propTypes = {
   /**
    *  'td' contents.
