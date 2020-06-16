@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
-import { StyledFieldValidation, StyledIconWrap, StyledMessage } from './FieldValidation.styles';
+import {
+  StyledFieldValidation,
+  StyledIconWrap,
+  StyledMessage,
+} from './FieldValidation.styles';
 
 const FieldValidation = ({ message }) => {
   if (!message || !message.length) return null;
@@ -12,7 +16,7 @@ const FieldValidation = ({ message }) => {
         <StyledIconWrap>
           <FontAwesomeIcon icon={faExclamationCircle} size="xs" />
         </StyledIconWrap>
-        <span>{message}</span>
+        <span className="manor-FieldValidation-message">{message}</span>
       </StyledMessage>
     </StyledFieldValidation>
   );
