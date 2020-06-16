@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-field-validation",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Manor FieldValidation component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
