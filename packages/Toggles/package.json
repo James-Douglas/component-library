@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-toggles",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Manor ToggleGroup component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,10 +18,10 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.2.0",
+    "@comparethemarketau/manor-field-validation": "^0.2.1",
     "@comparethemarketau/manor-hooks": "^0.1.2",
     "@comparethemarketau/manor-label": "^0.1.4",
-    "@comparethemarketau/manor-picture": "^0.1.1",
+    "@comparethemarketau/manor-picture": "^0.1.2",
     "@comparethemarketau/manor-tooltip": "^0.2.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",

@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-feature-list",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Manor FeatureList component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -29,4 +29,3 @@
     "styled-components": "^5.0.0"
   }
 }
-

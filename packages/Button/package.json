@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-button",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Manor Button component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -25,7 +25,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.1.1"
+    "@comparethemarketau/manor-themes": "^0.1.2"
   },
   "peerDependencies": {
     "react": "^16.11.0",

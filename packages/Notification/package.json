@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-notification",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Manor Notification component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -25,7 +25,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.1.1"
+    "@comparethemarketau/manor-themes": "^0.1.2"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.1.0",
@@ -34,4 +34,3 @@
     "styled-components": "^5.0.0"
   }
 }
-
