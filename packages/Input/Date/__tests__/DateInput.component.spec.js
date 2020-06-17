@@ -1,7 +1,7 @@
 import React from 'react';
+import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render, fireEvent } from '../../../../testUtils';
 import DateInput from '../DateInput.component';
-import theme from '../../../Themes/ctm.theme';
 
 describe('DateInput', () => {
   it('renders with minimal props', () => {
@@ -32,7 +32,7 @@ describe('DateInput', () => {
     expect(svg).toBeInTheDocument();
     expect(input.value).toBe('01/01/2019');
 
-    expect(inputWrap.firstChild).toHaveStyle(`border: ${theme.borders.prefill}`);
+    expect(inputWrap.firstChild).toHaveStyle(`border: ${ctmTheme.borders.prefill}`);
   });
 
   it('displays input masking', () => {

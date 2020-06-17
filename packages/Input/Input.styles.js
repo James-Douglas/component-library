@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import MaskedInput from 'react-text-mask';
-import { StyledLabel } from '../Label/Label.styles';
+import { StyledLabel } from '@comparethemarketau/manor-label';
 
 const labelAnimation = (props) => keyframes`
     0% { 

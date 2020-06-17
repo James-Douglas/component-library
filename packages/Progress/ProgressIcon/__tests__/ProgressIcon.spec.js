@@ -1,8 +1,8 @@
 import React from 'react';
-import { render } from '../../../../testUtils';
+import { ctmTheme } from '@comparethemarketau/manor-themes';
 import 'jest-styled-components';
+import { render } from '../../../../testUtils';
 import ProgressIcon from '../ProgressIcon';
-import theme from '../../../Themes/ctm.theme';
 
 describe('ProgressIcon', () => {
   it('renders correctly without props', () => {
@@ -11,7 +11,7 @@ describe('ProgressIcon', () => {
   });
   it('renders correctly for disabled prop', () => {
     const { getByText } = render(<ProgressIcon index={4} disabled />);
-    expect(getByText('4')).toHaveStyleRule('border', theme.progress.icon.borderDisabled);
+    expect(getByText('4')).toHaveStyleRule('border', ctmTheme.progress.icon.borderDisabled);
   });
   it('renders correctly for active prop', () => {
     const { getByText } = render(<ProgressIcon index={4} active />);
@@ -19,6 +19,6 @@ describe('ProgressIcon', () => {
   });
   it('renders correctly for mobile prop', () => {
     const { getByText } = render(<ProgressIcon index={4} mobile />);
-    expect(getByText('4')).toHaveStyleRule('border', theme.progress.icon.border);
+    expect(getByText('4')).toHaveStyleRule('border', ctmTheme.progress.icon.border);
   });
 });

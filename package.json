@@ -10,6 +10,7 @@
     "react-app-polyfill": "^1.0.3"
   },
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "commit": "git-cz",
     "build": "lerna run build",
     "tdd": "jest --coverage --watchAll",

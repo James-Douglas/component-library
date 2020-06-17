@@ -1,7 +1,6 @@
 import { useState } from 'react';
+import { throttle, getBreakpoint } from '@comparethemarketau/manor-utils';
 import useMountEffect from './useMountEffect';
-import throttle from '../Utils/throttle';
-import { getBreakpoint } from '../Utils/breakpoint';
 
 export default function useBreakpoint(throttleHandler = true) {
   const [breakpoint, setBreakpoint] = useState(getBreakpoint());

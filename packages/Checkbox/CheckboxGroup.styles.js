@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Row from '../Grid/Row/Row.component';
+import { Row } from '@comparethemarketau/manor-grid';
 
 export const StyledContainer = styled.div`
   width: 100%;

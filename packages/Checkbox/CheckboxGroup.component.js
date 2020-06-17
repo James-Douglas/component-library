@@ -3,11 +3,10 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
-import Row from '../Grid/Row/Row.component';
-import Column from '../Grid/Column/Column.component';
-import { tooltipPropTypes } from '../Tooltip/Tooltip.component';
-import Label from '../Label/Label.component';
-import FieldValidation from '../FieldValidation/FieldValidation.component';
+import { FieldValidation } from '@comparethemarketau/manor-field-validation';
+import { Row, Column } from '@comparethemarketau/manor-grid';
+import { Label } from '@comparethemarketau/manor-label';
+import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { StyledContainer, StyledInnerRow } from './CheckboxGroup.styles';
 
 export const generateGroup = (colSize, children, callback, selectedCheckboxes) => {
