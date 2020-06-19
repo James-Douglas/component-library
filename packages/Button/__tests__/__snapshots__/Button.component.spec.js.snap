@@ -31,7 +31,7 @@ exports[`Button renders correctly with minimal props 1`] = `
   font-weight: 700;
   color: #FFFFFF;
   fill: #FFFFFF;
-  background: #0f8927;
+  background: #0f8a28;
 }
 
 .c1 > .sc-AxiKw {
@@ -148,7 +148,7 @@ exports[`Button renders with props 1`] = `
   flex-direction: row-reverse;
   color: #FFFFFF;
   fill: #FFFFFF;
-  background: #0f8927;
+  background: #0f8a28;
 }
 
 .c1 > .c2 {

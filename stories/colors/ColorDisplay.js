@@ -39,7 +39,6 @@ const StyledColorCode = styled.p`
   text-transform: uppercase;
 `;
 
-
 const ColorDisplay = ({ name, color }) => (
   <StyledContainer>
     <StyledColorDisplay color={color} />

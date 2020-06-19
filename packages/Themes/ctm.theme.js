@@ -1,5 +1,4 @@
 const flexboxgrid = {
-  // Defaults
   gridSize: 12, // columns
   gutterWidth: 1, // rem
   outerMargin: 2, // rem
@@ -14,14 +13,13 @@ const flexboxgrid = {
 };
 
 const colors = {
-  // Per design audit ticket, check to see if new colors are used and apply
   brandMidnightBlue: '#001443',
   brandDarkBlue: '#001564',
   brandLightBlue: '#0f58ab',
   primary50: '#e7f0fb',
-  primary100: '#c1d8ef',
-  primary200: '#8fbce9',
-  primary300: '#5a93cd',
+  primary100: '#c2d9f0',
+  primary200: '#90bdea',
+  primary300: '#6ca0d3',
   primary400: '#3b80c5',
   primary500: '#0b60b7',
   primary600: '#004a8e',
@@ -31,12 +29,12 @@ const colors = {
   hero50: '#e7f3ea',
   hero300: '#57ad69',
   hero400: '#339c48',
-  hero500: '#0f8927',
+  hero500: '#0f8a28',
   hero600: '#0d7522',
   hero700: '#0b611c',
   grey50: '#fafafa',
   grey100: '#f6f6f6',
-  grey200: '#f6f6f6',
+  grey200: '#eeeeee',
   grey300: '#dadada',
   grey400: '#c4c4c4',
   grey500: '#9e9e9e',
