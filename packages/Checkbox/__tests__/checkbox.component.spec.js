@@ -13,8 +13,8 @@ describe('renderIcon()', () => {
   );
 
   it('does not render an icon if toggle condition is not met', () => {
-    const { container } = render(<IconContainer icon={faTimes} toggle={false} />);
-    expect(container).toBeEmpty();
+    const { container } = render(<div id="test"><IconContainer icon={faTimes} toggle={false} /></div>);
+    expect(container.querySelector('#test')).toBeEmpty();
   });
 
   it('renders an icon when params are set (icon name and toggle is true)', () => {

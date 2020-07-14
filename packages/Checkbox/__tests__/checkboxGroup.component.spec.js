@@ -14,7 +14,7 @@ describe('generateGroup', () => {
 
   it('does not render children if there are none', () => {
     const { container } = render(<GroupContainer />);
-    expect(container).toBeEmpty();
+    expect(container).toMatchSnapshot();
   });
 
   it('renders if there are children', () => {

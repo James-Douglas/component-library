@@ -1,5 +1,4 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import useToasts from './contexts/Toast/useToasts';
 
@@ -19,13 +18,12 @@ const StyledWrap = styled.div`
 
 const ToastManager = () => {
   const { toasts } = useToasts();
-  return createPortal(
+  return (
     <StyledContainer>
       <StyledWrap>
         {toasts}
       </StyledWrap>
-    </StyledContainer>,
-    document.body,
+    </StyledContainer>
   );
 };
 

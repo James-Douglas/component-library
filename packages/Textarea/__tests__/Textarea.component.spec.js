@@ -31,7 +31,7 @@ describe('getRemainingCharsContent()', () => {
 
   it('returns content when maxChars is available', () => {
     const { container, getByText } = render(<RemainingCharsContentContainer maxChars={50} id="test" textAreaRemainChars={20} label="test label" />);
-    const wrapper = container.firstChild;
+    const wrapper = container.children[1];
     expect(wrapper.id).toEqual('test-maxlength-indicator');
     expect(wrapper).not.toHaveClass('max-chars-exceeded');
     expect(getByText('Remaining allowed characters for the test label field')).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe('getRemainingCharsContent()', () => {
 
   it('returns content when maxLength is available', () => {
     const { container, getByText } = render(<RemainingCharsContentContainer maxLength={50} id="test" textAreaRemainChars={20} label="test label" />);
-    const wrapper = container.firstChild;
+    const wrapper = container.children[1];
     expect(wrapper.id).toEqual('test-maxlength-indicator');
     expect(wrapper).not.toHaveClass('max-chars-exceeded');
     expect(getByText('Remaining allowed characters for the test label field')).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe('getRemainingCharsContent()', () => {
 
   it('returns correct content when limit exceeded', () => {
     const { container, getByText } = render(<RemainingCharsContentContainer maxChars={50} id="test" textAreaRemainChars={-1} label="test label" />);
-    const wrapper = container.firstChild;
+    const wrapper = container.children[1];
     expect(wrapper.id).toEqual('test-maxlength-indicator');
     expect(wrapper).toHaveClass('max-chars-exceeded');
     expect(getByText('Exceeded character limit for the test label field')).toBeInTheDocument();

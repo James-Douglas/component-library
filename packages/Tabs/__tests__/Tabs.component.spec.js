@@ -35,7 +35,7 @@ describe('renderChildren', () => {
     const btnWrap = container.querySelector('.tab-button-wrap');
 
     expect(btnWrap.children).toHaveLength(1); // tab button
-    expect(container.children).toHaveLength(2); // tab panel and btn wrap
+    expect(container.children).toHaveLength(3); // tab panel and btn wrap
   });
 });
 

@@ -2,6 +2,13 @@
 
 exports[`TabButton renders a TabButton 1`] = `
 <div>
+  <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
   <button
     class="sc-AxiKw kysiVG 
     tab-button
@@ -19,6 +26,13 @@ exports[`TabButton renders a TabButton 1`] = `
 
 exports[`TabButton renders multuple TabButtons 1`] = `
 <div>
+  <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
   <button
     class="sc-AxiKw kysiVG 
     tab-button
@@ -49,6 +63,13 @@ exports[`TabButton renders multuple TabButtons 1`] = `
 exports[`TabPanel renders a TabPanel 1`] = `
 <div>
   <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
+  <div
     class="sc-AxgMl gbqfgb 
     tab-panel
     
@@ -64,6 +85,13 @@ exports[`TabPanel renders a TabPanel 1`] = `
 
 exports[`TabPanel renders additional classNames 1`] = `
 <div>
+  <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
   <div
     class="sc-AxgMl gbqfgb 
     tab-panel
@@ -91,6 +119,13 @@ exports[`TabPanel renders additional classNames 1`] = `
 
 exports[`TabPanel renders multiple TabPanels 1`] = `
 <div>
+  <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
   <div
     class="sc-AxgMl gbqfgb 
     tab-panel
@@ -140,6 +175,13 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
 
 exports[`Tabs renders a border 1`] = `
 <div>
+  <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
   <div
     class="sc-AxhCb fxgfTY 
     tabs-container
@@ -207,6 +249,13 @@ exports[`Tabs renders a border 1`] = `
 exports[`Tabs renders additional classNames 1`] = `
 <div>
   <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
+  <div
     class="sc-AxhCb kdIUDf 
     tabs-container
     test classes
@@ -272,6 +321,13 @@ exports[`Tabs renders additional classNames 1`] = `
 
 exports[`Tabs renders correctly with minimal props 1`] = `
 <div>
+  <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
   <div
     class="sc-AxhCb kdIUDf 
     tabs-container

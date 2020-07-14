@@ -11,18 +11,18 @@ describe('Drawer', () => {
   });
   it('check default Drawer direction', () => {
     const { container } = render(<Drawer visible handleClose={() => {}} />);
-    const DrawerChild = container.firstChild.firstChild;
+    const DrawerChild = container.children[1].firstChild;
     expect(DrawerChild.getAttribute('direction')).toBe('right');
   });
   it('check Drawer bottom direction', () => {
     const { container } = render(<Drawer visible handleClose={() => {}} size="400px" direction="bottom" />);
-    const drawerWrapper = container.firstChild;
+    const drawerWrapper = container.children[1];
     expect(drawerWrapper.firstChild).toHaveStyleRule('background', '#FFFFFF');
     expect(drawerWrapper).toHaveStyle('z-index: 51');
   });
   it('check Drawer styles open section', () => {
     const { container } = render(<Drawer size="20%" direction="bottom" visible handleClose={() => {}}>Drawer content inside</Drawer>);
-    const DrawerChild = container.firstChild.firstChild;
+    const DrawerChild = container.children[1].firstChild;
     expect(DrawerChild).toHaveStyleRule('bottom', '0');
   });
   it('check bottom Drawer', () => {

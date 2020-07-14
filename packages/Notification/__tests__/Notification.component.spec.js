@@ -22,7 +22,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.primary500}`);
     expect(childDiv).toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
@@ -41,7 +41,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.warning500}`);
     expect(childDiv).toHaveStyleRule('background', `${ctmTheme.colors.warning50}`);
   });
@@ -56,7 +56,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     const heading = container.querySelector('p');
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.error500}`);
     expect(heading).toHaveStyleRule('color', `${ctmTheme.colors.error500}`);
@@ -72,7 +72,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     const heading = container.querySelector('p');
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.warning500}`);
     expect(heading).toHaveStyleRule('color', `${ctmTheme.colors.grey800}`);
@@ -90,8 +90,8 @@ describe('Notification()', () => {
         handleClose={setIsVisibleNotification}
       />,
     );
-    const childDiv = container.firstChild;
-    const closeBtn = container.firstChild.firstChild;
+    const childDiv = container.children[1];
+    const closeBtn = container.children[1].firstChild;
     const errorIcon = container.getElementsByClassName('fa-engine-warning')[0];
     closeBtn.click();
     expect(setIsVisibleNotification).toBeCalled();
@@ -109,7 +109,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     const dangerIcon = container.getElementsByClassName('fa-exclamation-triangle')[0];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.warning500}`);
     expect(childDiv).toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
@@ -125,7 +125,7 @@ describe('Notification()', () => {
         content="Provider will capture the full description."
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     const dangerIcon = container.getElementsByClassName('fa-check-circle')[0];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.success500}`);
     expect(childDiv).toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
@@ -141,7 +141,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.primary500}`);
     expect(childDiv).toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
@@ -187,7 +187,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
     expect(childDiv).toHaveStyleRule('position', 'relative');
     expect(childDiv).toHaveStyleRule('width', `${ctmTheme.minWidth.xs}`);
@@ -206,7 +206,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.firstChild;
+    const childDiv = container.children[1];
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
     expect(childDiv).not.toHaveStyleRule('position', 'absolute');
     expect(childDiv).not.toHaveStyleRule('bottom', '0');

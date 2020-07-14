@@ -2,6 +2,25 @@
 
 exports[`Microcopy.component renders correctly with minimal props 1`] = `
 .c0 {
+  position: fixed;
+  top: 7.6rem;
+  right: 0;
+  overflow: hidden;
+  z-index: 2147483647;
+}
+
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c2 {
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 1.4;
@@ -32,8 +51,15 @@ exports[`Microcopy.component renders correctly with minimal props 1`] = `
 }
 
 <div>
-  <p
+  <div
     class="c0"
+  >
+    <div
+      class="c1"
+    />
+  </div>
+  <p
+    class="c2"
   />
 </div>
 `;

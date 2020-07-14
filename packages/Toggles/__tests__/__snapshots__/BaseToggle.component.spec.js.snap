@@ -2,6 +2,25 @@
 
 exports[`BaseToggle renders with minimal props 1`] = `
 .c0 {
+  position: fixed;
+  top: 7.6rem;
+  right: 0;
+  overflow: hidden;
+  z-index: 2147483647;
+}
+
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -16,40 +35,40 @@ exports[`BaseToggle renders with minimal props 1`] = `
   line-height: 1.5;
 }
 
-.c1 {
+.c3 {
   opacity: 0;
   width: 0;
   height: 0;
   position: absolute;
 }
 
-.c1 + label {
+.c3 + label {
   color: #0b60b7;
 }
 
-.c1:checked + label svg {
+.c3:checked + label svg {
   color: #FFFFFF;
   fill: currentColor;
   box-shadow: none;
 }
 
-.c1:checked + label div {
+.c3:checked + label div {
   background: #0b60b7;
   color: #FFFFFF;
   box-shadow: none;
 }
 
-.c1:disabled + label:hover {
+.c3:disabled + label:hover {
   cursor: not-allowed;
 }
 
-.c1:disabled + label {
+.c3:disabled + label {
   color: #dadada;
   border: 1px solid transparent;
   fill: currentColor;
 }
 
-.c1:focus + label {
+.c3:focus + label {
   box-shadow: 0 0 2px 3px rgba(0,123,255,.3);
 }
 
@@ -81,8 +100,15 @@ exports[`BaseToggle renders with minimal props 1`] = `
   <div
     class="c0"
   >
-    <input
+    <div
       class="c1"
+    />
+  </div>
+  <div
+    class="c2"
+  >
+    <input
+      class="c3"
       id="test-square"
       name=""
       tabindex="0"

@@ -24,7 +24,7 @@ describe('Container', () => {
   it('has a container class by default and NO fixed class', () => {
     const { container } = render(<FluidContainer />);
 
-    const containerComponent = container.firstChild;
+    const containerComponent = container.children[1];
 
     expect(container).toMatchSnapshot();
     expect(containerComponent).toBeDefined();

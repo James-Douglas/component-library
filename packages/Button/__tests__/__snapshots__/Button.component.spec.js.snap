@@ -1,7 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button renders correctly with minimal props 1`] = `
+.c0 {
+  position: fixed;
+  top: 7.6rem;
+  right: 0;
+  overflow: hidden;
+  z-index: 2147483647;
+}
+
 .c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -34,28 +53,28 @@ exports[`Button renders correctly with minimal props 1`] = `
   background: #0f8a28;
 }
 
-.c1 > .sc-AxiKw {
+.c3 > .sc-AxiKw {
   margin-right: 0.8rem;
 }
 
-.c1:focus {
+.c3:focus {
   outline: none;
 }
 
-.c1:hover {
+.c3:hover {
   box-shadow: 0px 0.5rem 0.8rem rgba(0,0,0,0.2);
 }
 
-.c1:active,
-.c1:focus {
+.c3:active,
+.c3:focus {
   box-shadow: 0px 0.3rem 0.8rem rgba(0,0,0,0.1);
 }
 
-.c1:hover {
+.c3:hover {
   background: #0d7522;
 }
 
-.c0 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -94,12 +113,19 @@ exports[`Button renders correctly with minimal props 1`] = `
 }
 
 <div>
-  <span
+  <div
     class="c0"
+  >
+    <div
+      class="c1"
+    />
+  </div>
+  <span
+    class="c2"
     width="100%"
   >
     <button
-      class="c1"
+      class="c3"
       id="test-id"
       type=""
     >
@@ -110,12 +136,31 @@ exports[`Button renders correctly with minimal props 1`] = `
 `;
 
 exports[`Button renders with props 1`] = `
-.c3 {
+.c0 {
+  position: fixed;
+  top: 7.6rem;
+  right: 0;
+  overflow: hidden;
+  z-index: 2147483647;
+}
+
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c5 {
   pointer-events: none;
   display: inherit;
 }
 
-.c1 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -151,33 +196,33 @@ exports[`Button renders with props 1`] = `
   background: #0f8a28;
 }
 
-.c1 > .c2 {
+.c3 > .c4 {
   margin-right: 0.8rem;
 }
 
-.c1 > .c2 {
+.c3 > .c4 {
   margin-right: 0;
   margin-left: 0.8rem;
 }
 
-.c1:focus {
+.c3:focus {
   outline: none;
 }
 
-.c1:hover {
+.c3:hover {
   box-shadow: 0px 0.5rem 0.8rem rgba(0,0,0,0.2);
 }
 
-.c1:active,
-.c1:focus {
+.c3:active,
+.c3:focus {
   box-shadow: 0px 0.3rem 0.8rem rgba(0,0,0,0.1);
 }
 
-.c1:hover {
+.c3:hover {
   background: #0d7522;
 }
 
-.c0 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -216,17 +261,24 @@ exports[`Button renders with props 1`] = `
 }
 
 <div>
-  <span
+  <div
     class="c0"
+  >
+    <div
+      class="c1"
+    />
+  </div>
+  <span
+    class="c2"
     width="100%"
   >
     <button
-      class="c1"
+      class="c3"
       id="test-id"
       type=""
     >
       <div
-        class="c2 c3"
+        class="c4 c5"
       >
         <svg
           aria-hidden="true"

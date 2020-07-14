@@ -9,7 +9,7 @@ describe('LayerEventManager', () => {
   );
   it('applies props to children', () => {
     const { container, getByText } = render(<LayerEventManager visible><TestComponent /></LayerEventManager>);
-    const wrapper = container.firstChild;
+    const wrapper = container.children[1];
     expect(wrapper).toHaveStyle('z-index: 51');
     expect(wrapper).toHaveAttribute('id');
     expect(getByText('test')).toBeInTheDocument();

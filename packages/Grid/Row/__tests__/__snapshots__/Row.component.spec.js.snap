@@ -2,6 +2,25 @@
 
 exports[`Row renders correctly without props 1`] = `
 .c0 {
+  position: fixed;
+  top: 7.6rem;
+  right: 0;
+  overflow: hidden;
+  z-index: 2147483647;
+}
+
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c2 {
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -54,7 +73,14 @@ exports[`Row renders correctly without props 1`] = `
 
 <div>
   <div
-    class="sc-AxhCb c0 row "
+    class="c0"
+  >
+    <div
+      class="c1"
+    />
+  </div>
+  <div
+    class="sc-AxhCb c2 row "
   />
 </div>
 `;

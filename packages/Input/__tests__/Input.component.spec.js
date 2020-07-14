@@ -41,8 +41,8 @@ describe('renderClearIcon()', () => {
   );
 
   it('does not render an clearIcon if the value.length is over 0', () => {
-    const { container } = render(<ClearIconContainer value="" />);
-    expect(container).toBeEmpty();
+    const { container } = render(<div id="test"><ClearIconContainer value="" /></div>);
+    expect(container.querySelector('#test')).toBeEmpty();
   });
 
   it('renders a clearIcon when the value.length is > 0', () => {
@@ -63,8 +63,8 @@ describe('renderAffix()', () => {
   );
 
   it('does not render a prefix or suffix if its not supplied', () => {
-    const { container } = render(<AffixContainer />);
-    expect(container).toBeEmpty();
+    const { container } = render(<div id="test"><AffixContainer /></div>);
+    expect(container.querySelector('#test')).toBeEmpty();
   });
 
   it('renders a prefix when supplied', () => {

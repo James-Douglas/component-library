@@ -5,8 +5,8 @@ import Placeholder from '../../../images/placeholder.png';
 
 describe('Picture', () => {
   it('does not render without required src prop', () => {
-    const { container } = render(<Picture src="" />);
-    expect(container).toBeEmpty();
+    const { container } = render(<div id="test"><Picture src="" /></div>);
+    expect(container.querySelector('#test')).toBeEmpty();
   });
 
   it('renders with minimal props', () => {

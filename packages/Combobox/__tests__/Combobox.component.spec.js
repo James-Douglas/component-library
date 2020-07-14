@@ -724,7 +724,7 @@ describe('Combo', () => {
     const inputField = container.querySelector('#mobilecombo-id-first');
     inputField.click();
     const overlay = container.querySelector('[role="option"]');
-    expect(container.firstChild.firstChild).toHaveClass('overlay');
+    expect(container.children[1].firstChild).toHaveClass('overlay');
     const input = container.querySelector('#combo-id-first');
     fireEvent.keyDown(input, { key: 'Escape', keyCode: 27 });
     expect(overlay).not.toBeInTheDocument();

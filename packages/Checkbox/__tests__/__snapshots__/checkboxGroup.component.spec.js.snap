@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup.component renders with minimal props 1`] = `
-"<div class=\\"sc-fznxsB fZusSh\\"><label for=\\"test-group-id\\" class=\\"sc-fznJRM hsPuLk label\\">test</label></div><div class=\\"sc-AxheI sc-fzpans dPZtjK row \\"><div class=\\"sc-Axmtr sc-AxmLO jhuGTF 
+"<div class=\\"sc-AxjAm kaSHsU\\"><div class=\\"sc-AxirZ jnDRS\\"></div></div><div class=\\"sc-fznxsB fZusSh\\"><label for=\\"test-group-id\\" class=\\"sc-fznJRM hsPuLk label\\">test</label></div><div class=\\"sc-AxheI sc-fzpans dPZtjK row \\"><div class=\\"sc-Axmtr sc-AxmLO jhuGTF 
         
       \\"><div id=\\"test-group-id\\" class=\\"sc-fznWqX hdFrrZ\\"><div class=\\"sc-AxheI sc-fzpans kJZmcI row sc-fzoiQi icjssD\\"><div class=\\"sc-Axmtr sc-AxmLO fpiHYl 
         
@@ -13,7 +13,7 @@ exports[`CheckboxGroup.component renders with minimal props 1`] = `
 `;
 
 exports[`CheckboxGroup.component renders with props 1`] = `
-"<div class=\\"sc-fznxsB fZusSh\\"><label for=\\"test-group-id\\" class=\\"sc-fznJRM hsPuLk label\\"></label></div><div class=\\"sc-AxheI sc-fzpans dPZtjK row \\"><div class=\\"sc-Axmtr sc-AxmLO jhuGTF 
+"<div class=\\"sc-AxjAm kaSHsU\\"><div class=\\"sc-AxirZ jnDRS\\"></div></div><div class=\\"sc-fznxsB fZusSh\\"><label for=\\"test-group-id\\" class=\\"sc-fznJRM hsPuLk label\\"></label></div><div class=\\"sc-AxheI sc-fzpans dPZtjK row \\"><div class=\\"sc-Axmtr sc-AxmLO jhuGTF 
         
       \\"><div id=\\"test-group-id\\" class=\\"sc-fznWqX hdFrrZ\\"><div class=\\"sc-AxheI sc-fzpans kJZmcI row sc-fzoiQi icjssD\\"><div class=\\"sc-Axmtr sc-AxmLO ihawHV 
         
@@ -24,8 +24,20 @@ exports[`CheckboxGroup.component renders with props 1`] = `
       \\"><div class=\\"sc-fzqNqU geKXGt\\"><input id=\\"A-3\\" name=\\"A-3\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fzqARJ hXiRWQ\\"><label for=\\"A-3\\" class=\\"sc-fzoNJl hfYFzm\\"><div class=\\"sc-fzoyTs iiwXci\\"></div></label></div></div></div></div></div></div>"
 `;
 
+exports[`generateGroup does not render children if there are none 1`] = `
+<div>
+  <div
+    class="sc-AxjAm kaSHsU"
+  >
+    <div
+      class="sc-AxirZ jnDRS"
+    />
+  </div>
+</div>
+`;
+
 exports[`generateGroup renders if there are children 1`] = `
-"<div class=\\"sc-Axmtr sc-AxmLO fpiHYl 
+"<div class=\\"sc-AxjAm kaSHsU\\"><div class=\\"sc-AxirZ jnDRS\\"></div></div><div class=\\"sc-Axmtr sc-AxmLO fpiHYl 
         
       \\"><div class=\\"sc-fzqNqU geKXGt\\"><input id=\\"A-1\\" name=\\"A-1\\" type=\\"checkbox\\" role=\\"checkbox\\" aria-checked=\\"false\\" class=\\"sc-fzqARJ hXiRWQ\\"><label for=\\"A-1\\" class=\\"sc-fzoNJl hfYFzm\\"><div class=\\"sc-fzoyTs iiwXci\\"></div><div class=\\"sc-fzoXWK cljrRi\\">A-1 check</div></label></div></div><div class=\\"sc-Axmtr sc-AxmLO fpiHYl 
         
