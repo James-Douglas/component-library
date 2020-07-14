@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.3.6...@comparethemarketau/manor-input@0.3.7) (2020-07-14)
+
+
+### Bug Fixes
+
+* **toastmanager:** removed portals from ToastManager ([#345](https://github.com/comparethemarketau/manor-react/issues/345)) ([1533377](https://github.com/comparethemarketau/manor-react/commit/1533377910e9cbac266abe24fae1ee42eba4c52f))
+
+
+
+
+
 ## [0.3.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.3.5...@comparethemarketau/manor-input@0.3.6) (2020-06-21)
 
 

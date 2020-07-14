@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.1.9...@comparethemarketau/manor-combobox@0.1.10) (2020-07-14)
+
+
+### Bug Fixes
+
+* **toastmanager:** removed portals from ToastManager ([#345](https://github.com/comparethemarketau/manor-react/issues/345)) ([1533377](https://github.com/comparethemarketau/manor-react/commit/1533377910e9cbac266abe24fae1ee42eba4c52f))
+
+
+
+
+
 ## [0.1.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.1.8...@comparethemarketau/manor-combobox@0.1.9) (2020-06-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combobox
