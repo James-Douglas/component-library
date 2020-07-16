@@ -134,4 +134,14 @@ describe('Checkbox', () => {
     input.blur();
     expect(handleBlur).toHaveBeenCalled();
   });
+
+  it('calls handleClick on click', () => {
+    const handleClick = jest.fn();
+    const { container } = render(
+      <Checkbox id="test-id" handleClick={handleClick} />,
+    );
+    const label = container.querySelector('label');
+    fireEvent.click(label, { button: 0 });
+    expect(handleClick).toHaveBeenCalled();
+  });
 });

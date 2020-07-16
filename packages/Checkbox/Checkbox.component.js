@@ -31,6 +31,7 @@ const Checkbox = ({
   disabled,
   validationMessage,
   invertColour,
+  handleClick,
   handleChange,
   handleFocus,
   handleBlur,
@@ -69,6 +70,7 @@ const Checkbox = ({
           type="checkbox"
           role="checkbox"
           disabled={disabled}
+          onClick={handleClick}
           onChange={toggleEventHandler}
           checked={internalValue}
           aria-checked={internalValue}
@@ -144,6 +146,10 @@ Checkbox.propTypes = {
    */
   invertColour: PropTypes.bool,
   /**
+   * Called on click
+   */
+  handleClick: PropTypes.func,
+  /**
    * Called on change with { id, value }.
    */
   handleChange: PropTypes.func,
@@ -170,6 +176,7 @@ Checkbox.defaultProps = {
   prefillValue: false,
   validationMessage: '',
   invertColour: false,
+  handleClick: null,
   handleChange: null,
   handleFocus: null,
   handleBlur: null,

@@ -33,12 +33,6 @@ const BaseToggle = ({
     handleToggle(value);
   };
 
-  const clickHandler = () => {
-    if (handleClick) {
-      handleClick(value);
-    }
-  };
-
   return (
     <StyledToggle
       invalid={invalid}
@@ -53,7 +47,7 @@ const BaseToggle = ({
         id={id}
         type="radio"
         onChange={changeHandler}
-        onClick={clickHandler}
+        onClick={handleClick}
         checked={checked}
         disabled={disabled}
         name={name}
@@ -65,7 +59,6 @@ const BaseToggle = ({
       />
       {children}
     </StyledToggle>
-
   );
 };
 

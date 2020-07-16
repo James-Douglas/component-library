@@ -70,10 +70,7 @@ describe('ToggleGroup', () => {
     fireEvent.click(toggleA);
     fireEvent.click(toggleA);
     expect(onToggleCb).toHaveBeenCalledTimes(1);
-    expect(onToggleCb.mock.calls[0][0]).toEqual('a');
     expect(onClickCb).toHaveBeenCalledTimes(2);
-    expect(onClickCb.mock.calls[0][0]).toEqual('a');
-    expect(onClickCb.mock.calls[1][0]).toEqual('a');
   });
 
   it('renders with tooltip', () => {
