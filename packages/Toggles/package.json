@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-toggles",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Manor ToggleGroup component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
