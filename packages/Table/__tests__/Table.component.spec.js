@@ -117,7 +117,7 @@ describe('Table', () => {
     const div = container.getElementsByTagName('div')[0];
     const divElement = container.getElementsByTagName('div');
     expect(div).toBeInTheDocument();
-    expect(divElement.length).toBe(3);
+    expect(divElement.length).toBe(1);
   });
   it('renders correctly with div instead of table and thead', () => {
     const { container } = render(
@@ -128,7 +128,7 @@ describe('Table', () => {
     const div = container.getElementsByTagName('div')[0];
     const divElement = container.getElementsByTagName('div');
     expect(div).toBeInTheDocument();
-    expect(divElement.length).toBe(4);
+    expect(divElement.length).toBe(2);
   });
   it('renders correctly with component tags', () => {
     const { container } = render(

@@ -3,6 +3,7 @@ import 'jest-styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render } from '../../../testUtils';
 import Notification from '../Notification.component';
+import ToastManager from '../ToastManager.component';
 
 describe('Notification()', () => {
   it('Notification renders with minimal props', () => {
@@ -22,7 +23,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.firstChild;
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.primary500}`);
     expect(childDiv).toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
@@ -41,7 +42,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.firstChild;
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.warning500}`);
     expect(childDiv).toHaveStyleRule('background', `${ctmTheme.colors.warning50}`);
   });
@@ -56,7 +57,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.firstChild;
     const heading = container.querySelector('p');
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.error500}`);
     expect(heading).toHaveStyleRule('color', `${ctmTheme.colors.error500}`);
@@ -72,7 +73,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.firstChild;
     const heading = container.querySelector('p');
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.warning500}`);
     expect(heading).toHaveStyleRule('color', `${ctmTheme.colors.grey800}`);
@@ -90,8 +91,8 @@ describe('Notification()', () => {
         handleClose={setIsVisibleNotification}
       />,
     );
-    const childDiv = container.children[1];
-    const closeBtn = container.children[1].firstChild;
+    const childDiv = container.firstChild;
+    const closeBtn = container.firstChild.firstChild;
     const errorIcon = container.getElementsByClassName('fa-engine-warning')[0];
     closeBtn.click();
     expect(setIsVisibleNotification).toBeCalled();
@@ -109,7 +110,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.firstChild;
     const dangerIcon = container.getElementsByClassName('fa-exclamation-triangle')[0];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.warning500}`);
     expect(childDiv).toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
@@ -125,7 +126,7 @@ describe('Notification()', () => {
         content="Provider will capture the full description."
       />,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.firstChild;
     const dangerIcon = container.getElementsByClassName('fa-check-circle')[0];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.success500}`);
     expect(childDiv).toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
@@ -141,7 +142,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.firstChild;
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.primary500}`);
     expect(childDiv).toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
@@ -178,16 +179,21 @@ describe('Notification()', () => {
 
   it('renders a toast notification', () => {
     const { container } = render(
-      <Notification
-        type="toast"
-        position="bottom"
-        variant="general"
-        title="Notification title goes here"
-        content="Provider will capture the full description."
-        icon
-      />,
+      <>
+        <ToastManager />
+        <div id="test-wrap">
+          <Notification
+            type="toast"
+            position="bottom"
+            variant="general"
+            title="Notification title goes here"
+            content="Provider will capture the full description."
+            icon
+          />
+        </div>
+      </>,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.querySelector('#test-wrap').firstChild;
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
     expect(childDiv).toHaveStyleRule('position', 'relative');
     expect(childDiv).toHaveStyleRule('width', `${ctmTheme.minWidth.xs}`);
@@ -206,7 +212,7 @@ describe('Notification()', () => {
         icon
       />,
     );
-    const childDiv = container.children[1];
+    const childDiv = container.firstChild;
     const infoIcon = container.getElementsByClassName('fa-info-circle')[0];
     expect(childDiv).not.toHaveStyleRule('position', 'absolute');
     expect(childDiv).not.toHaveStyleRule('bottom', '0');

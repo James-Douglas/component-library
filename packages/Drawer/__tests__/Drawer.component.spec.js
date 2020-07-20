@@ -11,18 +11,17 @@ describe('Drawer', () => {
   });
   it('check default Drawer direction', () => {
     const { container } = render(<Drawer visible handleClose={() => {}} />);
-    const DrawerChild = container.children[1].firstChild;
+    const DrawerChild = container.firstChild;
     expect(DrawerChild.getAttribute('direction')).toBe('right');
   });
   it('check Drawer bottom direction', () => {
     const { container } = render(<Drawer visible handleClose={() => {}} size="400px" direction="bottom" />);
-    const drawerWrapper = container.children[1];
-    expect(drawerWrapper.firstChild).toHaveStyleRule('background', '#FFFFFF');
-    expect(drawerWrapper).toHaveStyle('z-index: 51');
+    expect(container.firstChild).toHaveStyleRule('background', '#FFFFFF');
+    expect(container.firstChild).toHaveStyle('z-index: 30');
   });
   it('check Drawer styles open section', () => {
     const { container } = render(<Drawer size="20%" direction="bottom" visible handleClose={() => {}}>Drawer content inside</Drawer>);
-    const DrawerChild = container.children[1].firstChild;
+    const DrawerChild = container.firstChild;
     expect(DrawerChild).toHaveStyleRule('bottom', '0');
   });
   it('check bottom Drawer', () => {
@@ -53,16 +52,6 @@ describe('Drawer', () => {
     const contentPadding = container.querySelectorAll('[direction="left"]')[1];
     expect(contentPadding).toHaveStyleRule('padding-top', `${ctmTheme.spacing[32]}`);
   });
-  it('check left Drawer on escapse', () => {
-    const handleCloseFun = jest.fn();
-    const { container } = render(
-      <Drawer size="400px" direction="left" visible handleClose={handleCloseFun}>
-        Drawer opened
-      </Drawer>,
-    );
-    fireEvent.keyDown(container, { key: 'Escape', keyCode: 27 });
-    expect(handleCloseFun).toHaveBeenCalled();
-  });
   it('check right Drawer', () => {
     const { container } = render(
       <Drawer size="400px" closeButton visible handleClose={() => {}}>
@@ -81,66 +70,5 @@ describe('Drawer', () => {
     );
     const animateBottom = container.querySelectorAll('[direction="bottom"]')[0];
     expect(animateBottom).toHaveStyleRule('bottom', '0');
-  });
-  it('check zIndex for layers', () => {
-    const { container } = render(
-      <>
-        <Drawer
-          id="1"
-          size="300px"
-          visible
-          direction="bottom"
-          iconClassName="closeIconSlide"
-          closeButton
-          handleClose={() => {}}
-        >
-          <div> First Layer</div>
-        </Drawer>
-        <Drawer
-          id="2"
-          size="300px"
-          direction="right"
-          iconClassName="closeIconSlide"
-          closeButton
-          handleClose={() => {}}
-        >
-          <div> Second Layer</div>
-        </Drawer>
-      </>,
-    );
-
-    const bottomDirectionDrawerLayer = container.querySelector('#layer-1');
-    expect(bottomDirectionDrawerLayer).toHaveStyle('z-index: 51');
-
-    render(
-      <>
-        <Drawer
-          id="1"
-          size="300px"
-          visible
-          direction="bottom"
-          iconClassName="closeIconSlide"
-          closeButton
-          handleClose={() => {}}
-        >
-          <div> First Layer</div>
-        </Drawer>
-        <Drawer
-          id="2"
-          size="300px"
-          visible
-          direction="right"
-          iconClassName="closeIconSlide"
-          closeButton
-          handleClose={() => {}}
-        >
-          <div> Second Layer</div>
-        </Drawer>
-      </>,
-      { container },
-    );
-
-    const rightDirectionDrawerLayer = container.querySelector('#layer-2');
-    expect(rightDirectionDrawerLayer).toHaveStyle('z-index: 52');
   });
 });

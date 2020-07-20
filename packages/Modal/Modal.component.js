@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Overlay } from '@comparethemarketau/manor-overlay';
-import { LayerEventManager } from '@comparethemarketau/manor-provider';
 import {
   StyledAlignment, StyledCloseIcon, StyledContent, StyledContentChildren, StyledModal,
 } from './Modal.styles';
@@ -20,6 +19,7 @@ const Modal = ({
   overlay,
   overlayOpacity,
   handleOverlayClick,
+  zIndex,
 }) => {
   const id = useId(propsId);
   const classNames = `
@@ -27,25 +27,23 @@ const Modal = ({
     ${className}
   `;
   return (
-    <LayerEventManager id={id} visible={visible} handleClose={handleClose} trapFocus>
-      <>
-        {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} />}
-        {visible
-          && (
-            <StyledAlignment visible={visible}>
-              <StyledModal id={id} className={classNames} size={size}>
-                <StyledCloseIcon className="icon-close" onClick={handleClose} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false">
-                  <FontAwesomeIcon icon={faTimes} />
-                </StyledCloseIcon>
-                <StyledContent>
-                  {title && <h2>{title}</h2>}
-                  <StyledContentChildren>{children}</StyledContentChildren>
-                </StyledContent>
-              </StyledModal>
-            </StyledAlignment>
-          )}
-      </>
-    </LayerEventManager>
+    <>
+      {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
+      {visible
+        && (
+          <StyledAlignment visible={visible} zIndex={zIndex}>
+            <StyledModal id={id} className={classNames} size={size}>
+              <StyledCloseIcon className="icon-close" onClick={handleClose} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false">
+                <FontAwesomeIcon icon={faTimes} />
+              </StyledCloseIcon>
+              <StyledContent>
+                {title && <h2>{title}</h2>}
+                <StyledContentChildren>{children}</StyledContentChildren>
+              </StyledContent>
+            </StyledModal>
+          </StyledAlignment>
+        )}
+    </>
   );
 };
 
@@ -95,6 +93,10 @@ Modal.propTypes = {
    * The title text
    */
   title: PropTypes.node,
+  /**
+   * zIndex for the modal & overlay (if using)
+   */
+  zIndex: PropTypes.number,
 };
 
 Modal.defaultProps = {
@@ -108,6 +110,7 @@ Modal.defaultProps = {
   overlayOpacity: 0.7,
   handleOverlayClick: null,
   title: '',
+  zIndex: 30,
 };
 
 export default Modal;

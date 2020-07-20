@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ToastManager() renders a container  1`] = `"<div class=\\"sc-AxjAm kaSHsU\\"><div class=\\"sc-AxirZ jnDRS\\"></div></div><div class=\\"sc-AxjAm kaSHsU\\"><div class=\\"sc-AxirZ jnDRS\\"></div></div>"`;

@@ -13,7 +13,7 @@ describe('SupportingElements', () => {
   });
   it('renders when required false', () => {
     const { getByText, container } = render(<SupportingElements label="test" required={false} />);
-    const srOnlyText = container.children[1].firstChild.innerHTML;
+    const srOnlyText = container.firstChild.firstChild.innerHTML;
     expect(srOnlyText).toEqual('The test field is optional');
     expect(getByText('Optional')).toBeInTheDocument();
   });

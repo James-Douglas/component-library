@@ -1,10 +1,11 @@
-import { useToasts } from '@comparethemarketau/manor-provider';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useId } from '@comparethemarketau/manor-hooks';
 import AnimatedNotification from './ToastNotification.styles';
+import { removeToast } from './events';
 
 const ToastNotification = ({
-  id,
+  id: propId,
   variant,
   title,
   content,
@@ -13,7 +14,7 @@ const ToastNotification = ({
   closeButton,
   autoClose,
 }) => {
-  const { removeToast } = useToasts();
+  const id = useId(propId);
   return (
     <AnimatedNotification
       type="toast"

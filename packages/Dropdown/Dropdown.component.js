@@ -15,7 +15,6 @@ import { Label } from '@comparethemarketau/manor-label';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { SupportingElements } from '@comparethemarketau/manor-supporting-elements';
-import { LayerEventManager } from '@comparethemarketau/manor-provider';
 import {
   StyledAffix,
   StyledDropdownButton,
@@ -225,7 +224,7 @@ const Dropdown = ({
   };
 
   return (
-    <LayerEventManager id={`LayerEventManagerDropdown${id}`} visible={mobileOverlay && isDropdownOpen}>
+    <>
       <StyledDropdownMainWrap onKeyDown={keyboardAccessibility}>
         <Label htmlFor={id} text={label} tooltip={tooltip} />
         <StyledDropdownContainer ref={dropdownWrapper}>
@@ -251,7 +250,7 @@ const Dropdown = ({
         <SupportingElements required={required} disabled={disabled} label={label} />
         <FieldValidation message={validationMessage} />
       </StyledDropdownMainWrap>
-    </LayerEventManager>
+    </>
   );
 };
 

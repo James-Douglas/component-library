@@ -27,7 +27,7 @@ describe('Column', () => {
 
   it('renders a column in auto mode ', () => {
     const { container } = render(<Column />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('flex-grow', '1', {
       media: 'only screen and (min-width:0em)',
     });
@@ -35,7 +35,7 @@ describe('Column', () => {
 
   it('renders an xs column with 6 cols width ', () => {
     const { container } = render(<Column xs={6} />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('flex-basis', '50%', {
       media: 'only screen and (min-width:0em)',
     });
@@ -43,7 +43,7 @@ describe('Column', () => {
 
   it('renders an sm column with 6 cols width ', () => {
     const { container } = render(<Column sm={6} />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('flex-basis', '50%', {
       media: 'only screen and (min-width:48em)',
     });
@@ -51,7 +51,7 @@ describe('Column', () => {
 
   it('renders an sm column with 6 cols width ', () => {
     const { container } = render(<Column md={6} />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('flex-basis', '50%', {
       media: 'only screen and (min-width:64em)',
     });
@@ -59,7 +59,7 @@ describe('Column', () => {
 
   it('renders an sm column with 6 cols width ', () => {
     const { container } = render(<Column lg={6} />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('flex-basis', '50%', {
       media: 'only screen and (min-width:75em)',
     });
@@ -67,7 +67,7 @@ describe('Column', () => {
 
   it('renders a column with cols at 6, lg at 2', () => {
     const { container } = render(<Column cols={6} lg={2} />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('flex-basis', '50%', {
       media: 'only screen and (min-width:0em)',
     });
@@ -84,7 +84,7 @@ describe('Column', () => {
 
   it('renders a column with cols at 3, lg at 2, md at 1, with an offset of 1', () => {
     const { container } = render(<Column cols={3} md={1} lg={2} offset={1} />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('flex-basis', '25%', {
       media: 'only screen and (min-width:0em)',
     });
@@ -113,7 +113,7 @@ describe('Column', () => {
 
   it('hides a column at a desired breakpoint', () => {
     const { container } = render(<Column cols={6} lg={false} />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('flex-basis', '50%', {
       media: 'only screen and (min-width:0em)',
     });
@@ -130,7 +130,7 @@ describe('Column', () => {
 
   it('renders an offset', () => {
     const { container } = render(<Column xsOffset={1} />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('margin-left', '8.333333333333334%', {
       media: 'only screen and (min-width:0em)',
     });
@@ -138,13 +138,13 @@ describe('Column', () => {
 
   it('renders a column with vertically aligned items', () => {
     const { container } = render(<Column valign="center" />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('align-items', 'center');
   });
 
   it('renders a column with horizontally aligned items', () => {
     const { container } = render(<Column halign="center" />);
-    const column = container.getElementsByTagName('div')[2];
+    const column = container.firstChild;
     expect(column).toHaveStyleRule('justify-content', 'center');
   });
 });

@@ -21,7 +21,7 @@ describe('processTrackerItemLink()', () => {
   });
   it('count total length', () => {
     const { container } = render(<ProgressTracker value="60" steps={props.steps} isSticky stuck />);
-    expect(container.children[1]).toHaveStyleRule('position', 'fixed');
+    expect(container.firstChild).toHaveStyleRule('position', 'fixed');
   });
   it('should check complete class', () => {
     const { container } = render(<ProgressTracker value={100} />);
@@ -30,10 +30,10 @@ describe('processTrackerItemLink()', () => {
   });
   it('checking scroll on progress bar', () => {
     const { container } = render(<ProgressTracker value={100} />);
-    expect(container.children[1]).toHaveStyleRule('position', 'relative');
+    expect(container.firstChild).toHaveStyleRule('position', 'relative');
     fireEvent.scroll(window, { target: { pageYOffset: 5 } });
-    expect(container.children[1]).toHaveStyleRule('position', 'relative');
+    expect(container.firstChild).toHaveStyleRule('position', 'relative');
     fireEvent.scroll(window, { target: { pageYOffset: 500 } });
-    expect(container.children[1]).toHaveStyleRule('position', 'relative');
+    expect(container.firstChild).toHaveStyleRule('position', 'relative');
   });
 });

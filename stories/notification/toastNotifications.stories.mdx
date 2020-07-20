@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, boolean} from '@storybook/addon-knobs';
 import { Button } from '@comparethemarketau/manor-button';
-import { ToastNotification, ToastManager } from '@comparethemarketau/manor-notification';
+import { ToastNotification, ToastManager, addToast } from '@comparethemarketau/manor-notification';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
-import { useToasts } from '@comparethemarketau/manor-provider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowLeft } from '@fortawesome/pro-regular-svg-icons/faLongArrowLeft';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
@@ -17,21 +16,54 @@ import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 `yarn add @comparethemarketau/manor-notification`
 
 ### Usage
-Import the Notification component and useToasts. Note that `useToasts` is in the manor-provider package,
-this is due to ManorProvider injecting a context provider for toast management for you.
+* Import the ToastManager into the root of your application (there should only be one instance of this component in your
+application - importing it rendering multiple may cause undefined behaviour).
+* Import the ToastNotification and useToasts hook where you want to create a toast notification.
 
 ```
-import { ToastNotification } from '@comparethemarketau/manor-notification';
-import { useToasts } from '@comparethemarketau/manor-provider';
+// app.js
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { ToastProvider, ToastManager } from '@comparethemarketau/manor-notification';
+
+const App = () => (
+  <ManorProvider>
+      <ToastManager />
+      <MyComponent />
+  </ManorProvider>
+);
+
+// MyComponent.js
+import { ToastNotification, addToast } from '@comparethemarketau/manor-notification';
+import { Button } from '@comparethemarketau/manor-button';
+
+const MyComponent = () => {
+  const clickHandler = () => {
+    addToast(
+      <ToastNotification
+        variant="success"
+        title="Success!"
+        content="Great"
+        primaryAction={{
+          content: 'Action goes here' ,
+          link: '#',
+        }}
+        icon={true}
+        closeButton={true}
+      />
+    );
+  };
+
+  return <Button id='success-toast' handleClick={clickHandler}>Lets get toasty!</Button>;
+}
 ```
 
 <Preview>
   <Story name="toast notification">
     {() => {
       const [ demo1, setDemo1 ] = useState(true);
-      const { addToast } = useToasts();
       return (
         <div style={{ padding: '2%' }}>
+          <ToastManager />
           <Container>
             <div style={{marginTop: '60px', width: '50%'}}>
             <Row>

@@ -12,7 +12,6 @@ import {
   faEngineWarning,
   faTimes,
 } from '@fortawesome/pro-light-svg-icons';
-import { useToasts } from '@comparethemarketau/manor-provider';
 import {
   StyledActions,
   StyledContent,
@@ -24,6 +23,7 @@ import {
   StyledNotificationImage,
   StyledSpan,
 } from './Notification.styles';
+import { removeToast } from './events';
 
 const notificationIcon = (variant) => {
   switch (variant) {
@@ -54,8 +54,6 @@ const Notification = ({
   autoClose,
   background,
 }) => {
-  const { removeToast } = useToasts();
-
   const iconHandler = () => {
     if (handleClose) {
       handleClose();
@@ -70,7 +68,7 @@ const Notification = ({
         removeToast(id);
       }, autoClose);
     }
-  }, [autoClose, id, removeToast, type]);
+  }, [autoClose, id, type]);
 
   return (
     <>

@@ -27,7 +27,7 @@ const DrawerBottom = () => {
         handleClose={() => setShow(false)}
         iconClassName="closeIconSlide"
         closeButton
-
+        trapFocus
       >
         <StyledDrawerContent>
           <FluidContainer>

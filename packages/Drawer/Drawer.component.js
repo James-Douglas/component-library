@@ -5,7 +5,6 @@ import { faTimes } from '@fortawesome/pro-light-svg-icons/faTimes';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import { Container } from '@comparethemarketau/manor-grid';
-import { LayerEventManager } from '@comparethemarketau/manor-provider';
 import {
   StyledDrawer,
   StyledDrawerCloseBase,
@@ -25,47 +24,41 @@ const Drawer = ({
   overlay,
   overlayOpacity,
   handleOverlayClick,
-  trapFocus,
-  closeOnEsc,
   keyLine,
+  zIndex,
 }) => {
   const id = useId(propsId);
   const drawerElement = useRef(null);
 
-  const IconClick = () => {
-    handleClose();
-  };
-
   return (
-    <LayerEventManager id={id} visible={visible} handleClose={handleClose} trapFocus={trapFocus} closeOnEsc={closeOnEsc}>
-      <>
-        {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} />}
-        {visible && (
-          <StyledDrawer
-            size={size}
-            direction={direction}
-            ref={drawerElement}
-            keyLine={keyLine}
-          >
-            {closeButton
-              && (
-                <>
-                  <StyledDrawerCloseBase size={size} direction={direction} />
-
-                  <StyledIcon className={`${iconClassName} icon-close`} onClick={IconClick} onKeyPress={IconClick} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
-                    <FontAwesomeIcon icon={faTimes} />
-                  </StyledIcon>
-                </>
-              )}
-            <Container>
-              <StyledDrawerText direction={direction} closeButton={closeButton}>
-                {children}
-              </StyledDrawerText>
-            </Container>
-          </StyledDrawer>
-        )}
-      </>
-    </LayerEventManager>
+    <>
+      {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
+      {visible && (
+        <StyledDrawer
+          size={size}
+          direction={direction}
+          ref={drawerElement}
+          keyLine={keyLine}
+          id={id}
+          zIndex={zIndex}
+        >
+          {closeButton
+            && (
+              <>
+                <StyledDrawerCloseBase size={size} direction={direction} />
+                <StyledIcon className={`${iconClassName} icon-close`} onClick={handleClose} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
+                  <FontAwesomeIcon icon={faTimes} />
+                </StyledIcon>
+              </>
+            )}
+          <Container>
+            <StyledDrawerText direction={direction} closeButton={closeButton}>
+              {children}
+            </StyledDrawerText>
+          </Container>
+        </StyledDrawer>
+      )}
+    </>
   );
 };
 
@@ -118,17 +111,13 @@ Drawer.propTypes = {
    */
   handleOverlayClick: PropTypes.func,
   /**
-   * Traps focus to elements within the Drawer
-   */
-  trapFocus: PropTypes.bool,
-  /**
-   * Whether or not to close the Drawer when the user presses the `Esc` key
-   */
-  closeOnEsc: PropTypes.bool,
-  /**
    * Whether or not the drawer has a 'top' border
    */
   keyLine: PropTypes.bool,
+  /**
+   * zIndex for the Drawer & Overlay (if using)
+   */
+  zIndex: PropTypes.number,
 };
 
 Drawer.defaultProps = {
@@ -142,9 +131,8 @@ Drawer.defaultProps = {
   overlay: false,
   overlayOpacity: 0.7,
   handleOverlayClick: null,
-  trapFocus: false,
-  closeOnEsc: true,
   keyLine: false,
+  zIndex: 30,
 };
 
 export default Drawer;

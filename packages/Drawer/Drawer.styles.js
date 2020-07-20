@@ -26,7 +26,7 @@ export const StyledDrawer = styled.div`
     border-top: ${theme.drawer.borderTop};
   `}
   background: ${({ theme }) => (theme.drawer.background)};
-  z-index: inherit;
+  z-index: ${({ zIndex }) => zIndex};
   box-shadow: ${({ theme }) => theme.drawer.shadow};
   padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[4]}`};
   ${({ size, direction }) => direction === 'top' && css`

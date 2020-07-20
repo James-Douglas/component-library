@@ -26,7 +26,7 @@ describe('Container', () => {
     const { container } = render(<Container />);
     expect(container).toMatchSnapshot();
 
-    const containerComponent = container.children[1];
+    const containerComponent = container.firstChild;
 
     expect(containerComponent).toHaveStyleRule('padding-left', '1.6rem');
     expect(containerComponent).toHaveStyle(`max-width: ${theme.container.maxWidth}`);

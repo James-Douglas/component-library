@@ -9,7 +9,6 @@ import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import { picturePropTypes } from '@comparethemarketau/manor-picture';
 import { EmptyState } from '@comparethemarketau/manor-empty-state';
-import { LayerEventManager } from '@comparethemarketau/manor-provider';
 
 import {
   StyledButtonWrap,
@@ -288,7 +287,7 @@ const Combobox = React.forwardRef(({
   const noResultCondition = filteredValues.length === 0 && currentValue.length >= characterMinimum;
 
   return (
-    <LayerEventManager id={`LayerEventManager${id}`} visible={mobileOverlay && isMobileModalView}>
+    <>
       {mobileOverlay && isMobileModalView && (<Overlay opacityLevel={0.3} visible={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
       {(mobileOverlay || desktop) && (
         <>
@@ -367,7 +366,7 @@ const Combobox = React.forwardRef(({
           />
         </StyledDefault>
       )}
-    </LayerEventManager>
+    </>
 
   );
 });

@@ -27,7 +27,7 @@ describe('Footer', () => {
         <>test disclaimer</>
       </Footer>,
     );
-    const footer = container.children[1].firstChild;
+    const footer = container.firstChild.firstChild;
     expect(footer).toHaveStyle('background: #ffffff');
   });
 
@@ -37,7 +37,7 @@ describe('Footer', () => {
         <>test disclaimer</>
       </Footer>,
     );
-    const footer = container.children[1].firstChild;
+    const footer = container.firstChild.firstChild;
     expect(footer).toHaveStyle('background: transparent');
   });
 });

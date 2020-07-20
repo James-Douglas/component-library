@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { ManorGlobalStyles } from '@comparethemarketau/manor-global';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import ToastManager from './ToastManager.component';
-import ToastProvider from './ToastProvider';
-import LayerProvider from './LayerProvider';
 
 const ManorProvider = (props) => {
   const {
@@ -13,17 +10,10 @@ const ManorProvider = (props) => {
   } = props;
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        {!disableGlobalStyles && <ManorGlobalStyles />}
-        <LayerProvider>
-          <ToastProvider>
-            <ToastManager />
-            {children}
-          </ToastProvider>
-        </LayerProvider>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      {!disableGlobalStyles && <ManorGlobalStyles />}
+      {children}
+    </ThemeProvider>
   );
 };
 

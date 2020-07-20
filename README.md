@@ -3,10 +3,38 @@ Welcome to Manor, the implementation of the CTM Design System: [Bento](https://z
 
 [Component documentation & live demonstration](https://services.dev.comparethemarket.cloud/manor/?path=/docs/welcome--page)
 
-## Usage
+### Installation
 
-Manor components are published independently, you can add components to your project as required, however they all require 
-the ManorProvider component to be at the root of your application (see next section)
+#### Add ManorProvider
+
+`yarn add @comparethemarketau/manor-provider`
+
+ManorProvider provides a theme to all Manor components in your application's component tree. As such it needs to wrap your
+application.
+
+```
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+
+const App = () => (
+  <ManorProvider>
+    ... your app here
+  </ManorProvider>
+);
+```
+
+#### Import components as required
+
+```
+import { Header } from '@comparethemarketau/manor-header';
+import { Footer } from '@comparethemarketau/manor-footer';
+
+render = () => (
+  <>
+    <Header />
+    <Footer />
+  </>
+);
+```
 
 ### Available Packages
 
@@ -56,38 +84,6 @@ to import this yourself |
 | [Utils](packages/Utils/README.md) | Utilities used in Manor, published for convenience. |
 | [Global](packages/Global/README.md) | Global styles component, ManorProvider injects this so you probably don't need to |  
 import it yourself.
-
-### Installation
-
-#### Add ManorProvider
-`yarn add @comparethemarketau/manor-provider`
-
-
-```
-import { ManorProvider } from '@comparethemarketau/manor-provider';
-
-const App = () => (
-  <ManorProvider>
-    ... your app here
-  </ManorProvider>
-);
-```
-
-#### Import components as required
-
-```
-import { Header } from '@comparethemarketau/manor-header';
-import { Footer } from '@comparethemarketau/manor-footer';
-
-render = () => (
-  <>
-    <Header />
-    <Footer />
-  </>
-);
-```
-
-
 
 Additionally you can use various hooks by importing them the same way, where available (see the @comparethemarketau/manor-hooks package)
 

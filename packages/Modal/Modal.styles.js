@@ -10,7 +10,7 @@ export const StyledAlignment = styled.div`
   top: 0;
   right: 0;
   pointer-events: none;
-  z-index: inherit;
+  z-index: ${({ zIndex }) => zIndex};
 `;
 
 const animateIn = keyframes`

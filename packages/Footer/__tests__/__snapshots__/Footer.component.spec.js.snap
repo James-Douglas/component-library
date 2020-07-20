@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer renders with minimal props 1`] = `
-"<div class=\\"sc-AxjAm kaSHsU\\"><div class=\\"sc-AxirZ jnDRS\\"></div></div><div class=\\"sc-fznZeY iscnKp\\" style=\\"padding-top: 0px;\\"><div class=\\"sc-fzokOt jUStbm\\"><div class=\\"sc-AxheI iNVRxu\\"><div class=\\"sc-AxhCb sc-AxmLO cPhYWV row \\"><div class=\\"sc-AxhUy sc-AxgMl gzcspF 
+"<div class=\\"sc-fznyAO lhbMCo\\" style=\\"padding-top: 0px;\\"><div class=\\"sc-fznKkj jceDuR\\"><div class=\\"sc-AxhUy loXtnC\\"><div class=\\"sc-AxirZ sc-AxheI gtsMvH row \\"><div class=\\"sc-AxiKw sc-AxhCb esAhIm 
         
-      \\"><div class=\\"sc-fzqBZW jARrmz\\"><p class=\\"sc-fzqNJr iUCRId\\">© 2020 Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926</p></div></div></div></div></div></div>"
+      \\"><div class=\\"sc-fznZeY kUSnoh\\"><p class=\\"sc-fzokOt gHBSoR\\">© 2020 Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926</p></div></div></div></div></div></div>"
 `;
