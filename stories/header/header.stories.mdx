@@ -4,6 +4,7 @@ import { Header, StickyHeader } from '@comparethemarketau/manor-header';
 import { CTMLogo } from '@comparethemarketau/manor-logo';
 import HeaderView from './header.view';
 import StickyHeaderView from './stickyHeader.view';
+import StickyHeaderViewContactStrip from './stickyHeaderWithContactStrip.view';
 import StyledBackground from '../view-styles';
 
 <Meta title="Components/Header" components={[Header, StickyHeader]}/>
@@ -25,6 +26,14 @@ The examples are best view in canvas mode.
  </Story>
 </Preview>
 
+<Preview>
+ <Story name="header with contact strip">
+    <StyledBackground color="grey">
+      <Header number="1800 123 456" logo={<CTMLogo />} contactStrip/>
+    </StyledBackground>
+ </Story>
+</Preview>
+
 <Story name="header demo" parameters={{ docs: { disable: true } }}>
   <HeaderView />
 </Story>
@@ -36,15 +45,17 @@ The examples are best view in canvas mode.
 ## StickyHeader
 
 <Preview>
- <Story name="sticky header">
-   <StyledBackground color="grey">
-     <StickyHeader number="1800 123 456" logo={<CTMLogo />} />
-   </StyledBackground>
- </Story>
+  <Story name="sticky header">
+    <StickyHeader number="1800 123 456" logo={<CTMLogo />}/>
+  </Story>
 </Preview>
 
 <Story name="sticky header demo" parameters={{ docs: { disable: true } }}>
   <StickyHeaderView />
+</Story>
+
+<Story name="sticky header with contact strip demo" parameters={{ docs: { disable: true } }}>
+  <StickyHeaderViewContactStrip />
 </Story>
 
 ### StickyHeader props

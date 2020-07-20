@@ -1,13 +1,13 @@
 import React from 'react';
-import { Header } from '@comparethemarketau/manor-header';
+import { StickyHeader } from '@comparethemarketau/manor-header';
 import { CTMLogo } from '@comparethemarketau/manor-logo';
 import { FluidContainer } from '@comparethemarketau/manor-grid';
 
 const HeaderView = () => (
   <div>
-    <Header number="1800 123 456" logo={<CTMLogo />} />
+    <StickyHeader number="1800 123 456" logo={<CTMLogo />} contactStrip/>
     <FluidContainer>
-      <div style={{marginTop: '2rem'}}>
+      <div className="full scrollable w-auto" style={{ marginTop: '60px' }}>
         <div className="hero">
           <h1>Example Headline</h1>
         </div>
@@ -30,7 +30,7 @@ const HeaderView = () => (
               Donec in fringilla nisi. Suspendisse metus arcu, egestas quis justo nec, condimentum bibendum justo.
               Vivamus nec ultrices libero. Vestibulum tristique tellus nunc. Ut feugiat blandit feugiat. Suspendisse
               placerat, mi eget elementum condimentum, neque magna fringilla velit, eget tempus augue sapien sit amet
-              ex. Nam augue arcu, tincidunt quis accumsan quis, pellentesque eget nulla. Vivamus id rutrum libero.
+              ex. Nam augue arcu, tincidunt quis accumsan quis, pellentesque eget nula. Vivamus id rutrum libero.
             </p>
             <p>
               Nullam semper, nisl vel ornare hendrerit, urna nunc blandit ante, sollicitudin iaculis sapien eros nec

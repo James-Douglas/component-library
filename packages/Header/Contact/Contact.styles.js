@@ -1,25 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledContact = styled.a`
   display: flex;
+  margin-bottom: 0;
   text-decoration: none;
   align-items: center;
   color: ${({ theme }) => theme.header.contact.color};
   transition: ${({ theme }) => theme.header.transition};
-  font-size: ${({ theme, size, isDesktop }) => {
-    let fontSize;
-    if (size === 'small' && !isDesktop) {
-      fontSize = theme.fontSize.sm;
-    } else if (size === 'large' && !isDesktop) {
-      fontSize = theme.fontSize.lg;
-    } else if (size === 'small') {
-      fontSize = theme.fontSize.base;
-    } else {
-      fontSize = theme.fontSize.xl;
-    }
-    return fontSize;
-  }};
-
+  font-size: ${({ theme }) => theme.fontSize.base};
+  ${({ theme, contactStrip }) => contactStrip && css`
+    font-weight: ${theme.fontWeight.bold};
+  `};
   &:hover {
     color: ${({ theme }) => theme.header.contact.hoverColor};
     fill: ${({ theme }) => theme.header.contact.hoverColor};

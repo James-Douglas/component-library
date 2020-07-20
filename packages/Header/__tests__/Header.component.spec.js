@@ -18,8 +18,14 @@ describe('Header', () => {
     expect(contactIcon).not.toBeInTheDocument();
   });
   it('renders correctly with number prop', () => {
-    const { getByText } = render(<Header number="1800 000 000" logo={Logo} />);
+    const { getByText, queryByText } = render(<Header number="1800 000 000" logo={Logo} />);
     expect(getByText('1800 000 000')).toBeInTheDocument();
+    expect(queryByText('Looking for help?')).not.toBeInTheDocument();
+  });
+  it('renders correctly with number prop and contact strip ', () => {
+    const { getByText } = render(<Header number="1800 000 000" logo={Logo} contactStrip />);
+    expect(getByText('1800 000 000')).toBeInTheDocument();
+    expect(getByText('Looking for help?')).toBeInTheDocument();
   });
   it('renders correctly with sticky', () => {
     mockUseIsStickyValue = false;

@@ -98,7 +98,7 @@ Button.propTypes = {
     PropTypes.shape({
       prefix: PropTypes.string,
       iconName: PropTypes.string,
-      icon: PropTypes.array,
+      icon: PropTypes.array, // eslint-disable-line
     }),
     PropTypes.string,
   ]),

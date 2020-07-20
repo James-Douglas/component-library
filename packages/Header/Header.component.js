@@ -1,19 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useIsDesktop } from '@comparethemarketau/manor-hooks';
 import Contact from './Contact/Contact.component';
-import { StyledAdditionalContent, StyledHeader } from './Header.styles';
+import {
+  StyledAdditionalContent,
+  StyledHeader,
+  StyledContactStrip,
+  StyledText,
+} from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo,
+  isSticky, stuck, number, logo, contactStrip, authui,
 }) => {
-  const size = stuck ? 'small' : 'large';
+  const desktop = useIsDesktop();
+  const size = (stuck || !desktop) ? 'small' : 'large';
+
   return (
-    <StyledHeader stuck={stuck} isSticky={isSticky}>
-      {React.cloneElement(logo, { size })}
-      <StyledAdditionalContent>
-        {number && <Contact number={number} size={size} />}
-      </StyledAdditionalContent>
-    </StyledHeader>
+    <>
+      <StyledHeader stuck={stuck} isSticky={isSticky} desktop={desktop}>
+        {React.cloneElement(logo, { size })}
+        <StyledAdditionalContent>
+          {(number && !contactStrip)
+          && <Contact number={number} size={size} />}
+          {authui
+          && <div id="auth-ui" />}
+        </StyledAdditionalContent>
+
+      </StyledHeader>
+      {(number && contactStrip)
+        && (
+        <StyledContactStrip isSticky={isSticky} desktop={desktop}>
+          <StyledText>Looking for help?</StyledText>
+          <Contact number={number} contactStrip />
+        </StyledContactStrip>
+        )}
+    </>
   );
 };
 
@@ -34,12 +55,22 @@ Header.propTypes = {
    * The Logo component to be rendered
    */
   logo: PropTypes.node.isRequired,
+  /**
+   * Render the contact strip
+   */
+  contactStrip: PropTypes.bool,
+  /**
+   * Div for authui micro ui
+   */
+  authui: PropTypes.node,
 };
 
 Header.defaultProps = {
   isSticky: false,
   stuck: false,
   number: '',
+  contactStrip: false,
+  authui: null,
 };
 
 export default Header;
