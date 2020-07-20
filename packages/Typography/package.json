@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-typography",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Manor BodyText component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

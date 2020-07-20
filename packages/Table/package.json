@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-table",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Manor Table component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

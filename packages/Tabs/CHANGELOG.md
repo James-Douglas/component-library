@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tabs@0.2.4...@comparethemarketau/manor-tabs@0.3.0) (2020-07-20)
+
+
+### Features
+
+* **providers:** remove LayerEvent/Toast providers from manorprovider ([#348](https://github.com/comparethemarketau/manor-react/issues/348)) ([461d724](https://github.com/comparethemarketau/manor-react/commit/461d72498fca1aca9de0056a27d1a3d17a89ea77))
+
+
+### BREAKING CHANGES
+
+* **providers:** drawers and modals are no longer managed by manor, users will need to use the
+zIndex prop (added to both) to do so particularly when multiple layered components are rendered
+simultaneously. Additionally, you will need to implement your own keyboard bindings and focus
+trapping to ensure conformance to the design system.
+
+
+
+
+
 ## [0.2.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tabs@0.2.3...@comparethemarketau/manor-tabs@0.2.4) (2020-07-14)
 
 
