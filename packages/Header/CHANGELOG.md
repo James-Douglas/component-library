@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.1.4...@comparethemarketau/manor-header@0.2.0) (2020-07-21)
+
+
+### Features
+
+* **header:** header changes for auth ui, separator update ([#349](https://github.com/comparethemarketau/manor-react/issues/349)) ([6ea2874](https://github.com/comparethemarketau/manor-react/commit/6ea28744ad60f25a2d6c4714870af8a1187a7e29))
+
+
+
+
+
 ## [0.1.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.1.3...@comparethemarketau/manor-header@0.1.4) (2020-06-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-header

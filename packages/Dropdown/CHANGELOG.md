@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.2.0...@comparethemarketau/manor-dropdown@0.3.0) (2020-07-21)
+
+
+### Features
+
+* **header:** header changes for auth ui, separator update ([#349](https://github.com/comparethemarketau/manor-react/issues/349)) ([6ea2874](https://github.com/comparethemarketau/manor-react/commit/6ea28744ad60f25a2d6c4714870af8a1187a7e29))
+
+
+
+
+
 # [0.2.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.1.9...@comparethemarketau/manor-dropdown@0.2.0) (2020-07-20)
 
 
