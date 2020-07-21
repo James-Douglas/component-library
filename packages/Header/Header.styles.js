@@ -12,7 +12,6 @@ export const StyledHeader = styled.header`
   left: 0;
   top: 0;
   padding-left: ${({ theme }) => theme.spacing[16]};
-  padding-right: ${({ theme }) => theme.spacing[16]};
   justify-content: space-between;
   align-items: center;
 `;

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StyledHR from './Separator.styles';
 
-const Separator = ({ type, className }) => (
-  <StyledHR type={type} className={className} />
+const Separator = ({ type, noSpacing, className }) => (
+  <StyledHR type={type} noSpacing={noSpacing} className={className} />
 );
 
 Separator.propTypes = {
@@ -12,6 +12,10 @@ Separator.propTypes = {
    */
   type: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
+   * Remove spacing from the Separator
+   */
+  noSpacing: PropTypes.bool,
+  /**
    * Classes to be applied to the Separator element
    */
   className: PropTypes.string,
@@ -19,6 +23,7 @@ Separator.propTypes = {
 
 Separator.defaultProps = {
   type: 'horizontal',
+  noSpacing: false,
   className: '',
 };
 

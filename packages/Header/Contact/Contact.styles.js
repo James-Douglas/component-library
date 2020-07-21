@@ -11,6 +11,9 @@ export const StyledContact = styled.a`
   ${({ theme, contactStrip }) => contactStrip && css`
     font-weight: ${theme.fontWeight.bold};
   `};
+  ${({ authuiURL }) => (!authuiURL) && css`
+    padding-right: ${({ theme }) => theme.spacing[16]};
+  `};
   &:hover {
     color: ${({ theme }) => theme.header.contact.hoverColor};
     fill: ${({ theme }) => theme.header.contact.hoverColor};

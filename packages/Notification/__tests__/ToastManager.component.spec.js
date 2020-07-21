@@ -1,6 +1,6 @@
 import React from 'react';
 import { waitForElementToBeRemoved } from '@testing-library/react';
-import { render } from '../../../testUtils';
+import { render, act } from '../../../testUtils';
 import ToastNotification from '../ToastNotification.component';
 import ToastManager from '../ToastManager.component';
 import { addToast, removeToast } from '../events';
@@ -16,40 +16,48 @@ describe('ToastManager()', () => {
 
   it('adds a toast', () => {
     const { getByText } = render(<ToastManager />);
-    addToast(<ToastNotification
-      variant="general"
-      title="General Toast Message"
-      content="This will auto dismiss in 5 seconds"
-      primaryAction={{
-        content: 'Action goes here',
-        link: '#',
-      }}
-      icon
-      closeButton
-      autoClose={5000}
-    />);
+
+    act(() => {
+      addToast(<ToastNotification
+        variant="general"
+        title="General Toast Message"
+        content="This will auto dismiss in 5 seconds"
+        primaryAction={{
+          content: 'Action goes here',
+          link: '#',
+        }}
+        icon
+        closeButton
+        autoClose={5000}
+      />);
+    });
 
     expect(getByText('General Toast Message')).toBeInTheDocument();
   });
 
   it('removes a toast from the toasts state', async () => {
     const { queryByText } = render(<ToastManager />);
-    addToast(<ToastNotification
-      variant="general"
-      title="General Toast Message"
-      content="This will auto dismiss in 5 seconds"
-      primaryAction={{
-        content: 'Action goes here',
-        link: '#',
-      }}
-      icon
-      closeButton
-      autoClose={5000}
-      id="testtoast"
-    />);
+
+    act(() => {
+      addToast(<ToastNotification
+        variant="general"
+        title="General Toast Message"
+        content="This will auto dismiss in 5 seconds"
+        primaryAction={{
+          content: 'Action goes here',
+          link: '#',
+        }}
+        icon
+        closeButton
+        autoClose={5000}
+        id="testtoast"
+      />);
+    });
 
     setTimeout(() => {
-      removeToast('testtoast');
+      act(() => {
+        removeToast('testtoast');
+      });
     }, 1);
     await waitForElementToBeRemoved(() => queryByText('General Toast Message'));
   });

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MicroUIComponent } from '@sackrin/react-micro-ui-hooks/lib/Components';
 import { useIsDesktop } from '@comparethemarketau/manor-hooks';
 import Contact from './Contact/Contact.component';
 import {
@@ -10,20 +11,30 @@ import {
 } from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo, contactStrip, authui,
+  isSticky, stuck, number, logo, contactStrip, authuiURL,
 }) => {
   const desktop = useIsDesktop();
   const size = (stuck || !desktop) ? 'small' : 'large';
 
   return (
     <>
-      <StyledHeader stuck={stuck} isSticky={isSticky} desktop={desktop}>
+      <StyledHeader stuck={stuck} isSticky={isSticky} desktop={desktop} authuiURL={authuiURL}>
         {React.cloneElement(logo, { size })}
         <StyledAdditionalContent>
           {(number && !contactStrip)
-          && <Contact number={number} size={size} />}
-          {authui
-          && <div id="auth-ui" />}
+          && <Contact number={number} size={size} authuiURL={authuiURL} />}
+          {authuiURL
+          && (
+          <MicroUIComponent
+            microUi={{
+              url: authuiURL,
+              library: 'customerAccountsMicroUI',
+              name: 'AuthHeader',
+            }}
+            visible="true"
+            id="auth"
+          />
+          )}
         </StyledAdditionalContent>
 
       </StyledHeader>
@@ -60,9 +71,9 @@ Header.propTypes = {
    */
   contactStrip: PropTypes.bool,
   /**
-   * Div for authui micro ui
+   * URL for micro component to be loaded
    */
-  authui: PropTypes.node,
+  authuiURL: PropTypes.string,
 };
 
 Header.defaultProps = {
@@ -70,7 +81,7 @@ Header.defaultProps = {
   stuck: false,
   number: '',
   contactStrip: false,
-  authui: null,
+  authuiURL: null,
 };
 
 export default Header;

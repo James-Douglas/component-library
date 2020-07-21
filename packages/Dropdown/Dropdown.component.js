@@ -225,7 +225,7 @@ const Dropdown = ({
 
   return (
     <>
-      <StyledDropdownMainWrap onKeyDown={keyboardAccessibility}>
+      <StyledDropdownMainWrap onKeyDown={keyboardAccessibility} id={id}>
         <Label htmlFor={id} text={label} tooltip={tooltip} />
         <StyledDropdownContainer ref={dropdownWrapper}>
           <StyledDropdownButton
