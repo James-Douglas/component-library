@@ -5,13 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/pro-regular-svg-icons/faPhone';
 import { StyledContact, StyledIconWrap, StyledIframe } from './Contact.styles';
 
-const Contact = ({ number, size, contactStrip }) => {
+const Contact = ({
+  number, size, contactStrip, iconSize,
+}) => {
   const isDesktop = useIsDesktop();
   return (
     <>
       <StyledContact isDesktop={isDesktop} contactStrip={contactStrip} size={size} href={`tel:${number}`} target="link-target">
         <StyledIconWrap>
-          <FontAwesomeIcon icon={faPhone} size="xs" flip="horizontal" />
+          <FontAwesomeIcon icon={faPhone} size={iconSize} flip="horizontal" />
         </StyledIconWrap>
         { (isDesktop || contactStrip) && number }
       </StyledContact>
@@ -23,12 +25,14 @@ const Contact = ({ number, size, contactStrip }) => {
 Contact.propTypes = {
   number: PropTypes.string,
   size: PropTypes.string,
+  iconSize: PropTypes.string,
   contactStrip: PropTypes.bool,
 };
 
 Contact.defaultProps = {
   number: '1800 123 456',
   size: 'large',
+  iconSize: 'xs',
   contactStrip: false,
 };
 

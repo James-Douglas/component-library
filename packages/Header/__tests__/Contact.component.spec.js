@@ -15,6 +15,8 @@ describe('Contact', () => {
     mockUseIsDesktopValue = true;
     const { container } = render(<Contact number="1800 000 001" size="large" />);
     const link = container.querySelector('[target="link-target"]');
+    const icon = container.querySelector('svg');
+    expect(icon).toHaveClass('fa-xs');
     expect(link).toHaveStyleRule('font-size', ctmTheme.fontSize.base);
   });
   it('renders correctly for resize size large', () => {
@@ -41,5 +43,11 @@ describe('Contact', () => {
     const link = container.querySelector('[target="link-target"]');
     expect(queryByText('1800 000 001')).not.toBeInTheDocument();
     expect(link).toHaveStyleRule('font-size', ctmTheme.fontSize.base);
+  });
+  it('renders correctly with an iconSize prop', () => {
+    mockUseIsDesktopValue = false;
+    const { container } = render(<Contact number="1800 000 001" iconSize="lg" />);
+    const icon = container.querySelector('svg');
+    expect(icon).toHaveClass('fa-lg');
   });
 });

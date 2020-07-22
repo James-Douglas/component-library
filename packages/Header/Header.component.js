@@ -22,7 +22,7 @@ const Header = ({
         {React.cloneElement(logo, { size })}
         <StyledAdditionalContent>
           {(number && !contactStrip)
-          && <Contact number={number} size={size} authuiURL={authuiURL} />}
+          && <Contact number={number} size={size} iconSize={!desktop ? 'lg' : 'xs'} authuiURL={authuiURL} />}
           {authuiURL
           && (
           <MicroUIComponent
