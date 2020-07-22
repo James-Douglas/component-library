@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.2.0...@comparethemarketau/manor-header@0.3.0) (2020-07-22)
+
+
+### Features
+
+* **contact/header:** added responsive phone icon ([#350](https://github.com/comparethemarketau/manor-react/issues/350)) ([8e7e238](https://github.com/comparethemarketau/manor-react/commit/8e7e238699c54ec1c4dc725828e3dbe9ed1d79b2))
+
+
+
+
+
 # [0.2.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.1.4...@comparethemarketau/manor-header@0.2.0) (2020-07-21)
 
 
