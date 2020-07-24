@@ -7,6 +7,12 @@ exports[`Microcopy.component renders correctly with minimal props 1`] = `
   line-height: 1.4;
 }
 
+.c0 a {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
 @media (min-width:1024px) {
 
 }

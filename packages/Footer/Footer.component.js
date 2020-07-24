@@ -9,13 +9,35 @@ import {
 } from './Footer.styles';
 
 const Footer = ({
-  children, background, sticky, className,
+  children, background, sticky, type, className,
 }) => {
   const currentYear = new Date().getFullYear();
   const footerRef = useRef(null);
 
   const [windowWidth, setWindowWidth] = useState();
   const [footerHeight, setFooterHeight] = useState();
+
+  const copyRightText = 'Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926';
+
+  // switch here to add more cases if necessary
+  const renderVariant = () => {
+    switch (type) {
+      case 'customer-accounts':
+        return (
+          <>
+            <StyledP>&copy; {currentYear} {copyRightText}</StyledP>
+            {children && <Microcopy>{children}</Microcopy>}
+          </>
+        );
+      default:
+        return (
+          <>
+            {children && <Microcopy>{children}</Microcopy>}
+            <StyledP>&copy; {currentYear} {copyRightText}</StyledP>
+          </>
+        );
+    }
+  };
 
   useLayoutEffect(() => {
     if (sticky) {
@@ -37,8 +59,7 @@ const Footer = ({
           <Row removeMarginBottom>
             <Column cols={12}>
               <StyledFooterBar ref={footerRef}>
-                {children && <Microcopy>{children}</Microcopy>}
-                <StyledP>&copy; {currentYear} Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926</StyledP>
+                {renderVariant()}
               </StyledFooterBar>
             </Column>
           </Row>
@@ -62,19 +83,24 @@ Footer.propTypes = {
    */
   background: PropTypes.bool,
   /**
-   * Classes to be applied to the Footer component
-   */
-  className: PropTypes.string,
-  /**
    * Set the footer to stick to the bottom of the page, regardless of content
    */
   sticky: PropTypes.bool,
+  /**
+   * Type of footer, currently just the default and customer-accounts
+   */
+  type: PropTypes.oneOf(['default', 'customer-accounts']),
+  /**
+   * Classes to be applied to the Footer component
+   */
+  className: PropTypes.string,
 };
 
 Footer.defaultProps = {
   children: '',
   background: true,
   sticky: true,
+  type: 'default',
   className: '',
 };
 
