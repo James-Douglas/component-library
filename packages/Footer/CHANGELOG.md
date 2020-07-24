@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.3.0...@comparethemarketau/manor-footer@0.4.0) (2020-07-24)
+
+
+### Features
+
+* **footer:** update to footer for customer accounts ([#351](https://github.com/comparethemarketau/manor-react/issues/351)) ([20d4897](https://github.com/comparethemarketau/manor-react/commit/20d4897017f72154239815869f14f9b6bf163a91))
+
+
+
+
+
 # [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.2.5...@comparethemarketau/manor-footer@0.3.0) (2020-07-20)
 
 
