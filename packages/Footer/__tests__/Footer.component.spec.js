@@ -49,17 +49,17 @@ describe('Footer', () => {
     );
     const pTags = container.getElementsByTagName('p');
     expect(pTags[0].textContent).toBe('test disclaimer');
-    expect(pTags[1].textContent).toBe('© 2020 Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926');
+    expect(pTags[1].textContent).toBe('© 2020 Compare The Market. All rights reserved. ACN: 117323 378. AFSL 422926.');
   });
 
-  it('renders with a customer accounts type', () => {
+  it('renders a customer accounts footer type', () => {
     const { container } = render(
       <Footer type="customer-accounts">
-        <>test disclaimer</>
+        <p>test disclaimer</p>
       </Footer>,
     );
     const pTags = container.getElementsByTagName('p');
-    expect(pTags[0].textContent).toBe('© 2020 Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926');
+    expect(pTags[0].textContent).toBe('© 2020 Compare The Market. All rights reserved. ACN: 117323 378. AFSL 422926.');
     expect(pTags[1].textContent).toBe('test disclaimer');
   });
 });

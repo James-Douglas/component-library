@@ -5,7 +5,7 @@ import { Microcopy } from '@comparethemarketau/manor-typography';
 import { throttle } from '@comparethemarketau/manor-utils';
 
 import {
-  StyledFooterBar, StyledP, StyledPosition, StyledWrapper,
+  StyledFooterBar, StyledP, StyledPosition, StyledWrapper, StyledCustomerAccounts,
 } from './Footer.styles';
 
 const Footer = ({
@@ -17,17 +17,17 @@ const Footer = ({
   const [windowWidth, setWindowWidth] = useState();
   const [footerHeight, setFooterHeight] = useState();
 
-  const copyRightText = 'Compare The Market. All rights reserved. ACN: 117323 378 AFSL 422926';
+  const copyRightText = 'Compare The Market. All rights reserved. ACN: 117323 378. AFSL 422926.';
 
   // switch here to add more cases if necessary
   const renderVariant = () => {
     switch (type) {
       case 'customer-accounts':
         return (
-          <>
-            <StyledP>&copy; {currentYear} {copyRightText}</StyledP>
-            {children && <Microcopy>{children}</Microcopy>}
-          </>
+          <StyledCustomerAccounts>
+            <StyledP><b>&copy; {currentYear} {copyRightText}</b></StyledP>
+            {children && children}
+          </StyledCustomerAccounts>
         );
       default:
         return (
@@ -89,7 +89,7 @@ Footer.propTypes = {
   /**
    * Type of footer, currently just the default and customer-accounts
    */
-  type: PropTypes.oneOf(['default', 'customer-accounts']),
+  type: PropTypes.oneOf(['', 'customer-accounts']),
   /**
    * Classes to be applied to the Footer component
    */
@@ -100,7 +100,7 @@ Footer.defaultProps = {
   children: '',
   background: true,
   sticky: true,
-  type: 'default',
+  type: '',
   className: '',
 };
 

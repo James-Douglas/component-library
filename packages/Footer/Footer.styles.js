@@ -5,15 +5,15 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledPosition = styled.div`
-${({ sticky }) => sticky
-  && css`
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  `}
-background: ${({ theme, background }) => (background ? theme.footer.background : theme.footer.transparent)};  
+  ${({ sticky }) => sticky
+    && css`
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    `}
+  background: ${({ theme, background }) => (background ? theme.footer.background : theme.footer.transparent)};  
 `;
 
 export const StyledFooterBar = styled.div`
@@ -25,4 +25,14 @@ export const StyledFooterBar = styled.div`
 
 export const StyledP = styled.p`
   font-size: ${({ theme }) => theme.fontSize.sm};
+`;
+
+export const StyledCustomerAccounts = styled.div`
+  text-align: left;
+  p, a {
+    font-size: ${({ theme }) => theme.fontSize.sm};
+  }
+  a {
+    text-decoration: none;
+  }
 `;
