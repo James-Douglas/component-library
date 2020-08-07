@@ -31,6 +31,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 0;
     height: ${({ theme }) => theme.spacing[40]};
     width: ${({ theme }) => theme.spacing[40]};
+    line-height: 4rem;
     padding: 0;
   }
   .DayPicker_weekHeader {

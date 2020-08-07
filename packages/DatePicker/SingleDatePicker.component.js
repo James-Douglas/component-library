@@ -27,8 +27,11 @@ const SingleDatePicker = ({
 }) => {
   const dateId = useId(propsDateId);
   const node = useRef();
-  const [selectedDate, setSelectedDate] = useState(date || moment().startOf('day'));
   const displayFormat = 'DD/MM/YYYY';
+
+  const [selectedDate, setSelectedDate] = useState(date || moment().startOf('day'));
+  const [value, setValue] = useState(selectedDate.format(displayFormat));
+
   const [isVisisble, setIsVisisble] = useState(false);
   const [validationMessageDate, setValidationMessageDate] = useState(null);
 
@@ -36,16 +39,25 @@ const SingleDatePicker = ({
     setIsVisisble(true);
   };
 
-  const dateHandleChange = (value) => {
-    const parsed = moment(value, displayFormat, true);
+  const dateHandleChange = (_value) => {
+    const parsed = moment(_value, displayFormat, true);
     if (parsed.isValid()) {
       setSelectedDate(parsed);
       setIsVisisble(false);
       setValidationMessageDate(null);
+    }
+    setValue(_value);
+    handleChange && handleChange(parsed);
+  };
+
+  const dateHandleBlur = () => {
+    const parsed = moment(value, displayFormat, true);
+
+    if (parsed.isValid()) {
+      setValidationMessageDate(null);
     } else {
       setValidationMessageDate(validationMessage);
     }
-    handleChange && handleChange(parsed);
   };
 
   const handleClickOutside = useCallback((e) => {
@@ -84,6 +96,7 @@ const SingleDatePicker = ({
           prefixContent=""
           suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
           handleFocus={dateHandleFocus}
+          handleBlur={dateHandleBlur}
           handleChange={dateHandleChange}
           disableClearIcon
           validationMessage={validationMessageDate}

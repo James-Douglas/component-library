@@ -138,6 +138,11 @@ describe('SingleDatePicker', () => {
       input.focus();
       fireEvent.change(input, { target: { value: '04/03/202' } });
     });
+
+    act(() => {
+      input.blur();
+    });
+
     expect(getByText('Please provide correct date')).toBeInTheDocument();
   });
 

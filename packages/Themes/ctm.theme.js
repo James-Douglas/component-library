@@ -378,7 +378,7 @@ const ctmTheme = {
     },
   },
   datepicker: {
-    navigationButtonColor: colors.primary300,
+    navigationButtonColor: colors.primary500,
     datepickerDayColor: colors.white,
     datepickerDayBackground: colors.primary400,
     datepickerSelectedDayRangeColor: colors.black,
