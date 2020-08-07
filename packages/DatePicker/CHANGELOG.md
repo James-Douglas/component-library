@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.1.11...@comparethemarketau/manor-date-picker@0.2.0) (2020-08-07)
+
+
+### Features
+
+* **datepicker:** fixed datepicker validation; allow full width ([#354](https://github.com/comparethemarketau/manor-react/issues/354)) ([99e95e0](https://github.com/comparethemarketau/manor-react/commit/99e95e0bd721acc1977faa4b17e568d22f56dc87))
+
+
+
+
+
 ## [0.1.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.1.10...@comparethemarketau/manor-date-picker@0.1.11) (2020-07-24)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker

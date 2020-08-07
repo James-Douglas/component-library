@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-empty-state",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Manor EmptyState component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.1.3",
+    "@comparethemarketau/manor-hooks": "^0.1.4",
     "@comparethemarketau/manor-picture": "^0.1.3",
     "prop-types": "^15.7.2"
   },
