@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-grid@0.3.0...@comparethemarketau/manor-grid@0.4.0) (2020-08-10)
+
+
+### Features
+
+* **grid:** added customizable padding and gutterWidth ([#353](https://github.com/comparethemarketau/manor-react/issues/353)) ([87f55b5](https://github.com/comparethemarketau/manor-react/commit/87f55b5977801135c875b821c5b569feecea8dc7))
+
+
+
+
+
 # [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-grid@0.2.3...@comparethemarketau/manor-grid@0.3.0) (2020-07-20)
 
 
