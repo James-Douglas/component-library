@@ -28,7 +28,7 @@ describe('Container', () => {
 
     const containerComponent = container.firstChild;
 
-    expect(containerComponent).toHaveStyleRule('padding-left', '1.6rem');
+    expect(containerComponent).toHaveStyleRule('padding-left', '0');
     expect(containerComponent).toHaveStyle(`max-width: ${theme.container.maxWidth}`);
   });
 
@@ -37,6 +37,18 @@ describe('Container', () => {
 
     expect(container).toMatchSnapshot();
     const test = container.getElementsByClassName('test-class');
+    expect(test).toBeDefined();
+  });
+
+  it('allows padding to be passed through', () => {
+    const { container } = render(<Container className="test-class" padding={4} />);
+
+    expect(container).toMatchSnapshot();
+    const test = container.getElementsByClassName('test-class');
+    const containerComponent = container.firstChild;
+
+    expect(containerComponent).toHaveStyleRule('padding-left', '0.4rem');
+
     expect(test).toBeDefined();
   });
 });

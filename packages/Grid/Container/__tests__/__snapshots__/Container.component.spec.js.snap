@@ -4,8 +4,56 @@ exports[`Container allows additional classes to be passed through 1`] = `
 .c0 {
   width: 100%;
   margin: auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 120rem;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+@media (min-width:1024px) {
+
+}
+
+@media (min-width:1024px) {
+
+}
+
+@media (min-width:1024px) {
+
+}
+
+@media (min-width:1024px) {
+
+}
+
+@media (min-width:1024px) {
+
+}
+
+@media (min-width:1024px) {
+
+}
+
+<div>
+  <div
+    class="c0 test-class"
+  />
+</div>
+`;
+
+exports[`Container allows padding to be passed through 1`] = `
+.c0 {
+  width: 100%;
+  margin: auto;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
   max-width: 120rem;
   position: relative;
   display: -webkit-box;
@@ -52,8 +100,8 @@ exports[`Container has a container and fixed class by default 1`] = `
 .c0 {
   width: 100%;
   margin: auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
+  padding-left: 0;
+  padding-right: 0;
   max-width: 120rem;
   position: relative;
   display: -webkit-box;
@@ -100,8 +148,8 @@ exports[`Container renders children 1`] = `
 .c0 {
   width: 100%;
   margin: auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
+  padding-left: 0;
+  padding-right: 0;
   max-width: 120rem;
   position: relative;
   display: -webkit-box;
@@ -154,8 +202,8 @@ exports[`Container renders correctly without props 1`] = `
 .c0 {
   width: 100%;
   margin: auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
+  padding-left: 0;
+  padding-right: 0;
   max-width: 120rem;
   position: relative;
   display: -webkit-box;

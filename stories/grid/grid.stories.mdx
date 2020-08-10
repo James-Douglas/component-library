@@ -1,4 +1,6 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, number } from "@storybook/addon-knobs";
+
 import styled from 'styled-components';
 import { Container, FluidContainer, Row as RealRow, Column as RealCol } from '@comparethemarketau/manor-grid';
 import { StyledRow as Row, StyledCol as Column } from './grid-view-styles.js'
@@ -19,9 +21,14 @@ margins to keep centred.
 
 The grid also uses a 12 column based system, which is built on top of this [library](https://github.com/LoicMahieu/react-styled-flexboxgrid).
 <Preview>
-  <Story name="container">
-    <div style={{ padding: '2%' }}>
-      <Container>
+<Story name="input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const componentPropsId = 'Component Props';
+    const padding = number("Outer Margin", 0, componentPropsId);
+    const gutterWidth = select("Gutter Width", [4,8,12,16,24,32], 32, componentPropsId);
+    return(
+      <div style={{ padding: '2%' }}>
+      <Container padding={padding} gutterWidth={gutterWidth}>
         <Row>
           <Column valign="center" halign="center">Cols-1</Column>
           <Column valign="center" halign="center">Cols-2</Column>
@@ -37,7 +44,8 @@ The grid also uses a 12 column based system, which is built on top of this [libr
           <Column valign="center" halign="center">Cols-12</Column>
         </Row>
       </Container>
-    </div>
+    </div>);
+  }}
   </Story>
 </Preview>
 
