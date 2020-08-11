@@ -169,4 +169,34 @@ describe('SingleDatePicker', () => {
     fireEvent.keyDown(input, { key: 'Escape', keyCode: 27 });
     expect(visibleMonths.length).toBe(0);
   });
+
+  it('select blocked date, get error', () => {
+    const startDate = moment('2020-03-20');
+    const isDayBlocked = (e) => true;
+    const numberOfMonths = 1;
+    const { container, getByText } = render(
+      <SingleDatePicker
+        dateId="start-date"
+        dateTooltip={{ title: 'Start Date' }}
+        dateAriaLabel="Select Date"
+        date={startDate}
+        numberOfMonths={numberOfMonths}
+        validationMessage="Please provide correct date"
+        isDayBlocked={isDayBlocked}
+      />,
+    );
+    const datepickerWrapBeforeFocus = container.querySelector('[role=application]');
+    expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
+    const input = container.querySelector('#start-date');
+    act(() => {
+      input.focus();
+      fireEvent.change(input, { target: { value: '04/03/2020' } });
+    });
+
+    act(() => {
+      input.blur();
+    });
+
+    expect(getByText('Please provide correct date')).toBeInTheDocument();
+  });
 });

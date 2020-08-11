@@ -44,7 +44,12 @@ const SingleDatePicker = ({
     if (parsed.isValid()) {
       setSelectedDate(parsed);
       setIsVisisble(false);
-      setValidationMessageDate(null);
+
+      if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
+        setValidationMessageDate(validationMessage);
+      } else {
+        setValidationMessageDate(null);
+      }
     }
     setValue(_value);
     handleChange && handleChange(parsed);
@@ -54,7 +59,11 @@ const SingleDatePicker = ({
     const parsed = moment(value, displayFormat, true);
 
     if (parsed.isValid()) {
-      setValidationMessageDate(null);
+      if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
+        setValidationMessageDate(validationMessage);
+      } else {
+        setValidationMessageDate(null);
+      }
     } else {
       setValidationMessageDate(validationMessage);
     }
