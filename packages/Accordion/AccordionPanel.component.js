@@ -77,7 +77,7 @@ const AccordionPanel = ({
 
       </StyledAccordionHead>
       <StyledAccordionBody isVisible={isVisible} role="tabpanel">
-        <FluidContainer>
+        <FluidContainer padding={['16']}>
           <Row className="row-view" removeMarginBottom>
             <Column cols={12}>{children}</Column>
           </Row>

@@ -279,7 +279,7 @@ const ctmTheme = {
     background: colors.grey100,
     backgroundBody: colors.white,
     color: colors.grey900,
-    chevronColor: colors.primary300,
+    chevronColor: colors.primary500,
   },
   button: {
     borderRadius: borderRadius.default,

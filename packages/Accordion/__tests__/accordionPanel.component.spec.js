@@ -87,7 +87,7 @@ describe('Accordion', () => {
     );
     const accordionHead = container.querySelector('[role="tab"]');
     const accordion = container.querySelector('[role="tablist"]');
-    expect(accordionHead).toHaveStyleRule('font-size', `${ctmTheme.fontSize['2xl']}`);
+    expect(accordionHead).toHaveStyleRule('font-size', `${ctmTheme.fontSize['3xl']}`);
     const accordionBody = container.querySelector('[role="tabpanel"]');
     fireEvent.keyDown(accordion, { key: 'Tab', keyCode: 9 });
     accordionHead.focus();

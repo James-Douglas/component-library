@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const StyledAccordionPanel = styled.div`
   overflow: hidden;
   border: ${({ theme, isFocus }) => (isFocus ? `${theme.borders.focus}` : theme.borders.transparent)};
-  border-top: ${({ theme, isFocus }) => (isFocus ? `${theme.borders.focus}` : '1px solid rgba(0,0,0,.1)')};
+  border-top: ${({ theme, isFocus }) => (isFocus ? `${theme.borders.focus}` : `${theme.borders.component}`)};
   margin-bottom: -1px;
   &:focus,
   &:active,
@@ -17,7 +17,7 @@ export const StyledAccordionBody = styled.div`
   margin: ${({ theme }) => theme.spacing['0']};
   background: ${({ theme }) => theme.accordion.backgroundBody};
   color: ${({ theme }) => theme.accordion.color};
-  padding: ${({ theme, isVisible }) => (isVisible ? `${theme.spacing['32']} 0` : 0)};
+  padding: ${({ theme, isVisible }) => (isVisible ? `${theme.spacing['16']} 0` : 0)};
   height: 0;
   transition-property: none;
   overflow: hidden;
@@ -40,10 +40,11 @@ export const StyledAccordionHead = styled.div`
   position: relative;
   overflow: hidden;
   background: ${({ theme }) => theme.accordion.background};
+  color: ${({ theme }) => theme.accordion.color};
   z-index: ${(props) => props.theme.zIndex[10]};
   transition: font-size 0.25s;
-  padding: ${({ theme }) => `${theme.spacing[20]} 0`};
-  font-size: ${({ theme }) => `${theme.fontSize['2xl']}`};
+  padding: ${({ theme }) => `${theme.spacing[16]}`};
+  font-size: ${({ theme }) => `${theme.fontSize['3xl']}`};
   ${({ desktop }) => !desktop
     && css`
       font-size: ${({ theme }) => `${theme.fontSize.lg}`};
