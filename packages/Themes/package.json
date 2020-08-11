@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-themes",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Manor Themes",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-accordion@0.1.10...@comparethemarketau/manor-accordion@0.1.11) (2020-08-11)
+
+**Note:** Version bump only for package @comparethemarketau/manor-accordion
+
+
+
+
+
 ## [0.1.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-accordion@0.1.9...@comparethemarketau/manor-accordion@0.1.10) (2020-08-11)
 
 **Note:** Version bump only for package @comparethemarketau/manor-accordion
