@@ -27,4 +27,10 @@ export const StyledBorderColour = styled.i`
 
 export const StyledContent = styled.span`
   z-index: ${({ theme }) => (theme.zIndex['20'])};
+  span {
+    font-weight: 700;
+    div {
+      background: none !important;
+    }
+  }
 `;

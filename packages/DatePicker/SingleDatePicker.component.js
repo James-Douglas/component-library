@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { DayPickerSingleDateController as RDSingleDatePicker } from 'react-dates';
 import moment from 'moment';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { DateInput } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
@@ -24,6 +25,7 @@ const SingleDatePicker = ({
   validationMessage,
   isDayBlocked,
   handleChange,
+  theme,
 }) => {
   const dateId = useId(propsDateId);
   const node = useRef();
@@ -93,39 +95,41 @@ const SingleDatePicker = ({
   }, [handleClickOutside, escFunction]);
 
   return (
-    <StyledDateRangePickerContainer ref={node}>
-      <GlobalStyle />
-      <StyledDateRangePickerWrap>
-        <DateInput
-          id={dateId}
-          tooltip={dateTooltip}
-          placeholder={datePlaceholder}
-          label={dateAriaLabel}
-          value={selectedDate && selectedDate.format(displayFormat)}
-          prefixContent=""
-          suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
-          handleFocus={dateHandleFocus}
-          handleBlur={dateHandleBlur}
-          handleChange={dateHandleChange}
-          disableClearIcon
-          validationMessage={validationMessageDate}
-          className="date-input-calendar"
-        />
-      </StyledDateRangePickerWrap>
-      {isVisisble && (
-        <StyledCalendar>
-          <RDSingleDatePicker
-            date={selectedDate}
-            onDateChange={dateHandleChange}
-            keepOpenOnDateSelect
-            hideKeyboardShortcutsPanel
-            numberOfMonths={numberOfMonths}
-            focused
-            isDayBlocked={isDayBlocked || undefined}
+    <ManorProvider theme={theme}>
+      <StyledDateRangePickerContainer ref={node}>
+        <GlobalStyle />
+        <StyledDateRangePickerWrap>
+          <DateInput
+            id={dateId}
+            tooltip={dateTooltip}
+            placeholder={datePlaceholder}
+            label={dateAriaLabel}
+            value={selectedDate && selectedDate.format(displayFormat)}
+            prefixContent=""
+            suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
+            handleFocus={dateHandleFocus}
+            handleBlur={dateHandleBlur}
+            handleChange={dateHandleChange}
+            disableClearIcon
+            validationMessage={validationMessageDate}
+            className="date-input-calendar"
           />
-        </StyledCalendar>
-      )}
-    </StyledDateRangePickerContainer>
+        </StyledDateRangePickerWrap>
+        {isVisisble && (
+          <StyledCalendar>
+            <RDSingleDatePicker
+              date={selectedDate}
+              onDateChange={dateHandleChange}
+              keepOpenOnDateSelect
+              hideKeyboardShortcutsPanel
+              numberOfMonths={numberOfMonths}
+              focused
+              isDayBlocked={isDayBlocked || undefined}
+            />
+          </StyledCalendar>
+        )}
+      </StyledDateRangePickerContainer>
+    </ManorProvider>
   );
 };
 
@@ -169,6 +173,12 @@ SingleDatePicker.propTypes = {
    * Called on change with { id, value }.
    */
   handleChange: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 SingleDatePicker.defaultProps = {
@@ -181,6 +191,7 @@ SingleDatePicker.defaultProps = {
   validationMessage: null,
   handleChange: null,
   isDayBlocked: undefined,
+  theme: undefined,
 };
 
 export default SingleDatePicker;

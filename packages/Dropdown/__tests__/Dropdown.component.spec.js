@@ -2,7 +2,7 @@ import React from 'react';
 import 'jest-styled-components';
 import { act } from 'react-dom/test-utils';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { fireEvent, render } from '../../../testUtils';
+import { fireEvent, render } from '@testing-library/react';
 import Dropdown from '../Dropdown.component';
 import DropdownItem from '../DropdownItem.component';
 
@@ -356,15 +356,15 @@ describe('Dropdown', () => {
     fireEvent.keyDown(buttonDropdown, { key: 'ArrowDown', keyCode: 40 });
     // when we type t first time
     fireEvent.keyDown(buttonDropdown, { key: 't', keyCode: 84 });
-    expect(getByText('Third Item - Title')).toHaveFocus();
+    expect(getByText('Third Item - Title').parentNode).toHaveFocus();
     // when we type t second time
     fireEvent.keyDown(buttonDropdown, { key: 'T', keyCode: 84 });
-    expect(getByText('Tyrannosaurus Rex')).toHaveFocus();
+    expect(getByText('Tyrannosaurus Rex').parentNode).toHaveFocus();
     // when we type t third time
     fireEvent.keyDown(buttonDropdown, { key: 't', keyCode: 84 });
-    expect(getByText('Tutu Train')).toHaveFocus();
+    expect(getByText('Tutu Train').parentNode).toHaveFocus();
     // when we type t 4th time
     fireEvent.keyDown(buttonDropdown, { key: 't', keyCode: 84 });
-    expect(getByText('Third Item - Title')).toHaveFocus();
+    expect(getByText('Third Item - Title').parentNode).toHaveFocus();
   });
 });

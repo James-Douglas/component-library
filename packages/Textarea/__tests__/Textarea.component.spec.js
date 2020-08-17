@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { fireEvent, render } from '../../../testUtils';
+import { fireEvent, render } from '@testing-library/react';
+import 'jest-styled-components';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import Textarea, { getRemainingLimit, getRemainingCharsContent } from '../Textarea.component';
 
 describe('getRemainingLimit()', () => {
@@ -20,9 +21,9 @@ describe('getRemainingCharsContent()', () => {
   // eslint-disable-next-line react/prop-types
     maxChars, maxLength, id, textAreaRemainChars, label,
   }) => (
-    <>
+    <ManorProvider>
       {getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)}
-    </>
+    </ManorProvider>
   );
 
   it('returns null if maxChars and maxLength is null', () => {
@@ -104,17 +105,6 @@ describe('Textarea.component.js', () => {
     expect(handleBlur).toHaveBeenCalled();
   });
 
-  it('renders with border', () => {
-    const props = {
-      id: 'textarea-id',
-      name: 'textarea-name',
-      label: 'this is a test',
-    };
-    const { container } = render(<Textarea label="test" {...props} />);
-    const textAreaElement = container.querySelector('textarea');
-    expect(textAreaElement).toHaveStyle(`border: ${ctmTheme.borders.component}`);
-  });
-
   it('applies invalid styling when validation message is supplied', () => {
     const props = {
       id: 'textarea-id',
@@ -127,7 +117,7 @@ describe('Textarea.component.js', () => {
     expect(textAreaElement).toHaveStyle(`border: ${ctmTheme.borders.invalid}`);
   });
 
-  it('accepts a prefill value and renders with prefill styling', () => {
+  it('renders with prefill', () => {
     const props = {
       id: 'textarea-id',
       label: 'this is a test',
@@ -136,9 +126,6 @@ describe('Textarea.component.js', () => {
     const { container } = render(<Textarea label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement.value).toBe('autofilled value test');
-    expect(textAreaElement).toHaveStyle(`
-      background: ${ctmTheme.colors.inputPrefilled};
-    `);
   });
 
   it('has a required attribute when the field is required', () => {
@@ -236,7 +223,7 @@ describe('Textarea.component.js', () => {
     };
     const { container, getByText } = render(<Textarea label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
-    expect(textAreaElement).toHaveStyle(`border: ${ctmTheme.borders.invalid}`);
+    expect(textAreaElement).toHaveStyleRule('border', ctmTheme.borders.invalid);
     expect(getByText('-3')).toBeInTheDocument();
   });
 
@@ -251,7 +238,7 @@ describe('Textarea.component.js', () => {
     const textAreaElement = container.querySelector('textarea');
     expect(getByText('2')).toBeInTheDocument();
     fireEvent.change(textAreaElement, { target: { value: 'helloworld' } });
-    expect(textAreaElement).toHaveStyle(`border: ${ctmTheme.borders.invalid}`);
+    expect(textAreaElement).toHaveStyleRule('border', ctmTheme.borders.invalid);
     expect(getByText('-3')).toBeInTheDocument();
   });
 
@@ -265,7 +252,7 @@ describe('Textarea.component.js', () => {
     };
     const { getByText, container } = render(<Textarea label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
-    expect(textAreaElement).toHaveStyle(`border: ${ctmTheme.borders.invalid}`);
+    expect(textAreaElement).toHaveStyleRule('border', ctmTheme.borders.invalid);
     expect(getByText('-3')).toBeInTheDocument();
   });
 

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const StyledContact = styled.a`
+  font-family: ${({ theme }) => theme.fontFamily};
   display: flex;
   margin-bottom: 0;
   text-decoration: none;

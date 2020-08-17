@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '../../../testUtils';
+import { render, fireEvent } from '@testing-library/react';
 import ToggleGroup, { getChildren } from '../ToggleGroup.component';
 import TextToggle from '../Text/TextToggle.component';
 import 'jest-styled-components';

@@ -2,6 +2,9 @@
 
 exports[`Button renders correctly with minimal props 1`] = `
 .c1 {
+  font-family: "SourceSansPro","Helvetica","Arial";
+  border: none;
+  cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -69,28 +72,8 @@ exports[`Button renders correctly with minimal props 1`] = `
   width: 100%;
 }
 
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
+.c0 {
+  font-family: "SourceSansPro","Helvetica","Arial";
 }
 
 <div>
@@ -116,6 +99,9 @@ exports[`Button renders with props 1`] = `
 }
 
 .c1 {
+  font-family: "SourceSansPro","Helvetica","Arial";
+  border: none;
+  cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -191,28 +177,8 @@ exports[`Button renders with props 1`] = `
   width: 100%;
 }
 
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
+.c0 {
+  font-family: "SourceSansPro","Helvetica","Arial";
 }
 
 <div>

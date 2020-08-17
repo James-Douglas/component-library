@@ -11,6 +11,9 @@ export const StyledCol = styled(Column)`
   height: 10rem;
   font-weight: bold;
   font-size: 1.5rem;
+  p {
+    margin: 0;
+  }
 `;
 
 export const StyledIcon = styled.div`

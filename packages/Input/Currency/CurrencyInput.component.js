@@ -21,6 +21,7 @@ const CurrencyInput = ({
   className,
   handleFocus,
   handleBlur,
+  theme,
 }) => {
   const id = useId(propsId);
   const [internalValue, setInternalValue] = useState(getInitialValue(value, prefillValue));
@@ -80,6 +81,7 @@ const CurrencyInput = ({
       className={className}
       handleFocus={handleFocus}
       handleBlur={handleBlur}
+      theme={theme}
     />
   );
 };
@@ -155,6 +157,12 @@ CurrencyInput.propTypes = {
    * Classes to be applied to the Currency component
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 CurrencyInput.defaultProps = {
@@ -173,6 +181,7 @@ CurrencyInput.defaultProps = {
   className: '',
   handleFocus: null,
   handleBlur: null,
+  theme: undefined,
 };
 
 export default CurrencyInput;

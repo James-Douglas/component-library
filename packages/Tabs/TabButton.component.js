@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import TabsContext from './TabsContext';
 import StyledTabButton from './TabButton.styles';
 
-const TabButton = ({ name, handleClick, children }) => {
+const TabButton = ({
+  name, handleClick, children,
+}) => {
   const tabContext = useContext(TabsContext);
 
   const clickHandler = (e) => {

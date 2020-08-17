@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Drawer } from '@comparethemarketau/manor-drawer';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { Typography } from '@comparethemarketau/manor-typography';
 import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
 import { Button } from '@comparethemarketau/manor-button';
 import { useBreakpoint } from '@comparethemarketau/manor-hooks';
@@ -18,7 +20,7 @@ const DrawerBottom = () => {
   const breakpoint = useBreakpoint(false);
 
   return (
-    <>
+    <ManorProvider>
       <Drawer
         size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '160px'}`}
         keyLine={!(breakpoint === 'xs' || breakpoint === 'sm')}
@@ -34,7 +36,7 @@ const DrawerBottom = () => {
             <Row>
               <Column cols={12}>
                 <div>
-                  <h4>Hi I am a Drawer with a keyline border on desktop, none on mobile view :)</h4>
+                  <Typography variant="body1">Hi I am a Drawer with a keyline border on desktop, none on mobile view :)</Typography>
                 </div>
               </Column>
             </Row>
@@ -45,8 +47,8 @@ const DrawerBottom = () => {
         <Row className="row-view">
           <Column cols={12} valign="center">
             <StyledCard>
-              <h4>Basic Drawer demo</h4>
-              <p>This is an example of the Drawer component.</p>
+              <Typography variant="h4">Basic Drawer demo</Typography>
+              <Typography variant="body1">This is an example of the Drawer component.</Typography>
               <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
                 <Button
                   id="btn01"
@@ -60,7 +62,7 @@ const DrawerBottom = () => {
           </Column>
         </Row>
       </div>
-    </>
+    </ManorProvider>
   );
 };
 

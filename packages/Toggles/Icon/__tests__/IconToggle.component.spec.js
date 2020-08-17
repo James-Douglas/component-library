@@ -1,6 +1,6 @@
 import React from 'react';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { render } from '../../../../testUtils';
+import { render } from '@testing-library/react';
 import IconToggle, { getToggleContent } from '../IconToggle.component';
 
 describe('getToggleContent()', () => {

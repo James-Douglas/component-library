@@ -5,11 +5,15 @@ export const StyledmaxlengthIndicator = styled.span`
 `;
 
 export const StyledTextAreaWrapper = styled.div`
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
   position: relative;
   width: 100%;
 `;
 
 export const StyledTextArea = styled.textarea`
+  font-family: ${({ theme }) => theme.fontFamily};
   resize: none;
   width: 100%;
   display: block;

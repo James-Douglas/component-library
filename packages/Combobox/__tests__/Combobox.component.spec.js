@@ -1,8 +1,8 @@
 import React from 'react';
 import 'jest-styled-components';
+import { fireEvent, render } from '@testing-library/react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import Combobox from '../Combobox.component';
-import { fireEvent, render } from '../../../testUtils';
 
 const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fugiat veniam minus', 'et presentation tempora', 'xfque dfsdf', 'presentation dfsdf que ffgddfg', 'presentation dfsdf que'];
 
@@ -496,25 +496,6 @@ describe('Combo', () => {
     expect(focusReturnItem).toHaveFocus();
     fireEvent.keyDown(inputField, { key: 'Escape', code: 27 });
     expect(listwrap).toHaveStyleRule('display', 'none');
-  });
-
-  it('accessibility - Check arrowDown condition when length more', () => {
-    const { container } = render(
-      <Combobox
-        handleChange={() => {}}
-        prefillValue="pre"
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        required={false}
-        characterMinimum={5}
-      />,
-    );
-    const inputField = container.querySelector('#combo-id-first');
-    inputField.focus();
-    fireEvent.keyDown(inputField, { key: 'ArrowDown', code: 40 });
-    const focusItem = container.getElementsByTagName('li')[0];
-    expect(focusItem).not.toBeDefined();
   });
 
   it('accessibility - Check arrowDown condition when length more', () => {

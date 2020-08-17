@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import Input from '../Input.component';
@@ -25,33 +26,36 @@ const DateInput = ({
   suffixContent,
   disableClearIcon,
   format,
+  theme,
 }) => {
   const id = useId(propsId);
   const mask = format.split('').map((x) => (x === '/' ? x : /\d/));
   return (
-    <Input
-      id={id}
-      label={label}
-      value={value}
-      type="text"
-      handleChange={handleChange}
-      prefixContent={prefixContent}
-      suffixContent={suffixContent}
-      mask={mask}
-      guide
-      placeholder={format}
-      required={required}
-      maxlength={11}
-      prefillValue={prefillValue}
-      disabled={disabled}
-      validationMessage={validationMessage}
-      autocomplete={autocomplete}
-      tooltip={tooltip}
-      className={className}
-      handleFocus={handleFocus}
-      handleBlur={handleBlur}
-      disableClearIcon={disableClearIcon}
-    />
+    <ManorProvider theme={theme}>
+      <Input
+        id={id}
+        label={label}
+        value={value}
+        type="text"
+        handleChange={handleChange}
+        prefixContent={prefixContent}
+        suffixContent={suffixContent}
+        mask={mask}
+        guide
+        placeholder={format}
+        required={required}
+        maxlength={11}
+        prefillValue={prefillValue}
+        disabled={disabled}
+        validationMessage={validationMessage}
+        autocomplete={autocomplete}
+        tooltip={tooltip}
+        className={className}
+        handleFocus={handleFocus}
+        handleBlur={handleBlur}
+        disableClearIcon={disableClearIcon}
+      />
+    </ManorProvider>
   );
 };
 
@@ -137,6 +141,12 @@ DateInput.propTypes = {
     'MM/YY',
     'YYYY',
   ]),
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 DateInput.defaultProps = {
@@ -156,6 +166,7 @@ DateInput.defaultProps = {
   suffixContent: '',
   disableClearIcon: false,
   format: 'DD/MM/YYYY',
+  theme: undefined,
 };
 
 export default DateInput;

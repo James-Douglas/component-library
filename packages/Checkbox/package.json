@@ -23,6 +23,7 @@
     "@comparethemarketau/manor-grid": "^0.4.2",
     "@comparethemarketau/manor-hooks": "^0.1.6",
     "@comparethemarketau/manor-label": "^0.1.11",
+    "@comparethemarketau/manor-provider": "^0.3.3",
     "@comparethemarketau/manor-tooltip": "^0.3.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",

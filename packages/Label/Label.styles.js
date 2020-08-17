@@ -6,6 +6,7 @@ export const StyledLabelContainer = styled.div`
 `;
 
 export const StyledLabel = styled.label`
+  font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.label.color};
   ${({

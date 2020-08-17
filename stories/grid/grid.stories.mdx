@@ -1,8 +1,8 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, number } from "@storybook/addon-knobs";
-
 import styled from 'styled-components';
 import { Container, FluidContainer, Row as RealRow, Column as RealCol } from '@comparethemarketau/manor-grid';
+import { Typography } from '@comparethemarketau/manor-typography';
 import { StyledRow as Row, StyledCol as Column } from './grid-view-styles.js'
 
 <Meta title="Components/Grid" />
@@ -21,7 +21,7 @@ margins to keep centred.
 
 The grid also uses a 12 column based system, which is built on top of this [library](https://github.com/LoicMahieu/react-styled-flexboxgrid).
 <Preview>
-<Story name="input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+<Story name="container with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const componentPropsId = 'Component Props';
     const padding = number("Outer Margin", 0, componentPropsId);
@@ -30,18 +30,18 @@ The grid also uses a 12 column based system, which is built on top of this [libr
       <div style={{ padding: '2%' }}>
       <Container padding={padding} gutterWidth={gutterWidth}>
         <Row>
-          <Column valign="center" halign="center">Cols-1</Column>
-          <Column valign="center" halign="center">Cols-2</Column>
-          <Column valign="center" halign="center">Cols-3</Column>
-          <Column valign="center" halign="center">Cols-4</Column>
-          <Column valign="center" halign="center">Cols-5</Column>
-          <Column valign="center" halign="center">Cols-6</Column>
-          <Column valign="center" halign="center">Cols-7</Column>
-          <Column valign="center" halign="center">Cols-8</Column>
-          <Column valign="center" halign="center">Cols-9</Column>
-          <Column valign="center" halign="center">Cols-10</Column>
-          <Column valign="center" halign="center">Cols-11</Column>
-          <Column valign="center" halign="center">Cols-12</Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-1</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-2</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-3</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-4</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-5</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-6</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-7</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-8</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-9</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-10</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-11</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-12</Typography></Column>
         </Row>
       </Container>
     </div>);
@@ -62,18 +62,18 @@ Two different types of containers, the main container and fluid container. This 
     <div style={{ padding: '2%' }}>
       <FluidContainer>
         <Row>
-          <Column valign="center" halign="center">Cols-1</Column>
-          <Column valign="center" halign="center">Cols-2</Column>
-          <Column valign="center" halign="center">Cols-3</Column>
-          <Column valign="center" halign="center">Cols-4</Column>
-          <Column valign="center" halign="center">Cols-5</Column>
-          <Column valign="center" halign="center">Cols-6</Column>
-          <Column valign="center" halign="center">Cols-7</Column>
-          <Column valign="center" halign="center">Cols-8</Column>
-          <Column valign="center" halign="center">Cols-9</Column>
-          <Column valign="center" halign="center">Cols-10</Column>
-          <Column valign="center" halign="center">Cols-11</Column>
-          <Column valign="center" halign="center">Cols-12</Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-1</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-2</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-3</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-4</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-5</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-6</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-7</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-8</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-9</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-10</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-11</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-12</Typography></Column>
         </Row>
       </FluidContainer>
     </div>
@@ -91,32 +91,32 @@ Two different types of containers, the main container and fluid container. This 
     <div style={{ padding: '2%' }}>
       <Container>
         <Row>
-          <Column valign="center" halign="center">Cols-1</Column>
-          <Column valign="center" halign="center">Cols-2</Column>
-          <Column valign="center" halign="center">Cols-3</Column>
-          <Column valign="center" halign="center">Cols-4</Column>
-          <Column valign="center" halign="center">Cols-5</Column>
-          <Column valign="center" halign="center">Cols-6</Column>
-          <Column valign="center" halign="center">Cols-7</Column>
-          <Column valign="center" halign="center">Cols-8</Column>
-          <Column valign="center" halign="center">Cols-9</Column>
-          <Column valign="center" halign="center">Cols-10</Column>
-          <Column valign="center" halign="center">Cols-11</Column>
-          <Column valign="center" halign="center">Cols-12</Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-1</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-2</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-3</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-4</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-5</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-6</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-7</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-8</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-9</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-10</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-11</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-12</Typography></Column>
         </Row>
         <Row reverse>
-          <Column valign="center" halign="center">Cols-1</Column>
-          <Column valign="center" halign="center">Cols-2</Column>
-          <Column valign="center" halign="center">Cols-3</Column>
-          <Column valign="center" halign="center">Cols-4</Column>
-          <Column valign="center" halign="center">Cols-5</Column>
-          <Column valign="center" halign="center">Cols-6</Column>
-          <Column valign="center" halign="center">Cols-7</Column>
-          <Column valign="center" halign="center">Cols-8</Column>
-          <Column valign="center" halign="center">Cols-9</Column>
-          <Column valign="center" halign="center">Cols-10</Column>
-          <Column valign="center" halign="center">Cols-11</Column>
-          <Column valign="center" halign="center">Cols-12</Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-1</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-2</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-3</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-4</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-5</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-6</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-7</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-8</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-9</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-10</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-11</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">Cols-12</Typography></Column>
         </Row>
       </Container>
     </div>
@@ -131,24 +131,24 @@ Horizontal alignment
     <div style={{ padding: '2%' }}>
       <Container>
         <Row>
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
         </Row>
         <Row justify="center">
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
         </Row>
         <Row justify="flex-end">
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
         </Row>
         <Row justify="space-around">
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
-          <Column cols={4} valign="center" halign="center">cols={4}</Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols={4}</Typography></Column>
         </Row>
         <Row justify="space-between">
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
-          <Column cols={4} valign="center" halign="center">cols=4</Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
+          <Column cols={4} valign="center" halign="center"><Typography variant="body1">cols=4</Typography></Column>
         </Row>
       </Container>
     </div>
@@ -165,23 +165,30 @@ Horizontal alignment
   <Story name="columns">
     <div style={{ padding: '2%' }}>
       <Container>
-        <h5 style={{ margin: '0' }}>Auto-layout columns</h5>
-        <p>For example, here are two grid layouts that apply to every device and viewport, from xs to lg. Set auto on a column to auto resize, or specify auto at the desired breakpoints</p>
+        <Typography variant="h5">Auto-layout columns</Typography>
+        <Typography variant="body1">
+          For example, here are two grid layouts that apply to every device and viewport, from xs to lg. Set auto on
+          a column to auto resize, or specify auto at the desired breakpoints
+        </Typography>
         <Row>
-          <Column valign="center" halign="center">1 of 2</Column>
-          <Column valign="center" halign="center">2 of 2</Column>
+          <Column valign="center" halign="center"><Typography variant="body1">1 of 2</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">2 of 2</Typography></Column>
         </Row>
         <Row>
-          <Column valign="center" halign="center">1 of 3</Column>
-          <Column valign="center" halign="center">2 of 3</Column>
-          <Column valign="center" halign="center">3 of 3</Column>
+          <Column valign="center" halign="center"><Typography variant="body1">1 of 3</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">2 of 3</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">3 of 3</Typography></Column>
         </Row>
-        <h5 style={{ margin: '0' }}>Setting one column width</h5>
-        <p>Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it.  Note that the other columns will resize no matter the width of the center column.</p>
+        <Typography variant="h5">Setting one column width</Typography>
+        <Typography variant="body1">
+          Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns
+          automatically resize around it.  Note that the other columns will resize no matter the width of the center
+          column.
+        </Typography>
         <Row>
-          <Column valign="center" halign="center">1 of 3</Column>
-          <Column cols={6} valign="center" halign="center">2 of 3 (wider cols cols={6})</Column>
-          <Column valign="center" halign="center">3 of 3</Column>
+          <Column valign="center" halign="center"><Typography variant="body1">1 of 3</Typography></Column>
+          <Column cols={6} valign="center" halign="center"><Typography variant="body1">2 of 3 (wider cols cols={6})</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">3 of 3</Typography></Column>
         </Row>
       </Container>
     </div>
@@ -194,35 +201,44 @@ Horizontal alignment
   <Story name="responsive columns">
     <div style={{ padding: '2%' }}>
       <Container>
-        <h5>Responsive Columns</h5>
-        <p>For grids that are the same from the smallest of devices to the largest, use the cols=[value]. Specify a numbered class when you need a particularly sized Column; otherwise, feel free to omit all props (auto calculation).</p>
+        <Typography variant="h5">Responsive Columns</Typography>
+        <Typography variant="body1">
+          For grids that are the same from the smallest of devices to the largest, use the cols=[value].
+          Specify a numbered class when you need a particularly sized Column; otherwise, feel free to omit all
+          props (auto calculation).
+        </Typography>
         <Row>
-          <Column valign="center" halign="center">auto</Column>
-          <Column valign="center" halign="center">auto</Column>
-          <Column valign="center" halign="center">auto</Column>
-          <Column valign="center" halign="center">auto</Column>
+          <Column valign="center" halign="center"><Typography variant="body1">auto</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">auto</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">auto</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">auto</Typography></Column>
         </Row>
         <Row>
-          <Column cols={12} xs={4} valign="center" halign="center">cols={12} xs={4}</Column>
-          <Column valign="center" halign="center">auto</Column>
+          <Column cols={12} xs={4} valign="center" halign="center"><Typography variant="body1">cols={12} xs={4}</Typography></Column>
+          <Column valign="center" halign="center"><Typography variant="body1">auto</Typography></Column>
         </Row>
-          <h5 style={{ margin: '0' }}>Stacked to horizontal</h5>
-          <p>Using a single set of cols=sm or sm=[value] props, you can create a basic grid system that starts out stacked before becoming horizontal with at the small breakpoint (sm).</p>
+          <Typography variant="h5">Stacked to horizontal</Typography>
+          <Typography variant="body1">
+            Using a single set of cols=sm or sm=[value] props, you can create a basic grid system that starts out stacked before becoming horizontal with at the small breakpoint (sm).
+          </Typography>
           <Row>
-            <Column cols={8} xs={12} valign="center" halign="center">cols=8 xs=12</Column>
-            <Column cols={4} xs={12} valign="center" halign="center">cols=4 xs=12</Column>
+            <Column cols={8} xs={12} valign="center" halign="center"><Typography variant="body1">cols=8 xs=12</Typography></Column>
+            <Column cols={4} xs={12} valign="center" halign="center"><Typography variant="body1">cols=4 xs=12</Typography></Column>
           </Row>
           <Row>
-            <Column valign="center" halign="center">auto</Column>
-            <Column valign="center" halign="center">auto</Column>
-            <Column valign="center" halign="center">auto</Column>
+            <Column valign="center" halign="center"><Typography variant="body1">auto</Typography></Column>
+            <Column valign="center" halign="center"><Typography variant="body1">auto</Typography></Column>
+            <Column valign="center" halign="center"><Typography variant="body1">auto</Typography></Column>
           </Row>
-          <h5 style={{ margin: '0' }}>Mix and match</h5>
-          <p>Don’t want your Columns to simply stack in some grid tiers? Use a combination of different className for each tier as needed. See the example below for a better idea of how it all works.</p>
+          <Typography variant="h5">Mix and match</Typography>
+          <Typography variant="body1">
+            Don’t want your Columns to simply stack in some grid tiers? Use a combination of
+            different className for each tier as needed. See the example below for a better idea of how it all works.
+          </Typography>
           <Row>
-            <Column cols={4} lg={2} valign="center" halign="center">cols={4} lg={2}</Column>
-            <Column cols={4} lg={2} valign="center" halign="center">cols={4} lg={2}</Column>
-            <Column cols={4} lg={8} valign="center" halign="center">cols={4} lg={8}</Column>
+            <Column cols={4} lg={2} valign="center" halign="center"><Typography variant="body1">cols={4} lg={2}</Typography></Column>
+            <Column cols={4} lg={2} valign="center" halign="center"><Typography variant="body1">cols={4} lg={2}</Typography></Column>
+            <Column cols={4} lg={8} valign="center" halign="center"><Typography variant="body1">cols={4} lg={8}</Typography></Column>
           </Row>
         </Container>
       </div>
@@ -235,34 +251,40 @@ Horizontal alignment
   <Story name="offset columns">
     <div style={{ padding: '2%' }}>
       <Container>
-        <h5 style={{margin: '0'}}>Column offsets</h5>
+        <Typography variant="h5">Column offsets</Typography>
         <Row>
-          <Column cols={4} md={false} offset={4} xsOffset={1} valign="center" halign="center">4 cols 4 offset, 2 cols 1 offset at xs, hidden at md</Column>
+          <Column cols={4} md={false} offset={4} xsOffset={1} valign="center" halign="center">
+            <Typography variant="body1">4 cols 4 offset, 2 cols 1 offset at xs, hidden at md</Typography>
+          </Column>
         </Row>
         <Row>
-          <Column cols={3} offset={2} valign="center" halign="center">3 cols wide with 2 offset</Column>
-          <Column cols={3} offset={2} valign="center" halign="center">3 cols wide with 2 offset</Column>
+          <Column cols={3} offset={2} valign="center" halign="center">
+            <Typography variant="body1">3 cols wide with 2 offset</Typography>
+          </Column>
+          <Column cols={3} offset={2} valign="center" halign="center">
+            <Typography variant="body1">3 cols wide with 2 offset</Typography>
+          </Column>
         </Row>
         <Row>
-          <Column cols={1} valign="center" halign="center">1 cols wide with 0 offset</Column>
-          <Column cols={1} offset={1} valign="center" halign="center">1 cols wide with 1 offset</Column>
-          <Column cols={1} offset={1} valign="center" halign="center">1 cols wide with 1 offset</Column>
-          <Column cols={1} offset={1} valign="center" halign="center">1 cols wide with 1 offset</Column>
-          <Column cols={1} offset={1} valign="center" halign="center">1 cols wide with 1 offset</Column>
-          <Column cols={1} offset={1} valign="center" halign="center">1 cols wide with 1 offset</Column>
+          <Column cols={1} valign="center" halign="center"><Typography variant="body1">1 cols wide with 0 offset</Typography></Column>
+          <Column cols={1} offset={1} valign="center" halign="center"><Typography variant="body1">1 cols wide with 1 offset</Typography></Column>
+          <Column cols={1} offset={1} valign="center" halign="center"><Typography variant="body1">1 cols wide with 1 offset</Typography></Column>
+          <Column cols={1} offset={1} valign="center" halign="center"><Typography variant="body1">1 cols wide with 1 offset</Typography></Column>
+          <Column cols={1} offset={1} valign="center" halign="center"><Typography variant="body1">1 cols wide with 1 offset</Typography></Column>
+          <Column cols={1} offset={1} valign="center" halign="center"><Typography variant="body1">1 cols wide with 1 offset</Typography></Column>
         </Row>
-        <h5 style={{margin: '0'}}>Breakpoint specific offsets</h5>
+        <Typography variant="h5">Breakpoint specific offsets</Typography>
         <Row>
-          <Column cols={2} offset={1} valign="center" halign="center">2 cols wide with 1 offset</Column>
-          <Column cols={2} offset={1} valign="center" halign="center">2 cols wide with 1 offset</Column>
-        </Row>
-        <Row>
-          <Column cols={2} offset={3} valign="center" halign="center">2 cols wide with 3 offset</Column>
-          <Column cols={2} offset={3} xsOffset={0} smOffset={1} valign="center" halign="center">2 cols wide with 3 offset, no offset at sm</Column>
+          <Column cols={2} offset={1} valign="center" halign="center"><Typography variant="body1">2 cols wide with 1 offset</Typography></Column>
+          <Column cols={2} offset={1} valign="center" halign="center"><Typography variant="body1">2 cols wide with 1 offset</Typography></Column>
         </Row>
         <Row>
-          <Column offset={3} xsOffset={0} valign="center" halign="center">smOffset=&apos;1&apos; mdOffset=&apos;3&apos; lgOffset=&apos;3&apos;</Column>
-          <Column offset={3} xsOffset={0} valign="center" halign="center">smOffset=&apos;1&apos; mdOffset=&apos;3&apos; lgOffset=&apos;3&apos;</Column>
+          <Column cols={2} offset={3} valign="center" halign="center"><Typography variant="body1">2 cols wide with 3 offset</Typography></Column>
+          <Column cols={2} offset={3} xsOffset={0} smOffset={1} valign="center" halign="center"><Typography variant="body1">2 cols wide with 3 offset, no offset at sm</Typography></Column>
+        </Row>
+        <Row>
+          <Column offset={3} xsOffset={0} valign="center" halign="center"><Typography variant="body1">smOffset=&apos;1&apos; mdOffset=&apos;3&apos; lgOffset=&apos;3&apos;</Typography></Column>
+          <Column offset={3} xsOffset={0} valign="center" halign="center"><Typography variant="body1">smOffset=&apos;1&apos; mdOffset=&apos;3&apos; lgOffset=&apos;3&apos;</Typography></Column>
         </Row>
       </Container>
     </div>

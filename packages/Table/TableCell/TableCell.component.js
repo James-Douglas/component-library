@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import TableContext from '../Table/TableContext';
 import StyledTableCell from './TableCell.styles';
@@ -13,6 +14,7 @@ const TableCell = ({
   colspan,
   rowspan,
   padding,
+  theme,
 }) => {
   const table = React.useContext(TableContext);
   const tablelvl2 = React.useContext(Tablelvl2Context);
@@ -27,17 +29,19 @@ const TableCell = ({
   }
 
   return (
-    <StyledTableCell
-      as={Component}
-      padding={padding || table.size}
-      valign={valign}
-      align={align}
-      className={className}
-      colSpan={colspan}
-      rowSpan={rowspan}
-    >
-      {children || null}
-    </StyledTableCell>
+    <ManorProvider theme={theme}>
+      <StyledTableCell
+        as={Component}
+        padding={padding || table.size}
+        valign={valign}
+        align={align}
+        className={className}
+        colSpan={colspan}
+        rowSpan={rowspan}
+      >
+        {children || null}
+      </StyledTableCell>
+    </ManorProvider>
   );
 };
 
@@ -85,6 +89,12 @@ TableCell.propTypes = {
    * This attribute specifies the vertical alignment of the content in a cell.
    */
   valign: PropTypes.oneOf(['top', 'middle', 'bottom', 'baseline']),
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 TableCell.defaultProps = {
   children: '',
@@ -95,6 +105,7 @@ TableCell.defaultProps = {
   component: '',
   padding: null,
   valign: 'top',
+  theme: undefined,
 };
 
 export default TableCell;

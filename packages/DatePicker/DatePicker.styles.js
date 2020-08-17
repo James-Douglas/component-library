@@ -12,6 +12,9 @@ export const StyledDateRangePickerContainer = styled.div`
   display: inline-block;
 `;
 export const GlobalStyle = createGlobalStyle`
+  .DayPicker {
+    font-family: ${({ theme }) => theme.fontFamily};
+  }
   .DayPickerNavigation_button .DayPickerNavigation_svg__horizontal {
     fill: ${({ theme }) => theme.datepicker.navigationButtonColor};
   }
@@ -77,9 +80,9 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: ${({ theme }) => theme.borderRadius.default};
   }
  .CalendarMonth_caption {
-  position: relative;
-  padding-top: ${({ theme }) => theme.spacing.box};
-  top:  ${({ theme }) => theme.spacing[8]};
-  font-size: ${({ theme }) => theme.fontSize.xl};
+    position: relative;
+    padding-top: ${({ theme }) => theme.spacing.box};
+    top:  ${({ theme }) => theme.spacing[8]};
+    font-size: ${({ theme }) => theme.fontSize.xl};
  }
 `;

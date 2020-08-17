@@ -1,20 +1,15 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { screens } from '@comparethemarketau/manor-utils';
-import { render } from '../../../testUtils';
+import { render } from '@testing-library/react';
 import Logo from '../Logo.component';
 import CTMLogoInline from '../../../images/ctm-logo-inline.svg';
 import CTMLogoStacked from '../../../images/ctm-logo-stacked.svg';
-import CTMLogoMobile from '../../../images/ctm-logo-mobile.svg';
 
 describe('Logo', () => {
   const pictureProps = {
-    src: CTMLogoMobile,
+    src: CTMLogoStacked,
     srcsets: [
-      {
-        srcset: CTMLogoMobile,
-        media: `(max-width: ${screens.xs}`,
-      },
       {
         srcset: CTMLogoStacked,
         media: `(max-width: ${screens.lg}`,
@@ -35,9 +30,8 @@ describe('Logo', () => {
 
     const sources = container.querySelectorAll('source');
     expect(sources).toBeDefined();
-    expect(sources[0].getAttribute('srcset')).toEqual('ctm-logo-mobile.svg');
-    expect(sources[1].getAttribute('srcset')).toEqual('ctm-logo-stacked.svg');
-    expect(sources[2].getAttribute('srcset')).toEqual('ctm-logo-inline.svg');
+    expect(sources[0].getAttribute('srcset')).toEqual('ctm-logo-stacked.svg');
+    expect(sources[1].getAttribute('srcset')).toEqual('ctm-logo-inline.svg');
   });
 
   it('renders a small logo', () => {

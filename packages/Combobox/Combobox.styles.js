@@ -53,6 +53,9 @@ export const StyledListItem = styled.li`
     outline: none;
     border: ${({ theme }) => theme.combo.list.item.borderFocus};
   }
+  p {
+    margin: 0;
+  }
 `;
 
 export const StyledIconWrap = styled.span`
@@ -77,6 +80,9 @@ export const StyledButtonWrap = styled.div`
     background: ${({ theme }) => (theme.combo.button.backgroundHover)};
   }
   font-size: ${({ theme }) => theme.fontSize.base};
+  p {
+    margin: 0;
+  }
 `;
 
 export const StyledDiv = styled.div`
@@ -105,6 +111,7 @@ export const StyledDiv = styled.div`
 `;
 
 export const WrapList = styled.div`
+  position: relative;
   ${({ desktop }) => !desktop && css`
     width: auto;
     right: ${({ theme }) => theme.spacing[8]};

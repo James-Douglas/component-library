@@ -1,8 +1,8 @@
 import React from 'react';
 import 'jest-styled-components';
+import { render } from '@testing-library/react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import Separator from '../Separator.component';
-import { render } from '../../../testUtils';
 
 describe('Separate', () => {
   it('renders correctly horizontal Separator', () => {

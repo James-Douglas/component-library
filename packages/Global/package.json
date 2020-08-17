@@ -20,6 +20,9 @@
   "dependencies": {
     "@comparethemarketau/manor-utils": "^0.1.6"
   },
+  "devDependencies": {
+    "@comparethemarketau/manor-provider": "^0.3.3"
+  },
   "peerDependencies": {
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

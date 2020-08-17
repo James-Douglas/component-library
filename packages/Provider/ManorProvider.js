@@ -1,29 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
-import { ManorGlobalStyles } from '@comparethemarketau/manor-global';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 
-const ManorProvider = (props) => {
-  const {
-    theme, children, disableGlobalStyles,
-  } = props;
-
-  return (
-    <ThemeProvider theme={theme}>
-      {!disableGlobalStyles && <ManorGlobalStyles />}
-      {children}
-    </ThemeProvider>
-  );
-};
+const ManorProvider = ({ theme, children }) => (
+  <ThemeProvider theme={theme}>
+    {children}
+  </ThemeProvider>
+);
 
 ManorProvider.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
   /**
-   * Disables the injection of global styles.
+   * Manor theme, if not provided the ctm theme will be used.
    */
-  disableGlobalStyles: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
   /**
    * The child content
    */
@@ -36,7 +28,6 @@ ManorProvider.propTypes = {
 
 ManorProvider.defaultProps = {
   theme: ctmTheme,
-  disableGlobalStyles: false,
   children: [],
 };
 

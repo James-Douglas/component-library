@@ -26,6 +26,9 @@ const pseudoBorder = ({ theme }) => css`
 `;
 
 export const StyledWrapper = styled.div`
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
   margin-bottom: ${({ theme, inFieldLabel }) => (inFieldLabel ? theme.spacing[48] : theme.spacing[20])};
   ${({ inputValue, inFieldLabel, breakpoint }) => (inputValue && inFieldLabel) && css`
     ${StyledLabel} {
@@ -36,6 +39,8 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledClearIcon = styled.button`
+  background: none;
+  border: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -53,6 +58,7 @@ export const StyledClearIcon = styled.button`
 `;
 
 export const StyledAffix = styled.span`
+  font-family: ${({ theme }) => theme.fontFamily};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: ${({ theme }) => theme.fontSize.base};
   display: flex;
@@ -182,6 +188,7 @@ export const StyledInputClearWrap = styled.div`
 
 // eslint-disable-next-line react/jsx-props-no-spreading,react/display-name,react/prop-types
 export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ...props }, ref) => <MaskedInput {...props} ref={ref} />))`
+  font-family: ${({ theme }) => theme.fontFamily};
   padding-left: ${({ theme }) => theme.spacing[12]};
   padding-right: ${({ theme }) => theme.spacing[36]};
   display: block;

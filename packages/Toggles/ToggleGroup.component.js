@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
@@ -17,6 +18,7 @@ export const getChildren = (
   contentWidth,
   contentHeight,
   buttons,
+  theme,
 ) => (
   children.map((child, index) => {
     const key = `toggle-${groupId}-${index}`;
@@ -30,6 +32,7 @@ export const getChildren = (
       contentWidth,
       contentHeight,
       button: buttons,
+      theme,
     };
     return React.cloneElement(child, propsToAdd);
   })
@@ -49,6 +52,7 @@ const ToggleGroup = ({
   contentHeight,
   className,
   buttons,
+  theme,
 }) => {
   const groupId = useId(propsId);
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
@@ -63,15 +67,15 @@ const ToggleGroup = ({
     setSelectedToggleValue(selectedValue);
   }, [selectedValue, setSelectedToggleValue]);
   return (
-    <>
+    <ManorProvider theme={theme}>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
       <StyledToggleGroup id={groupId} className={className} buttons={buttons} contentWidth={contentWidth}>
-        {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight, buttons)}
+        {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight, buttons, theme)}
       </StyledToggleGroup>
       <StyledValidationWrapper>
         <FieldValidation message={validationMessage} />
       </StyledValidationWrapper>
-    </>
+    </ManorProvider>
   );
 };
 
@@ -142,6 +146,12 @@ ToggleGroup.propTypes = {
    * Whether or not the group should be rendered as segmented buttons.
    */
   buttons: PropTypes.oneOfType([PropTypes.oneOf(['flex']), PropTypes.bool]),
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 ToggleGroup.defaultProps = {
@@ -156,6 +166,7 @@ ToggleGroup.defaultProps = {
   contentHeight: null,
   className: '',
   buttons: null,
+  theme: undefined,
 };
 
 export default ToggleGroup;

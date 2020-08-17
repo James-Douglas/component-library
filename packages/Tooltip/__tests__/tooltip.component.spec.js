@@ -1,15 +1,16 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { render, fireEvent } from '../../../testUtils';
+import { render, fireEvent } from '@testing-library/react';
 import 'jest-styled-components';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import Tooltip, { getContent } from '../Tooltip.component';
 
 describe('getContent()', () => {
   // eslint-disable-next-line react/prop-types
   const ContentContainer = ({ title, body }) => (
-    <>
+    <ManorProvider>
       {getContent(title, body)}
-    </>
+    </ManorProvider>
   );
 
   it('returns correct content for title only', () => {

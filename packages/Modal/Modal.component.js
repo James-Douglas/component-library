@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { Typography } from '@comparethemarketau/manor-typography';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import {
@@ -20,6 +22,7 @@ const Modal = ({
   overlayOpacity,
   handleOverlayClick,
   zIndex,
+  theme,
 }) => {
   const id = useId(propsId);
   const classNames = `
@@ -27,7 +30,7 @@ const Modal = ({
     ${className}
   `;
   return (
-    <>
+    <ManorProvider theme={theme}>
       {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
       {visible
         && (
@@ -37,13 +40,13 @@ const Modal = ({
                 <FontAwesomeIcon icon={faTimes} />
               </StyledCloseIcon>
               <StyledContent>
-                {title && <h2>{title}</h2>}
+                {title && <Typography variant="h2">{title}</Typography>}
                 <StyledContentChildren>{children}</StyledContentChildren>
               </StyledContent>
             </StyledModal>
           </StyledAlignment>
         )}
-    </>
+    </ManorProvider>
   );
 };
 
@@ -97,6 +100,12 @@ Modal.propTypes = {
    * zIndex for the modal & overlay (if using)
    */
   zIndex: PropTypes.number,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Modal.defaultProps = {
@@ -111,6 +120,7 @@ Modal.defaultProps = {
   handleOverlayClick: null,
   title: '',
   zIndex: 30,
+  theme: undefined,
 };
 
 export default Modal;

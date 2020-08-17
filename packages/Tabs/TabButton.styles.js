@@ -1,7 +1,16 @@
 import styled, { css } from 'styled-components';
 
 const StyledTabButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-font: ${({ theme }) => theme.fontFamily};
   padding: ${({ theme }) => `${theme.spacing[20]} 0 ${theme.spacing[12]} 0`};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  line-height: ${({ theme }) => theme.lineHeight.snug};
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-size: ${({ theme }) => theme.fontSize.base};
+  margin: 0;
   border-bottom: 0.5rem solid transparent;
   max-width: 100%;
   transition: .3s ease-out border;

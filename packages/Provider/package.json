@@ -18,12 +18,8 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-global": "^0.1.7",
     "@comparethemarketau/manor-hooks": "^0.1.6",
     "@comparethemarketau/manor-themes": "^0.2.2",
-    "prop-types": "^15.7.2"
-  },
-  "devDependencies": {
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

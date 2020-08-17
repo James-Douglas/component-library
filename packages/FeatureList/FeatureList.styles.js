@@ -19,9 +19,10 @@ export const StyledFeatureListItemIcon = styled.span`
   color: ${({ theme }) => theme.featureList.color};
 `;
 
-export const StyledFeatureListItemText = styled.span`
-  margin-left: ${({ theme }) => theme.spacing[8]};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  line-height: ${({ theme }) => theme.lineHeight.snug};
-  font-size: ${({ theme }) => theme.fontSize.base};
+export const StyledFeatureListItemText = styled.div`
+  p {
+    margin: 0;
+    color: ${({ theme }) => theme.colors.grey900};
+    margin-left: ${({ theme }) => theme.spacing[8]};
+  }
 `;

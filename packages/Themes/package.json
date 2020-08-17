@@ -12,6 +12,9 @@
     "test:ci": "cross-env CI=true jest",
     "prepare": "cp package.json lib/ && cp README.md lib/ && cp CHANGELOG.md lib/"
   },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0"
+  },
   "publishConfig": {
     "registry": "https://nexus.comparethemarket.com.au/repository/platform-packages/",
     "access": "public",

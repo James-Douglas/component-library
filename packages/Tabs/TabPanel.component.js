@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
 import TabsContext from './TabsContext';
 import StyledTabPanel from './TabPanel.styles';
 

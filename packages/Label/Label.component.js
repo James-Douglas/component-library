@@ -1,29 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Tooltip, tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { StyledLabel, StyledLabelContainer } from './Label.styles';
 
 const Label = ({
-  htmlFor, text, tooltip, inFieldLabel, prefixContent, breakpoint,
+  htmlFor, text, tooltip, inFieldLabel, prefixContent, breakpoint, theme,
 }) => {
   const {
     title, body, screenReaderLabel, placement, variant, className,
   } = tooltip;
 
   return (
-    <StyledLabelContainer inFieldLabel={inFieldLabel}>
-      <StyledLabel htmlFor={htmlFor} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} className="label">
-        {text}
-        <Tooltip
-          title={title}
-          body={body}
-          screenReaderLabel={screenReaderLabel}
-          placement={placement}
-          variant={variant}
-          className={className}
-        />
-      </StyledLabel>
-    </StyledLabelContainer>
+    <ManorProvider theme={theme}>
+      <StyledLabelContainer inFieldLabel={inFieldLabel}>
+        <StyledLabel htmlFor={htmlFor} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} className="label">
+          {text}
+          <Tooltip
+            title={title}
+            body={body}
+            screenReaderLabel={screenReaderLabel}
+            placement={placement}
+            variant={variant}
+            className={className}
+          />
+        </StyledLabel>
+      </StyledLabelContainer>
+    </ManorProvider>
   );
 };
 
@@ -55,6 +58,12 @@ Label.propTypes = {
    * breakpoint for the label (used in this component for the expressive input only)
    */
   breakpoint: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Label.defaultProps = {
@@ -64,6 +73,7 @@ Label.defaultProps = {
   inFieldLabel: false,
   prefixContent: '',
   breakpoint: null,
+  theme: undefined,
 };
 
 export default Label;

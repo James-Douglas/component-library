@@ -2,6 +2,7 @@ import React, {
   useState, useEffect, useRef, useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { Row, Column } from '@comparethemarketau/manor-grid';
@@ -32,6 +33,7 @@ const CheckboxGroup = ({
   handleChange,
   selected,
   children,
+  theme,
 }) => {
   const groupId = useId(propsGroupId);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState(selected);
@@ -58,7 +60,7 @@ const CheckboxGroup = ({
   }, [handleChange, selectedCheckboxes]);
 
   return (
-    <>
+    <ManorProvider theme={theme}>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
       <Row removeMarginBottom>
         <Column cols={desktop ? 10 : 12}>
@@ -70,7 +72,7 @@ const CheckboxGroup = ({
           <FieldValidation message={validationMessage} />
         </Column>
       </Row>
-    </>
+    </ManorProvider>
   );
 };
 
@@ -108,6 +110,12 @@ CheckboxGroup.propTypes = {
    * The child Checkbox components to render in the CheckboxGroup
    */
   children: (props, propname, componentName) => componentName === 'Checkbox',
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 CheckboxGroup.defaultProps = {
@@ -119,6 +127,7 @@ CheckboxGroup.defaultProps = {
   handleChange: () => { },
   selected: [],
   children: [],
+  theme: undefined,
 };
 
 export default CheckboxGroup;

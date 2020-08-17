@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render, fireEvent, wait } from '../../../../testUtils';
+import { render, fireEvent, wait } from '@testing-library/react';
 import ExpressiveInput from '../ExpressiveInput.component';
 
 describe('ExpressiveInput', () => {

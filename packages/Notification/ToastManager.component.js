@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useMountEffect, useUnmountEffect } from '@comparethemarketau/manor-hooks';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 
 const StyledContainer = styled.div`
     position: fixed;
@@ -38,11 +39,13 @@ const ToastManager = () => {
   });
 
   return (
-    <StyledContainer>
-      <StyledWrap>
-        {toasts}
-      </StyledWrap>
-    </StyledContainer>
+    <ManorProvider>
+      <StyledContainer>
+        <StyledWrap>
+          {toasts}
+        </StyledWrap>
+      </StyledContainer>
+    </ManorProvider>
   );
 };
 

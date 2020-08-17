@@ -72,6 +72,9 @@ export const StyledCheckbox = styled.div`
 `;
 
 export const StyledLabel = styled.label`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  color: ${({ theme }) => theme.colors.grey900};
   display: flex;
   align-items: center;
   cursor: pointer;

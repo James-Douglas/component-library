@@ -9,6 +9,7 @@ import React, {
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
@@ -41,6 +42,7 @@ const Dropdown = ({
   handleChange,
   handleFocus,
   handleBlur,
+  theme,
 }) => {
   const id = useId(propsId);
   const dropdownWrapper = useRef();
@@ -224,7 +226,7 @@ const Dropdown = ({
   };
 
   return (
-    <>
+    <ManorProvider theme={theme}>
       <StyledDropdownMainWrap onKeyDown={keyboardAccessibility} id={id}>
         <Label htmlFor={id} text={label} tooltip={tooltip} />
         <StyledDropdownContainer ref={dropdownWrapper}>
@@ -250,7 +252,7 @@ const Dropdown = ({
         <SupportingElements required={required} disabled={disabled} label={label} />
         <FieldValidation message={validationMessage} />
       </StyledDropdownMainWrap>
-    </>
+    </ManorProvider>
   );
 };
 
@@ -313,6 +315,12 @@ Dropdown.propTypes = {
    * Function called when dropdown loses focus
    */
   handleBlur: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Dropdown.defaultProps = {
@@ -329,6 +337,7 @@ Dropdown.defaultProps = {
   handleChange: null,
   handleFocus: null,
   handleBlur: null,
+  theme: undefined,
 };
 
 export default Dropdown;

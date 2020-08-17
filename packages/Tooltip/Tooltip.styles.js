@@ -23,24 +23,28 @@ export const StyledTooltipContent = styled.div`
   letter-spacing: 0.02rem;
 `;
 
-export const StyledTooltipTitle = styled.p`
-  color: ${({ theme, variant }) => (variant === 'dark'
+export const StyledTooltipTitle = styled.div`
+  span {
+    color: ${({ theme, variant }) => (variant === 'dark'
     ? theme.tooltip.titleTextColor
     : theme.tooltip.titleTextColorDark)};
-  font-weight: ${({ theme }) => theme.fontWeight.semibold};
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  line-height: ${({ theme }) => theme.lineHeight.snug};
-  margin: ${({ theme }) => theme.spacing[4]};
+    font-size: ${({ theme }) => theme.fontSize.sm};
+    font-weight: ${({ theme }) => theme.fontWeight.semibold};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+    padding: 0;
+  }
+  margin-bottom: ${({ theme }) => theme.spacing[4]};
 `;
 
-export const StyledTooltipBody = styled.p`
-  color: ${({ theme, variant }) => (variant === 'dark'
+export const StyledTooltipBody = styled.div`
+  span {
+    color: ${({ theme, variant }) => (variant === 'dark'
     ? theme.tooltip.bodyTextColor
     : theme.tooltip.bodyTextColorDark)};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  line-height: ${({ theme }) => theme.lineHeight.snug};
-  margin: ${({ theme }) => theme.spacing[4]};
+    font-weight: ${({ theme }) => theme.fontWeight.normal};
+    font-size: ${({ theme }) => theme.fontSize.sm};
+    line-height: ${({ theme }) => theme.lineHeight.snug};
+  }
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading,react/display-name,react/prop-types

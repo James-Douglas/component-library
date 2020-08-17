@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MicroUIComponent } from '@sackrin/react-micro-ui-hooks/lib/Components';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useIsDesktop } from '@comparethemarketau/manor-hooks';
+import { Typography } from '@comparethemarketau/manor-typography';
 import Contact from './Contact/Contact.component';
 import {
   StyledAdditionalContent,
@@ -11,13 +13,13 @@ import {
 } from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo, contactStrip, authuiURL,
+  isSticky, stuck, number, logo, contactStrip, authuiURL, theme,
 }) => {
   const desktop = useIsDesktop();
   const size = (stuck || !desktop) ? 'small' : 'large';
 
   return (
-    <>
+    <ManorProvider theme={theme}>
       <StyledHeader stuck={stuck} isSticky={isSticky} desktop={desktop} authuiURL={authuiURL}>
         {React.cloneElement(logo, { size })}
         <StyledAdditionalContent>
@@ -41,11 +43,11 @@ const Header = ({
       {(number && contactStrip)
         && (
         <StyledContactStrip isSticky={isSticky} desktop={desktop}>
-          <StyledText>Looking for help?</StyledText>
+          <StyledText><Typography variant="body1">Looking for help?</Typography></StyledText>
           <Contact number={number} contactStrip />
         </StyledContactStrip>
         )}
-    </>
+    </ManorProvider>
   );
 };
 
@@ -74,6 +76,12 @@ Header.propTypes = {
    * URL for micro component to be loaded
    */
   authuiURL: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Header.defaultProps = {
@@ -82,6 +90,7 @@ Header.defaultProps = {
   number: '',
   contactStrip: false,
   authuiURL: null,
+  theme: undefined,
 };
 
 export default Header;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
@@ -16,6 +17,7 @@ const CustomToggle = ({
   handleBlur,
   handleClick,
   children,
+  theme,
 }) => {
   const id = useId(propsId);
   const toggleHandler = () => {
@@ -24,23 +26,26 @@ const CustomToggle = ({
     }
   };
   return (
-    <BaseToggle
-      id={id}
-      type="custom"
-      value={value}
-      name={name}
-      selectedValue={selectedValue}
-      invalid={invalid}
-      disabled={disabled}
-      handleToggle={toggleHandler}
-      handleFocus={handleFocus}
-      handleBlur={handleBlur}
-      handleClick={handleClick}
-    >
-      <ToggleLabel id={id}>
-        {children}
-      </ToggleLabel>
-    </BaseToggle>
+    <ManorProvider theme={theme}>
+      <BaseToggle
+        id={id}
+        type="custom"
+        value={value}
+        name={name}
+        selectedValue={selectedValue}
+        invalid={invalid}
+        disabled={disabled}
+        handleToggle={toggleHandler}
+        handleFocus={handleFocus}
+        handleBlur={handleBlur}
+        handleClick={handleClick}
+        theme={theme}
+      >
+        <ToggleLabel id={id} theme={theme}>
+          {children}
+        </ToggleLabel>
+      </BaseToggle>
+    </ManorProvider>
   );
 };
 
@@ -87,6 +92,12 @@ CustomToggle.propTypes = {
    */
   handleClick: PropTypes.func,
   children: PropTypes.node,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 CustomToggle.defaultProps = {
@@ -100,6 +111,7 @@ CustomToggle.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   handleClick: null,
+  theme: undefined,
 };
 
 export default CustomToggle;

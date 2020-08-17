@@ -73,7 +73,7 @@ const colors = {
   white75: 'rgba(255,255,255,0.75)',
 };
 
-const fontFamily = '"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen",  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",  sans-serif';
+const fontFamily = '"SourceSansPro", "Helvetica", "Arial"';
 
 const fontSize = {
   '2xs': '1rem', // 10px

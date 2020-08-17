@@ -2,12 +2,14 @@ import React, {
   createRef, useEffect, useState,
 } from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { Typography } from '@comparethemarketau/manor-typography';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Checkbox } from '@comparethemarketau/manor-checkbox';
 import { StyledContent, StyledWrapper } from './Disclaimer.styles';
 
 const Disclaimer = ({
-  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur,
+  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur, theme,
 }) => {
   const id = useId(propsId);
   const content = createRef();
@@ -25,22 +27,28 @@ const Disclaimer = ({
   };
 
   const handleContentClick = (e) => {
-    if (e.target === content.current) {
-      const newChecked = !checked;
-      setChecked(newChecked);
-      if (handleChange) {
-        handleChange(newChecked);
+    if (e.target.nodeName.toLowerCase() !== 'a') {
+      if (e.target === content.current || content.current.contains(e.target)) {
+        const newChecked = !checked;
+        setChecked(newChecked);
+        if (handleChange) {
+          handleChange(newChecked);
+        }
       }
     }
   };
 
   return (
-    <StyledWrapper>
-      <Checkbox id={id} handleChange={changeHandler} isSelected={checked} handleFocus={handleFocus} handleBlur={handleBlur} />
-      <StyledContent ref={content} onClick={handleContentClick}>
-        {children}
-      </StyledContent>
-    </StyledWrapper>
+    <ManorProvider theme={theme}>
+      <StyledWrapper>
+        <Checkbox id={id} handleChange={changeHandler} isSelected={checked} handleFocus={handleFocus} handleBlur={handleBlur} />
+        <StyledContent ref={content} onClick={handleContentClick}>
+          <Typography variant="body1">
+            {children}
+          </Typography>
+        </StyledContent>
+      </StyledWrapper>
+    </ManorProvider>
   );
 };
 
@@ -73,6 +81,12 @@ Disclaimer.propTypes = {
    * Called on blur of the checkbox
    */
   handleBlur: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Disclaimer.defaultProps = {
@@ -82,6 +96,7 @@ Disclaimer.defaultProps = {
   handleChange: null,
   handleFocus: null,
   handleBlur: null,
+  theme: undefined,
 };
 
 export default Disclaimer;

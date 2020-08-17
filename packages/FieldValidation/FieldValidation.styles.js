@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledFieldValidation = styled.div`
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
   display: table;
   position: relative;
   z-index: ${({ theme }) => theme.zIndex['30']};
@@ -9,13 +12,17 @@ export const StyledFieldValidation = styled.div`
 
 export const StyledIconWrap = styled.div`
   margin-right: ${({ theme }) => theme.spacing[4]};
+  margin-top: -0.2rem;
 `;
 
 export const StyledMessage = styled.div`
+  font-family: ${({ theme }) => theme.fontFamily};
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.error500};
-  line-height: ${({ theme }) => theme.lineHeight.tight};
   font-size: ${({ theme }) => theme.fontSize.sm};
-  margin: 0;
+  p {
+    margin: 0;
+    line-height: ${({ theme }) => theme.lineHeight.tight};
+  }
 `;

@@ -41,7 +41,6 @@ export const manor = css`
   body {
     margin: 0;
     font-family: SourceSansPro, Helvetica, Arial;
-    font-size: ${({ theme }) => theme.fontSize['16']};
   }
   *, *:before, *:after {
     box-sizing: inherit;

@@ -53,21 +53,30 @@ export const StyledNotificationContentWrap = styled.div`
   margin-left: ${({ theme }) => theme.spacing[8]};
 `;
 
-export const StyledHeading = styled.p`
+export const StyledHeading = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing[4]};
   ${({ theme, type, variant }) => type === 'hint' && css` 
     color: ${(variant === 'warning') ? `${theme.notification.aaColor}` : `${theme.notification[variant].color}`};
     font-weight: ${theme.fontWeight.semibold};
   `};
+  & p {
+    margin: 0px;
+    color: ${({ theme }) => theme.colors.grey900}
+  }
 `;
 
-export const StyledContent = styled.p`
+export const StyledContent = styled.div`
+  padding: 0px;
   ${({ theme, title }) => title === '' && css`padding-top: ${theme.spacing[4]};`} 
   font-size: ${({ theme }) => theme.fontSize.sm};
   color: ${({ theme }) => theme.colors.grey800};
   width: 95%;
   &:last-of-type {
     margin-bottom: 0;
+  }
+  & p {
+    margin: 0px;
+    color: ${({ theme }) => theme.colors.grey800}
   }
 `;
 

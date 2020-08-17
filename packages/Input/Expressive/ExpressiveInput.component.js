@@ -25,6 +25,7 @@ const ExpressiveInput = ({
   guide,
   className,
   disableClearIcon,
+  theme,
 }) => {
   const id = useId(propsId);
   return (
@@ -52,6 +53,7 @@ const ExpressiveInput = ({
       mask={mask}
       guide={guide}
       disableClearIcon={disableClearIcon}
+      theme={theme}
     />
   );
 };
@@ -154,6 +156,12 @@ ExpressiveInput.propTypes = {
    * Classes to be applied to the Expressive component
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 ExpressiveInput.defaultProps = {
@@ -179,6 +187,7 @@ ExpressiveInput.defaultProps = {
   className: '',
   handleFocus: null,
   handleBlur: null,
+  theme: undefined,
 };
 
 export default ExpressiveInput;

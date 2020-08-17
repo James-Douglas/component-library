@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Col } from 'react-styled-flexboxgrid';
 
 const StyledColumn = styled(Col)`
+  box-sizing: border-box;
   @media only screen and (min-width: ${({ theme }) => `${theme.flexboxgrid.breakpoints.xs}em`}) {
     display: ${({ xs }) => (xs === false ? 'none' : 'flex')};
   }

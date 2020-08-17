@@ -18,6 +18,9 @@ const animateBottom = keyframes`
 `;
 
 export const StyledDrawer = styled.div`
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
   position: fixed;
   overflow: auto;
   margin: 0;

@@ -26,10 +26,19 @@ export const StyledIconContent = styled.div`
 `;
 
 export const StyledTitle = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  p {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    margin: 0;
+  }
 `;
 
 export const StyledDescription = styled.div`
-  color: ${({ theme }) => theme.colors.grey800};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  div {
+  }
+  p {
+    color: ${({ theme }) => theme.colors.grey800};
+    font-weight: ${({ theme }) => theme.fontWeight.normal};
+    margin: 0;
+    line-height: ${({ theme }) => theme.lineHeight.tighter};
+  }
 `;

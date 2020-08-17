@@ -1,6 +1,5 @@
 import React from 'react';
-import { waitForElementToBeRemoved } from '@testing-library/react';
-import { render, act } from '../../../testUtils';
+import { render, act, waitForElementToBeRemoved } from '@testing-library/react';
 import ToastNotification from '../ToastNotification.component';
 import ToastManager from '../ToastManager.component';
 import { addToast, removeToast } from '../events';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../../testUtils';
+import { render } from '@testing-library/react';
 import ImageToggle, { getImageToggleContent } from '../ImageToggle.component';
 
 describe('getImageToggleContent()', () => {

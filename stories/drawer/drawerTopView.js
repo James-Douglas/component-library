@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Drawer } from '@comparethemarketau/manor-drawer';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
-import { Separator } from '@comparethemarketau/manor-separator';
-import { Tooltip } from '@comparethemarketau/manor-tooltip';
+import { Typography } from '@comparethemarketau/manor-typography';
 import { Button } from '@comparethemarketau/manor-button';
 import styled from 'styled-components';
 
@@ -30,20 +30,21 @@ const DrawerTop = () => {
     setShow(!show);
   };
   return (
-    <>
+    <ManorProvider>
       <Drawer
         size="150px"
         visible={show}
         direction="top"
         handleClose={() => setShow(false)}
         overlay
+        closeButton
         overlayOpacity={0.3}
       >
         <StyledDrawerContent>
           <Row>
             <Column cols={12}>
               <div>
-                <h4>Hi I am a top drawer :)</h4>
+                <Typography variant="body1">Hi I am a top drawer :)</Typography>
               </div>
             </Column>
           </Row>
@@ -54,30 +55,12 @@ const DrawerTop = () => {
         <Row className="row-view">
           <Column cols={12}>
             <StyledCard>
-              <h5>Term Deposit Name</h5>
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting,
+              <Typography variant="h5">Term Deposit Name</Typography>
+              <Typography variant="body1">
+                It has survived not only five centuries, but also the leap into electronic typesetting,
                 remaining essentially unchanged. software like Aldus PageMaker including versions of Lorem Ipsum.
-              </p>
-              <div style={{ marginTop: '4.8rem' }}>
-                <Container>
-                  <Row className="row-view">
-                    <Column cols={5}>
-                      <p style={{ color: '#818181' }}>Interest rate</p>
-                      <Row className="row-view">
-                        <Column><h4 style={{ margin: '0' }}>2&nbsp;months</h4></Column>
-                        <Column halign="center"><Tooltip title="some title" body="some body" /></Column>
-                      </Row>
-                    </Column>
-                    <Column cols={2} className="items-center"><Separator type="vertical" /></Column>
-                    <Column cols={5}><p style={{ color: '#818181' }}>Term</p> <h4>2 months</h4></Column>
-                  </Row>
-                </Container>
-              </div>
-              <p style={{ marginTop: '3.2rem' }}>Interest paid Monthly, Quarterly, End of term</p>
+              </Typography>
               <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
-                <Button id="btn01" variant="primary">
-                  Go to site
-                </Button>
                 <Button id="btn02" variant="secondary" handleClick={clickMe}>
                   More info
                 </Button>
@@ -86,7 +69,7 @@ const DrawerTop = () => {
           </Column>
         </Row>
       </Container>
-    </>
+    </ManorProvider>
   );
 };
 

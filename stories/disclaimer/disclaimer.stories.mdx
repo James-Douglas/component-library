@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { Disclaimer } from '@comparethemarketau/manor-disclaimer';
+import { Typography } from '@comparethemarketau/manor-typography';
+import { Link } from '@comparethemarketau/manor-link';
 
 <Meta title="Components/Disclaimer" component={Disclaimer} />
 
@@ -10,7 +12,11 @@ Renders a checkbox with content (supplied as children).
 
 <Preview>
   <Story name="disclaimer">
-    <Disclaimer handleChange={(checked) => {console.log('Disclaimer checked:', checked)}} id="1">I'm a disclaimer <a href="www.google.com" target="_blank">link</a> that's a link</Disclaimer>
+    <Disclaimer handleChange={(checked) => {console.log('Disclaimer checked:', checked)}} id="1">
+      <Typography variant="body1">
+        I'm a disclaimer <Link href="www.google.com" target="_blank">link</Link> that's a link
+      </Typography>
+    </Disclaimer>
   </Story>
 </Preview>
 

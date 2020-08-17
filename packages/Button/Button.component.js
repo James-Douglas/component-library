@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import {
   StyledIcon,
@@ -24,6 +25,7 @@ const Button = ({
   style,
   children,
   className,
+  theme,
 }) => {
   const id = useId(propsId);
   const renderContent = () => {
@@ -63,9 +65,11 @@ const Button = ({
   };
 
   return (
-    <StyledButtonWrap variant={variant} width={width}>
-      {renderButton()}
-    </StyledButtonWrap>
+    <ManorProvider theme={theme}>
+      <StyledButtonWrap variant={variant} width={width}>
+        {renderButton()}
+      </StyledButtonWrap>
+    </ManorProvider>
   );
 };
 
@@ -141,6 +145,12 @@ Button.propTypes = {
    * Pass the button a custom click function
    */
   handleClick: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Button.defaultProps = {
@@ -159,6 +169,7 @@ Button.defaultProps = {
   width: '100%',
   handleClick: null,
   className: '',
+  theme: undefined,
 };
 
 export default Button;

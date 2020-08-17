@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from 'styled-components';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { ThemeProvider, withTheme } from 'styled-components';
 import { spacingPropTypes } from '@comparethemarketau/manor-utils';
 import StyledContainer from './FluidContainer.styles';
 import getTheme from './Container.theme';
 
-const FluidContainer = ({
-  children, className, padding, gutterWidth,
+const ThemedFluidContainer = ({
+  // eslint-disable-next-line react/prop-types
+  children, className, padding, gutterWidth, theme,
 }) => {
-  // Create a small Theme subset just for Grid
-  const theme = getTheme(gutterWidth);
-
+  // eslint-disable-next-line no-param-reassign,react/prop-types
+  theme.flexboxgrid = getTheme(gutterWidth);
   return (
     <ThemeProvider theme={theme}>
       <StyledContainer className={className} padding={padding}>
@@ -20,11 +21,24 @@ const FluidContainer = ({
   );
 };
 
+const DynamicThemedFluidContainer = withTheme(ThemedFluidContainer);
+
+const FluidContainer = ({
+  children, className, padding, gutterWidth, theme,
+}) => (
+  <ManorProvider theme={theme}>
+    <DynamicThemedFluidContainer className={className} padding={padding} gutterWidth={gutterWidth}>
+      {children}
+    </DynamicThemedFluidContainer>
+  </ManorProvider>
+);
+
 FluidContainer.propTypes = {
   /**
    * Classes to be applied to the FluidContainer element
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
   /**
    * The left and right padding to be applied to the container
@@ -34,11 +48,18 @@ FluidContainer.propTypes = {
    * The spacing between grid columns
    */
   gutterWidth: PropTypes.oneOf([4, 8, 12, 16, 24, 32]),
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 FluidContainer.defaultProps = {
   className: '',
   children: [],
+  theme: undefined,
   padding: 0,
   gutterWidth: 32,
 };

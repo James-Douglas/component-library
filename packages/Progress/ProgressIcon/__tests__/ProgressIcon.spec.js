@@ -1,7 +1,7 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import 'jest-styled-components';
-import { render } from '../../../../testUtils';
+import { render } from '@testing-library/react';
 import ProgressIcon from '../ProgressIcon';
 
 describe('ProgressIcon', () => {

@@ -20,6 +20,7 @@
   "dependencies": {
     "@comparethemarketau/manor-grid": "^0.4.2",
     "@comparethemarketau/manor-hooks": "^0.1.6",
+    "@comparethemarketau/manor-provider": "^0.3.3",
     "@comparethemarketau/manor-overlay": "^0.1.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-light-svg-icons": "^5.12.1",

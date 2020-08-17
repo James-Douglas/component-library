@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import StyledFlexRow from './Row.styles';
 
 const Row = ({
@@ -9,16 +10,19 @@ const Row = ({
   removeMarginBottom,
   flexWrap,
   justify,
+  theme,
 }) => (
-  <StyledFlexRow
-    justify={justify}
-    className={`row ${className}`}
-    reverse={reverse}
-    removeMarginBottom={removeMarginBottom}
-    flexWrap={flexWrap}
-  >
-    {children}
-  </StyledFlexRow>
+  <ManorProvider theme={theme}>
+    <StyledFlexRow
+      justify={justify}
+      className={`row ${className}`}
+      reverse={reverse}
+      removeMarginBottom={removeMarginBottom}
+      flexWrap={flexWrap}
+    >
+      {children}
+    </StyledFlexRow>
+  </ManorProvider>
 );
 
 Row.propTypes = {
@@ -62,6 +66,12 @@ Row.propTypes = {
     'initial',
     'inherit',
   ]),
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Row.defaultProps = {
@@ -71,6 +81,7 @@ Row.defaultProps = {
   reverse: false,
   flexWrap: 'wrap',
   justify: 'flex-start',
+  theme: undefined,
 };
 
 export default Row;

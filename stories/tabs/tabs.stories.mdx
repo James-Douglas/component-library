@@ -4,6 +4,7 @@ import { Tabs, TabButton, TabPanel } from '@comparethemarketau/manor-tabs';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { Dropdown, DropdownItem } from '@comparethemarketau/manor-dropdown';
 import { Button } from '@comparethemarketau/manor-button';
+import { Typography } from '@comparethemarketau/manor-typography';
 
 <Meta title="Components/Tabs" components={[Tabs, TabButton, TabPanel]} />
 
@@ -16,10 +17,10 @@ import { Button } from '@comparethemarketau/manor-button';
         <TabButton name="primary-tab">Tab one title</TabButton>
         <TabButton name="secondary-tab">Tab two title</TabButton>
         <TabPanel name="primary-tab">
-          <p>Tab one content</p>
+          <Typography variant="body1">Tab one content</Typography>
         </TabPanel>
         <TabPanel name="secondary-tab">
-          <p>Tab two content</p>
+          <Typography variant="body1">Tab two content</Typography>
         </TabPanel>
       </Tabs>
     </div>

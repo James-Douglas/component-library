@@ -14,6 +14,9 @@ const buttonOverrides = ({ button, theme }) => css`
 `;
 
 export const StyledToggle = styled.div`
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
   display: flex;
   position: relative;
   cursor: pointer;
@@ -24,6 +27,7 @@ export const StyledToggle = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow.sm};
   line-height: ${({ theme }) => theme.lineHeight.normal};
   ${({ button }) => button && buttonOverrides}
+  
 `;
 
 export const StyledToggleInput = styled.input`
@@ -31,7 +35,6 @@ export const StyledToggleInput = styled.input`
   width:0;
   height: 0;
   position: absolute;
-  
   + label {
     color: ${({ theme }) => theme.toggle.base.color};
   }

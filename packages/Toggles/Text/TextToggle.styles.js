@@ -30,8 +30,11 @@ export const StyledTextToggleContent = styled.div`
 `;
 
 export const StyledContent = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  ${({ theme, button }) => button && css`
-    font-weight: ${theme.fontWeight.normal}
-  `};
+  p {
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    ${({ theme, button }) => button && css`
+      font-weight: ${theme.fontWeight.normal}
+    `};
+    margin: 0;
+  }
 `;

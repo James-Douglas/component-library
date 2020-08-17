@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render } from '../../../testUtils';
+import { render } from '@testing-library/react';
 import Notification from '../Notification.component';
 import ToastManager from '../ToastManager.component';
 
@@ -58,7 +58,7 @@ describe('Notification()', () => {
       />,
     );
     const childDiv = container.firstChild;
-    const heading = container.querySelector('p');
+    const heading = container.firstChild.firstChild.firstChild;
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.error500}`);
     expect(heading).toHaveStyleRule('color', `${ctmTheme.colors.error500}`);
   });
@@ -74,7 +74,7 @@ describe('Notification()', () => {
       />,
     );
     const childDiv = container.firstChild;
-    const heading = container.querySelector('p');
+    const heading = container.firstChild.firstChild.firstChild;
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.warning500}`);
     expect(heading).toHaveStyleRule('color', `${ctmTheme.colors.grey800}`);
   });

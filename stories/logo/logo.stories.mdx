@@ -3,7 +3,6 @@ import { withKnobs, text, object, select } from '@storybook/addon-knobs';
 import LinkTo from '@storybook/addon-links/react';
 import { Logo, CTMLogo } from '@comparethemarketau/manor-logo';
 import { screens } from '@comparethemarketau/manor-utils';
-import CTMLogoMobile from '../../images/ctm-logo-mobile.svg';
 import CTMLogoStacked from '../../images/ctm-logo-stacked.svg';
 import CTMLogoInline from '../../images/ctm-logo-inline.svg';
 
@@ -17,12 +16,8 @@ import CTMLogoInline from '../../images/ctm-logo-inline.svg';
       size="large"
       link="https://www.comparethemarket.com.au"
       picture={{
-        src: CTMLogoMobile,
+        src: CTMLogoStacked,
         srcsets: [
-          {
-            srcset: CTMLogoMobile,
-            media: `(max-width: ${screens.xs}`,
-          },
           {
             srcset: CTMLogoStacked,
             media: `(max-width: ${screens.lg}`,

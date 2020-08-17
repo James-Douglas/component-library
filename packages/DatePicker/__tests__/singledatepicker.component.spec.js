@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { act } from 'react-dom/test-utils';
-import { fireEvent, render, getByLabelText } from '../../../testUtils';
+import { fireEvent, render, getByLabelText } from '@testing-library/react';
 import SingleDatePicker from '../SingleDatePicker.component';
 import 'jest-styled-components';
 

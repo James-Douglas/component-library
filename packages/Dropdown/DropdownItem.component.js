@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/pro-regular-svg-icons/faCheck';
 import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
-import StyledListItem from './DropdownItem.styles';
+import { StyledListItem, StyledItemContent } from './DropdownItem.styles';
 
 const DropdownItem = React.forwardRef(({
   id: propsId,
@@ -12,6 +12,7 @@ const DropdownItem = React.forwardRef(({
   handleClick,
   handleKeyDown,
   selectedValue,
+  theme,
 }, ref) => {
   const id = useId(propsId);
   const desktop = useIsDesktop();
@@ -41,7 +42,7 @@ const DropdownItem = React.forwardRef(({
       tabIndex="0"
     >
       {selectedValue === value && <FontAwesomeIcon icon={faCheck} size="xs" />}
-      {children}
+      <StyledItemContent>{children}</StyledItemContent>
     </StyledListItem>
   );
 });
@@ -73,6 +74,12 @@ DropdownItem.propTypes = {
    * KeyDown handler. Set by the `Dropdown` component.
    */
   handleKeyDown: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 DropdownItem.defaultProps = {
@@ -80,6 +87,7 @@ DropdownItem.defaultProps = {
   selectedValue: null,
   handleClick: null,
   handleKeyDown: null,
+  theme: undefined,
 };
 
 export default DropdownItem;

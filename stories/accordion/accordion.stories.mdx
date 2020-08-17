@@ -2,6 +2,7 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, object } from '@storybook/addon-knobs';
 import { Accordion, AccordionPanel } from '@comparethemarketau/manor-accordion';
 import { FluidContainer } from '@comparethemarketau/manor-grid';
+import { Typography } from '@comparethemarketau/manor-typography';
 
 <Meta title="Components/Accordion" component={Accordion} />
 
@@ -15,24 +16,20 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
     <div style={{ padding: '2%' }}>
       <Accordion>
         <AccordionPanel title="Can I switch energy providers?" iconSize={'1x'}>
-          <div>
-            <p>
-              If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
-              able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
-              electricity and gas comparison service. Just enter a few details about your property and power usage to
-              compare electricity and gas plans that are suitable for you.
-            </p>
-          </div>
+          <Typography variant="body1" component="p">
+            If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+            able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+            electricity and gas comparison service. Just enter a few details about your property and power usage to
+            compare electricity and gas plans that are suitable for you.
+          </Typography>
         </AccordionPanel>
          <AccordionPanel title="Can I switch energy providers?" iconSize={'1x'}>
-          <div>
-            <p>
-              If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
-              able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
-              electricity and gas comparison service. Just enter a few details about your property and power usage to
-              compare electricity and gas plans that are suitable for you.
-            </p>
-          </div>
+          <Typography variant="body1">
+            If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+            able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+            electricity and gas comparison service. Just enter a few details about your property and power usage to
+            compare electricity and gas plans that are suitable for you.
+          </Typography>
         </AccordionPanel>
       </Accordion>
     </div>
@@ -63,24 +60,20 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
     <div style={{ padding: '2%'}}>
       <Accordion  collapse={false}>
         <AccordionPanel title={firstTitleItem} iconSize={'1x'}>
-          <div>
-            <p>
-               If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
-               able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
-               electricity and gas comparison service. Just enter a few details about your property and power usage to
-               compare electricity and gas plans that are suitable for you.
-            </p>
-          </div>
+          <Typography variant="body1">
+             If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+             able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+             electricity and gas comparison service. Just enter a few details about your property and power usage to
+             compare electricity and gas plans that are suitable for you.
+          </Typography>
         </AccordionPanel>
         <AccordionPanel  title={secondTitleItem} iconSize={'1x'}>
-          <div>
-            <p>
-              If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
-              able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
-              electricity and gas comparison service. Just enter a few details about your property and power usage to
-              compare electricity and gas plans that are suitable for you.
-            </p>
-          </div>
+          <Typography variant="body1">
+            If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+            able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+            electricity and gas comparison service. Just enter a few details about your property and power usage to
+            compare electricity and gas plans that are suitable for you.
+          </Typography>
         </AccordionPanel>
       </Accordion>
      </div>
@@ -103,30 +96,26 @@ comprise of the `Accordion` component which takes `AccordionPanel` components as
       <div style={{ padding: '2%'}}>
         <Accordion collapse={collapse}>
           <AccordionPanel title={title1} iconSize='1x'>
-            <div>
-              <p>
-                Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
-                events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
-                of damage to cars, property, and even people.
-              </p>
-              <h6>What does car insurance cover?</h6>
-              <p>
-                It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
-                 you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
-                 vehicle as a result of collisions, fire, theft, and weather events. Most policies will vary in coverage (and
-                 price), which is why it’s important to review your options carefully.
-               </p>
-             </div>
+            <Typography variant="body1">
+              Car insurance protects you against financial loss for damages resulting from car accidents, theft, weather
+              events and other unforeseen costs according to your policy type. A car insurance policy helps pay for the cost
+              of damage to cars, property, and even people.
+            </Typography>
+            <Typography variant="h6">What does car insurance cover?</Typography>
+            <Typography variant="body1">
+              It can cover you if you cause personal injury in an accident or if you damage property or another vehicle. If
+               you opt for a higher level of coverage, you may also be covered for the repair or replacement costs of your
+               vehicle as a result of collisions, fire, theft, and weather events. Most policies will vary in coverage (and
+               price), which is why it’s important to review your options carefully.
+             </Typography>
           </AccordionPanel>
           <AccordionPanel title={title2} iconSize='1x'>
-             <div>
-                <p>
-                  If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
-                  able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
-                  electricity and gas comparison service. Just enter a few details about your property and power usage to
-                  compare electricity and gas plans that are suitable for you.
-                </p>
-              </div>
+            <Typography variant="body1">
+              If you live in South East Queensland, New South Wales, the ACT, South Australia, or Victoria, you may be
+              able to compare energy plans in your postcode. To check if switching energy providers is an option, use our
+              electricity and gas comparison service. Just enter a few details about your property and power usage to
+              compare electricity and gas plans that are suitable for you.
+            </Typography>
           </AccordionPanel>
         </Accordion>
       </div>

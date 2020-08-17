@@ -7,11 +7,12 @@ import CTMLogoInline from '../../images/ctm-logo-inline.svg';
 import CTMLogoInlineInverted from '../../images/ctm-logo-inline-inverted.svg';
 import CTMLogoStacked from '../../images/ctm-logo-stacked.svg';
 import CTMLogoStackedInverted from '../../images/ctm-logo-stacked-inverted.svg';
-import CTMLogoMobile from '../../images/ctm-logo-mobile.svg';
 
-const CTMLogo = ({ size, inverted, className }) => {
+const CTMLogo = ({
+  size, inverted, className, theme,
+}) => {
   const breakpoint = useBreakpoint();
-  let src = CTMLogoMobile;
+  let src = CTMLogoStacked;
   if (breakpoint === 'md') {
     src = inverted ? CTMLogoStackedInverted : CTMLogoStacked;
   } else if (breakpoint !== 'xs') {
@@ -25,10 +26,6 @@ const CTMLogo = ({ size, inverted, className }) => {
         src,
         srcsets: [
           {
-            srcset: CTMLogoMobile,
-            media: `(max-width: ${screens.xs}`,
-          },
-          {
             srcset: inverted ? CTMLogoStackedInverted : CTMLogoStacked,
             media: `(max-width: ${screens.lg}`,
           },
@@ -38,6 +35,7 @@ const CTMLogo = ({ size, inverted, className }) => {
         ],
         className,
       }}
+      theme={theme}
     />
   );
 };
@@ -46,12 +44,19 @@ CTMLogo.propTypes = {
   size: PropTypes.oneOf(['small', 'large']),
   inverted: PropTypes.bool,
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 CTMLogo.defaultProps = {
   size: 'large',
   inverted: false,
   className: '',
+  theme: undefined,
 };
 
 export default CTMLogo;

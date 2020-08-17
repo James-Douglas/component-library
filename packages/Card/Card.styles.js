@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { applySpacing } from '@comparethemarketau/manor-utils';
 
 const StyledCard = styled.div`
+  box-sizing: border-box;
   display: flex;
   width: 100%;
   min-width: ${({ theme }) => theme.spacing['80']};

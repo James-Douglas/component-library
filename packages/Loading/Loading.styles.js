@@ -18,3 +18,9 @@ export const StyledMessageContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const StyledLoadingText = styled.span`
+  p {
+    margin: 0;
+  }
+`;

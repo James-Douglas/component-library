@@ -2,6 +2,7 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
 import { Table, TableRow, TableHead, TableFooter, TableCell, TableBody } from '@comparethemarketau/manor-table';
 import { Container, FluidContainer, Column, Row } from '@comparethemarketau/manor-grid';
+import { Typography } from '@comparethemarketau/manor-typography';
 import { Separator } from '@comparethemarketau/manor-separator';
 
 <Meta title="Components/Table" component={Table} />
@@ -20,22 +21,22 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
               <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
                 <TableHead>
                   <TableRow>
-                    <TableCell colspan={2}>TableHeader</TableCell>
+                    <TableCell colspan={2}><Typography variant="body1">TableHeader</Typography></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell align="left" component="th">Fees</TableCell>
-                    <TableCell align="left">$39/year</TableCell>
+                    <TableCell align="left" component="th"><Typography variant="body1" style={{fontWeight: 700}}>Fees</Typography></TableCell>
+                    <TableCell align="left"><Typography variant="body1">$39/year</Typography></TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell align="left" component="th">Rate</TableCell>
-                    <TableCell align="left">3.78%</TableCell>
+                    <TableCell align="left" component="th"><Typography variant="body1" style={{fontWeight: 700}}>Rate</Typography></TableCell>
+                    <TableCell align="left"><Typography variant="body1">3.78%</Typography></TableCell>
                   </TableRow>
                 </TableBody>
                 <TableFooter>
                   <TableRow>
-                   <TableCell colspan={2}>TableFooter</TableCell>
+                   <TableCell colspan={2}><Typography variant="body1">TableFooter</Typography></TableCell>
                   </TableRow>
                 </TableFooter>
               </Table>
@@ -100,25 +101,30 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
         title: 'Interest paid 3',
         value: 'Weekly, fortnightly',
       }];
+    const renderItems = (items) => {
+      return items.map((item) => (
+        <TableRow key={item.title}>
+          <TableCell align="left" component="th" padding="none">
+            <Typography variant="body1" style={{ fontWeight: 700, margin: '0 0 -1.2rem'}}>{item.title}</Typography>
+          </TableCell>
+          <TableCell align="left">
+            <Typography variant="body1" style={{ margin: '0 0 -1.2rem' }}>{item.value}</Typography>
+          </TableCell>
+        </TableRow>
+      ));
+    };
     return (
       <div style={{ padding: '2%' }}>
         <Container>
           <Row className="row-view">
             <Column xs={12} sm={12} md={4} lg={4}>
-              <Container>
+              <Container padding={['16']}>
                 <Row className="row-view">
                   <Column xs={11} sm={11} md={11} lg={11}>
-                    <p className="manor-subtitle2">Description</p>
+                    <Typography variant="h4">Description</Typography>
                     <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
                       <TableBody>
-                        {tablesList1.map((item) => (
-                          <TableRow key={item.title}>
-                            <TableCell align="left" component="th" padding="none">
-                              <strong>{item.title}</strong>
-                            </TableCell>
-                            <TableCell align="left">{item.value}</TableCell>
-                          </TableRow>
-                        ))}
+                        {renderItems(tablesList1)}
                       </TableBody>
                     </Table>
                     <Separator />
@@ -128,20 +134,13 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
               </Container>
             </Column>
             <Column xs={12} sm={12} md={4} lg={4}>
-              <Container>
+              <Container padding={['16']}>
                 <Row className="row-view">
                   <Column xs={11} sm={11} md={11} lg={11}>
-                    <p className="manor-subtitle2 mb-20">Description</p>
+                    <Typography variant="h4">Description</Typography>
                     <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
                       <TableBody>
-                        {tablesList2.map((item) => (
-                          <TableRow key={item.title}>
-                            <TableCell align="left" component="th" padding="none">
-                              <strong>{item.title}</strong>
-                            </TableCell>
-                            <TableCell align="left">{item.value}</TableCell>
-                          </TableRow>
-                        ))}
+                        {renderItems(tablesList2)}
                       </TableBody>
                     </Table>
                     <Separator />
@@ -151,25 +150,13 @@ Tables are constructed with the following components: `Table`, `TableHead`, `Tab
               </Container>
             </Column>
             <Column xs={12} sm={12} md={4} lg={4}>
-              <Container>
+              <Container padding={['16']}>
                 <Row className="row-view">
                   <Column xs={11} sm={11} md={11} lg={11}>
-                    <p className="manor-subtitle2 mb-20">Description</p>
+                    <Typography variant="h4">Description</Typography>
                     <Table ariaLabel="simple table" size="small" ariaDescribedby="IDREF" className="table-className">
                       <TableBody>
-                        {tablesList3.map((item) => (
-                          <TableRow key={item.title} hover>
-                            <TableCell align="left" component="th" padding="none">
-                              <strong>{item.title}</strong>
-                              {item.tootlipTitle
-                                ? (
-                                  <Tooltip title={item.tootlipTitle} body={item.tootlipBody ? item.tootlipBody : ''} />
-                                )
-                                : ''}
-                            </TableCell>
-                            <TableCell align="left">{item.value}</TableCell>
-                          </TableRow>
-                        ))}
+                        {renderItems(tablesList3)}
                       </TableBody>
                     </Table>
                     <Separator />

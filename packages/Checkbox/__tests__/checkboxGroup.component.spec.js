@@ -1,6 +1,6 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render, fireEvent } from '../../../testUtils';
+import { render, fireEvent } from '@testing-library/react';
 import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
 

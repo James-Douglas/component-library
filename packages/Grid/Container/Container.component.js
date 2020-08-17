@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from 'styled-components';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { spacingPropTypes } from '@comparethemarketau/manor-utils';
+import { ThemeProvider, withTheme } from 'styled-components';
 import StyledContainer from './Container.styles';
+
 import getTheme from './Container.theme';
 
-const Container = ({
-  children, className, padding, gutterWidth,
+const ThemedContainer = ({
+  // eslint-disable-next-line react/prop-types
+  children, className, padding, gutterWidth, theme,
 }) => {
-  // Create a small Theme subset just for Grid
-  const theme = getTheme(gutterWidth);
-
+  // eslint-disable-next-line no-param-reassign,react/prop-types
+  theme.flexboxgrid = getTheme(gutterWidth);
   return (
     <ThemeProvider theme={theme}>
       <StyledContainer className={className} padding={padding}>
@@ -19,6 +21,18 @@ const Container = ({
     </ThemeProvider>
   );
 };
+
+const DynamicThemedContainer = withTheme(ThemedContainer);
+
+const Container = ({
+  children, className, padding, gutterWidth, theme,
+}) => (
+  <ManorProvider theme={theme}>
+    <DynamicThemedContainer className={className} padding={padding} gutterWidth={gutterWidth}>
+      {children}
+    </DynamicThemedContainer>
+  </ManorProvider>
+);
 
 Container.propTypes = {
   /**
@@ -30,6 +44,12 @@ Container.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
   /**
    * The left and right padding to be applied to the container
    */
@@ -43,6 +63,7 @@ Container.propTypes = {
 Container.defaultProps = {
   className: '',
   children: [],
+  theme: undefined,
   padding: 0,
   gutterWidth: 32,
 };

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledCardGroup = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -9,6 +10,7 @@ export const StyledCardGroup = styled.div`
 `;
 
 export const StyledCardGroupChildren = styled.div`
+  box-sizing: border-box;
   display: flex;
   width: ${({ cols }) => (cols === 1 ? '100%' : `${100 / cols}%`)};
   padding-right: ${({ theme }) => theme.spacing['8']};

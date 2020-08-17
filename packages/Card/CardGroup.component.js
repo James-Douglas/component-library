@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { spacingPropTypes } from '@comparethemarketau/manor-utils';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import Card from './Card.component';
 import { StyledCardGroup, StyledCardGroupChildren } from './CardGroup.styles';
 
@@ -18,12 +19,15 @@ const CardGroup = ({
   children,
   cardProps,
   className,
+  theme,
 }) => {
   const id = useId(propsId);
   return (
-    <StyledCardGroup id={id}>
-      {getChildren(children, cols, cardProps, className)}
-    </StyledCardGroup>
+    <ManorProvider theme={theme}>
+      <StyledCardGroup id={id}>
+        {getChildren(children, cols, cardProps, className)}
+      </StyledCardGroup>
+    </ManorProvider>
   );
 };
 
@@ -60,6 +64,12 @@ CardGroup.propTypes = {
    * Classes to be applied to the CardGroup component
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 CardGroup.defaultProps = {
@@ -68,6 +78,7 @@ CardGroup.defaultProps = {
   children: [],
   cardProps: {},
   className: '',
+  theme: undefined,
 };
 
 export default CardGroup;

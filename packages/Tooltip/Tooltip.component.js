@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useIsDesktop, useUnmountEffect } from '@comparethemarketau/manor-hooks';
-import { SROnly } from '@comparethemarketau/manor-typography';
+import { Typography } from '@comparethemarketau/manor-typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/pro-light-svg-icons/faInfoCircle';
 import {
@@ -24,8 +25,8 @@ import {
 export function getContent(title, body, variant) {
   return (
     <StyledTooltipContent>
-      {title ? <StyledTooltipTitle variant={variant}>{title}</StyledTooltipTitle> : ''}
-      <StyledTooltipBody variant={variant}>{body}</StyledTooltipBody>
+      {title ? <StyledTooltipTitle variant={variant}><Typography variant="body2" component="span">{title}</Typography></StyledTooltipTitle> : ''}
+      <StyledTooltipBody variant={variant}><Typography variant="body2" component="span">{body}</Typography></StyledTooltipBody>
     </StyledTooltipContent>
   );
 }
@@ -37,6 +38,7 @@ const Tooltip = ({
   variant,
   screenReaderLabel,
   className,
+  theme,
 }) => {
   const [pinned, setPinned] = useState(false);
   const desktop = useIsDesktop(false);
@@ -99,7 +101,7 @@ const Tooltip = ({
   }
 
   return (
-    <>
+    <ManorProvider theme={theme}>
       <StyledTippy
         content={getContent(title, body, variant)}
         arrow
@@ -138,12 +140,12 @@ const Tooltip = ({
           className={className}
         >
           <>
-            <SROnly>{screenReaderLabel}</SROnly>
+            <Typography variant="srOnly">{screenReaderLabel}</Typography>
             <FontAwesomeIcon icon={faInfoCircle} />
           </>
         </StyledTooltipIcon>
       </StyledTippy>
-    </>
+    </ManorProvider>
   );
 };
 
@@ -183,6 +185,12 @@ export const tooltipPropTypes = {
    * Classes to be applied to the Tooltip component
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 const defaultProps = {
@@ -192,6 +200,7 @@ const defaultProps = {
   placement: 'right',
   variant: 'dark',
   className: 'ctm-tooltip',
+  theme: undefined,
 };
 
 Tooltip.propTypes = tooltipPropTypes;

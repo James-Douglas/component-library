@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
+  box-sizing: border-box;
   width: ${({ theme }) => theme.maxWidth.full};
   margin: auto;
   padding-left: ${({ theme, padding }) => theme.spacing[padding]};

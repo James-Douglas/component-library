@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
 export const StyledAccordionPanel = styled.div`
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  box-sizing: border-box;
+  font-family: ${({ theme }) => theme.fontFamily};
   overflow: hidden;
   border: ${({ theme, isFocus }) => (isFocus ? `${theme.borders.focus}` : theme.borders.transparent)};
   border-top: ${({ theme, isFocus }) => (isFocus ? `${theme.borders.focus}` : `${theme.borders.component}`)};
@@ -36,6 +41,7 @@ export const StyledAccordionBody = styled.div`
 `;
 
 export const StyledAccordionHead = styled.div`
+  display: flex;
   cursor: pointer;
   position: relative;
   overflow: hidden;

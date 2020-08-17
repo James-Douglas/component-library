@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components';
 
 export const StyledDropdownMainWrap = styled.div`
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
   position: relative;
   width: 100%;
   margin-bottom: ${({ theme }) => theme.spacing[20]};
@@ -16,6 +19,9 @@ export const StyledSvgArrow = styled.span`
 `;
 
 export const StyledDropdownContent = styled.div`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  color: ${({ theme }) => theme.colors.grey900};
   width: 100%;
   display: inline-flex;
   align-items: center;

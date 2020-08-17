@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import TableContext from './TableContext';
 import StyledTable from './Table.styles';
 
@@ -10,6 +11,7 @@ const Table = ({
   component,
   ariaLabel,
   ariaDescribedby,
+  theme,
 }) => {
   const Component = component || 'table';
   const table = React.useMemo(() => ({ size }), [
@@ -17,16 +19,18 @@ const Table = ({
   ]);
 
   return (
-    <TableContext.Provider value={table}>
-      <StyledTable
-        as={Component}
-        className={className}
-        aria-label={ariaLabel}
-        aria-describedby={ariaDescribedby}
-      >
-        {children || null}
-      </StyledTable>
-    </TableContext.Provider>
+    <ManorProvider theme={theme}>
+      <TableContext.Provider value={table}>
+        <StyledTable
+          as={Component}
+          className={className}
+          aria-label={ariaLabel}
+          aria-describedby={ariaDescribedby}
+        >
+          {children || null}
+        </StyledTable>
+      </TableContext.Provider>
+    </ManorProvider>
   );
 };
 
@@ -59,6 +63,12 @@ Table.propTypes = {
    *  Refers to the element that serves as the caption for the table.
    */
   ariaDescribedby: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Table.defaultProps = {
@@ -68,6 +78,7 @@ Table.defaultProps = {
   children: '',
   ariaLabel: null,
   ariaDescribedby: null,
+  theme: undefined,
 };
 
 export default Table;

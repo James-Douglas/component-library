@@ -1,9 +1,10 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import 'jest-styled-components';
 import {
   fireEvent, render, act,
-} from '../../../testUtils';
+} from '@testing-library/react';
 import AccordionPanel from '../AccordionPanel.component';
 
 let mockUseIsDesktopValue = true;
@@ -14,23 +15,23 @@ jest.mock('../../Hooks/useIsDesktop', () => ({
 
 describe('Accordion', () => {
   it('renders correctly without prop', () => {
-    const { getByText } = render(<AccordionPanel title="Position to purchase" />);
+    const { getByText } = render(<ManorProvider><AccordionPanel title="Position to purchase" /></ManorProvider>);
     expect(getByText('Position to purchase')).toBeInTheDocument();
   });
   it('renders correctly when open accordion', () => {
-    const { container } = render(<AccordionPanel show />);
+    const { container } = render(<ManorProvider><AccordionPanel show /></ManorProvider>);
     const accordion = container.querySelector('[role="tablist"]');
     expect(accordion).toHaveStyleRule('border', `${ctmTheme.borders.transparent}`);
   });
   it('renders correctly with arrow', () => {
-    const { container } = render(<AccordionPanel show title="Position to purchase">Accordion</AccordionPanel>);
+    const { container } = render(<ManorProvider><AccordionPanel show title="Position to purchase">Accordion</AccordionPanel></ManorProvider>);
     const accordionMain = container.querySelector('svg');
     expect(accordionMain).toHaveAttribute('viewBox');
   });
 
   it('click on accordion head', () => {
     jest.useFakeTimers();
-    const { container } = render(<AccordionPanel show />);
+    const { container } = render(<ManorProvider><AccordionPanel show /></ManorProvider>);
     const svg = container.querySelector('[role="img"]');
     const accordionHead = container.querySelector('[role="tab"]');
     const accordionBody = container.querySelector('[role="tabpanel"]');
@@ -50,9 +51,11 @@ describe('Accordion', () => {
 
   it('works on focus/when leaving focus', () => {
     const { container } = render(
-      <AccordionPanel title="Accordion title">
-        <div><p>Accordion content</p></div>
-      </AccordionPanel>,
+      <ManorProvider>
+        <AccordionPanel title="Accordion title">
+          <div><p>Accordion content</p></div>
+        </AccordionPanel>
+      </ManorProvider>,
     );
     const accordionHead = container.querySelector('[role="tab"]');
     const accordion = container.querySelector('[role="tablist"]');
@@ -67,7 +70,7 @@ describe('Accordion', () => {
   it('check handleClickGroup function is called', () => {
     jest.useFakeTimers();
     const handleClickGroup = jest.fn();
-    const { container } = render(<AccordionPanel show handleClickGroup={handleClickGroup} />);
+    const { container } = render(<ManorProvider><AccordionPanel show handleClickGroup={handleClickGroup} /></ManorProvider>);
     const accordionHead = container.querySelector('[role="tab"]');
     const accordion = container.querySelector('[role="tablist"]');
     fireEvent.click(accordionHead);
@@ -81,9 +84,11 @@ describe('Accordion', () => {
   it('works on keydown', () => {
     jest.useFakeTimers();
     const { container } = render(
-      <AccordionPanel title="Accordion title">
-        <div><p>Accordion content</p></div>
-      </AccordionPanel>,
+      <ManorProvider>
+        <AccordionPanel title="Accordion title">
+          <div><p>Accordion content</p></div>
+        </AccordionPanel>
+      </ManorProvider>,
     );
     const accordionHead = container.querySelector('[role="tab"]');
     const accordion = container.querySelector('[role="tablist"]');
@@ -106,9 +111,11 @@ describe('Accordion', () => {
   it('check font-size on resize', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
-      <AccordionPanel title="Accordion title">
-        <div><p>Accordion content</p></div>
-      </AccordionPanel>,
+      <ManorProvider>
+        <AccordionPanel title="Accordion title">
+          <div><p>Accordion content</p></div>
+        </AccordionPanel>
+      </ManorProvider>,
     );
     const accordionHead = container.querySelector('[role="tab"]');
     expect(accordionHead).toHaveStyleRule('font-size', `${ctmTheme.fontSize.lg}`);

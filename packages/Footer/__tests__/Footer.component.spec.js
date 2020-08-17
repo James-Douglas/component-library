@@ -1,5 +1,6 @@
 import React from 'react';
-import { render } from '../../../testUtils';
+import { render } from '@testing-library/react';
+import 'jest-styled-components';
 
 import Footer from '../Footer.component';
 
@@ -28,7 +29,7 @@ describe('Footer', () => {
       </Footer>,
     );
     const footer = container.firstChild.firstChild;
-    expect(footer).toHaveStyle('background: #ffffff');
+    expect(footer).toHaveStyleRule('background', '#FFFFFF');
   });
 
   it('renders with a transparent bg when the prop is supplied', () => {
@@ -38,7 +39,7 @@ describe('Footer', () => {
       </Footer>,
     );
     const footer = container.firstChild.firstChild;
-    expect(footer).toHaveStyle('background: transparent');
+    expect(footer).toHaveStyleRule('background', 'transparent');
   });
 
   it('renders with a default type', () => {
@@ -47,7 +48,7 @@ describe('Footer', () => {
         <>test disclaimer</>
       </Footer>,
     );
-    const pTags = container.getElementsByTagName('p');
+    const pTags = container.getElementsByTagName('span');
     expect(pTags[0].textContent).toBe('test disclaimer');
     expect(pTags[1].textContent).toBe('© 2020 Compare The Market. All rights reserved. ACN: 117323 378. AFSL 422926.');
   });
@@ -58,7 +59,7 @@ describe('Footer', () => {
         <p>test disclaimer</p>
       </Footer>,
     );
-    const pTags = container.getElementsByTagName('p');
+    const pTags = container.getElementsByTagName('span');
     expect(pTags[0].textContent).toBe('© 2020 Compare The Market. All rights reserved. ACN: 117323 378. AFSL 422926.');
     expect(pTags[1].textContent).toBe('test disclaimer');
   });

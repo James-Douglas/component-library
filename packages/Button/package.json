@@ -18,6 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
+    "@comparethemarketau/manor-provider": "^0.3.3",
     "@comparethemarketau/manor-hooks": "^0.1.6",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",

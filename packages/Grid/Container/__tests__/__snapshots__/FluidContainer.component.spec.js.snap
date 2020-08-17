@@ -2,34 +2,11 @@
 
 exports[`Container allows additional classes to be passed through 1`] = `
 .c0 {
+  box-sizing: border-box;
   width: 100%;
   margin: auto;
   padding-left: 0;
   padding-right: 0;
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
 }
 
 <div>
@@ -41,34 +18,11 @@ exports[`Container allows additional classes to be passed through 1`] = `
 
 exports[`Container allows padding to be passed through 1`] = `
 .c0 {
+  box-sizing: border-box;
   width: 100%;
   margin: auto;
   padding-left: 0.4rem;
   padding-right: 0.4rem;
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
 }
 
 <div>
@@ -80,34 +34,11 @@ exports[`Container allows padding to be passed through 1`] = `
 
 exports[`Container has a container class by default and NO fixed class 1`] = `
 .c0 {
+  box-sizing: border-box;
   width: 100%;
   margin: auto;
   padding-left: 0;
   padding-right: 0;
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
 }
 
 <div>
@@ -119,34 +50,11 @@ exports[`Container has a container class by default and NO fixed class 1`] = `
 
 exports[`Container renders children 1`] = `
 .c0 {
+  box-sizing: border-box;
   width: 100%;
   margin: auto;
   padding-left: 0;
   padding-right: 0;
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
 }
 
 <div>
@@ -164,34 +72,11 @@ exports[`Container renders children 1`] = `
 
 exports[`Container renders correctly without props 1`] = `
 .c0 {
+  box-sizing: border-box;
   width: 100%;
   margin: auto;
   padding-left: 0;
   padding-right: 0;
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
 }
 
 <div>

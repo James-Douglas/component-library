@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { usePrefill, useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
 import { SupportingElements } from '@comparethemarketau/manor-supporting-elements';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
+import { Typography } from '@comparethemarketau/manor-typography';
 import {
   StyledmaxlengthIndicator,
   StyledTextAreaWrapper,
@@ -25,10 +27,10 @@ export function getRemainingCharsContent(maxChars, maxLength, id, textAreaRemain
         textAreaRemainChars={textAreaRemainChars}
         className={`manor-maxlength-indicator subscript ${textAreaRemainChars < 0 ? 'max-chars-exceeded' : ''} `}
       >
-        <span className="sr-only">
+        <Typography variant="srOnly">
           {`${textAreaRemainChars && textAreaRemainChars < 0 ? ' Exceeded character limit' : ' Remaining allowed characters'} for the ${label} field `}
-        </span>
-        {textAreaRemainChars}
+        </Typography>
+        <Typography variant="caption">{textAreaRemainChars}</Typography>
       </StyledmaxlengthIndicator>
     );
   }
@@ -55,6 +57,7 @@ const Textarea = ({
   handleFocus,
   handleBlur,
   className,
+  theme,
 }) => {
   const id = useId(propsId);
   const [isDirty, setIsDirty] = useState(false);
@@ -111,7 +114,7 @@ const Textarea = ({
   const validation = validationMessageToDisplay && validationMessageToDisplay.length;
 
   return (
-    <>
+    <ManorProvider theme={theme}>
       <Label htmlFor={id} text={label} tooltip={tooltip} />
       <StyledTextAreaWrapper className={`textarea-wrapper ${className}`}>
         <StyledTextArea
@@ -144,7 +147,7 @@ const Textarea = ({
         />
         <FieldValidation message={validationMessage} />
       </StyledTextAreaWrapper>
-    </>
+    </ManorProvider>
   );
 };
 
@@ -231,6 +234,12 @@ Textarea.propTypes = {
    * Classes to be applied to the Textarea component
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Textarea.defaultProps = {
@@ -253,6 +262,7 @@ Textarea.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   className: '',
+  theme: undefined,
 };
 
 export default Textarea;

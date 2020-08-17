@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const StyledListItem = styled.li`
+export const StyledListItem = styled.li`
   svg {
     position: absolute;
     left: 1rem;
@@ -16,4 +16,8 @@ const StyledListItem = styled.li`
   `}
 `;
 
-export default StyledListItem;
+export const StyledItemContent = styled.span`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  color: ${({ theme }) => theme.colors.grey900};
+`;

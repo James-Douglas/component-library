@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../testUtils';
+import { render } from '@testing-library/react';
 import { Picture } from '../Picture.component';
 import Placeholder from '../../../images/placeholder.png';
 

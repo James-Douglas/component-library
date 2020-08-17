@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Card, CardGroup } from '@comparethemarketau/manor-card';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { Button } from '@comparethemarketau/manor-button';
+import { Typography } from '@comparethemarketau/manor-typography';
 
 const cardData = [
   {
@@ -31,13 +32,6 @@ const cardData = [
   },
 ];
 
-const StyledManorOverline = styled.span`
-  line-height: 1.4;
-  font-size: 1rem;
-  letter-spacing: 0.15rem;
-  font-weight: 600;
-  color: #787673;
-`;
 
 const CardResultsView = () => {
   const [isGrid, setIsGrid] = useState(false);
@@ -56,32 +50,32 @@ const CardResultsView = () => {
               display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem',
             }}
             >
-              <h6>{card.name}</h6>
+              <Typography variant="h6">{card.name}</Typography>
             </div>
           </Row>
           <Row>
             <Column offset={2} cols={8}>
-              <p>
+              <Typography variant="body2">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                 et dolore magna aliqua.
-              </p>
+              </Typography>
             </Column>
           </Row>
           <Row>
-            <Column offset={2} auto><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
-            <Column><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
+            <Column offset={2} auto><Typography variant="caption">Advertised rate</Typography></Column>
+            <Column><Typography variant="caption">Comparison rate</Typography></Column>
           </Row>
           <Row>
-            <Column offset={2} auto><p>{card.advRate}</p></Column>
-            <Column><p>{card.compRate}</p></Column>
+            <Column offset={2} auto><Typography variant="body2">{card.advRate}</Typography></Column>
+            <Column><Typography variant="body2">{card.compRate}</Typography></Column>
           </Row>
           <Row>
-            <Column offset={2} auto><StyledManorOverline>Fees</StyledManorOverline></Column>
-            <Column><StyledManorOverline>Repayments</StyledManorOverline></Column>
+            <Column offset={2} auto><Typography variant="caption">Fees</Typography></Column>
+            <Column><Typography variant="caption">Repayments</Typography></Column>
           </Row>
           <Row>
-            <Column offset={2} auto><p>{card.fees}</p></Column>
-            <Column><p>{card.repayments}</p></Column>
+            <Column offset={2} auto><Typography variant="body2">{card.fees}</Typography></Column>
+            <Column><Typography variant="body2">{card.repayments}</Typography></Column>
           </Row>
           <Row>
             <Column offset={2} cols={8}>
@@ -121,30 +115,32 @@ const CardResultsView = () => {
             <Column cols={9}>
               <Container>
                 <Row>
-                  <Column cols={4}><h6>{card.name}</h6></Column>
-                  <Column><StyledManorOverline>Advertised rate</StyledManorOverline></Column>
-                  <Column><StyledManorOverline>Comparison rate</StyledManorOverline></Column>
-                  <Column><StyledManorOverline>Fees</StyledManorOverline></Column>
-                  <Column><StyledManorOverline>Repayments</StyledManorOverline></Column>
+                  <Column cols={4}><Typography variant="h6">{card.name}</Typography></Column>
+                  <Column><Typography variant="caption">Advertised rate</Typography></Column>
+                  <Column><Typography variant="caption">Comparison rate</Typography></Column>
+                  <Column><Typography variant="caption">Fees</Typography></Column>
+                  <Column><Typography variant="caption">Repayments</Typography></Column>
                 </Row>
                 <Row>
                   <Column cols={4}>
-                    <p style={{ paddingRight: '7rem' }}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                      et dolore magna aliqua.
-                    </p>
+                    <div style={{paddingRight: '7rem'}}>
+                      <Typography variant="body2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua.
+                      </Typography>
+                    </div>
                   </Column>
                   <Column>
-                    <p>{card.advRate}</p>
+                    <Typography variant="body2">{card.advRate}</Typography>
                   </Column>
                   <Column>
-                    <p>{card.compRate}</p>
+                    <Typography variant="body2">{card.compRate}</Typography>
                   </Column>
                   <Column>
-                    <p>{card.fees}</p>
+                    <Typography variant="body2">{card.fees}</Typography>
                   </Column>
                   <Column>
-                    <p>{card.repayments}</p>
+                    <Typography variant="body2">{card.repayments}</Typography>
                   </Column>
                 </Row>
 

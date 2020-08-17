@@ -8,6 +8,7 @@ exports[`Column renders correctly without props 1`] = `
   flex: 0 0 auto;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
+  box-sizing: border-box;
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -137,35 +138,11 @@ exports[`Column renders correctly without props 1`] = `
   }
 }
 
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
 <div>
   <div
     class="sc-AxiKw c0 
-        
-      "
+          
+        "
   />
 </div>
 `;

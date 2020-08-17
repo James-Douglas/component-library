@@ -3,6 +3,7 @@ import { withKnobs, text, boolean, number, select, array } from '@storybook/addo
 import { Card, CardGroup } from '@comparethemarketau/manor-card';
 import { Container } from '@comparethemarketau/manor-grid'
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { Typography } from '@comparethemarketau/manor-typography';
 import CardResultsView from './cardResults.view';
 import StyledBackground from '../view-styles';
 
@@ -15,10 +16,10 @@ which can be used to compose a group of cards.
 
 <Preview>
   <Story name="card">
-    <div style={{ padding: '2%' }}>
+    <div style={{ padding: '2%', display: 'flex' }}>
       <Card id='mdx-card'>
         <div>
-          <p>Card content</p>
+          <Typography variant="body1">Card content</Typography>
         </div>
       </Card>
     </div>
@@ -36,12 +37,12 @@ which can be used to compose a group of cards.
       <CardGroup id='mdx-card-group' cols={2} cardProps={{margin:['4'], padding:['12']}}>
         <Card id='mdx-card-1'>
           <div>
-            <p>Card A</p>
+            <Typography variant="body1">Card A</Typography>
           </div>
         </Card>
         <Card id='mdx-card-2'>
           <div>
-            <p>Card B</p>
+            <Typography variant="body1">Card B</Typography>
           </div>
         </Card>
       </CardGroup>
@@ -72,62 +73,62 @@ which can be used to compose a group of cards.
         <CardGroup id={id} cols={cols} cardProps={{margin, padding}}>
           <Card>
             <div>
-              <p>Card A</p>
+              <Typography variant="body1">Card A</Typography>
             </div>
           </Card>
           <Card>
             <div>
-              <p>Card B</p>
+              <Typography variant="body1">Card B</Typography>
             </div>
           </Card>
           <Card id='card-c'>
             <div>
-              <p>Card C</p>
+              <Typography variant="body1">Card C</Typography>
             </div>
           </Card>
           <Card id='card-d'>
             <div>
-              <p>Card D</p>
+              <Typography variant="body1">Card D</Typography>
             </div>
           </Card>
           <Card id='card-e'>
             <div>
-              <p>Card E</p>
+              <Typography variant="body1">Card E</Typography>
             </div>
           </Card>
           <Card id='card-f'>
             <div>
-              <p>Card F</p>
+              <Typography variant="body1">Card F</Typography>
             </div>
           </Card>
           <Card id='card-g'>
             <div>
-              <p>Card G</p>
+              <Typography variant="body1">Card G</Typography>
             </div>
           </Card>
           <Card id='card-h'>
             <div>
-              <p>Card H</p>
+              <Typography variant="body1">Card H</Typography>
             </div>
           </Card>
           <Card id='card-i'>
             <div>
-              <p>Card I</p>
+              <Typography variant="body1">Card I</Typography>
             </div>
           </Card>
           <Card id='card-j'>
             <div>
-              <p>Card J</p>
+              <Typography variant="body1">Card J</Typography>
             </div>
           </Card>
           <Card id='card-k'>
             <div>
-              <p>Card K</p>
+              <Typography variant="body1">Card K</Typography>
             </div>
           </Card>
           <Card id='card-l'>
             <div>
-              <p>Card L</p>
+              <Typography variant="body1">Card L</Typography>
             </div>
           </Card>
         </CardGroup>

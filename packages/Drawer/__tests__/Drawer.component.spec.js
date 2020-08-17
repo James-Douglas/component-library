@@ -1,8 +1,8 @@
 import React from 'react';
 import 'jest-styled-components';
+import { render, fireEvent } from '@testing-library/react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import Drawer from '../Drawer.component';
-import { render, fireEvent } from '../../../testUtils';
 
 describe('Drawer', () => {
   it('check content inside Drawer exist', () => {

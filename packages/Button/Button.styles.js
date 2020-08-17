@@ -18,6 +18,9 @@ const disabledStyles = css`
 `;
 
 const baseButtonStyles = css`
+  font-family: ${({ theme }) => theme.fontFamily};
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,4 +151,7 @@ export const StyledButtonWrap = styled.span`
   flex-wrap: wrap;
   flex: 0 1 100%;
   width: ${({ width }) => width};
+  & {
+    font-family: ${({ theme }) => theme.fontFamily};
+  }
 `;

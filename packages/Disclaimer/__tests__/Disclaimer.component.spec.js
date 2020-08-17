@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '../../../testUtils';
+import { render, fireEvent } from '@testing-library/react';
 import Disclaimer from '../Disclaimer.component';
 
 describe('Disclaimer', () => {

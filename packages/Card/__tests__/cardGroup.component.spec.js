@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../testUtils';
+import { render } from '@testing-library/react';
 import 'jest-styled-components';
 import Card from '../Card.component';
 import CardGroup from '../CardGroup.component';

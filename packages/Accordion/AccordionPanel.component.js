@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import { useIsDesktop } from '@comparethemarketau/manor-hooks';
 import { Row, Column, FluidContainer } from '@comparethemarketau/manor-grid';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+
 import PropTypes from 'prop-types';
 
 import {
@@ -19,6 +21,7 @@ const AccordionPanel = ({
   iconSize,
   handleClickGroup,
   className,
+  theme,
 }) => {
   const desktop = useIsDesktop();
   const [isVisible, setIsVisible] = useState(show);
@@ -52,38 +55,41 @@ const AccordionPanel = ({
     setIsFocus(false);
   };
   return (
-    <StyledAccordionPanel isFocus={isFocus} className={className} role="tablist" aria-label="Information tabs">
-      <StyledAccordionHead
-        isVisible={isVisible}
-        onClick={toggleTrueFalse}
-        onKeyDown={toggleTrueFalseOnKey}
-        desktop={desktop}
-        role="tab"
-        aria-selected="true"
-        tabIndex="0"
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      >
-        <FluidContainer>
-          <Row removeMarginBottom flexWrap="nowrap">
-            <Column cols={11}>{title}</Column>
-            <Column cols={1}>
-              <StyledChevronWrap>
-                <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
-              </StyledChevronWrap>
-            </Column>
-          </Row>
-        </FluidContainer>
-
-      </StyledAccordionHead>
-      <StyledAccordionBody isVisible={isVisible} role="tabpanel">
-        <FluidContainer padding={['16']}>
-          <Row className="row-view" removeMarginBottom>
-            <Column cols={12}>{children}</Column>
-          </Row>
-        </FluidContainer>
-      </StyledAccordionBody>
-    </StyledAccordionPanel>
+    <ManorProvider theme={theme}>
+      <StyledAccordionPanel isFocus={isFocus} className={className} role="tablist" aria-label="Information tabs">
+        <StyledAccordionHead
+          isVisible={isVisible}
+          onClick={toggleTrueFalse}
+          onKeyDown={toggleTrueFalseOnKey}
+          desktop={desktop}
+          role="tab"
+          aria-selected="true"
+          tabIndex="0"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        >
+          <FluidContainer>
+            <Row removeMarginBottom flexWrap="nowrap">
+              <Column cols={11}>{title}</Column>
+              <Column cols={1}>
+                <StyledChevronWrap>
+                  <FontAwesomeIcon icon={faChevronDown} size={iconSize} flip={direction} />
+                </StyledChevronWrap>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </StyledAccordionHead>
+        <StyledAccordionBody isVisible={isVisible} role="tabpanel">
+          <FluidContainer padding={['16']}>
+            <Row className="row-view" removeMarginBottom>
+              <Column cols={12}>
+                {children}
+              </Column>
+            </Row>
+          </FluidContainer>
+        </StyledAccordionBody>
+      </StyledAccordionPanel>
+    </ManorProvider>
   );
 };
 
@@ -116,6 +122,12 @@ AccordionPanel.propTypes = {
    * Classes to be applied to the Accordion panel component
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 AccordionPanel.defaultProps = {
@@ -125,6 +137,7 @@ AccordionPanel.defaultProps = {
   iconSize: '1x',
   handleClickGroup: null,
   className: '',
+  theme: undefined,
 };
 
 export default AccordionPanel;

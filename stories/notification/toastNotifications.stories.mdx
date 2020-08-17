@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, boolean} from '@storybook/addon-knobs';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Button } from '@comparethemarketau/manor-button';
 import { ToastNotification, ToastManager, addToast } from '@comparethemarketau/manor-notification';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
@@ -62,63 +63,65 @@ const MyComponent = () => {
     {() => {
       const [ demo1, setDemo1 ] = useState(true);
       return (
-        <div style={{ padding: '2%' }}>
-          <ToastManager />
-          <Container>
-            <div style={{marginTop: '60px', width: '50%'}}>
-            <Row>
-              <Column xsOffset={6} cols={10}>
-                <Button id='general-toast' handleClick={() => {
-                  addToast(
-                    <ToastNotification
-                      variant="general"
-                      title="General Toast Message"
-                      content="This will auto dismiss in 5 seconds"
-                      primaryAction={{
-                        content: 'Action goes here',
-                        link: '#',
-                      }}
-                      icon={true}
-                      closeButton={true}
-                      autoClose={5000}
-                    />
-                  )
-                }}>General Toast - timeout in 5 seconds</Button>
-                <Button id='success-toast' handleClick={() => {
-                  addToast(
-                    <ToastNotification
-                      variant="success"
-                      title="Success!"
-                      content="Great"
-                      primaryAction={{
-                        content: 'Action goes here' ,
-                        link: '#',
-                      }}
-                      icon={true}
-                      closeButton={true}
-                    />
-                  )
-                }}>Success toast - no timeout </Button>
-                <Button id='warning-toast' handleClick={() => {
-                  addToast(
-                    <ToastNotification
-                      variant="warning"
-                      title="Warning!"
-                      content="Something needs your attention"
-                      primaryAction={{
-                        content: 'Action goes here' ,
-                        link: '#',
-                      }}
-                      icon={true}
-                      closeButton={true}
-                    />
-                  )
-                }}>Warning toast - no timeout </Button>
-              </Column>
-            </Row>
-            </div>
-          </Container>
-        </div>
+        <ManorProvider>
+          <div style={{ padding: '2%' }}>
+            <ToastManager />
+            <Container>
+              <div style={{marginTop: '60px', width: '50%'}}>
+              <Row>
+                <Column xsOffset={6} cols={10}>
+                  <Button id='general-toast' handleClick={() => {
+                    addToast(
+                      <ToastNotification
+                        variant="general"
+                        title="General Toast Message"
+                        content="This will auto dismiss in 5 seconds"
+                        primaryAction={{
+                          content: 'Action goes here',
+                          link: '#',
+                        }}
+                        icon={true}
+                        closeButton={true}
+                        autoClose={5000}
+                      />
+                    )
+                  }}>General Toast - timeout in 5 seconds</Button>
+                  <Button id='success-toast' handleClick={() => {
+                    addToast(
+                      <ToastNotification
+                        variant="success"
+                        title="Success!"
+                        content="Great"
+                        primaryAction={{
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }}
+                        icon={true}
+                        closeButton={true}
+                      />
+                    )
+                  }}>Success toast - no timeout </Button>
+                  <Button id='warning-toast' handleClick={() => {
+                    addToast(
+                      <ToastNotification
+                        variant="warning"
+                        title="Warning!"
+                        content="Something needs your attention"
+                        primaryAction={{
+                          content: 'Action goes here' ,
+                          link: '#',
+                        }}
+                        icon={true}
+                        closeButton={true}
+                      />
+                    )
+                  }}>Warning toast - no timeout </Button>
+                </Column>
+              </Row>
+              </div>
+            </Container>
+          </div>
+        </ManorProvider>
       );
     }}
   </Story>

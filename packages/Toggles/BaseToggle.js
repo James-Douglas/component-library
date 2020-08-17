@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { StyledToggle, StyledToggleInput } from './BaseToggle.styles';
 
@@ -18,6 +19,7 @@ const BaseToggle = ({
   children,
   className,
   button,
+  theme,
 }) => {
   const id = useId(propsId);
   const [checked, setChecked] = useState(selectedValue || false);
@@ -34,31 +36,33 @@ const BaseToggle = ({
   };
 
   return (
-    <StyledToggle
-      invalid={invalid}
-      ref={wrapperElement}
-      className={className}
-      checked={checked}
-      button={button}
-    >
-      <StyledToggleInput
-        tabIndex={0}
+    <ManorProvider theme={theme}>
+      <StyledToggle
         invalid={invalid}
-        id={id}
-        type="radio"
-        onChange={changeHandler}
-        onClick={handleClick}
+        ref={wrapperElement}
+        className={className}
         checked={checked}
-        disabled={disabled}
-        name={name}
-        value={value}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        checkedFontColor={checkedFontColor}
         button={button}
-      />
-      {children}
-    </StyledToggle>
+      >
+        <StyledToggleInput
+          tabIndex={0}
+          invalid={invalid}
+          id={id}
+          type="radio"
+          onChange={changeHandler}
+          onClick={handleClick}
+          checked={checked}
+          disabled={disabled}
+          name={name}
+          value={value}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          checkedFontColor={checkedFontColor}
+          button={button}
+        />
+        {children}
+      </StyledToggle>
+    </ManorProvider>
   );
 };
 
@@ -115,6 +119,12 @@ BaseToggle.propTypes = {
    * Used by the `Button` toggle to determine if the toggle needs to be styled like a button.
    */
   button: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 BaseToggle.defaultProps = {
@@ -130,6 +140,7 @@ BaseToggle.defaultProps = {
   handleBlur: null,
   handleClick: null,
   button: null,
+  theme: undefined,
 };
 
 export default BaseToggle;

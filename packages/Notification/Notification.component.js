@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { Typography } from '@comparethemarketau/manor-typography';
+import { Link } from '@comparethemarketau/manor-link';
 import {
   faInfoCircle as faInfoCircleRegular,
   faLongArrowLeft,
@@ -53,6 +56,7 @@ const Notification = ({
   className,
   autoClose,
   background,
+  theme,
 }) => {
   const iconHandler = () => {
     if (handleClose) {
@@ -71,7 +75,7 @@ const Notification = ({
   }, [autoClose, id, type]);
 
   return (
-    <>
+    <ManorProvider theme={theme}>
       <StyledNotification type={type} variant={variant} position={position} icon={icon} background={background} className={className}>
         {(closeButton && type !== 'hint') && (
           <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
@@ -87,24 +91,24 @@ const Notification = ({
           {title
             && (
               <StyledHeading type={type} variant={variant}>
-                {title}
+                <Typography variant="body1" component="span">{title}</Typography>
               </StyledHeading>
             )}
           <StyledContent title={title} type={type}>
-            {content}
+            <Typography variant="body2" component="span">{content}</Typography>
           </StyledContent>
           {(primaryAction || secondaryAction)
             && (
               <StyledActions>
                 {(primaryAction && type !== 'hint')
-                  && <a href={primaryAction.link}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></StyledFontAwesomeWrap>{primaryAction.content}</a>}
+                  && <Link href={primaryAction.link}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></StyledFontAwesomeWrap>{primaryAction.content}</Link>}
                 {(secondaryAction && type !== 'hint')
-                  && <a href={secondaryAction.link}><StyledSpan><FontAwesomeIcon icon={faInfoCircleRegular} size="1x" /></StyledSpan>{secondaryAction.content}</a>}
+                  && <Link href={secondaryAction.link}><StyledSpan><FontAwesomeIcon icon={faInfoCircleRegular} size="1x" /></StyledSpan>{secondaryAction.content}</Link>}
               </StyledActions>
             )}
         </StyledNotificationContentWrap>
       </StyledNotification>
-    </>
+    </ManorProvider>
   );
 };
 
@@ -196,6 +200,12 @@ Notification.propTypes = {
    * Background color for notification - only available for hint variants
    */
   background: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Notification.defaultProps = {
@@ -213,6 +223,7 @@ Notification.defaultProps = {
   autoClose: null,
   position: null,
   background: false,
+  theme: undefined,
 };
 
 export default Notification;

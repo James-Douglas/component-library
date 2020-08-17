@@ -36,30 +36,6 @@ exports[`Modal renders with minimal props 1`] = `
   margin-top: 2.8rem;
 }
 
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
-@media (min-width:1024px) {
-
-}
-
 <div
   class="c0 
     md

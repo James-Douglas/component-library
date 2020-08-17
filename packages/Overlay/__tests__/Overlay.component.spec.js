@@ -1,6 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import { render } from '../../../testUtils';
+import { render, fireEvent } from '@testing-library/react';
 import Overlay from '../Overlay.component';
 
 describe('Overlay', () => {

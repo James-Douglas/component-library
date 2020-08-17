@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../testUtils';
+import { render } from '@testing-library/react';
 import FeatureList from '../FeatureList.component';
 
 describe('featureList', () => {

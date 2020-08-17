@@ -1,15 +1,16 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { Typography } from '@comparethemarketau/manor-typography';
 import { Column, Row, Container } from '@comparethemarketau/manor-grid';
-import { Microcopy } from '@comparethemarketau/manor-typography';
 import { throttle } from '@comparethemarketau/manor-utils';
 
 import {
-  StyledFooterBar, StyledP, StyledPosition, StyledWrapper, StyledCustomerAccounts,
+  StyledFooterBar, StyledPosition, StyledWrapper, StyledCustomerAccounts, StyledMicrocopy,
 } from './Footer.styles';
 
 const Footer = ({
-  children, background, sticky, type, className,
+  children, background, sticky, type, className, theme,
 }) => {
   const currentYear = new Date().getFullYear();
   const footerRef = useRef(null);
@@ -25,15 +26,15 @@ const Footer = ({
       case 'customer-accounts':
         return (
           <StyledCustomerAccounts>
-            <StyledP><b>&copy; {currentYear} {copyRightText}</b></StyledP>
-            {children && children}
+            <Typography variant="body1" component="span"><b>&copy; {currentYear} {copyRightText}</b></Typography>
+            {children && <Typography variant="body1" component="span">{children}</Typography>}
           </StyledCustomerAccounts>
         );
       default:
         return (
           <>
-            {children && <Microcopy>{children}</Microcopy>}
-            <StyledP>&copy; {currentYear} {copyRightText}</StyledP>
+            {children && <StyledMicrocopy><Typography variant="body2" component="span">{children}</Typography></StyledMicrocopy>}
+            <Typography variant="body1" component="span">&copy; {currentYear} {copyRightText}</Typography>
           </>
         );
     }
@@ -53,19 +54,21 @@ const Footer = ({
   }, [sticky, windowWidth]);
 
   return (
-    <StyledWrapper style={{ paddingTop: footerHeight }}>
-      <StyledPosition background={background} sticky={sticky}>
-        <Container className={className}>
-          <Row removeMarginBottom>
-            <Column cols={12}>
-              <StyledFooterBar ref={footerRef}>
-                {renderVariant()}
-              </StyledFooterBar>
-            </Column>
-          </Row>
-        </Container>
-      </StyledPosition>
-    </StyledWrapper>
+    <ManorProvider theme={theme}>
+      <StyledWrapper style={{ paddingTop: footerHeight }}>
+        <StyledPosition background={background} sticky={sticky}>
+          <Container className={className} padding={['16']}>
+            <Row removeMarginBottom>
+              <Column cols={12}>
+                <StyledFooterBar ref={footerRef}>
+                  {renderVariant()}
+                </StyledFooterBar>
+              </Column>
+            </Row>
+          </Container>
+        </StyledPosition>
+      </StyledWrapper>
+    </ManorProvider>
   );
 };
 
@@ -94,6 +97,12 @@ Footer.propTypes = {
    * Classes to be applied to the Footer component
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Footer.defaultProps = {
@@ -102,6 +111,7 @@ Footer.defaultProps = {
   sticky: true,
   type: '',
   className: '',
+  theme: undefined,
 };
 
 export default Footer;

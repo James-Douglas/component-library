@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { usePrefill, useId } from '@comparethemarketau/manor-hooks';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 
@@ -38,6 +39,7 @@ const Checkbox = ({
   isSelected,
   prefillValue,
   className,
+  theme,
 }) => {
   const [internalValue, setInternalValue] = useState(getInitialValue(isSelected, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
@@ -62,7 +64,7 @@ const Checkbox = ({
   };
 
   return (
-    <>
+    <ManorProvider theme={theme}>
       <StyledWrap>
         <StyledHiddenInput
           id={id}
@@ -100,8 +102,7 @@ const Checkbox = ({
         </StyledLabel>
       </StyledWrap>
       <FieldValidation message={validationMessage} />
-    </>
-
+    </ManorProvider>
   );
 };
 
@@ -165,6 +166,12 @@ Checkbox.propTypes = {
    * Classes to be applied to the Checkbox component
    */
   className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  /**
+   * Manor theme, if not provided the ctm theme will be used.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 Checkbox.defaultProps = {
@@ -181,6 +188,7 @@ Checkbox.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   className: '',
+  theme: undefined,
 };
 
 export default Checkbox;

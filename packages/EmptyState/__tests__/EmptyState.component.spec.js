@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render } from '../../../testUtils';
+import { render } from '@testing-library/react';
 import EmptyState from '../EmptyState.component';
 
 describe('Empty State', () => {
