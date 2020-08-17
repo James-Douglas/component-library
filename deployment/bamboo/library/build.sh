@@ -34,7 +34,7 @@ if [ "$?" -ne 0 ]; then
 fi
 
 echo "running: yarn"
-yarn
+yarn --frozen-lockfile
 if [ "$?" -ne 0 ]; then
   echo "ERROR - yarn failed"
   exit 1
