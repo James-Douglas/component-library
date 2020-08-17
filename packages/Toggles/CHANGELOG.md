@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-toggles@0.3.5...@comparethemarketau/manor-toggles@0.4.0) (2020-08-17)
+
+
+* Fix/global styles micro ui (#359) ([bcf8ce9](https://github.com/comparethemarketau/manor-react/commit/bcf8ce92ba170a51113a4022728da22f47a6a768)), closes [#359](https://github.com/comparethemarketau/manor-react/issues/359)
+
+
+### BREAKING CHANGES
+
+* Global styles have been removed from ManorProvider, as such typography is not
+styled by default. Import the Font component once in your application (or macro-ui) and use the
+Typography component to render text, and the Link component to render links.
+
+* fix(fonts): fix fonts dependencies
+
+* fix(deps): fix provider dependencies
+
+* fix(feedback): fixes based on PR feedback
+
+Co-authored-by: PSJgit <psjj.dev@gmail.com>
+
+
+
+
+
 ## [0.3.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-toggles@0.3.4...@comparethemarketau/manor-toggles@0.3.5) (2020-08-11)
 
 **Note:** Version bump only for package @comparethemarketau/manor-toggles

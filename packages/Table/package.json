@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-table",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Manor Table component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-provider": "^0.3.3",
+    "@comparethemarketau/manor-provider": "^0.4.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
