@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-accordion",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Manor Accordion component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-grid": "^0.5.0",
+    "@comparethemarketau/manor-grid": "^0.5.1",
     "@comparethemarketau/manor-hooks": "^0.1.7",
     "@comparethemarketau/manor-provider": "^0.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
