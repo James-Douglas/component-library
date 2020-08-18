@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useIsDesktop, useUnmountEffect } from '@comparethemarketau/manor-hooks';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -38,7 +37,6 @@ const Tooltip = ({
   variant,
   screenReaderLabel,
   className,
-  theme,
 }) => {
   const [pinned, setPinned] = useState(false);
   const desktop = useIsDesktop(false);
@@ -101,51 +99,49 @@ const Tooltip = ({
   }
 
   return (
-    <ManorProvider theme={theme}>
-      <StyledTippy
-        content={getContent(title, body, variant)}
-        arrow
-        distance="1rem"
-        animation="scale"
-        duration={[150, 75]}
-        hideOnClick={false}
-        trigger="manual"
-        onCreate={(instance) => setTippyInstance(instance)}
-        onShow={onTippyShow}
-        visible={tippyVisible}
-        placement={desktop ? placement : 'bottom'}
-        maxWidth={500}
-        delay={125}
-        variant={variant}
+    <StyledTippy
+      content={getContent(title, body, variant)}
+      arrow
+      distance="1rem"
+      animation="scale"
+      duration={[150, 75]}
+      hideOnClick={false}
+      trigger="manual"
+      onCreate={(instance) => setTippyInstance(instance)}
+      onShow={onTippyShow}
+      visible={tippyVisible}
+      placement={desktop ? placement : 'bottom'}
+      maxWidth={500}
+      delay={125}
+      variant={variant}
+      className={className}
+    >
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+      <StyledTooltipIcon
+        tabIndex={0}
+        role="tooltip"
+        desktop={desktop}
+        ref={tooltipElement}
+        pinned={pinned}
+        tippyVisible={tippyVisible}
+        onClick={pinTooltip}
+        onKeyDown={handleKeyPress}
+        onFocus={showTooltip}
+        onBlur={hideTooltip}
+        onMouseEnter={showTooltip}
+        onMouseLeave={() => {
+          if (!pinned) {
+            hideTooltip();
+          }
+        }}
         className={className}
       >
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-        <StyledTooltipIcon
-          tabIndex={0}
-          role="tooltip"
-          desktop={desktop}
-          ref={tooltipElement}
-          pinned={pinned}
-          tippyVisible={tippyVisible}
-          onClick={pinTooltip}
-          onKeyDown={handleKeyPress}
-          onFocus={showTooltip}
-          onBlur={hideTooltip}
-          onMouseEnter={showTooltip}
-          onMouseLeave={() => {
-            if (!pinned) {
-              hideTooltip();
-            }
-          }}
-          className={className}
-        >
-          <>
-            <Typography variant="srOnly">{screenReaderLabel}</Typography>
-            <FontAwesomeIcon icon={faInfoCircle} />
-          </>
-        </StyledTooltipIcon>
-      </StyledTippy>
-    </ManorProvider>
+        <>
+          <Typography variant="srOnly">{screenReaderLabel}</Typography>
+          <FontAwesomeIcon icon={faInfoCircle} />
+        </>
+      </StyledTooltipIcon>
+    </StyledTippy>
   );
 };
 
@@ -185,12 +181,6 @@ export const tooltipPropTypes = {
    * Classes to be applied to the Tooltip component
    */
   className: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 const defaultProps = {
@@ -200,7 +190,6 @@ const defaultProps = {
   placement: 'right',
   variant: 'dark',
   className: 'ctm-tooltip',
-  theme: undefined,
 };
 
 Tooltip.propTypes = tooltipPropTypes;

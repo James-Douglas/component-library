@@ -1,28 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import {
   StyledPicture,
   StyledImg,
 } from './Picture.styles';
 
 const Picture = ({
-  src, srcsets, alt, title, className, theme,
+  src, srcsets, alt, title, className,
 }) => {
   if (!src) return null;
   return (
-    <ManorProvider theme={theme}>
-      <StyledPicture className={className}>
-        {srcsets.map((source) => (
-          <source
-            srcSet={source.srcset}
-            media={source.media}
-            key={source.srcset}
-          />
-        ))}
-        <StyledImg src={src} alt={alt} title={title} className={className} />
-      </StyledPicture>
-    </ManorProvider>
+    <StyledPicture className={className}>
+      {srcsets.map((source) => (
+        <source
+          srcSet={source.srcset}
+          media={source.media}
+          key={source.srcset}
+        />
+      ))}
+      <StyledImg src={src} alt={alt} title={title} className={className} />
+    </StyledPicture>
   );
 };
 
@@ -50,12 +47,6 @@ const picturePropTypes = {
    * Classes to be applied to the Picture component
    */
   className: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Picture.propTypes = picturePropTypes;
@@ -65,7 +56,6 @@ Picture.defaultProps = {
   alt: '',
   title: '',
   className: '',
-  theme: undefined,
 };
 
 export { Picture, picturePropTypes };

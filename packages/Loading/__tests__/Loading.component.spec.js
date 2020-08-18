@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait } from '@testing-library/react';
+import { render, wait } from '../../../testUtils';
 import 'jest-styled-components';
 import LoadingComponent from '../Loading.component';
 

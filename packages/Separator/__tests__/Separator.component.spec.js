@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render } from '@testing-library/react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { render } from '../../../testUtils';
 import Separator from '../Separator.component';
 
 describe('Separate', () => {

@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render } from '../../../testUtils';
 import 'jest-styled-components';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import Textarea, { getRemainingLimit, getRemainingCharsContent } from '../Textarea.component';
 
 describe('getRemainingLimit()', () => {
@@ -21,9 +20,9 @@ describe('getRemainingCharsContent()', () => {
   // eslint-disable-next-line react/prop-types
     maxChars, maxLength, id, textAreaRemainChars, label,
   }) => (
-    <ManorProvider>
+    <>
       {getRemainingCharsContent(maxChars, maxLength, id, textAreaRemainChars, label)}
-    </ManorProvider>
+    </>
   );
 
   it('returns null if maxChars and maxLength is null', () => {

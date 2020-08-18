@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import StyledTableHead from './TableHead.styles';
 
@@ -12,20 +11,17 @@ const TableHead = ({
   className,
   component,
   children,
-  theme,
 }) => {
   const Component = component || 'thead';
   return (
-    <ManorProvider theme={theme}>
-      <Tablelvl2Context.Provider value={tablelvl2}>
-        <StyledTableHead
-          as={Component}
-          className={className}
-        >
-          {children || null}
-        </StyledTableHead>
-      </Tablelvl2Context.Provider>
-    </ManorProvider>
+    <Tablelvl2Context.Provider value={tablelvl2}>
+      <StyledTableHead
+        as={Component}
+        className={className}
+      >
+        {children || null}
+      </StyledTableHead>
+    </Tablelvl2Context.Provider>
   );
 };
 
@@ -46,18 +42,11 @@ TableHead.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 TableHead.defaultProps = {
   className: '',
   component: 'thead',
   children: '',
-  theme: undefined,
 };
 
 export default TableHead;

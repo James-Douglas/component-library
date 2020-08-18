@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import TabButton from './TabButton.component';
 import TabsContext from './TabsContext';
 import { StyledTabButtonWrap, StyledTabsContainer } from './Tabs.styles';
@@ -24,7 +23,7 @@ export const renderChildren = (children) => {
 };
 
 const Tabs = ({
-  startingTab, bordered, className, minHeight, children, theme,
+  startingTab, bordered, className, minHeight, children,
 }) => {
   const [activeTab, changeTab] = useState(startingTab);
   const tabProviderValue = { activeTab, changeTab };
@@ -34,13 +33,11 @@ const Tabs = ({
   `;
 
   return (
-    <ManorProvider theme={theme}>
-      <TabsContext.Provider value={tabProviderValue}>
-        <StyledTabsContainer className={classNames} bordered={bordered} style={{ minHeight: `${minHeight}` }}>
-          {renderChildren(children)}
-        </StyledTabsContainer>
-      </TabsContext.Provider>
-    </ManorProvider>
+    <TabsContext.Provider value={tabProviderValue}>
+      <StyledTabsContainer className={classNames} bordered={bordered} style={{ minHeight: `${minHeight}` }}>
+        {renderChildren(children)}
+      </StyledTabsContainer>
+    </TabsContext.Provider>
   );
 };
 
@@ -69,12 +66,6 @@ Tabs.propTypes = {
    * Set a min height for the tabs
    */
   minHeight: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Tabs.defaultProps = {
@@ -82,7 +73,6 @@ Tabs.defaultProps = {
   className: '',
   children: '',
   minHeight: 'initial',
-  theme: undefined,
 };
 
 export default Tabs;

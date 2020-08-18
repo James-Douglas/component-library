@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render } from '@testing-library/react';
+import { render } from '../../../testUtils';
 import Notification from '../Notification.component';
 import ToastManager from '../ToastManager.component';
 

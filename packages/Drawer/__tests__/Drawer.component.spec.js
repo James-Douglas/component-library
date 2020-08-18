@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
-import { render, fireEvent } from '@testing-library/react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { render, fireEvent } from '../../../testUtils';
 import Drawer from '../Drawer.component';
 
 describe('Drawer', () => {

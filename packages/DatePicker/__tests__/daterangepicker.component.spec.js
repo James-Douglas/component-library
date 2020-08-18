@@ -3,7 +3,7 @@ import moment from 'moment';
 import { act } from 'react-dom/test-utils';
 import {
   fireEvent, render, getByLabelText,
-} from '@testing-library/react';
+} from '../../../testUtils';
 import DateRangePicker from '../DateRangePicker.component';
 import 'jest-styled-components';
 

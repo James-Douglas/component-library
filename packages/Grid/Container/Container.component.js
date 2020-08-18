@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { spacingPropTypes } from '@comparethemarketau/manor-utils';
 import { ThemeProvider, withTheme } from 'styled-components';
 import StyledContainer from './Container.styles';
@@ -25,13 +24,11 @@ const ThemedContainer = ({
 const DynamicThemedContainer = withTheme(ThemedContainer);
 
 const Container = ({
-  children, className, padding, gutterWidth, theme,
+  children, className, padding, gutterWidth,
 }) => (
-  <ManorProvider theme={theme}>
-    <DynamicThemedContainer className={className} padding={padding} gutterWidth={gutterWidth}>
-      {children}
-    </DynamicThemedContainer>
-  </ManorProvider>
+  <DynamicThemedContainer className={className} padding={padding} gutterWidth={gutterWidth}>
+    {children}
+  </DynamicThemedContainer>
 );
 
 Container.propTypes = {
@@ -44,12 +41,6 @@ Container.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
   /**
    * The left and right padding to be applied to the container
    */
@@ -64,7 +55,6 @@ Container.defaultProps = {
   className: '',
   children: [],
   padding: ['0'],
-  theme: undefined,
   gutterWidth: 32,
 };
 

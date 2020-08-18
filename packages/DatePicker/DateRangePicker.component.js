@@ -11,7 +11,6 @@ import { DayPickerRangeController as RSDayPickerRange } from 'react-dates';
 import { START_DATE, END_DATE } from 'react-dates/constants';
 import moment from 'moment';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { DateInput } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
@@ -35,7 +34,6 @@ const DateRangePicker = ({
   startDateValidationMessage,
   isDayBlocked,
   handleChange,
-  theme,
 }) => {
   const startDateId = useId(propsStartDateId);
   const endDateId = useId(propsEndDateId);
@@ -129,65 +127,63 @@ const DateRangePicker = ({
   }, [escFunction, handleClickOutside]);
 
   return (
-    <ManorProvider theme={theme}>
-      <StyledDateRangePickerContainer ref={node}>
-        <GlobalStyle />
-        <StyledDateRangePicker>
-          <StyledDateRangePickerWrap onKeyDown={keyboardAccessibilityFromDate}>
-            <DateInput
-              id={startDateId}
-              tooltip={startDateTooltip}
-              placeholder={startDatePlaceholder}
-              label={startDateAriaLabel}
-              value={startDate && startDate.format(displayFormat)}
-              suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
-              handleFocus={startDateHandleFocus}
-              handleChange={startDateHandleChange}
-              validationMessage={startDateValidationMessageText}
-              disableClearIcon
-              prefixContent=""
-              className="date-input-calendar"
-            />
-          </StyledDateRangePickerWrap>
-          <StyledDateRangePickerWrap>
-            <DateInput
-              id={endDateId}
-              tooltip={endDateTooltip}
-              placeholder={endDatePlaceholder}
-              label={endDateAriaLabel}
-              value={endDate && endDate.format(displayFormat)}
-              suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
-              handleFocus={endDateHandleFocus}
-              handleChange={endDateHandleChange}
-              validationMessage={endDateValidationMessageText}
-              disableClearIcon
-              prefixContent=""
-              className="date-input-calendar"
-            />
-          </StyledDateRangePickerWrap>
-        </StyledDateRangePicker>
-        {isVisisble && (
-          <StyledCalendar
-            endDateAriaLabel={endDateAriaLabel}
-            startDateAriaLabel={startDateAriaLabel}
-            ref={calendarArea}
-            tabIndex={0}
-            role="calendar"
-          >
-            <RSDayPickerRange
-              startDate={startDate} // momentPropTypes.momentObj or null,
-              endDate={endDate} // momentPropTypes.momentObj or null,
-              onDatesChange={onDatesChange} // PropTypes.func.isRequired,
-              focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-              onFocusChange={focusHandler} // PropTypes.func.isRequired,
-              numberOfMonths={numberOfMonths}
-              hideKeyboardShortcutsPanel
-              isDayBlocked={isDayBlocked}
-            />
-          </StyledCalendar>
-        )}
-      </StyledDateRangePickerContainer>
-    </ManorProvider>
+    <StyledDateRangePickerContainer ref={node}>
+      <GlobalStyle />
+      <StyledDateRangePicker>
+        <StyledDateRangePickerWrap onKeyDown={keyboardAccessibilityFromDate}>
+          <DateInput
+            id={startDateId}
+            tooltip={startDateTooltip}
+            placeholder={startDatePlaceholder}
+            label={startDateAriaLabel}
+            value={startDate && startDate.format(displayFormat)}
+            suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
+            handleFocus={startDateHandleFocus}
+            handleChange={startDateHandleChange}
+            validationMessage={startDateValidationMessageText}
+            disableClearIcon
+            prefixContent=""
+            className="date-input-calendar"
+          />
+        </StyledDateRangePickerWrap>
+        <StyledDateRangePickerWrap>
+          <DateInput
+            id={endDateId}
+            tooltip={endDateTooltip}
+            placeholder={endDatePlaceholder}
+            label={endDateAriaLabel}
+            value={endDate && endDate.format(displayFormat)}
+            suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
+            handleFocus={endDateHandleFocus}
+            handleChange={endDateHandleChange}
+            validationMessage={endDateValidationMessageText}
+            disableClearIcon
+            prefixContent=""
+            className="date-input-calendar"
+          />
+        </StyledDateRangePickerWrap>
+      </StyledDateRangePicker>
+      {isVisisble && (
+        <StyledCalendar
+          endDateAriaLabel={endDateAriaLabel}
+          startDateAriaLabel={startDateAriaLabel}
+          ref={calendarArea}
+          tabIndex={0}
+          role="calendar"
+        >
+          <RSDayPickerRange
+            startDate={startDate} // momentPropTypes.momentObj or null,
+            endDate={endDate} // momentPropTypes.momentObj or null,
+            onDatesChange={onDatesChange} // PropTypes.func.isRequired,
+            focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+            onFocusChange={focusHandler} // PropTypes.func.isRequired,
+            numberOfMonths={numberOfMonths}
+            hideKeyboardShortcutsPanel
+            isDayBlocked={isDayBlocked}
+          />
+        </StyledCalendar>
+      )}
+    </StyledDateRangePickerContainer>
   );
 };
 
@@ -258,12 +254,6 @@ DateRangePicker.propTypes = {
    * Called on change with { dates }.
    */
   handleChange: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 DateRangePicker.defaultProps = {
@@ -282,7 +272,6 @@ DateRangePicker.defaultProps = {
   startDateValidationMessage: null,
   isDayBlocked: undefined,
   handleChange: null,
-  theme: undefined,
 };
 
 export default DateRangePicker;

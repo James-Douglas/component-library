@@ -1,8 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../../testUtils';
 import Input, {
   renderClearIcon, renderAffix,
 } from '../Input.component';
@@ -36,9 +35,9 @@ describe('renderClearIcon()', () => {
     // eslint-disable-next-line react/prop-types
     value, clearInput, isAutofill, label,
   }) => (
-    <ManorProvider>
+    <>
       {renderClearIcon(value, clearInput, isAutofill, label)}
-    </ManorProvider>
+    </>
   );
 
   it('does not render an clearIcon if the value.length is over 0', () => {
@@ -64,22 +63,22 @@ describe('renderAffix()', () => {
   );
 
   it('does not render a prefix or suffix if its not supplied', () => {
-    const { container } = render(<ManorProvider><div id="test"><AffixContainer /></div></ManorProvider>);
+    const { container } = render(<div id="test"><AffixContainer /></div>);
     expect(container.querySelector('#test')).toBeEmpty();
   });
 
   it('renders a prefix when supplied', () => {
-    const { getByText } = render(<ManorProvider><AffixContainer affixType="prefix" affixContent="?" /></ManorProvider>);
+    const { getByText } = render(<AffixContainer affixType="prefix" affixContent="?" />);
     expect(getByText('?')).toBeInTheDocument();
   });
 
   it('renders a suffix when supplied', () => {
-    const { getByText } = render(<ManorProvider><AffixContainer affixType="suffix" affixContent="?!" /></ManorProvider>);
+    const { getByText } = render(<AffixContainer affixType="suffix" affixContent="?!" />);
     expect(getByText('?!')).toBeInTheDocument();
   });
 
   it('does not render the additional stlying for autofill if its disabled', () => {
-    const { container, getByText } = render(<ManorProvider><AffixContainer affixType="prefix" affixContent="?" isAutofill disabled /></ManorProvider>);
+    const { container, getByText } = render(<AffixContainer affixType="prefix" affixContent="?" isAutofill disabled />);
     const prefix = getByText('?');
     const element = container.querySelector('span');
     expect(prefix).toBeInTheDocument();
@@ -87,7 +86,7 @@ describe('renderAffix()', () => {
   });
 
   it('can render a component via prop', () => {
-    const { container } = render(<ManorProvider><AffixContainer affixType="suffix" affixContent={<SvgUkFlag />} /></ManorProvider>);
+    const { container } = render(<AffixContainer affixType="suffix" affixContent={<SvgUkFlag />} />);
     expect(container.querySelector('svg')).toBeInTheDocument();
   });
 });

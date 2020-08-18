@@ -1,7 +1,7 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { screens } from '@comparethemarketau/manor-utils';
-import { render } from '@testing-library/react';
+import { render } from '../../../testUtils';
 import Logo from '../Logo.component';
 import CTMLogoInline from '../../../images/ctm-logo-inline.svg';
 import CTMLogoStacked from '../../../images/ctm-logo-stacked.svg';

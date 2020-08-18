@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useBreakpoint, usePrefill, useId } from '@comparethemarketau/manor-hooks';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
@@ -85,7 +84,6 @@ const Input = React.forwardRef(({
   className,
   disableClearIcon,
   expressive,
-  theme,
 }, ref) => {
   const id = useId(propsId);
   const [internalValue, setInternalValue] = useState(getInitialValue(value, prefillValue));
@@ -136,54 +134,52 @@ const Input = React.forwardRef(({
   };
 
   return (
-    <ManorProvider theme={theme}>
-      <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint}>
-        {!expressive
-          && <Label htmlFor={id} text={label} tooltip={tooltip} />}
-        <StyledInputContainer className="input-container">
-          <StyledInputWrap
-            isAutofill={isAutofill}
-            disabled={disabled}
-            invalid={validationMessage && validationMessage.length > 0}
-            isFocusActive={isFocusActive}
-            expressive={expressive}
-            inputValue={internalValue}
-          >
-            {renderAffix('prefix', prefixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
-            <StyledInputClearWrap className="input-clear-wrap" expressive={expressive} inputValue={internalValue} breakpoint={breakpoint}>
-              {expressive
-                && <Label htmlFor={id} text={label} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
-              <StyledInput
-                mask={mask}
-                guide={guide}
-                id={id}
-                name={id}
-                type={type}
-                placeholder={placeholder}
-                disabled={disabled}
-                value={internalValue}
-                onChange={changeHandler}
-                autoComplete={autocomplete}
-                onClick={handleOnClick}
-                onFocus={focusHandler}
-                onBlur={blurHandler}
-                maxLength={maxlength}
-                isAutofill={isAutofill}
-                ref={localRef}
-                className={`input-default ${className}`}
-                expressive={expressive}
-                breakpoint={breakpoint}
-              />
-              {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint)}
-            </StyledInputClearWrap>
-            {renderAffix('suffix', suffixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
-          </StyledInputWrap>
-          <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
-        </StyledInputContainer>
-        {dataList && <div>{dataList()}</div>}
-        <FieldValidation message={validationMessage} />
-      </StyledWrapper>
-    </ManorProvider>
+    <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint}>
+      {!expressive
+        && <Label htmlFor={id} text={label} tooltip={tooltip} />}
+      <StyledInputContainer className="input-container">
+        <StyledInputWrap
+          isAutofill={isAutofill}
+          disabled={disabled}
+          invalid={validationMessage && validationMessage.length > 0}
+          isFocusActive={isFocusActive}
+          expressive={expressive}
+          inputValue={internalValue}
+        >
+          {renderAffix('prefix', prefixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
+          <StyledInputClearWrap className="input-clear-wrap" expressive={expressive} inputValue={internalValue} breakpoint={breakpoint}>
+            {expressive
+              && <Label htmlFor={id} text={label} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
+            <StyledInput
+              mask={mask}
+              guide={guide}
+              id={id}
+              name={id}
+              type={type}
+              placeholder={placeholder}
+              disabled={disabled}
+              value={internalValue}
+              onChange={changeHandler}
+              autoComplete={autocomplete}
+              onClick={handleOnClick}
+              onFocus={focusHandler}
+              onBlur={blurHandler}
+              maxLength={maxlength}
+              isAutofill={isAutofill}
+              ref={localRef}
+              className={`input-default ${className}`}
+              expressive={expressive}
+              breakpoint={breakpoint}
+            />
+            {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint)}
+          </StyledInputClearWrap>
+          {renderAffix('suffix', suffixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
+        </StyledInputWrap>
+        <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
+      </StyledInputContainer>
+      {dataList && <div>{dataList()}</div>}
+      <FieldValidation message={validationMessage} />
+    </StyledWrapper>
   );
 });
 
@@ -301,12 +297,6 @@ Input.propTypes = {
    * Adds the 'expressive input' styling, used in conjuction with the 'infield label' prop
    */
   expressive: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Input.defaultProps = {
@@ -337,7 +327,6 @@ Input.defaultProps = {
   className: '',
   disableClearIcon: false,
   expressive: false,
-  theme: undefined,
 };
 
 export default Input;

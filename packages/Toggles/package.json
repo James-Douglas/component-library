@@ -22,7 +22,6 @@
     "@comparethemarketau/manor-hooks": "^0.1.7",
     "@comparethemarketau/manor-label": "^0.2.0",
     "@comparethemarketau/manor-picture": "^0.2.0",
-    "@comparethemarketau/manor-provider": "^0.4.0",
     "@comparethemarketau/manor-tooltip": "^0.4.0",
     "@comparethemarketau/manor-typography": "^0.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",

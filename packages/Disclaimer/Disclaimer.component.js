@@ -2,14 +2,13 @@ import React, {
   createRef, useEffect, useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Checkbox } from '@comparethemarketau/manor-checkbox';
 import { StyledContent, StyledWrapper } from './Disclaimer.styles';
 
 const Disclaimer = ({
-  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur, theme,
+  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur,
 }) => {
   const id = useId(propsId);
   const content = createRef();
@@ -39,16 +38,14 @@ const Disclaimer = ({
   };
 
   return (
-    <ManorProvider theme={theme}>
-      <StyledWrapper>
-        <Checkbox id={id} handleChange={changeHandler} isSelected={checked} handleFocus={handleFocus} handleBlur={handleBlur} />
-        <StyledContent ref={content} onClick={handleContentClick}>
-          <Typography variant="body1">
-            {children}
-          </Typography>
-        </StyledContent>
-      </StyledWrapper>
-    </ManorProvider>
+    <StyledWrapper>
+      <Checkbox id={id} handleChange={changeHandler} isSelected={checked} handleFocus={handleFocus} handleBlur={handleBlur} />
+      <StyledContent ref={content} onClick={handleContentClick}>
+        <Typography variant="body1">
+          {children}
+        </Typography>
+      </StyledContent>
+    </StyledWrapper>
   );
 };
 
@@ -81,12 +78,6 @@ Disclaimer.propTypes = {
    * Called on blur of the checkbox
    */
   handleBlur: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Disclaimer.defaultProps = {
@@ -96,7 +87,6 @@ Disclaimer.defaultProps = {
   handleChange: null,
   handleFocus: null,
   handleBlur: null,
-  theme: undefined,
 };
 
 export default Disclaimer;

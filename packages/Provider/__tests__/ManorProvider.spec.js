@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import 'jest-styled-components';
-import { render } from '@testing-library/react';
+import { render } from '../../../testUtils';
 import ManorProvider from '../ManorProvider';
 
 const testTheme = {

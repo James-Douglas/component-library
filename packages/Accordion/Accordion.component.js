@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import AccordionPanel from './AccordionPanel.component';
 
 export const getInitialChildIndex = (children) => {
@@ -36,11 +35,10 @@ const Accordion = ({
   children,
   className,
   collapse,
-  theme,
 }) => (
-  <ManorProvider theme={theme}>
-    {AccordionGroupChildren(children, className, collapse)}
-  </ManorProvider>
+  <>
+    { AccordionGroupChildren(children, className, collapse) }
+  </>
 );
 
 Accordion.propTypes = {
@@ -65,18 +63,11 @@ Accordion.propTypes = {
    * To add accordion-like group management to a collapsible area
    */
   collapse: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Accordion.defaultProps = {
   className: '',
   collapse: true,
-  theme: undefined,
 };
 
 export default Accordion;

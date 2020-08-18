@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { StyledContent, StyledToggleLabel } from './ToggleLabel.styles';
 
 const ToggleLabel = ({
-  id: propsId, button, children, theme,
+  id: propsId, button, children,
 }) => {
   const id = useId(propsId);
   return (
-    <ManorProvider theme={theme}>
-      <StyledToggleLabel htmlFor={id}>
-        <StyledContent button={button}>{children}</StyledContent>
-      </StyledToggleLabel>
-    </ManorProvider>
+    <StyledToggleLabel htmlFor={id}>
+      <StyledContent button={button}>{children}</StyledContent>
+    </StyledToggleLabel>
   );
 };
 
@@ -25,18 +22,11 @@ ToggleLabel.propTypes = {
     PropTypes.array,
     PropTypes.node,
   ]).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 ToggleLabel.defaultProps = {
   id: null,
   button: null,
-  theme: undefined,
 };
 
 export default ToggleLabel;

@@ -141,8 +141,8 @@ exports[`Column renders correctly without props 1`] = `
 <div>
   <div
     class="sc-AxiKw c0 
-          
-        "
+        
+      "
   />
 </div>
 `;

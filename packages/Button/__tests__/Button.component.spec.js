@@ -1,8 +1,8 @@
 import React from 'react';
 import 'jest-styled-components';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
-import { render } from '@testing-library/react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { render } from '../../../testUtils';
 import Button from '../Button.component';
 
 describe('Button', () => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render, fireEvent } from '@testing-library/react';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { render, fireEvent } from '../../../testUtils';
 import Tabs, { renderChildren } from '../Tabs.component';
 import TabButton from '../TabButton.component';
 import TabPanel from '../TabPanel.component';
@@ -19,9 +18,9 @@ describe('renderChildren', () => {
 
   it('renders a wrapper div by default', () => {
     const { container } = render(
-      <ManorProvider>
+      <>
         <RenderChildrenContainer />
-      </ManorProvider>,
+      </>,
     );
 
     const wrap = container.querySelector('.tab-button-wrap');
@@ -30,14 +29,12 @@ describe('renderChildren', () => {
 
   it('renders button components into the wrapper, panel components outside of the wrapper', () => {
     const { container } = render(
-      <ManorProvider>
-        <TabsContext.Provider value="test">
-          <RenderChildrenContainer>
-            <TabButton name="test">test btn</TabButton>
-            <TabPanel name="test">test panel</TabPanel>
-          </RenderChildrenContainer>
-        </TabsContext.Provider>
-      </ManorProvider>,
+      <TabsContext.Provider value="test">
+        <RenderChildrenContainer>
+          <TabButton name="test">test btn</TabButton>
+          <TabPanel name="test">test panel</TabPanel>
+        </RenderChildrenContainer>
+      </TabsContext.Provider>,
     );
     const btnWrap = container.querySelector('.tab-button-wrap');
 
@@ -166,11 +163,9 @@ describe('Tabs', () => {
 describe('TabButton', () => {
   it('renders a TabButton', () => {
     const { container, getByText } = render(
-      <ManorProvider>
-        <TabsContext.Provider value="test">
-          <TabButton name="test"><p>Refine Results</p></TabButton>
-        </TabsContext.Provider>
-      </ManorProvider>,
+      <TabsContext.Provider value="test">
+        <TabButton name="test"><p>Refine Results</p></TabButton>
+      </TabsContext.Provider>,
     );
 
     const tabBtn = container.querySelector('.tab-button');
@@ -182,12 +177,10 @@ describe('TabButton', () => {
 
   it('renders multiple TabButtons', () => {
     const { container, getByText } = render(
-      <ManorProvider>
-        <TabsContext.Provider value="test">
-          <TabButton name="test1"><p>Refine Results1</p></TabButton>
-          <TabButton name="test2"><p>Refine Results2</p></TabButton>
-        </TabsContext.Provider>
-      </ManorProvider>,
+      <TabsContext.Provider value="test">
+        <TabButton name="test1"><p>Refine Results1</p></TabButton>
+        <TabButton name="test2"><p>Refine Results2</p></TabButton>
+      </TabsContext.Provider>,
     );
 
     const tabBtns = Array.from(container.querySelectorAll('.tab-button'));
@@ -204,11 +197,9 @@ describe('TabButton', () => {
 describe('TabPanel', () => {
   it('renders a TabPanel', () => {
     const { container, getByText } = render(
-      <ManorProvider>
-        <TabsContext.Provider value="test">
-          <TabPanel name="tab-panel-test"><p>View Type</p></TabPanel>
-        </TabsContext.Provider>
-      </ManorProvider>,
+      <TabsContext.Provider value="test">
+        <TabPanel name="tab-panel-test"><p>View Type</p></TabPanel>
+      </TabsContext.Provider>,
     );
 
     const tabPanel = container.querySelector('.tab-panel');
@@ -219,14 +210,12 @@ describe('TabPanel', () => {
 
   it('renders multiple TabPanels', () => {
     const { container, getByText } = render(
-      <ManorProvider>
-        <TabsContext.Provider value="test">
-          <TabPanel name="tab-panel-test1"><p>test1</p></TabPanel>
-          <TabPanel name="tab-panel-test2"><p>test2</p></TabPanel>
-          <TabPanel name="tab-panel-test3"><p>test3</p></TabPanel>
-          <TabPanel name="tab-panel-test4"><p>test4</p></TabPanel>
-        </TabsContext.Provider>
-      </ManorProvider>,
+      <TabsContext.Provider value="test">
+        <TabPanel name="tab-panel-test1"><p>test1</p></TabPanel>
+        <TabPanel name="tab-panel-test2"><p>test2</p></TabPanel>
+        <TabPanel name="tab-panel-test3"><p>test3</p></TabPanel>
+        <TabPanel name="tab-panel-test4"><p>test4</p></TabPanel>
+      </TabsContext.Provider>,
     );
 
     const tabPanels = Array.from(container.querySelectorAll('.tab-panel'));
@@ -241,12 +230,10 @@ describe('TabPanel', () => {
 
   it('renders additional classNames', () => {
     const { container } = render(
-      <ManorProvider>
-        <TabsContext.Provider value="test">
-          <TabPanel name="tab-panel-test1" className="test classes"><p>test1</p></TabPanel>
-          <TabPanel name="tab-panel-test2" className="another-class"><p>test2</p></TabPanel>
-        </TabsContext.Provider>
-      </ManorProvider>,
+      <TabsContext.Provider value="test">
+        <TabPanel name="tab-panel-test1" className="test classes"><p>test1</p></TabPanel>
+        <TabPanel name="tab-panel-test2" className="another-class"><p>test2</p></TabPanel>
+      </TabsContext.Provider>,
     );
 
     const tabPanels = Array.from(container.querySelectorAll('.tab-panel'));

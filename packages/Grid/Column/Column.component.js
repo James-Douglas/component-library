@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import StyledColumn from './Column.styles';
 
 const Column = ({
@@ -18,7 +17,6 @@ const Column = ({
   className,
   valign,
   halign,
-  theme,
 }) => {
   const colMode = (prop) => {
     // if cols has been defined, and the xs - lg prop is not false or a number, set via cols prop
@@ -41,25 +39,23 @@ const Column = ({
   };
 
   return (
-    <ManorProvider theme={theme}>
-      <StyledColumn
-        xs={colMode(xs)}
-        sm={colMode(sm)}
-        md={colMode(md)}
-        lg={colMode(lg)}
-        xsOffset={offsetMode(xsOffset)}
-        smOffset={offsetMode(smOffset)}
-        mdOffset={offsetMode(mdOffset)}
-        lgOffset={offsetMode(lgOffset)}
-        valign={valign}
-        halign={halign}
-        className={`
-          ${className}
-        `}
-      >
-        {children}
-      </StyledColumn>
-    </ManorProvider>
+    <StyledColumn
+      xs={colMode(xs)}
+      sm={colMode(sm)}
+      md={colMode(md)}
+      lg={colMode(lg)}
+      xsOffset={offsetMode(xsOffset)}
+      smOffset={offsetMode(smOffset)}
+      mdOffset={offsetMode(mdOffset)}
+      lgOffset={offsetMode(lgOffset)}
+      valign={valign}
+      halign={halign}
+      className={`
+        ${className}
+      `}
+    >
+      {children}
+    </StyledColumn>
   );
 };
 
@@ -153,12 +149,6 @@ Column.propTypes = {
     'initial',
     'inherit',
   ]),
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Column.defaultProps = {
@@ -176,7 +166,6 @@ Column.defaultProps = {
   valign: 'stretch',
   halign: 'initial',
   children: [],
-  theme: undefined,
 };
 
 export default Column;

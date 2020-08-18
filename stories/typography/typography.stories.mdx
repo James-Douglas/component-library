@@ -1,5 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
 import { default as DemoContainer } from './typography-view-styles';
+
 import { Typography } from '@comparethemarketau/manor-typography';
 
 <Meta title="Components/Typography" />
@@ -16,6 +18,34 @@ The Typography component can be used to render text content. A `variant` is requ
   </Story>
 </Preview>
 
+<Story name="typography with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const variant = select('variant', ['h1','h2','h3','h4','h5','h6','subtitle1','subtitle2','body1','body2','caption','button','overline','srOnly','inherit'], 'body1');
+    const component = text('component', null);
+    const align = select('align', ['inherit', 'left', 'center', 'right', 'justify'], 'inherit');
+    const color = select('color', ['initial', 'inherit'], 'inherit');
+    const display = select('display', ['initial', 'block', 'inline'], 'block');
+    const gutterBottom = boolean('gutterBottom', false);
+    const noWrap = boolean('noWrap', false);
+    const paragraph = boolean('paragraph', false)
+    return (
+      <DemoContainer>
+        <Typography
+          variant={variant}
+          component={component}
+          align={align}
+          color={color}
+          display={display}
+          gutterBottom={gutterBottom}
+          noWrap={noWrap}
+          paragraph={paragraph}
+      >
+        Here is some text
+      </Typography>
+      </DemoContainer>
+    );
+  }}
+</Story>
 
 #### Props
 <Props of={Typography} />

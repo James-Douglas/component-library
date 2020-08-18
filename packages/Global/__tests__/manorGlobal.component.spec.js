@@ -1,8 +1,8 @@
 import React from 'react';
 import 'jest-styled-components';
 import '@testing-library/jest-dom/extend-expect';
-import { render } from '@testing-library/react';
 import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { render } from '../../../testUtils';
 import { ManorGlobalStyles } from '../manorGlobal.component';
 
 describe('ManorGlobal', () => {

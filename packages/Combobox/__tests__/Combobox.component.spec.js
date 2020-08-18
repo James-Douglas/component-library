@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
-import { fireEvent, render } from '@testing-library/react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { fireEvent, render } from '../../../testUtils';
 import Combobox from '../Combobox.component';
 
 const apiData = ['delectus aut autem', 'quis ut nam facilis et officia qui', 'fugiat veniam minus', 'et presentation tempora', 'xfque dfsdf', 'presentation dfsdf que ffgddfg', 'presentation dfsdf que'];

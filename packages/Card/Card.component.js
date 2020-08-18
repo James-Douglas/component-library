@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { spacingPropTypes } from '@comparethemarketau/manor-utils';
 import { useId } from '@comparethemarketau/manor-hooks';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import StyledCard from './Card.styles';
 
 const Card = ({
@@ -11,15 +10,12 @@ const Card = ({
   margin,
   padding,
   className,
-  theme,
 }) => {
   const id = useId(propsId);
   return (
-    <ManorProvider theme={theme}>
-      <StyledCard id={id} margin={margin} padding={padding} className={className}>
-        {children}
-      </StyledCard>
-    </ManorProvider>
+    <StyledCard id={id} margin={margin} padding={padding} className={className}>
+      {children}
+    </StyledCard>
   );
 };
 
@@ -45,11 +41,6 @@ Card.propTypes = {
    */
   className: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Card.defaultProps = {
@@ -58,7 +49,6 @@ Card.defaultProps = {
   margin: ['4', '4', '16'],
   padding: ['16'],
   className: '',
-  theme: undefined,
 };
 
 export default Card;

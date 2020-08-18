@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { muiTheme } from '@comparethemarketau/manor-themes';
 import { Typography as MUITypography } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -9,7 +8,7 @@ import Box from '@material-ui/core/Box';
 
 const TypographyInner = ({
   // eslint-disable-next-line react/prop-types
-  theme, variant, component, children, style,
+  theme, variant, component, align, color, display, gutterBottom, noWrap, paragraph, children, style,
 }) => {
   const renderChildren = () => (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -17,7 +16,16 @@ const TypographyInner = ({
   );
   return (
     <ThemeProvider theme={muiTheme(theme)}>
-      <MUITypography variant={variant} component={component}>
+      <MUITypography
+        variant={variant}
+        component={component}
+        align={align}
+        color={color}
+        display={display}
+        gutterBottom={gutterBottom}
+        noWrap={noWrap}
+        paragraph={paragraph}
+      >
         {renderChildren()}
       </MUITypography>
     </ThemeProvider>
@@ -37,23 +45,20 @@ const Typography = ({
   noWrap,
   paragraph,
   style,
-  theme,
 }) => (
-  <ManorProvider theme={theme}>
-    <ThemedMuiTypography
-      variant={variant}
-      align={align}
-      color={color}
-      display={display}
-      gutterBottom={gutterBottom}
-      noWrap={noWrap}
-      paragraph={paragraph}
-      component={component}
-      style={style}
-    >
-      {children}
-    </ThemedMuiTypography>
-  </ManorProvider>
+  <ThemedMuiTypography
+    variant={variant}
+    align={align}
+    color={color}
+    display={display}
+    gutterBottom={gutterBottom}
+    noWrap={noWrap}
+    paragraph={paragraph}
+    component={component}
+    style={style}
+  >
+    {children}
+  </ThemedMuiTypography>
 );
 
 Typography.propTypes = {
@@ -119,11 +124,6 @@ Typography.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,
   ]),
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Typography.defaultProps = {
@@ -136,7 +136,6 @@ Typography.defaultProps = {
   paragraph: false,
   children: [],
   style: null,
-  theme: undefined,
 };
 
 export default Typography;

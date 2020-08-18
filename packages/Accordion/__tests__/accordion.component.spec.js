@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
-import { act, fireEvent, render } from '@testing-library/react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { act, fireEvent, render } from '../../../testUtils';
 import AccordionPanel from '../AccordionPanel.component';
 import Accordion from '../Accordion.component';
 

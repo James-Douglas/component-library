@@ -1,6 +1,5 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { Column, Row, Container } from '@comparethemarketau/manor-grid';
 import { throttle } from '@comparethemarketau/manor-utils';
@@ -10,7 +9,7 @@ import {
 } from './Footer.styles';
 
 const Footer = ({
-  children, background, sticky, type, className, theme,
+  children, background, sticky, type, className,
 }) => {
   const currentYear = new Date().getFullYear();
   const footerRef = useRef(null);
@@ -54,21 +53,19 @@ const Footer = ({
   }, [sticky, windowWidth]);
 
   return (
-    <ManorProvider theme={theme}>
-      <StyledWrapper style={{ paddingTop: footerHeight }}>
-        <StyledPosition background={background} sticky={sticky}>
-          <Container className={className} padding={['16']}>
-            <Row removeMarginBottom>
-              <Column cols={12}>
-                <StyledFooterBar ref={footerRef}>
-                  {renderVariant()}
-                </StyledFooterBar>
-              </Column>
-            </Row>
-          </Container>
-        </StyledPosition>
-      </StyledWrapper>
-    </ManorProvider>
+    <StyledWrapper style={{ paddingTop: footerHeight }}>
+      <StyledPosition background={background} sticky={sticky}>
+        <Container className={className} padding={['16']}>
+          <Row removeMarginBottom>
+            <Column cols={12}>
+              <StyledFooterBar ref={footerRef}>
+                {renderVariant()}
+              </StyledFooterBar>
+            </Column>
+          </Row>
+        </Container>
+      </StyledPosition>
+    </StyledWrapper>
   );
 };
 
@@ -97,12 +94,6 @@ Footer.propTypes = {
    * Classes to be applied to the Footer component
    */
   className: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Footer.defaultProps = {
@@ -111,7 +102,6 @@ Footer.defaultProps = {
   sticky: true,
   type: '',
   className: '',
-  theme: undefined,
 };
 
 export default Footer;

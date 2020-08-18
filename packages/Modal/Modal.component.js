@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import React, {
   useRef, useState, useLayoutEffect, useEffect,
 } from 'react';
@@ -11,7 +10,6 @@ import { Separator } from '@comparethemarketau/manor-separator';
 import { useId, useIsDesktop } from '@comparethemarketau/manor-hooks';
 import { Button } from '@comparethemarketau/manor-button';
 import { Overlay } from '@comparethemarketau/manor-overlay';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import {
   StyledAlignment, StyledCloseIcon, StyledContent, StyledContentChildren,
@@ -40,7 +38,6 @@ const Modal = ({
   showSupplementaryBar,
   supplementaryBarOptions,
   zIndex,
-  theme,
 }) => {
   const id = useId(propsId);
   const supplementaryBarRef = useRef(null);
@@ -194,7 +191,7 @@ const Modal = ({
   };
 
   return (
-    <ManorProvider theme={theme}>
+    <>
       {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
       {visible
         && (
@@ -209,7 +206,7 @@ const Modal = ({
             </StyledModal>
           </StyledAlignment>
         )}
-    </ManorProvider>
+    </>
   );
 };
 
@@ -291,7 +288,6 @@ Modal.propTypes = {
     showChatOnline: PropTypes.bool,
     phoneNumber: PropTypes.string,
   }),
-  theme: PropTypes.object,
 };
 
 Modal.defaultProps = {
@@ -316,7 +312,6 @@ Modal.defaultProps = {
     showChatOnline: true,
     phoneNumber: '',
   },
-  theme: undefined,
 };
 
 export default Modal;

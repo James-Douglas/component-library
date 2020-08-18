@@ -3,7 +3,7 @@ import 'jest-styled-components';
 import { Input } from '@comparethemarketau/manor-input';
 import {
   render, fireEvent,
-} from '@testing-library/react';
+} from '../../../testUtils';
 import Modal from '../Modal.component';
 
 /* Modal

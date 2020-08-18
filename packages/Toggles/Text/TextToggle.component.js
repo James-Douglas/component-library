@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useId } from '@comparethemarketau/manor-hooks';
 import BaseToggle from '../BaseToggle';
@@ -22,7 +21,6 @@ const TextToggle = ({
   handleBlur,
   handleClick,
   button,
-  theme,
 }) => {
   const id = useId(propsId);
   const toggleHandler = () => {
@@ -31,34 +29,31 @@ const TextToggle = ({
     }
   };
   return (
-    <ManorProvider theme={theme}>
-      <BaseToggle
-        id={id}
-        value={value}
-        name={name}
-        selectedValue={selectedValue}
-        invalid={invalid}
-        disabled={disabled}
-        handleToggle={toggleHandler}
-        handleFocus={handleFocus}
-        handleBlur={handleBlur}
-        handleClick={handleClick}
-        button={button}
-        theme={theme}
-      >
-        <ToggleLabel id={id} button={button} theme={theme}>
-          <StyledWrapper button={button}>
-            <StyledTextToggleContent contentWidth={contentWidth} contentHeight={contentHeight}>
-              <StyledContent button={button}>
-                <Typography variant="body1">
-                  {title}
-                </Typography>
-              </StyledContent>
-            </StyledTextToggleContent>
-          </StyledWrapper>
-        </ToggleLabel>
-      </BaseToggle>
-    </ManorProvider>
+    <BaseToggle
+      id={id}
+      value={value}
+      name={name}
+      selectedValue={selectedValue}
+      invalid={invalid}
+      disabled={disabled}
+      handleToggle={toggleHandler}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
+      handleClick={handleClick}
+      button={button}
+    >
+      <ToggleLabel id={id} button={button}>
+        <StyledWrapper button={button}>
+          <StyledTextToggleContent contentWidth={contentWidth} contentHeight={contentHeight}>
+            <StyledContent button={button}>
+              <Typography variant="body1">
+                {title}
+              </Typography>
+            </StyledContent>
+          </StyledTextToggleContent>
+        </StyledWrapper>
+      </ToggleLabel>
+    </BaseToggle>
   );
 };
 
@@ -131,12 +126,6 @@ TextToggle.propTypes = {
    * Whether or not to render the container as a button.
    */
   button: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 TextToggle.defaultProps = {
@@ -153,7 +142,6 @@ TextToggle.defaultProps = {
   handleBlur: null,
   handleClick: null,
   button: null,
-  theme: undefined,
 };
 
 export default TextToggle;

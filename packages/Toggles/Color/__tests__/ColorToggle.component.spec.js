@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../../../testUtils';
 import ColorToggle, { getDisplayBackgroundColor, getAnimationStyle, getDisplayLabel } from '../ColorToggle.component';
 import 'jest-styled-components';
 

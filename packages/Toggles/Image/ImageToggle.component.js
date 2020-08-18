@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Picture } from '@comparethemarketau/manor-picture';
 import { Typography } from '@comparethemarketau/manor-typography';
@@ -11,9 +10,9 @@ import {
   StyledDescription, StyledIconContent, StyledImageToggle, StyledPicture, StyledTitle,
 } from './ImageToggle.styles';
 
-export function getImageToggleContent(src, srcsets, alt, pictureTitle, id, toggleTitle, description, theme) {
+export function getImageToggleContent(src, srcsets, alt, pictureTitle, id, toggleTitle, description) {
   return (
-    <ToggleLabel id={id} theme={theme}>
+    <ToggleLabel id={id}>
       <StyledImageToggle>
         <StyledPicture>
           <Picture
@@ -49,7 +48,6 @@ const ImageToggle = ({
   srcsets,
   alt,
   pictureTitle,
-  theme,
 }) => {
   const toggleHandler = () => {
     if (handleToggle) {
@@ -58,22 +56,20 @@ const ImageToggle = ({
   };
   const id = useId(propsId);
   return (
-    <ManorProvider theme={theme}>
-      <BaseToggle
-        id={id}
-        value={value}
-        name={name}
-        selectedValue={selectedValue}
-        invalid={invalid}
-        disabled={disabled}
-        handleToggle={toggleHandler}
-        handleFocus={handleFocus}
-        handleBlur={handleBlur}
-        handleClick={handleClick}
-      >
-        {getImageToggleContent(src, srcsets, alt, pictureTitle, id, title, description, theme)}
-      </BaseToggle>
-    </ManorProvider>
+    <BaseToggle
+      id={id}
+      value={value}
+      name={name}
+      selectedValue={selectedValue}
+      invalid={invalid}
+      disabled={disabled}
+      handleToggle={toggleHandler}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
+      handleClick={handleClick}
+    >
+      {getImageToggleContent(src, srcsets, alt, pictureTitle, id, title, description)}
+    </BaseToggle>
   );
 };
 
@@ -148,12 +144,6 @@ ImageToggle.propTypes = {
    * title attribute for the image
    */
   pictureTitle: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 ImageToggle.defaultProps = {
@@ -171,7 +161,6 @@ ImageToggle.defaultProps = {
   srcsets: [],
   alt: '',
   pictureTitle: '',
-  theme: undefined,
 };
 
 export default ImageToggle;

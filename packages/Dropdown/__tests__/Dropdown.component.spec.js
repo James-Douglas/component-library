@@ -2,7 +2,7 @@ import React from 'react';
 import 'jest-styled-components';
 import { act } from 'react-dom/test-utils';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render } from '../../../testUtils';
 import Dropdown from '../Dropdown.component';
 import DropdownItem from '../DropdownItem.component';
 

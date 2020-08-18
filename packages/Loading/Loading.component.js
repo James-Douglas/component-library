@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useInterval } from '@comparethemarketau/manor-hooks';
 import Progress from './Progress';
@@ -20,7 +19,6 @@ const LoadingComponent = ({
   className,
   maxProgress,
   variant,
-  theme,
 }) => {
   const [progress, setProgress] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
@@ -70,21 +68,19 @@ const LoadingComponent = ({
   };
 
   return (
-    <ManorProvider theme={theme}>
-      <StyledContainer className={className}>
-        <StyledInnerContainer>
-          {
-            messages[messageIndex]
-            && (
-              <StyledMessageContainer>
-                <div className="loading-message"><StyledLoadingText><Typography variant="body1">{messages[messageIndex]}</Typography></StyledLoadingText></div>
-              </StyledMessageContainer>
-            )
-          }
-          <Progress value={progress} variant={variant} />
-        </StyledInnerContainer>
-      </StyledContainer>
-    </ManorProvider>
+    <StyledContainer className={className}>
+      <StyledInnerContainer>
+        {
+          messages[messageIndex]
+          && (
+            <StyledMessageContainer>
+              <div className="loading-message"><StyledLoadingText><Typography variant="body1">{messages[messageIndex]}</Typography></StyledLoadingText></div>
+            </StyledMessageContainer>
+          )
+        }
+        <Progress value={progress} variant={variant} />
+      </StyledInnerContainer>
+    </StyledContainer>
   );
 };
 
@@ -122,12 +118,6 @@ LoadingComponent.propTypes = {
    * Defines  colors
    */
   variant: PropTypes.oneOf(['primary', 'secondary']),
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 LoadingComponent.defaultProps = {
@@ -139,7 +129,6 @@ LoadingComponent.defaultProps = {
   className: '',
   maxProgress: 100,
   variant: 'primary',
-  theme: undefined,
 };
 
 export default LoadingComponent;

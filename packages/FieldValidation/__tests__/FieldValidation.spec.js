@@ -1,6 +1,6 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render } from '@testing-library/react';
+import { render } from '../../../testUtils';
 import FieldValidation from '../FieldValidation.component';
 
 describe('FieldValidation', () => {

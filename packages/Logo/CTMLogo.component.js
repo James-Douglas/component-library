@@ -9,7 +9,7 @@ import CTMLogoStacked from '../../images/ctm-logo-stacked.svg';
 import CTMLogoStackedInverted from '../../images/ctm-logo-stacked-inverted.svg';
 
 const CTMLogo = ({
-  size, inverted, className, theme,
+  size, inverted, className,
 }) => {
   const breakpoint = useBreakpoint();
   let src = CTMLogoStacked;
@@ -35,7 +35,6 @@ const CTMLogo = ({
         ],
         className,
       }}
-      theme={theme}
     />
   );
 };
@@ -44,19 +43,12 @@ CTMLogo.propTypes = {
   size: PropTypes.oneOf(['small', 'large']),
   inverted: PropTypes.bool,
   className: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 CTMLogo.defaultProps = {
   size: 'large',
   inverted: false,
   className: '',
-  theme: undefined,
 };
 
 export default CTMLogo;

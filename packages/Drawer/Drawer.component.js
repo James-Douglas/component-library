@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-light-svg-icons/faTimes';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import { Container } from '@comparethemarketau/manor-grid';
@@ -27,13 +26,12 @@ const Drawer = ({
   handleOverlayClick,
   keyLine,
   zIndex,
-  theme,
 }) => {
   const id = useId(propsId);
   const drawerElement = useRef(null);
 
   return (
-    <ManorProvider theme={theme}>
+    <>
       {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
       {visible && (
         <StyledDrawer
@@ -60,7 +58,7 @@ const Drawer = ({
           </Container>
         </StyledDrawer>
       )}
-    </ManorProvider>
+    </>
   );
 };
 
@@ -120,12 +118,6 @@ Drawer.propTypes = {
    * zIndex for the Drawer & Overlay (if using)
    */
   zIndex: PropTypes.number,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Drawer.defaultProps = {
@@ -141,7 +133,6 @@ Drawer.defaultProps = {
   handleOverlayClick: null,
   keyLine: false,
   zIndex: 30,
-  theme: undefined,
 };
 
 export default Drawer;

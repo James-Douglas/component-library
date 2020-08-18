@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useIsDesktop } from '@comparethemarketau/manor-hooks';
 import { Picture, picturePropTypes } from '@comparethemarketau/manor-picture';
@@ -12,7 +11,6 @@ const EmptyState = ({
   picture,
   className,
   heading,
-  theme,
 }) => {
   const desktop = useIsDesktop();
   const pictureProps = {
@@ -23,19 +21,17 @@ const EmptyState = ({
   };
 
   return (
-    <ManorProvider theme={theme}>
-      <StyledEmptyState className={className}>
-        <StyledEmptyStateWrap desktop={desktop} className={className}>
-          <StyledPictureContainer>
-            <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
-          </StyledPictureContainer>
-          <Typography variant="h2">{heading}</Typography>
-          <div>
-            {children}
-          </div>
-        </StyledEmptyStateWrap>
-      </StyledEmptyState>
-    </ManorProvider>
+    <StyledEmptyState className={className}>
+      <StyledEmptyStateWrap desktop={desktop} className={className}>
+        <StyledPictureContainer>
+          <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
+        </StyledPictureContainer>
+        <Typography variant="h2">{heading}</Typography>
+        <div>
+          {children}
+        </div>
+      </StyledEmptyStateWrap>
+    </StyledEmptyState>
   );
 };
 
@@ -59,12 +55,6 @@ EmptyState.propTypes = {
    * The heading text underneath the image
    */
   heading: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 EmptyState.defaultProps = {
@@ -72,7 +62,6 @@ EmptyState.defaultProps = {
   picture: null,
   className: '',
   heading: 'Sorry, no results found',
-  theme: undefined,
 };
 
 export default EmptyState;

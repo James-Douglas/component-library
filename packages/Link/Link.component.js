@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { muiTheme } from '@comparethemarketau/manor-themes';
 import { Link as MUILink } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -33,18 +32,16 @@ const ManorMuiLink = ({
 const ThemedMuiLink = withTheme(ManorMuiLink);
 
 const Link = ({
-  href, target, rel, title, theme, children,
+  href, target, rel, title, children,
 }) => (
-  <ManorProvider theme={theme}>
-    <ThemedMuiLink
-      href={href}
-      target={target}
-      rel={rel}
-      title={title}
-    >
-      {children}
-    </ThemedMuiLink>
-  </ManorProvider>
+  <ThemedMuiLink
+    href={href}
+    target={target}
+    rel={rel}
+    title={title}
+  >
+    {children}
+  </ThemedMuiLink>
 );
 
 Link.propTypes = {
@@ -65,11 +62,6 @@ Link.propTypes = {
    */
   title: PropTypes.string,
   /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
-  /**
    * link text
    */
   children: PropTypes.oneOfType([
@@ -84,7 +76,6 @@ Link.defaultProps = {
   target: null,
   rel: null,
   title: null,
-  theme: undefined,
   children: '',
 };
 

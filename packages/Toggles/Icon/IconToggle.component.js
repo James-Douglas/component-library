@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useId } from '@comparethemarketau/manor-hooks';
 import BaseToggle from '../BaseToggle';
@@ -10,9 +9,9 @@ import {
   StyledDescription, StyledIcon, StyledIconContent, StyledIconToggleContent, StyledTitle,
 } from './IconToggle.styles';
 
-export function getToggleContent(id, icon, title, description, theme) {
+export function getToggleContent(id, icon, title, description) {
   return (
-    <ToggleLabel id={id} theme={theme}>
+    <ToggleLabel id={id}>
       <StyledIconToggleContent>
         <StyledIcon>
           {icon && <FontAwesomeIcon icon={icon} size="4x" />}
@@ -40,7 +39,6 @@ const IconToggle = ({
   handleBlur,
   handleClick,
   icon,
-  theme,
 }) => {
   const id = useId(propsId);
   const toggleHandler = () => {
@@ -49,23 +47,21 @@ const IconToggle = ({
     }
   };
   return (
-    <ManorProvider theme={theme}>
-      <BaseToggle
-        id={id}
-        type="square"
-        value={value}
-        name={name}
-        selectedValue={selectedValue}
-        invalid={invalid}
-        disabled={disabled}
-        handleToggle={toggleHandler}
-        handleFocus={handleFocus}
-        handleBlur={handleBlur}
-        handleClick={handleClick}
-      >
-        {getToggleContent(id, icon, title, description, theme)}
-      </BaseToggle>
-    </ManorProvider>
+    <BaseToggle
+      id={id}
+      type="square"
+      value={value}
+      name={name}
+      selectedValue={selectedValue}
+      invalid={invalid}
+      disabled={disabled}
+      handleToggle={toggleHandler}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
+      handleClick={handleClick}
+    >
+      {getToggleContent(id, icon, title, description)}
+    </BaseToggle>
   );
 };
 
@@ -130,12 +126,6 @@ IconToggle.propTypes = {
     }),
     PropTypes.string,
   ]),
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 IconToggle.defaultProps = {
@@ -150,7 +140,6 @@ IconToggle.defaultProps = {
   handleBlur: null,
   handleClick: null,
   icon: null,
-  theme: undefined,
 };
 
 export default IconToggle;

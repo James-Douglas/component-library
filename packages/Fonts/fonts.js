@@ -41,7 +41,6 @@ const Fonts = ({ theme }) => (
 );
 
 Fonts.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   /**
    * Manor theme, if not provided the ctm theme will be used.
    */

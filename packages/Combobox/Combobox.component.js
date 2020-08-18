@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
 import { Input } from '@comparethemarketau/manor-input';
@@ -123,7 +122,6 @@ const Combobox = React.forwardRef(({
   emptyStateClassName,
   emptyStateHeading,
   helperMessage,
-  theme,
 }, ref) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -292,7 +290,7 @@ const Combobox = React.forwardRef(({
   const noResultCondition = filteredValues.length === 0 && currentValue.length >= characterMinimum;
 
   return (
-    <ManorProvider theme={theme}>
+    <>
       {mobileOverlay && isMobileModalView && (<Overlay opacityLevel={0.3} visible={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
       {(mobileOverlay || desktop) && (
         <>
@@ -371,7 +369,7 @@ const Combobox = React.forwardRef(({
           />
         </StyledDefault>
       )}
-    </ManorProvider>
+    </>
   );
 });
 
@@ -508,12 +506,6 @@ Combobox.propTypes = {
    * Message to help user start typing
    */
   helperMessage: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 Combobox.defaultProps = {
@@ -543,7 +535,6 @@ Combobox.defaultProps = {
   emptyStateClassName: '',
   emptyStateHeading: 'No results found',
   helperMessage: 'Please start typing',
-  theme: undefined,
 };
 
 export default Combobox;

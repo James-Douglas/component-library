@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useId } from '@comparethemarketau/manor-hooks';
 import BaseToggle from '../BaseToggle';
@@ -44,7 +43,6 @@ const ColorToggle = ({
   handleFocus,
   handleBlur,
   handleClick,
-  theme,
 }) => {
   const id = useId(propsId);
   const toggleHandler = () => {
@@ -57,30 +55,27 @@ const ColorToggle = ({
   const displayLabel = getDisplayLabel(label, backgroundColor);
 
   return (
-    <ManorProvider theme={theme}>
-      <BaseToggle
-        id={id}
-        type="custom"
-        value={value}
-        name={name}
-        selectedValue={selectedValue}
-        checkedFontColor={fontColor}
-        invalid={invalid}
-        disabled={disabled}
-        handleToggle={toggleHandler}
-        handleFocus={handleFocus}
-        handleBlur={handleBlur}
-        handleClick={handleClick}
-        theme={theme}
-      >
-        <ToggleLabel id={id} theme={theme}>
-          <StyledColourToggle>
-            <StyledContent><Typography variant="body2" component="span">{displayLabel}</Typography></StyledContent>
-            <StyledBorderColour style={animationStyle} />
-          </StyledColourToggle>
-        </ToggleLabel>
-      </BaseToggle>
-    </ManorProvider>
+    <BaseToggle
+      id={id}
+      type="custom"
+      value={value}
+      name={name}
+      selectedValue={selectedValue}
+      checkedFontColor={fontColor}
+      invalid={invalid}
+      disabled={disabled}
+      handleToggle={toggleHandler}
+      handleFocus={handleFocus}
+      handleBlur={handleBlur}
+      handleClick={handleClick}
+    >
+      <ToggleLabel id={id}>
+        <StyledColourToggle>
+          <StyledContent><Typography variant="body2" component="span">{displayLabel}</Typography></StyledContent>
+          <StyledBorderColour style={animationStyle} />
+        </StyledColourToggle>
+      </ToggleLabel>
+    </BaseToggle>
   );
 };
 
@@ -138,12 +133,6 @@ ColorToggle.propTypes = {
    * Handler function called on click of the toggle
    */
   handleClick: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
-  /**
-   * Manor theme, if not provided the ctm theme will be used.
-   */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 
 ColorToggle.defaultProps = {
@@ -158,7 +147,6 @@ ColorToggle.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   handleClick: null,
-  theme: undefined,
 };
 
 export default ColorToggle;

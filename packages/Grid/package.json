@@ -18,7 +18,6 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-provider": "^0.4.0",
     "@comparethemarketau/manor-utils": "^0.1.7",
     "prop-types": "^15.7.2",
     "react-styled-flexboxgrid": "^3.2.1"

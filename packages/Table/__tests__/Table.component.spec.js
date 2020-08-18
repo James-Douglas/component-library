@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '../../../testUtils';
 import Table from '../Table/Table.component';
 import 'jest-styled-components';
 import TableBody from '../TableBody/TableBody.component';
