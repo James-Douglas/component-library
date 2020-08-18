@@ -63,8 +63,8 @@ Container.propTypes = {
 Container.defaultProps = {
   className: '',
   children: [],
+  padding: ['0'],
   theme: undefined,
-  padding: 0,
   gutterWidth: 32,
 };
 

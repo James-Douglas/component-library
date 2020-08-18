@@ -7,7 +7,6 @@ export const StyledNotification = styled.div`
   line-height: ${({ theme }) => theme.lineHeight.tight};
   border-left: ${({ theme, variant }) => `${theme.spacing[4]} solid ${theme.notification[variant].color}`};
   display: flex;
-  background: ${({ theme }) => theme.colors.white};
   ${({
     theme, type, background, variant,
   }) => (type === 'hint' && background) && css`

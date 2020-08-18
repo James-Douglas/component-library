@@ -18,8 +18,12 @@
     "tag": "latest"
   },
   "dependencies": {
+    "@comparethemarketau/manor-button": "^0.4.0",
     "@comparethemarketau/manor-hooks": "^0.1.7",
+    "@comparethemarketau/manor-grid": "^0.5.0",
     "@comparethemarketau/manor-overlay": "^0.2.0",
+    "@comparethemarketau/manor-separator": "^0.3.0",
+    "@comparethemarketau/manor-utils": "^0.1.6",
     "@comparethemarketau/manor-provider": "^0.4.0",
     "@comparethemarketau/manor-typography": "^0.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",

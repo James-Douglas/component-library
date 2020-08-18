@@ -7,8 +7,10 @@ import { Overlay } from '@comparethemarketau/manor-overlay';
 import { Button } from '@comparethemarketau/manor-button';
 import { Checkbox } from '@comparethemarketau/manor-checkbox';
 import { Input } from '@comparethemarketau/manor-input';
+import { faLightbulb } from '@fortawesome/pro-regular-svg-icons';
 import { FluidContainer, Container, Row, Column } from '@comparethemarketau/manor-grid';
 import ModalView from './modal.view';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 <Meta title="Components/Modal" component={Modal} />
 
@@ -28,6 +30,8 @@ Unlike a Drawer, Modals can always be closed by the user.
   {() => {
     const [ visible, setVisible ] = useState(false);
     const [ visibleModal, setVisibleModal ] = useState(false);
+    const [ visibleModal2, setVisibleModal2 ] = useState(false);
+    const [ visibleModal3, setVisibleModal3 ] = useState(false);
     return (
       <div style={{ padding: '2%' }}>
         <FluidContainer>
@@ -38,18 +42,36 @@ Unlike a Drawer, Modals can always be closed by the user.
             <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
               <Button id='preview-btn2' variant='secondary' handleClick={() => setVisibleModal(!visibleModal)}>Modal Preview With actions</Button>
             </Column>
+            <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
+              <Button id='preview-btn3' variant='secondary' handleClick={() => setVisibleModal2(!visibleModal2)}>Modal Preview With supplementary bar</Button>
+            </Column>
+            <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
+              <Button id='preview-btn4' variant='secondary' handleClick={() => setVisibleModal3(!visibleModal3)}>Modal Preview With supplementary bar, long text</Button>
+            </Column>
             <Modal id='preview-modal' visible={visible} handleClose={() => {setVisible(false)}} size="sm" overlay handleOverlayClick={() => setVisible(false)} title="Modal title goes here">
               <Typography variant="body1"> It is the percentage of money you borrow for a home loan compared to the value of the property. It is used to assess your risk factor as a borrower; lenders will calculate your LVR before deciding whether or to approve you for a home loan. Home loans which are over 80% LVR are considered high risk. As a result, most lenders will charge extra fees, such as Lender’s Mortgage Insurance (LMI), in order to protect themselves in case you default.</Typography>
             </Modal>
-           <Modal id='preview-modal2' visible={visibleModal} handleClose={() => setVisibleModal(false)} size="sm" overlay handleOverlayClick={() => setVisibleModal(false)}  title="Modal title goes here">
-             <div style={{maxHeight: '250px', overflow: 'auto' }}>
-                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+           <Modal id='preview-modal2' primaryActionTitle={'Primary Button'} secondaryActionTitle={'Secondary Button'} visible={visibleModal} handleClose={() => setVisibleModal(false)} size="sm" overlay handleOverlayClick={() => setVisibleModal(false)}  title="Modal title goes here">
+             <div>
                 <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
                 <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
               </div>
-              <div style={{display: 'flex', justifyContent: 'flex-end', borderTop: '1px solid red', padding: '30px 24px 0', margin: '30px -24px 0', borderTop: '1px solid #f6f6f6'}}>
-                 <div style={{display: 'inherit', marginRight: '20px'}}><Button id="tertiary-btn01" variant="tertiary" style={{margin: 0, display: 'inline-block', padding: '1.2rem'}}>Secondary Action</Button></div>
-                 <div style={{display: 'inline-block'}}><Button id="secondary-btn01" variant="primary" style={{margin: 0, display: 'inline-block', padding: '1.2rem'}}>Primary Action</Button></div>
+            </Modal>
+            <Modal id='preview-modal3' primaryActionTitle={'Primary Button'} visible={visibleModal2} handleClose={() => setVisibleModal2(false)} size="sm" overlay handleOverlayClick={() => setVisibleModal2(false)}  title="Modal title goes here" titleIcon={<FontAwesomeIcon icon={faLightbulb}/>} showSupplementaryBar supplementaryBarOptions={ {showRequestCall: true, showChatOnline: true, phoneNumber: '1800 000 000'}}>
+             <div>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+              </div>
+            </Modal>
+            <Modal id='preview-modal4' secondaryActionTitle={'Secondary Button'} visible={visibleModal3} handleClose={() => setVisibleModal3(false)} size="sm" overlay handleOverlayClick={() => setVisibleModal3(false)}  title="Modal title goes here" titleIcon={<FontAwesomeIcon icon={faLightbulb}/>} showSupplementaryBar supplementaryBarOptions={ {showRequestCall: true, showChatOnline: true, phoneNumber: '1800 000 000'}}>
+             <div>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
               </div>
             </Modal>
           </Row>

@@ -1,15 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Modal renders with minimal props 1`] = `
+.c4 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  box-sizing: border-box;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c6 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  box-sizing: border-box;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c2 {
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto;
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 120rem;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c3 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -0.5rem;
+  margin-left: -0.5rem;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
 .c0 {
-  background: #FFFFFF;
+  background: #f6f6f6;
   box-shadow: 0 1.5rem 3rem 0 rgba(0,0,0,0.11),0 0.5rem 1.5rem 0 rgba(0,0,0,0.08);
   z-index: inherit;
-  max-width: 745px;
+  max-width: 768px;
   min-width: 350px;
-  width: 50%;
+  width: 768px;
   min-height: 30rem;
-  height: auto;
+  height: 80%;
   pointer-events: auto;
   position: relative;
   -webkit-animation-name: bMDMvv;
@@ -19,59 +106,317 @@ exports[`Modal renders with minimal props 1`] = `
 }
 
 .c1 {
-  position: absolute;
+  background: #FFFFFF;
+  padding: 1.9rem 2.4rem;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c5 h3 {
+  margin: 0;
+}
+
+.c7 {
   cursor: pointer;
   z-index: inherit;
-  opacity: 0.5;
-  right: 2.4rem;
-  top: 2.4rem;
+  color: #757575;
   font-size: 2.4rem;
 }
 
-.c2 {
-  padding: 2rem 2.4rem 3.2rem;
+.c8 {
+  padding: 2rem 2.4rem 0;
+  height: calc(100% - 6.8rem);
 }
 
-.c3 {
-  margin-top: 2.8rem;
+.c9 {
+  height: calc(100% - 8rem);
+  overflow: hidden scroll;
+}
+
+@media only screen and (min-width:0em) {
+  .c4 {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:48em) {
+  .c4 {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:64em) {
+  .c4 {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:75em) {
+  .c4 {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:0em) {
+  .c4 {
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width:48em) {
+  .c4 {
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width:64em) {
+  .c4 {
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width:75em) {
+  .c4 {
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width:0em) {
+  .c4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media only screen and (min-width:48em) {
+  .c4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media only screen and (min-width:64em) {
+  .c4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media only screen and (min-width:75em) {
+  .c4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media only screen and (min-width:0em) {
+  .c6 {
+    -webkit-flex-basis: 8.333333333333334%;
+    -ms-flex-preferred-size: 8.333333333333334%;
+    flex-basis: 8.333333333333334%;
+    max-width: 8.333333333333334%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:48em) {
+  .c6 {
+    -webkit-flex-basis: 8.333333333333334%;
+    -ms-flex-preferred-size: 8.333333333333334%;
+    flex-basis: 8.333333333333334%;
+    max-width: 8.333333333333334%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:64em) {
+  .c6 {
+    -webkit-flex-basis: 8.333333333333334%;
+    -ms-flex-preferred-size: 8.333333333333334%;
+    flex-basis: 8.333333333333334%;
+    max-width: 8.333333333333334%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:75em) {
+  .c6 {
+    -webkit-flex-basis: 8.333333333333334%;
+    -ms-flex-preferred-size: 8.333333333333334%;
+    flex-basis: 8.333333333333334%;
+    max-width: 8.333333333333334%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:0em) {
+  .c6 {
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width:48em) {
+  .c6 {
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width:64em) {
+  .c6 {
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width:75em) {
+  .c6 {
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width:0em) {
+  .c6 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media only screen and (min-width:48em) {
+  .c6 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media only screen and (min-width:64em) {
+  .c6 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media only screen and (min-width:75em) {
+  .c6 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 <div
   class="c0 
-    md
     
   "
   id="test-modal"
 >
   <div
-    aria-label="Close Modal"
-    aria-pressed="false"
-    class="c1 icon-close"
-    role="button"
-    tabindex="0"
+    class="c1"
   >
-    <svg
-      aria-hidden="true"
-      class="svg-inline--fa fa-times fa-w-10 "
-      data-icon="times"
-      data-prefix="far"
-      focusable="false"
-      role="img"
-      viewBox="0 0 320 512"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="c2"
     >
-      <path
-        d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"
-        fill="currentColor"
-      />
-    </svg>
+      <div
+        class="sc-fzoLag c3 row "
+      >
+        <div
+          class="sc-fzoXzr c4 
+          
+        "
+        >
+          <div
+            class="c5"
+          >
+            
+          </div>
+        </div>
+        <div
+          class="sc-fzoXzr c6 
+          
+        "
+        >
+          <div
+            aria-label="Close Modal"
+            aria-pressed="false"
+            class="c7 icon-close"
+            role="button"
+            tabindex="0"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-times fa-w-10 "
+              data-icon="times"
+              data-prefix="far"
+              focusable="false"
+              role="img"
+              viewBox="0 0 320 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div
-    class="c2"
+    class="c8"
   >
-    
     <div
-      class="c3"
+      class="c9"
     />
   </div>
 </div>

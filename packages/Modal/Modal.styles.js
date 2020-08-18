@@ -25,42 +25,141 @@ const animateIn = keyframes`
 `;
 
 export const StyledModal = styled.div`
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.grey100};
   box-shadow: ${({ theme }) => theme.boxShadow.lg};
   z-index: inherit;
-  max-width: 745px;
+  max-width: 768px;
   min-width: 350px;
-  width: ${({ size }) => {
-    if (size === 'lg') {
-      return '62%';
-    }
-    if (size === 'md') {
-      return '50%';
-    }
-    return '33.333333%';
-  }};
+  width: ${({ desktop }) => (desktop ? '768px' : '100%')};
   min-height: 30rem;
-  height: auto;
+  height: ${({ desktop }) => (desktop ? '80%' : '100%')};
   pointer-events: auto;
   position: relative;
   animation-name: ${animateIn};
   animation-duration: .3s;
 `;
 
+export const StyledModalHeader = styled.div`
+  background: ${({ theme, desktop }) => (desktop ? theme.colors.white : theme.colors.grey100)};
+  padding: 1.9rem 2.4rem;
+`;
+
+export const StyledTitleContainer = styled.div`
+  display: flex;
+  h3 {
+    margin: 0;
+  }
+`;
+
+export const StyledTitle = styled.div`
+  background: ${({ theme, desktop }) => (desktop ? theme.colors.white : theme.colors.grey100)};
+  display: inline-block;
+  font-size: ${({ theme }) => theme.fontSize['3xl']};
+`;
+
+export const StyledTitleIcon = styled.div`
+  color: ${({ theme }) => theme.colors.primary500};
+  display: inline-block;
+  font-size: ${({ theme }) => theme.fontSize['3xl']};
+  margin-right: 1.6rem;
+`;
+
 export const StyledCloseIcon = styled.div`
-  position: absolute;
   cursor: pointer;
   z-index: inherit;
-  opacity: 0.5;
-  right: ${({ theme }) => theme.spacing[24]};
-  top: ${({ theme }) => theme.spacing[24]};
+  color: ${({ theme }) => theme.colors.grey600};
   font-size: ${({ theme }) => theme.fontSize['3xl']};
 `;
 
 export const StyledContent = styled.div`
-  padding: ${({ theme }) => `${theme.spacing[20]} ${theme.spacing[24]} ${theme.spacing[32]}`};
+  padding: ${({ theme }) => `${theme.spacing[20]} ${theme.spacing[24]} 0`};
+  height: ${({ theme, showSupplementaryBar, desktop }) => `calc(100% - ${theme.spacing[desktop && showSupplementaryBar ? 156 : 68]})`};
+  overflow: ${({ desktop }) => (desktop ? '' : 'hidden scroll')};
 `;
 
 export const StyledContentChildren = styled.div`
-  margin-top: ${({ theme }) => theme.spacing[28]};
+  height: ${({ theme, desktop }) => (desktop ? `calc(100% - ${theme.spacing[80]})` : '')};
+  min-height: ${({
+    theme, desktop, showSupplementaryBar, supplementaryBarHeight,
+  }) => (desktop ? '' : `calc(100% - ${theme.spacing[92]} ${showSupplementaryBar && supplementaryBarHeight ? `- ${supplementaryBarHeight}px` : ''})`)};
+  overflow: ${({ desktop }) => (desktop ? 'hidden scroll' : '')};
+`;
+
+export const StyledContentButtons = styled.div`
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 12px 0;
+  margin: 0 -24px 0;
+  height: ${({ theme }) => theme.spacing[80]};
+  border-top: 1px solid #f6f6f6;
+`;
+
+export const StyledPrimaryButton = styled.div`
+  display: inline-block;
+`;
+
+export const StyledSecondaryButton = styled.div`
+  display: inherit;
+  margin-right: 20px;
+`;
+
+export const StyledSupplementaryBar = styled.div`
+  background: ${({ theme }) => theme.colors.primary50};
+  padding: ${({ theme }) => theme.spacing[16]};
+  margin: 0 -24px 0;
+  /* overflow: hidden; */
+`;
+
+export const StyledSupplementaryBarItem = styled.div`
+  align-items: center;
+  color: ${({ theme }) => theme.colors.primary500};
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  margin-right: ${({ theme }) => theme.spacing[16]};
+  margin-bottom: ${({ theme }) => theme.spacing[0]};
+  padding-top: ${({ theme, desktop }) => theme.spacing[desktop ? 0 : 8]};
+  padding-bottom: ${({ theme, desktop }) => theme.spacing[desktop ? 0 : 8]};
+`;
+
+export const StyledSupplementaryBarItemText = styled.span`
+  margin-bottom: ${({ theme }) => theme.spacing[0]};
+  margin-right: ${({ theme }) => theme.spacing[8]};
+  font-size: ${({ theme }) => theme.fontSize.base};
+  h6, p {
+    margin: 0;
+  }
+`;
+
+export const StyledSupplementaryBarItemIcon = styled.span`
+  margin-bottom: ${({ theme }) => theme.spacing[0]};
+  margin-right: ${({ theme }) => theme.spacing[8]};
+  font-size: ${({ theme }) => theme.fontSize.base};
+`;
+
+export const StyledFlexContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: ${({ theme }) => theme.spacing[8]};
+  padding-bottom: ${({ theme }) => theme.spacing[8]};
+`;
+
+export const SeparatorContainer = styled.div`
+  display: none;
+  height: 100%;
+
+  @media only screen and (min-width: ${({ theme }) => `${theme.flexboxgrid.breakpoints.sm}em`}) {
+    display: block;
+    margin-right: ${({ theme }) => theme.spacing[16]};
+  }
+`;
+
+export const StyledLink = styled.a`
+  text-decoration: none;
+  h6 {
+    color: ${({ theme }) => theme.colors.primary500};
+  }
 `;
