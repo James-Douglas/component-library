@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-loading@0.2.0...@comparethemarketau/manor-loading@0.3.0) (2020-08-18)
+
+
+### Features
+
+* **all:** remove manorprovider from components, fix typography props ([#365](https://github.com/comparethemarketau/manor-react/issues/365)) ([9297cf7](https://github.com/comparethemarketau/manor-react/commit/9297cf72e8a7fe8762ec0dadf07d026aa88cbb44))
+
+
+
+
+
 # [0.2.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-loading@0.1.6...@comparethemarketau/manor-loading@0.2.0) (2020-08-17)
 
 

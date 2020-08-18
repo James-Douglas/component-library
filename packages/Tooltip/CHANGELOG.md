@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.4.0...@comparethemarketau/manor-tooltip@0.5.0) (2020-08-18)
+
+
+### Features
+
+* **all:** remove manorprovider from components, fix typography props ([#365](https://github.com/comparethemarketau/manor-react/issues/365)) ([9297cf7](https://github.com/comparethemarketau/manor-react/commit/9297cf72e8a7fe8762ec0dadf07d026aa88cbb44))
+
+
+
+
+
 # [0.4.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.3.4...@comparethemarketau/manor-tooltip@0.4.0) (2020-08-17)
 
 
