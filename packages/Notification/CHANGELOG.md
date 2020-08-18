@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.6.0...@comparethemarketau/manor-notification@0.7.0) (2020-08-18)
+
+
+### Features
+
+* **notification:** added white default background ([#366](https://github.com/comparethemarketau/manor-react/issues/366)) ([c015b9d](https://github.com/comparethemarketau/manor-react/commit/c015b9d668cc716df940bfccf32e8fdcddbb37ef))
+
+
+
+
+
 # [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.5.1...@comparethemarketau/manor-notification@0.6.0) (2020-08-18)
 
 
