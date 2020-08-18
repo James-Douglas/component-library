@@ -19,7 +19,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
   <Story name="hint general notification">
     {() => {
       return (
-        <div style={{ padding: '2%' }}>
+        <div style={{ padding: '2%', background: '#F6F6F6' }}>
         <FluidContainer>
             <Row>
               <Column xsOffset={1} cols={10}>
@@ -39,6 +39,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                 <Notification
                   type='hint'
                   variant="general"
+                  defaultWhiteBackground={false}
                   title="Notification title goes here"
                   content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
                 >

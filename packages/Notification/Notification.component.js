@@ -55,6 +55,7 @@ const Notification = ({
   className,
   autoClose,
   background,
+  defaultWhiteBackground,
 }) => {
   const iconHandler = () => {
     if (handleClose) {
@@ -73,7 +74,7 @@ const Notification = ({
   }, [autoClose, id, type]);
 
   return (
-    <StyledNotification type={type} variant={variant} position={position} icon={icon} background={background} className={className}>
+    <StyledNotification type={type} variant={variant} position={position} icon={icon} background={background} defaultWhiteBackground={defaultWhiteBackground} className={className}>
       {(closeButton && type !== 'hint') && (
         <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
           <FontAwesomeIcon icon={faTimes} size="lg" />
@@ -196,6 +197,10 @@ Notification.propTypes = {
    * Background color for notification - only available for hint variants
    */
   background: PropTypes.bool,
+  /**
+   * Default background color for notification - will default to white background
+   */
+  defaultWhiteBackground: PropTypes.bool,
 };
 
 Notification.defaultProps = {
@@ -213,6 +218,7 @@ Notification.defaultProps = {
   autoClose: null,
   position: null,
   background: false,
+  defaultWhiteBackground: true,
 };
 
 export default Notification;

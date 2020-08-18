@@ -8,6 +8,11 @@ export const StyledNotification = styled.div`
   border-left: ${({ theme, variant }) => `${theme.spacing[4]} solid ${theme.notification[variant].color}`};
   display: flex;
   ${({
+    theme, defaultWhiteBackground,
+  }) => defaultWhiteBackground && css`
+    background: ${theme.colors.white};
+  `};
+  ${({
     theme, type, background, variant,
   }) => (type === 'hint' && background) && css`
     background: ${theme.notification[variant].background};
