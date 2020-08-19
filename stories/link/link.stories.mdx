@@ -18,7 +18,12 @@ Renders a link
 <Preview>
   <Story name="link within typography">
     <Typography variant="body1">
-      <Link href="#">this is a link</Link>
+      <Link href="#" onClick={(e) => {
+        e.preventDefault();
+        console.log('link clicked');
+      }}>
+        this is a link
+        </Link>
     </Typography>
   </Story>
 </Preview>

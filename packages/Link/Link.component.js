@@ -7,7 +7,7 @@ import { withTheme } from 'styled-components';
 
 const ManorMuiLink = ({
   // eslint-disable-next-line react/prop-types
-  href, target, rel, title, theme, children,
+  href, onClick, target, rel, title, role, theme, children,
 }) => (
   <ThemeProvider theme={muiTheme(theme)}>
     <MUILink
@@ -15,7 +15,8 @@ const ManorMuiLink = ({
       target={target}
       rel={rel}
       title={title}
-      component="a"
+      role={role}
+      onClick={onClick}
       underline="always"
       style={{
         // eslint-disable-next-line react/prop-types
@@ -32,13 +33,15 @@ const ManorMuiLink = ({
 const ThemedMuiLink = withTheme(ManorMuiLink);
 
 const Link = ({
-  href, target, rel, title, children,
+  href, onClick, target, rel, title, role, children,
 }) => (
   <ThemedMuiLink
     href={href}
     target={target}
     rel={rel}
     title={title}
+    onClick={onClick}
+    role={role}
   >
     {children}
   </ThemedMuiLink>
@@ -49,6 +52,10 @@ Link.propTypes = {
    * href for the link
    */
   href: PropTypes.string,
+  /**
+   * onClick function for the link
+   */
+  onClick: PropTypes.func,
   /**
    * target attribute for the rendered <a> element
    */
@@ -62,6 +69,10 @@ Link.propTypes = {
    */
   title: PropTypes.string,
   /**
+   * role attribute for the rendered <a> element
+   */
+  role: PropTypes.string,
+  /**
    * link text
    */
   children: PropTypes.oneOfType([
@@ -73,9 +84,11 @@ Link.propTypes = {
 
 Link.defaultProps = {
   href: '',
+  onClick: null,
   target: null,
   rel: null,
   title: null,
+  role: null,
   children: '',
 };
 

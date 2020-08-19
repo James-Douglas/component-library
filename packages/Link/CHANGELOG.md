@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-link@0.2.0...@comparethemarketau/manor-link@0.3.0) (2020-08-19)
+
+
+### Features
+
+* **link:** add role and onClick props to Link ([1e74840](https://github.com/comparethemarketau/manor-react/commit/1e74840485d79393afe0775d604797eb50e7590f))
+
+
+
+
+
 # [0.2.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-link@0.1.0...@comparethemarketau/manor-link@0.2.0) (2020-08-18)
 
 
