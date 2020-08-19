@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.5.0...@comparethemarketau/manor-button@0.5.1) (2020-08-19)
+
+
+### Bug Fixes
+
+* **buttons:** removed casing from buttons ([0a6fa53](https://github.com/comparethemarketau/manor-react/commit/0a6fa5325f0d69df7a540f00be0648f4b3b7aaed))
+
+
+
+
+
 # [0.5.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.4.0...@comparethemarketau/manor-button@0.5.0) (2020-08-18)
 
 

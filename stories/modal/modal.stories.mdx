@@ -37,16 +37,16 @@ Unlike a Drawer, Modals can always be closed by the user.
         <FluidContainer>
           <Row>
             <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
-              <Button id='preview-btn' variant='secondary' handleClick={() => setVisible(!visible)}>Modal Preview</Button>
+              <Button id='preview-btn' variant='secondary' handleClick={() => setVisible(!visible)}>Modal preview</Button>
             </Column>
             <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
-              <Button id='preview-btn2' variant='secondary' handleClick={() => setVisibleModal(!visibleModal)}>Modal Preview With actions</Button>
+              <Button id='preview-btn2' variant='secondary' handleClick={() => setVisibleModal(!visibleModal)}>Modal preview with actions</Button>
             </Column>
             <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
-              <Button id='preview-btn3' variant='secondary' handleClick={() => setVisibleModal2(!visibleModal2)}>Modal Preview With supplementary bar</Button>
+              <Button id='preview-btn3' variant='secondary' handleClick={() => setVisibleModal2(!visibleModal2)}>Modal preview with supplementary bar</Button>
             </Column>
             <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
-              <Button id='preview-btn4' variant='secondary' handleClick={() => setVisibleModal3(!visibleModal3)}>Modal Preview With supplementary bar, long text</Button>
+              <Button id='preview-btn4' variant='secondary' handleClick={() => setVisibleModal3(!visibleModal3)}>Modal preview with supplementary bar, long text</Button>
             </Column>
             <Modal id='preview-modal' visible={visible} handleClose={() => {setVisible(false)}} size="sm" overlay handleOverlayClick={() => setVisible(false)} title="Modal title goes here">
               <Typography variant="body1"> It is the percentage of money you borrow for a home loan compared to the value of the property. It is used to assess your risk factor as a borrower; lenders will calculate your LVR before deciding whether or to approve you for a home loan. Home loans which are over 80% LVR are considered high risk. As a result, most lenders will charge extra fees, such as Lender’s Mortgage Insurance (LMI), in order to protect themselves in case you default.</Typography>

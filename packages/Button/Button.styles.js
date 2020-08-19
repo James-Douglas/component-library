@@ -26,7 +26,6 @@ const baseButtonStyles = css`
   justify-content: center;
   text-align: center;
   text-decoration: none;
-  text-transform: Capitalize;
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize.base};
   font-style: ${({ theme }) => theme.fontWeight.normal};

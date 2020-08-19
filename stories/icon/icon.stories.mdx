@@ -3,7 +3,7 @@ import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faTimes, faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
 import { faCheck, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
-import { Overline } from '@comparethemarketau/manor-typography';
+import { Typography } from '@comparethemarketau/manor-typography';
 
 <Meta title="Foundation/Iconography" />
 
@@ -35,7 +35,7 @@ Then you'll need to set an environment variable with the auth key, e.g `export N
              <div key={iconName} style={{display: 'flex', width: '8.4rem', marginLeft: '2rem', marginRight: '2rem', height: '6.4rem', alignItems: 'center', textAlign: 'center', flexDirection: 'column'}}>
                <FontAwesomeIcon icon={elem} size='4x' key={iconName}/>
                 <div style={{marginTop: '1.5rem'}}>
-                  <Overline>{iconName}</Overline>
+                  <Typography variant="overline">{iconName}</Typography>
                 </div>
              </div>
            </div>

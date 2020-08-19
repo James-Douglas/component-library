@@ -259,14 +259,14 @@ const DrawerMix = () => {
                   variant="primary"
                   handleClick={() => handleClickBottom('secondary')}
                 >
-                  Open Bottom Drawer
+                  Open bottom drawer
                 </Button>
                 <Button
                   id="btn02"
                   variant="primary"
                   handleClick={() => handleClickRight('primary')}
                 >
-                  Open Right Drawer
+                  Open right drawer
                 </Button>
               </div>
             </StyledCard>
