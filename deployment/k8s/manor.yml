@@ -42,13 +42,13 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: "private"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
   - host: services.dev.comparethemarket.cloud
     http:
       paths:
-      - path: /manor/
+      - path: /manor(/|$)(.*)
         backend:
           serviceName: manor-service
           servicePort: 9493
