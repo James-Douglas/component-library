@@ -50,6 +50,7 @@ const Notification = ({
   primaryAction,
   secondaryAction,
   icon,
+  customIcon,
   closeButton,
   handleClose,
   className,
@@ -63,7 +64,7 @@ const Notification = ({
     }
   };
 
-  const iconVariant = notificationIcon(variant);
+  const iconVariant = customIcon || notificationIcon(variant);
 
   useEffect(() => {
     if (autoClose && type === 'toast') {
@@ -173,6 +174,14 @@ Notification.propTypes = {
    */
   icon: PropTypes.bool,
   /**
+   * Define a custom icon
+   */
+  customIcon: PropTypes.shape({
+    prefix: PropTypes.string,
+    iconName: PropTypes.string,
+    icon: PropTypes.array, // eslint-disable-line
+  }),
+  /**
    * Defines close button visibility(by default it's hidden).
    */
   closeButton: PropTypes.bool,
@@ -212,6 +221,7 @@ Notification.defaultProps = {
   type: 'inline',
   variant: 'general',
   icon: false,
+  customIcon: null,
   closeButton: false,
   handleClose: null,
   className: '',

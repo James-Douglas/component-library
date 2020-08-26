@@ -145,7 +145,7 @@ const Modal = ({
                       <FontAwesomeIcon icon={faPhone} />
                     </StyledSupplementaryBarItemIcon>
                     <StyledSupplementaryBarItemText>
-                      <Typography gutterBottom={false} variant="subtitle2">Request a call</Typography>
+                      <Typography gutterBottom={false} component="span" variant="subtitle2">Request a call</Typography>
                     </StyledSupplementaryBarItemText>
                   </StyledSupplementaryBarItem>
                 )}
@@ -155,7 +155,7 @@ const Modal = ({
                       <FontAwesomeIcon color="" icon={faComments} />
                     </StyledSupplementaryBarItemIcon>
                     <StyledSupplementaryBarItemText>
-                      <Typography variant="subtitle2">Chat online</Typography>
+                      <Typography component="span" variant="subtitle2">Chat online</Typography>
                     </StyledSupplementaryBarItemText>
                   </StyledSupplementaryBarItem>
                 )}
@@ -176,7 +176,7 @@ const Modal = ({
                       </StyledSupplementaryBarItemIcon>
                       <StyledSupplementaryBarItemText>
                         <StyledLink href={`tel:${phoneNumber}`} target="link-target">
-                          <Typography variant="subtitle2">{phoneNumber}</Typography>
+                          <Typography component="span" variant="subtitle2">{phoneNumber}</Typography>
                         </StyledLink>
                       </StyledSupplementaryBarItemText>
                     </StyledSupplementaryBarItem>
