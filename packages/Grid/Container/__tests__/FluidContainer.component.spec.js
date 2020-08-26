@@ -28,7 +28,7 @@ describe('Container', () => {
 
     expect(container).toMatchSnapshot();
     expect(containerComponent).toBeDefined();
-    expect(containerComponent).toHaveStyleRule('padding-left', '0');
+    expect(containerComponent).toHaveStyleRule('padding', '0');
     expect(containerComponent).not.toHaveStyleRule('max-width', '72rem');
   });
 
@@ -41,13 +41,13 @@ describe('Container', () => {
   });
 
   it('allows padding to be passed through', () => {
-    const { container } = render(<FluidContainer className="test-class" padding={4} />);
+    const { container } = render(<FluidContainer className="test-class" padding={['0', '4']} />);
 
     expect(container).toMatchSnapshot();
     const test = container.getElementsByClassName('test-class');
     const containerComponent = container.firstChild;
 
-    expect(containerComponent).toHaveStyleRule('padding-left', '0.4rem');
+    expect(containerComponent).toHaveStyleRule('padding', '0 0.4rem');
 
     expect(test).toBeDefined();
   });

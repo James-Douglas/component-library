@@ -50,7 +50,7 @@ FluidContainer.propTypes = {
 FluidContainer.defaultProps = {
   className: '',
   children: [],
-  padding: 0,
+  padding: ['0'],
   gutterWidth: 32,
 };
 

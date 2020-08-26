@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import { applySpacing } from '@comparethemarketau/manor-utils';
 
 const StyledContainer = styled.div`
   box-sizing: border-box;
   width: ${({ theme }) => theme.maxWidth.full};
   margin: auto;
-  padding-left: ${({ theme, padding }) => theme.spacing[padding]};
-  padding-right: ${({ theme, padding }) => theme.spacing[padding]};
+  ${({ padding, theme }) => applySpacing(theme, 'padding', padding)};
   max-width: ${({ theme }) => theme.container.maxWidth};
   position: relative;
   display: flex;

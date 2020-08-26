@@ -47,8 +47,7 @@ exports[`Modal renders with minimal props 1`] = `
   box-sizing: border-box;
   width: 100%;
   margin: auto;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
   max-width: 120rem;
   position: relative;
   display: -webkit-box;

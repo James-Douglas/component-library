@@ -5,8 +5,7 @@ exports[`Container allows additional classes to be passed through 1`] = `
   box-sizing: border-box;
   width: 100%;
   margin: auto;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
 }
 
 <div>
@@ -21,8 +20,7 @@ exports[`Container allows padding to be passed through 1`] = `
   box-sizing: border-box;
   width: 100%;
   margin: auto;
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
+  padding: 0 0.4rem;
 }
 
 <div>
@@ -37,8 +35,7 @@ exports[`Container has a container class by default and NO fixed class 1`] = `
   box-sizing: border-box;
   width: 100%;
   margin: auto;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
 }
 
 <div>
@@ -53,8 +50,7 @@ exports[`Container renders children 1`] = `
   box-sizing: border-box;
   width: 100%;
   margin: auto;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
 }
 
 <div>
@@ -75,8 +71,7 @@ exports[`Container renders correctly without props 1`] = `
   box-sizing: border-box;
   width: 100%;
   margin: auto;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
 }
 
 <div>

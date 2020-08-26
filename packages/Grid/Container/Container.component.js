@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { spacingPropTypes } from '@comparethemarketau/manor-utils';
 import { ThemeProvider, withTheme } from 'styled-components';
 import StyledContainer from './Container.styles';
-
 import getTheme from './Container.theme';
 
 const ThemedContainer = ({

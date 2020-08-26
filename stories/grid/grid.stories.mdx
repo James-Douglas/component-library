@@ -24,11 +24,10 @@ The grid also uses a 12 column based system, which is built on top of this [libr
 <Story name="container with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
     const componentPropsId = 'Component Props';
-    const padding = number("Outer Margin", 0, componentPropsId);
     const gutterWidth = select("Gutter Width", [4,8,12,16,24,32], 32, componentPropsId);
     return(
       <div style={{ padding: '2%' }}>
-      <Container padding={padding} gutterWidth={gutterWidth}>
+      <Container padding={['0']} gutterWidth={gutterWidth}>
         <Row>
           <Column valign="center" halign="center"><Typography variant="body1">Cols-1</Typography></Column>
           <Column valign="center" halign="center"><Typography variant="body1">Cols-2</Typography></Column>
