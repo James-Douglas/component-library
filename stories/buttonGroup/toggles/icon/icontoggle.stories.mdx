@@ -1,0 +1,40 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { faCheck, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
+import LinkTo from '@storybook/addon-links/react'
+
+import { ToggleGroup, IconToggle } from '@comparethemarketau/manor-buttongroup';
+import { Container } from '@comparethemarketau/manor-grid';
+
+<Meta title="Components|ButtonGroup/ToggleButtons/Icon" component={IconToggle} />
+
+# IconToggle
+
+The IconToggle component can be used to display a toggle with an icon. The icon provided must be a FontAwesome icon which
+you have imported into your application (i.e. supply the icon itself, not it's name).
+
+As with all Toggle components, ColorToggles should typically be nested within a <LinkTo kind="components-toggles-togglegroup--togglegroup">ToggleGroup</LinkTo> which manages the fields labels,
+validation, tooltips and selection events.
+
+### Icons
+
+<Preview>
+  <Story name="toggles with icons">
+    {() => {
+      const tooltip = {title: 'test'};
+      const handleToggle = () => {};
+      return (
+        <Container>
+          <ToggleGroup label="Icons" name="toggleGroupB" tooltip={tooltip} handleToggle={handleToggle}>
+            <IconToggle value="contact" id="contact" title="Contact" description="ring ring" icon={faPhoneAlt} />
+            <IconToggle value="close" id="close" title="Close" icon={faCheck} />
+            <IconToggle value="info" id="info" title="Info" icon={faInfoCircle} />
+          </ToggleGroup>
+        </Container>
+      );
+    }}
+  </Story>
+</Preview>
+
+## Props
+<Props of={IconToggle} />

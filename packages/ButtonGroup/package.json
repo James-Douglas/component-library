@@ -1,0 +1,37 @@
+{
+  "name": "@comparethemarketau/manor-buttongroup",
+  "version": "0.5.0",
+  "description": "Manor ButtonGroup components",
+  "main": "lib/index.cjs.js",
+  "author": "Compare The Market",
+  "license": "Proprietary",
+  "scripts": {
+    "build": "rollup -c '../../rollup.config.js'",
+    "tdd": "jest --coverage --watchAll",
+    "test": "cross-env JEST_SILENT_REPORTER_DOTS=true jest --reporters=jest-silent-reporter --coverage --watchAll",
+    "test:ci": "cross-env CI=true jest",
+    "prepare": "cp package.json lib/ && cp README.md lib/ && cp CHANGELOG.md lib/"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.comparethemarket.com.au/repository/platform-packages/",
+    "access": "public",
+    "tag": "latest"
+  },
+  "dependencies": {
+    "@comparethemarketau/manor-field-validation": "^0.4.0",
+    "@comparethemarketau/manor-hooks": "^0.1.7",
+    "@comparethemarketau/manor-label": "^0.3.0",
+    "@comparethemarketau/manor-picture": "^0.3.0",
+    "@comparethemarketau/manor-tooltip": "^0.5.0",
+    "@comparethemarketau/manor-typography": "^0.5.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "styled-components": "^5.0.0"
+  }
+}

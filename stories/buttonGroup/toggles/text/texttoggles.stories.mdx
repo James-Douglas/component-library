@@ -1,0 +1,33 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import styled from 'styled-components';
+import { Container } from '@comparethemarketau/manor-grid';
+import { TextToggle, ToggleGroup } from '@comparethemarketau/manor-buttongroup';
+
+<Meta title="Components|ButtonGroup/ToggleButtons/Text" component={TextToggle} />
+
+# TextToggle
+
+The TextToggle can be used for rendering toggles that consist only of text content. To enable control over line breaking,
+the `title` prop can be provided with HTML/JSX, please ensure your usage is therefore compliant with the design system.
+
+<Preview>
+  <Story name="text toggles">
+    {() => {
+      const tooltip = {title: 'test'};
+      const handleToggle = () => {};
+      return (
+        <Container>
+          <ToggleGroup label="Square toggles" name="toggleGroupA" tooltip={tooltip} handleToggle={handleToggle} contentWidth="16rem" contentHeight="4rem">
+            <TextToggle value="1" id="one" title={<span>Less than <br />$90,000</span>} />
+            <TextToggle value="2" id="two" title={<span>Between <br /> $90,001 - $105,000</span>} />
+            <TextToggle value="3" id="three" title={<span>Between <br /> $105,001 - $120,000</span>} />
+            <TextToggle value="4" id="four" title={<span>Over $120,000</span>} />
+          </ToggleGroup>
+        </Container>
+      );
+    }}
+  </Story>
+</Preview>
+
+## Props
+<Props of={TextToggle} />
