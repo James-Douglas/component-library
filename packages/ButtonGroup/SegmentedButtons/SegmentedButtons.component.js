@@ -6,18 +6,12 @@ import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
-import styled from 'styled-components';
 import {
   StyledSegmentedButtons,
   StyledValidationWrapper,
+  StyledEvenDivWrapper,
 } from './SegmentedButtons.styles';
 import SegmentedButton from './button/SegmentedButton.component';
-
-const StyledEvenDivWrapper = styled.div`
-  display: inline-flex;
-  flex: auto;
-  maxwidth: ${({ divWidth }) => divWidth};
-`;
 
 export const generateButtons = (
   groupId,
