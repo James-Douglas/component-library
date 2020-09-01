@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.7.0...@comparethemarketau/manor-notification@0.9.0) (2020-09-01)
+
+
+### Features
+
+* **link:** add role and onClick props to Link ([#370](https://github.com/comparethemarketau/manor-react/issues/370)) ([5d5d06c](https://github.com/comparethemarketau/manor-react/commit/5d5d06c94ac878cf1b0e6e642ceef0dd1bcbcd3b))
+* **notification:** added custom notification icon ([#368](https://github.com/comparethemarketau/manor-react/issues/368)) ([275c407](https://github.com/comparethemarketau/manor-react/commit/275c4071b225634fe0b13be576a16723805d1654))
+
+
+
+
+
 ## [0.8.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.8.0...@comparethemarketau/manor-notification@0.8.1) (2020-08-19)
 
 ## [0.7.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.7.0...@comparethemarketau/manor-notification@0.7.1) (2020-08-19)
