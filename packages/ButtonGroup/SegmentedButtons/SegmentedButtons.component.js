@@ -28,7 +28,7 @@ export const generateButtons = (
     const key = `toggle-${groupId}-${index}`;
     const propsToAdd = {
       name,
-      title: entry.title,
+      title: entry.label,
       value: entry.value,
       id: entry.id,
       selectedValue: selectedButtonValue,
@@ -183,7 +183,7 @@ SegmentedButtons.propTypes = {
    */
   buttonsContent: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string,
+      label: PropTypes.string,
       value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,

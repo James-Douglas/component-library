@@ -21,22 +21,22 @@ describe('SegmentedButtons', () => {
     it('generateButtons', () => {
       buttonsContent = [
         {
-          title: 'button1',
+          label: 'button1',
           value: 1,
           id: 'a',
         },
         {
-          title: 'button2',
+          label: 'button2',
           value: 2,
           id: 'b',
         },
         {
-          title: 'button3',
+          label: 'button3',
           value: 3,
           id: 'c',
         },
         {
-          title: 'button4',
+          label: 'button4',
           value: 4,
           id: 'd',
         },
@@ -83,12 +83,12 @@ describe('SegmentedButtons', () => {
     it('formatEvenOrOddButtons even', () => {
       buttonsContent = [
         {
-          title: 'button1',
+          label: 'button1',
           value: 1,
           id: 'a',
         },
         {
-          title: 'button2',
+          label: 'button2',
           value: 2,
           id: 'b',
         },
@@ -135,17 +135,17 @@ describe('SegmentedButtons', () => {
     it('formatEvenOrOddButtons odd', () => {
       buttonsContent = [
         {
-          title: 'button1',
+          label: 'button1',
           value: 1,
           id: 'a',
         },
         {
-          title: 'button2',
+          label: 'button2',
           value: 2,
           id: 'b',
         },
         {
-          title: 'button3',
+          label: 'button3',
           value: 3,
           id: 'c',
         },
@@ -191,12 +191,12 @@ describe('SegmentedButtons', () => {
     it('formatEvenOrOddButtons even fixed', () => {
       buttonsContent = [
         {
-          title: 'button1',
+          label: 'button1',
           value: 1,
           id: 'a',
         },
         {
-          title: 'button2',
+          label: 'button2',
           value: 2,
           id: 'b',
         },
@@ -244,12 +244,12 @@ describe('SegmentedButtons', () => {
     it('formatEvenOrOddButtons even fixed with contentWidth', () => {
       buttonsContent = [
         {
-          title: 'button1',
+          label: 'button1',
           value: 1,
           id: 'a',
         },
         {
-          title: 'button2',
+          label: 'button2',
           value: 2,
           id: 'b',
         },
@@ -304,22 +304,22 @@ describe('SegmentedButtons', () => {
         handleToggle={() => {}}
         buttonsContent={[
           {
-            title: 'button1',
+            label: 'button1',
             value: 1,
             id: 'a',
           },
           {
-            title: 'button2',
+            label: 'button2',
             value: 2,
             id: 'b',
           },
           {
-            title: 'button3',
+            label: 'button3',
             value: 3,
             id: 'c',
           },
           {
-            title: 'button4',
+            label: 'button4',
             value: 4,
             id: 'd',
           },
@@ -337,12 +337,12 @@ describe('SegmentedButtons', () => {
         handleToggle={onToggleCb}
         buttonsContent={[
           {
-            title: 'button1',
+            label: 'button1',
             value: 1,
             id: 'a',
           },
           {
-            title: 'button2',
+            label: 'button2',
             value: 2,
             id: 'b',
           },
@@ -370,12 +370,12 @@ describe('SegmentedButtons', () => {
         handleClick={onClickCb}
         buttonsContent={[
           {
-            title: 'button1',
+            label: 'button1',
             value: 1,
             id: 'a',
           },
           {
-            title: 'button2',
+            label: 'button2',
             value: 2,
             id: 'b',
           },
@@ -399,12 +399,12 @@ describe('SegmentedButtons', () => {
         tooltip={tooltip}
         buttonsContent={[
           {
-            title: 'button1',
+            label: 'button1',
             value: 1,
             id: 'a',
           },
           {
-            title: 'button2',
+            label: 'button2',
             value: 2,
             id: 'b',
           },
