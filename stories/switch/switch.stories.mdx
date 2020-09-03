@@ -1,0 +1,62 @@
+import { useState } from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select, object } from '@storybook/addon-knobs';
+import { default as DemoContainer } from './switch-view-styles';
+import { Switch } from '@comparethemarketau/manor-switch';
+import { Typography } from '@comparethemarketau/manor-typography';
+
+<Meta title="Components/Switch" />
+
+# Switch
+
+The Switch component can be used to render a switch content.
+The switch component has been designed based on designs found here https://www.figma.com/file/xnaWFuAPuqFAgsoYrwRVQz/Bento-%7C-Design-System?node-id=5021%3A1357.
+The component has been developed as a wrapper for https://material-ui.com/components/switches/
+
+<Preview>
+  <Story name="switch">
+    {() => {
+      const [switches, setSwitches] = React.useState({
+        checkedA: false,
+        checkedB: false,
+        checkedC: false,
+      });
+      const handleChange = (event) => {
+        setSwitches({ ...switches, [event.target.name]: event.target.checked });
+      };
+    return (
+      <DemoContainer>
+        <Switch disabled />
+        <Switch name={'checkedA'} label={'This is a Test'} checked={switches.checkedA} onChange={handleChange} />
+        <Switch name={'checkedB'} label={'This is a Test'} checked={switches.checkedB} onChange={handleChange} labelVariant={'caption'} labelPlacement={'top'}/>
+        <Switch name={'checkedC'} label={'This is a Test'} checked={switches.checkedC} onChange={handleChange} validationMessage={'This value is required'}/>
+    </DemoContainer>
+    );
+    }}
+  </Story>
+</Preview>
+
+<Story name="switch with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const id = text("ID", '');
+    const name = text("Name", '');
+    const label = text("Label", '');
+    const disabled = boolean('Disabled', false);
+    const tooltip = object('Tooltip', { title: '', body: '' });
+    const labelPlacement = select("Label Placement", ['bottom', 'end', 'start', 'top'], 'end');
+    const labelVariant = select("Label Variant", ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'caption', 'button','overline','srOnly', 'inherit',], 'body1');
+    const validationMessage = text("Validation Message", '');
+    const [checked, setChecked] = useState(true);
+    const handleChange = (event) => {
+      setChecked(event.target.checked);
+    };
+    return (
+      <DemoContainer>
+        <Switch id={id} name={name} label={label} labelVariant={labelVariant} tooltip={tooltip} checked={checked} onChange={handleChange} disabled={disabled} labelPlacement={labelPlacement} validationMessage={validationMessage} />
+      </DemoContainer>
+    );
+  }}
+</Story>
+
+#### Props
+<Props of={Switch} />

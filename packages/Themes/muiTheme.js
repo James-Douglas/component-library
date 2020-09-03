@@ -122,4 +122,22 @@ export default (manorTheme) => createMuiTheme({
     },
     htmlFontSize: 10,
   },
+  palette: {
+    primary: {
+      main: manorTheme.colors.primary500,
+    },
+  },
+  overrides: {
+    MuiSwitch: {
+      switchBase: {
+        opacity: 1,
+        color: manorTheme.colors.grey200,
+      },
+      colorPrimary: {
+        '&$checked + $track': {
+          backgroundColor: manorTheme.colors.primary200,
+        },
+      },
+    },
+  },
 });
