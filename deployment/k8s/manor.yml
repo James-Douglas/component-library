@@ -13,16 +13,16 @@ spec:
       labels:
         app: manor
       annotations:
-        fluentbit.io/exclude: "true"
+        fluentbit.io/exclude: 'true'
     spec:
       containers:
-      - name: manor
-        image: quay.io/comparethemarketau/manor:$DOCKER_TAG
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 9493
+        - name: manor
+          image: quay.io/comparethemarketau/manor-react:$DOCKER_TAG
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9493
       imagePullSecrets:
-      - name: regcred
+        - name: regcred
 ---
 apiVersion: v1
 kind: Service
@@ -32,8 +32,8 @@ spec:
   selector:
     app: manor
   ports:
-  - port: 9493
-    protocol: TCP
+    - port: 9493
+      protocol: TCP
 ---
 kind: Ingress
 apiVersion: extensions/v1beta1
@@ -41,14 +41,14 @@ metadata:
   name: manor-private-ingress
   namespace: default
   annotations:
-    kubernetes.io/ingress.class: "private"
+    kubernetes.io/ingress.class: 'private'
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - host: services.dev.comparethemarket.cloud
-    http:
-      paths:
-      - path: /manor(/|$)(.*)
-        backend:
-          serviceName: manor-service
-          servicePort: 9493
+    - host: services.dev.comparethemarket.cloud
+      http:
+        paths:
+          - path: /manor(/|$)(.*)
+            backend:
+              serviceName: manor-service
+              servicePort: 9493

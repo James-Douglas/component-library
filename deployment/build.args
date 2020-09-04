@@ -1,0 +1,9 @@
+ENV=${ENV:=dev}
+LOG=debug
+NPM_FONTAWESOME_TOKEN=$(aws ssm get-parameter \
+  --with-decryption \
+  --name /fontawesome/token \
+  --query 'Parameter.Value' \
+  --output text \
+  --region ap-southeast-2 \
+  --profile compare_the_market_$ENV)

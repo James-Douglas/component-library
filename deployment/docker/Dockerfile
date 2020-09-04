@@ -3,9 +3,6 @@
 #-----------------------------------------------------#
 FROM node:10.17.0-alpine as build
 
-ARG bamboo_nexus_fe_token_password
-ENV bamboo_nexus_fe_token_password=${bamboo_nexus_fe_token_password}
-
 ARG NPM_FONTAWESOME_TOKEN
 ENV NPM_FONTAWESOME_TOKEN=${NPM_FONTAWESOME_TOKEN}
 
@@ -18,6 +15,7 @@ RUN yarn build-storybook
 ## RELEASE
 ##-----------------------------------------------------#
 FROM nginx
+RUN apt update && apt install --reinstall ca-certificates
 COPY deployment/k8s/nginx.conf ./etc/nginx/nginx.conf
 WORKDIR /usr/share/nginx/html
 COPY --from=build /usr/src/app/storybook-static/ .
