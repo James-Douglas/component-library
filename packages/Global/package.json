@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-global",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Manor Global component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,10 +18,10 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-utils": "^0.1.8"
+    "@comparethemarketau/manor-utils": "^0.1.9"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-provider": "^0.5.1"
+    "@comparethemarketau/manor-provider": "^0.5.2"
   },
   "peerDependencies": {
     "react": "^16.11.0",

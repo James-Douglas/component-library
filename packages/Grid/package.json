@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-grid",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Manor Grid component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-utils": "^0.1.8",
+    "@comparethemarketau/manor-utils": "^0.1.9",
     "prop-types": "^15.7.2",
     "react-styled-flexboxgrid": "^3.2.1"
   },
