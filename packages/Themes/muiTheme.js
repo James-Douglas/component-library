@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createMuiTheme, fade } from '@material-ui/core';
 
 export default (manorTheme) => createMuiTheme({
   typography: {
@@ -136,6 +136,12 @@ export default (manorTheme) => createMuiTheme({
       colorPrimary: {
         '&$checked + $track': {
           backgroundColor: manorTheme.colors.primary200,
+        },
+        '&$checked&:hover': {
+          backgroundColor: fade(manorTheme.colors.primary500, 0.12),
+        },
+        '&:not($checked)&:hover': {
+          backgroundColor: fade(manorTheme.colors.grey600, 0.15),
         },
       },
     },
