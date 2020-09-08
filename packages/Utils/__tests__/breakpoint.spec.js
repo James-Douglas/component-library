@@ -9,6 +9,12 @@ jest.mock('../screens', () => ({
 }));
 
 let windowSpy;
+const customBreakpoints = {
+  xs: 300,
+  sm: 600,
+  md: 900,
+  lg: 1200,
+};
 
 beforeEach(() => {
   windowSpy = jest.spyOn(global, 'window', 'get');
@@ -47,6 +53,30 @@ describe('getBreakpoint()', () => {
       innerWidth: 1201,
     }));
     expect(getBreakpoint()).toEqual('xl');
+  });
+  it('returns xs for xs screen, when customBreakpoints provided', () => {
+    windowSpy.mockImplementation(() => ({
+      innerWidth: 200,
+    }));
+    expect(getBreakpoint(customBreakpoints)).toEqual('xs');
+  });
+  it('returns sm for sm screen, when customBreakpoints provided', () => {
+    windowSpy.mockImplementation(() => ({
+      innerWidth: 301,
+    }));
+    expect(getBreakpoint(customBreakpoints)).toEqual('sm');
+  });
+  it('returns md for md screen, when customBreakpoints provided', () => {
+    windowSpy.mockImplementation(() => ({
+      innerWidth: 601,
+    }));
+    expect(getBreakpoint(customBreakpoints)).toEqual('md');
+  });
+  it('returns lg for lg screen, when customBreakpoints provided', () => {
+    windowSpy.mockImplementation(() => ({
+      innerWidth: 901,
+    }));
+    expect(getBreakpoint(customBreakpoints)).toEqual('lg');
   });
 });
 

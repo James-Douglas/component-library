@@ -121,8 +121,9 @@ Typography.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
   ]),
 };
 

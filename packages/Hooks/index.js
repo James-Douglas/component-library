@@ -1,4 +1,5 @@
 import useBreakpoint from './useBreakpoint';
+import useIsBreakpointRange from './useIsBreakpointRange';
 import useId from './useId';
 import useInterval from './useInterval';
 import useIsDesktop from './useIsDesktop';
@@ -10,6 +11,7 @@ import useUnmountEffect from './useUnmountEffect';
 
 export {
   useBreakpoint,
+  useIsBreakpointRange,
   useId,
   useInterval,
   useIsDesktop,
