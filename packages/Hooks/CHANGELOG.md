@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-hooks@0.1.9...@comparethemarketau/manor-hooks@0.2.0) (2020-09-08)
+
+
+### Features
+
+* **hooks:** implemented useIsBreakpointRange hook and modified useBreakpoint to take in custom breakpoints ([#380](https://github.com/comparethemarketau/manor-react/issues/380)) ([4f63615](https://github.com/comparethemarketau/manor-react/commit/4f63615999b3c2fcaf947bc6fa248e701f7f65f1))
+
+
+
+
+
 ## [0.1.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-hooks@0.1.8...@comparethemarketau/manor-hooks@0.1.9) (2020-09-04)
 
 **Note:** Version bump only for package @comparethemarketau/manor-hooks
