@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tabs@0.5.2...@comparethemarketau/manor-tabs@0.6.0) (2020-09-09)
+
+
+### Features
+
+* **tabs:** refactored tabs to be inline with designs ([#381](https://github.com/comparethemarketau/manor-react/issues/381)) ([8629bf1](https://github.com/comparethemarketau/manor-react/commit/8629bf136255e3204c46190ace160d2862bcd31b))
+
+
+
+
+
 ## [0.5.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tabs@0.5.1...@comparethemarketau/manor-tabs@0.5.2) (2020-09-04)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tabs

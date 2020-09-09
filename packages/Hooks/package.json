@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-hooks",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Manor Hooks",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-utils": "^0.2.0",
+    "@comparethemarketau/manor-utils": "^0.2.1",
     "uuid": "3.4.0"
   },
   "peerDependencies": {
