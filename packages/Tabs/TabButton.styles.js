@@ -1,17 +1,24 @@
 import styled, { css } from 'styled-components';
 
+const StyledTabButtonContent = styled.div`
+  padding: ${({ theme }) => `${theme.spacing[16]} ${theme.spacing[8]}`};
+  ${({ active }) => active && css`
+    div {
+     margin: 0;
+    }
+  `}
+`;
+
 const StyledTabButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
   font-font: ${({ theme }) => theme.fontFamily};
-  padding: ${({ theme }) => `${theme.spacing[20]} 0 ${theme.spacing[12]} 0`};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   line-height: ${({ theme }) => theme.lineHeight.snug};
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.fontSize.base};
   margin: 0;
-  border-bottom: 0.5rem solid transparent;
   max-width: 100%;
   transition: .3s ease-out border;
   -ms-flex-preferred-size: 0;
@@ -24,17 +31,19 @@ const StyledTabButton = styled.button`
   :focus {
     outline: none;
   }
-  & h1, h2, h3, h4, h5, h6, p {
-    font-weight: ${({ theme }) => theme.fontWeight.bold};
+  & div {
+    text-transform: uppercase;
     line-height: ${({ theme }) => theme.lineHeight.snug};
-    font-family: ${({ theme }) => theme.fontFamily};
-    font-size: ${({ theme }) => theme.fontSize.base};
     margin: 0;
   }
 
-  ${({ theme, activeTab, name }) => activeTab === name && css`
-    border-bottom: 0.5rem solid ${theme.colors.brandMidnightBlue};
+  ${({ theme, active }) => active && css`
+    box-shadow: ${theme.tabs.selectedTabShadow};
+    & div {
+      color: ${theme.colors.primary500};
+      font-weight: ${theme.fontWeight.bold};
+    }
   `}
 `;
 
-export default StyledTabButton;
+export { StyledTabButton, StyledTabButtonContent };

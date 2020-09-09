@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { Typography } from '@comparethemarketau/manor-typography';
 import TabsContext from './TabsContext';
-import StyledTabButton from './TabButton.styles';
+import { StyledTabButton, StyledTabButtonContent } from './TabButton.styles';
 
 const TabButton = ({
-  name, handleClick, children,
+  name, label, handleClick,
 }) => {
   const tabContext = useContext(TabsContext);
 
@@ -20,9 +21,18 @@ const TabButton = ({
     ${tabContext.activeTab === name ? 'active' : ''}
   `;
 
+  const active = tabContext.activeTab === name;
+
   return (
-    <StyledTabButton type="button" className={classNames} activeTab={tabContext.activeTab} name={name} onClick={clickHandler}>
-      {children}
+    <StyledTabButton
+      type="button"
+      className={classNames}
+      active={active}
+      onClick={clickHandler}
+    >
+      <StyledTabButtonContent active={active}>
+        <Typography variant="body1" component="div" color="inherit">{label}</Typography>
+      </StyledTabButtonContent>
     </StyledTabButton>
   );
 };
@@ -33,22 +43,17 @@ TabButton.propTypes = {
    */
   name: PropTypes.string.isRequired,
   /**
+   * The label for the tab button
+   */
+  label: PropTypes.string.isRequired,
+  /**
    * Add a custom click handler
    */
   handleClick: PropTypes.func,
-  /**
-   * The child content of the button
-   */
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
 };
 
 TabButton.defaultProps = {
   handleClick: null,
-  children: '',
 };
 
 export default TabButton;

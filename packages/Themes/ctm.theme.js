@@ -534,7 +534,9 @@ const ctmTheme = {
     titleFontSize: fontSize.base,
     titleFontWeight: fontWeight.semibold,
     titleColor: colors.primary900,
-    background: colors.white,
+    background: colors.primary50,
+    buttonWrapShadow: `inset 0 -0.2rem 0 ${colors.primary200}`,
+    selectedTabShadow: `inset 0 -0.2rem 0 ${colors.primary500}`,
   },
   toggle: {
     base: {

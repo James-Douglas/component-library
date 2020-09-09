@@ -31,8 +31,8 @@ describe('renderChildren', () => {
     const { container } = render(
       <TabsContext.Provider value="test">
         <RenderChildrenContainer>
-          <TabButton name="test">test btn</TabButton>
-          <TabPanel name="test">test panel</TabPanel>
+          <TabButton name="test" label="test btn" />
+          <TabPanel name="test" label="test panel" />
         </RenderChildrenContainer>
       </TabsContext.Provider>,
     );
@@ -49,8 +49,8 @@ describe('Tabs', () => {
   it('renders correctly with minimal props', () => {
     const { container } = render(
       <Tabs startingTab="refine-results-1">
-        <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
-        <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
+        <TabButton name="refine-results-1" label="Refine Results" />
+        <TabButton name="edit-details-1" label="Edit Details" />
         <TabPanel name="refine-results-1">
           <p>View Type</p>
         </TabPanel>
@@ -70,8 +70,8 @@ describe('Tabs', () => {
   it('changes tab on click', () => {
     const { container } = render(
       <Tabs startingTab="refine-results-1">
-        <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
-        <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
+        <TabButton name="refine-results-1" label="Refine Results" />
+        <TabButton name="edit-details-1" label="Edit Details" />
         <TabPanel name="refine-results-1">
           <p>View Type</p>
         </TabPanel>
@@ -83,14 +83,11 @@ describe('Tabs', () => {
     );
 
     const tabBtns = container.querySelectorAll('.tab-button');
-    const tabPanels = container.querySelectorAll('.tab-panel');
 
     fireEvent.click(tabBtns[1], { button: 0 });
 
     expect(tabBtns[0]).not.toHaveClass('active');
-    expect(tabPanels[0]).toHaveStyle('display: none');
     expect(tabBtns[1]).toHaveClass('active');
-    expect(tabPanels[1]).not.toHaveStyle('display: none');
   });
 
   it('accepts a clickHandler on the buttons', () => {
@@ -98,8 +95,8 @@ describe('Tabs', () => {
 
     const { container } = render(
       <Tabs startingTab="refine-results-1">
-        <TabButton name="refine-results-1" handleClick={mockTestClick}><p>Refine Results</p></TabButton>
-        <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
+        <TabButton name="refine-results-1" handleClick={mockTestClick} label="Refine Results" />
+        <TabButton name="edit-details-1" label="Edit Details" />
         <TabPanel name="refine-results-1">
           <p>View Type</p>
         </TabPanel>
@@ -118,8 +115,8 @@ describe('Tabs', () => {
   it('renders a border', () => {
     const { container } = render(
       <Tabs startingTab="refine-results-1" bordered>
-        <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
-        <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
+        <TabButton name="refine-results-1" label="Refine Results" />
+        <TabButton name="edit-details-1" label="Edit Details" />
         <TabPanel name="refine-results-1">
           <p>View Type</p>
         </TabPanel>
@@ -139,8 +136,8 @@ describe('Tabs', () => {
   it('renders additional classNames', () => {
     const { container } = render(
       <Tabs startingTab="refine-results-1" className="test classes">
-        <TabButton name="refine-results-1"><p>Refine Results</p></TabButton>
-        <TabButton name="edit-details-1"><p>Edit Details</p></TabButton>
+        <TabButton name="refine-results-1" label="Refine Results" />
+        <TabButton name="edit-details-1" label="Edit Details" />
         <TabPanel name="refine-results-1">
           <p>View Type</p>
         </TabPanel>
@@ -164,7 +161,7 @@ describe('TabButton', () => {
   it('renders a TabButton', () => {
     const { container, getByText } = render(
       <TabsContext.Provider value="test">
-        <TabButton name="test"><p>Refine Results</p></TabButton>
+        <TabButton name="test" label="Refine Results" />
       </TabsContext.Provider>,
     );
 
@@ -178,8 +175,8 @@ describe('TabButton', () => {
   it('renders multiple TabButtons', () => {
     const { container, getByText } = render(
       <TabsContext.Provider value="test">
-        <TabButton name="test1"><p>Refine Results1</p></TabButton>
-        <TabButton name="test2"><p>Refine Results2</p></TabButton>
+        <TabButton name="test1" label="Refine Results1" />
+        <TabButton name="test2" label="Refine Results2" />
       </TabsContext.Provider>,
     );
 

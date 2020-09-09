@@ -13,14 +13,22 @@ import { Typography } from '@comparethemarketau/manor-typography';
 <Preview>
   <Story name="tabs">
     <div style={{padding: '2%'}}>
-      <Tabs startingTab="primary-tab" bordered>
-        <TabButton name="primary-tab">Tab one title</TabButton>
-        <TabButton name="secondary-tab">Tab two title</TabButton>
-        <TabPanel name="primary-tab">
+      <Tabs startingTab="tab-one" bordered>
+        <TabButton name="tab-one" label="One" />
+        <TabButton name="tab-two" label="Two" />
+        <TabButton name="tab-three" label="Three" />
+        <TabButton name="tab-four" label="Four" />
+        <TabPanel name="tab-one">
           <Typography variant="body1">Tab one content</Typography>
         </TabPanel>
-        <TabPanel name="secondary-tab">
+        <TabPanel name="tab-two">
           <Typography variant="body1">Tab two content</Typography>
+        </TabPanel>
+        <TabPanel name="tab-three">
+          <Typography variant="body1">Tab three content</Typography>
+        </TabPanel>
+        <TabPanel name="tab-four">
+          <Typography variant="body1">Tab four content</Typography>
         </TabPanel>
       </Tabs>
     </div>
@@ -44,8 +52,8 @@ import { Typography } from '@comparethemarketau/manor-typography';
         <Row>
           <Column xsOffset={1} xs={8} sm={8} md={8} lg={8}>
             <Tabs startingTab="primary-tab" bordered minHeight="500px">
-              <TabButton name="primary-tab">Tab one title</TabButton>
-              <TabButton name="secondary-tab">Tab two title</TabButton>
+              <TabButton name="primary-tab" label="Tab one title" />
+              <TabButton name="secondary-tab" label="Tab two title" />
               <TabPanel name="primary-tab">
                 <Dropdown
                   id="tabs-dropdown"

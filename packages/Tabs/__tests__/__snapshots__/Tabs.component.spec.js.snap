@@ -3,16 +3,21 @@
 exports[`TabButton renders a TabButton 1`] = `
 <div>
   <button
-    class="sc-AxjAm yLCRv 
+    class="sc-AxirZ gTQbkF 
     tab-button
     
   "
-    name="test"
     type="button"
   >
-    <p>
-      Refine Results
-    </p>
+    <div
+      class="sc-AxjAm fXBrIo"
+    >
+      <div
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+      >
+        Refine Results
+      </div>
+    </div>
   </button>
 </div>
 `;
@@ -20,28 +25,38 @@ exports[`TabButton renders a TabButton 1`] = `
 exports[`TabButton renders multiple TabButtons 1`] = `
 <div>
   <button
-    class="sc-AxjAm yLCRv 
+    class="sc-AxirZ gTQbkF 
     tab-button
     
   "
-    name="test1"
     type="button"
   >
-    <p>
-      Refine Results1
-    </p>
+    <div
+      class="sc-AxjAm fXBrIo"
+    >
+      <div
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+      >
+        Refine Results1
+      </div>
+    </div>
   </button>
   <button
-    class="sc-AxjAm yLCRv 
+    class="sc-AxirZ gTQbkF 
     tab-button
     
   "
-    name="test2"
     type="button"
   >
-    <p>
-      Refine Results2
-    </p>
+    <div
+      class="sc-AxjAm fXBrIo"
+    >
+      <div
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+      >
+        Refine Results2
+      </div>
+    </div>
   </button>
 </div>
 `;
@@ -49,7 +64,7 @@ exports[`TabButton renders multiple TabButtons 1`] = `
 exports[`TabPanel renders a TabPanel 1`] = `
 <div>
   <div
-    class="sc-AxhCb eYFifc 
+    class="sc-AxhUy gEMAAJ 
     tab-panel
     
   "
@@ -65,7 +80,7 @@ exports[`TabPanel renders a TabPanel 1`] = `
 exports[`TabPanel renders additional classNames 1`] = `
 <div>
   <div
-    class="sc-AxhCb eYFifc 
+    class="sc-AxhUy gEMAAJ 
     tab-panel
     test classes
   "
@@ -76,7 +91,7 @@ exports[`TabPanel renders additional classNames 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb eYFifc 
+    class="sc-AxhUy gEMAAJ 
     tab-panel
     another-class
   "
@@ -92,7 +107,7 @@ exports[`TabPanel renders additional classNames 1`] = `
 exports[`TabPanel renders multiple TabPanels 1`] = `
 <div>
   <div
-    class="sc-AxhCb eYFifc 
+    class="sc-AxhUy gEMAAJ 
     tab-panel
     
   "
@@ -103,7 +118,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb eYFifc 
+    class="sc-AxhUy gEMAAJ 
     tab-panel
     
   "
@@ -114,7 +129,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb eYFifc 
+    class="sc-AxhUy gEMAAJ 
     tab-panel
     
   "
@@ -125,7 +140,7 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
     </p>
   </div>
   <div
-    class="sc-AxhCb eYFifc 
+    class="sc-AxhUy gEMAAJ 
     tab-panel
     
   "
@@ -141,42 +156,52 @@ exports[`TabPanel renders multiple TabPanels 1`] = `
 exports[`Tabs renders a border 1`] = `
 <div>
   <div
-    class="sc-AxirZ hvpKAw 
+    class="sc-AxiKw fHkgoG 
     tabs-container
     
   "
     style="min-height: initial;"
   >
     <div
-      class="sc-AxiKw htLnzH tab-button-wrap"
+      class="sc-AxhCb lsWBe tab-button-wrap"
     >
       <button
-        class="sc-AxjAm klYZgR 
+        class="sc-AxirZ iTqZTL 
     tab-button
     active
   "
-        name="refine-results-1"
         type="button"
       >
-        <p>
-          Refine Results
-        </p>
+        <div
+          class="sc-AxjAm hTEWcS"
+        >
+          <div
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+          >
+            Refine Results
+          </div>
+        </div>
       </button>
       <button
-        class="sc-AxjAm yLCRv 
+        class="sc-AxirZ gTQbkF 
     tab-button
     
   "
-        name="edit-details-1"
         type="button"
       >
-        <p>
-          Edit Details
-        </p>
+        <div
+          class="sc-AxjAm fXBrIo"
+        >
+          <div
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+          >
+            Edit Details
+          </div>
+        </div>
       </button>
     </div>
     <div
-      class="sc-AxhCb hIZTYF 
+      class="sc-AxhUy cnGdJo 
     tab-panel
     
   "
@@ -187,7 +212,7 @@ exports[`Tabs renders a border 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb eYFifc 
+      class="sc-AxhUy gEMAAJ 
     tab-panel
     
   "
@@ -207,42 +232,52 @@ exports[`Tabs renders a border 1`] = `
 exports[`Tabs renders additional classNames 1`] = `
 <div>
   <div
-    class="sc-AxirZ glZudf 
+    class="sc-AxiKw iohaWN 
     tabs-container
     test classes
   "
     style="min-height: initial;"
   >
     <div
-      class="sc-AxiKw htLnzH tab-button-wrap"
+      class="sc-AxhCb lsWBe tab-button-wrap"
     >
       <button
-        class="sc-AxjAm klYZgR 
+        class="sc-AxirZ iTqZTL 
     tab-button
     active
   "
-        name="refine-results-1"
         type="button"
       >
-        <p>
-          Refine Results
-        </p>
+        <div
+          class="sc-AxjAm hTEWcS"
+        >
+          <div
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+          >
+            Refine Results
+          </div>
+        </div>
       </button>
       <button
-        class="sc-AxjAm yLCRv 
+        class="sc-AxirZ gTQbkF 
     tab-button
     
   "
-        name="edit-details-1"
         type="button"
       >
-        <p>
-          Edit Details
-        </p>
+        <div
+          class="sc-AxjAm fXBrIo"
+        >
+          <div
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+          >
+            Edit Details
+          </div>
+        </div>
       </button>
     </div>
     <div
-      class="sc-AxhCb hIZTYF 
+      class="sc-AxhUy cnGdJo 
     tab-panel
     
   "
@@ -253,7 +288,7 @@ exports[`Tabs renders additional classNames 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb eYFifc 
+      class="sc-AxhUy gEMAAJ 
     tab-panel
     
   "
@@ -273,42 +308,52 @@ exports[`Tabs renders additional classNames 1`] = `
 exports[`Tabs renders correctly with minimal props 1`] = `
 <div>
   <div
-    class="sc-AxirZ glZudf 
+    class="sc-AxiKw iohaWN 
     tabs-container
     
   "
     style="min-height: initial;"
   >
     <div
-      class="sc-AxiKw htLnzH tab-button-wrap"
+      class="sc-AxhCb lsWBe tab-button-wrap"
     >
       <button
-        class="sc-AxjAm klYZgR 
+        class="sc-AxirZ iTqZTL 
     tab-button
     active
   "
-        name="refine-results-1"
         type="button"
       >
-        <p>
-          Refine Results
-        </p>
+        <div
+          class="sc-AxjAm hTEWcS"
+        >
+          <div
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+          >
+            Refine Results
+          </div>
+        </div>
       </button>
       <button
-        class="sc-AxjAm yLCRv 
+        class="sc-AxirZ gTQbkF 
     tab-button
     
   "
-        name="edit-details-1"
         type="button"
       >
-        <p>
-          Edit Details
-        </p>
+        <div
+          class="sc-AxjAm fXBrIo"
+        >
+          <div
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInherit"
+          >
+            Edit Details
+          </div>
+        </div>
       </button>
     </div>
     <div
-      class="sc-AxhCb hIZTYF 
+      class="sc-AxhUy cnGdJo 
     tab-panel
     
   "
@@ -319,7 +364,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
       </p>
     </div>
     <div
-      class="sc-AxhCb eYFifc 
+      class="sc-AxhUy gEMAAJ 
     tab-panel
     
   "
