@@ -20,14 +20,11 @@ const StyledTabButton = styled.button`
   font-size: ${({ theme }) => theme.fontSize.base};
   margin: 0;
   max-width: 100%;
-  transition: .3s ease-out border;
+  transition: .3s ease-out box-shadow;
   -ms-flex-preferred-size: 0;
   flex-basis: 0%;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  :not(:first-child) {
-   margin-left: ${({ theme }) => theme.spacing[24]};
-  }
   :focus {
     outline: none;
   }
@@ -35,6 +32,9 @@ const StyledTabButton = styled.button`
     text-transform: uppercase;
     line-height: ${({ theme }) => theme.lineHeight.snug};
     margin: 0;
+    transition-property: font-weight, color;
+    transition-duration: .3s;
+    transition-timing-function: ease-out;
   }
 
   ${({ theme, active }) => active && css`
