@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-provider",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "Manor Provider",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,8 +18,8 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.2.2",
-    "@comparethemarketau/manor-themes": "^0.5.1",
+    "@comparethemarketau/manor-hooks": "^0.2.3",
+    "@comparethemarketau/manor-themes": "^0.5.2",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

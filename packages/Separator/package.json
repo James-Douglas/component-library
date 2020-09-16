@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-separator",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Manor Separator component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -21,7 +21,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.5.1"
+    "@comparethemarketau/manor-themes": "^0.5.2"
   },
   "peerDependencies": {
     "react": "^16.11.0",
