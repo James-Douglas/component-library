@@ -1,11 +1,9 @@
-# `Slider`
+# Slider
 
-> TODO: description
+## Installation
 
-## Usage
+`yarn add @comparethemarketau/manor-slider`
 
-```
-const slider = require('Slider');
+## Documentation
 
-// TODO: DEMONSTRATE API
-```
+For technical documentation, see [Storybook](https://services.dev.comparethemarket.cloud/manor/?path=/docs/components-stepslider--step-slider).
