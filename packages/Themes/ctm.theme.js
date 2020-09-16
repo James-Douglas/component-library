@@ -12,6 +12,14 @@ const flexboxgrid = {
   },
 };
 
+const breakpoints = {
+  xs: '375px',
+  sm: '768px',
+  md: '1024px',
+  lg: '1200px',
+  xl: '1440px',
+};
+
 const colors = {
   brandMidnightBlue: '#001443',
   brandDarkBlue: '#001564',
@@ -569,6 +577,7 @@ const ctmTheme = {
     closeIcon: colors.grey500,
     shadow: '0px 0px 6px rgba(0, 0, 0, 0.15)',
   },
+  breakpoints,
   borders,
   colors,
   fontFamily,

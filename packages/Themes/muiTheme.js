@@ -8,7 +8,7 @@ export default (manorTheme) => createMuiTheme({
       lineHeight: manorTheme.lineHeight.tight,
       fontSize: manorTheme.fontSize['6xl'],
       margin: `0 0 ${manorTheme.spacing['24']}`,
-      '@media (min-width: 1024px)': { // screens.md
+      '@media (min-width: 1024px)': { // theme.breakpoints.md
         lineHeight: manorTheme.lineHeight.tight,
         fontSize: manorTheme.fontSize['6xl'],
       },

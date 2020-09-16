@@ -4,11 +4,22 @@ const BREAKPOINTS = ['xs', 'sm', 'md', 'lg', 'xl'];
 const BREAKPOINT_FROM = 'xs';
 const BREAKPOINT_TO = 'xl';
 
-export default function useIsBreakpointRange(options) {
-  const breakpointFrom = options && options.breakpointFrom ? options.breakpointFrom : BREAKPOINT_FROM;
-  const breakpointTo = options && options.breakpointTo ? options.breakpointTo : BREAKPOINT_TO;
+export default function useIsBreakpointRange(options = {}) {
+  let breakpoints = BREAKPOINTS;
+  let breakpointFrom = BREAKPOINT_FROM;
+  let breakpointTo = BREAKPOINT_TO;
+  if (options.customBreakpoints) {
+    breakpoints = Object.keys(options.customBreakpoints);
+    [breakpointFrom] = breakpoints;
+    [breakpointTo] = breakpoints.slice(-1);
+  }
+  if (options.breakpointFrom) {
+    breakpointFrom = options.breakpointFrom;
+  }
+  if (options.breakpointTo) {
+    breakpointTo = options.breakpointTo;
+  }
   const breakpoint = useBreakpoint(true, (options && options.customBreakpoints) && options.customBreakpoints);
-  const breakpoints = options && options.customBreakpoints ? Object.keys(options.customBreakpoints) : BREAKPOINTS;
   const breakpointFromIndex = breakpoints.indexOf(breakpointFrom);
   const breakpointToIndex = breakpoints.indexOf(breakpointTo);
 

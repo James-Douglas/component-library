@@ -1,7 +1,7 @@
 {
-  "name": "@comparethemarketau/manor-global",
-  "version": "0.3.4",
-  "description": "Manor Global component",
+  "name": "@comparethemarketau/manor-layout",
+  "version": "0.1.0",
+  "description": "Manor Layout component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
   "license": "Proprietary",
@@ -18,10 +18,8 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-utils": "^0.2.1"
-  },
-  "devDependencies": {
-    "@comparethemarketau/manor-provider": "^0.5.4"
+    "@comparethemarketau/manor-hooks": "^0.2.1",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.11.0",

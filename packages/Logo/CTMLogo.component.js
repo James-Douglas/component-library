@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ThemeContext } from 'styled-components';
 import { useBreakpoint } from '@comparethemarketau/manor-hooks';
-import { screens } from '@comparethemarketau/manor-utils';
 import Logo from './Logo.component';
 import CTMLogoInline from '../../images/ctm-logo-inline.svg';
 import CTMLogoInlineInverted from '../../images/ctm-logo-inline-inverted.svg';
@@ -11,6 +11,7 @@ import CTMLogoStackedInverted from '../../images/ctm-logo-stacked-inverted.svg';
 const CTMLogo = ({
   size, inverted, className,
 }) => {
+  const theme = useContext(ThemeContext);
   const breakpoint = useBreakpoint();
   let src = CTMLogoStacked;
   if (breakpoint === 'md') {
@@ -27,7 +28,7 @@ const CTMLogo = ({
         srcsets: [
           {
             srcset: inverted ? CTMLogoStackedInverted : CTMLogoStacked,
-            media: `(max-width: ${screens.lg}`,
+            media: `(max-width: ${theme.breakpoints.lg}`,
           },
           {
             srcset: inverted ? CTMLogoInlineInverted : CTMLogoInline,

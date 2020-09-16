@@ -31,7 +31,7 @@ exports[`Row renders correctly without props 1`] = `
 
 <div>
   <div
-    class="sc-AxirZ c0 row "
+    class="c0 row "
   />
 </div>
 `;

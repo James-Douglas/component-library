@@ -17,5 +17,4 @@ a spacingType of `'margin'` and a `spacingValue` of `[4, 8]`, this function woul
 * `getScreenReaderLabel(screenReaderLabel, fieldLabel)` - Returns the `screenReaderLabel` if present, otherwise
 returns a default label for screen readers based off the `fieldLabel`.  
 * `hasTooltipContent(title, body)` - Determines whether a tooltip has been provided (if either `title` or `body` exists)
-* `screens` - An object containing pixel values for screens (`xs`, `sm`, `md`, `lg`, `xl`).
 * `throttle(func, wait=100)` - Throttles the given `func` with the given `wait` time.

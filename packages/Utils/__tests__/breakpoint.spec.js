@@ -1,19 +1,12 @@
 import { getBreakpoint, isDesktop } from '../breakpoint';
 
-jest.mock('../screens', () => ({
-  xs: '576px',
-  sm: '768px',
-  md: '992px',
-  lg: '1200px',
-  xl: '1900px',
-}));
-
 let windowSpy;
-const customBreakpoints = {
-  xs: 300,
-  sm: 600,
-  md: 900,
+const breakpoints = {
+  xs: 576,
+  sm: 768,
+  md: 992,
   lg: 1200,
+  xl: 1900,
 };
 
 beforeEach(() => {
@@ -28,55 +21,31 @@ describe('getBreakpoint()', () => {
     windowSpy.mockImplementation(() => ({
       innerWidth: 500,
     }));
-    expect(getBreakpoint()).toEqual('xs');
+    expect(getBreakpoint(breakpoints)).toEqual('xs');
   });
   it('returns sm for sm screen', () => {
     windowSpy.mockImplementation(() => ({
       innerWidth: 577,
     }));
-    expect(getBreakpoint()).toEqual('sm');
+    expect(getBreakpoint(breakpoints)).toEqual('sm');
   });
   it('returns md for md screen', () => {
     windowSpy.mockImplementation(() => ({
       innerWidth: 769,
     }));
-    expect(getBreakpoint()).toEqual('md');
+    expect(getBreakpoint(breakpoints)).toEqual('md');
   });
   it('returns lg for lg screen', () => {
     windowSpy.mockImplementation(() => ({
       innerWidth: 993,
     }));
-    expect(getBreakpoint()).toEqual('lg');
+    expect(getBreakpoint(breakpoints)).toEqual('lg');
   });
   it('returns xl for xl screen', () => {
     windowSpy.mockImplementation(() => ({
       innerWidth: 1201,
     }));
-    expect(getBreakpoint()).toEqual('xl');
-  });
-  it('returns xs for xs screen, when customBreakpoints provided', () => {
-    windowSpy.mockImplementation(() => ({
-      innerWidth: 200,
-    }));
-    expect(getBreakpoint(customBreakpoints)).toEqual('xs');
-  });
-  it('returns sm for sm screen, when customBreakpoints provided', () => {
-    windowSpy.mockImplementation(() => ({
-      innerWidth: 301,
-    }));
-    expect(getBreakpoint(customBreakpoints)).toEqual('sm');
-  });
-  it('returns md for md screen, when customBreakpoints provided', () => {
-    windowSpy.mockImplementation(() => ({
-      innerWidth: 601,
-    }));
-    expect(getBreakpoint(customBreakpoints)).toEqual('md');
-  });
-  it('returns lg for lg screen, when customBreakpoints provided', () => {
-    windowSpy.mockImplementation(() => ({
-      innerWidth: 901,
-    }));
-    expect(getBreakpoint(customBreakpoints)).toEqual('lg');
+    expect(getBreakpoint(breakpoints)).toEqual('xl');
   });
 });
 

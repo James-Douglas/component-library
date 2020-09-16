@@ -1,4 +1,6 @@
+import React from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
+import { ThemeProvider } from 'styled-components';
 import useBreakpoint from '../useBreakpoint';
 
 let mockBreakpointValue = 'xs';
@@ -8,8 +10,19 @@ jest.mock('../../Utils/breakpoint', () => ({
 }));
 
 describe('useBreakpoint', () => {
+  // eslint-disable-next-line react/prop-types
+  const Wrapper = ({ children }) => (
+    <ThemeProvider theme={{ breakpoints: { xs: '375px' } }}>
+      {children}
+    </ThemeProvider>
+  );
   it('returns current breakpoint', () => {
-    const { result } = renderHook(() => useBreakpoint());
+    const { result } = renderHook(
+      () => useBreakpoint(),
+      {
+        wrapper: Wrapper,
+      },
+    );
     expect(result.current).toEqual('xs');
   });
   it('returns updated breakpoint on change', () => {
@@ -17,7 +30,12 @@ describe('useBreakpoint', () => {
     window.addEventListener = jest.fn((event, cb) => {
       map[event] = cb;
     });
-    const { result } = renderHook(() => useBreakpoint(false));
+    const { result } = renderHook(
+      () => useBreakpoint(false),
+      {
+        wrapper: Wrapper,
+      },
+    );
     expect(result.current).toEqual('xs');
     mockBreakpointValue = 'lg';
     act(() => {

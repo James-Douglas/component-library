@@ -2,7 +2,6 @@ import { applySpacing, spacingPropTypes } from './applySpacing';
 import { getBreakpoint, isDesktop } from './breakpoint';
 import { getScreenReaderLabel, hasTooltipContent } from './form';
 import throttle from './throttle';
-import screens from './screens';
 
 export {
   applySpacing,
@@ -12,5 +11,4 @@ export {
   getScreenReaderLabel,
   hasTooltipContent,
   throttle,
-  screens,
 };

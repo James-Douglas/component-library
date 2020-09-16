@@ -1,6 +1,5 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { screens } from '@comparethemarketau/manor-utils';
 import { render } from '../../../testUtils';
 import Logo from '../Logo.component';
 import CTMLogoInline from '../../../images/ctm-logo-inline.svg';
@@ -12,7 +11,7 @@ describe('Logo', () => {
     srcsets: [
       {
         srcset: CTMLogoStacked,
-        media: `(max-width: ${screens.lg}`,
+        media: `(max-width: ${ctmTheme.breakpoints.lg}`,
       },
       {
         srcset: CTMLogoInline,

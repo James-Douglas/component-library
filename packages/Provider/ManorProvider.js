@@ -1,15 +1,43 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, ThemeContext } from 'styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 
-const ManorProvider = ({ theme, children }) => (
+const ManorContext = createContext();
+
+const ManorProvider = ({ children }) => {
+  const theme = useContext(ThemeContext);
+  return (
+    <ManorContext.Provider value={{ theme }}>
+      {children}
+    </ManorContext.Provider>
+  );
+};
+
+ManorProvider.propTypes = {
+  /**
+   * The child content
+   */
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+};
+
+ManorProvider.defaultProps = {
+  children: [],
+};
+
+const HasManorProvider = ({ theme, children }) => (
   <ThemeProvider theme={theme}>
-    {children}
+    <ManorProvider>
+      {children}
+    </ManorProvider>
   </ThemeProvider>
 );
 
-ManorProvider.propTypes = {
+HasManorProvider.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   /**
    * Manor theme, if not provided the ctm theme will be used.
@@ -26,9 +54,9 @@ ManorProvider.propTypes = {
   ]),
 };
 
-ManorProvider.defaultProps = {
+HasManorProvider.defaultProps = {
   theme: ctmTheme,
   children: [],
 };
 
-export default ManorProvider;
+export default HasManorProvider;

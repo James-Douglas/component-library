@@ -366,10 +366,10 @@ exports[`Modal renders with minimal props 1`] = `
       class="c2"
     >
       <div
-        class="sc-fzoLag c3 row "
+        class="c3 row "
       >
         <div
-          class="sc-fzoXzr c4 
+          class="c4 
         
       "
         >
@@ -380,7 +380,7 @@ exports[`Modal renders with minimal props 1`] = `
           </div>
         </div>
         <div
-          class="sc-fzoXzr c6 
+          class="c6 
         
       "
         >
