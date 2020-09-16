@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-typography",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Manor BodyText component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-themes": "^0.5.0",
+    "@comparethemarketau/manor-themes": "^0.5.1",
     "@material-ui/core": "^4.11.0",
     "prop-types": "^15.7.2"
   },
