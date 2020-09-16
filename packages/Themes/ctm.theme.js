@@ -532,8 +532,40 @@ const ctmTheme = {
     border: `1px solid ${colors.black25}`,
   },
   slider: {
-    borderTop: `1px solid ${colors.white}`,
-    background: colors.white,
+    margin: `${spacing[20]} ${spacing[16]} 0 ${spacing[16]}`,
+    disabled: colors.grey500,
+    mark: {
+      fontSize: fontSize.base,
+      color: colors.grey800,
+    },
+    rail: {
+      color: colors.grey500,
+      height: spacing[8],
+      borderRadius: spacing[4],
+    },
+    track: {
+      color: colors.primary500,
+      height: spacing[8],
+      borderRadius: spacing[4],
+    },
+    thumb: {
+      height: spacing[20],
+      width: spacing[20],
+      border: `0.2rem solid ${colors.grey100}`,
+      boxShadow: '0px 3px 8px rgba(0,0,0,0.1)',
+    },
+    notch: {
+      height: spacing[8],
+      border: `1px solid ${colors.grey500}`,
+      defaultIndicator: {
+        height: spacing[16],
+        border: `2px solid ${colors.primary500}`,
+      },
+    },
+    label: {
+      borderRadius: spacing[4],
+      padding: `${spacing[4]} ${spacing[8]}`,
+    },
   },
   table: {
     rowHoverBackground: colors.grey100,
