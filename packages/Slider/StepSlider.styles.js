@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Slider as MUISlider } from '@material-ui/core';
 import React from 'react';
 

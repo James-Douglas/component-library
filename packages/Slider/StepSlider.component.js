@@ -122,7 +122,7 @@ StepSlider.propTypes = {
    */
   marks: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+      value: PropTypes.number,
       label: PropTypes.string,
     }),
   ).isRequired,
