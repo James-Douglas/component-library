@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-hooks@0.2.3...@comparethemarketau/manor-hooks@0.2.4) (2020-09-17)
+
+
+### Bug Fixes
+
+* **hooks:** styled-components peer deps for hooks ([#390](https://github.com/comparethemarketau/manor-react/issues/390)) ([d4113e1](https://github.com/comparethemarketau/manor-react/commit/d4113e10fbd401eac565d38b09169f85ffd1f985))
+
+
+
+
+
 ## [0.2.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-hooks@0.2.2...@comparethemarketau/manor-hooks@0.2.3) (2020-09-16)
 
 **Note:** Version bump only for package @comparethemarketau/manor-hooks

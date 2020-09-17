@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-hooks",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Manor Hooks",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
