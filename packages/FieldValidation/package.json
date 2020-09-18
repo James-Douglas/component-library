@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-field-validation",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Manor FieldValidation component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-typography": "^0.6.2",
+    "@comparethemarketau/manor-typography": "^0.6.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-field-validation@0.4.6...@comparethemarketau/manor-field-validation@0.4.7) (2020-09-18)
+
+
+### Bug Fixes
+
+* **dependencies:** fix more incorrect dependencies ([#392](https://github.com/comparethemarketau/manor-react/issues/392)) ([6fa55a1](https://github.com/comparethemarketau/manor-react/commit/6fa55a11ba89125ccfe61385d9776e4185bff6f3))
+
+
+
+
+
 ## [0.4.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-field-validation@0.4.5...@comparethemarketau/manor-field-validation@0.4.6) (2020-09-16)
 
 **Note:** Version bump only for package @comparethemarketau/manor-field-validation
