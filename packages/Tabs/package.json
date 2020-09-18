@@ -18,12 +18,12 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-typography": "^0.6.3",
+    "@comparethemarketau/manor-typography": "^0.6.2",
     "@comparethemarketau/manor-utils": "^0.2.2",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.5.2"
+    "@comparethemarketau/manor-themes": "^0.5.1"
   },
   "peerDependencies": {
     "react": "^16.11.0",

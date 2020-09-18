@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-typography": "^0.6.3",
+    "@comparethemarketau/manor-typography": "^0.6.2",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

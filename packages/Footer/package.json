@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@comparethemarketau/manor-grid": "^0.6.8",
-    "@comparethemarketau/manor-typography": "^0.6.3",
+    "@comparethemarketau/manor-typography": "^0.6.2",
     "@comparethemarketau/manor-utils": "^0.2.2",
     "prop-types": "^15.7.2"
   },

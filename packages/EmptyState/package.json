@@ -20,7 +20,7 @@
   "dependencies": {
     "@comparethemarketau/manor-hooks": "^0.2.5",
     "@comparethemarketau/manor-picture": "^0.3.0",
-    "@comparethemarketau/manor-typography": "^0.6.3",
+    "@comparethemarketau/manor-typography": "^0.6.2",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

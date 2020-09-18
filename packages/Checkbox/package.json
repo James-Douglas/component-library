@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@comparethemarketau/manor-field-validation": "^0.4.6",
+    "@comparethemarketau/manor-field-validation": "^0.4.5",
     "@comparethemarketau/manor-grid": "^0.6.8",
     "@comparethemarketau/manor-hooks": "^0.2.5",
     "@comparethemarketau/manor-label": "^0.3.8",
@@ -31,7 +31,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.5.2"
+    "@comparethemarketau/manor-themes": "^0.5.1"
   },
   "peerDependencies": {
     "react": "^16.11.0",

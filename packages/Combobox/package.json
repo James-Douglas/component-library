@@ -24,13 +24,13 @@
     "@comparethemarketau/manor-overlay": "^0.3.0",
     "@comparethemarketau/manor-picture": "^0.3.0",
     "@comparethemarketau/manor-tooltip": "^0.5.8",
-    "@comparethemarketau/manor-typography": "^0.6.3",
+    "@comparethemarketau/manor-typography": "^0.6.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.5.2"
+    "@comparethemarketau/manor-themes": "^0.5.1"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.1.0",
