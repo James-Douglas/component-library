@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-loading",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Manor Loading component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.2.4",
+    "@comparethemarketau/manor-hooks": "^0.2.5",
     "@comparethemarketau/manor-typography": "^0.6.3",
     "prop-types": "^15.7.2"
   },
