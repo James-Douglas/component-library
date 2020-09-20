@@ -13,6 +13,7 @@ const ExpressiveInput = ({
   prefillValue,
   required,
   disabled,
+  readonly,
   prefixContent,
   prefixBlock,
   suffixContent,
@@ -44,6 +45,7 @@ const ExpressiveInput = ({
       value={value}
       prefillValue={prefillValue}
       disabled={disabled}
+      readonly={readonly}
       validationMessage={validationMessage}
       autocomplete={autocomplete}
       className={className}
@@ -108,7 +110,10 @@ ExpressiveInput.propTypes = {
    * Disables the button via a class on its wrapper, and an attribute on the input.
    */
   disabled: PropTypes.bool,
-
+  /**
+   * Specifies that the expressive input should be read-only.
+   */
+  readonly: PropTypes.bool,
   /**
    * Maximum length for the input element
    */
@@ -175,6 +180,7 @@ ExpressiveInput.defaultProps = {
   suffixContent: '',
   required: true,
   disabled: false,
+  readonly: false,
   disableClearIcon: false,
   className: '',
   handleFocus: null,

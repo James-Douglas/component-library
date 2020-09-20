@@ -69,6 +69,7 @@ const Input = React.forwardRef(({
   prefillValue,
   required,
   disabled,
+  readonly,
   prefixContent,
   prefixBlock,
   suffixContent,
@@ -158,6 +159,7 @@ const Input = React.forwardRef(({
               type={type}
               placeholder={placeholder}
               disabled={disabled}
+              readOnly={readonly}
               value={internalValue}
               onChange={changeHandler}
               autoComplete={autocomplete}
@@ -244,6 +246,10 @@ Input.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Specifies that an input should be read-only.
+   */
+  readonly: PropTypes.bool,
+  /**
    * Displays given validation message and invalid styles on the component when provided.
    */
   validationMessage: PropTypes.string,
@@ -321,6 +327,7 @@ Input.defaultProps = {
   handleBlur: null,
   required: true,
   disabled: false,
+  readonly: false,
   validationMessage: '',
   dataList: null,
   handleOnClick: null,

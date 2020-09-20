@@ -62,6 +62,7 @@ import getTooltipKnobs from '../../tooltipKnobs';
     const placeholder = text('placeholder', 'input demo', componentPropsId);
     const required = boolean('required', false, componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
+    const readonly = boolean('readonly', false, componentPropsId);
     const prefixContent = text('prefixContent', undefined, componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
@@ -85,6 +86,7 @@ import getTooltipKnobs from '../../tooltipKnobs';
           required={required}
           handleChange={() => {}}
           disabled={disabled}
+          readonly={readonly}
           prefixContent={prefixContent}
           suffixContent={suffixContent}
         />

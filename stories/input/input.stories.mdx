@@ -64,6 +64,7 @@ populated with `prefillValue` and prefilled styles will be applied.
     const placeholder = text('placeholder', 'placeholder text', componentPropsId);
     const required = boolean('required', false, componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
+    const readonly = boolean('readonly', false, componentPropsId);
     const prefixContent = text('prefixContent', '', componentPropsId);
     const prefixBlock = boolean('prefixBlock', false, componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
@@ -89,6 +90,7 @@ populated with `prefillValue` and prefilled styles will be applied.
           required={required}
           handleChange={() => {}}
           disabled={disabled}
+          readonly={readonly}
           prefixContent={prefixContent}
           prefixBlock={prefixBlock}
           suffixContent={suffixContent}

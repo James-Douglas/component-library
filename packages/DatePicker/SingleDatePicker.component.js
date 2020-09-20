@@ -24,6 +24,7 @@ const SingleDatePicker = ({
   validationMessage,
   isDayBlocked,
   handleChange,
+  readonly,
 }) => {
   const dateId = useId(propsDateId);
   const node = useRef();
@@ -106,6 +107,7 @@ const SingleDatePicker = ({
           handleFocus={dateHandleFocus}
           handleBlur={dateHandleBlur}
           handleChange={dateHandleChange}
+          readonly={readonly}
           disableClearIcon
           validationMessage={validationMessageDate}
           className="date-input-calendar"
@@ -167,6 +169,10 @@ SingleDatePicker.propTypes = {
    * Called on change with { id, value }.
    */
   handleChange: PropTypes.func,
+  /**
+   * Specifies that the date input should be read-only. However you can still set dates from the picker
+   */
+  readonly: PropTypes.bool,
 };
 
 SingleDatePicker.defaultProps = {
@@ -179,6 +185,7 @@ SingleDatePicker.defaultProps = {
   validationMessage: null,
   handleChange: null,
   isDayBlocked: undefined,
+  readonly: false,
 };
 
 export default SingleDatePicker;

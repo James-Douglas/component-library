@@ -14,6 +14,7 @@ const CurrencyInput = ({
   currencySymbol,
   required,
   disabled,
+  readonly,
   autocomplete,
   tooltip,
   validationMessage,
@@ -74,6 +75,7 @@ const CurrencyInput = ({
       value={internalValue}
       prefillValue={prefillValue}
       disabled={disabled}
+      readonly={readonly}
       validationMessage={validationMessage}
       autocomplete={autocomplete}
       tooltip={tooltip}
@@ -137,6 +139,10 @@ CurrencyInput.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Specifies that the currency input should be read-only.
+   */
+  readonly: PropTypes.bool,
+  /**
    * Maximum length for the input element
    */
   maxlength: PropTypes.number,
@@ -169,6 +175,7 @@ CurrencyInput.defaultProps = {
   currencySymbol: '',
   required: true,
   disabled: false,
+  readonly: false,
   label: '',
   className: '',
   handleFocus: null,

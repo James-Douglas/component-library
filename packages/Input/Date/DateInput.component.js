@@ -15,6 +15,7 @@ const DateInput = ({
   handleChange,
   required,
   disabled,
+  readonly,
   autocomplete,
   tooltip,
   validationMessage,
@@ -44,6 +45,7 @@ const DateInput = ({
       maxlength={11}
       prefillValue={prefillValue}
       disabled={disabled}
+      readonly={readonly}
       validationMessage={validationMessage}
       autocomplete={autocomplete}
       tooltip={tooltip}
@@ -99,8 +101,12 @@ DateInput.propTypes = {
   required: PropTypes.bool,
   /**
    * Disables the button via a class on its wrapper, and an attribute on the input.
-   */
+  */
   disabled: PropTypes.bool,
+  /**
+   * Specifies that the date input should be read-only.
+   */
+  readonly: PropTypes.bool,
   /**
    * Turn the browsers implementation of autocompletion/memory of forms on or off.
    */
@@ -148,6 +154,7 @@ DateInput.defaultProps = {
   autocomplete: 'off',
   required: true,
   disabled: false,
+  readonly: false,
   label: '',
   className: '',
   handleFocus: null,

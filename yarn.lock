@@ -1249,14 +1249,6 @@
   resolved "https://nexus.comparethemarket.com.au/repository/npm-all/@commitlint/types/-/types-11.0.0.tgz#719cf05fcc1abb6533610a2e0f5dd1e61eac14fe"
   integrity sha512-VoNqai1vR5anRF5Tuh/+SWDFk7xi7oMwHrHrbm1BprYXjB2RJsWLhUrStMssDxEl5lW/z3EUdg8RvH/IUBccSQ==
 
-"@comparethemarketau/manor-hooks@^0.2.4":
-  version "0.2.4"
-  resolved "https://nexus.comparethemarket.com.au/repository/npm-all/@comparethemarketau/manor-hooks/-/manor-hooks-0.2.4.tgz#0364119ae888fd947b288a9eaa16e0a5a32d48f4"
-  integrity sha512-3+95r7Okkp+dZHuPalqDQRTed8BH+78MWgBbeWwygYcLG16lbr2pkuxsPXp42ZloZVIbXSXtuyXWtv9faq1Uzg==
-  dependencies:
-    "@comparethemarketau/manor-utils" "^0.2.3"
-    uuid "3.4.0"
-
 "@egoist/vue-to-react@^1.1.0":
   version "1.1.0"
   resolved "https://nexus.comparethemarket.com.au/repository/npm-all/@egoist/vue-to-react/-/vue-to-react-1.1.0.tgz#83c884b8608e8ee62e76c03e91ce9c26063a91ad"

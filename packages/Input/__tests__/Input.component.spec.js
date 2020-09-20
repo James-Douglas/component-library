@@ -242,6 +242,23 @@ describe('Input.component', () => {
     expect(maxlength).toBe('5');
   });
 
+  it('has a readonly true attribute', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        maxlength={5}
+        readonly
+        handleChange={() => {}}
+      />,
+    );
+
+    const inputField = container.querySelector('#test-id');
+
+    expect(inputField.hasAttribute('readonly', 'true')).toBeTruthy();
+  });
+
   it('has a focus handler when passed in', () => {
     const focusCb = jest.fn();
     const { container } = render(
