@@ -40,8 +40,8 @@ const DateRangePicker = ({
   const containerRef = React.useRef();
   const node = containerRef;
   const displayFormat = 'DD/MM/YYYY';
-  const [startDate, setStartDate] = useState(startDateValue || moment().startOf('day'));
-  const [endDate, setEndDate] = useState(endDateValue || moment().add(7, 'days'));
+  const [startDate, setStartDate] = useState(startDateValue);
+  const [endDate, setEndDate] = useState(endDateValue);
   const [focusedInput, setFocusedInput] = useState(START_DATE);
   const [isVisisble, setIsVisisble] = useState(false);
   const [startDateValidationMessageText, setStartDateValidationMessage] = useState(null);
@@ -215,10 +215,7 @@ DateRangePicker.propTypes = {
   /**
    * Sets the value of the start date input
    */
-  startDateValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  startDateValue: PropTypes.instanceOf(moment),
   /**
    * Placeholder value to be displayed in the Input end date component.
    */
@@ -230,10 +227,7 @@ DateRangePicker.propTypes = {
   /**
    * Sets the value of the end date input
    */
-  endDateValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  endDateValue: PropTypes.instanceOf(moment),
   /**
    * Sets the number of months
    */
@@ -247,7 +241,8 @@ DateRangePicker.propTypes = {
    */
   startDateValidationMessage: PropTypes.string,
   /**
-   * Function to set disabled days
+   * Function called by the datepicker to determine if a day should be blocked from selection
+   * (x: [moment instance]) => boolean)
    */
   isDayBlocked: PropTypes.func,
   /**

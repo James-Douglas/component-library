@@ -10,7 +10,11 @@ import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
 <Preview>
   <Story name="single date picker" height="500px">
     {() => {
-     const [date, setDate] = useState(moment('2020-02-18T00:00:00.000'));
+     const [date, setDate] = useState();
+     const isDayBlocked = (day) => {
+       const currentDate = moment();
+       return day.isBefore(currentDate);
+     }
       return (
         <div style={{ padding: '2%' }}>
           <FluidContainer>
@@ -23,6 +27,8 @@ import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
                   date={date}
                   numberOfMonths={1}
                   validationMessage="The date is incorrect"
+                  minDate={moment('2020-09-05T00:00:00.000')}
+                  isDayBlocked={isDayBlocked}
                   />
                </Column>
               </Row>

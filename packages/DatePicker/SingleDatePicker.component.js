@@ -28,9 +28,8 @@ const SingleDatePicker = ({
   const dateId = useId(propsDateId);
   const node = useRef();
   const displayFormat = 'DD/MM/YYYY';
-
-  const [selectedDate, setSelectedDate] = useState(date || moment().startOf('day'));
-  const [value, setValue] = useState(selectedDate.format(displayFormat));
+  const [selectedDate, setSelectedDate] = useState(date);
+  const [value, setValue] = useState(selectedDate && selectedDate.format(displayFormat));
 
   const [isVisisble, setIsVisisble] = useState(false);
   const [validationMessageDate, setValidationMessageDate] = useState(null);
@@ -148,11 +147,9 @@ SingleDatePicker.propTypes = {
   dateAriaLabel: PropTypes.string,
   /**
    * Sets the value of the date input
+   * moment instance, e.g: minDate={moment('2020-12-01T00:00:00.000')}
    */
-  date: PropTypes.oneOfType([
-    PropTypes.instanceOf(moment),
-    PropTypes.string,
-  ]),
+  date: PropTypes.instanceOf(moment),
   /**
    * Sets the number of months
    */
@@ -162,7 +159,8 @@ SingleDatePicker.propTypes = {
    */
   validationMessage: PropTypes.string,
   /**
-   * Function to set disabled days
+   * Function called by the datepicker to determine if a day should be blocked from selection
+   * (x: [moment instance]) => boolean)
    */
   isDayBlocked: PropTypes.func,
   /**

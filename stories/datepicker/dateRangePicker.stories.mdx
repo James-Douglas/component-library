@@ -10,8 +10,8 @@ import moment from 'moment';
 <Preview>
   <Story name="date range picker" height="500px">
     {() => {
-      const [startDate, setStartDate] = useState(moment('2020-03-20T00:00:00.000'));
-      const [endDate, setEndDate] = useState(moment('2020-04-20T00:00:00.000'));
+      const [startDate, setStartDate] = useState(moment());
+      const [endDate, setEndDate] = useState(null);
       return (
         <div style={{ padding: '2%' }}>
            <FluidContainer>
