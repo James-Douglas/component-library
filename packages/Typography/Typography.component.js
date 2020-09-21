@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 
 const TypographyInner = ({
   // eslint-disable-next-line react/prop-types
-  theme, variant, component, align, color, display, gutterBottom, noWrap, paragraph, children, style,
+  theme, variant, component, align, color, display, gutterBottom, noWrap, paragraph, children, style, ...props
 }) => {
   const renderChildren = () => (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -17,6 +17,8 @@ const TypographyInner = ({
   return (
     <ThemeProvider theme={muiTheme(theme)}>
       <MUITypography
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
         variant={variant}
         component={component}
         align={align}
@@ -45,8 +47,11 @@ const Typography = ({
   noWrap,
   paragraph,
   style,
+  ...props
 }) => (
   <ThemedMuiTypography
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...props}
     variant={variant}
     align={align}
     color={color}
