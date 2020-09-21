@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.6.4...@comparethemarketau/manor-typography@0.7.0) (2020-09-21)
+
+
+### Features
+
+* added spread operator props ([#395](https://github.com/comparethemarketau/manor-react/issues/395)) ([7c067a9](https://github.com/comparethemarketau/manor-react/commit/7c067a927b68bb6592f9f75b9054147faf9a8fcb))
+
+
+
+
+
 ## [0.6.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.6.3...@comparethemarketau/manor-typography@0.6.4) (2020-09-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-label",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "Manor Label component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-tooltip": "^0.5.9",
+    "@comparethemarketau/manor-tooltip": "^0.5.10",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
