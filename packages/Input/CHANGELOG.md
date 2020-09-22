@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.8.1...@comparethemarketau/manor-input@0.9.0) (2020-09-22)
+
+
+### Features
+
+* **provider:** provider context now contains breakpoint & isDesktop ([#398](https://github.com/comparethemarketau/manor-react/issues/398)) ([611b52f](https://github.com/comparethemarketau/manor-react/commit/611b52f8883ca431523b0a8896d51e66ecb76376))
+
+
+
+
+
 ## [0.8.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.8.0...@comparethemarketau/manor-input@0.8.1) (2020-09-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-input

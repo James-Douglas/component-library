@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-progress",
-  "version": "0.4.10",
+  "version": "0.5.0",
   "description": "Manor Progress component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

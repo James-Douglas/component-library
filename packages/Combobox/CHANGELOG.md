@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.4.11...@comparethemarketau/manor-combobox@0.5.0) (2020-09-22)
+
+
+### Features
+
+* **provider:** provider context now contains breakpoint & isDesktop ([#398](https://github.com/comparethemarketau/manor-react/issues/398)) ([611b52f](https://github.com/comparethemarketau/manor-react/commit/611b52f8883ca431523b0a8896d51e66ecb76376))
+
+
+
+
+
 ## [0.4.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.4.10...@comparethemarketau/manor-combobox@0.4.11) (2020-09-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combobox
