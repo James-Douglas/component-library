@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@comparethemarketau/manor-typography';
-import { useIsDesktop } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Picture, picturePropTypes } from '@comparethemarketau/manor-picture';
 import placeholder from '../../images/sergei.png';
 import { StyledEmptyState, StyledEmptyStateWrap, StyledPictureContainer } from './EmptyState.styles';
@@ -12,7 +12,7 @@ const EmptyState = ({
   className,
   heading,
 }) => {
-  const desktop = useIsDesktop();
+  const { isDesktop } = useContext(ManorContext);
   const pictureProps = {
     src: picture ? picture.src : placeholder,
     srcsets: picture ? picture.srcsets : [{ srcset: placeholder }],
@@ -22,7 +22,7 @@ const EmptyState = ({
 
   return (
     <StyledEmptyState className={className}>
-      <StyledEmptyStateWrap desktop={desktop} className={className}>
+      <StyledEmptyStateWrap desktop={isDesktop} className={className}>
         <StyledPictureContainer>
           <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
         </StyledPictureContainer>

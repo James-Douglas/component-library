@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/pro-regular-svg-icons/faCheck';
-import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useId } from '@comparethemarketau/manor-hooks';
 import { StyledListItem, StyledItemContent } from './DropdownItem.styles';
 
 const DropdownItem = React.forwardRef(({
@@ -15,7 +16,7 @@ const DropdownItem = React.forwardRef(({
   theme,
 }, ref) => {
   const id = useId(propsId);
-  const desktop = useIsDesktop();
+  const { isDesktop } = useContext(ManorContext);
 
   const clickHandler = (event) => {
     if (handleClick) {
@@ -38,7 +39,7 @@ const DropdownItem = React.forwardRef(({
       onClick={clickHandler}
       onKeyDown={keyDownHandler}
       active={selectedValue === value}
-      desktop={desktop}
+      desktop={isDesktop}
       tabIndex="0"
     >
       {selectedValue === value && <FontAwesomeIcon icon={faCheck} size="xs" />}

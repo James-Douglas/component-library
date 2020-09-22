@@ -1,10 +1,11 @@
 import React, {
-  useState, useMemo, useCallback, useEffect, useLayoutEffect,
+  useState, useMemo, useCallback, useEffect, useLayoutEffect, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography } from '@comparethemarketau/manor-typography';
-import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useId } from '@comparethemarketau/manor-hooks';
 import { Input } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Overlay } from '@comparethemarketau/manor-overlay';
@@ -129,8 +130,8 @@ const Combobox = React.forwardRef(({
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
   const [focusedRef, setFocusedRef] = useState(null);
   const bottomButton = React.createRef();
-  const desktop = useIsDesktop();
-  const mobileOverlay = !desktop && isMobileModalView;
+  const { isDesktop } = useContext(ManorContext);
+  const mobileOverlay = !isDesktop && isMobileModalView;
 
   const filteredValues = useMemo(
     () => {
@@ -292,13 +293,13 @@ const Combobox = React.forwardRef(({
   return (
     <>
       {mobileOverlay && isMobileModalView && (<Overlay opacityLevel={0.3} visible={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
-      {(mobileOverlay || desktop) && (
+      {(mobileOverlay || isDesktop) && (
         <>
           <StyledDiv
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
             onKeyDown={keyboardAccessibility}
-            desktop={desktop}
+            desktop={isDesktop}
           >
             {emptyStateCondition && mobileOverlay && <StyledEmptyStateMessage>{helperMessage}</StyledEmptyStateMessage>}
             {noResultCondition && mobileOverlay && (
@@ -331,7 +332,7 @@ const Combobox = React.forwardRef(({
               ref={ref}
               role="comboField"
               dataList={() => comboDropdownList(
-                desktop,
+                isDesktop,
                 listInfoBoxContent,
                 listIcon,
                 bottomButton,
@@ -346,7 +347,7 @@ const Combobox = React.forwardRef(({
           </StyledDiv>
         </>
       )}
-      {!desktop && (
+      {!isDesktop && (
         <StyledDefault>
           <Input
             id={`mobile${id}`}

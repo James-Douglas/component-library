@@ -1,3 +1,3 @@
-import ManorProvider from './ManorProvider';
+import ManorProvider, { ManorContext } from './ManorProvider';
 
-export { ManorProvider };
+export { ManorProvider, ManorContext };

@@ -1,8 +1,9 @@
 import React, {
-  useState, useEffect, useRef, useCallback,
+  useState, useEffect, useRef, useCallback, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
-import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useId } from '@comparethemarketau/manor-hooks';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { Row, Column } from '@comparethemarketau/manor-grid';
 import { Label } from '@comparethemarketau/manor-label';
@@ -35,7 +36,7 @@ const CheckboxGroup = ({
 }) => {
   const groupId = useId(propsGroupId);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState(selected);
-  const desktop = useIsDesktop(false);
+  const { isDesktop } = useContext(ManorContext);
   const didMount = useRef(false);
 
   const handleCheckboxClick = useCallback((id) => {
@@ -61,7 +62,7 @@ const CheckboxGroup = ({
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
       <Row removeMarginBottom>
-        <Column cols={desktop ? 10 : 12}>
+        <Column cols={isDesktop ? 10 : 12}>
           <StyledContainer id={groupId}>
             <StyledInnerRow>
               {generateGroup(colSize, children, handleCheckboxClick, selectedCheckboxes)}

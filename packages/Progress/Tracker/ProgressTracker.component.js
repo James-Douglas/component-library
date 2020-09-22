@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useIsDesktop } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Container } from '@comparethemarketau/manor-grid';
 import TrackerItem from '../TrackerItem/TrackerItem';
 import {
@@ -45,7 +45,7 @@ const Tracker = ({
   isSticky,
   stuck,
 }) => {
-  const isDesktop = useIsDesktop();
+  const { isDesktop } = useContext(ManorContext);
   const activeProperty = steps.findIndex((element) => element.active);
   const value = (activeProperty === -1) ? 100 : ((activeProperty + 1) / steps.length) * 100;
   return (

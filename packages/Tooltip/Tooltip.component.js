@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-import { useIsDesktop, useUnmountEffect } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useUnmountEffect } from '@comparethemarketau/manor-hooks';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/pro-light-svg-icons/faInfoCircle';
@@ -39,7 +40,7 @@ const Tooltip = ({
   className,
 }) => {
   const [pinned, setPinned] = useState(false);
-  const desktop = useIsDesktop(false);
+  const { isDesktop } = useContext(ManorContext);
   const [tippyInstance, setTippyInstance] = useState(null);
   const [tippyVisible, setTippyVisible] = useState(false);
   const tooltipElement = useRef(null);
@@ -110,7 +111,7 @@ const Tooltip = ({
       onCreate={(instance) => setTippyInstance(instance)}
       onShow={onTippyShow}
       visible={tippyVisible}
-      placement={desktop ? placement : 'bottom'}
+      placement={isDesktop ? placement : 'bottom'}
       maxWidth={500}
       delay={125}
       variant={variant}
@@ -120,7 +121,7 @@ const Tooltip = ({
       <StyledTooltipIcon
         tabIndex={0}
         role="tooltip"
-        desktop={desktop}
+        desktop={isDesktop}
         ref={tooltipElement}
         pinned={pinned}
         tippyVisible={tippyVisible}

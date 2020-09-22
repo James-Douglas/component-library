@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { MicroUIComponent } from '@sackrin/react-micro-ui-hooks/lib/Components';
-import { useIsDesktop } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import Contact from './Contact/Contact.component';
 import {
@@ -14,16 +14,16 @@ import {
 const Header = ({
   isSticky, stuck, number, logo, contactStrip, authuiURL,
 }) => {
-  const desktop = useIsDesktop();
-  const size = (stuck || !desktop) ? 'small' : 'large';
+  const { isDesktop } = useContext(ManorContext);
+  const size = (stuck || !isDesktop) ? 'small' : 'large';
 
   return (
     <>
-      <StyledHeader stuck={stuck} isSticky={isSticky} desktop={desktop} authuiURL={authuiURL}>
+      <StyledHeader stuck={stuck} isSticky={isSticky} desktop={isDesktop} authuiURL={authuiURL}>
         {React.cloneElement(logo, { size })}
         <StyledAdditionalContent>
           {(number && !contactStrip)
-          && <Contact number={number} size={size} iconSize={!desktop ? 'lg' : 'xs'} authuiURL={authuiURL} />}
+          && <Contact number={number} size={size} iconSize={!isDesktop ? 'lg' : 'xs'} authuiURL={authuiURL} />}
           {authuiURL
           && (
           <MicroUIComponent
@@ -41,7 +41,7 @@ const Header = ({
       </StyledHeader>
       {(number && contactStrip)
         && (
-        <StyledContactStrip isSticky={isSticky} desktop={desktop}>
+        <StyledContactStrip isSticky={isSticky} desktop={isDesktop}>
           <StyledText><Typography variant="body1">Looking for help?</Typography></StyledText>
           <Contact number={number} contactStrip />
         </StyledContactStrip>

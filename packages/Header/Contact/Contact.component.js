@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useIsDesktop } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/pro-regular-svg-icons/faPhone';
 import { StyledContact, StyledIconWrap, StyledIframe } from './Contact.styles';
@@ -8,7 +8,7 @@ import { StyledContact, StyledIconWrap, StyledIframe } from './Contact.styles';
 const Contact = ({
   number, size, contactStrip, iconSize,
 }) => {
-  const isDesktop = useIsDesktop();
+  const { isDesktop } = useContext(ManorContext);
   return (
     <>
       <StyledContact isDesktop={isDesktop} contactStrip={contactStrip} size={size} href={`tel:${number}`} target="link-target">

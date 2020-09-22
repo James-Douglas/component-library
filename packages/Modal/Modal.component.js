@@ -1,13 +1,14 @@
 import React, {
-  useRef, useState, useLayoutEffect, useEffect,
+  useRef, useState, useLayoutEffect, useEffect, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPhone, faComments } from '@fortawesome/pro-regular-svg-icons';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { throttle } from '@comparethemarketau/manor-utils';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Separator } from '@comparethemarketau/manor-separator';
-import { useId, useIsDesktop } from '@comparethemarketau/manor-hooks';
+import { useId } from '@comparethemarketau/manor-hooks';
 import { Button } from '@comparethemarketau/manor-button';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import { Typography } from '@comparethemarketau/manor-typography';
@@ -43,7 +44,7 @@ const Modal = ({
   const supplementaryBarRef = useRef(null);
   const [supplementaryBarHeight, setSupplementaryBarHeight] = useState();
 
-  const desktop = useIsDesktop();
+  const { isDesktop } = useContext(ManorContext);
   const { showRequestCall, showChatOnline, phoneNumber } = supplementaryBarOptions;
   const classNames = `
     ${className}
@@ -72,18 +73,18 @@ const Modal = ({
   }, [visible]);
 
   const Header = () => (
-    <StyledModalHeader desktop={desktop}>
+    <StyledModalHeader desktop={isDesktop}>
       <Container>
         <Row removeMarginBottom>
           <Column halign="center">
             <StyledTitleContainer>
               {titleIcon && (
-                <StyledTitleIcon desktop={desktop}>
+                <StyledTitleIcon desktop={isDesktop}>
                   {titleIcon}
                 </StyledTitleIcon>
               )}
               {title && (
-                <StyledTitle desktop={desktop}>
+                <StyledTitle desktop={isDesktop}>
                   <Typography variant="h3">{title}</Typography>
                 </StyledTitle>
               )}
@@ -129,7 +130,7 @@ const Modal = ({
     }
 
     return (
-      <StyledSupplementaryBar id="supplementary-bar" ref={supplementaryBarRef} desktop={desktop}>
+      <StyledSupplementaryBar id="supplementary-bar" ref={supplementaryBarRef} desktop={isDesktop}>
         <Container>
           <Row removeMarginBottom>
             <Column cols={12}>
@@ -140,7 +141,7 @@ const Modal = ({
             <Column>
               <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {showRequestCall && (
-                  <StyledSupplementaryBarItem desktop={desktop}>
+                  <StyledSupplementaryBarItem desktop={isDesktop}>
                     <StyledSupplementaryBarItemIcon>
                       <FontAwesomeIcon icon={faPhone} />
                     </StyledSupplementaryBarItemIcon>
@@ -150,7 +151,7 @@ const Modal = ({
                   </StyledSupplementaryBarItem>
                 )}
                 {showChatOnline && (
-                  <StyledSupplementaryBarItem desktop={desktop}>
+                  <StyledSupplementaryBarItem desktop={isDesktop}>
                     <StyledSupplementaryBarItemIcon>
                       <FontAwesomeIcon color="" icon={faComments} />
                     </StyledSupplementaryBarItemIcon>
@@ -170,7 +171,7 @@ const Modal = ({
                     <StyledSupplementaryBarItemText>
                       <Typography gutterBottom={false} variant="body1">Call us on</Typography>
                     </StyledSupplementaryBarItemText>
-                    <StyledSupplementaryBarItem desktop={desktop}>
+                    <StyledSupplementaryBarItem desktop={isDesktop}>
                       <StyledSupplementaryBarItemIcon>
                         <FontAwesomeIcon icon={faPhone} />
                       </StyledSupplementaryBarItemIcon>
@@ -196,10 +197,10 @@ const Modal = ({
       {visible
         && (
           <StyledAlignment visible={visible} zIndex={zIndex}>
-            <StyledModal id={id} className={classNames} desktop={desktop}>
+            <StyledModal id={id} className={classNames} desktop={isDesktop}>
               {Header()}
-              <StyledContent desktop={desktop} showSupplementaryBar={showSupplementaryBar}>
-                <StyledContentChildren desktop={desktop} supplementaryBarHeight={supplementaryBarHeight} showSupplementaryBar={showSupplementaryBar}>{children}</StyledContentChildren>
+              <StyledContent desktop={isDesktop} showSupplementaryBar={showSupplementaryBar}>
+                <StyledContentChildren desktop={isDesktop} supplementaryBarHeight={supplementaryBarHeight} showSupplementaryBar={showSupplementaryBar}>{children}</StyledContentChildren>
                 {ActionButtons()}
                 {SupplementaryBar()}
               </StyledContent>

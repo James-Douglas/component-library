@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useRef, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
-import { useBreakpoint, usePrefill, useId } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { usePrefill, useId } from '@comparethemarketau/manor-hooks';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
@@ -91,7 +94,7 @@ const Input = React.forwardRef(({
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [isFocusActive, setFocusActive] = useState(false);
-  const breakpoint = useBreakpoint();
+  const { breakpoint } = useContext(ManorContext);
   const localRef = ref || useRef(null);
 
   const clearInput = () => {

@@ -5,11 +5,13 @@ import React, {
   useEffect,
   useCallback,
   useMemo,
+  useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
-import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
 import { Overlay } from '@comparethemarketau/manor-overlay';
@@ -45,11 +47,11 @@ const Dropdown = ({
   const id = useId(propsId);
   const dropdownWrapper = useRef();
   const button = useRef();
-  const desktop = useIsDesktop();
+  const { isDesktop } = useContext(ManorContext);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState();
-  const mobileOverlay = !desktop && isMobileModalView;
+  const mobileOverlay = !isDesktop && isMobileModalView;
   const [value, setValue] = useState(selectedValue);
 
   const handleDropdownButton = () => {
@@ -60,7 +62,7 @@ const Dropdown = ({
   };
 
   const handleFocusDropdownButton = () => {
-    if (!desktop) {
+    if (!isDesktop) {
       handleDropdownButton();
     }
     if (handleFocus) {
@@ -206,8 +208,8 @@ const Dropdown = ({
     if (!isDropdownOpen) return null;
 
     const renderOptions = (
-      <StyledList desktop={desktop}>
-        <StyledListul desktop={desktop}>
+      <StyledList desktop={isDesktop}>
+        <StyledListul desktop={isDesktop}>
           {childrenWithProps}
         </StyledListul>
       </StyledList>

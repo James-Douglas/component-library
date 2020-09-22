@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
-import { useIsDesktop } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Row, Column, FluidContainer } from '@comparethemarketau/manor-grid';
 
 import PropTypes from 'prop-types';
@@ -21,7 +21,7 @@ const AccordionPanel = ({
   handleClickGroup,
   className,
 }) => {
-  const desktop = useIsDesktop();
+  const { isDesktop } = useContext(ManorContext);
   const [isVisible, setIsVisible] = useState(show);
   const [isFocus, setIsFocus] = useState(false);
   const direction = isVisible ? 'vertical' : null;
@@ -58,7 +58,7 @@ const AccordionPanel = ({
         isVisible={isVisible}
         onClick={toggleTrueFalse}
         onKeyDown={toggleTrueFalseOnKey}
-        desktop={desktop}
+        desktop={isDesktop}
         role="tab"
         aria-selected="true"
         tabIndex="0"

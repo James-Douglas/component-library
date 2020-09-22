@@ -1,14 +1,18 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider, ThemeContext } from 'styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { useBreakpoint, useIsDesktop } from '@comparethemarketau/manor-hooks';
 
-const ManorContext = createContext();
+export const ManorContext = createContext();
 
 const ManorProvider = ({ children }) => {
   const theme = useContext(ThemeContext);
+  const breakpoint = useBreakpoint();
+  const isDesktop = useIsDesktop();
+  const value = useMemo(() => ({ breakpoint, isDesktop, theme }), [breakpoint, isDesktop, theme]);
   return (
-    <ManorContext.Provider value={{ theme }}>
+    <ManorContext.Provider value={value}>
       {children}
     </ManorContext.Provider>
   );
