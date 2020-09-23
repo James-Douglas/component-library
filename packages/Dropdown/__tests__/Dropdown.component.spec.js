@@ -12,6 +12,12 @@ jest.mock('../../Hooks/useIsDesktop', () => ({
   default: jest.fn(() => mockUseIsDesktopValue),
 }));
 
+jest.mock('../../Utils/breakpoint', () => ({
+  __esModule: true,
+  getBreakpoint: jest.fn(() => ''),
+  isDesktop: jest.fn(() => mockUseIsDesktopValue),
+}));
+
 describe('Dropdown', () => {
   it('accessibility check for arrow down', async () => {
     const { container, getByText } = render(

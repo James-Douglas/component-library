@@ -9,6 +9,12 @@ jest.mock('../../../Hooks/useIsDesktop', () => ({
   default: jest.fn(() => mockUseIsDesktopValue),
 }));
 
+jest.mock('../../../Utils/breakpoint', () => ({
+  __esModule: true,
+  getBreakpoint: jest.fn(() => ''),
+  isDesktop: jest.fn(() => mockUseIsDesktopValue),
+}));
+
 describe('StickyTracker', () => {
   const props = {
     steps: [

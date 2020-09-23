@@ -12,6 +12,12 @@ jest.mock('../../Hooks/useIsDesktop', () => ({
   default: jest.fn(() => mockUseIsDesktopValue),
 }));
 
+jest.mock('../../Utils/breakpoint', () => ({
+  __esModule: true,
+  getBreakpoint: jest.fn(() => ''),
+  isDesktop: jest.fn(() => mockUseIsDesktopValue),
+}));
+
 describe('Combo', () => {
   it('renders correct number options', () => {
     const { container } = render(

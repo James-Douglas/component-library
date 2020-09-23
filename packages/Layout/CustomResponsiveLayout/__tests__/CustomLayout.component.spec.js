@@ -15,6 +15,7 @@ let mockBreakpointValue = 'extraSmall';
 jest.mock('../../../Utils/breakpoint', () => ({
   __esModule: true,
   getBreakpoint: jest.fn(() => mockBreakpointValue),
+  isDesktop: jest.fn(() => true),
 }));
 
 describe('CustomResponsiveLayout', () => {

@@ -3,9 +3,11 @@ import { render } from '../../../../testUtils';
 import DesktopLayout from '../DesktopLayout.component';
 
 let mockBreakpointValue = 'md';
+let mockIsDesktopValue = true;
 jest.mock('../../../Utils/breakpoint', () => ({
   __esModule: true,
   getBreakpoint: jest.fn(() => mockBreakpointValue),
+  isDesktop: jest.fn(() => mockIsDesktopValue),
 }));
 
 describe('DesktopLayout', () => {
@@ -31,6 +33,7 @@ describe('DesktopLayout', () => {
     expect(childContent).toBeInTheDocument();
 
     mockBreakpointValue = 'xs';
+    mockIsDesktopValue = false;
     ({ container } = render(ui));
     childContent = container.querySelector('.child-content');
 

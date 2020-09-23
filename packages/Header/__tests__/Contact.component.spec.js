@@ -10,6 +10,12 @@ jest.mock('../../Hooks/useIsDesktop', () => ({
   default: jest.fn(() => mockUseIsDesktopValue),
 }));
 
+jest.mock('../../Utils/breakpoint', () => ({
+  __esModule: true,
+  getBreakpoint: jest.fn(() => ''),
+  isDesktop: jest.fn(() => mockUseIsDesktopValue),
+}));
+
 describe('Contact', () => {
   it('renders correctly with number prop', () => {
     mockUseIsDesktopValue = true;

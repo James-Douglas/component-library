@@ -3,9 +3,11 @@ import { render } from '../../../../testUtils';
 import ResponsiveLayout from '../ResponsiveLayout.component';
 
 let mockBreakpointValue = 'xs';
+let mockIsDesktopValue = false;
 jest.mock('../../../Utils/breakpoint', () => ({
   __esModule: true,
   getBreakpoint: jest.fn(() => mockBreakpointValue),
+  isDesktop: jest.fn(() => mockIsDesktopValue),
 }));
 
 describe('ResponsiveLayout', () => {
@@ -21,6 +23,7 @@ describe('ResponsiveLayout', () => {
     expect(childContent).toBeInTheDocument();
 
     mockBreakpointValue = 'md';
+    mockIsDesktopValue = true;
     ({ container } = render(ui));
     childContent = container.querySelector('.child-content');
 
@@ -39,6 +42,7 @@ describe('ResponsiveLayout', () => {
     expect(childContent).toBeInTheDocument();
 
     mockBreakpointValue = 'xs';
+    mockIsDesktopValue = false;
     ({ container } = render(ui));
     childContent = container.querySelector('.child-content');
 
