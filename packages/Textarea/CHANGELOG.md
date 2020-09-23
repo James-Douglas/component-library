@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.12](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-textarea@0.5.11...@comparethemarketau/manor-textarea@0.5.12) (2020-09-23)
+
+**Note:** Version bump only for package @comparethemarketau/manor-textarea
+
+
+
+
+
 ## [0.5.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-textarea@0.5.10...@comparethemarketau/manor-textarea@0.5.11) (2020-09-22)
 
 **Note:** Version bump only for package @comparethemarketau/manor-textarea

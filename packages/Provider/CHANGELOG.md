@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-provider@0.6.0...@comparethemarketau/manor-provider@0.6.1) (2020-09-23)
+
+
+### Bug Fixes
+
+* **provider:** rejigged things so provider only adds 1 listener ([#399](https://github.com/comparethemarketau/manor-react/issues/399)) ([0bb70e3](https://github.com/comparethemarketau/manor-react/commit/0bb70e3b3975361b505946f184aaadd58ab5d415))
+
+
+
+
+
 # [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-provider@0.5.9...@comparethemarketau/manor-provider@0.6.0) (2020-09-22)
 
 

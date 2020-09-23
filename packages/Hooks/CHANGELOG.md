@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-hooks@0.2.6...@comparethemarketau/manor-hooks@0.2.7) (2020-09-23)
+
+
+### Bug Fixes
+
+* **provider:** rejigged things so provider only adds 1 listener ([#399](https://github.com/comparethemarketau/manor-react/issues/399)) ([0bb70e3](https://github.com/comparethemarketau/manor-react/commit/0bb70e3b3975361b505946f184aaadd58ab5d415))
+
+
+
+
+
 ## [0.2.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-hooks@0.2.5...@comparethemarketau/manor-hooks@0.2.6) (2020-09-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-hooks

@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-logo",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Manor Logo component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.2.6",
+    "@comparethemarketau/manor-hooks": "^0.2.7",
     "@comparethemarketau/manor-picture": "^0.3.0",
     "@comparethemarketau/manor-utils": "^0.2.4",
     "prop-types": "^15.7.2"
