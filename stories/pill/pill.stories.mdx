@@ -1,0 +1,86 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  select,
+  object,
+} from '@storybook/addon-knobs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCreditCard } from '@fortawesome/pro-regular-svg-icons/faCreditCard';
+import { faPlus } from '@fortawesome/pro-regular-svg-icons/faPlus';
+import { default as DemoContainer } from './pill-view-styles';
+
+import { Pill } from '@comparethemarketau/manor-pill';
+
+<Meta title="Components/Pill" />
+
+# Pill
+
+Chips are compact elements that represent an input, attribute, or action.
+
+<Preview>
+  <Story name="pill">
+    <DemoContainer>
+      <Pill label="Pill Component" />
+    </DemoContainer>
+  </Story>
+</Preview>
+
+<Story
+  name="pill with props"
+  decorators={[withKnobs]}
+  parameters={{ docs: { disable: true } }}
+>
+  {() => {
+    const variant = select('variant', ['default', 'outlined'], 'outlined');
+    const label = text('label', 'Life Support');
+    const size = select('size', ['medium', 'small'], 'medium');
+    const color = select(
+      'color',
+      ['default', 'primary', 'secondary'],
+      'default',
+    );
+    const disabled = boolean('disabled', false);
+    const clickable = boolean('clickable', true);
+    return (
+      <DemoContainer>
+        <Pill
+          icon={
+            <FontAwesomeIcon
+              icon={faCreditCard}
+              style={{
+                fontSize: '1.6rem',
+                marginRight: '0',
+                marginLeft: '1rem',
+              }}
+            />
+          }
+          variant={variant}
+          label={label}
+          color={color}
+          size={size}
+          disabled={disabled}
+          clickable={clickable}
+          handleClick={() => { console.log('Element Clicked'); }}
+          handleDelete={() => { console.log('Delete Clicked'); }}
+          deleteIcon={
+            <FontAwesomeIcon
+              icon={faPlus}
+              style={{
+                fontSize: '1.6rem',
+                marginLeft: '0rem',
+                marginRight: '1rem',
+              }}
+            />
+          }
+        />
+      </DemoContainer>
+    );
+  }}
+</Story>
+
+#### Props
+
+<Props of={Pill} />

@@ -1456,7 +1456,7 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.30"
 
-"@fortawesome/pro-regular-svg-icons@^5.12.0":
+"@fortawesome/pro-regular-svg-icons@^5.12.0", "@fortawesome/pro-regular-svg-icons@^5.14.0":
   version "5.14.0"
   resolved "https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/5.14.0/pro-regular-svg-icons-5.14.0.tgz#3c5847396fee6591c1d1086548ba4dce4d8d6d66"
   integrity sha512-DYJktCkmPWds7p0eKWwBmOp2BZuvuzh0a8/oc8MMIJX3D3fX4BXiJqgpdcDRTd21t2pC91X0B5LTt589TNtBjQ==
@@ -1470,7 +1470,7 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.30"
 
-"@fortawesome/react-fontawesome@^0.1.8":
+"@fortawesome/react-fontawesome@^0.1.11", "@fortawesome/react-fontawesome@^0.1.8":
   version "0.1.11"
   resolved "https://npm.fontawesome.com/@fortawesome/react-fontawesome/-/0.1.11/react-fontawesome-0.1.11.tgz#c1a95a2bdb6a18fa97b355a563832e248bf6ef4a"
   integrity sha512-sClfojasRifQKI0OPqTy8Ln8iIhnxR/Pv/hukBhWnBz9kQRmqi6JSH3nghlhAY7SUeIIM7B5/D2G8WjX0iepVg==
