@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-tooltip",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Manor Tooltip component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.3.0",
+    "@comparethemarketau/manor-hooks": "^0.4.0",
     "@comparethemarketau/manor-typography": "^0.8.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-light-svg-icons": "^5.12.1",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-progress@0.6.0...@comparethemarketau/manor-progress@0.7.0) (2020-09-24)
+
+
+### Features
+
+* **deps:** update all deps again ([#404](https://github.com/comparethemarketau/manor-react/issues/404)) ([7ac9088](https://github.com/comparethemarketau/manor-react/commit/7ac9088c9f042a656b2e8cb2bab615ed44bad88c))
+
+
+
+
+
 # [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-progress@0.5.1...@comparethemarketau/manor-progress@0.6.0) (2020-09-24)
 
 
