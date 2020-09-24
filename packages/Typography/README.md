@@ -4,6 +4,7 @@
 
 `yarn add @comparethemarketau/manor-typography`
 
+
 ## Documentation
 
 For technical documentation, see [Storybook](https://services.dev.comparethemarket.cloud/manor/?path=/docs/foundation-typography--h-1).

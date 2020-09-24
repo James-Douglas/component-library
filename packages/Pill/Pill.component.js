@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable arrow-body-style */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
@@ -25,28 +24,26 @@ const PillInner = ({
   className,
   classes,
   ...props
-}) => {
-  return (
-    <ThemeProvider theme={muiTheme(theme)}>
-      <MUIChip
-        {...props}
-        label={label}
-        variant={variant}
-        size={size}
-        icon={icon}
-        onClick={handleClick}
-        onDelete={handleDelete || handleClick}
-        deleteIcon={deleteIcon}
-        color={color}
-        disabled={disabled}
-        component={component}
-        clickable={clickable}
-        classes={classes}
-        className={className}
-      />
-    </ThemeProvider>
-  );
-};
+}) => (
+  <ThemeProvider theme={muiTheme(theme)}>
+    <MUIChip
+      {...props}
+      label={label}
+      variant={variant}
+      size={size}
+      icon={icon}
+      onClick={handleClick}
+      onDelete={handleDelete || handleClick}
+      deleteIcon={deleteIcon}
+      color={color}
+      disabled={disabled}
+      component={component}
+      clickable={clickable}
+      classes={classes}
+      className={className}
+    />
+  </ThemeProvider>
+);
 
 const ThemedMUIChip = withTheme(PillInner);
 

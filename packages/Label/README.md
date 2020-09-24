@@ -4,6 +4,7 @@
 
 `yarn add @comparethemarketau/manor-label`
 
+
 ## Documentation
 
 The Label component is automatically included in components that need to be rendered with a label (e.g inputs, checkboxes, etc).

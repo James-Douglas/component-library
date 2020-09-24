@@ -4,6 +4,7 @@
 
 `yarn add @comparethemarketau/manor-separator`
 
+
 ## Documentation
 
 For technical documentation, see [Storybook](https://services.dev.comparethemarket.cloud/manor/?path=/story/components-separator--separator).

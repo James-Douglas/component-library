@@ -102,7 +102,7 @@
     "eslint-plugin-flowtype": "^4.3.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react": "7.20.6",
     "eslint-plugin-react-hooks": "2.2.0",
     "husky": "^3.0.5",
     "identity-obj-proxy": "^3.0.0",

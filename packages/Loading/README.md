@@ -4,6 +4,7 @@
 
 `yarn add @comparethemarketau/manor-loading`
 
+
 ## Documentation
 
 For technical documentation, see [Storybook](https://services.dev.comparethemarket.cloud/manor/?path=/docs/components-loading--primary-loading).

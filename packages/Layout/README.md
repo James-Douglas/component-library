@@ -4,6 +4,7 @@
 
 `yarn add @comparethemarketau/manor-layout`
 
+
 ## Documentation
 
 Renders child elements within breakpoints devices sizes.

@@ -4,6 +4,7 @@
 
 `yarn add @comparethemarketau/manor-provider`
 
+
 ## Documentation
 
 The `ManorProvider` component must wrap your application for components to function correctly. It is responsible for

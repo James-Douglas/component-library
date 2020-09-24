@@ -21,7 +21,7 @@ export default {
       format: 'cjs',
     },
   ],
-  external: (id) => /^react/.test(id),
+  external: ['react', 'react-dom', 'prop-types', 'styled-components', '@comparethemarketau/manor-provider'],
   plugins: [
     del({ targets: 'lib/' }),
     peerDepsExternal(),
