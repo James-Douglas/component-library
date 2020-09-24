@@ -30,7 +30,7 @@
     "@comparethemarketau/manor-themes": "^0.6.0"
   },
   "peerDependencies": {
-    "@comparethemarketau/manor-provider": "^0.1.0",
+    "@comparethemarketau/manor-provider": "^0.7.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "styled-components": "^5.0.0"

@@ -18,7 +18,8 @@
     "test:ci": "cross-env CI=true jest",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "lint": "eslint --ext .js --ignore-pattern 'packages/**/lib/*' ./packages"
+    "lint": "eslint --ext .js --ignore-pattern 'packages/**/lib/*' ./packages",
+    "update-ctm-deps": "lerna exec --parallel \"npm-check-updates '/^@comparethemarketau/.*$/' --upgrade --packageManager yarn\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -72,6 +73,7 @@
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-node-resolve": "^7.1.3",
     "@rollup/plugin-url": "^4.0.2",
+    "@sackrin/react-micro-ui-hooks": "^1.3.0",
     "@semantic-release/commit-analyzer": "^6.3.3",
     "@semantic-release/release-notes-generator": "^7.3.5",
     "@storybook/addon-a11y": "v6.0.0-alpha.21",
@@ -85,7 +87,6 @@
     "@storybook/preset-create-react-app": "^1.5.1",
     "@storybook/react": "v6.0.0-alpha.21",
     "@storybook/source-loader": "v6.0.0-alpha.21",
-    "@sackrin/react-micro-ui-hooks": "^1.3.0",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
     "@testing-library/react-hooks": "3.2.1",
@@ -112,6 +113,7 @@
     "jest-static-stubs": "^0.0.1",
     "jest-styled-components": "^7.0.0",
     "lerna": "^3.18.3",
+    "npm-check-updates": "^9.0.2",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "react-is": "^16.12.0",
