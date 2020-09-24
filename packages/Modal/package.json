@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-modal",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "Manor Modal component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,20 +18,20 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-button": "^0.5.12",
-    "@comparethemarketau/manor-grid": "^0.6.9",
-    "@comparethemarketau/manor-hooks": "^0.2.7",
-    "@comparethemarketau/manor-overlay": "^0.3.0",
-    "@comparethemarketau/manor-separator": "^0.4.6",
-    "@comparethemarketau/manor-typography": "^0.7.0",
-    "@comparethemarketau/manor-utils": "^0.2.4",
+    "@comparethemarketau/manor-button": "^0.6.0",
+    "@comparethemarketau/manor-grid": "^0.7.0",
+    "@comparethemarketau/manor-hooks": "^0.3.0",
+    "@comparethemarketau/manor-overlay": "^0.4.0",
+    "@comparethemarketau/manor-separator": "^0.5.0",
+    "@comparethemarketau/manor-typography": "^0.8.0",
+    "@comparethemarketau/manor-utils": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-input": "^0.9.2"
+    "@comparethemarketau/manor-input": "^0.10.0"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.5.9",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.5.2...@comparethemarketau/manor-themes@0.6.0) (2020-09-24)
+
+
+### Features
+
+* **rollup:** update rollup to not bundle manor-provider ([#403](https://github.com/comparethemarketau/manor-react/issues/403)) ([0e012d6](https://github.com/comparethemarketau/manor-react/commit/0e012d6fbadcf0ec99857c22e148cacd6265b60a))
+
+
+
+
+
 ## [0.5.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.5.1...@comparethemarketau/manor-themes@0.5.2) (2020-09-16)
 
 **Note:** Version bump only for package @comparethemarketau/manor-themes
