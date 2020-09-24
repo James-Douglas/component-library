@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.15](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.5.14...@comparethemarketau/manor-buttongroup@0.5.15) (2020-09-24)
+
+**Note:** Version bump only for package @comparethemarketau/manor-buttongroup
+
+
+
+
+
 ## [0.5.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.5.13...@comparethemarketau/manor-buttongroup@0.5.14) (2020-09-23)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
