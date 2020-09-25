@@ -36,6 +36,7 @@ const Tooltip = ({
   body,
   placement,
   variant,
+  screenReaderLabelId,
   screenReaderLabel,
   className,
 }) => {
@@ -138,7 +139,7 @@ const Tooltip = ({
         className={className}
       >
         <>
-          <Typography variant="srOnly">{screenReaderLabel}</Typography>
+          <Typography id={screenReaderLabelId} variant="srOnly">{screenReaderLabel}</Typography>
           <FontAwesomeIcon icon={faInfoCircle} />
         </>
       </StyledTooltipIcon>
@@ -168,6 +169,10 @@ export const tooltipPropTypes = {
    */
   screenReaderLabel: PropTypes.string,
   /**
+   * id to be applied to the Tooltip screenReaderLabel container for accessibility purposes
+   */
+  screenReaderLabelId: PropTypes.string,
+  /**
    * Placement of the tooltip in relation to it's icon
    */
   placement: PropTypes.oneOf([
@@ -188,6 +193,7 @@ const defaultProps = {
   title: '',
   body: '',
   screenReaderLabel: '',
+  screenReaderLabelId: '',
   placement: 'right',
   variant: 'dark',
   className: 'ctm-tooltip',
