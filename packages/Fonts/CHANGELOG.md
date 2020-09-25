@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-fonts@0.3.0...@comparethemarketau/manor-fonts@0.3.1) (2020-09-25)
+
+**Note:** Version bump only for package @comparethemarketau/manor-fonts
+
+
+
+
+
 # [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-fonts@0.2.8...@comparethemarketau/manor-fonts@0.3.0) (2020-09-24)
 
 

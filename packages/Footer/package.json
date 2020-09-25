@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-footer",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Manor Footer component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,9 +18,9 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-grid": "^0.7.0",
-    "@comparethemarketau/manor-typography": "^0.8.0",
-    "@comparethemarketau/manor-utils": "^0.3.0",
+    "@comparethemarketau/manor-grid": "^0.7.1",
+    "@comparethemarketau/manor-typography": "^0.8.1",
+    "@comparethemarketau/manor-utils": "^0.3.1",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
