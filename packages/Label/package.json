@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-label",
-  "version": "0.4.3",
+  "version": "0.4.2",
   "description": "Manor Label component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

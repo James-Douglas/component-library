@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.3.1",
+    "@comparethemarketau/manor-hooks": "^0.4.0",
     "@comparethemarketau/manor-picture": "^0.4.0",
     "@comparethemarketau/manor-utils": "^0.3.1",
     "prop-types": "^15.7.2"

@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-dropdown",
-  "version": "0.8.2",
+  "version": "0.8.1",
   "description": "Manor Dropdown component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@comparethemarketau/manor-field-validation": "^0.5.1",
-    "@comparethemarketau/manor-hooks": "^0.3.1",
-    "@comparethemarketau/manor-label": "^0.4.3",
+    "@comparethemarketau/manor-hooks": "^0.4.0",
+    "@comparethemarketau/manor-label": "^0.4.2",
     "@comparethemarketau/manor-overlay": "^0.4.0",
     "@comparethemarketau/manor-supporting-elements": "^0.5.1",
     "@comparethemarketau/manor-tooltip": "^0.8.0",

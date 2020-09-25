@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-switch",
-  "version": "0.3.3",
+  "version": "0.3.2",
   "description": "Manor switch component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
