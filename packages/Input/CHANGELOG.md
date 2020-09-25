@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.11.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.11.1...@comparethemarketau/manor-input@0.11.2) (2020-09-25)
+
+**Note:** Version bump only for package @comparethemarketau/manor-input
+
+
+
+
+
 ## [0.11.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.11.0...@comparethemarketau/manor-input@0.11.1) (2020-09-25)
 
 **Note:** Version bump only for package @comparethemarketau/manor-input

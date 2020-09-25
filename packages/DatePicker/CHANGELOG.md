@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.7.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.7.2...@comparethemarketau/manor-date-picker@0.7.3) (2020-09-25)
+
+**Note:** Version bump only for package @comparethemarketau/manor-date-picker
+
+
+
+
+
 ## [0.7.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.7.1...@comparethemarketau/manor-date-picker@0.7.2) (2020-09-25)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker

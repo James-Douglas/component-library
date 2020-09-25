@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.2.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.2.2...@comparethemarketau/manor-slider@0.2.3) (2020-09-25)
+
+**Note:** Version bump only for package @comparethemarketau/manor-slider
+
+
+
+
+
 ## [0.2.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.2.1...@comparethemarketau/manor-slider@0.2.2) (2020-09-25)
 
 **Note:** Version bump only for package @comparethemarketau/manor-slider

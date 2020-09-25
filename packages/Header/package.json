@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-header",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Manor Header component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.4.0",
+    "@comparethemarketau/manor-hooks": "^0.4.1",
     "@comparethemarketau/manor-typography": "^0.8.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
