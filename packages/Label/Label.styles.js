@@ -2,7 +2,9 @@ import styled, { css } from 'styled-components';
 
 export const StyledLabelContainer = styled.div`
   position: relative;
-  margin-bottom: ${({ theme, inFieldLabel }) => (inFieldLabel ? 0 : theme.spacing[8])};
+  ${({ removeGutters }) => !removeGutters && css`
+    margin-bottom: ${({ theme, inFieldLabel }) => (inFieldLabel ? 0 : theme.spacing[8])};
+  `}
 `;
 
 export const StyledLabel = styled.label`
@@ -10,12 +12,11 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.label.color};
   ${({
-    theme, inFieldLabel, prefixContent, breakpoint,
+    theme, inFieldLabel, breakpoint,
   }) => inFieldLabel && css`
     position: absolute;
     z-index: ${theme.zIndex[10]};
     visibility: hidden;
-    
     padding-left: 9px;
     left: 0;
     text-transform: uppercase;

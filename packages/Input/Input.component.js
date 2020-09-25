@@ -88,6 +88,9 @@ const Input = React.forwardRef(({
   className,
   disableClearIcon,
   expressive,
+  bordered,
+  removeGutters,
+  disableFocusStyles,
 }, ref) => {
   const id = useId(propsId);
   const [internalValue, setInternalValue] = useState(getInitialValue(value, prefillValue));
@@ -136,11 +139,10 @@ const Input = React.forwardRef(({
   const affixClick = () => {
     localRef.current.inputElement.focus();
   };
-
   return (
-    <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint}>
+    <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
       {!expressive
-        && <Label htmlFor={id} text={label} tooltip={tooltip} />}
+        && <Label htmlFor={id} text={label} tooltip={tooltip} removeGutters={removeGutters} />}
       <StyledInputContainer className="input-container">
         <StyledInputWrap
           isAutofill={isAutofill}
@@ -149,11 +151,13 @@ const Input = React.forwardRef(({
           isFocusActive={isFocusActive}
           expressive={expressive}
           inputValue={internalValue}
+          bordered={bordered}
+          disableFocusStyles={disableFocusStyles}
         >
           {renderAffix('prefix', prefixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
           <StyledInputClearWrap className="input-clear-wrap" expressive={expressive} inputValue={internalValue} breakpoint={breakpoint}>
             {expressive
-              && <Label htmlFor={id} text={label} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
+              && <Label htmlFor={id} text={label} removeGutters={removeGutters} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
             <StyledInput
               mask={mask}
               guide={guide}
@@ -306,6 +310,18 @@ Input.propTypes = {
    * Adds the 'expressive input' styling, used in conjuction with the 'infield label' prop
    */
   expressive: PropTypes.bool,
+  /**
+   * Turn the border on or off
+   */
+  bordered: PropTypes.bool,
+  /**
+   * Turn margins (top and bottom) on or off
+   */
+  removeGutters: PropTypes.bool,
+  /**
+   * Turn off the focus border (used for combo tags)
+   */
+  disableFocusStyles: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -337,6 +353,9 @@ Input.defaultProps = {
   className: '',
   disableClearIcon: false,
   expressive: false,
+  bordered: true,
+  removeGutters: false,
+  disableFocusStyles: false,
 };
 
 export default Input;

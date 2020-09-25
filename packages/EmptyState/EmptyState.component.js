@@ -26,9 +26,9 @@ const EmptyState = ({
         <StyledPictureContainer>
           <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
         </StyledPictureContainer>
-        <Typography variant="h2">{heading}</Typography>
+        <Typography variant="h3">{heading}</Typography>
         <div>
-          {children}
+          <Typography variant="body1">{children}</Typography>
         </div>
       </StyledEmptyStateWrap>
     </StyledEmptyState>

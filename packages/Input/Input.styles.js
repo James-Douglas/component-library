@@ -4,15 +4,15 @@ import MaskedInput from 'react-text-mask';
 import { StyledLabel } from '@comparethemarketau/manor-label';
 
 const labelAnimation = (props) => keyframes`
-    0% { 
-      visibility: hidden;
-      top: 12px;
-    }
-    100% { 
-      top: ${props.breakpoint === 'xl' ? '7px' : '5px'};
-      visibility: visible;
-    }
-  `;
+  0% { 
+    visibility: hidden;
+    top: 12px;
+  }
+  100% { 
+    top: ${props.breakpoint === 'xl' ? '7px' : '5px'};
+    visibility: visible;
+  }
+`;
 
 const pseudoBorder = ({ theme }) => css`
   content: "";
@@ -29,7 +29,9 @@ export const StyledWrapper = styled.div`
   *, *:before, *:after {
     box-sizing: border-box;
   }
-  margin-bottom: ${({ theme, inFieldLabel }) => (inFieldLabel ? theme.spacing[48] : theme.spacing[20])};
+  ${({ removeGutters }) => !removeGutters && css`
+    margin-bottom: ${({ theme, inFieldLabel }) => (inFieldLabel ? theme.spacing[48] : theme.spacing[20])};
+  `}
   ${({ inputValue, inFieldLabel, breakpoint }) => (inputValue && inFieldLabel) && css`
     ${StyledLabel} {
       animation : ${labelAnimation(breakpoint)} 0.2s 1 ease-in-out;
@@ -88,16 +90,16 @@ export const StyledInputWrap = styled.div`
   background: ${({ theme }) => theme.input.background};
   transition: border 0.1s ease-in-out;
   border: ${({ theme }) => theme.borders.transparent};
-  ${({ expressive }) => !expressive && css`
+  ${({ expressive }) => (!expressive) && css`
     :hover {
-      border: ${({ theme, disabled }) => (disabled ? '' : theme.borders.hover)};
+      border: ${({ theme, disabled, disableFocusStyles }) => ((disabled || disableFocusStyles) ? '' : theme.borders.hover)};
     }
   `}
   [disabled] {
     background: ${({ theme, expressive }) => (expressive ? theme.input.expressiveDisabled : theme.input.background)};
   }
-  ${({ theme, expressive }) => !expressive && css`
-    border: ${theme.borders.component};
+  ${({ theme, expressive, bordered }) => !expressive && css`
+    border: ${bordered ? theme.borders.component : theme.borders.transparent};
   `}
   ${({ theme, expressive, disabled }) => expressive && css`
     border-bottom: ${disabled ? theme.borders.disabled : theme.borders.expressive};
@@ -121,8 +123,13 @@ export const StyledInputWrap = styled.div`
   ${({ disabled }) => (disabled) && css`
     opacity: 0.5;
   `}
-  ${({ theme, isFocusActive, expressive }) => (isFocusActive && !expressive) && css`
-    border: ${theme.borders.active};
+  ${({
+    theme,
+    isFocusActive,
+    expressive,
+    bordered,
+  }) => (isFocusActive && !expressive) && css`
+    border: ${bordered ? theme.borders.active : theme.borders.transparent};
   `}
   ${({ theme, invalid, expressive }) => (invalid && !expressive) && css`
     border: ${theme.borders.invalid};
@@ -193,6 +200,7 @@ export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ..
   padding-right: ${({ theme }) => theme.spacing[36]};
   display: block;
   width: 100%;
+  min-width: 150px;
   font-size: ${({ theme }) => theme.fontSize.base};
   border: ${({ theme }) => theme.borders.transparent};
   height: ${({ theme }) => theme.input.height};

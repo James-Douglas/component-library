@@ -2,7 +2,7 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { Combobox } from '@comparethemarketau/manor-combobox';
-import  { FluidContainer, Column, Row } from '@comparethemarketau/manor-grid';
+import { FluidContainer, Column, Row } from '@comparethemarketau/manor-grid';
 import fakeApiData from './jsonPlaceholder';
 import getTooltipKnobs from '../tooltipKnobs';
 
@@ -52,6 +52,7 @@ the input field.
                       // eslint-disable-next-line no-console
                       console.log(value)
                     }}
+                    inlineFiltering={true}
                   />
               </Column>
             </Row>

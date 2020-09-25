@@ -4,13 +4,13 @@ import { Tooltip, tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { StyledLabel, StyledLabelContainer } from './Label.styles';
 
 const Label = ({
-  htmlFor, text, tooltip, inFieldLabel, prefixContent, breakpoint,
+  htmlFor, text, tooltip, removeGutters, inFieldLabel, prefixContent, breakpoint,
 }) => {
   const {
     title, body, screenReaderLabel, placement, variant, className,
   } = tooltip;
   return (
-    <StyledLabelContainer inFieldLabel={inFieldLabel}>
+    <StyledLabelContainer inFieldLabel={inFieldLabel} removeGutters={removeGutters}>
       <StyledLabel htmlFor={htmlFor} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} className="label">
         {text}
         <Tooltip
@@ -40,6 +40,10 @@ Label.propTypes = {
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
   /**
+   * Turn margins (top and bottom) on or off
+   */
+  removeGutters: PropTypes.bool,
+  /**
    * Hides if true, animates on with the expressive input
    */
   inFieldLabel: PropTypes.bool,
@@ -63,6 +67,7 @@ Label.defaultProps = {
   inFieldLabel: false,
   prefixContent: '',
   breakpoint: null,
+  removeGutters: false,
 };
 
 export default Label;

@@ -23,7 +23,6 @@ export const StyledList = styled.ul`
   width: ${({ theme }) => (theme.maxWidth.full)};
   padding: 0;
   color: ${({ theme }) => (theme.combo.list.color)};
-  
   z-index: ${({ theme }) => (theme.zIndex[30])};
 `;
 
@@ -39,8 +38,7 @@ export const StyledListItem = styled.li`
   position: relative;
   min-height: ${({ theme }) => theme.spacing[52]};
   border: ${({ theme }) => theme.borders.transparent};
-  padding:  ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[40]}`};
-  font-size: ${({ theme }) => (theme.fontSize.base)};
+  padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[40]}`};
   color: ${({ theme }) => (theme.combo.list.item.color)};
   transition: background-color 0.4s ease;
   &:nth-last-child(1) {
@@ -53,14 +51,12 @@ export const StyledListItem = styled.li`
     outline: none;
     border: ${({ theme }) => theme.combo.list.item.borderFocus};
   }
-  p {
-    margin: 0;
-  }
 `;
 
 export const StyledIconWrap = styled.span`
   position: absolute;
   left: ${({ theme }) => theme.spacing[16]};
+  margin-top: ${({ theme }) => `-${theme.spacing[8]}`};
   margin-right: ${({ theme }) => theme.spacing[16]};
   color: ${({ theme }) => theme.colors.grey400};
 `;
@@ -173,6 +169,5 @@ export const StyledEmptyStateMessage = styled.div`
   .empty-state-wrap {
     max-height: ${({ theme }) => (theme.spacing[100])};
   }
-  
-   z-index: ${({ theme }) => (theme.zIndex[50])};
+  z-index: ${({ theme }) => (theme.zIndex[50])};
 `;

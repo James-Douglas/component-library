@@ -66,6 +66,7 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
           role="listitem"
           data-type="list"
           onMouseDown={() => handleSelectItem(filteredValue)}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleSelectItem(filteredValue)}
           ref={filteredValuesRefs[index]}
         >
           {listIcon && (
@@ -73,7 +74,7 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
               <FontAwesomeIcon icon={listIcon} size="sm" />
             </StyledIconWrap>
           )}
-          <Typography variant="body1">{filteredValue}</Typography>
+          <Typography variant="body2" component="span">{filteredValue}</Typography>
         </StyledListItem>
       ))}
     </StyledList>
@@ -95,7 +96,7 @@ export function listInfoBox(listInfoBoxContent, currentPrefillValue, characterMi
   );
 }
 
-const Combobox = React.forwardRef(({
+const Combobox = ({
   id: propsId,
   label,
   apiData,
@@ -123,13 +124,14 @@ const Combobox = React.forwardRef(({
   emptyStateClassName,
   emptyStateHeading,
   helperMessage,
-}, ref) => {
+}) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
   const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
   const [focusedRef, setFocusedRef] = useState(null);
   const bottomButton = React.createRef();
+  const mobileModalRef = React.createRef();
   const { isDesktop } = useContext(ManorContext);
   const mobileOverlay = !isDesktop && isMobileModalView;
 
@@ -192,8 +194,10 @@ const Combobox = React.forwardRef(({
   }, [handleUserKeyPress]);
 
   useEffect(() => {
-    isMobileModalView && ref && ref.current && ref.current.focus();
-  }, [isMobileModalView, ref]);
+    if (isMobileModalView && mobileModalRef) {
+      mobileModalRef.current.inputElement.focus();
+    }
+  }, [isMobileModalView, mobileModalRef]);
 
   const handleOnFocus = (event) => {
     if (
@@ -209,6 +213,7 @@ const Combobox = React.forwardRef(({
       handleFocus();
     }
   };
+
   const handleOnBlur = (event) => {
     if (!(bottomButton.current && bottomButton.current.contains(event.relatedTarget))) {
       setListVisible(false);
@@ -227,9 +232,7 @@ const Combobox = React.forwardRef(({
         setListVisible(false);
         break;
       case 'Enter':
-        if (focusedRef !== null) {
-          handleSelectItem(event.target.querySelector('p').innerHTML);
-        } else if (closestLink) {
+        if (closestLink) {
           closestLink.focus();
           closestLink.click();
         }
@@ -301,7 +304,7 @@ const Combobox = React.forwardRef(({
             onKeyDown={keyboardAccessibility}
             desktop={isDesktop}
           >
-            {emptyStateCondition && mobileOverlay && <StyledEmptyStateMessage>{helperMessage}</StyledEmptyStateMessage>}
+            {emptyStateCondition && mobileOverlay && <StyledEmptyStateMessage><Typography variant="body1">{helperMessage}</Typography></StyledEmptyStateMessage>}
             {noResultCondition && mobileOverlay && (
               <StyledEmptyStateMessage>
                 <EmptyState
@@ -320,7 +323,7 @@ const Combobox = React.forwardRef(({
               label={label}
               value={currentValue}
               prefillValue={prefillValue}
-              required={required}
+              required
               disabled={disabled}
               validationMessage={validationMessage}
               prefixContent={prefixContent}
@@ -329,7 +332,7 @@ const Combobox = React.forwardRef(({
               handleChange={comboHandleChange}
               className={className}
               tabIndex="0"
-              ref={ref}
+              ref={mobileModalRef}
               role="comboField"
               dataList={() => comboDropdownList(
                 isDesktop,
@@ -372,7 +375,7 @@ const Combobox = React.forwardRef(({
       )}
     </>
   );
-});
+};
 
 Combobox.displayName = 'Combo';
 

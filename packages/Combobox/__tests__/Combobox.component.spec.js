@@ -813,8 +813,6 @@ describe('Combo', () => {
     inputField.click();
     const emptyState = getByText('Please start typing');
     expect(emptyState).toBeInTheDocument();
-    expect(emptyState).toHaveStyleRule('font-size', `${ctmTheme.fontSize.base}`);
-    expect(emptyState).toHaveStyleRule('color', `${ctmTheme.combo.list.item.color}`);
   });
   it('no results check condition ', () => {
     mockUseIsDesktopValue = false;

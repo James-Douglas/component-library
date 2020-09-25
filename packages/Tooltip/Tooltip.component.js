@@ -1,4 +1,6 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, {
+  useState, useRef, useEffect, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/dist/tippy.css';
@@ -32,12 +34,15 @@ export function getContent(title, body, variant) {
 }
 
 const Tooltip = ({
+  arrow,
   title,
   body,
   placement,
   variant,
   screenReaderLabelId,
   screenReaderLabel,
+  children,
+  active,
   className,
 }) => {
   const [pinned, setPinned] = useState(false);
@@ -96,6 +101,13 @@ const Tooltip = ({
     }
   };
 
+  useEffect(() => {
+    if (active) {
+      showTooltip();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active]);
+
   if (!title && !body) {
     return null;
   }
@@ -103,7 +115,7 @@ const Tooltip = ({
   return (
     <StyledTippy
       content={getContent(title, body, variant)}
-      arrow
+      arrow={arrow}
       distance="1rem"
       animation="scale"
       duration={[150, 75]}
@@ -140,7 +152,9 @@ const Tooltip = ({
       >
         <>
           <Typography id={screenReaderLabelId} variant="srOnly">{screenReaderLabel}</Typography>
-          <FontAwesomeIcon icon={faInfoCircle} />
+          {
+            children || <FontAwesomeIcon icon={faInfoCircle} />
+          }
         </>
       </StyledTooltipIcon>
     </StyledTippy>
@@ -148,6 +162,14 @@ const Tooltip = ({
 };
 
 export const tooltipPropTypes = {
+  /**
+   * Set the tool tip as active (displayed)
+   */
+  active: PropTypes.bool,
+  /**
+   * If the tooltip has an arrow or not
+   */
+  arrow: PropTypes.bool,
   /**
    * Title for the tooltip
    */
@@ -187,9 +209,19 @@ export const tooltipPropTypes = {
    * Classes to be applied to the Tooltip component
    */
   className: PropTypes.string,
+  /**
+   * Children of the tooltip - replaces the icon
+   */
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 const defaultProps = {
+  arrow: true,
+  active: false,
   title: '',
   body: '',
   screenReaderLabel: '',
@@ -197,6 +229,7 @@ const defaultProps = {
   placement: 'right',
   variant: 'dark',
   className: 'ctm-tooltip',
+  children: null,
 };
 
 Tooltip.propTypes = tooltipPropTypes;

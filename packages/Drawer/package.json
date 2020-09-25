@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@comparethemarketau/manor-grid": "^0.7.0",
-    "@comparethemarketau/manor-hooks": "^0.4.0",
+    "@comparethemarketau/manor-hooks": "^0.3.0",
     "@comparethemarketau/manor-overlay": "^0.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-light-svg-icons": "^5.12.1",

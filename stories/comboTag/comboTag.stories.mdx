@@ -1,0 +1,144 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, object, array } from '@storybook/addon-knobs';
+import { ComboTag } from '@comparethemarketau/manor-combo-tag';
+import { Typography } from '@comparethemarketau/manor-typography';
+import { FluidContainer, Column, Row } from '@comparethemarketau/manor-grid';
+import fakeApiData from './countries';
+import { useState, useEffect } from 'react';
+
+<Meta title="Components/ComboTag" component={ComboTag} />
+
+# ComboTag
+
+The ComboTag component can be used to display a list of items with can be dynamically updated based on the users input. On selection of an item from the list, a tag will be displayed 
+adjacent to the input. Tags can also be set as an 'alert', which is a tag in a warning color along with a line of text with optional tooltip describing the alert to the user.
+In Manor, the `ComboTag` extends `Input` and as such shares similar functionality.
+
+<Preview>
+  <Story name="ComboTag preview" height="250px">
+  {() => {
+    const [comboTagValue, setComboTagValue] = useState('')
+    const [apiData, setApiData] = useState([]);
+    useEffect(() => {
+      const filteredData = fakeApiData.filter((obj) => obj.name.toLowerCase().startsWith(comboTagValue.toLowerCase())).map(obj => obj);
+      if (filteredData.length > 33) {
+        setApiData(filteredData.slice(0, 33));
+      } else {
+        setApiData(filteredData)
+      }
+    }, [comboTagValue])
+    return (
+      <div style={{ padding: '2%', marginTop: '200px'}}>
+         <FluidContainer>
+             <Row>
+               <Column>
+                  <ComboTag
+                    apiData={apiData}
+                    id="tag-id-1"
+                    emptyStatePicture={{
+                      src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
+                      srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
+                      alt: 'Image of magnifying glass',
+                      title: 'no results found',
+                    }}
+                    placeholder='Select or start typing destination(s)...'
+                    emptyStateHeading= "Sorry, your search did not produce any results."
+                    emptyStateChildren='Try adjusting your search or filter to find what you are looking for.'
+                    handleInput={(value) => {
+                      // eslint-disable-next-line no-console
+                      console.log(value)
+                      setComboTagValue(value)
+                    }}
+                    handleChange={() => {}}
+                    keys={['name', 'code', 'alert', 'shortName']}
+                    alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
+                    alertTooltip={
+                      {
+                        title: "appears on the Smartraveller.gov.au Do not travel list.",
+                        body: "You have selected one or more destinations that appear on the Smartraveller.gov.au 'Do not travel’ or ‘Reconsider Your Need to Travel’ lists. Most policies will not cover you for losses relating to travel to these countries.",
+                      }
+                    }
+                    errorTooltip={
+                      {
+                        title: "",
+                        body: "You have already added this destination",
+                      }
+                    }
+                  />
+              </Column>
+            </Row>
+         </FluidContainer>
+      </div>
+    );
+  }}
+  </Story>
+</Preview>
+
+## Behaviour
+* When the input has any content, a clear input button is displayed. When clicked/tapped, the input is cleared.
+* Selecting a displayed option adds a tag to the tag holder (left aligned to the input)
+
+### Accessibility
+* The ComboTag field can be focused via the `Tab` key.
+* The clear button can be focused via the `Tab` key.
+* When the clear button has focus, both the `Enter` and `Space` keys can be used to clear the input field.
+* When the ComboTag is focused, the `Up` and `Down` arrow keys can be used to traverse the list of options.
+* When a list item is focused, the `Enter` key can be used to select it.
+* When the ComboTag is focused, the `Escape` key will dismiss the list of options.
+
+### Props
+<Props of={ComboTag} />
+
+<Story name="ComboTag with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const [comboTagValue, setComboTagValue] = useState('')
+    const [apiData, setApiData] = useState([]);
+    useEffect(() => {
+      const filteredData = fakeApiData.filter((obj) => obj.name.toLowerCase().startsWith(comboTagValue.toLowerCase())).map(obj => obj);
+      if (filteredData.length > 33) {
+        setApiData(filteredData.slice(0, 33));
+      } else {
+        setApiData(filteredData)
+      }
+    }, [comboTagValue]);
+    const prefillValues = [{name: 'United States of America', code: 'US', alert: false, shortName: 'USA' }];
+    const componentPropsId = 'Component Props';
+    const tooltipGroupId = 'Tooltip Props';
+    const id = text('id', 'ComboTag-demo', componentPropsId);
+    const placeholder = text('placeholder', 'Placeholder', componentPropsId);
+    const disabled = boolean('disabled', false, componentPropsId);
+    const prefillValue = array('prefillValue', [], componentPropsId);
+    const autoComplete = text('autoComplete', 'off', componentPropsId);
+    const renderLimit = number('renderLimit', 10, {}, componentPropsId);
+    const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
+    return (
+      <div style={{ padding: '2%'}}>
+        <FluidContainer>
+          <Row>
+            <Column>
+              <ComboTag
+                id={id}
+                placeholder={placeholder}
+                disabled={disabled}
+                prefillValue={prefillValues}
+                autoComplete={autoComplete}
+                characterMinimum={characterMinimum}
+                renderLimit={renderLimit}
+                apiData={apiData}
+                handleInput={(value) => {
+                  // eslint-disable-next-line no-console
+                  console.log(value)
+                  setComboTagValue(value)
+                }}
+                handleChange={() => {}}
+                keys={['name', 'code', 'alert', 'shortName']}
+                alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
+              />
+            </Column>
+          </Row>
+        </FluidContainer>
+      </div>
+    );
+  }}
+</Story>
+

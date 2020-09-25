@@ -1,0 +1,42 @@
+{
+  "name": "@comparethemarketau/manor-combo-tag",
+  "version": "0.0.1",
+  "description": "Manor comboTag component",
+  "main": "lib/index.cjs.js",
+  "author": "Compare The Market",
+  "license": "Proprietary",
+  "scripts": {
+    "build": "rollup -c '../../rollup.config.js'",
+    "tdd": "jest --coverage --watchAll",
+    "test": "cross-env JEST_SILENT_REPORTER_DOTS=true jest --reporters=jest-silent-reporter --coverage --watchAll",
+    "test:ci": "cross-env CI=true jest",
+    "prepare": "cp package.json lib/ && cp README.md lib/ && cp CHANGELOG.md lib/"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.comparethemarket.com.au/repository/platform-packages/",
+    "access": "public",
+    "tag": "latest"
+  },
+  "dependencies": {
+    "@comparethemarketau/manor-empty-state": "^0.6.0",
+    "@comparethemarketau/manor-hooks": "^0.3.0",
+    "@comparethemarketau/manor-input": "^0.11.1",
+    "@comparethemarketau/manor-picture": "^0.4.0",
+    "@comparethemarketau/manor-tooltip": "^0.7.0",
+    "@comparethemarketau/manor-tag": "0.0.1",
+    "@comparethemarketau/manor-typography": "^0.8.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/pro-light-svg-icons": "^5.12.1",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@comparethemarketau/manor-themes": "^0.6.0"
+  },
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "styled-components": "^5.0.0"
+  }
+}
