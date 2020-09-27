@@ -41,7 +41,7 @@ const Disclaimer = ({
     <StyledWrapper>
       <Checkbox id={id} handleChange={changeHandler} isSelected={checked} handleFocus={handleFocus} handleBlur={handleBlur} />
       <StyledContent ref={content} onClick={handleContentClick}>
-        <Typography variant="body1">
+        <Typography variant="body1" component="span">
           {children}
         </Typography>
       </StyledContent>

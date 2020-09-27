@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { Disclaimer } from '@comparethemarketau/manor-disclaimer';
-import { Typography } from '@comparethemarketau/manor-typography';
 import { Link } from '@comparethemarketau/manor-link';
 
 <Meta title="Components/Disclaimer" component={Disclaimer} />
@@ -13,9 +12,8 @@ Renders a checkbox with content (supplied as children).
 <Preview>
   <Story name="disclaimer">
     <Disclaimer handleChange={(checked) => {console.log('Disclaimer checked:', checked)}} id="1">
-      <Typography variant="body1">
-        I'm a disclaimer <Link href="www.google.com" target="_blank">link</Link> that's a link
-      </Typography>
+        I understand and accept the <Link href="http://www.comparethemarket.com.au" target="_blank">Website Terms of Use</Link>, Financial Services Guide and Privacy Policy.
+        I agree that Compare the Market may contact me via email, SMS or otherwise about any products and services it provides.
     </Disclaimer>
   </Story>
 </Preview>

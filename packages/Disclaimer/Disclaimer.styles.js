@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledWrapper = styled.div`
   display: flex;
+  align-items: flex-start;
 `;
 
 export const StyledContent = styled.div`
