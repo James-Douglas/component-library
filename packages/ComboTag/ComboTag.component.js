@@ -272,7 +272,7 @@ const ComboTag = ({
             body={body}
             placement="top"
             variant="light"
-            screenReaderLabel="You have selected one or more destinations that appear on the Smartraveller.gov.au 'Do not travel’ or ‘Reconsider Your Need to Travel’ lists. Most policies will not cover you for losses relating to travel to these countries."
+            screenReaderLabel={`${alertStr} ${title}`}
           >
             <StyledLink>Learn more</StyledLink>
           </Tooltip>

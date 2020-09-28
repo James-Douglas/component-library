@@ -200,7 +200,6 @@ export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ..
   padding-right: ${({ theme }) => theme.spacing[36]};
   display: block;
   width: 100%;
-  min-width: 150px;
   font-size: ${({ theme }) => theme.fontSize.base};
   border: ${({ theme }) => theme.borders.transparent};
   height: ${({ theme }) => theme.input.height};

@@ -21,6 +21,7 @@ export const StyledPrefix = styled.div`
 
 export const StyledInputWrap = styled.div`
   width: 100%;
+  background: ${({ theme }) => (theme.colors.white)};
 `;
 
 export const StyledBorder = styled.div`
@@ -37,19 +38,18 @@ export const StyledTagHolder = styled.div`
   float: left;
   overflow-x: scroll;
   align-items: center;
-  background: white;
   width: ${({ tagsWidth, tagsVisible }) => (tagsVisible && `${tagsWidth}px`)};
   max-width: 60%;
-  z-index: 2000;
+  z-index: ${({ theme }) => (theme.zIndex[10])};
   padding-right: 15px;
 `;
 
 export const StyledFade = styled.div`
   position: absolute;
-  height: 60%;
+  height: ${({ theme }) => theme.spacing[44]};
   width: 10rem;
   left: 33px;
-  z-index: 99999999999;
+  z-index: ${({ theme }) => (theme.zIndex[20])};
   pointer-events: none;
   ${({ fade, tagsVisible }) => (fade && tagsVisible) && css`
     &:after {
