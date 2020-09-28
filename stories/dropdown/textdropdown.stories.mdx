@@ -1,0 +1,56 @@
+import { useState } from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, select, array, object } from '@storybook/addon-knobs';
+import styled, { css } from 'styled-components';
+import { TextDropdown, TextDropdownItem } from '@comparethemarketau/manor-dropdown';
+import { Input } from '@comparethemarketau/manor-input';
+import { Checkbox } from '@comparethemarketau/manor-checkbox';
+import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
+import { useIsDesktop } from '@comparethemarketau/manor-hooks';
+import getTooltipKnobs from '../tooltipKnobs';
+
+<Meta title="Components/Dropdown/TextDropdown" component={TextDropdown} />
+
+# TextDropdown
+
+The TextDropdown can be used to present users with a list of options from which they can choose. On mobile devices the
+Manor TextDropdown presents a full screen overlay of selectable options when the user interacts with it.
+
+<Story name="TextDropdown">
+  {() => {
+    const [value, setValue] = useState('Default');
+    return (
+      <div style={{ padding: '2%' }}>
+        <FluidContainer>
+          <Row>
+            <Column>
+              <div style={{ marginBottom: '40px', width: '100%' }}>
+                <TextDropdown
+                  id="input-one"
+                  label="Example Label"
+                  value={value}
+                  tooltip={{ title: 'A dropdown tooltip!' }}
+                  handleChange={(event, value, option) => {
+                    console.log(`option: ${option}, value: ${value}`);
+                    setValue(value);
+                  }}
+                >
+                  <TextDropdownItem value="Default">Default Item - Title</TextDropdownItem>
+                  <TextDropdownItem value="First">First Item - Title</TextDropdownItem>
+                  <TextDropdownItem value="Second">Second Item - Title</TextDropdownItem>
+                  <TextDropdownItem value="Third">Third Item - Title</TextDropdownItem>
+                </TextDropdown>
+              </div>
+            </Column>
+          </Row>
+        </FluidContainer>
+      </div>
+    );
+  }}
+</Story>
+
+### Props (TextDropdown)
+<Props of={TextDropdown} />
+
+### Props (TextDropdownItem)
+<Props of={TextDropdownItem} />
