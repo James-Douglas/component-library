@@ -18,6 +18,7 @@ const BaseToggle = ({
   children,
   className,
   button,
+  inputType,
 }) => {
   const id = useId(propsId);
   const [checked, setChecked] = useState(selectedValue || false);
@@ -45,7 +46,7 @@ const BaseToggle = ({
         tabIndex={0}
         invalid={invalid}
         id={id}
-        type="radio"
+        type={inputType}
         onChange={changeHandler}
         onClick={handleClick}
         checked={checked}
@@ -115,6 +116,10 @@ BaseToggle.propTypes = {
    * Used by the `Button` toggle to determine if the toggle needs to be styled like a button.
    */
   button: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  /**
+   * The type attribute for the underlying input element
+   */
+  inputType: PropTypes.oneOf(['radio', 'checkbox']),
 };
 
 BaseToggle.defaultProps = {
@@ -130,6 +135,7 @@ BaseToggle.defaultProps = {
   handleBlur: null,
   handleClick: null,
   button: null,
+  inputType: 'radio',
 };
 
 export default BaseToggle;

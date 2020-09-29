@@ -1,0 +1,87 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import styled from 'styled-components';
+import { Container } from '@comparethemarketau/manor-grid';
+import { Picture } from '@comparethemarketau/manor-picture';
+import { MultiSelectToggle, MultiSelectToggleGroup } from '@comparethemarketau/manor-buttongroup';
+import { faCheck, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import winter_sports from '../../../../images/winter_sports.png';
+import cruise from '../../../../images/cruise.png';
+
+<Meta title="Components|ButtonGroup/ToggleButtons/MultiSelect" component={MultiSelectToggle} />
+
+# MultiSelectToggle
+
+The MultiSelectToggle can be used for rendering toggles where the underlying input type is a checkbox, allowing
+users to select multiple toggles.
+
+<Preview>
+  <Story name="multi select toggles">
+    {() => {
+      const tooltip = {title: 'test'};
+      const handleToggle = (x) => {};
+      return (
+        <Container>
+          <MultiSelectToggleGroup label="MultiSelect toggles" name="toggleGroupA" tooltip={tooltip} handleToggle={handleToggle} contentWidth="16rem" contentHeight="4rem">
+            <MultiSelectToggle
+              value="1"
+              id="one"
+              title="Snow Sports"
+              image={{
+                src: winter_sports,
+                srcsets: [{ srcset: winter_sports }],
+                alt: "winter sports",
+                title: "winter sports",
+              }}
+              description={<span>Includes skiing, snowboarding and other<br /> various snow based activities.</span>}
+            />
+            <MultiSelectToggle
+              value="2"
+              id="two"
+              title="Cruising"
+              image={{
+                src: cruise,
+                srcsets: [{ srcset: cruise }],
+                alt: "cruising",
+                title: "cruising",
+              }}
+              description={<span>Includes medical costs on board, missed<br /> port cover, cabin confinement, etc.</span>}
+            />
+          </MultiSelectToggleGroup>
+        </Container>
+      );
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="multi select toggles with icons">
+    {() => {
+      const tooltip = {title: 'test'};
+      const handleToggle = (x) => {};
+      return (
+        <Container>
+          <MultiSelectToggleGroup label="MultiSelect toggles" name="toggleGroupA" tooltip={tooltip} handleToggle={handleToggle} contentWidth="16rem" contentHeight="4rem">
+            <MultiSelectToggle
+              value="1"
+              id="one"
+              title="Snow Sports"
+              icon={faPhoneAlt}
+              description={<span>Includes skiing, snowboarding and other<br /> various snow based activities.</span>}
+            />
+            <MultiSelectToggle
+              value="2"
+              id="two"
+              title="Cruising"
+              icon={faCheck}
+              description={<span>Includes medical costs on board, missed<br /> port cover, cabin confinement, etc.</span>}
+            />
+          </MultiSelectToggleGroup>
+        </Container>
+      );
+    }}
+  </Story>
+</Preview>
+
+
+## Props
+<Props of={MultiSelectToggle} />

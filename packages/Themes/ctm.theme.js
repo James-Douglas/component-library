@@ -587,10 +587,13 @@ const ctmTheme = {
       colorChecked: colors.white,
       colorDisabled: colors.grey300,
       shadowHover: elevation.lvl5,
-      labelShadow: '0 0 2px 3px rgba(0, 123, 255, .3)',
     },
     button: {
       text: colors.grey900,
+    },
+    multiSelect: {
+      width: '30.4rem',
+      borderChecked: `2px solid ${colors.primary500}`,
     },
   },
   tooltip: {
