@@ -49,7 +49,10 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                       console.log(value)
                       setComboTagValue(value)
                     }}
-                    handleChange={() => {}}
+                    handleChange={(tags) => {
+                      // eslint-disable-next-line no-console
+                      console.log('the current tags are:', tags)}
+                    }
                     keys={['name', 'code', 'alert', 'shortName']}
                     alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
                     alertTooltip={

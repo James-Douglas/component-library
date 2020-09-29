@@ -140,7 +140,7 @@ describe('ComboTag', () => {
     expect(getByText('Australia').closest('div')).toHaveStyleRule('background', `${ctmTheme.colors.primary50}`);
   });
 
-  it('selects an item passed it via callback - via handleChange', () => {
+  it('fires handle change callback', () => {
     const onSelectCb = jest.fn();
     const { container } = render(
       <ComboTag
@@ -155,10 +155,10 @@ describe('ComboTag', () => {
     inputField.focus();
     const currentItem = container.getElementsByTagName('li')[0];
     fireEvent.mouseDown(currentItem);
-    expect(onSelectCb.mock.calls[0][0]).toBe('Australia');
+    expect(onSelectCb).toHaveBeenCalled();
   });
 
-  it('selects an item passed it via callback - via handleInput', () => {
+  it('fires handle input callback', () => {
     const onInputCb = jest.fn();
     const { container } = render(
       <ComboTag
@@ -173,6 +173,7 @@ describe('ComboTag', () => {
     const inputField = container.querySelector('input');
     fireEvent.change(inputField, { target: { value: 'present' } });
     expect(inputField.value).toBe('present');
+    expect(onInputCb).toHaveBeenCalled();
   });
 
   it('accessibility - arrow up', () => {

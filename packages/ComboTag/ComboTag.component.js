@@ -164,9 +164,6 @@ const ComboTag = ({
 
     setListVisible(false);
     setFocusedRef(null);
-    if (handleChange) {
-      handleChange(selectedValue);
-    }
     setCurrentValue('');
   };
 
@@ -247,7 +244,7 @@ const ComboTag = ({
   }, [tags]);
 
   const updateTagsWidth = useCallback(() => {
-    let tempWidth = 0;
+    let tempWidth = 10;
     tagElements.forEach(({ ref }) => {
       tempWidth += parseInt(ref.current.getBoundingClientRect().width, 10);
     });
@@ -324,6 +321,12 @@ const ComboTag = ({
     setTagElements(temp);
   }, [tags, deleteTagHandler]);
 
+  // fire handleChange func (if passed) with the current tags
+  useEffect(() => {
+    if (handleChange) {
+      handleChange(tags);
+    }
+  }, [tags, handleChange]);
   const { title, body } = errorTooltip;
 
   return (
