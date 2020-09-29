@@ -9,8 +9,17 @@ export const StyledLabelContainer = styled.div`
 
 export const StyledLabel = styled.label`
   font-family: ${({ theme }) => theme.fontFamily};
-  font-size: ${({ theme }) => theme.fontSize.base};
+  font-size: ${({ theme, variant }) => (variant === 'standard' ? theme.fontSize.base : theme.spacing[12])};
   color: ${({ theme }) => theme.label.color};
+  ${({
+    theme, variant, breakpoint,
+  }) => variant === 'compact' && css`
+    text-transform: uppercase;
+    font-weight: ${theme.fontWeight.bold};
+    letter-spacing: ${theme.spacing.px};
+    font-size: ${breakpoint === 'xl' ? theme.fontSize.xs : theme.fontSize['2xs']};
+    color: ${theme.colors.grey600};
+  `}
   ${({
     theme, inFieldLabel, breakpoint,
   }) => inFieldLabel && css`
