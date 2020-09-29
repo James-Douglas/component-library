@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.2.7...@comparethemarketau/manor-slider@0.3.0) (2020-09-29)
+
+
+### Features
+
+* muilti word lable display in one line now ([#414](https://github.com/comparethemarketau/manor-react/issues/414)) ([86af55c](https://github.com/comparethemarketau/manor-react/commit/86af55ce3b5526b0f4e9f30f8d8881ab76be5a69))
+
+
+
+
+
 ## [0.2.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.2.6...@comparethemarketau/manor-slider@0.2.7) (2020-09-29)
 
 **Note:** Version bump only for package @comparethemarketau/manor-slider
