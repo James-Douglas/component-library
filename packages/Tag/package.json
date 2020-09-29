@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-tag",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Manor Tag component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -24,7 +24,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.6.2"
+    "@comparethemarketau/manor-themes": "^0.7.0"
   },
   "peerDependencies": {
     "react": "^16.11.0",

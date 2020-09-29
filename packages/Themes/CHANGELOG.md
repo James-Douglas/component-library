@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.6.2...@comparethemarketau/manor-themes@0.7.0) (2020-09-29)
+
+
+### Features
+
+* **typography:** add noMargin prop to disable default margins ([#413](https://github.com/comparethemarketau/manor-react/issues/413)) ([67eb453](https://github.com/comparethemarketau/manor-react/commit/67eb453ae782bb9fd424affb3cb2706a0a314678))
+
+
+
+
+
 ## [0.6.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.6.1...@comparethemarketau/manor-themes@0.6.2) (2020-09-29)
 
 **Note:** Version bump only for package @comparethemarketau/manor-themes

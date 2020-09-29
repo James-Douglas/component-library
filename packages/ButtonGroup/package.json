@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-buttongroup",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "Manor ButtonGroup components",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,12 +18,12 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.5.2",
-    "@comparethemarketau/manor-hooks": "^0.4.2",
-    "@comparethemarketau/manor-label": "^0.4.6",
+    "@comparethemarketau/manor-field-validation": "^0.5.3",
+    "@comparethemarketau/manor-hooks": "^0.4.3",
+    "@comparethemarketau/manor-label": "^0.4.7",
     "@comparethemarketau/manor-picture": "^0.4.0",
-    "@comparethemarketau/manor-tooltip": "^0.8.4",
-    "@comparethemarketau/manor-typography": "^0.8.2",
+    "@comparethemarketau/manor-tooltip": "^0.8.5",
+    "@comparethemarketau/manor-typography": "^0.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
@@ -31,7 +31,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.6.2"
+    "@comparethemarketau/manor-themes": "^0.7.0"
   },
   "peerDependencies": {
     "react": "^16.11.0",
