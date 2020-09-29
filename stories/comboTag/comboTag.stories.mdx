@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 
 # ComboTag
 
-The ComboTag component can be used to display a list of items with can be dynamically updated based on the users input. On selection of an item from the list, a tag will be displayed 
+The ComboTag component can be used to display a list of items with can be dynamically updated based on the users input. On selection of an item from the list, a tag will be displayed
 adjacent to the input. Tags can also be set as an 'alert', which is a tag in a warning color along with a line of text with optional tooltip describing the alert to the user.
 In Manor, the `ComboTag` extends `Input` and as such shares similar functionality.
 
@@ -20,13 +20,23 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
     const [comboTagValue, setComboTagValue] = useState('')
     const [apiData, setApiData] = useState([]);
     useEffect(() => {
-      const filteredData = fakeApiData.filter((obj) => obj.name.toLowerCase().startsWith(comboTagValue.toLowerCase())).map(obj => obj);
+      const filteredData = fakeApiData
+        .filter((obj) => obj.name.toLowerCase().startsWith(comboTagValue.toLowerCase())).map(obj => obj)
+        .map((item) => {
+          return {
+            label: item.name,
+            shortName: item.shortName,
+            ...item,
+          }
+        });
       if (filteredData.length > 33) {
         setApiData(filteredData.slice(0, 33));
       } else {
         setApiData(filteredData)
       }
+      console.log('filtered data from story', filteredData)
     }, [comboTagValue])
+    
     return (
       <div style={{ padding: '2%', marginTop: '200px'}}>
          <FluidContainer>
@@ -42,7 +52,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                       title: 'no results found',
                     }}
                     placeholder='Select or start typing destination(s)...'
-                    emptyStateHeading= "Sorry, your search did not produce any results."
+                    emptyStateHeading="Sorry, your search did not produce any results."
                     emptyStateChildren='Try adjusting your search or filter to find what you are looking for.'
                     handleInput={(value) => {
                       // eslint-disable-next-line no-console
@@ -53,7 +63,6 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                       // eslint-disable-next-line no-console
                       console.log('the current tags are:', tags)}
                     }
-                    keys={['name', 'code', 'alert', 'shortName']}
                     alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
                     alertTooltip={
                       {
@@ -67,6 +76,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                         body: "You have already added this destination",
                       }
                     }
+                    selectedTags={[{label: 'Afghanistan', code: 'AF', alert: true }]}
                   />
               </Column>
             </Row>
@@ -97,20 +107,26 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
     const [comboTagValue, setComboTagValue] = useState('')
     const [apiData, setApiData] = useState([]);
     useEffect(() => {
-      const filteredData = fakeApiData.filter((obj) => obj.name.toLowerCase().startsWith(comboTagValue.toLowerCase())).map(obj => obj);
+      const filteredData = fakeApiData
+        .filter((obj) => obj.name.toLowerCase().startsWith(comboTagValue.toLowerCase())).map(obj => obj)
+        .map((item) => {
+          return {
+            label: item.shortName || item.name,
+            ...item,
+          }
+        });
       if (filteredData.length > 33) {
         setApiData(filteredData.slice(0, 33));
       } else {
         setApiData(filteredData)
       }
-    }, [comboTagValue]);
+    }, [comboTagValue])
     const prefillValues = [{name: 'United States of America', code: 'US', alert: false, shortName: 'USA' }];
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
     const id = text('id', 'ComboTag-demo', componentPropsId);
     const placeholder = text('placeholder', 'Placeholder', componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
-    const prefillValue = array('prefillValue', [], componentPropsId);
     const autoComplete = text('autoComplete', 'off', componentPropsId);
     const renderLimit = number('renderLimit', 10, {}, componentPropsId);
     const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
@@ -134,7 +150,6 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                   setComboTagValue(value)
                 }}
                 handleChange={() => {}}
-                keys={['name', 'code', 'alert', 'shortName']}
                 alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
               />
             </Column>

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { Typography } from '@comparethemarketau/manor-typography';
-import { useIsDesktop, useId } from '@comparethemarketau/manor-hooks';
+import { useIsDesktop, useId, useMountEffect } from '@comparethemarketau/manor-hooks';
 import { picturePropTypes } from '@comparethemarketau/manor-picture';
 import { EmptyState } from '@comparethemarketau/manor-empty-state';
 import { Tag } from '@comparethemarketau/manor-tag';
@@ -49,7 +49,6 @@ export function comboDropdownList(
   emptyStateClassName,
   emptyStateHeading,
   renderView,
-  keys,
 ) {
   const positionDesktop = !desktop ? 'relative' : 'absolute';
   const emptyState = !listVisible;
@@ -61,7 +60,7 @@ export function comboDropdownList(
       <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
         <StyledComboListWrap renderView={renderView}>
           <StyledComboList desktop={desktop}>
-            {!emptyState && comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon, currentValue, keys)}
+            {!emptyState && comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon, currentValue)}
             {noResultCondition && (
               <StyledEmptyStateMessage>
                 <EmptyState
@@ -80,18 +79,18 @@ export function comboDropdownList(
   );
 }
 
-export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon, currentValue, keys) {
+export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon, currentValue) {
   const renderText = (filteredValue) => <Typography variant="body2">{filteredValue.substring(0, 0)}<b>{filteredValue.substring(0, currentValue.length)}</b>{filteredValue.substring(0 + currentValue.length, filteredValue.length)}</Typography>;
   return (
     <StyledList>
       {apiData.map((filteredValue, index) => (
         <StyledListItem
           tabIndex="0"
-          key={`option-${filteredValue[keys[0]]}`}
+          key={`option-${filteredValue.label}`}
           role="listitem"
           data-type="list"
-          onMouseDown={() => handleSelectItem(filteredValue[keys[0]], filteredValue[keys[1]], filteredValue[keys[2]], filteredValue[keys[3]])}
-          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleSelectItem(filteredValue[keys[0]], filteredValue[keys[1]], filteredValue[keys[2]], filteredValue[keys[3]])}
+          onMouseDown={() => handleSelectItem(filteredValue)}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleSelectItem(filteredValue)}
           ref={filteredValuesRefs[index]}
         >
           {listIcon && (
@@ -99,7 +98,7 @@ export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, lis
               <FontAwesomeIcon icon={listIcon} size="sm" />
             </StyledIconWrap>
           )}
-          {renderText(filteredValue[keys[0]])}
+          {renderText(filteredValue.label)}
         </StyledListItem>
       ))}
     </StyledList>
@@ -126,15 +125,15 @@ const ComboTag = ({
   emptyStateClassName,
   emptyStateHeading,
   renderView,
-  keys,
   alertText,
   alertTooltip,
   errorTooltip,
+  selectedTags,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
   const [currentValue, setCurrentValue] = useState((value && value.length) && value);
-  const [tags, setTags] = useState(prefillValue || []);
+  const [tags, setTags] = useState(selectedTags || prefillValue || []);
   const [tagElements, setTagElements] = useState([]);
   const [alerts, setAlerts] = useState(false);
   const [tagsVisible, setTagsVisible] = useState(true);
@@ -151,13 +150,11 @@ const ComboTag = ({
     [apiData],
   );
 
-  const handleSelectItem = (selectedValue, code, alert, shortName) => {
+  const handleSelectItem = (tag) => {
     setInlineTooltipActive(false);
-    const tagExists = tags.filter((tag) => tag.selectedValue === selectedValue);
+    const tagExists = tags.filter((t) => tag.label === t.label);
     if (!tagExists.length) {
-      setTags([...tags, {
-        selectedValue, code, alert, shortName,
-      }]);
+      setTags([...tags, tag]);
     } else {
       setInlineTooltipActive(true);
     }
@@ -171,10 +168,7 @@ const ComboTag = ({
     setCurrentValue(valueInput);
     setInlineTooltipActive(false);
     setListVisible(!!valueInput.length);
-    if (handleInput) {
-      handleInput(valueInput);
-    }
-  }, [setCurrentValue, setListVisible, handleInput]);
+  }, [setCurrentValue, setListVisible]);
 
   const handleOnFocus = (event) => {
     if (event.target.tagName === 'BUTTON') {
@@ -278,6 +272,18 @@ const ComboTag = ({
     );
   }, [alertText, alertTooltip, tagElements]);
 
+  const firstUpdate = useRef(true);
+
+  useEffect(() => {
+    if (handleInput && !firstUpdate.current) {
+      handleInput(currentValue);
+    }
+  }, [currentValue, handleInput]);
+  // block the handleToggle from firing on initial render
+  useMountEffect(() => {
+    firstUpdate.current = false;
+  });
+
   // if tags, show tags
   useEffect(() => {
     if (tags.length && !listVisible) {
@@ -310,11 +316,11 @@ const ComboTag = ({
     const temp = tags.map((tag, i) => {
       const tagRef = React.createRef();
       const {
-        selectedValue, code, alert, shortName,
+        label, alert, shortName,
       } = tag;
       return {
         ref: tagRef,
-        tagJsx: <Tag key={`item-${selectedValue + i}`} value={shortName || selectedValue} code={code} alert={alert} ref={tagRef} onClickDelete={() => deleteTagHandler(i)} />,
+        tagJsx: <Tag key={`item-${label + i}`} value={shortName || label} alert={alert} ref={tagRef} onClickDelete={() => deleteTagHandler(i)} />,
         alert,
       };
     });
@@ -327,6 +333,7 @@ const ComboTag = ({
       handleChange(tags);
     }
   }, [tags, handleChange]);
+
   const { title, body } = errorTooltip;
 
   return (
@@ -337,13 +344,13 @@ const ComboTag = ({
         onFocus={handleOnFocus}
         onKeyDown={keyboardAccessibility}
       >
-        {(alerts && tags.length) && renderAlert()}
+        {(alerts && tags.length > 0) && renderAlert()}
         <StyledTagContainer>
           <StyledPrefix>
             <FontAwesomeIcon icon={faMapMarkerAlt} size="lg" />
           </StyledPrefix>
           <StyledFade fade={fade} tagsVisible={tagsVisible} />
-          <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible} tagsWidth={tagsWidth}>
+          <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible}>
             {tagsVisible && tagElements.map(({ tagJsx }) => tagJsx)}
           </StyledTagHolder>
           <StyledInputWrap>
@@ -386,7 +393,6 @@ const ComboTag = ({
                 emptyStateClassName,
                 emptyStateHeading,
                 renderView,
-                keys,
               )}
             />
           </StyledInputWrap>
@@ -485,10 +491,6 @@ ComboTag.propTypes = {
    */
   emptyStateHeading: PropTypes.string,
   /**
-   * The keys for accessing the api data
-   */
-  keys: PropTypes.arrayOf(PropTypes.string).isRequired,
-  /**
    * The text to display as an alert message
    */
   alertText: PropTypes.oneOfType([
@@ -504,6 +506,7 @@ ComboTag.propTypes = {
     title: PropTypes.string,
     body: PropTypes.string,
   }),
+  selectedTags: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
 };
 
 ComboTag.defaultProps = {
@@ -527,6 +530,7 @@ ComboTag.defaultProps = {
   alertText: '',
   alertTooltip: {},
   errorTooltip: {},
+  selectedTags: [],
 };
 
 export default ComboTag;

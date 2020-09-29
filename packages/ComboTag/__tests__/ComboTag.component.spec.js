@@ -4,19 +4,20 @@ import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { fireEvent, render } from '../../../testUtils';
 import ComboTag from '../ComboTag.component';
 
+// expected format of api data
 const apiData = [
-  { name: 'Australia', code: 'AU', alert: false },
-  { name: 'Belarus', code: 'BY', alert: false },
-  { name: 'Cambodia', code: 'KH', alert: false },
-  { name: 'Dominican Republic', code: 'DO', alert: false },
-  { name: 'Greenland', code: 'GL', alert: false },
-  { name: 'Ireland', code: 'IE', alert: false },
-  { name: 'Japan', code: 'JP', alert: false },
-  { name: 'New Zealand', code: 'NZ', alert: false },
-  { name: 'Slovakia', code: 'SK', alert: false },
-  { name: 'Turkey', code: 'TR', alert: false },
-  { name: 'United Kingdom', code: 'GB', alert: false },
-  { name: 'Yemen', code: 'YE', alert: false },
+  { label: 'Australia', code: 'AU', alert: false },
+  { label: 'Belarus', code: 'BY', alert: false },
+  { label: 'Cambodia', code: 'KH', alert: false },
+  { label: 'Dominican Republic', code: 'DO', alert: false },
+  { label: 'Greenland', code: 'GL', alert: false },
+  { label: 'Ireland', code: 'IE', alert: false },
+  { label: 'Japan', code: 'JP', alert: false },
+  { label: 'New Zealand', code: 'NZ', alert: false },
+  { label: 'Slovakia', code: 'SK', alert: false },
+  { label: 'Turkey', code: 'TR', alert: false },
+  { label: 'United Kingdom', code: 'GB', alert: false },
+  { label: 'Yemen', code: 'YE', alert: false },
 ];
 
 const emptyApiData = [];
@@ -30,7 +31,6 @@ describe('ComboTag', () => {
         id="combo-tag"
         value="a"
         placeholder="Select or start typing destination(s)..."
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('#combo-tag');
@@ -48,7 +48,6 @@ describe('ComboTag', () => {
         id="combo-tag"
         value="xsdfc"
         placeholder="Select or start typing destination(s)..."
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('#combo-tag');
@@ -65,7 +64,6 @@ describe('ComboTag', () => {
         value="a"
         id="combo-tag"
         characterMinimum={5}
-        keys={['name', 'code', 'alert']}
       />,
     );
     const list = container.getElementsByTagName('li')[0];
@@ -77,7 +75,6 @@ describe('ComboTag', () => {
       <ComboTag
         handleChange={() => {}}
         apiData={apiData}
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('input');
@@ -97,7 +94,6 @@ describe('ComboTag', () => {
         handleChange={() => {}}
         apiData={apiData}
         id="combo-tag"
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('input');
@@ -114,7 +110,6 @@ describe('ComboTag', () => {
         value="presentation dfsdf que ffgddfg"
         apiData={apiData}
         id="combo-tag"
-        keys={['name', 'code', 'alert']}
       />,
     );
     const { value } = container.querySelector('#combo-tag');
@@ -124,16 +119,23 @@ describe('ComboTag', () => {
   it('renders a tag when li is selected', () => {
     const { container, getByText } = render(
       <ComboTag
-        handleChange={() => {}}
-        value="aus"
         apiData={apiData}
         id="combo-tag"
-        keys={['name', 'code', 'alert']}
+        placeholder="Select or start typing destination(s)..."
+        handleInput={(value) => {
+          // eslint-disable-next-line no-console
+          console.log(value);
+        }}
+        handleChange={(tags) => {
+          // eslint-disable-next-line no-console
+          console.log('the current tags are:', tags);
+        }}
       />,
     );
 
     const inputField = container.querySelector('#combo-tag');
     inputField.focus();
+    fireEvent.input(inputField, { target: { value: 'aus' } });
     const firstLi = container.getElementsByTagName('li')[0];
     fireEvent.mouseDown(firstLi);
     expect(getByText('Australia')).toBeInTheDocument();
@@ -148,7 +150,6 @@ describe('ComboTag', () => {
         apiData={apiData}
         value="a"
         id="combo-tag"
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('#combo-tag');
@@ -167,7 +168,6 @@ describe('ComboTag', () => {
         apiData={apiData}
         value="a"
         id="combo-tag"
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('input');
@@ -183,7 +183,6 @@ describe('ComboTag', () => {
         apiData={apiData}
         value="a"
         id="combo-tag"
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('#combo-tag');
@@ -203,7 +202,6 @@ describe('ComboTag', () => {
         apiData={apiData}
         value="a"
         id="combo-tag"
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('#combo-tag');
@@ -226,7 +224,6 @@ describe('ComboTag', () => {
         apiData={apiData}
         value="a"
         id="combo-tag"
-        keys={['name', 'code', 'alert']}
       />,
     );
     const inputField = container.querySelector('#combo-tag');
@@ -238,137 +235,23 @@ describe('ComboTag', () => {
     expect(getByText('Australia').closest('div')).toHaveStyleRule('background', `${ctmTheme.colors.primary50}`);
   });
 
-  xit('accessibility - click tab', () => {
+  it('accessibility - click tab', () => {
     const { container } = render(
       <ComboTag
         handleChange={() => {}}
-        prefillValue="prese"
-        label="First Combo label"
         apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={5}
-        tooltip={{ title: 'Combo component' }}
+        id="combo-tag"
       />,
     );
     const inputField = container.querySelector('input');
+    inputField.focus();
+    fireEvent.input(inputField, { target: { value: 'aus' } });
     const clearButton = container.querySelector('.input-clear-button');
-    inputField.focus();
     fireEvent.keyDown(inputField, { key: 'Tab', code: 9 });
     clearButton.focus();
     expect(clearButton).toHaveFocus();
     fireEvent.keyDown(inputField, { key: 'Tab', code: 9 });
     clearButton.focus();
     expect(clearButton).toHaveFocus();
-  });
-
-  xit('accessibility - default case ', () => {
-    const { container, getByText } = render(
-      <ComboTag
-        handleChange={() => {}}
-        prefillValue="pr"
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('input');
-    inputField.focus();
-    fireEvent.keyDown(inputField, { key: 'e', code: 69 });
-    expect(getByText('et presentation tempora')).toBeInTheDocument();
-  });
-
-  xit('check mobile version exit on esc', () => {
-    const { container } = render(
-      <ComboTag
-        handleChange={() => {}}
-        prefillValue="pr"
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const overlay = container.querySelector('[role="option"]');
-    expect(container.firstChild).toHaveClass('overlay');
-    const input = container.querySelector('#combo-id-first');
-    fireEvent.keyDown(input, { key: 'Escape', keyCode: 27 });
-    expect(overlay).not.toBeInTheDocument();
-  });
-
-  xit('check padding', () => {
-    const { container } = render(
-      <ComboTag
-        handleChange={() => {}}
-        prefillValue="pr"
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const inputDefaultField = container.querySelector('#combo-id-first');
-    inputDefaultField.focus();
-    expect(inputDefaultField).toHaveFocus();
-    const listitem = container.querySelectorAll('[role="listitem"]')[0];
-    expect(listitem).toHaveStyleRule('padding', `${ctmTheme.spacing[8]} ${ctmTheme.spacing[40]}`);
-    expect(listitem).toHaveStyleRule('cursor', 'pointer');
-  });
-
-  xit('empty state check condition ', () => {
-    const { getByText, container } = render(
-      <ComboTag
-        handleChange={() => {}}
-        prefillValue=""
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        helperMessage="Please start typing"
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const emptyState = getByText('Please start typing');
-    expect(emptyState).toBeInTheDocument();
-  });
-
-  xit('no results check condition ', () => {
-    const { getByText, container } = render(
-      <ComboTag
-        handleChange={() => {}}
-        prefillValue="random"
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-        emptyStateHeading="Sorry, no results found"
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const emptyState = getByText('Sorry, no results found');
-    expect(emptyState).toBeInTheDocument();
   });
 });

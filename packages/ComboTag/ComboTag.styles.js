@@ -37,11 +37,16 @@ export const StyledTagHolder = styled.div`
   display: flex;
   float: left;
   overflow-x: scroll;
+  overflow-y: hidden;
   align-items: center;
-  width: ${({ tagsWidth, tagsVisible }) => (tagsVisible && `${tagsWidth}px`)};
   max-width: 60%;
   z-index: ${({ theme }) => (theme.zIndex[10])};
   padding-right: 15px;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+  ::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+  }
 `;
 
 export const StyledFade = styled.div`
