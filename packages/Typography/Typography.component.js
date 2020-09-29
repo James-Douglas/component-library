@@ -8,14 +8,14 @@ import Box from '@material-ui/core/Box';
 
 const TypographyInner = ({
   // eslint-disable-next-line react/prop-types
-  theme, variant, component, align, color, display, gutterBottom, noWrap, paragraph, children, style, ...props
+  theme, variant, component, align, color, display, gutterBottom, noWrap, paragraph, children, style, noMargins, ...props
 }) => {
   const renderChildren = () => (
     // eslint-disable-next-line react/jsx-props-no-spreading
     style ? <Box {...style}>{children}</Box> : children
   );
   return (
-    <ThemeProvider theme={muiTheme(theme)}>
+    <ThemeProvider theme={muiTheme(theme, noMargins)}>
       <MUITypography
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
@@ -47,6 +47,7 @@ const Typography = ({
   noWrap,
   paragraph,
   style,
+  noMargins,
   ...props
 }) => (
   <ThemedMuiTypography
@@ -61,6 +62,7 @@ const Typography = ({
     paragraph={paragraph}
     component={component}
     style={style}
+    noMargins={noMargins}
   >
     {children}
   </ThemedMuiTypography>
@@ -130,6 +132,10 @@ Typography.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Disables the default margins applied based on the element being rendered
+   */
+  noMargins: PropTypes.bool,
 };
 
 Typography.defaultProps = {
@@ -142,6 +148,7 @@ Typography.defaultProps = {
   paragraph: false,
   children: [],
   style: null,
+  noMargins: false,
 };
 
 export default Typography;

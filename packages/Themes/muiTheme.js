@@ -1,13 +1,13 @@
 import { createMuiTheme, fade } from '@material-ui/core';
 
-export default (manorTheme) => createMuiTheme({
+export default (manorTheme, disableMargins = false) => createMuiTheme({
   typography: {
     fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
     h1: {
       fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
       lineHeight: manorTheme.lineHeight.tight,
       fontSize: manorTheme.fontSize['6xl'],
-      margin: `0 0 ${manorTheme.spacing['24']}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing['24']}`,
       '@media (min-width: 1024px)': { // theme.breakpoints.md
         lineHeight: manorTheme.lineHeight.tight,
         fontSize: manorTheme.fontSize['6xl'],
@@ -17,7 +17,7 @@ export default (manorTheme) => createMuiTheme({
       fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
       lineHeight: manorTheme.lineHeight.tight,
       fontSize: manorTheme.fontSize['5xl'],
-      margin: `0 0 ${manorTheme.spacing['20']}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing['20']}`,
       '@media (min-width: 1024px)': {
         lineHeight: manorTheme.lineHeight.tight,
         fontSize: manorTheme.fontSize['5xl'],
@@ -27,7 +27,7 @@ export default (manorTheme) => createMuiTheme({
       fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
       lineHeight: manorTheme.lineHeight.tight,
       fontSize: manorTheme.fontSize['3xl'],
-      margin: `0 0 ${manorTheme.spacing['16']}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing['16']}`,
       '@media (min-width: 1024px)': {
         lineHeight: manorTheme.lineHeight.tight,
         fontSize: manorTheme.fontSize['3xl'],
@@ -37,7 +37,7 @@ export default (manorTheme) => createMuiTheme({
       fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
       lineHeight: manorTheme.lineHeight.tight,
       fontSize: manorTheme.fontSize.xl,
-      margin: `0 0 ${manorTheme.spacing['16']}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing['16']}`,
       '@media (min-width: 1024px)': {
         lineHeight: manorTheme.lineHeight.tight,
         fontSize: manorTheme.fontSize.xl,
@@ -47,7 +47,7 @@ export default (manorTheme) => createMuiTheme({
       fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
       lineHeight: manorTheme.lineHeight.normal,
       fontSize: manorTheme.fontSize.lg,
-      margin: `0 0 ${manorTheme.spacing['16']}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing['16']}`,
       '@media (min-width: 1024px)': {
         lineHeight: manorTheme.lineHeight.tight,
         fontSize: manorTheme.fontSize.lg,
@@ -58,7 +58,7 @@ export default (manorTheme) => createMuiTheme({
       lineHeight: manorTheme.lineHeight.tighter,
       fontSize: manorTheme.fontSize.base,
       fontWeight: manorTheme.fontWeight.bold,
-      margin: `0 0 ${manorTheme.spacing['12']}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing['12']}`,
       '@media (min-width: 1024px)': {
         lineHeight: manorTheme.lineHeight.tight,
         fontSize: manorTheme.fontSize.base,
@@ -69,19 +69,19 @@ export default (manorTheme) => createMuiTheme({
       fontWeight: manorTheme.fontWeight.normal,
       lineHeight: manorTheme.lineHeight.snug,
       fontSize: manorTheme.fontSize.lg,
-      margin: `0 0 ${manorTheme.spacing[12]}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing[12]}`,
     },
     subtitle2: {
       fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
       fontWeight: manorTheme.fontWeight.bold,
       fontSize: manorTheme.fontSize.base,
-      margin: `0 0 ${manorTheme.spacing[12]}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing[12]}`,
     },
     body1: {
       fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
       lineHeight: manorTheme.lineHeight.snug,
       fontSize: manorTheme.fontSize.base,
-      margin: `0 0 ${manorTheme.spacing[12]}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing[12]}`,
       '& a': {
         textDecoration: 'underline',
         color: manorTheme.colors.primary500,
@@ -90,7 +90,7 @@ export default (manorTheme) => createMuiTheme({
     body2: {
       fontFamily: ['SourceSansPro', 'Arial', 'sans-serif'].join(','),
       lineHeight: manorTheme.lineHeight.snug,
-      margin: `0 0 ${manorTheme.spacing[12]}`,
+      margin: disableMargins ? '0' : `0 0 ${manorTheme.spacing[12]}`,
       fontSize: manorTheme.fontSize.sm,
     },
     button: {
