@@ -45,6 +45,7 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
   }
   & .MuiSlider-valueLabel {
     left: auto;
+    white-space: nowrap;
   }
   & .MuiSlider-thumb {
     display: flex;
