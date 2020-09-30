@@ -36,7 +36,6 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
       }
       console.log('filtered data from story', filteredData)
     }, [comboTagValue])
-    
     return (
       <div style={{ padding: '2%', marginTop: '200px'}}>
          <FluidContainer>
@@ -61,7 +60,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                     }}
                     handleChange={(tags) => {
                       // eslint-disable-next-line no-console
-                      console.log('the current tags are:', tags)}
+                      console.log('"handleChange func:" the current tags are:', tags)}
                     }
                     alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
                     alertTooltip={
@@ -76,7 +75,6 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                         body: "You have already added this destination",
                       }
                     }
-                    selectedTags={[{label: 'Afghanistan', code: 'AF', alert: true }]}
                   />
               </Column>
             </Row>
@@ -120,7 +118,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
       } else {
         setApiData(filteredData)
       }
-    }, [comboTagValue])
+    }, [comboTagValue]);
     const prefillValues = [{name: 'United States of America', code: 'US', alert: false, shortName: 'USA' }];
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
@@ -130,6 +128,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
     const autoComplete = text('autoComplete', 'off', componentPropsId);
     const renderLimit = number('renderLimit', 10, {}, componentPropsId);
     const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
+    const selectedTags = object('selectedTags', [{label: 'Afghanistan', code: 'AF', alert: true }], componentPropsId);
     return (
       <div style={{ padding: '2%'}}>
         <FluidContainer>
@@ -151,6 +150,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                 }}
                 handleChange={() => {}}
                 alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
+                selectedTags={selectedTags}
               />
             </Column>
           </Row>

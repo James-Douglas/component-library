@@ -110,7 +110,6 @@ const ComboTag = ({
   apiData,
   listIcon,
   value,
-  prefillValue,
   autocomplete,
   disabled,
   characterMinimum,
@@ -133,7 +132,7 @@ const ComboTag = ({
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
   const [currentValue, setCurrentValue] = useState((value && value.length) && value);
-  const [tags, setTags] = useState(selectedTags || prefillValue || []);
+  const [tags, setTags] = useState([]);
   const [tagElements, setTagElements] = useState([]);
   const [alerts, setAlerts] = useState(false);
   const [tagsVisible, setTagsVisible] = useState(true);
@@ -336,6 +335,11 @@ const ComboTag = ({
 
   const { title, body } = errorTooltip;
 
+  // if the selected tags prop updates, add tags to state
+  useEffect(() => {
+    setTags((prevTags) => [...prevTags, ...selectedTags]);
+  }, [selectedTags]);
+
   return (
     <StyledContainer>
       <div
@@ -451,10 +455,6 @@ ComboTag.propTypes = {
    */
   value: PropTypes.string,
   /**
-   * Prefill the tags
-   */
-  prefillValue: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
-  /**
    * Sets the autocomplete attribute on the input element
    */
   autocomplete: PropTypes.string,
@@ -498,14 +498,23 @@ ComboTag.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * The text to display as an alert tooltip
+   */
   alertTooltip: PropTypes.shape({
     title: PropTypes.string,
     body: PropTypes.string,
   }),
+  /**
+   * The text to display as an error tooltip
+   */
   errorTooltip: PropTypes.shape({
     title: PropTypes.string,
     body: PropTypes.string,
   }),
+  /**
+   * Update the tags via prop
+   */
   selectedTags: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
 };
 
@@ -515,7 +524,6 @@ ComboTag.defaultProps = {
   placeholder: '',
   disabled: false,
   value: '',
-  prefillValue: [],
   autocomplete: 'off',
   characterMinimum: 1,
   renderView: 10,
@@ -534,7 +542,3 @@ ComboTag.defaultProps = {
 };
 
 export default ComboTag;
-
-/* scrolling func on the combo dropdown */
-// more space for the tags in general, min size for the input
-//
