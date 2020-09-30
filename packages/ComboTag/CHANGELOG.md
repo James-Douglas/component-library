@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.0.9...@comparethemarketau/manor-combo-tag@0.1.0) (2020-09-30)
+
+
+### Features
+
+* combo tags selected prop ([#416](https://github.com/comparethemarketau/manor-react/issues/416)) ([bb642f1](https://github.com/comparethemarketau/manor-react/commit/bb642f1ae49a645a09172ccee7cda4a5c6ef37ce))
+
+
+
+
+
 ## [0.0.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.0.8...@comparethemarketau/manor-combo-tag@0.0.9) (2020-09-30)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combo-tag
