@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.6.7...@comparethemarketau/manor-buttongroup@0.7.0) (2020-10-01)
+
+
+### Features
+
+* **multiselect:** fix props ([#417](https://github.com/comparethemarketau/manor-react/issues/417)) ([8e08c69](https://github.com/comparethemarketau/manor-react/commit/8e08c695f4132d271334f403a8a4e468d223a4ec))
+
+
+
+
+
 ## [0.6.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.6.6...@comparethemarketau/manor-buttongroup@0.6.7) (2020-09-29)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
