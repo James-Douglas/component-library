@@ -31,7 +31,6 @@ const MultiSelectToggle = ({
   handleFocus,
   handleBlur,
   handleClick,
-  button,
   icon,
   image,
 }) => {
@@ -87,7 +86,6 @@ const MultiSelectToggle = ({
       handleFocus={handleFocus}
       handleBlur={handleBlur}
       handleClick={handleClick}
-      button={button}
       inputType="checkbox"
     >
       <ToggleLabel id={id}>
@@ -125,7 +123,7 @@ MultiSelectToggle.propTypes = {
   /**
    * Optional description text displayed undernearth the title
    */
-  description: PropTypes.string,
+  description: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
   /**
    * The value to be applied to the input field.
    */
@@ -163,10 +161,6 @@ MultiSelectToggle.propTypes = {
    */
   handleClick: PropTypes.func,
   /**
-   * Whether or not to render the container as a button.
-   */
-  button: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  /**
    * Icon from fontAweseom to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will take precedence).
    */
   icon: PropTypes.oneOfType([
@@ -203,7 +197,6 @@ MultiSelectToggle.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   handleClick: null,
-  button: null,
   icon: null,
   image: null,
 };

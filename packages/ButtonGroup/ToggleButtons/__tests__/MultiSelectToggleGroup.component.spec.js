@@ -28,8 +28,6 @@ describe('getChildren()', () => {
       didToggleCb,
       clickCb,
       null,
-      '10rem',
-      '10rem',
     );
     const {
       name,
@@ -38,8 +36,6 @@ describe('getChildren()', () => {
       handleToggle,
       handleClick,
       value,
-      contentWidth,
-      contentHeight,
     } = result[0].props;
 
     expect(name).toEqual('test-group');
@@ -48,8 +44,6 @@ describe('getChildren()', () => {
     expect(selectedValues).toEqual(null);
     expect(handleToggle).toEqual(didToggleCb);
     expect(handleClick).toEqual(clickCb);
-    expect(contentWidth).toEqual('10rem');
-    expect(contentHeight).toEqual('10rem');
   });
 });
 

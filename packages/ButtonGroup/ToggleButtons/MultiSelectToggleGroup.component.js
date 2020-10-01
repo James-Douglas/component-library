@@ -16,9 +16,6 @@ export const getChildren = (
   handleToggle,
   handleClick,
   validationMessage,
-  contentWidth,
-  contentHeight,
-  buttons,
 ) => (
   children.map((child, index) => {
     const key = `toggle-${groupId}-${index}`;
@@ -29,9 +26,6 @@ export const getChildren = (
       handleToggle,
       handleClick,
       invalid: !!validationMessage && validationMessage.length > 0,
-      contentWidth,
-      contentHeight,
-      button: buttons,
     };
     return React.cloneElement(child, propsToAdd);
   })
@@ -47,10 +41,7 @@ const MultiSelectToggleGroup = ({
   handleClick,
   selectedValues,
   children,
-  contentWidth,
-  contentHeight,
   className,
-  buttons,
 }) => {
   const groupId = useId(propsId);
   const firstUpdate = useRef(true);
@@ -81,8 +72,8 @@ const MultiSelectToggleGroup = ({
   return (
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
-      <StyledToggleGroup id={groupId} className={className} buttons={buttons} contentWidth={contentWidth}>
-        {getChildren(groupId, children, name, selectedToggleValues, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight, buttons)}
+      <StyledToggleGroup id={groupId} className={className}>
+        {getChildren(groupId, children, name, selectedToggleValues, toggleHandler, handleClick, validationMessage)}
       </StyledToggleGroup>
       <StyledValidationWrapper>
         <FieldValidation message={validationMessage} />
@@ -140,25 +131,9 @@ MultiSelectToggleGroup.propTypes = {
     ])),
   ]),
   /**
-   * For use with TextToggles (setting this prop has no effect for other toggle types)
-   * Controls the width of the content container within the TextToggle, this can be used to ensure all
-   * TextToggles maintain the same width.
-   */
-  contentWidth: PropTypes.string,
-  /**
-   * For use with TextToggles (setting this prop has no effect for other toggle types)
-   * Controls the height of the content container within the TextToggle, this can be used to ensure all
-   * TextToggles maintain the same height.
-   */
-  contentHeight: PropTypes.string,
-  /**
    * Classes to be applied to the CheckToggleGroup component
    */
   className: PropTypes.string,
-  /**
-   * Whether or not the group should be rendered as segmented buttons.
-   */
-  buttons: PropTypes.oneOfType([PropTypes.oneOf(['flex']), PropTypes.bool]),
 };
 
 MultiSelectToggleGroup.defaultProps = {
@@ -169,10 +144,7 @@ MultiSelectToggleGroup.defaultProps = {
   validationMessage: null,
   selectedValues: [],
   children: [],
-  contentWidth: null,
-  contentHeight: null,
   className: '',
-  buttons: null,
 };
 
 export default MultiSelectToggleGroup;
