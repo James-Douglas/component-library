@@ -337,8 +337,10 @@ const ComboTag = ({
 
   // if the selected tags prop updates, add tags to state
   useEffect(() => {
-    setTags((prevTags) => [...prevTags, ...selectedTags]);
-  }, [selectedTags]);
+    if (selectedTags.length !== tags.length) {
+      setTags(selectedTags);
+    }
+  }, [selectedTags, setTags]);
 
   return (
     <StyledContainer>
