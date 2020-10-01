@@ -9,6 +9,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **multiselect:** fix props ([#417](https://github.com/comparethemarketau/manor-react/issues/417)) ([8e08c69](https://github.com/comparethemarketau/manor-react/commit/8e08c695f4132d271334f403a8a4e468d223a4ec))
+* **multiselect:** force release due to nexus issue ([#418](https://github.com/comparethemarketau/manor-react/issues/418)) ([bf0fcc7](https://github.com/comparethemarketau/manor-react/commit/bf0fcc7fcf6ba85c506bddae7db721b75eac0b50))
+
+
+
+
+
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.6.7...@comparethemarketau/manor-buttongroup@0.7.0) (2020-10-01)
+
+
+### Features
+
+* **multiselect:** fix props ([#417](https://github.com/comparethemarketau/manor-react/issues/417)) ([8e08c69](https://github.com/comparethemarketau/manor-react/commit/8e08c695f4132d271334f403a8a4e468d223a4ec))
 
 
 
