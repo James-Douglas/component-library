@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-slider",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Manor Slider component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@comparethemarketau/manor-hooks": "^0.4.3",
-    "@comparethemarketau/manor-label": "^0.4.7",
-    "@comparethemarketau/manor-tooltip": "^0.8.5",
+    "@comparethemarketau/manor-label": "^0.4.8",
+    "@comparethemarketau/manor-tooltip": "^0.8.6",
     "@comparethemarketau/manor-typography": "^0.9.0",
     "@material-ui/core": "^4.11.0",
     "prop-types": "^15.7.2"
