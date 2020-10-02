@@ -23,11 +23,15 @@ const DateRangePicker = ({
   startDateTooltip,
   startDatePlaceholder,
   startDateAriaLabel,
+  startDateAriaLabelledBy,
+  startDateAriaDescribedBy,
   startDateValue,
   endDateId: propsEndDateId,
   endDateTooltip,
   endDatePlaceholder,
   endDateAriaLabel,
+  endDateAriaLabelledBy,
+  endDateAriaDescribedBy,
   endDateValue,
   numberOfMonths,
   endDateValidationMessage,
@@ -87,9 +91,13 @@ const DateRangePicker = ({
     const parsed = moment(value, displayFormat, true);
     if (parsed.isValid()) {
       setStartDate(parsed);
+      if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
+        setStartDateValidationMessage(startDateValidationMessage);
+      } else {
+        setStartDateValidationMessage(null);
+      }
       setFocusedInput(END_DATE);
     }
-    parsed.isValid() && setStartDateValidationMessage(null);
     !parsed.isValid() && setStartDateValidationMessage(startDateValidationMessage);
   };
 
@@ -98,8 +106,12 @@ const DateRangePicker = ({
     if (parsed.isValid()) {
       setEndDate(parsed);
       setIsVisisble(false);
+      if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
+        setEndDateValidationMessage(endDateValidationMessage);
+      } else {
+        setEndDateValidationMessage(null);
+      }
     }
-    parsed.isValid() && setEndDateValidationMessage(null);
     !parsed.isValid() && setEndDateValidationMessage(endDateValidationMessage);
   };
 
@@ -136,6 +148,8 @@ const DateRangePicker = ({
             tooltip={startDateTooltip}
             placeholder={startDatePlaceholder}
             label={startDateAriaLabel}
+            ariaLabelledBy={startDateAriaLabelledBy}
+            ariaDescribedBy={startDateAriaDescribedBy}
             value={startDate && startDate.format(displayFormat)}
             suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
             handleFocus={startDateHandleFocus}
@@ -152,6 +166,8 @@ const DateRangePicker = ({
             tooltip={endDateTooltip}
             placeholder={endDatePlaceholder}
             label={endDateAriaLabel}
+            ariaLabelledBy={endDateAriaLabelledBy}
+            ariaDescribedBy={endDateAriaDescribedBy}
             value={endDate && endDate.format(displayFormat)}
             suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
             handleFocus={endDateHandleFocus}
@@ -213,6 +229,22 @@ DateRangePicker.propTypes = {
    */
   startDateAriaLabel: PropTypes.string,
   /**
+   * Array of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
+   */
+  startDateAriaLabelledBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Array of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
+   */
+  startDateAriaDescribedBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Array of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
+   */
+  endDateAriaLabelledBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Array of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
+   */
+  endDateAriaDescribedBy: PropTypes.arrayOf(PropTypes.string),
+  /**
    * Sets the value of the start date input
    */
   startDateValue: PropTypes.instanceOf(moment),
@@ -257,6 +289,10 @@ DateRangePicker.defaultProps = {
   startDateTooltip: {},
   startDatePlaceholder: '',
   startDateAriaLabel: '',
+  startDateAriaLabelledBy: [],
+  startDateAriaDescribedBy: [],
+  endDateAriaLabelledBy: [],
+  endDateAriaDescribedBy: [],
   startDateValue: null,
   endDateTooltip: {},
   endDatePlaceholder: '',

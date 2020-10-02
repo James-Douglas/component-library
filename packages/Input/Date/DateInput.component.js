@@ -10,6 +10,8 @@ import StyledFontAwesomeIcon from './DateInput.styles';
 const DateInput = ({
   id: propsId,
   label,
+  ariaLabelledBy,
+  ariaDescribedBy,
   value,
   prefillValue,
   handleChange,
@@ -33,6 +35,8 @@ const DateInput = ({
     <Input
       id={id}
       label={label}
+      ariaLabelledBy={ariaLabelledBy}
+      ariaDescribedBy={ariaDescribedBy}
       value={value}
       type="text"
       handleChange={handleChange}
@@ -79,6 +83,14 @@ DateInput.propTypes = {
    * Label for the input
    */
   label: PropTypes.string,
+  /**
+   * Array of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
+   */
+  ariaLabelledBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Array of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
+   */
+  ariaDescribedBy: PropTypes.arrayOf(PropTypes.string),
   /**
    * Tooltip object (see Tooltip documentation)
    */
@@ -149,6 +161,8 @@ DateInput.defaultProps = {
   id: null,
   value: '',
   tooltip: {},
+  ariaLabelledBy: [],
+  ariaDescribedBy: [],
   validationMessage: null,
   prefillValue: null,
   autocomplete: 'off',

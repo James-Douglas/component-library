@@ -19,6 +19,8 @@ const SingleDatePicker = ({
   dateTooltip,
   datePlaceholder,
   dateAriaLabel,
+  ariaLabelledBy,
+  ariaDescribedBy,
   date,
   numberOfMonths,
   validationMessage,
@@ -101,6 +103,8 @@ const SingleDatePicker = ({
           tooltip={dateTooltip}
           placeholder={datePlaceholder}
           label={dateAriaLabel}
+          ariaLabelledBy={ariaLabelledBy}
+          ariaDescribedBy={ariaDescribedBy}
           value={selectedDate && selectedDate.format(displayFormat)}
           prefixContent=""
           suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
@@ -148,6 +152,14 @@ SingleDatePicker.propTypes = {
    */
   dateAriaLabel: PropTypes.string,
   /**
+   * Array of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
+   */
+  ariaLabelledBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Array of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
+   */
+  ariaDescribedBy: PropTypes.arrayOf(PropTypes.string),
+  /**
    * Sets the value of the date input
    * moment instance, e.g: minDate={moment('2020-12-01T00:00:00.000')}
    */
@@ -180,6 +192,8 @@ SingleDatePicker.defaultProps = {
   dateTooltip: {},
   datePlaceholder: '',
   dateAriaLabel: '',
+  ariaLabelledBy: [],
+  ariaDescribedBy: [],
   date: null,
   numberOfMonths: 1,
   validationMessage: null,

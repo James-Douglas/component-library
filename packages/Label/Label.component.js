@@ -7,6 +7,7 @@ import { Tooltip, tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { StyledLabel, StyledLabelContainer } from './Label.styles';
 
 const Label = ({
+  id,
   htmlFor,
   text,
   tooltip,
@@ -24,6 +25,7 @@ const Label = ({
     removeGutters={removeGutters}
   >
     <StyledLabel
+      id={id}
       {...props}
       htmlFor={htmlFor}
       inFieldLabel={inFieldLabel}
@@ -38,6 +40,10 @@ const Label = ({
 );
 
 Label.propTypes = {
+  /**
+   * id for the label
+   */
+  id: PropTypes.string,
   /**
    * Variant
    */
@@ -81,6 +87,7 @@ Label.propTypes = {
 };
 
 Label.defaultProps = {
+  id: '',
   variant: 'default',
   htmlFor: null,
   text: '',

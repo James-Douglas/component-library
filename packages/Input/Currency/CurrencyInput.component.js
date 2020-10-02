@@ -7,6 +7,8 @@ import Input, { getInitialValue } from '../Input.component';
 const CurrencyInput = ({
   id: propsId,
   label,
+  ariaLabelledBy,
+  ariaDescribedBy,
   placeholder,
   value,
   prefillValue,
@@ -65,6 +67,8 @@ const CurrencyInput = ({
     <Input
       id={id}
       label={label}
+      ariaLabelledBy={ariaLabelledBy}
+      ariaDescribedBy={ariaDescribedBy}
       type="tel"
       handleChange={changeHandler}
       prefixContent={currencySymbol}
@@ -107,6 +111,14 @@ CurrencyInput.propTypes = {
    * Label for the input
    */
   label: PropTypes.string,
+  /**
+   * Space separated List of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
+   */
+  ariaLabelledBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Space separated List of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
+   */
+  ariaDescribedBy: PropTypes.arrayOf(PropTypes.string),
   /**
    * Tooltip object (see Tooltip documentation)
    */
@@ -168,6 +180,8 @@ CurrencyInput.defaultProps = {
   maxlength: 15,
   value: null,
   tooltip: {},
+  ariaLabelledBy: [],
+  ariaDescribedBy: [],
   validationMessage: null,
   prefillValue: null,
   placeholder: '',

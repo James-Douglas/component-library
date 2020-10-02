@@ -44,12 +44,6 @@ describe('Tooltip', () => {
     });
   });
 
-  it('renders with minimal props', () => {
-    const { queryByText, container } = render(<Tooltip body="test tooltip content" />);
-    expect(container.innerHTML).toMatchSnapshot();
-    expect(queryByText('test tooltip content')).not.toBeInTheDocument();
-  });
-
   it('renders tooltip click', () => {
     const { container } = render(<Tooltip body="test tooltip content" />);
     const toolTip = container.querySelector('[role="tooltip"]');

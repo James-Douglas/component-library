@@ -38,7 +38,7 @@ export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, 
   return null;
 };
 
-export const renderAffix = (affixType, affixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint) => {
+export const renderAffix = (affixType, affixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint, ariaDescribedById) => {
   if (affixType && affixContent) {
     return (
       <StyledAffix
@@ -49,6 +49,7 @@ export const renderAffix = (affixType, affixContent, isAutofill, disabled, affix
         prefixBlock={affixType === 'prefix' && prefixBlock}
         expressive={expressive}
         breakpoint={breakpoint}
+        id={ariaDescribedById}
       >
         {affixContent}
       </StyledAffix>
@@ -63,6 +64,8 @@ export const getInitialValue = (value, prefillValue) => value || prefillValue ||
 const Input = React.forwardRef(({
   id: propsId,
   label,
+  ariaLabelledBy,
+  ariaDescribedBy,
   inFieldLabel,
   tooltip,
   validationMessage,
@@ -93,12 +96,35 @@ const Input = React.forwardRef(({
   disableFocusStyles,
 }, ref) => {
   const id = useId(propsId);
+  const [ariaLabelledByIds, setAriaLabelledByIds] = useState({});
+  const [ariaDescribedByIds, setAriaDescribedByIds] = useState({});
   const [internalValue, setInternalValue] = useState(getInitialValue(value, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [isFocusActive, setFocusActive] = useState(false);
   const { breakpoint } = useContext(ManorContext);
   const localRef = ref || useRef(null);
+  const [tooltipOptions, setTooltipOptions] = useState(tooltip);
+
+  useEffect(() => {
+    const describedBy = {};
+    const labelledBy = {
+      label: `${id}-label`,
+    };
+    if (prefixContent) {
+      describedBy.prefix = `${id}-prefix`;
+    }
+    if (suffixContent) {
+      describedBy.suffix = `${id}-suffix`;
+    }
+    if (tooltip) {
+      const tooltipId = `${id}-tooltip`;
+      setTooltipOptions({ ...tooltip, id: tooltipId });
+      describedBy.tooltip = tooltipId;
+    }
+    setAriaDescribedByIds({ ...describedBy });
+    setAriaLabelledByIds({ ...labelledBy });
+  }, [tooltip, setTooltipOptions, setAriaDescribedByIds, id, setAriaLabelledByIds, prefixContent, suffixContent]);
 
   const clearInput = () => {
     setIsDirty(true);
@@ -139,10 +165,11 @@ const Input = React.forwardRef(({
   const affixClick = () => {
     localRef.current.inputElement.focus();
   };
+
   return (
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
       {!expressive
-        && <Label htmlFor={id} text={label} tooltip={tooltip} removeGutters={removeGutters} />}
+        && <Label htmlFor={id} text={label} id={ariaLabelledByIds.label} tooltip={tooltipOptions} removeGutters={removeGutters} />}
       <StyledInputContainer className="input-container">
         <StyledInputWrap
           isAutofill={isAutofill}
@@ -154,7 +181,7 @@ const Input = React.forwardRef(({
           bordered={bordered}
           disableFocusStyles={disableFocusStyles}
         >
-          {renderAffix('prefix', prefixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
+          {renderAffix('prefix', prefixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint, ariaDescribedByIds.prefix)}
           <StyledInputClearWrap className="input-clear-wrap" expressive={expressive} inputValue={internalValue} breakpoint={breakpoint}>
             {expressive
               && <Label htmlFor={id} text={label} removeGutters={removeGutters} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
@@ -168,6 +195,8 @@ const Input = React.forwardRef(({
               disabled={disabled}
               readOnly={readonly}
               value={internalValue}
+              aria-labelledby={[...ariaLabelledBy, Object.entries(ariaLabelledByIds).map(([_, ariaLabelledById]) => ariaLabelledById)].join(',')}
+              aria-describedby={[...ariaDescribedBy, Object.entries(ariaDescribedByIds).map(([_, ariaDescribedById]) => ariaDescribedById)].join(',')}
               onChange={changeHandler}
               autoComplete={autocomplete}
               onClick={handleOnClick}
@@ -182,7 +211,7 @@ const Input = React.forwardRef(({
             />
             {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint)}
           </StyledInputClearWrap>
-          {renderAffix('suffix', suffixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint)}
+          {renderAffix('suffix', suffixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint, ariaDescribedByIds.suffix)}
         </StyledInputWrap>
         <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
       </StyledInputContainer>
@@ -205,6 +234,14 @@ Input.propTypes = {
    * Label for the input
    */
   label: PropTypes.string,
+  /**
+   * Space separated List of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
+   */
+  ariaLabelledBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Space separated List of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
+   */
+  ariaDescribedBy: PropTypes.arrayOf(PropTypes.string),
   /**
    * Places the label within the field (used in expressive inputs)
    */
@@ -329,6 +366,8 @@ Input.defaultProps = {
   label: '',
   inFieldLabel: false,
   tooltip: {},
+  ariaLabelledBy: [],
+  ariaDescribedBy: [],
   // there is a bug in text-mask where disabling the mask (setting to false) causes the input value to not
   // reset when the clear icon is clicked (PR:https://github.com/text-mask/text-mask/pull/831)
   mask: (value) => Array(value.length).fill(/./),

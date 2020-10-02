@@ -6,7 +6,7 @@ import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
 import { ManorContext } from '@comparethemarketau/manor-provider';
-import { useUnmountEffect } from '@comparethemarketau/manor-hooks';
+import { useUnmountEffect, useId } from '@comparethemarketau/manor-hooks';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/pro-light-svg-icons/faInfoCircle';
@@ -34,6 +34,7 @@ export function getContent(title, body, variant) {
 }
 
 const Tooltip = ({
+  id: propsId,
   arrow,
   title,
   body,
@@ -45,6 +46,7 @@ const Tooltip = ({
   active,
   className,
 }) => {
+  const id = useId(propsId);
   const [pinned, setPinned] = useState(false);
   const { isDesktop } = useContext(ManorContext);
   const [tippyInstance, setTippyInstance] = useState(null);
@@ -132,6 +134,7 @@ const Tooltip = ({
     >
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <StyledTooltipIcon
+        id={id}
         tabIndex={0}
         role="tooltip"
         desktop={isDesktop}
@@ -162,6 +165,10 @@ const Tooltip = ({
 };
 
 export const tooltipPropTypes = {
+  /**
+   * An id for the tooltip element
+   */
+  id: PropTypes.string,
   /**
    * Set the tool tip as active (displayed)
    */
@@ -220,6 +227,7 @@ export const tooltipPropTypes = {
 };
 
 const defaultProps = {
+  id: null,
   arrow: true,
   active: false,
   title: '',

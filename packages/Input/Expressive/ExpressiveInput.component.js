@@ -6,6 +6,8 @@ import Input from '../Input.component';
 const ExpressiveInput = ({
   id: propsId,
   label,
+  ariaLabelledBy,
+  ariaDescribedBy,
   validationMessage,
   type,
   placeholder,
@@ -32,6 +34,8 @@ const ExpressiveInput = ({
     <Input
       id={id}
       label={label}
+      ariaLabelledBy={ariaLabelledBy}
+      ariaDescribedBy={ariaDescribedBy}
       inFieldLabel
       expressive
       type={type}
@@ -79,6 +83,14 @@ ExpressiveInput.propTypes = {
    * Label for the input
    */
   label: PropTypes.string,
+  /**
+   * Array of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
+   */
+  ariaLabelledBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Array of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
+   */
+  ariaDescribedBy: PropTypes.arrayOf(PropTypes.string),
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
@@ -172,6 +184,8 @@ ExpressiveInput.defaultProps = {
   type: 'text',
   value: null,
   validationMessage: '',
+  ariaLabelledBy: [],
+  ariaDescribedBy: [],
   prefillValue: '',
   placeholder: '',
   autocomplete: 'off',
