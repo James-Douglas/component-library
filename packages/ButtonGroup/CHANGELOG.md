@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.7.1...@comparethemarketau/manor-buttongroup@0.8.0) (2020-10-06)
+
+
+### Features
+
+* change slider Lable size to 1.6rem ([#422](https://github.com/comparethemarketau/manor-react/issues/422)) ([f436c82](https://github.com/comparethemarketau/manor-react/commit/f436c82a04b7c34ee466ead5e5d45f17e0d64cff))
+
+
+
+
+
 ## [0.7.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.7.0...@comparethemarketau/manor-buttongroup@0.7.1) (2020-10-02)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup

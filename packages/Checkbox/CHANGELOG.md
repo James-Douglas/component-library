@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-checkbox@0.8.7...@comparethemarketau/manor-checkbox@0.9.0) (2020-10-06)
+
+
+### Features
+
+* change slider Lable size to 1.6rem ([#422](https://github.com/comparethemarketau/manor-react/issues/422)) ([f436c82](https://github.com/comparethemarketau/manor-react/commit/f436c82a04b7c34ee466ead5e5d45f17e0d64cff))
+
+
+
+
+
 ## [0.8.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-checkbox@0.8.6...@comparethemarketau/manor-checkbox@0.8.7) (2020-10-02)
 
 **Note:** Version bump only for package @comparethemarketau/manor-checkbox
