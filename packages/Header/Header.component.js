@@ -12,7 +12,7 @@ import {
 } from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo, contactStrip, authuiURL,
+  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName,
 }) => {
   const { isDesktop } = useContext(ManorContext);
   const size = (stuck || !isDesktop) ? 'small' : 'large';
@@ -30,7 +30,7 @@ const Header = ({
             microUi={{
               url: authuiURL,
               library: 'customerAccountsMicroUI',
-              name: 'AuthHeader',
+              name: authuiComponentName,
             }}
             visible="true"
             id="auth"
@@ -75,6 +75,10 @@ Header.propTypes = {
    * URL for micro component to be loaded
    */
   authuiURL: PropTypes.string,
+  /**
+   * Name of the micro component to be loaded
+   */
+  authuiComponentName: PropTypes.string,
 };
 
 Header.defaultProps = {
@@ -83,6 +87,7 @@ Header.defaultProps = {
   number: '',
   contactStrip: false,
   authuiURL: null,
+  authuiComponentName: 'AuthHeader',
 };
 
 export default Header;
