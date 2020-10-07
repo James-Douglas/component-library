@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.8.4...@comparethemarketau/manor-header@0.9.0) (2020-10-07)
+
+
+### Features
+
+* **header:** add new authuiComponentName prop to Header ([#425](https://github.com/comparethemarketau/manor-react/issues/425)) ([217abd2](https://github.com/comparethemarketau/manor-react/commit/217abd20b40bca92531e2796c00e11af3014ae81))
+
+
+
+
+
 ## [0.8.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.8.3...@comparethemarketau/manor-header@0.8.4) (2020-09-29)
 
 **Note:** Version bump only for package @comparethemarketau/manor-header
