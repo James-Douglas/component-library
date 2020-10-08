@@ -18,7 +18,7 @@ export const StyledIconWrap = styled.div`
 export const StyledMessage = styled.div`
   font-family: ${({ theme }) => theme.fontFamily};
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   color: ${({ theme }) => theme.colors.error500};
   font-size: ${({ theme }) => theme.fontSize.sm};
   p {

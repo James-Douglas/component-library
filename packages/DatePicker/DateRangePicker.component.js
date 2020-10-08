@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useLayoutEffect,
   useState,
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { DayPickerRangeController as RSDayPickerRange } from 'react-dates';
@@ -55,6 +56,8 @@ const DateRangePicker = ({
     setFocusedInput(value || START_DATE);
   };
 
+  const dateIsBlocked = useCallback((date) => (isDayBlocked !== undefined && typeof isDayBlocked === 'function' ? isDayBlocked(date) : false), [isDayBlocked]);
+
   const onDatesChange = (dates) => {
     setStartDate(dates.startDate);
     setEndDate(dates.endDate);
@@ -63,8 +66,8 @@ const DateRangePicker = ({
       handleChange && handleChange(dates);
     }
     setFocusedInput(focusedInput === START_DATE);
-    dates.startDate && dates.startDate.isValid() && setStartDateValidationMessage(null);
-    dates.endDate && dates.endDate.isValid() && setEndDateValidationMessage(null);
+    dates.startDate && dates.startDate.isValid() && !dateIsBlocked(dates.startDate) && setStartDateValidationMessage(null);
+    dates.endDate && dates.endDate.isValid() && !dateIsBlocked(dates.endDate) && setEndDateValidationMessage(null);
   };
 
   const fieldNameHandleFocus = (range) => {
@@ -89,31 +92,44 @@ const DateRangePicker = ({
 
   const startDateHandleChange = (value) => {
     const parsed = moment(value, displayFormat, true);
-    if (parsed.isValid()) {
-      setStartDate(parsed);
-      if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
-        setStartDateValidationMessage(startDateValidationMessage);
-      } else {
-        setStartDateValidationMessage(null);
-      }
-      setFocusedInput(END_DATE);
-    }
-    !parsed.isValid() && setStartDateValidationMessage(startDateValidationMessage);
+    setStartDate(parsed);
   };
 
   const endDateHandleChange = (value) => {
     const parsed = moment(value, displayFormat, true);
-    if (parsed.isValid()) {
-      setEndDate(parsed);
-      setIsVisisble(false);
-      if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
-        setEndDateValidationMessage(endDateValidationMessage);
+    setEndDate(parsed);
+  };
+
+  useEffect(() => {
+    if (startDate) {
+      if (startDate.isValid()) {
+        if (dateIsBlocked(startDate)) {
+          setStartDateValidationMessage(startDateValidationMessage);
+          setFocusedInput(END_DATE);
+          return;
+        }
+        setStartDateValidationMessage(null);
+        setFocusedInput(END_DATE);
       } else {
-        setEndDateValidationMessage(null);
+        setStartDateValidationMessage(startDateValidationMessage);
       }
     }
-    !parsed.isValid() && setEndDateValidationMessage(endDateValidationMessage);
-  };
+  }, [dateIsBlocked, isDayBlocked, startDate, startDateValidationMessage]);
+
+  useEffect(() => {
+    if (endDate) {
+      if (endDate.isValid()) {
+        setIsVisisble(false);
+        if (dateIsBlocked(endDate)) {
+          setEndDateValidationMessage(endDateValidationMessage);
+          return;
+        }
+        setEndDateValidationMessage(null);
+      } else {
+        setEndDateValidationMessage(endDateValidationMessage);
+      }
+    }
+  }, [dateIsBlocked, endDate, endDateValidationMessage, isDayBlocked]);
 
   const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {
@@ -188,8 +204,8 @@ const DateRangePicker = ({
           role="calendar"
         >
           <RSDayPickerRange
-            startDate={startDate} // momentPropTypes.momentObj or null,
-            endDate={endDate} // momentPropTypes.momentObj or null,
+            startDate={startDate && startDate.isValid() ? startDate : null} // momentPropTypes.momentObj or null,
+            endDate={endDate && endDate.isValid() ? endDate : null} // momentPropTypes.momentObj or null,
             onDatesChange={onDatesChange} // PropTypes.func.isRequired,
             focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
             onFocusChange={focusHandler} // PropTypes.func.isRequired,
