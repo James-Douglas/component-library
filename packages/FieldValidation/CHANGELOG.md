@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-field-validation@0.5.3...@comparethemarketau/manor-field-validation@0.6.0) (2020-10-08)
+
+
+### Features
+
+* **datepicker:** update datepicker validation ([#424](https://github.com/comparethemarketau/manor-react/issues/424)) ([505bef6](https://github.com/comparethemarketau/manor-react/commit/505bef61d6c4a51f2f0604be55d557d0ab015bd9))
+
+
+
+
+
 ## [0.5.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-field-validation@0.5.2...@comparethemarketau/manor-field-validation@0.5.3) (2020-09-29)
 
 **Note:** Version bump only for package @comparethemarketau/manor-field-validation
