@@ -94,11 +94,15 @@ export const StyledActions = styled.div`
   }
 `;
 
+export const StyledActionText = styled.div`
+  color: ${({ theme }) => theme.colors.primary500};
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
 export const StyledFontAwesomeWrap = styled.div`
   display: inline-block;
   margin-right: ${({ theme }) => theme.spacing[4]};
-`;
-
-export const StyledSpan = styled.span`
-  margin-right: ${({ theme }) => theme.spacing[8]};
 `;

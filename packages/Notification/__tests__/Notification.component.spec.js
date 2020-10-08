@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render } from '../../../testUtils';
+import { render, fireEvent } from '../../../testUtils';
 import Notification from '../Notification.component';
 import ToastManager from '../ToastManager.component';
 
@@ -220,5 +220,26 @@ describe('Notification()', () => {
     expect(childDiv).not.toHaveStyleRule('box-shadow', ctmTheme.notification.shadow);
     expect(childDiv).toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.primary500}`);
     expect(infoIcon).toBe(undefined);
+  });
+
+  it('renders a hint notification with action callback', () => {
+    const primaryAction = jest.fn();
+    const action = {
+      content: 'Test',
+      handleClick: primaryAction,
+    };
+    const { getByText } = render(
+      <Notification
+        variant="general"
+        title="Notification title goes here"
+        content="Provider will capture the full description."
+        icon
+        primaryAction={action}
+      />,
+    );
+    const actionItem = getByText('Test');
+
+    fireEvent.click(actionItem);
+    expect(primaryAction).toHaveBeenCalledTimes(1);
   });
 });

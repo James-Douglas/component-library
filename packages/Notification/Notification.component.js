@@ -23,7 +23,7 @@ import {
   StyledNotification,
   StyledNotificationContentWrap,
   StyledNotificationImage,
-  StyledSpan,
+  StyledActionText,
 } from './Notification.styles';
 import { removeToast } from './events';
 
@@ -66,6 +66,15 @@ const Notification = ({
 
   const iconVariant = customIcon || notificationIcon(variant);
 
+  const getAction = (action, isPrimary) => {
+    const faIcon = isPrimary ? faLongArrowLeft : faInfoCircleRegular;
+
+    if (!action.link) {
+      return <StyledActionText onClick={action.handleClick}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faIcon} size="1x" /></StyledFontAwesomeWrap>{action.content}</StyledActionText>;
+    }
+    return <Link href={action.link} onClick={action.handleClick}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faIcon} size="1x" /></StyledFontAwesomeWrap>{action.content}</Link>;
+  };
+
   useEffect(() => {
     if (autoClose && type === 'toast') {
       setTimeout(() => {
@@ -100,9 +109,9 @@ const Notification = ({
           && (
             <StyledActions>
               {(primaryAction && type !== 'hint')
-                && <Link href={primaryAction.link}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faLongArrowLeft} size="1x" /></StyledFontAwesomeWrap>{primaryAction.content}</Link>}
+                && getAction(primaryAction, true)}
               {(secondaryAction && type !== 'hint')
-                && <Link href={secondaryAction.link}><StyledSpan><FontAwesomeIcon icon={faInfoCircleRegular} size="1x" /></StyledSpan>{secondaryAction.content}</Link>}
+                && getAction(secondaryAction, false)}
             </StyledActions>
           )}
       </StyledNotificationContentWrap>
@@ -137,6 +146,7 @@ Notification.propTypes = {
   primaryAction: PropTypes.shape({
     content: PropTypes.string,
     link: PropTypes.string,
+    handleClick: PropTypes.func,
   }),
   /**
    * Secondary action of the component
@@ -144,6 +154,7 @@ Notification.propTypes = {
   secondaryAction: PropTypes.shape({
     content: PropTypes.string,
     link: PropTypes.string,
+    handleClick: PropTypes.func,
   }),
   /**
    * Component type, inline, toast or hint
