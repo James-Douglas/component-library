@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.11.4...@comparethemarketau/manor-notification@0.12.0) (2020-10-08)
+
+
+### Features
+
+* **notification:** updated to allow for js callback for actions ([#423](https://github.com/comparethemarketau/manor-react/issues/423)) ([036d2ea](https://github.com/comparethemarketau/manor-react/commit/036d2eab5d0909bb1240f56b731fc52f55dfd645))
+
+
+
+
+
 ## [0.11.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.11.3...@comparethemarketau/manor-notification@0.11.4) (2020-09-29)
 
 **Note:** Version bump only for package @comparethemarketau/manor-notification
