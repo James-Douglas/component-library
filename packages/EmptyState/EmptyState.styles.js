@@ -15,7 +15,6 @@ export const StyledEmptyStateWrap = styled.div`
 
 export const StyledPictureContainer = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing[32]};
-  height: 100%;
   max-height: ${({ theme }) => theme.emptyState.maxHeight};
   max-width: ${({ theme }) => theme.emptyState.maxWidth};
 `;
