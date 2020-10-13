@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.6.5...@comparethemarketau/manor-button@0.7.0) (2020-10-13)
+
+
+### Features
+
+* **ca2-559:** added in a bool to select icon only and remove the margin ([#427](https://github.com/comparethemarketau/manor-react/issues/427)) ([9542680](https://github.com/comparethemarketau/manor-react/commit/9542680d36b0499babec908aa29a03b6a1d13262))
+
+
+
+
+
 ## [0.6.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.6.4...@comparethemarketau/manor-button@0.6.5) (2020-09-29)
 
 **Note:** Version bump only for package @comparethemarketau/manor-button
