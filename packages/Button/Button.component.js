@@ -24,6 +24,7 @@ const Button = ({
   style,
   children,
   className,
+  iconButton,
 }) => {
   const id = useId(propsId);
   const renderContent = () => {
@@ -56,6 +57,7 @@ const Button = ({
         type={isButton ? tagType : null}
         style={style}
         className={className}
+        iconButton={iconButton}
       >
         {renderContent()}
       </BaseTag>
@@ -141,6 +143,10 @@ Button.propTypes = {
    * Pass the button a custom click function
    */
   handleClick: PropTypes.func,
+  /**
+   * Sets whether the button is purely icon only
+   */
+  iconButton: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -159,6 +165,7 @@ Button.defaultProps = {
   width: '100%',
   handleClick: null,
   className: '',
+  iconButton: false,
 };
 
 export default Button;

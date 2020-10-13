@@ -178,6 +178,7 @@ affect the styling, which is determined via the supplied `variant`.
     const href = text('href', '#');
     const target = text('target', '_blank');
     const rel = text('rel', '');
+    const iconButton = boolean('iconButton', false);
     return (
       <div style={{ padding: '2%', background: 'white' }}>
         <div>
@@ -191,6 +192,7 @@ affect the styling, which is determined via the supplied `variant`.
             href={href}
             target={target}
             rel={rel}
+            iconButton={iconButton}
           >
             {children}
           </Button>

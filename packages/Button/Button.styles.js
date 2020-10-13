@@ -37,7 +37,7 @@ const baseButtonStyles = css`
   transition: ${({ theme }) => theme.transition.default};
   font-weight: ${({ theme }) => theme.button.fontWeight};
   > ${StyledIcon} {
-    margin-right: ${({ theme }) => theme.spacing[8]};
+    margin-right: ${({ theme, iconButton }) => (iconButton ? 0 : theme.spacing[8])};
   }
   ${({ iconAlign, theme }) => iconAlign === 'right' && css`
     flex-direction: row-reverse;
@@ -122,7 +122,7 @@ const tertiaryVariant = css`
   }
   :focus {
     color: ${({ theme }) => theme.button.tertiary.colorhover};
-    fill: ${({ theme }) => theme.button.tertiary.colorhover}; 
+    fill: ${({ theme }) => theme.button.tertiary.colorhover};
   }
 `;
 
