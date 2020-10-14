@@ -38,6 +38,10 @@ const baseButtonStyles = css`
   font-weight: ${({ theme }) => theme.button.fontWeight};
   > ${StyledIcon} {
     margin-right: ${({ theme, iconButton }) => (iconButton ? 0 : theme.spacing[8])};
+    ${({ theme, iconButton }) => iconButton && css`
+    justify-content: center;
+    min-width: ${theme.spacing[24]};
+    `};
   }
   ${({ iconAlign, theme }) => iconAlign === 'right' && css`
     flex-direction: row-reverse;
