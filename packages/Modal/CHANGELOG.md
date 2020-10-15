@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.12](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.8.11...@comparethemarketau/manor-modal@0.8.12) (2020-10-15)
+
+
+### Bug Fixes
+
+* **modal:** prevent scrollbar always displaying ([#429](https://github.com/comparethemarketau/manor-react/issues/429)) ([9c3024d](https://github.com/comparethemarketau/manor-react/commit/9c3024d3c1be4aa95de9bec9f1b93f5390ea14dc))
+
+
+
+
+
 ## [0.8.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.8.10...@comparethemarketau/manor-modal@0.8.11) (2020-10-14)
 
 **Note:** Version bump only for package @comparethemarketau/manor-modal
