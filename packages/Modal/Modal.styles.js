@@ -28,9 +28,9 @@ export const StyledModal = styled.div`
   background: ${({ theme }) => theme.colors.grey100};
   box-shadow: ${({ theme }) => theme.boxShadow.lg};
   z-index: inherit;
-  max-width: 768px;
-  min-width: 350px;
-  width: ${({ desktop }) => (desktop ? '768px' : '100%')};
+  max-width: 76.8rem;
+  min-width: 35rem;
+  width: ${({ desktop }) => (desktop ? '76.8rem' : '100%')};
   min-height: 30rem;
   height: ${({ desktop }) => (desktop ? '80%' : '100%')};
   pointer-events: auto;
@@ -82,7 +82,7 @@ export const StyledContentChildren = styled.div`
   min-height: ${({
     theme, desktop, showSupplementaryBar, supplementaryBarHeight,
   }) => (desktop ? '' : `calc(100% - ${theme.spacing[92]} ${showSupplementaryBar && supplementaryBarHeight ? `- ${supplementaryBarHeight}px` : ''})`)};
-  overflow: ${({ desktop }) => (desktop ? 'hidden scroll' : '')};
+  overflow: ${({ desktop }) => (desktop ? 'auto' : '')};
 `;
 
 export const StyledContentButtons = styled.div`
@@ -90,10 +90,10 @@ export const StyledContentButtons = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 12px 0;
-  margin: 0 -24px 0;
+  padding: 0 1.2rem 0;
+  margin: 0 -2.4rem 0;
   height: ${({ theme }) => theme.spacing[80]};
-  border-top: 1px solid #f6f6f6;
+  border-top: ${({ theme }) => `1px solid ${theme.colors.grey100}`};
 `;
 
 export const StyledPrimaryButton = styled.div`
@@ -102,14 +102,13 @@ export const StyledPrimaryButton = styled.div`
 
 export const StyledSecondaryButton = styled.div`
   display: inherit;
-  margin-right: 20px;
+  margin-right: 2rem;
 `;
 
 export const StyledSupplementaryBar = styled.div`
   background: ${({ theme }) => theme.colors.primary50};
   padding: ${({ theme }) => theme.spacing[16]};
-  margin: 0 -24px 0;
-  /* overflow: hidden; */
+  margin: 0 -2.4rem 0;
 `;
 
 export const StyledSupplementaryBarItem = styled.div`

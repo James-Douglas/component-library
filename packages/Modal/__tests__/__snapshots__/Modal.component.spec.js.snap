@@ -91,9 +91,9 @@ exports[`Modal renders with minimal props 1`] = `
   background: #f6f6f6;
   box-shadow: 0 1.5rem 3rem 0 rgba(0,0,0,0.11),0 0.5rem 1.5rem 0 rgba(0,0,0,0.08);
   z-index: inherit;
-  max-width: 768px;
-  min-width: 350px;
-  width: 768px;
+  max-width: 76.8rem;
+  min-width: 35rem;
+  width: 76.8rem;
   min-height: 30rem;
   height: 80%;
   pointer-events: auto;
@@ -134,7 +134,7 @@ exports[`Modal renders with minimal props 1`] = `
 
 .c9 {
   height: calc(100% - 8rem);
-  overflow: hidden scroll;
+  overflow: auto;
 }
 
 @media only screen and (min-width:0em) {
