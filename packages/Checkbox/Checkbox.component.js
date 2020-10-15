@@ -63,7 +63,7 @@ const Checkbox = ({
 
   return (
     <>
-      <StyledWrap>
+      <StyledWrap className={className}>
         <StyledHiddenInput
           id={id}
           name={id}
@@ -82,7 +82,6 @@ const Checkbox = ({
           htmlFor={id}
         >
           <StyledCheckbox
-            className={className}
             invertColour={invertColour}
             checked={internalValue}
             isAutofill={isAutofill}
