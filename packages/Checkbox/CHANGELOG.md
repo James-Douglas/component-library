@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-checkbox@0.9.1...@comparethemarketau/manor-checkbox@0.9.2) (2020-10-15)
+
+
+### Bug Fixes
+
+* **checkbox:** pass classname to outermost element on checkbox ([#430](https://github.com/comparethemarketau/manor-react/issues/430)) ([212ea43](https://github.com/comparethemarketau/manor-react/commit/212ea4393fab1daac158e56eb910fed42bd71975))
+
+
+
+
+
 ## [0.9.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-checkbox@0.9.0...@comparethemarketau/manor-checkbox@0.9.1) (2020-10-08)
 
 **Note:** Version bump only for package @comparethemarketau/manor-checkbox
