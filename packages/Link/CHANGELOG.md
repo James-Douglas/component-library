@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-link@0.5.3...@comparethemarketau/manor-link@0.6.0) (2020-10-19)
+
+
+### Features
+
+* **link:** add style, underline props ([#432](https://github.com/comparethemarketau/manor-react/issues/432)) ([fe954cc](https://github.com/comparethemarketau/manor-react/commit/fe954cc5e0ab978ae9b311879c1f901e7f2ab916))
+
+
+
+
+
 ## [0.5.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-link@0.5.2...@comparethemarketau/manor-link@0.5.3) (2020-09-29)
 
 **Note:** Version bump only for package @comparethemarketau/manor-link
