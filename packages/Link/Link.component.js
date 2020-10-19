@@ -7,7 +7,7 @@ import { withTheme } from 'styled-components';
 
 const ManorMuiLink = ({
   // eslint-disable-next-line react/prop-types
-  href, onClick, target, rel, title, role, theme, children,
+  href, onClick, target, rel, title, role, underline, theme, children, style,
 }) => (
   <ThemeProvider theme={muiTheme(theme)}>
     <MUILink
@@ -17,12 +17,13 @@ const ManorMuiLink = ({
       title={title}
       role={role}
       onClick={onClick}
-      underline="always"
+      underline={underline}
       style={{
         // eslint-disable-next-line react/prop-types
         fontFamily: theme.fontFamily,
         // eslint-disable-next-line react/prop-types
         color: theme.colors.primary500,
+        ...style,
       }}
     >
       {children}
@@ -33,7 +34,7 @@ const ManorMuiLink = ({
 const ThemedMuiLink = withTheme(ManorMuiLink);
 
 const Link = ({
-  href, onClick, target, rel, title, role, children,
+  href, onClick, target, rel, title, role, underline, children, style,
 }) => (
   <ThemedMuiLink
     href={href}
@@ -42,6 +43,8 @@ const Link = ({
     title={title}
     onClick={onClick}
     role={role}
+    underline={underline}
+    style={style}
   >
     {children}
   </ThemedMuiLink>
@@ -73,6 +76,10 @@ Link.propTypes = {
    */
   role: PropTypes.string,
   /**
+   * Controls when the link should have an underline.
+   */
+  underline: PropTypes.oneOf(['none', 'hover', 'always']),
+  /**
    * link text
    */
   children: PropTypes.oneOfType([
@@ -80,6 +87,11 @@ Link.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Styles to be applied the underlying MUI link
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.any,
 };
 
 Link.defaultProps = {
@@ -89,7 +101,9 @@ Link.defaultProps = {
   rel: null,
   title: null,
   role: null,
+  underline: 'always',
   children: '',
+  style: null,
 };
 
 export default Link;
