@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-switch",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Manor switch component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,10 +18,10 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.6.0",
-    "@comparethemarketau/manor-themes": "^0.7.0",
-    "@comparethemarketau/manor-tooltip": "^0.8.6",
-    "@comparethemarketau/manor-typography": "^0.9.0",
+    "@comparethemarketau/manor-field-validation": "^0.6.1",
+    "@comparethemarketau/manor-themes": "^0.8.0",
+    "@comparethemarketau/manor-tooltip": "^0.9.0",
+    "@comparethemarketau/manor-typography": "^0.10.0",
     "@material-ui/core": "^4.11.0",
     "prop-types": "^15.7.2"
   },

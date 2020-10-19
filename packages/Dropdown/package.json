@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-dropdown",
-  "version": "0.8.10",
+  "version": "0.8.11",
   "description": "Manor Dropdown component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -13,12 +13,12 @@
     "prepare": "cp package.json lib/ && cp README.md lib/ && cp CHANGELOG.md lib/"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.6.0",
-    "@comparethemarketau/manor-hooks": "^0.4.3",
-    "@comparethemarketau/manor-label": "^0.5.0",
+    "@comparethemarketau/manor-field-validation": "^0.6.1",
+    "@comparethemarketau/manor-hooks": "^0.4.4",
+    "@comparethemarketau/manor-label": "^0.5.1",
     "@comparethemarketau/manor-overlay": "^0.4.0",
-    "@comparethemarketau/manor-supporting-elements": "^0.5.3",
-    "@comparethemarketau/manor-tooltip": "^0.8.6",
+    "@comparethemarketau/manor-supporting-elements": "^0.5.4",
+    "@comparethemarketau/manor-tooltip": "^0.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
@@ -31,7 +31,7 @@
     "tag": "latest"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.7.0"
+    "@comparethemarketau/manor-themes": "^0.8.0"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.7.0",

@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-combobox",
-  "version": "0.7.10",
+  "version": "0.8.0",
   "description": "Manor Combobox component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,19 +18,19 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-empty-state": "^0.6.4",
-    "@comparethemarketau/manor-hooks": "^0.4.3",
-    "@comparethemarketau/manor-input": "^0.12.1",
+    "@comparethemarketau/manor-empty-state": "^0.6.5",
+    "@comparethemarketau/manor-hooks": "^0.4.4",
+    "@comparethemarketau/manor-input": "^0.13.0",
     "@comparethemarketau/manor-overlay": "^0.4.0",
     "@comparethemarketau/manor-picture": "^0.4.0",
-    "@comparethemarketau/manor-tooltip": "^0.8.6",
-    "@comparethemarketau/manor-typography": "^0.9.0",
+    "@comparethemarketau/manor-tooltip": "^0.9.0",
+    "@comparethemarketau/manor-typography": "^0.10.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.7.0"
+    "@comparethemarketau/manor-themes": "^0.8.0"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.7.0",

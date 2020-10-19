@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-field-validation@0.6.0...@comparethemarketau/manor-field-validation@0.6.1) (2020-10-19)
+
+**Note:** Version bump only for package @comparethemarketau/manor-field-validation
+
+
+
+
+
 # [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-field-validation@0.5.3...@comparethemarketau/manor-field-validation@0.6.0) (2020-10-08)
 
 

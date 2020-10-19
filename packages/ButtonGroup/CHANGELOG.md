@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.8.1...@comparethemarketau/manor-buttongroup@0.9.0) (2020-10-19)
+
+
+### Features
+
+* **typography:** rewrote typography to no longer use materialUI ([#431](https://github.com/comparethemarketau/manor-react/issues/431)) ([6a7f7db](https://github.com/comparethemarketau/manor-react/commit/6a7f7dbef8f8bea684655f598c2ec9d55b814c34))
+
+
+### BREAKING CHANGES
+
+* **typography:** props removed: paragraph, gutterBottom. prop changes: noMargins - no defaults to
+true, variant - 'button', 'inherit' options removed
+
+* feat(typography): sronly implemented
+
+* feat(typography): address pr feedback
+
+* feat(typography): default display prop to 'block' instead of 'initial'
+
+* feat(typography): update components impacted by typography changes
+
+
+
+
+
 ## [0.8.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.8.0...@comparethemarketau/manor-buttongroup@0.8.1) (2020-10-08)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
