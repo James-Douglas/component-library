@@ -74,7 +74,7 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
               <FontAwesomeIcon icon={listIcon} size="sm" />
             </StyledIconWrap>
           )}
-          <Typography variant="body2" component="span">{filteredValue}</Typography>
+          <Typography variant="body2" component="span" noMargins>{filteredValue}</Typography>
         </StyledListItem>
       ))}
     </StyledList>
@@ -87,7 +87,7 @@ export function listInfoBox(listInfoBoxContent, currentPrefillValue, characterMi
       {listInfoBoxContent && currentPrefillValue.length >= characterMinimum
       && (
         <StyledButtonWrap ref={bottomButton} tabIndex="0" role="buttonOption" aria-selected={false}>
-          <Typography variant="body1">
+          <Typography variant="body1" align="center" noMargins>
             { listInfoBoxContent }
           </Typography>
         </StyledButtonWrap>

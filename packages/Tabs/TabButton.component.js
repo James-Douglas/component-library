@@ -31,7 +31,7 @@ const TabButton = ({
       onClick={clickHandler}
     >
       <StyledTabButtonContent active={active}>
-        <Typography variant="body1" component="div" color="inherit">{label}</Typography>
+        <Typography variant="body1" component="div" color="inherit" align="center">{label}</Typography>
       </StyledTabButtonContent>
     </StyledTabButton>
   );

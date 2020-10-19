@@ -1,40 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { muiTheme } from '@comparethemarketau/manor-themes';
-import { Typography as MUITypography } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { withTheme } from 'styled-components';
-import Box from '@material-ui/core/Box';
+import { StyledTypography } from './Typography.styles';
 
-const TypographyInner = ({
-  // eslint-disable-next-line react/prop-types
-  theme, variant, component, align, color, display, gutterBottom, noWrap, paragraph, children, style, noMargins, ...props
-}) => {
-  const renderChildren = () => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    style ? <Box {...style}>{children}</Box> : children
-  );
-  return (
-    <ThemeProvider theme={muiTheme(theme, noMargins)}>
-      <MUITypography
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
-        variant={variant}
-        component={component}
-        align={align}
-        color={color}
-        display={display}
-        gutterBottom={gutterBottom}
-        noWrap={noWrap}
-        paragraph={paragraph}
-      >
-        {renderChildren()}
-      </MUITypography>
-    </ThemeProvider>
-  );
+const variantTags = {
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  h6: 'h6',
+  subtitle1: 'p',
+  subtitle2: 'p',
+  body1: 'p',
+  body2: 'p',
+  caption: 'caption',
+  overline: 'span',
+  srOnly: 'span',
 };
-
-const ThemedMuiTypography = withTheme(TypographyInner);
 
 const Typography = ({
   variant,
@@ -43,30 +25,31 @@ const Typography = ({
   align,
   color,
   display,
-  gutterBottom,
   noWrap,
-  paragraph,
   style,
   noMargins,
+  className,
   ...props
-}) => (
-  <ThemedMuiTypography
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    {...props}
-    variant={variant}
-    align={align}
-    color={color}
-    display={display}
-    gutterBottom={gutterBottom}
-    noWrap={noWrap}
-    paragraph={paragraph}
-    component={component}
-    style={style}
-    noMargins={noMargins}
-  >
-    {children}
-  </ThemedMuiTypography>
-);
+}) => {
+  const componentToRender = component || variantTags[variant];
+  return (
+    <StyledTypography
+      component={componentToRender}
+      variant={variant}
+      align={align}
+      color={color}
+      display={display}
+      noWrap={noWrap}
+      style={style}
+      noMargins={noMargins}
+      className={className}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      {children}
+    </StyledTypography>
+  );
+};
 
 Typography.propTypes = {
   /**
@@ -84,10 +67,8 @@ Typography.propTypes = {
     'body1',
     'body2',
     'caption',
-    'button',
     'overline',
     'srOnly',
-    'inherit',
   ]).isRequired,
   /**
    * The component used for the root node
@@ -96,19 +77,15 @@ Typography.propTypes = {
   /**
    * Set the text-align on the component
    */
-  align: PropTypes.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
+  align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
   /**
    * The color of the component
    */
-  color: PropTypes.oneOf(['initial', 'inherit']),
+  color: PropTypes.string,
   /**
    * Controls the display type
    */
   display: PropTypes.oneOf(['initial', 'block', 'inline']),
-  /**
-   * If true, the text will have a bottom margin
-   */
-  gutterBottom: PropTypes.bool,
   /**
    * If true the text will not wrap, but instead will truncate with a text
    * overflow ellipsis. Note that text overflow can only happen with block
@@ -116,10 +93,6 @@ Typography.propTypes = {
    * to overflow)
    */
   noWrap: PropTypes.bool,
-  /**
-   * If true, the text will have a bottom margin
-   */
-  paragraph: PropTypes.bool,
   /**
    * Additional styles - if using this a div will be rendered within the typography element,
    *  which may cause errors (e.g. you cannot have a div within a p tag). If so, use the `component` prop
@@ -136,19 +109,22 @@ Typography.propTypes = {
    * Disables the default margins applied based on the element being rendered
    */
   noMargins: PropTypes.bool,
+  /**
+   * Classes to be applied to the rendered element
+   */
+  className: PropTypes.string,
 };
 
 Typography.defaultProps = {
   component: null,
-  align: 'inherit',
-  color: 'initial',
-  display: 'initial',
-  gutterBottom: false,
+  align: 'left',
+  color: 'inherit',
+  display: null,
   noWrap: false,
-  paragraph: false,
   children: [],
   style: null,
   noMargins: false,
+  className: '',
 };
 
 export default Typography;

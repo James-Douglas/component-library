@@ -95,8 +95,8 @@ const MultiSelectToggle = ({
           </StyledCheck>
           {getIconImageContent()}
           <StyledIconContent>
-            <StyledTitle><Typography variant="body1">{title}</Typography></StyledTitle>
-            <StyledDescription disabled={disabled}><Typography variant="body2">{description}</Typography></StyledDescription>
+            <StyledTitle><Typography variant="body1" align="center">{title}</Typography></StyledTitle>
+            <StyledDescription disabled={disabled}><Typography variant="body2" align="center">{description}</Typography></StyledDescription>
           </StyledIconContent>
         </StyledIconToggleContent>
       </ToggleLabel>

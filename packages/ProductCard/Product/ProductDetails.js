@@ -24,7 +24,7 @@ const ProductDetails = ({ className = '' }) => {
 
   return (
     <Wrapper className={className}>
-      <Typography variant="inherit" style={{ fontWeight: 'fontWeightBold', fontSize: 'h6.fontSize' }}>
+      <Typography variant="body1" style={{ fontWeight: 'fontWeightBold', fontSize: 'h6.fontSize' }}>
         <Link onClick={doClick} isDesktop={isDesktop} href="#">
           Product details <FontAwesomeIcon icon={faFileAlt} />
         </Link>

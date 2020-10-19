@@ -36,7 +36,7 @@ const ProductCostWrapper = ({
   const isMD = breakpoint === 'md';
   const isLGPlus = useIsBreakpointRange({ breakpointFrom: 'lg' });
   return (
-    <Typography component="div">
+    <Typography component="div" variant="body1">
       <Wrapper {...{
         className, isDesktop, isMD, isLGPlus,
       }}

@@ -46,7 +46,7 @@ const TextToggle = ({
         <StyledWrapper button={button}>
           <StyledTextToggleContent contentWidth={contentWidth} contentHeight={contentHeight}>
             <StyledContent button={button}>
-              <Typography variant="body1">
+              <Typography variant="body1" align="center">
                 {title}
               </Typography>
             </StyledContent>

@@ -10,11 +10,11 @@ import response from './response.dummy';
 
 # Product Card
 
-A card representing a single result from a product quote. 
+A card representing a single result from a product quote.
 
 **Logo**, **Name**, and **Price** are common to *all* products and as such can be provided directly as props. Vertical specific product information must be passed through as children.
 
-Resize the window to see different responsive layouts. 
+Resize the window to see different responsive layouts.
 
 <Preview>
   <Story name="product card">\
@@ -30,12 +30,12 @@ Resize the window to see different responsive layouts.
         },
         priceDisclaimer: 'Incl. GST & conditional discounts',
       }}
-      additionalContent={<Typography style={{ fontSize: '1.5rem' }}>Some more product info, or whatever.</Typography>}
-      productDocuments={<Typography style={{ marginTop: '1rem', fontSize: '1.2rem' }}>Plan Information Documents</Typography>}
+      additionalContent={<Typography variant="body2" style={{ fontSize: '1.5rem' }}>Some more product info, or whatever.</Typography>}
+      productDocuments={<Typography variant="body2" style={{ marginTop: '1rem', fontSize: '1.2rem' }}>Plan Information Documents</Typography>}
     >
-      <Typography style={{ fontSize: '1.5rem', marginRight: '1rem' }}>Vertical Specific Info #1</Typography>
-      <Typography style={{ fontSize: '1.5rem', marginRight: '1rem' }}>Vertical Specific Info #2</Typography>
-      <Typography style={{ fontSize: '1.5rem' }}>Vertical Specific Info #3</Typography>
+      <Typography variant="body2" style={{ fontSize: '1.5rem', marginRight: '1rem' }}>Vertical Specific Info #1</Typography>
+      <Typography variant="body2" style={{ fontSize: '1.5rem', marginRight: '1rem' }}>Vertical Specific Info #2</Typography>
+      <Typography variant="body2" style={{ fontSize: '1.5rem' }}>Vertical Specific Info #3</Typography>
     </ProductCard>
   </Story>
 </Preview>
