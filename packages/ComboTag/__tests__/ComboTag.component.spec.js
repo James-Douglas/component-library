@@ -254,4 +254,78 @@ describe('ComboTag', () => {
     clearButton.focus();
     expect(clearButton).toHaveFocus();
   });
+
+  // raw input (no list) variant
+  it('does not render a dropdown list', () => {
+    const { container } = render(
+      <ComboTag
+        handleChange={() => {}}
+        id="combo-tag"
+        value="a"
+        placeholder="start typing"
+      />,
+    );
+
+    const inputField = container.querySelector('#combo-tag');
+    inputField.focus();
+    const listElems = container.getElementsByTagName('li');
+    expect(listElems.length).toBe(0);
+  });
+
+  it('adds a tag on keypress (enter)', () => {
+    const { container, getByText } = render(
+      <ComboTag
+        handleChange={() => {}}
+        id="combo-tag"
+        placeholder="start typing"
+      />,
+    );
+
+    const inputField = container.querySelector('#combo-tag');
+    inputField.focus();
+    fireEvent.change(inputField, { target: { value: 'new tag' } });
+    fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
+    expect(getByText('new tag')).toBeInTheDocument();
+  });
+
+  it('accepts a custom validity check of the input', () => {
+    const condition = (x, y) => x > 100;
+    const { container, getByText } = render(
+      <ComboTag
+        handleChange={() => {}}
+        id="combo-tag"
+        placeholder="start typing"
+        invalidTagCondition={condition}
+      />,
+    );
+
+    const inputField = container.querySelector('#combo-tag');
+    inputField.focus();
+    fireEvent.change(inputField, { target: { value: 'new tag' } });
+    fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
+    expect(getByText('new tag')).toBeInTheDocument();
+    fireEvent.change(inputField, { target: { value: '111' } });
+    fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
+    expect(getByText('111')).toBeInTheDocument();
+  });
+
+  it('if an item is invalid, renders the error state for the tag', () => {
+    const condition = (x, y) => x > 100;
+    const { container, getByText } = render(
+      <ComboTag
+        handleChange={() => {}}
+        id="combo-tag"
+        placeholder="start typing"
+        invalidTagCondition={condition}
+      />,
+    );
+
+    const inputField = container.querySelector('#combo-tag');
+    inputField.focus();
+    fireEvent.change(inputField, { target: { value: '111' } });
+    fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
+    expect(getByText('111')).toBeInTheDocument();
+    const invalidTag = getByText('111');
+    expect(invalidTag.parentElement).toHaveStyleRule('background', `${ctmTheme.colors.error50}`);
+  });
 });

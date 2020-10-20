@@ -5,6 +5,9 @@ import { Typography } from '@comparethemarketau/manor-typography';
 import { FluidContainer, Column, Row } from '@comparethemarketau/manor-grid';
 import fakeApiData from './countries';
 import { useState, useEffect } from 'react';
+import { faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
+import { faExclamationCircle } from '@fortawesome/pro-solid-svg-icons';
+import noResultsImg from '../../images/NoSearchResult.png';
 
 <Meta title="Components/ComboTag" component={ComboTag} />
 
@@ -15,9 +18,9 @@ adjacent to the input. Tags can also be set as an 'alert', which is a tag in a w
 In Manor, the `ComboTag` extends `Input` and as such shares similar functionality.
 
 <Preview>
-  <Story name="ComboTag preview" height="250px">
+  <Story name="ComboTag (dropdown version)" height="250px">
   {() => {
-    const [comboTagValue, setComboTagValue] = useState('')
+    const [comboTagValue, setComboTagValue] = useState('');
     const [apiData, setApiData] = useState([]);
     useEffect(() => {
       const filteredData = fakeApiData
@@ -50,9 +53,14 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                       alt: 'Image of magnifying glass',
                       title: 'no results found',
                     }}
+                    prefix={faMapMarkerAlt}
                     placeholder='Select or start typing destination(s)...'
-                    emptyStateHeading="Sorry, your search did not produce any results."
-                    emptyStateChildren='Try adjusting your search or filter to find what you are looking for.'
+                    emptyStatePicture={{
+                      src: noResultsImg,
+                      srcsets: [{ srcset: noResultsImg}],
+                      alt: 'Image of magnifying glass',
+                      title: 'Oops',
+                    }}
                     handleInput={(value) => {
                       // eslint-disable-next-line no-console
                       console.log(value)
@@ -119,7 +127,6 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
         setApiData(filteredData)
       }
     }, [comboTagValue]);
-    const prefillValues = [{name: 'United States of America', code: 'US', alert: false, shortName: 'USA' }];
     const componentPropsId = 'Component Props';
     const tooltipGroupId = 'Tooltip Props';
     const id = text('id', 'ComboTag-demo', componentPropsId);
@@ -130,7 +137,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
     const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
     const selectedTags = object('selectedTags', [{label: 'Afghanistan', code: 'AF', alert: true }], componentPropsId);
     return (
-      <div style={{ padding: '2%'}}>
+      <div style={{ padding: '2%', marginTop: '200px'}}>
         <FluidContainer>
           <Row>
             <Column>
@@ -138,7 +145,6 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                 id={id}
                 placeholder={placeholder}
                 disabled={disabled}
-                prefillValue={prefillValues}
                 autoComplete={autoComplete}
                 characterMinimum={characterMinimum}
                 renderLimit={renderLimit}
@@ -151,6 +157,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                 handleChange={() => {}}
                 alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
                 selectedTags={selectedTags}
+                prefix={faMapMarkerAlt}
               />
             </Column>
           </Row>
@@ -160,3 +167,29 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
   }}
 </Story>
 
+<Preview>
+  <Story name="ComboTag (Keypress version)">
+    {() => { 
+      const [comboTagValue, setComboTagValue] = useState('');
+      const condition = (x, y) => {
+        return x > 100;
+      }
+      return (
+        <div style={{ padding: '2%', marginTop: '200px'}}>
+          <ComboTag
+            id="tag-id-2"
+            placeholder='Type in your destination and then press enter'
+            handleInput={(value) => {
+              // eslint-disable-next-line no-console
+              console.log(value)
+              setComboTagValue(value)
+            }}
+            handleChange={() => {}}
+            invalidTagCondition={condition}
+            tagAlertIcon={faExclamationCircle}
+          />
+        </div>
+      )
+    }}
+  </Story>
+</Preview>

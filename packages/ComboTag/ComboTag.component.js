@@ -4,7 +4,6 @@ import React, {
 import PropTypes from 'prop-types';
 import { Input } from '@comparethemarketau/manor-input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useIsDesktop, useId, useMountEffect } from '@comparethemarketau/manor-hooks';
@@ -108,6 +107,7 @@ export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, lis
 const ComboTag = ({
   id: propsId,
   apiData,
+  prefix,
   listIcon,
   value,
   autocomplete,
@@ -127,7 +127,11 @@ const ComboTag = ({
   alertText,
   alertTooltip,
   errorTooltip,
+  tagAlertIcon,
   selectedTags,
+  invalidTagCondition,
+  mask,
+  guide,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -143,12 +147,29 @@ const ComboTag = ({
   const [fade, setFade] = useState(false);
   const [tagsWidth, setTagsWidth] = useState(0);
   const [inlineTooltipActive, setInlineTooltipActive] = useState(false);
+  const hasList = !!apiData;
 
   const filteredValuesRefs = useMemo(
-    () => apiData.map((item) => React.createRef()),
+    () => apiData && apiData.map((item) => React.createRef()),
     [apiData],
   );
 
+  // use if we don't have a list or api, and use raw user input
+  const tagKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      // prevent unwanted values from being set as a tag or set an alert
+      let alertState = false;
+      if (invalidTagCondition) {
+        alertState = invalidTagCondition(currentValue);
+      }
+      if (currentValue.trim().length > 0) {
+        setTags([...tags, { label: currentValue.trim(), alert: alertState }]);
+      }
+      setCurrentValue('');
+    }
+  };
+
+  // used if we have a list (expected with an api)
   const handleSelectItem = (tag) => {
     setInlineTooltipActive(false);
     const tagExists = tags.filter((t) => tag.label === t.label);
@@ -157,7 +178,6 @@ const ComboTag = ({
     } else {
       setInlineTooltipActive(true);
     }
-
     setListVisible(false);
     setFocusedRef(null);
     setCurrentValue('');
@@ -166,8 +186,8 @@ const ComboTag = ({
   const comboHandleChange = useCallback((valueInput) => {
     setCurrentValue(valueInput);
     setInlineTooltipActive(false);
-    setListVisible(!!valueInput.length);
-  }, [setCurrentValue, setListVisible]);
+    hasList && setListVisible(!!valueInput.length);
+  }, [setCurrentValue, setListVisible, hasList]);
 
   const handleOnFocus = (event) => {
     if (event.target.tagName === 'BUTTON') {
@@ -294,21 +314,10 @@ const ComboTag = ({
 
   // if alerts, show alerts
   useEffect(() => {
-    setAlerts(tagElements.some(({ alert }) => alert));
-  }, [tagElements]);
-
-  // update width of tag holder and trigger the fade effect
-  useLayoutEffect(() => {
-    if (tagElements.length && tagHolderRef.current) {
-      updateTagsWidth();
-      if (tagHolderRef.current.getBoundingClientRect().width < tagsWidth) {
-        tagHolderRef.current.scrollLeft += 10000;
-        setFade(true);
-      } else {
-        setFade(false);
-      }
+    if (hasList) {
+      setAlerts(tagElements.some(({ alert }) => alert === true));
     }
-  }, [tagElements, tagsWidth, updateTagsWidth]);
+  }, [tagElements, hasList]);
 
   // store the refs, the jsx and the alert state of the tag
   useEffect(() => {
@@ -319,12 +328,26 @@ const ComboTag = ({
       } = tag;
       return {
         ref: tagRef,
-        tagJsx: <Tag key={`item-${label + i}`} value={shortName || label} alert={alert} ref={tagRef} onClickDelete={() => deleteTagHandler(i)} />,
+        tagJsx: <Tag warning={hasList} icon={alert ? tagAlertIcon : null} key={`item-${label + i}`} value={shortName || label} alert={alert} ref={tagRef} onClickDelete={() => deleteTagHandler(i)} />,
         alert,
       };
     });
     setTagElements(temp);
-  }, [tags, deleteTagHandler]);
+  }, [tags, deleteTagHandler, hasList, tagAlertIcon]);
+
+  // update width of tag holder and trigger the fade effect
+  useLayoutEffect(() => {
+    if (hasList && tagElements.length && tagHolderRef.current) {
+      updateTagsWidth();
+      const tagHolderRefWidth = tagHolderRef.current.getBoundingClientRect().width;
+      if (tagHolderRefWidth < tagsWidth) {
+        tagHolderRef.current.scrollLeft += Math.ceil(tagsWidth);
+        setFade(true);
+      } else {
+        setFade(false);
+      }
+    }
+  }, [tagElements, tagsWidth, updateTagsWidth, hasList]);
 
   // fire handleChange func (if passed) with the current tags
   useEffect(() => {
@@ -340,6 +363,7 @@ const ComboTag = ({
     if (selectedTags.length !== tags.length) {
       setTags(selectedTags);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTags, setTags]);
 
   return (
@@ -351,12 +375,15 @@ const ComboTag = ({
         onKeyDown={keyboardAccessibility}
       >
         {(alerts && tags.length > 0) && renderAlert()}
-        <StyledTagContainer>
-          <StyledPrefix>
-            <FontAwesomeIcon icon={faMapMarkerAlt} size="lg" />
-          </StyledPrefix>
+        <StyledTagContainer hasList={hasList}>
+          {prefix
+            && (
+            <StyledPrefix>
+              <FontAwesomeIcon icon={prefix} size="lg" />
+            </StyledPrefix>
+            )}
           <StyledFade fade={fade} tagsVisible={tagsVisible} />
-          <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible}>
+          <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible} hasList={hasList}>
             {tagsVisible && tagElements.map(({ tagJsx }) => tagJsx)}
           </StyledTagHolder>
           <StyledInputWrap>
@@ -378,14 +405,17 @@ const ComboTag = ({
               disabled={disabled}
               autocomplete={autocomplete}
               handleChange={comboHandleChange}
+              handleKeyDown={hasList ? null : tagKeyDown}
               className={className}
               bordered={false}
               tabIndex="0"
-              role="comboField"
+              role={hasList ? 'combobox' : null}
               removeGutters
               ref={comboInputRef}
               disableFocusStyles
-              dataList={() => comboDropdownList(
+              mask={mask}
+              guide={guide}
+              dataList={() => hasList && comboDropdownList(
                 desktop,
                 listIcon,
                 characterMinimum,
@@ -404,7 +434,8 @@ const ComboTag = ({
           </StyledInputWrap>
         </StyledTagContainer>
       </div>
-      <StyledBorder />
+      {hasList
+        && <StyledBorder />}
     </StyledContainer>
   );
 };
@@ -436,11 +467,33 @@ ComboTag.propTypes = {
    * The supplied data to populate a datalist. Only accepts formatted data - logic would be provided for this in its
    * context. See the Combo component story for a rough and ready example.
    */
-  apiData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  apiData: PropTypes.arrayOf(PropTypes.object),
   /**
    * Renders the given (FontAwesome) icon next to options in the list
    */
   listIcon: PropTypes.oneOfType([
+    PropTypes.shape({
+      prefix: PropTypes.string,
+      iconName: PropTypes.string,
+      icon: PropTypes.array, // eslint-disable-line
+    }),
+    PropTypes.string,
+  ]),
+  /**
+   * Renders the given (FontAwesome) as a prefix
+   */
+  prefix: PropTypes.oneOfType([
+    PropTypes.shape({
+      prefix: PropTypes.string,
+      iconName: PropTypes.string,
+      icon: PropTypes.array, // eslint-disable-line
+    }),
+    PropTypes.string,
+  ]),
+  /**
+   * Renders the given (FontAwesome) for a tag in its alert state
+   */
+  tagAlertIcon: PropTypes.oneOfType([
     PropTypes.shape({
       prefix: PropTypes.string,
       iconName: PropTypes.string,
@@ -518,12 +571,28 @@ ComboTag.propTypes = {
    * Update the tags via prop
    */
   selectedTags: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  /**
+   * Custom function to check if the tag is valid
+   */
+  invalidTagCondition: PropTypes.func,
+  /**
+   * Mask to be applied to the input, see https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme
+   * Supported input types Please note that Text Mask supports input type of text, tel, url, password, and search.
+   * Due to a limitation in browser API, other input types, such as email or number, cannot be supported.
+   * However, it is normal to let the user enter an email or a number in an input type text combined the appropriate input mask.
+   */
+  mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
+  /**
+   * Sets the guide mode
+   */
+  guide: PropTypes.bool,
 };
 
 ComboTag.defaultProps = {
   id: null,
   listIcon: null,
   placeholder: '',
+  apiData: null,
   disabled: false,
   value: '',
   autocomplete: 'off',
@@ -540,7 +609,14 @@ ComboTag.defaultProps = {
   alertText: '',
   alertTooltip: {},
   errorTooltip: {},
+  tagAlertIcon: null,
   selectedTags: [],
+  prefix: null,
+  invalidTagCondition: null,
+  // there is a bug in text-mask where disabling the mask (setting to false) causes the input value to not
+  // reset when the clear icon is clicked (PR:https://github.com/text-mask/text-mask/pull/831)
+  mask: (value) => Array(value.length).fill(/./),
+  guide: false,
 };
 
 export default ComboTag;

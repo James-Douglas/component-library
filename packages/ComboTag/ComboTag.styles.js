@@ -2,6 +2,11 @@ import styled, { css } from 'styled-components';
 
 export const StyledTagContainer = styled.div`
   width: 100%;
+  ${({ hasList, theme }) => !hasList && css`
+    display: flex;
+    background: ${theme.colors.white};
+    flex-direction: column;
+  `}
 `;
 
 export const StyledContainer = styled.div`
@@ -36,24 +41,30 @@ export const StyledTagHolder = styled.div`
   height: ${({ theme }) => (theme.spacing[44])};
   display: flex;
   float: left;
-  overflow-x: scroll;
-  overflow-y: hidden;
   align-items: center;
-  max-width: 60%;
   z-index: ${({ theme }) => (theme.zIndex[10])};
   padding-right: 15px;
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-  ::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-  }
+  ${({ hasList }) => hasList && css`
+    max-width: 60%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    ::-webkit-scrollbar { 
+      display: none;  /* Safari and Chrome */
+    }
+  `}
+  ${({ hasList }) => !hasList && css`
+    flex-wrap: wrap;
+    height: auto;
+  `}
 `;
 
 export const StyledFade = styled.div`
   position: absolute;
   height: ${({ theme }) => theme.spacing[44]};
   width: 10rem;
-  left: 33px;
+  left: ${({ theme }) => theme.spacing[40]};
   z-index: ${({ theme }) => (theme.zIndex[20])};
   pointer-events: none;
   ${({ fade, tagsVisible }) => (fade && tagsVisible) && css`
@@ -163,9 +174,6 @@ export const StyledEmptyStateMessage = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.combo.list.item.color};
   text-align: center;
-  img {
-   
-  }
   z-index: ${({ theme }) => (theme.zIndex[50])};
 `;
 

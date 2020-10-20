@@ -84,6 +84,7 @@ const Input = React.forwardRef(({
   handleChange,
   handleFocus,
   handleBlur,
+  handleKeyDown,
   mask,
   guide,
   dataList,
@@ -162,6 +163,12 @@ const Input = React.forwardRef(({
     setFocusActive(false);
   };
 
+  const keyDownHandler = (e) => {
+    if (handleKeyDown) {
+      handleKeyDown(e);
+    }
+  };
+
   const affixClick = () => {
     localRef.current.inputElement.focus();
   };
@@ -202,6 +209,7 @@ const Input = React.forwardRef(({
               onClick={handleOnClick}
               onFocus={focusHandler}
               onBlur={blurHandler}
+              onKeyDown={keyDownHandler}
               maxLength={maxlength}
               isAutofill={isAutofill}
               ref={localRef}
@@ -310,9 +318,13 @@ Input.propTypes = {
    */
   handleBlur: PropTypes.func,
   /**
-   * Function called when click on input
+   * Function called when the input is clicked
    */
   handleOnClick: PropTypes.func,
+  /**
+   * Function called when keydown is pressed
+   */
+  handleKeyDown: PropTypes.func,
   /**
    * Content to be displayed as a prefix for the input
    */
@@ -383,6 +395,7 @@ Input.defaultProps = {
   autocomplete: 'off',
   handleFocus: null,
   handleBlur: null,
+  handleKeyDown: null,
   required: true,
   disabled: false,
   readonly: false,
