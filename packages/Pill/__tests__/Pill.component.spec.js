@@ -1,13 +1,15 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/pro-regular-svg-icons/faCreditCard';
+import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render, fireEvent } from '../../../testUtils';
 import Pill from '../Pill.component';
 
 describe('Pill', () => {
   it('can render a basic pill component', () => {
-    const { getByText } = render(<Pill label="Example Pill" />);
+    const { getByText, container } = render(<Pill label="Example Pill" />);
     expect(getByText('Example Pill')).toBeInTheDocument();
+    expect(container.querySelector('[data-icon="plus"]')).toBeInTheDocument();
   });
 
   it('can render a pill with an icon', () => {
@@ -20,91 +22,28 @@ describe('Pill', () => {
     expect(container.querySelector('.test-icon')).toBeInTheDocument();
   });
 
-  it('can render a pill with a click icon when a handle click is passed', () => {
+  it('can render selected', () => {
     const { container } = render(
       <Pill
         label="Example Pill"
-        handleClick={() => {}}
-        deleteIcon={
-          <FontAwesomeIcon icon={faCreditCard} className="test-deleteIcon" />
-        }
+        icon={<FontAwesomeIcon icon={faCreditCard} className="test-icon" />}
+        selected
       />,
     );
-    expect(container.querySelector('.test-deleteIcon')).toBeInTheDocument();
+    expect(container.firstChild).toHaveStyle(`border: 1px solid ${ctmTheme.colors.primary500}`);
   });
 
-  it('can not render a pill with a click icon when a handle click is not passed', () => {
-    const { container } = render(
-      <Pill
-        label="Example Pill"
-        deleteIcon={
-          <FontAwesomeIcon icon={faCreditCard} className="test-deleteIcon" />
-        }
-      />,
-    );
-    expect(container.querySelector('.test-deleteIcon')).not.toBeInTheDocument();
-  });
-
-  it('can render a pill which responds to a click event when no delete event is provided', () => {
+  it('can render a pill which responds to a click event', () => {
     const mockClickCallback = jest.fn();
-    const mockDeleteCallback = jest.fn();
     const { container } = render(
       <Pill
         label="Example Pill"
         handleClick={mockClickCallback}
-        handleDelete={mockDeleteCallback}
-        deleteIcon={
-          <FontAwesomeIcon icon={faCreditCard} className="test-deleteIcon" />
-        }
         className="test-pill"
       />,
     );
     const clickable = container.querySelector('.test-pill');
     fireEvent.click(clickable);
-    expect(container.querySelector('.test-deleteIcon')).toBeInTheDocument();
     expect(mockClickCallback.mock.calls.length).toBe(1);
-    expect(mockDeleteCallback.mock.calls.length).toBe(0);
-  });
-
-  it('can render a pill which responds to a click event when a click and delete event is provided', () => {
-    const mockClickCallback = jest.fn();
-    const mockDeleteCallback = jest.fn();
-    const { container } = render(
-      <Pill
-        label="Example Pill"
-        handleClick={mockClickCallback}
-        handleDelete={mockDeleteCallback}
-        deleteIcon={
-          <FontAwesomeIcon icon={faCreditCard} className="test-deleteIcon" />
-        }
-        className="test-pill"
-      />,
-    );
-    const clickable = container.querySelector('.test-pill');
-    fireEvent.click(clickable);
-    expect(container.querySelector('.test-deleteIcon')).toBeInTheDocument();
-    expect(mockClickCallback.mock.calls.length).toBe(1);
-    expect(mockDeleteCallback.mock.calls.length).toBe(0);
-  });
-
-  it('can render a pill which responds to a delete event when a click and delete event is provided', () => {
-    const mockClickCallback = jest.fn();
-    const mockDeleteCallback = jest.fn();
-    const { container } = render(
-      <Pill
-        label="Example Pill"
-        handleClick={mockClickCallback}
-        handleDelete={mockDeleteCallback}
-        deleteIcon={
-          <FontAwesomeIcon icon={faCreditCard} className="test-deleteIcon" />
-        }
-        className="test-pill"
-      />,
-    );
-    const clickable = container.querySelector('.test-deleteIcon');
-    expect(clickable).toBeInTheDocument();
-    fireEvent.click(clickable);
-    expect(mockClickCallback.mock.calls.length).toBe(0);
-    expect(mockDeleteCallback.mock.calls.length).toBe(1);
   });
 });

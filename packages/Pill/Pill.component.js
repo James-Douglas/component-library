@@ -1,44 +1,43 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { muiTheme } from '@comparethemarketau/manor-themes';
-import { Chip as MUIChip } from '@material-ui/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/pro-regular-svg-icons/faPlus';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { ManorStyledPill, StyledLabel } from './Pill.styles';
 
 const PillInner = ({
   theme,
-  variant,
+  selected,
   icon,
   style,
   size,
-  clickable,
-  color,
   component,
   deleteIcon,
   disabled,
   handleClick,
-  handleDelete,
   label,
   className,
   classes,
   ...props
 }) => (
   <ThemeProvider theme={muiTheme(theme)}>
-    <MUIChip
+    <ManorStyledPill
       {...props}
       label={label}
-      variant={variant}
+      selected={selected}
       size={size}
       icon={icon}
       onClick={handleClick}
-      onDelete={handleDelete || handleClick}
+      onDelete={handleClick}
       deleteIcon={deleteIcon}
-      color={color}
       disabled={disabled}
       component={component}
-      clickable={clickable}
+      clickable
       classes={classes}
       className={className}
     />
@@ -48,45 +47,59 @@ const PillInner = ({
 const ThemedMUIChip = withTheme(PillInner);
 
 const Pill = ({
-  variant,
+  selected,
   icon,
   style,
   size,
-  clickable,
-  color,
   component,
-  deleteIcon,
   disabled,
   handleClick,
-  handleDelete,
   label,
   className,
   classes,
   ...props
-}) => (
-  <ThemedMUIChip
-    {...props}
-    label={label}
-    variant={variant}
-    icon={icon}
-    size={size}
-    handleClick={handleClick}
-    handleDelete={handleDelete}
-    color={color}
-    disabled={disabled}
-    deleteIcon={deleteIcon}
-    component={component}
-    clickable={clickable}
-    classes={classes}
-    className={className}
-  />
-);
+}) => {
+  const [isSelected, setIsSelected] = useState(selected);
+
+  useEffect(() => {
+    setIsSelected(selected);
+  }, [selected]);
+
+  const clickHandler = () => {
+    setIsSelected(!isSelected);
+    handleClick && handleClick(!isSelected);
+  };
+
+  return (
+    <ThemedMUIChip
+      {...props}
+      label={(
+        <StyledLabel
+          variant={size === 'medium' ? 'body1' : 'body2'}
+          selected={isSelected}
+          noMargins
+        >
+          {label}
+        </StyledLabel>
+      )}
+      selected={isSelected}
+      icon={icon}
+      size={size}
+      handleClick={clickHandler}
+      disabled={disabled}
+      deleteIcon={<FontAwesomeIcon icon={isSelected ? faCheckCircle : faPlus} />}
+      component={component}
+      classes={classes}
+      className={className}
+    />
+  );
+};
 
 Pill.propTypes = {
   /**
-   * The variant to use.
+   * Defines whether the pill is currently selected
    */
-  variant: PropTypes.oneOf(['default', 'outlined']),
+  selected: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -102,21 +115,9 @@ Pill.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   classes: PropTypes.object,
   /**
-   * If true, the chip will appear clickable,
-   */
-  clickable: PropTypes.bool,
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
-  /**
    * The component used for the root node. Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * Override the default delete icon element. Shown only if onDelete is set.
-   */
-  deleteIcon: PropTypes.element,
   /**
    * If true, the chip should be displayed in a disabled state.
    */
@@ -134,27 +135,19 @@ Pill.propTypes = {
    */
   handleClick: PropTypes.func,
   /**
-   * Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.
-   */
-  handleDelete: PropTypes.func,
-  /**
    * The size of the chip.
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes.oneOf(['medium', 'small']),
 };
 
 Pill.defaultProps = {
-  variant: 'outlined',
+  selected: false,
   style: undefined,
-  clickable: true,
-  color: 'default',
   component: undefined,
-  deleteIcon: undefined,
   disabled: false,
   icon: undefined,
   label: '',
   handleClick: undefined,
-  handleDelete: undefined,
   size: 'small',
   className: '',
   classes: undefined,
