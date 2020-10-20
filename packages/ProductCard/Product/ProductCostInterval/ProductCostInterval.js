@@ -1,23 +1,7 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ProductContext from '../Context/ProductContext';
-
-const Wrapper = styled.div`
-  text-align: ${({ alignRight }) => (alignRight ? 'right' : 'left')};
-`;
-
-const Filter = styled.select`
-  color: ${({ theme }) => theme.colors.primary500};
-  border: none;
-  background: none;
-  text-align-last: right;
-  font-size: inherit;
-`;
-
-const Option = styled.option`
-  text-transform: capitalize;
-`;
+import ProductContext from '../../Context/ProductContext';
+import { Wrapper, Filter, Option } from './ProductCostInterval.styles';
 
 const labels = {
   ANNUALLY: 'year',

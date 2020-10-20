@@ -11,6 +11,7 @@ const ManorStyledPill = styled(({ ...otherProps }) => (
     height: ${({ size, theme }) => (size === 'medium' ? `${theme.spacing[40]} !important` : `${theme.spacing[32]} !important`)};
     border: ${({ theme, selected }) => (`1px solid ${selected ? theme.colors.primary500 : theme.colors.grey500} !important`)};
     background: ${({ theme, selected }) => `${selected ? theme.colors.primary50 : 'transparent'} !important`};
+    border-radius: ${({ theme }) => `${theme.spacing[20]} !important`};
   }
    
   & .MuiChip-icon {
@@ -18,7 +19,7 @@ const ManorStyledPill = styled(({ ...otherProps }) => (
   }
 
   & .MuiChip-deleteIcon {
-    font-size: 1.6rem;
+    font-size: ${({ theme }) => theme.spacing[16]};
     margin-left: 0rem;
     margin-right: 1rem !important;
     color: ${({ theme, selected }) => (selected ? theme.colors.primary500 : theme.colors.grey500)};

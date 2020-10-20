@@ -1,29 +1,24 @@
 /* eslint react/forbid-prop-types: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Product from './Product/Product';
-import ProductInfoWrapper from './Product/ProductInfoWrapper/ProductInfoWrapper';
+import { Card } from '@comparethemarketau/manor-card';
+import { spacingPropTypes } from '@comparethemarketau/manor-utils';
 import ProductProvider from './Context/ProductProvider';
-import GenericProductCard from './GenericProductCard.component';
 
-const ProductCard = ({
-  product, onDetails, onSelect, additionalContent, productDocuments, children,
+const GenericProductCard = ({
+  product, onDetails, onSelect, padding, children,
 }) => (
   <ProductProvider {...{
     product, onDetails, onSelect,
   }}
   >
-    <GenericProductCard product={product} onDetails={onDetails} onSelect={onSelect}>
-      <Product {...{ additionalContent, productDocuments }}>
-        <ProductInfoWrapper>
-          {children}
-        </ProductInfoWrapper>
-      </Product>
-    </GenericProductCard>
+    <Card padding={padding}>
+      {children}
+    </Card>
   </ProductProvider>
 );
 
-ProductCard.propTypes = {
+GenericProductCard.propTypes = {
   /**
    * Core product info to be rendered.
    */
@@ -47,22 +42,14 @@ ProductCard.propTypes = {
    */
   onSelect: PropTypes.func.isRequired,
   /**
-   * Extra content to render under the main card.
-   */
-  additionalContent: PropTypes.node,
-  /**
-   * Link to supplimental product information.
-   */
-  productDocuments: PropTypes.node,
-  /**
    * Typically, product information groups specific to a vertical.
    */
   children: PropTypes.node.isRequired,
+  padding: spacingPropTypes,
 };
 
-ProductCard.defaultProps = {
-  additionalContent: null,
-  productDocuments: null,
+GenericProductCard.defaultProps = {
+  padding: ['16'],
 };
 
-export default ProductCard;
+export default GenericProductCard;

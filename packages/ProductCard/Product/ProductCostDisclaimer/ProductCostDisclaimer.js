@@ -1,17 +1,8 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import { Typography } from '@comparethemarketau/manor-typography';
 import PropTypes from 'prop-types';
-import ProductContext from '../Context/ProductContext';
-
-const Wrapper = styled.div`
-  color: ${({ theme }) => theme.colors.grey600};
-  font-size: 0.8em;
-  text-align: ${({ alignRight }) => (alignRight ? 'right' : 'auto')};
-`;
-
-const Sup = styled.sup`
-  text-align: right;
-`;
+import ProductContext from '../../Context/ProductContext';
+import { Wrapper, Sup } from './ProductCostDisclaimer.styles';
 
 const ProductCostDisclaimer = ({
   className = '',
@@ -22,7 +13,7 @@ const ProductCostDisclaimer = ({
   if (!priceDisclaimer) return null;
   return (
     <Wrapper {...{ className, size, alignRight }}>
-      <Sup>*</Sup>{priceDisclaimer}
+      <Typography variant="body2"><Sup>*</Sup>{priceDisclaimer}</Typography>
     </Wrapper>
   );
 };

@@ -1,21 +1,8 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ProductContext from '../Context/ProductContext';
-
-const Wrapper = styled.div`
-  color: ${({ theme }) => theme.colors.hero500};
-  font-size: ${({ theme, size }) => theme.fontSize[size]};
-  text-align: ${({ alignRight }) => (alignRight ? 'right' : 'auto')};
-`;
-
-const Cents = styled.span`
-  font-size: 0.8em;
-`;
-
-const Sup = styled.sup`
-  vertical-align: text-top;
-`;
+import { spacingPropTypes } from '@comparethemarketau/manor-utils';
+import ProductContext from '../../Context/ProductContext';
+import { Wrapper, Cents, Sup } from './ProductCost.styles';
 
 const multipliers = {
   ANNUALLY: {
@@ -38,6 +25,7 @@ const multipliers = {
 const ProductCost = ({
   interval,
   alignRight = false,
+  padding,
   className = '',
   size = '5xl',
 }) => {
@@ -50,7 +38,10 @@ const ProductCost = ({
   const [dollars, cents] = `${cost.toFixed(2)}`.split('.');
 
   return (
-    <Wrapper {...{ className, size, alignRight }}>
+    <Wrapper {...{
+      className, size, alignRight, padding,
+    }}
+    >
       ${dollars}
       <Cents>
         .{cents}
@@ -64,6 +55,7 @@ ProductCost.propTypes = {
   interval: PropTypes.string,
   alignRight: PropTypes.bool,
   size: PropTypes.string,
+  padding: spacingPropTypes,
   className: PropTypes.string,
 };
 
@@ -71,6 +63,7 @@ ProductCost.defaultProps = {
   interval: null,
   alignRight: false,
   size: '5xl',
+  padding: ['12', '0', '0', '0'],
   className: '',
 };
 

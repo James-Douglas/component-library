@@ -1,25 +1,23 @@
 import React from 'react';
 import { Button } from '@comparethemarketau/manor-button';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Wrapper from './ProductSelect.styles';
 
-const Wrapper = styled.div`
-  max-width: 15rem;
-`;
-
-const ProductSelect = ({ className = '', onSelect }) => (
-  <Wrapper classname={className}>
-    <Button onClick={onSelect} style={{ marginBottom: 0 }}>Select</Button>
+const ProductSelect = ({ className = '', buttonText, onSelect }) => (
+  <Wrapper className={className}>
+    <Button handleClick={onSelect} style={{ marginBottom: 0 }}>{buttonText}</Button>
   </Wrapper>
 );
 
 ProductSelect.propTypes = {
   className: PropTypes.string,
+  buttonText: PropTypes.string,
   onSelect: PropTypes.func,
 };
 
 ProductSelect.defaultProps = {
   className: '',
+  buttonText: 'Select',
   onSelect: () => {},
 };
 

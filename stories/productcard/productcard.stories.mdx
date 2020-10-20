@@ -1,12 +1,9 @@
 import { Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { ProductCard } from '@comparethemarketau/manor-product-card';
 import { Typography } from '@comparethemarketau/manor-typography';
-import { ManorProvider } from '@comparethemarketau/manor-provider';
 import originLogo from '../../images/ORIGIN.png';
-import response from './response.dummy';
 
-
-<Meta title="Components/ProductCard" component={ProductCard} />
+<Meta title="Components/ProductCard/ProductCard" component={ProductCard} />
 
 # Product Card
 
@@ -17,7 +14,7 @@ A card representing a single result from a product quote.
 Resize the window to see different responsive layouts.
 
 <Preview>
-  <Story name="product card">\
+  <Story name="product card">
     <ProductCard
       product={{
         name: "Test Product Discount Saver Max",

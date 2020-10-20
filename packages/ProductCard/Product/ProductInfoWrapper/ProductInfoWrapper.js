@@ -1,15 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import Wrapper from './ProductInfoWrapper.styles';
 
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  flex: 1;
-`;
-
-const ProductContent = ({
+const ProductInfoWrapper = ({
   children,
   className = '',
 }) => (
@@ -18,13 +11,13 @@ const ProductContent = ({
   </Wrapper>
 );
 
-ProductContent.propTypes = {
+ProductInfoWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
-ProductContent.defaultProps = {
+ProductInfoWrapper.defaultProps = {
   className: '',
 };
 
-export default ProductContent;
+export default ProductInfoWrapper;
