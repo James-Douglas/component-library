@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-pill",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "Manor Pill component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
