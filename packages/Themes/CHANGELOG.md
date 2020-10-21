@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.8.1...@comparethemarketau/manor-themes@0.9.0) (2020-10-21)
+
+
+### Features
+
+* **component:** textToggles updates with optionakl greyed out styles ([#436](https://github.com/comparethemarketau/manor-react/issues/436)) ([273d7e8](https://github.com/comparethemarketau/manor-react/commit/273d7e8b30e2f2f33cc112996ec1cae16ce8f1ad))
+
+
+
+
+
 ## [0.8.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.8.0...@comparethemarketau/manor-themes@0.8.1) (2020-10-20)
 
 **Note:** Version bump only for package @comparethemarketau/manor-themes

@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-utils",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Manor Utils",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,6 +18,6 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-themes": "^0.8.1"
+    "@comparethemarketau/manor-themes": "^0.9.0"
   }
 }
