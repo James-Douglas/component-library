@@ -39,6 +39,7 @@ const DateRangePicker = ({
   startDateValidationMessage,
   isDayBlocked,
   handleChange,
+  pickerVisible,
 }) => {
   const startDateId = useId(propsStartDateId);
   const endDateId = useId(propsEndDateId);
@@ -48,13 +49,17 @@ const DateRangePicker = ({
   const [startDate, setStartDate] = useState(startDateValue);
   const [endDate, setEndDate] = useState(endDateValue);
   const [focusedInput, setFocusedInput] = useState(START_DATE);
-  const [isVisisble, setIsVisisble] = useState(false);
+  const [isVisisble, setIsVisisble] = useState(pickerVisible);
   const [startDateValidationMessageText, setStartDateValidationMessage] = useState(null);
   const [endDateValidationMessageText, setEndDateValidationMessage] = useState(null);
   const calendarArea = createRef();
   const focusHandler = (value) => {
     setFocusedInput(value || START_DATE);
   };
+
+  useEffect(() => {
+    setIsVisisble(pickerVisible);
+  }, [pickerVisible]);
 
   const dateIsBlocked = useCallback((date) => (isDayBlocked !== undefined && typeof isDayBlocked === 'function' ? isDayBlocked(date) : false), [isDayBlocked]);
 
@@ -297,6 +302,10 @@ DateRangePicker.propTypes = {
    * Called on change with { dates }.
    */
   handleChange: PropTypes.func,
+  /**
+   * Allows manual control over the visibility of the picker
+   */
+  pickerVisible: PropTypes.bool,
 };
 
 DateRangePicker.defaultProps = {
@@ -319,6 +328,7 @@ DateRangePicker.defaultProps = {
   startDateValidationMessage: null,
   isDayBlocked: undefined,
   handleChange: null,
+  pickerVisible: false,
 };
 
 export default DateRangePicker;

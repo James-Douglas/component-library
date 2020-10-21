@@ -1,7 +1,7 @@
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, {
-  useCallback, useLayoutEffect, useRef, useState,
+  useCallback, useEffect, useLayoutEffect, useRef, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import { DayPickerSingleDateController as RDSingleDatePicker } from 'react-dates';
@@ -27,6 +27,7 @@ const SingleDatePicker = ({
   isDayBlocked,
   handleChange,
   readonly,
+  pickerVisible,
 }) => {
   const dateId = useId(propsDateId);
   const node = useRef();
@@ -34,8 +35,12 @@ const SingleDatePicker = ({
   const [selectedDate, setSelectedDate] = useState(date);
   const [value, setValue] = useState(selectedDate && selectedDate.format(displayFormat));
 
-  const [isVisisble, setIsVisisble] = useState(false);
+  const [isVisisble, setIsVisisble] = useState(pickerVisible);
   const [validationMessageDate, setValidationMessageDate] = useState(null);
+
+  useEffect(() => {
+    setIsVisisble(pickerVisible);
+  }, [pickerVisible]);
 
   const dateHandleFocus = () => {
     setIsVisisble(true);
@@ -185,6 +190,10 @@ SingleDatePicker.propTypes = {
    * Specifies that the date input should be read-only. However you can still set dates from the picker
    */
   readonly: PropTypes.bool,
+  /**
+   * Allows manual control over the visibility of the picker
+   */
+  pickerVisible: PropTypes.bool,
 };
 
 SingleDatePicker.defaultProps = {
@@ -200,6 +209,7 @@ SingleDatePicker.defaultProps = {
   handleChange: null,
   isDayBlocked: undefined,
   readonly: false,
+  pickerVisible: false,
 };
 
 export default SingleDatePicker;
