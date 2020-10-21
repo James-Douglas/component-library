@@ -21,6 +21,7 @@ const TextToggle = ({
   handleBlur,
   handleClick,
   button,
+  greyed,
 }) => {
   const id = useId(propsId);
   const toggleHandler = () => {
@@ -43,7 +44,7 @@ const TextToggle = ({
       button={button}
     >
       <ToggleLabel id={id} button={button}>
-        <StyledWrapper button={button}>
+        <StyledWrapper button={button} greyed={greyed}>
           <StyledTextToggleContent contentWidth={contentWidth} contentHeight={contentHeight}>
             <StyledContent button={button}>
               <Typography variant="body1" align="center">
@@ -126,6 +127,10 @@ TextToggle.propTypes = {
    * Whether or not to render the container as a button.
    */
   button: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  /**
+   * Greys out the toggle when true.
+   */
+  greyed: PropTypes.bool,
 };
 
 TextToggle.defaultProps = {
@@ -142,6 +147,7 @@ TextToggle.defaultProps = {
   handleBlur: null,
   handleClick: null,
   button: null,
+  greyed: false,
 };
 
 export default TextToggle;

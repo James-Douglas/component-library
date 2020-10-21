@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TextToggle renders with props 1`] = `"<div class=\\"sc-AxirZ klQxSA\\"><input tabindex=\\"0\\" id=\\"test\\" type=\\"radio\\" name=\\"\\" class=\\"sc-AxiKw botYzr\\" value=\\"test\\"><label for=\\"test\\" class=\\"sc-AxhCb aFEhw\\"><div class=\\"sc-AxhUy eQbMTQ\\"><div class=\\"sc-AxgMl FfBdS\\"><div class=\\"sc-AxheI bwBlNt\\"><div class=\\"sc-Axmtr eYgBli\\"><p class=\\"sc-AxjAm iGWjaQ\\">hello</p></div></div></div></div></label></div>"`;
+exports[`TextToggle renders with props 1`] = `"<div class=\\"sc-AxirZ klQxSA\\"><input tabindex=\\"0\\" id=\\"test\\" type=\\"radio\\" name=\\"\\" class=\\"sc-AxiKw botYzr\\" value=\\"test\\"><label for=\\"test\\" class=\\"sc-AxhCb aFEhw\\"><div class=\\"sc-AxhUy eQbMTQ\\"><div class=\\"sc-AxgMl diSfKa\\"><div class=\\"sc-AxheI bwBlNt\\"><div class=\\"sc-Axmtr eYgBli\\"><p class=\\"sc-AxjAm iGWjaQ\\">hello</p></div></div></div></div></label></div>"`;

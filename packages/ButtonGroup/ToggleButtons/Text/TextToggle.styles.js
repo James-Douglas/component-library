@@ -8,6 +8,11 @@ const buttonOverrides = css`
 export const StyledWrapper = styled.div`
   padding: ${({ theme }) => theme.spacing[36]};
   ${({ button }) => button && buttonOverrides}
+
+  ${({ greyed }) => greyed && css`
+    background: ${({ theme }) => theme.toggle.greyed.background};
+    color: ${({ theme }) => theme.toggle.greyed.color};
+  `};
 `;
 
 export const StyledTextToggleContent = styled.div`

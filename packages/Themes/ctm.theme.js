@@ -595,6 +595,10 @@ const ctmTheme = {
       width: '30.4rem',
       borderChecked: `2px solid ${colors.primary500}`,
     },
+    greyed: {
+      background: colors.grey500,
+      color: colors.white,
+    },
   },
   tooltip: {
     iconColor: colors.primary500,
