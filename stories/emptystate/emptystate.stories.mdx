@@ -41,9 +41,9 @@ The `EmptyState` component is to be used when no results are found based on the 
     {() => {
       return (
         <div style={{ padding: '2%'}}>
-          <EmptyState heading="A custom heading">
+          <EmptyState heading="A custom centered heading" textPosition='center'>
             <div style={{fontSize: '20px', lineHeight: '30px'}}>
-              <Typography variant="body1">Try <Link href="#" title="link">adjusting your search or filter</Link> to find what you are looking for.</Typography>
+              <Typography align='center' variant="body1">Try <Link href="#" title="link">adjusting your search or filter</Link> to find what you are looking for.</Typography>
             </div>
           </EmptyState>
         </div>

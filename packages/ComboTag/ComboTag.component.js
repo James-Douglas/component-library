@@ -66,6 +66,7 @@ export function comboDropdownList(
                   picture={emptyStatePicture}
                   className={`${emptyStateClassName} empty-state-wrap`}
                   heading={emptyStateHeading}
+                  textPosition="center"
                 >
                   {emptyStateChildren}
                 </EmptyState>
@@ -195,13 +196,13 @@ const ComboTag = ({
     }
     setListVisible(!!currentValue.length);
     if (handleFocus) {
-      handleFocus();
+      handleFocus(event);
     }
   };
 
   const handleOnBlur = (event) => {
     if (handleBlur) {
-      handleBlur();
+      handleBlur(event);
     }
   };
 

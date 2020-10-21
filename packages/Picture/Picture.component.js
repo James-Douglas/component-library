@@ -6,7 +6,7 @@ import {
 } from './Picture.styles';
 
 const Picture = ({
-  src, srcsets, alt, title, className,
+  src, srcsets, alt, title, imgPosition, className,
 }) => {
   if (!src) return null;
   return (
@@ -18,7 +18,7 @@ const Picture = ({
           key={source.srcset}
         />
       ))}
-      <StyledImg src={src} alt={alt} title={title} className={className} />
+      <StyledImg src={src} alt={alt} title={title} imgPosition={imgPosition} className={className} />
     </StyledPicture>
   );
 };
@@ -44,6 +44,10 @@ const picturePropTypes = {
    */
   title: PropTypes.string,
   /**
+   * set the object-position property
+   */
+  imgPosition: PropTypes.oneOf(['bottom', 'center', 'inherit', 'initial', 'left', 'revert', 'right', 'top', 'unset']),
+  /**
    * Classes to be applied to the Picture component
    */
   className: PropTypes.string,
@@ -55,6 +59,7 @@ Picture.defaultProps = {
   srcsets: [],
   alt: '',
   title: '',
+  imgPosition: 'left',
   className: '',
 };
 

@@ -6,7 +6,7 @@ export const StyledPicture = styled.picture`
 
 export const StyledImg = styled.img`
   height: 100%;
-  max-width: 100%;
+  width: 100%;
   object-fit: contain;
-  object-position: left;
+  object-position: ${({ imgPosition }) => imgPosition};
 `;

@@ -4,11 +4,14 @@ import { Typography } from '@comparethemarketau/manor-typography';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Picture, picturePropTypes } from '@comparethemarketau/manor-picture';
 import placeholder from '../../images/sergei.png';
-import { StyledEmptyState, StyledEmptyStateWrap, StyledPictureContainer } from './EmptyState.styles';
+import {
+  StyledEmptyState, StyledEmptyStateWrap, StyledPictureContainer,
+} from './EmptyState.styles';
 
 const EmptyState = ({
   children,
   picture,
+  textPosition,
   className,
   heading,
 }) => {
@@ -26,9 +29,9 @@ const EmptyState = ({
         <StyledPictureContainer>
           <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
         </StyledPictureContainer>
-        <Typography variant="h3">{heading}</Typography>
         <div>
-          <Typography variant="body1">{children}</Typography>
+          <Typography align={textPosition} variant="h3">{heading}</Typography>
+          <Typography align={textPosition} variant="body1">{children}</Typography>
         </div>
       </StyledEmptyStateWrap>
     </StyledEmptyState>
@@ -55,6 +58,10 @@ EmptyState.propTypes = {
    * The heading text underneath the image
    */
   heading: PropTypes.string,
+  /**
+   * The position of the heading text
+   */
+  textPosition: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
 };
 
 EmptyState.defaultProps = {
@@ -62,6 +69,7 @@ EmptyState.defaultProps = {
   picture: null,
   className: '',
   heading: 'Sorry, no results found',
+  textPosition: 'left',
 };
 
 export default EmptyState;

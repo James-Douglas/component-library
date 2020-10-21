@@ -47,12 +47,6 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                   <ComboTag
                     apiData={apiData}
                     id="tag-id-1"
-                    emptyStatePicture={{
-                      src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
-                      srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
-                      alt: 'Image of magnifying glass',
-                      title: 'no results found',
-                    }}
                     prefix={faMapMarkerAlt}
                     placeholder='Select or start typing destination(s)...'
                     emptyStatePicture={{
@@ -61,6 +55,8 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                       alt: 'Image of magnifying glass',
                       title: 'Oops',
                     }}
+                    emptyStateHeading= "Sorry, your search did not produce any results."
+                    emptyStateChildren='Try adjusting your search or filter to find what you are looking for.'
                     handleInput={(value) => {
                       // eslint-disable-next-line no-console
                       console.log(value)
