@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.8.3...@comparethemarketau/manor-date-picker@0.9.0) (2020-10-21)
+
+
+### Features
+
+* **datepickers:** add prop to manually control picker visibility ([#438](https://github.com/comparethemarketau/manor-react/issues/438)) ([fa75847](https://github.com/comparethemarketau/manor-react/commit/fa7584772ecaec6fe1c3574963ed03af7a34f552))
+
+
+
+
+
 ## [0.8.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.8.2...@comparethemarketau/manor-date-picker@0.8.3) (2020-10-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
