@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.10.2...@comparethemarketau/manor-typography@0.11.0) (2020-10-22)
+
+
+### Features
+
+* provided default variant ([#440](https://github.com/comparethemarketau/manor-react/issues/440)) ([126c6da](https://github.com/comparethemarketau/manor-react/commit/126c6da9b3c4ee4743f316b252e749b2f208dfad))
+
+
+
+
+
 ## [0.10.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.10.1...@comparethemarketau/manor-typography@0.10.2) (2020-10-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-typography

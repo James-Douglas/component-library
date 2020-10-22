@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.12](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-switch@0.3.11...@comparethemarketau/manor-switch@0.3.12) (2020-10-22)
+
+**Note:** Version bump only for package @comparethemarketau/manor-switch
+
+
+
+
+
 ## [0.3.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-switch@0.3.10...@comparethemarketau/manor-switch@0.3.11) (2020-10-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-switch
