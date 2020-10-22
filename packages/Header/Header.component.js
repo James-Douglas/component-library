@@ -12,7 +12,7 @@ import {
 } from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName,
+  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, onSignOutSuccess,
 }) => {
   const { isDesktop } = useContext(ManorContext);
   const size = (stuck || !isDesktop) ? 'small' : 'large';
@@ -34,6 +34,7 @@ const Header = ({
             }}
             visible="true"
             id="auth"
+            onSignOutSuccess={onSignOutSuccess}
           />
           )}
         </StyledAdditionalContent>
@@ -79,6 +80,10 @@ Header.propTypes = {
    * Name of the micro component to be loaded
    */
   authuiComponentName: PropTypes.string,
+  /**
+   * Callback when the auth header successfully signs out
+   */
+  onSignOutSuccess: PropTypes.func,
 };
 
 Header.defaultProps = {
@@ -88,6 +93,7 @@ Header.defaultProps = {
   contactStrip: false,
   authuiURL: null,
   authuiComponentName: 'AuthHeader',
+  onSignOutSuccess: null,
 };
 
 export default Header;
