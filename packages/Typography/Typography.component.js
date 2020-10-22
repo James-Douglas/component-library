@@ -69,7 +69,7 @@ Typography.propTypes = {
     'caption',
     'overline',
     'srOnly',
-  ]).isRequired,
+  ]),
   /**
    * The component used for the root node
    */
@@ -116,6 +116,7 @@ Typography.propTypes = {
 };
 
 Typography.defaultProps = {
+  variant: 'body1',
   component: null,
   align: 'left',
   color: 'inherit',
