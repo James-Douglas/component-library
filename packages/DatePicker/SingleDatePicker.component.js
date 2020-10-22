@@ -48,19 +48,24 @@ const SingleDatePicker = ({
 
   const dateHandleChange = (_value) => {
     const parsed = moment(_value, displayFormat, true);
-    if (parsed.isValid()) {
-      setSelectedDate(parsed);
-      setIsVisisble(false);
+    setSelectedDate(parsed);
+    setIsVisisble(false);
 
+    if (parsed.isValid()) {
       if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
         setValidationMessageDate(validationMessage);
       } else {
-        setValidationMessageDate(null);
+        setValidationMessageDate(validationMessage || null);
       }
+    } else {
+      setValidationMessageDate(validationMessage);
     }
     setValue(_value);
-    handleChange && handleChange(parsed);
   };
+
+  useEffect(() => {
+    handleChange && handleChange(selectedDate);
+  }, [selectedDate, handleChange]);
 
   const dateHandleBlur = () => {
     const parsed = moment(value, displayFormat, true);
@@ -69,7 +74,7 @@ const SingleDatePicker = ({
       if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
         setValidationMessageDate(validationMessage);
       } else {
-        setValidationMessageDate(null);
+        setValidationMessageDate(validationMessage || null);
       }
     } else {
       setValidationMessageDate(validationMessage);
@@ -125,7 +130,7 @@ const SingleDatePicker = ({
       {isVisisble && (
         <StyledCalendar>
           <RDSingleDatePicker
-            date={selectedDate}
+            date={selectedDate && selectedDate.isValid() ? selectedDate : null}
             onDateChange={dateHandleChange}
             keepOpenOnDateSelect
             hideKeyboardShortcutsPanel

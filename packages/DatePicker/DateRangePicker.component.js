@@ -68,12 +68,14 @@ const DateRangePicker = ({
     setEndDate(dates.endDate);
     if (focusedInput === END_DATE) {
       setIsVisisble(false);
-      handleChange && handleChange(dates);
     }
-    setFocusedInput(focusedInput === START_DATE);
-    dates.startDate && dates.startDate.isValid() && !dateIsBlocked(dates.startDate) && setStartDateValidationMessage(null);
-    dates.endDate && dates.endDate.isValid() && !dateIsBlocked(dates.endDate) && setEndDateValidationMessage(null);
   };
+
+  useEffect(() => {
+    startDate && startDate.isValid() && !dateIsBlocked(startDate) && setStartDateValidationMessage(null);
+    endDate && endDate.isValid() && !dateIsBlocked(endDate) && setEndDateValidationMessage(null);
+    handleChange && handleChange({ startDate, endDate });
+  }, [startDate, endDate, dateIsBlocked]);
 
   const fieldNameHandleFocus = (range) => {
     setIsVisisble(true);
@@ -113,7 +115,7 @@ const DateRangePicker = ({
           setFocusedInput(END_DATE);
           return;
         }
-        setStartDateValidationMessage(null);
+        setStartDateValidationMessage(startDateValidationMessage || null);
         setFocusedInput(END_DATE);
       } else {
         setStartDateValidationMessage(startDateValidationMessage);
@@ -129,7 +131,7 @@ const DateRangePicker = ({
           setEndDateValidationMessage(endDateValidationMessage);
           return;
         }
-        setEndDateValidationMessage(null);
+        setEndDateValidationMessage(endDateValidationMessage || null);
       } else {
         setEndDateValidationMessage(endDateValidationMessage);
       }

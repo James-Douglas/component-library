@@ -1,5 +1,5 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DateRangePicker } from '@comparethemarketau/manor-date-picker';
 import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
 import moment from 'moment';
@@ -12,6 +12,34 @@ import moment from 'moment';
     {() => {
       const [startDate, setStartDate] = useState(moment());
       const [endDate, setEndDate] = useState(null);
+      const [validation, setValidation] = useState({
+        startDate: '',
+        endDate: '',
+      });
+      const isDayBlocked = (day) => {
+        const currentDate = moment();
+        return day.isBefore(currentDate);
+      }
+      useEffect(() => {
+        if (!startDate) {
+          setValidation({ ...validation, startDate: 'Please enter a start date' });
+        } else if (startDate && isDayBlocked(startDate)) {
+          setValidation({ ...validation, startDate: 'Start date must not be in the past.' });
+        } else {
+          setValidation({ ...validation, startDate: '' });
+        }
+      }, [startDate, setValidation]);
+      useEffect(() => {
+        if (!startDate) {
+          setValidation({ ...validation, endDate: '' });
+        } else if (!endDate) {
+          setValidation({ ...validation, endDate: 'Please enter an end date!' });
+        } else if (endDate.isBefore(startDate)) {
+          setValidation({ ...validation, endDate: 'End date cannot be before start date!' });
+        } else {
+          setValidation({ ...validation, endDate: '' });
+        }
+      }, [endDate, startDate, setValidation]);
       return (
         <div style={{ padding: '2%' }}>
            <FluidContainer>
@@ -27,10 +55,10 @@ import moment from 'moment';
                   endDateAriaLabel="End Date"
                   endDateValue={endDate}
                   numberOfMonths={2}
-                  endDateValidationMessage="Incorrect end date"
-                  startDateValidationMessage="Incorrect start date"
-                  isDayBlocked={(day) => day.weekday() === 4}
-                  handleChange={(dates) => console.log('handleChange', dates)}
+                  endDateValidationMessage={validation.endDate}
+                  startDateValidationMessage={validation.startDate}
+                  isDayBlocked={isDayBlocked}
+                  handleChange={(dates) => { setStartDate(dates.startDate); setEndDate(dates.endDate); }}
                 />
                 </Column>
               </Row>

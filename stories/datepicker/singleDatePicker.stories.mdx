@@ -1,5 +1,5 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { SingleDatePicker } from '@comparethemarketau/manor-date-picker';
 import moment from 'moment';
 import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
@@ -10,11 +10,25 @@ import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
 <Preview>
   <Story name="single date picker" height="500px">
     {() => {
-     const [date, setDate] = useState();
-     const isDayBlocked = (day) => {
-       const currentDate = moment();
-       return day.isBefore(currentDate);
-     }
+      const [date, setDate] = useState();
+      const [isVisible, setIsVisible] = useState(false);
+      const [validationMessage, setValidationMessage] = useState('');
+      const isDayBlocked = (day) => {
+        const currentDate = moment();
+        return day.isBefore(currentDate);
+      }
+      useEffect(() => {
+        if (date && isDayBlocked(date)) {
+          setValidationMessage("Sorry, that date is not allowed.")
+        } else {
+          if (validationMessage !== '') {
+            setValidationMessage('');
+          }
+        }
+      }, [date, setValidationMessage, isDayBlocked]);
+      const doClick = () => {
+        setIsVisible(!isVisible);
+      }
       return (
         <div style={{ padding: '2%' }}>
           <FluidContainer>
@@ -26,11 +40,19 @@ import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
                   dateAriaLabel="Select Date"
                   date={date}
                   numberOfMonths={1}
-                  validationMessage="The date is incorrect"
+                  validationMessage={validationMessage}
                   minDate={moment('2020-09-05T00:00:00.000')}
                   isDayBlocked={isDayBlocked}
+                  pickerVisible={isVisible}
+                  handleChange={setDate}
                   />
                </Column>
+              </Row>
+              <Row>
+                <Column>
+                  Click below to toggle the pickerVisible prop
+                  <button onClick={doClick}>toggle</button>
+                </Column>
               </Row>
             </FluidContainer>
         </div>
