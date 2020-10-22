@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.9.4...@comparethemarketau/manor-header@0.10.0) (2020-10-22)
+
+
+### Features
+
+* **header:** added signout callback to auth header ([#443](https://github.com/comparethemarketau/manor-react/issues/443)) ([b797fc7](https://github.com/comparethemarketau/manor-react/commit/b797fc7f4ab5193912c1fd58d528481a59869e00))
+
+
+
+
+
 ## [0.9.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.9.3...@comparethemarketau/manor-header@0.9.4) (2020-10-22)
 
 **Note:** Version bump only for package @comparethemarketau/manor-header
