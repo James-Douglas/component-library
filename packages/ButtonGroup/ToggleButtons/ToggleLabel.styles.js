@@ -15,7 +15,11 @@ export const StyledToggleLabel = styled.label`
   transition : all 200ms ease-out;
   &:hover {
     color: ${({ theme }) => theme.toggle.base.labelColorHover};
-  } 
+  }
+
+  ${({ greyed }) => greyed && css`
+    background: ${({ theme }) => theme.toggle.greyed.background};
+  `};
 `;
 
 export const StyledContent = styled.div`

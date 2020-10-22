@@ -43,7 +43,7 @@ const TextToggle = ({
       handleClick={handleClick}
       button={button}
     >
-      <ToggleLabel id={id} button={button}>
+      <ToggleLabel id={id} button={button} greyed={greyed}>
         <StyledWrapper button={button} greyed={greyed}>
           <StyledTextToggleContent contentWidth={contentWidth} contentHeight={contentHeight}>
             <StyledContent button={button}>

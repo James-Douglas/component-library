@@ -10,7 +10,6 @@ export const StyledWrapper = styled.div`
   ${({ button }) => button && buttonOverrides}
 
   ${({ greyed }) => greyed && css`
-    background: ${({ theme }) => theme.toggle.greyed.background};
     color: ${({ theme }) => theme.toggle.greyed.color};
   `};
 `;
