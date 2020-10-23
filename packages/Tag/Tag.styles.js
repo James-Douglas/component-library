@@ -25,6 +25,7 @@ export const StyledTag = styled.div`
   display: flex;
   flex: 0 0 auto;
   justify-content: center;
+  margin-top: 0.3rem;
   align-items: center;
   width: auto;
   ${({ warning, theme }) => !warning && css`

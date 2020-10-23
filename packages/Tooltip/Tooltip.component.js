@@ -135,7 +135,7 @@ const Tooltip = ({
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <StyledTooltipIcon
         id={id}
-        tabIndex={0}
+        tabIndex={active ? '0' : '-1'}
         role="tooltip"
         desktop={isDesktop}
         ref={tooltipElement}

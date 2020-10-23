@@ -388,7 +388,7 @@ const ComboTag = ({
             {tagsVisible && tagElements.map(({ tagJsx }) => tagJsx)}
           </StyledTagHolder>
           <StyledInputWrap>
-            <StyledErrorToolTip>
+            <StyledErrorToolTip tabIndex="-1">
               <Tooltip
                 active={inlineTooltipActive}
                 title={title}

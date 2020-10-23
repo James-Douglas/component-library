@@ -199,4 +199,5 @@ export const StyledLink = styled.div`
 
 export const StyledErrorToolTip = styled.div`
   height: 0;
+  pointer-events: none;
 `;
