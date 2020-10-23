@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.9.3...@comparethemarketau/manor-tooltip@0.9.4) (2020-10-23)
+
+
+### Bug Fixes
+
+* 🐛 tag alignment and tool tip tabbing when inactive ([#441](https://github.com/comparethemarketau/manor-react/issues/441)) ([54f06d4](https://github.com/comparethemarketau/manor-react/commit/54f06d4454c5c66243bcdabeaf316fdd3d6b0211))
+
+
+
+
+
 ## [0.9.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.9.2...@comparethemarketau/manor-tooltip@0.9.3) (2020-10-22)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tooltip

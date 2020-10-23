@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-tooltip",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Manor Tooltip component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

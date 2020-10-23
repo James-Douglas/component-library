@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.3.6...@comparethemarketau/manor-slider@0.3.7) (2020-10-23)
+
+**Note:** Version bump only for package @comparethemarketau/manor-slider
+
+
+
+
+
 ## [0.3.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.3.5...@comparethemarketau/manor-slider@0.3.6) (2020-10-22)
 
 **Note:** Version bump only for package @comparethemarketau/manor-slider
