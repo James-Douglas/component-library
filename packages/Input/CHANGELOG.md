@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.13.4...@comparethemarketau/manor-input@0.13.5) (2020-10-25)
+
+
+### Bug Fixes
+
+* 🐛 combo tag text input flex styles ([#445](https://github.com/comparethemarketau/manor-react/issues/445)) ([2c52bc8](https://github.com/comparethemarketau/manor-react/commit/2c52bc8a531ad16a586daa11b70cd21046048dd2))
+
+
+
+
+
 ## [0.13.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.13.3...@comparethemarketau/manor-input@0.13.4) (2020-10-23)
 
 **Note:** Version bump only for package @comparethemarketau/manor-input
