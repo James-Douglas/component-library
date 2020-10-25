@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components';
 export const StyledTagContainer = styled.div`
   width: 100%;
   ${({ hasList, theme }) => !hasList && css`
-    display: flex;
+   
     background: ${theme.colors.white};
-    flex-direction: column;
+    
   `}
 `;
 
@@ -25,7 +25,7 @@ export const StyledPrefix = styled.div`
 `;
 
 export const StyledInputWrap = styled.div`
-  width: 100%;
+  
   background: ${({ theme }) => (theme.colors.white)};
 `;
 
@@ -64,22 +64,23 @@ export const StyledFade = styled.div`
   position: absolute;
   height: ${({ theme }) => theme.spacing[44]};
   width: 10rem;
-  left: ${({ theme }) => theme.spacing[40]};
+  left: 0;
+  ${({ prefix }) => prefix && css`
+    left: ${({ theme }) => theme.spacing[40]};
+  `};
   z-index: ${({ theme }) => (theme.zIndex[20])};
   pointer-events: none;
-  ${({ fade, tagsVisible }) => (fade && tagsVisible) && css`
-    &:after {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      bottom: 0;
-      left: 0;
-      pointer-events: none;
-      background-image: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255, 1) 100%);
-      width: 10rem;
-      height: 100%;
-    }
-  `};
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255, 1) 100%);
+    width: 10rem;
+    height: 100%;
+  }
 `;
 
 export const StyledDropdownList = styled.div`

@@ -383,22 +383,26 @@ const ComboTag = ({
               <FontAwesomeIcon icon={prefix} size="lg" />
             </StyledPrefix>
             )}
-          <StyledFade fade={fade} tagsVisible={tagsVisible} />
+          {fade
+            && <StyledFade prefix={prefix} />}
           <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible} hasList={hasList}>
             {tagsVisible && tagElements.map(({ tagJsx }) => tagJsx)}
           </StyledTagHolder>
           <StyledInputWrap>
-            <StyledErrorToolTip tabIndex="-1">
-              <Tooltip
-                active={inlineTooltipActive}
-                title={title}
-                body={body}
-                placement="top-end"
-                variant="light"
-                screenReaderLabel={body}
-              >&nbsp;
-              </Tooltip>
-            </StyledErrorToolTip>
+            {inlineTooltipActive
+              && (
+              <StyledErrorToolTip tabIndex="-1">
+                <Tooltip
+                  active={inlineTooltipActive}
+                  title={title}
+                  body={body}
+                  placement="top-end"
+                  variant="light"
+                  screenReaderLabel={body}
+                >&nbsp;
+                </Tooltip>
+              </StyledErrorToolTip>
+              )}
             <Input
               id={id}
               placeholder={placeholder}

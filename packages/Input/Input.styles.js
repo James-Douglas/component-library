@@ -87,6 +87,7 @@ export const StyledInputContainer = styled.div`
 
 export const StyledInputWrap = styled.div`
   display: flex;
+  min-width: 20%;
   background: ${({ theme }) => theme.input.background};
   transition: border 0.1s ease-in-out;
   border: ${({ theme }) => theme.borders.transparent};

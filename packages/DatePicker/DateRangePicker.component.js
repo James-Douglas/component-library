@@ -75,7 +75,7 @@ const DateRangePicker = ({
     startDate && startDate.isValid() && !dateIsBlocked(startDate) && setStartDateValidationMessage(null);
     endDate && endDate.isValid() && !dateIsBlocked(endDate) && setEndDateValidationMessage(null);
     handleChange && handleChange({ startDate, endDate });
-  }, [startDate, endDate, dateIsBlocked]);
+  }, [startDate, endDate, dateIsBlocked, handleChange]);
 
   const fieldNameHandleFocus = (range) => {
     setIsVisisble(true);
