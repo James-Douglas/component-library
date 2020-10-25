@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.11.2...@comparethemarketau/manor-buttongroup@0.12.0) (2020-10-25)
+
+
+### Features
+
+* **multiselecttoggle:** fix alignment when no description given ([#444](https://github.com/comparethemarketau/manor-react/issues/444)) ([40d2bbf](https://github.com/comparethemarketau/manor-react/commit/40d2bbfe64d33bc71604ce684ed5d5e1747c8092))
+
+
+
+
+
 ## [0.11.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.11.1...@comparethemarketau/manor-buttongroup@0.11.2) (2020-10-23)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
