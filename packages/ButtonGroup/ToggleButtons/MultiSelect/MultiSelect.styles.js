@@ -6,7 +6,7 @@ export const StyledIconToggleContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   text-align: center;
   width: ${({ theme }) => theme.toggle.multiSelect.width};
   height: ${({ theme }) => theme.spacing['180']};
