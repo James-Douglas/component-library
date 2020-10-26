@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.8.7...@comparethemarketau/manor-combobox@0.9.0) (2020-10-26)
+
+
+### Features
+
+* **component:** combobox resize and align icon ([#447](https://github.com/comparethemarketau/manor-react/issues/447)) ([e8d2402](https://github.com/comparethemarketau/manor-react/commit/e8d2402866ad7d35d63f2636d0a884202335a53f))
+
+
+
+
+
 ## [0.8.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.8.6...@comparethemarketau/manor-combobox@0.8.7) (2020-10-26)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combobox
