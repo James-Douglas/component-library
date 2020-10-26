@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-date-picker",
-  "version": "0.10.4",
+  "version": "0.11.0",
   "description": "Manor DatePicker component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
