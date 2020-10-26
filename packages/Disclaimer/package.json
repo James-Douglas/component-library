@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-disclaimer",
-  "version": "0.7.5",
+  "version": "0.8.0",
   "description": "Manor Disclaimer component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
