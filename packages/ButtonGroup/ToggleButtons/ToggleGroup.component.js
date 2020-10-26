@@ -66,7 +66,8 @@ const ToggleGroup = ({
   return (
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} removeGutters={!!description} />
-      <Label htmlFor={groupId} text={description} variant="description" />
+      {description
+        && <Label htmlFor={groupId} text={description} variant="description" />}
       <StyledToggleGroup id={groupId} className={className} buttons={buttons} contentWidth={contentWidth}>
         {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight, buttons)}
       </StyledToggleGroup>

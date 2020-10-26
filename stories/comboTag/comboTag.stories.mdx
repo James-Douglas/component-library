@@ -145,6 +145,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                 characterMinimum={characterMinimum}
                 renderLimit={renderLimit}
                 apiData={apiData}
+                label="Example label"
                 handleInput={(value) => {
                   // eslint-disable-next-line no-console
                   console.log(value)
@@ -183,6 +184,8 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
             handleChange={() => {}}
             invalidTagCondition={condition}
             tagAlertIcon={faExclamationCircle}
+            label="With a label"
+            description="And a description"
           />
         </div>
       )

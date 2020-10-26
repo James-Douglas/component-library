@@ -95,6 +95,7 @@ const Input = React.forwardRef(({
   bordered,
   removeGutters,
   disableFocusStyles,
+  style,
 }, ref) => {
   const id = useId(propsId);
   const [ariaLabelledByIds, setAriaLabelledByIds] = useState({});
@@ -216,6 +217,7 @@ const Input = React.forwardRef(({
               className={`input-default ${className}`}
               expressive={expressive}
               breakpoint={breakpoint}
+              style={style}
             />
             {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint)}
           </StyledInputClearWrap>
@@ -371,6 +373,13 @@ Input.propTypes = {
    * Turn off the focus border (used for combo tags)
    */
   disableFocusStyles: PropTypes.bool,
+  /**
+   * Extra styles for the input
+   */
+  style: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ])),
 };
 
 Input.defaultProps = {
@@ -408,6 +417,7 @@ Input.defaultProps = {
   bordered: true,
   removeGutters: false,
   disableFocusStyles: false,
+  style: {},
 };
 
 export default Input;

@@ -11,6 +11,7 @@ import { picturePropTypes } from '@comparethemarketau/manor-picture';
 import { EmptyState } from '@comparethemarketau/manor-empty-state';
 import { Tag } from '@comparethemarketau/manor-tag';
 import { Tooltip } from '@comparethemarketau/manor-tooltip';
+import { Label } from '@comparethemarketau/manor-label';
 
 import {
   StyledContainer,
@@ -111,6 +112,8 @@ const ComboTag = ({
   prefix,
   listIcon,
   value,
+  label: componentLabel,
+  description,
   autocomplete,
   disabled,
   characterMinimum,
@@ -375,6 +378,10 @@ const ComboTag = ({
         onFocus={handleOnFocus}
         onKeyDown={keyboardAccessibility}
       >
+        {componentLabel
+          && <Label htmlFor={id} text={componentLabel} />}
+        {description
+          && <Label htmlFor={id} text={description} variant="description" />}
         {(alerts && tags.length > 0) && renderAlert()}
         <StyledTagContainer hasList={hasList}>
           {prefix
@@ -420,6 +427,7 @@ const ComboTag = ({
               disableFocusStyles
               mask={mask}
               guide={guide}
+              style={!hasList ? { paddingLeft: 0 } : {}}
               dataList={() => hasList && comboDropdownList(
                 desktop,
                 listIcon,
@@ -452,6 +460,14 @@ ComboTag.propTypes = {
    * Unique identifier for the Combobox
    */
   id: PropTypes.string,
+  /**
+   * Label for the Combotag.
+   */
+  label: PropTypes.string,
+  /**
+   * Description for the ComboTag.
+   */
+  description: PropTypes.string,
   /**
    * Custom handler to attach to the combo field - used to get the value of the selected combo item.
    */
@@ -597,6 +613,8 @@ ComboTag.defaultProps = {
   id: null,
   listIcon: null,
   placeholder: '',
+  label: '',
+  description: '',
   apiData: null,
   disabled: false,
   value: '',
