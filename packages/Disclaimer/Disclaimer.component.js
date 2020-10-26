@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Checkbox } from '@comparethemarketau/manor-checkbox';
+import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { StyledContent, StyledWrapper } from './Disclaimer.styles';
 
 const Disclaimer = ({
-  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur,
+  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur, validationMessage,
 }) => {
   const id = useId(propsId);
   const content = createRef();
@@ -38,14 +39,17 @@ const Disclaimer = ({
   };
 
   return (
-    <StyledWrapper>
-      <Checkbox id={id} handleChange={changeHandler} isSelected={checked} handleFocus={handleFocus} handleBlur={handleBlur} />
-      <StyledContent ref={content} onClick={handleContentClick}>
-        <Typography variant="body1" component="span">
-          {children}
-        </Typography>
-      </StyledContent>
-    </StyledWrapper>
+    <>
+      <StyledWrapper>
+        <Checkbox id={id} handleChange={changeHandler} isSelected={checked} handleFocus={handleFocus} handleBlur={handleBlur} />
+        <StyledContent ref={content} onClick={handleContentClick}>
+          <Typography variant="body1" component="span">
+            {children}
+          </Typography>
+        </StyledContent>
+      </StyledWrapper>
+      <FieldValidation message={validationMessage} />
+    </>
   );
 };
 
@@ -67,6 +71,10 @@ Disclaimer.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   /**
+   * Displays given validation message and invalid styles on the component when provided.
+   */
+  validationMessage: PropTypes.string,
+  /**
    * Called on change with the value of the Disclaimers checkbox
    */
   handleChange: PropTypes.func,
@@ -84,6 +92,7 @@ Disclaimer.defaultProps = {
   id: null,
   children: [],
   isSelected: false,
+  validationMessage: '',
   handleChange: null,
   handleFocus: null,
   handleBlur: null,

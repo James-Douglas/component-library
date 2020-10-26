@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@comparethemarketau/manor-checkbox": "^0.10.5",
+    "@comparethemarketau/manor-field-validation": "^0.6.4",
     "@comparethemarketau/manor-hooks": "^0.4.6",
     "@comparethemarketau/manor-typography": "^0.11.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
