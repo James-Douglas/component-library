@@ -50,18 +50,24 @@ const SingleDatePicker = ({
     const parsed = moment(_value, displayFormat, true);
     setSelectedDate(parsed);
     setIsVisisble(false);
-
-    if (parsed.isValid()) {
-      if (isDayBlocked !== undefined && isDayBlocked(parsed)) {
-        setValidationMessageDate(validationMessage);
-      } else {
-        setValidationMessageDate(validationMessage || null);
-      }
-    } else {
-      setValidationMessageDate(validationMessage);
-    }
     setValue(_value);
   };
+
+  useEffect(() => {
+    if (selectedDate) {
+      if (selectedDate.isValid()) {
+        if (isDayBlocked !== undefined && isDayBlocked(selectedDate)) {
+          setValidationMessageDate(validationMessage);
+        } else {
+          setValidationMessageDate(validationMessage || null);
+        }
+      } else {
+        setValidationMessageDate(validationMessage);
+      }
+    } else {
+      setValidationMessageDate(null);
+    }
+  }, [selectedDate, isDayBlocked, validationMessage, setValidationMessageDate]);
 
   useEffect(() => {
     handleChange && handleChange(selectedDate);
