@@ -47,7 +47,7 @@ Label.propTypes = {
   /**
    * Variant
    */
-  variant: PropTypes.oneOf(['default', 'compact']),
+  variant: PropTypes.oneOf(['default', 'compact', 'description']),
   /**
    * ID of the component the label is for
    */

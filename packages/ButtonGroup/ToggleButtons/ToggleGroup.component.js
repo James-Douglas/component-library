@@ -38,6 +38,7 @@ export const getChildren = (
 const ToggleGroup = ({
   id: propsId,
   label,
+  description,
   tooltip,
   validationMessage,
   name,
@@ -64,7 +65,8 @@ const ToggleGroup = ({
   }, [selectedValue, setSelectedToggleValue]);
   return (
     <>
-      <Label htmlFor={groupId} text={label} tooltip={tooltip} />
+      <Label htmlFor={groupId} text={label} tooltip={tooltip} removeGutters={!!description} />
+      <Label htmlFor={groupId} text={description} variant="description" />
       <StyledToggleGroup id={groupId} className={className} buttons={buttons} contentWidth={contentWidth}>
         {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight, buttons)}
       </StyledToggleGroup>
@@ -96,6 +98,10 @@ ToggleGroup.propTypes = {
    * Label for the ToggleGroup.
    */
   label: PropTypes.string,
+  /**
+   * Description for the ToggleGroup.
+   */
+  description: PropTypes.string,
   /**
    * Tooltip object (see Tooltip documentation)
    */
@@ -147,6 +153,7 @@ ToggleGroup.propTypes = {
 ToggleGroup.defaultProps = {
   id: null,
   label: '',
+  description: '',
   handleClick: null,
   tooltip: {},
   validationMessage: null,

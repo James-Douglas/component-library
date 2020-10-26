@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup.component renders with minimal props 1`] = `
-"<div class=\\"sc-fzokOt fIPWTR\\"><label id=\\"\\" for=\\"test-group-id\\" class=\\"sc-fzqBZW fTzovS label\\">test</label></div><div class=\\"sc-AxgMl sc-fzoLsD fWLJEV row \\"><div class=\\"sc-AxheI sc-Axmtr jzbtYj 
+"<div class=\\"sc-fzokOt fIPWTR\\"><label id=\\"\\" for=\\"test-group-id\\" class=\\"sc-fzqBZW dMmLbv label\\">test</label></div><div class=\\"sc-AxgMl sc-fzoLsD fWLJEV row \\"><div class=\\"sc-AxheI sc-Axmtr jzbtYj 
         
       \\"><div id=\\"test-group-id\\" class=\\"sc-fzqNJr eyeWcy\\"><div class=\\"sc-AxgMl sc-fzoLsD UBEPb row sc-fzoyAV fZDiKQ\\"><div class=\\"sc-AxheI sc-Axmtr fYeMqb 
         
@@ -13,7 +13,7 @@ exports[`CheckboxGroup.component renders with minimal props 1`] = `
 `;
 
 exports[`CheckboxGroup.component renders with props 1`] = `
-"<div class=\\"sc-fzokOt fIPWTR\\"><label id=\\"\\" for=\\"test-group-id\\" class=\\"sc-fzqBZW fTzovS label\\"></label></div><div class=\\"sc-AxgMl sc-fzoLsD fWLJEV row \\"><div class=\\"sc-AxheI sc-Axmtr jzbtYj 
+"<div class=\\"sc-fzokOt fIPWTR\\"><label id=\\"\\" for=\\"test-group-id\\" class=\\"sc-fzqBZW dMmLbv label\\"></label></div><div class=\\"sc-AxgMl sc-fzoLsD fWLJEV row \\"><div class=\\"sc-AxheI sc-Axmtr jzbtYj 
         
       \\"><div id=\\"test-group-id\\" class=\\"sc-fzqNJr eyeWcy\\"><div class=\\"sc-AxgMl sc-fzoLsD UBEPb row sc-fzoyAV fZDiKQ\\"><div class=\\"sc-AxheI sc-Axmtr hInwmr 
         

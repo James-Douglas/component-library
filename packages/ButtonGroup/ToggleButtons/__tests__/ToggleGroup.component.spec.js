@@ -115,4 +115,19 @@ describe('ToggleGroup', () => {
     const tooltipWrapper = container.querySelector('[role="tooltip"]');
     expect(tooltipWrapper).toBeInTheDocument();
   });
+
+  it('renders with description', () => {
+    const { container } = render(
+      <ToggleGroup
+        id="test-toggle-group"
+        name="test-toggle-group-label-desc"
+        description="desc"
+      >
+        <TextToggle title="test toggle a" id="a" value="val-1" />
+        <TextToggle title="test toggle b" id="b" value="val-2" />
+      </ToggleGroup>,
+    );
+    const descriptionContainer = container.querySelector('[for="test-toggle-group"]');
+    expect(descriptionContainer).toBeInTheDocument();
+  });
 });
