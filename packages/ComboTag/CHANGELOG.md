@@ -5,6 +5,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.2.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.2.7...@comparethemarketau/manor-combo-tag@0.2.8) (2020-10-26)
 
+
+### Bug Fixes
+
+* 🐛 fix broken git tags ([#451](https://github.com/comparethemarketau/manor-react/issues/451)) ([e27e540](https://github.com/comparethemarketau/manor-react/commit/e27e540c5e6d842893c4961265ebcdbd804df960))
+
+
+
+
+
+## [0.2.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.2.7...@comparethemarketau/manor-combo-tag@0.2.8) (2020-10-26)
+
 **Note:** Version bump only for package @comparethemarketau/manor-combo-tag
 
 
