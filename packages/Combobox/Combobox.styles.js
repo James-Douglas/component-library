@@ -56,7 +56,6 @@ export const StyledListItem = styled.li`
 export const StyledIconWrap = styled.span`
   position: absolute;
   left: ${({ theme }) => theme.spacing[16]};
-  margin-top: ${({ theme }) => `-${theme.spacing[8]}`};
   margin-right: ${({ theme }) => theme.spacing[16]};
   color: ${({ theme }) => theme.colors.grey400};
 `;

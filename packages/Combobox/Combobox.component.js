@@ -71,7 +71,7 @@ export function comboDataList(filteredValues, handleSelectItem, filteredValuesRe
         >
           {listIcon && (
             <StyledIconWrap>
-              <FontAwesomeIcon icon={listIcon} size="sm" />
+              <FontAwesomeIcon icon={listIcon} size="lg" />
             </StyledIconWrap>
           )}
           <Typography variant="body2" component="span" noMargins>{filteredValue}</Typography>
