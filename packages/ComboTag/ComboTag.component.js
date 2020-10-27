@@ -134,6 +134,7 @@ const ComboTag = ({
   tagAlertIcon,
   selectedTags,
   invalidTagCondition,
+  type,
   mask,
   guide,
 }) => {
@@ -425,6 +426,7 @@ const ComboTag = ({
               removeGutters
               ref={comboInputRef}
               disableFocusStyles
+              type={type}
               mask={mask}
               guide={guide}
               style={!hasList ? { paddingLeft: 0 } : {}}
@@ -607,6 +609,10 @@ ComboTag.propTypes = {
    * Sets the guide mode
    */
   guide: PropTypes.bool,
+  /**
+   * Sets the type of the input
+   */
+  type: PropTypes.string,
 };
 
 ComboTag.defaultProps = {
@@ -640,6 +646,7 @@ ComboTag.defaultProps = {
   // reset when the clear icon is clicked (PR:https://github.com/text-mask/text-mask/pull/831)
   mask: (value) => Array(value.length).fill(/./),
   guide: false,
+  type: 'text',
 };
 
 export default ComboTag;
