@@ -23,9 +23,8 @@ export const StyledLabel = styled.label`
     ${({
     theme, variant, breakpoint,
   }) => variant === 'description' && css`
-    letter-spacing: ${theme.spacing.px};
-    font-size: ${breakpoint === 'xl' ? theme.fontSize.xs : theme.fontSize['2xs']};
-    color: ${theme.colors.grey500};
+    font-size: ${theme.fontSize.sm};
+    color: ${theme.colors.grey700};
   `}
   ${({
     theme, inFieldLabel, breakpoint,
