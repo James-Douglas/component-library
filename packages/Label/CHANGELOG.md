@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-label@0.5.6...@comparethemarketau/manor-label@0.6.0) (2020-10-27)
+
+
+### Features
+
+* **label:** update style according to figma ([#452](https://github.com/comparethemarketau/manor-react/issues/452)) ([f05bc01](https://github.com/comparethemarketau/manor-react/commit/f05bc01037abb5ee83b9b727b81eb4ab507b9a85))
+
+
+
+
+
 ## [0.5.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-label@0.5.5...@comparethemarketau/manor-label@0.5.6) (2020-10-26)
 
 **Note:** Version bump only for package @comparethemarketau/manor-label
