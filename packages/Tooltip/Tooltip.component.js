@@ -151,6 +151,7 @@ const Tooltip = ({
             hideTooltip();
           }
         }}
+        textAnchor={!!children}
         className={className}
       >
         <>
