@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.10.0...@comparethemarketau/manor-tooltip@0.10.1) (2020-11-02)
+
+
+### Bug Fixes
+
+* 🐛 syntax fix ([#455](https://github.com/comparethemarketau/manor-react/issues/455)) ([aa1ab46](https://github.com/comparethemarketau/manor-react/commit/aa1ab46df09c07cf3025b0c0e6b64f02e6cfbf85))
+
+
+
+
+
 # [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.9.4...@comparethemarketau/manor-tooltip@0.10.0) (2020-11-01)
 
 
