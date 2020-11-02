@@ -4,10 +4,10 @@ import Tippy from '@tippy.js/react';
 
 export const StyledTooltipIcon = styled.div`
   display: inline-block;
-    ${({ theme, textAnchor }) => textAnchor
-    && css`
-      margin-left: theme.spacings[8];
-    `}
+  ${({ theme, textAnchor }) => textAnchor
+  && css`
+    margin-left: ${theme.spacing[8]};
+  `}
   font-size: ${({ theme }) => theme.fontSize.base};
   height: ${({ theme }) => theme.spacing[16]};
   ${({ theme, children }) => !children && css`
