@@ -3,9 +3,7 @@ import styled, { css } from 'styled-components';
 export const StyledTagContainer = styled.div`
   width: 100%;
   ${({ hasList, theme }) => !hasList && css`
-   
     background: ${theme.colors.white};
-    
   `}
 `;
 
@@ -14,18 +12,21 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledPrefix = styled.div`
-  height: inherit;
-  width: ${({ theme }) => theme.spacing[20]};
-  margin-top: ${({ theme }) => theme.spacing[16]};
-  margin-left: ${({ theme }) => theme.spacing[20]};
-  margin-right: ${({ theme }) => theme.spacing[8]};
+  position: relative;
+  height: ${({ theme }) => (theme.spacing[44])};
+  width: ${({ theme }) => theme.spacing[36]};
   color: ${({ theme }) => theme.colors.primary500};
   z-index: 2000;
   float: left;
+  ${({ onClick }) => onClick && css`
+    cursor: pointer;
+  `}
+  & svg {
+    padding: 1.6rem 1.2rem 1.4rem 1.2rem;
+  }
 `;
 
 export const StyledInputWrap = styled.div`
-  
   background: ${({ theme }) => (theme.colors.white)};
 `;
 

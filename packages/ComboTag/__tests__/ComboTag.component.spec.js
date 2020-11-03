@@ -1,6 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { fireEvent, render } from '../../../testUtils';
 import ComboTag from '../ComboTag.component';
 
@@ -327,5 +328,22 @@ describe('ComboTag', () => {
     expect(getByText('111')).toBeInTheDocument();
     const invalidTag = getByText('111');
     expect(invalidTag.parentElement).toHaveStyleRule('background', `${ctmTheme.colors.error50}`);
+  });
+
+  it('fires prefix click handler', () => {
+    const prefixCb = jest.fn();
+    const { container } = render(
+      <ComboTag
+        prefix={faMapMarkerAlt}
+        prefixClickHandler={prefixCb}
+        handleChange={() => {}}
+        apiData={apiData}
+        value="a"
+        id="combo-tag"
+      />,
+    );
+    const prefix = container.querySelector('svg');
+    fireEvent.click(prefix.parentElement);
+    expect(prefixCb).toHaveBeenCalled();
   });
 });

@@ -110,6 +110,7 @@ const ComboTag = ({
   id: propsId,
   apiData,
   prefix,
+  prefixClickHandler,
   listIcon,
   value,
   label: componentLabel,
@@ -387,7 +388,7 @@ const ComboTag = ({
         <StyledTagContainer hasList={hasList}>
           {prefix
             && (
-            <StyledPrefix>
+            <StyledPrefix onClick={prefixClickHandler || null}>
               <FontAwesomeIcon icon={prefix} size="lg" />
             </StyledPrefix>
             )}
@@ -514,7 +515,11 @@ ComboTag.propTypes = {
     PropTypes.string,
   ]),
   /**
-   * Renders the given (FontAwesome) for a tag in its alert state
+   * Custom click handler to be fired on prefix click
+   */
+  prefixClickHandler: PropTypes.func,
+  /**
+   * Renders the given (FontAwesome) icon for a tag in its alert state
    */
   tagAlertIcon: PropTypes.oneOfType([
     PropTypes.shape({
@@ -641,6 +646,7 @@ ComboTag.defaultProps = {
   tagAlertIcon: null,
   selectedTags: [],
   prefix: null,
+  prefixClickHandler: null,
   invalidTagCondition: null,
   // there is a bug in text-mask where disabling the mask (setting to false) causes the input value to not
   // reset when the clear icon is clicked (PR:https://github.com/text-mask/text-mask/pull/831)

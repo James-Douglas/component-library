@@ -164,6 +164,12 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
   }}
 </Story>
 
+## Keypress variant
+
+The ComboTag component can also be set as a text only variant. If no data/list items are passed via the apiData prop, the user can hit the enter key to set a tag.
+Additionally a condition can be passed to set the error state of the tag, as we no longer draw that information from the returned api object. The prefix, if provided, can also be passed 
+a click handler.
+
 <Preview>
   <Story name="ComboTag (Keypress version)">
     {() => { 
