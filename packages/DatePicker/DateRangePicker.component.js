@@ -64,8 +64,14 @@ const DateRangePicker = ({
   const dateIsBlocked = useCallback((date) => (isDayBlocked !== undefined && typeof isDayBlocked === 'function' ? isDayBlocked(date) : false), [isDayBlocked]);
 
   const onDatesChange = (dates) => {
-    setStartDate(dates.startDate);
-    setEndDate(dates.endDate);
+    // If the user tries to change the endDate to be before the startDate, the airbnb picker just sets the startDate to
+    // the selected endDate. CX instead want to not set the endDate and display an error.
+    if (dates.startDate && !dates.endDate && endDate && dates.startDate !== startDate) {
+      setEndDate(dates.startDate);
+    } else {
+      setStartDate(dates.startDate);
+      setEndDate(dates.endDate);
+    }
     if (focusedInput === END_DATE) {
       setIsVisisble(false);
     }
