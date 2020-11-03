@@ -14,16 +14,16 @@ export const StyledContainer = styled.div`
 export const StyledPrefix = styled.div`
   position: relative;
   height: ${({ theme }) => (theme.spacing[44])};
-  width: ${({ theme }) => theme.spacing[36]};
+  width: ${({ theme }) => theme.spacing[44]};
   color: ${({ theme }) => theme.colors.primary500};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 2000;
   float: left;
   ${({ onClick }) => onClick && css`
     cursor: pointer;
   `}
-  & svg {
-    padding: 1.6rem 1.2rem 1.4rem 1.2rem;
-  }
 `;
 
 export const StyledInputWrap = styled.div`
