@@ -4,7 +4,7 @@ import Tippy from '@tippy.js/react';
 
 export const StyledTooltipIcon = styled.div`
   display: inline-block;
-  ${({ theme, textAnchor }) => textAnchor
+  ${({ theme, textAnchor }) => !textAnchor
   && css`
     margin-left: ${theme.spacing[8]};
   `}
