@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.12.5...@comparethemarketau/manor-buttongroup@0.13.0) (2020-11-04)
+
+
+### Features
+
+* **labels:** allow labels to be passed markup ([#461](https://github.com/comparethemarketau/manor-react/issues/461)) ([ea3e6be](https://github.com/comparethemarketau/manor-react/commit/ea3e6be088cdc8e1ea04a440b47967346df48bef))
+
+
+
+
+
 ## [0.12.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.12.4...@comparethemarketau/manor-buttongroup@0.12.5) (2020-11-02)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
