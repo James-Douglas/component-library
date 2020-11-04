@@ -199,7 +199,9 @@ const ComboTag = ({
     if (event.target.tagName === 'BUTTON') {
       return;
     }
-    setListVisible(!!currentValue.length);
+    if (hasList) {
+      setListVisible(!!currentValue.length);
+    }
     if (handleFocus) {
       handleFocus(event);
     }
@@ -270,6 +272,8 @@ const ComboTag = ({
     setTagsWidth(tempWidth);
   }, [tagElements]);
 
+  // this functionality was intended for the smart traveller api that would return a bool to show that the country was red flagged
+  // currently not in use but kept for future cases
   const renderAlert = useCallback(() => {
     // eslint-disable-next-line no-shadow
     const alertTags = tagElements.reduce((result, { tagJsx: { props: { value } }, alert }) => [...result, ...alert ? [value] : []], []);
@@ -392,7 +396,7 @@ const ComboTag = ({
               <FontAwesomeIcon icon={prefix} size="lg" />
             </StyledPrefix>
             )}
-          {fade
+          {(fade && !currentValue.length)
             && <StyledFade prefix={prefix} />}
           <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible} hasList={hasList}>
             {tagsVisible && tagElements.map(({ tagJsx }) => tagJsx)}
@@ -430,7 +434,6 @@ const ComboTag = ({
               type={type}
               mask={mask}
               guide={guide}
-              style={!hasList ? { paddingLeft: 0 } : {}}
               dataList={() => hasList && comboDropdownList(
                 desktop,
                 listIcon,
