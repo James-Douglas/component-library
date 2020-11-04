@@ -46,7 +46,7 @@ export const StyledToggleInput = styled.input`
     cursor: not-allowed;
   }
 
-  &:disabled + label {
+  &:disabled + label div p {
     color: ${({ theme }) => theme.toggle.base.colorDisabled};
     border: ${({ theme }) => theme.borders.transparent};
     fill: currentColor;

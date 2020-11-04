@@ -34,6 +34,7 @@ export const generateButtons = (
       selectedValue: selectedButtonValue,
       handleToggle,
       handleClick,
+      disabled: entry.disabled,
       invalid: !!validationMessage && validationMessage.length > 0,
       contentWidth,
       fixed,
@@ -75,6 +76,7 @@ export const formatEvenOrOddButtons = (buttonArray, fixed, contentWidth) => {
 const SegmentedButtons = ({
   id: propsId,
   label,
+  description,
   tooltip,
   validationMessage,
   name,
@@ -118,6 +120,8 @@ const SegmentedButtons = ({
   return (
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
+      {description
+      && <Label htmlFor={groupId} text={description} variant="description" />}
       <StyledSegmentedButtons
         id={groupId}
         className={className}
@@ -157,6 +161,10 @@ SegmentedButtons.propTypes = {
    */
   label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
   /**
+   * Description for the ToggleGroup.
+   */
+  description: PropTypes.string,
+  /**
    * Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
@@ -189,6 +197,7 @@ SegmentedButtons.propTypes = {
         PropTypes.number,
         PropTypes.bool,
       ]),
+      disabled: PropTypes.bool,
     }),
   ),
   /**
@@ -204,6 +213,7 @@ SegmentedButtons.propTypes = {
 SegmentedButtons.defaultProps = {
   id: null,
   label: '',
+  description: '',
   handleClick: null,
   tooltip: {},
   validationMessage: null,
