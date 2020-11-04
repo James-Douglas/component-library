@@ -469,7 +469,7 @@ ComboTag.propTypes = {
   /**
    * Label for the Combotag.
    */
-  label: PropTypes.string,
+  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
   /**
    * Description for the ComboTag.
    */

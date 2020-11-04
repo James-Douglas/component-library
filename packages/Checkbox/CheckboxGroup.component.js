@@ -83,7 +83,7 @@ CheckboxGroup.propTypes = {
   /**
    * Label for the CheckboxGroup.
    */
-  label: PropTypes.string,
+  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
   /**
    * Tooltip object (see Tooltip documentation)
    */

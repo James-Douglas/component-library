@@ -179,7 +179,7 @@ TextDropdown.propTypes = {
   /**
    * Label for this dropdown
    */
-  label: PropTypes.string,
+  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
   /**
    * Additional props to pass to the label component
    */

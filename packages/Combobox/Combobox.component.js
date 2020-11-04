@@ -403,7 +403,7 @@ Combobox.propTypes = {
   /**
    * Label for the Combo.
    */
-  label: PropTypes.string,
+  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
   /**
    * The supplied data to populate a datalist. Only accepts formatted data - logic would be provided for this in its
    * context. See the Combo component story for a rough and ready example.

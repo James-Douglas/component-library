@@ -95,7 +95,7 @@ ColorToggle.propTypes = {
   /**
    * The label to display on the toggle
    */
-  label: PropTypes.string,
+  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
   /**
    * The color of the toggle when it is selected
    */

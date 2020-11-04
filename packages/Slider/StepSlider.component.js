@@ -123,13 +123,13 @@ StepSlider.propTypes = {
   marks: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.number,
-      label: PropTypes.string,
+      label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
     }),
   ).isRequired,
   /**
    * The label of the slider.
    */
-  label: PropTypes.string,
+  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
   /**
    * A string value that provides a user-friendly name for the current value of the slider.
    */
