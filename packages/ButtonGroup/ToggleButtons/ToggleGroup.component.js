@@ -98,7 +98,7 @@ ToggleGroup.propTypes = {
   /**
    * Label for the ToggleGroup.
    */
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Description for the ToggleGroup.
    */

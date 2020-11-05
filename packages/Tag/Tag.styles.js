@@ -8,9 +8,10 @@ export const StyledTag = styled.div`
   ${({ warning, alert, theme }) => (alert && warning) && css`
     background: ${theme.tag.alert};
   `}
-  &:hover {
+  &:hover, :focus {
     transition: ${({ theme }) => theme.transition.default};
     border: ${({ theme }) => (theme.tag.regHover)};
+    outline: none;
     ${({ warning, alert, theme }) => (alert && !warning) && css`
       border: ${theme.tag.altAlertHover};
     `}

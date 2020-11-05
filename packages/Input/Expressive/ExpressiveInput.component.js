@@ -82,7 +82,7 @@ ExpressiveInput.propTypes = {
   /**
    * Label for the input
    */
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Array of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
    */

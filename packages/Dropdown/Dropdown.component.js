@@ -264,7 +264,7 @@ Dropdown.propTypes = {
   /**
    * Label for the input
    */
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * The placeholder text for the Dropdown
    */

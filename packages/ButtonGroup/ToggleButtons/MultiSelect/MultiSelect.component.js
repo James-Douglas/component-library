@@ -123,7 +123,7 @@ MultiSelectToggle.propTypes = {
   /**
    * Optional description text displayed undernearth the title
    */
-  description: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * The value to be applied to the input field.
    */

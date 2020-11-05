@@ -47,7 +47,7 @@ Switch.propTypes = {
   /**
    * The text to be used in an enclosing label element.
    */
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * The type of label to render
    */

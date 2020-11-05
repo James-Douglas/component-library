@@ -103,7 +103,7 @@ MultiSelectToggleGroup.propTypes = {
   /**
    * Label for the CheckToggleGroup.
    */
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Tooltip object (see Tooltip documentation)
    */

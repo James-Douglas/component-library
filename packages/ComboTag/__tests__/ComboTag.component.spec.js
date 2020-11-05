@@ -123,14 +123,8 @@ describe('ComboTag', () => {
         apiData={apiData}
         id="combo-tag"
         placeholder="Select or start typing destination(s)..."
-        handleInput={(value) => {
-          // eslint-disable-next-line no-console
-          console.log(value);
-        }}
-        handleChange={(tags) => {
-          // eslint-disable-next-line no-console
-          console.log('the current tags are:', tags);
-        }}
+        handleInput={() => {}}
+        handleChange={() => {}}
       />,
     );
 

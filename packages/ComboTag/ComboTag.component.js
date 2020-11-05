@@ -173,6 +173,10 @@ const ComboTag = ({
       }
       setCurrentValue('');
     }
+    if (e.key === 'Backspace' && e.target.value.length === 0 && tags.length) {
+      const lastTag = tagElements[tagElements.length - 1].ref.current;
+      lastTag.focus();
+    }
   };
 
   // used if we have a list (expected with an api)
@@ -313,10 +317,13 @@ const ComboTag = ({
     firstUpdate.current = false;
   });
 
-  // if tags, show tags
+  // if tags, show tags and focus on the input
   useEffect(() => {
     if (tags.length && !listVisible) {
       setTagsVisible(true);
+      if (comboInputRef.current) {
+        comboInputRef.current.inputElement.focus();
+      }
     } else {
       setTagsVisible(false);
     }
@@ -338,7 +345,17 @@ const ComboTag = ({
       } = tag;
       return {
         ref: tagRef,
-        tagJsx: <Tag warning={hasList} icon={alert ? tagAlertIcon : null} key={`item-${label + i}`} value={shortName || label} alert={alert} ref={tagRef} onClickDelete={() => deleteTagHandler(i)} />,
+        tagJsx: <Tag
+          warning={hasList}
+          icon={alert ? tagAlertIcon : null}
+          key={`item-${label + i}`}
+          value={shortName || label}
+          alert={alert}
+          ref={tagRef}
+          onClickDelete={() => deleteTagHandler(i)}
+          onKeyDown={() => deleteTagHandler(i)}
+          elementRef={comboInputRef.current.inputElement}
+        />,
         alert,
       };
     });
@@ -469,7 +486,7 @@ ComboTag.propTypes = {
   /**
    * Label for the Combotag.
    */
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Description for the ComboTag.
    */

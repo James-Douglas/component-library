@@ -7,21 +7,41 @@ import {
 } from './Tag.styles';
 
 const Tag = React.forwardRef(({
-  value, alert, warning, onClickDelete, icon,
-}, ref) => (
-  <StyledTag ref={ref} alert={alert} warning={warning}>
-    {icon
-      && (
-      <StyledIconContainer warning={warning} alert={alert}>
-        <FontAwesomeIcon icon={icon} size="lg" />
-      </StyledIconContainer>
-      )}
-    <StyledTagP alert={alert} warning={warning}>{value}</StyledTagP>
-    <StyledTagButton onClick={onClickDelete} alert={alert} warning={warning}>
-      <FontAwesomeIcon icon={faTimes} size="sm" />
-    </StyledTagButton>
-  </StyledTag>
-));
+  value, alert, warning, onClickDelete, icon, onKeyDown, elementRef,
+}, ref) => {
+  const deleteHandler = () => {
+    if (onClickDelete) {
+      onClickDelete();
+      if (elementRef) {
+        elementRef.focus();
+      }
+    }
+  };
+
+  const keyDownHandler = (e) => {
+    if (onKeyDown && e.key === 'Backspace') {
+      onKeyDown();
+      if (elementRef) {
+        elementRef.focus();
+      }
+    }
+  };
+
+  return (
+    <StyledTag ref={ref} alert={alert} warning={warning} onKeyDown={keyDownHandler} tabIndex="0">
+      {icon
+        && (
+        <StyledIconContainer warning={warning} alert={alert}>
+          <FontAwesomeIcon icon={icon} size="lg" />
+        </StyledIconContainer>
+        )}
+      <StyledTagP alert={alert} warning={warning}>{value}</StyledTagP>
+      <StyledTagButton onClick={deleteHandler} alert={alert} warning={warning}>
+        <FontAwesomeIcon icon={faTimes} size="sm" />
+      </StyledTagButton>
+    </StyledTag>
+  );
+});
 
 Tag.displayName = 'Tag';
 
@@ -50,9 +70,17 @@ Tag.propTypes = {
    */
   onClickDelete: PropTypes.func.isRequired,
   /**
+   * Keydown to fire custom event
+   */
+  onKeyDown: PropTypes.func,
+  /**
    * set the alert style to warning, else its an error style
    */
   warning: PropTypes.bool,
+  /**
+   * a ref to the element (usually an input) that the tags are used with, to fire a focus event on
+   */
+  elementRef: PropTypes.element,
 };
 
 Tag.defaultProps = {
@@ -60,6 +88,8 @@ Tag.defaultProps = {
   icon: null,
   alert: false,
   warning: true,
+  elementRef: null,
+  onKeyDown: null,
 };
 
 export default Tag;

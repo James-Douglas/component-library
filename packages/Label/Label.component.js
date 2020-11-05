@@ -55,7 +55,7 @@ Label.propTypes = {
   /**
    * Text for the label
    */
-  text: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Tooltip to be displayed
    */

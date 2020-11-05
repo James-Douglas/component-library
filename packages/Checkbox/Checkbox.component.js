@@ -111,7 +111,7 @@ Checkbox.propTypes = {
   /**
    * The label for the Checkbox
    */
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.node]),
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Defines the icon needed for the checkbox.
    */
