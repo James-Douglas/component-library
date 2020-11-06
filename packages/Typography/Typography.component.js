@@ -14,6 +14,7 @@ const variantTags = {
   body1: 'p',
   body2: 'p',
   caption: 'caption',
+  helpText: 'helpText',
   overline: 'span',
   srOnly: 'span',
 };
@@ -67,11 +68,12 @@ Typography.propTypes = {
     'body1',
     'body2',
     'caption',
+    'helpText',
     'overline',
     'srOnly',
   ]),
   /**
-   * The component used for the root node
+   * The component used for the root node (e.g. p, div, span...)
    */
   component: PropTypes.string,
   /**

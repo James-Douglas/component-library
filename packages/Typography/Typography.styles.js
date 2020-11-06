@@ -112,7 +112,7 @@ export const StyledTypography = styled(({
     `}
   `};
   // CAPTION
-  ${({ theme, variant, noMargins }) => variant === 'caption' && css`
+  ${({ theme, variant }) => variant === 'caption' && css`
     line-height: ${theme.lineHeight.tight};
     font-size: ${theme.fontSize['2xs']};
     letter-spacing: 0.15rem;
@@ -120,8 +120,13 @@ export const StyledTypography = styled(({
     text-transform: uppercase;
     color: ${theme.colors.grey600};
   `};
+  // HELPTEXT
+  ${({ theme, variant }) => variant === 'helpText' && css`
+    font-weight: ${theme.fontWeight.normal};
+    color: ${theme.colors.grey600};
+  `};
   // OVERLINE
-  ${({ theme, variant, noMargins }) => variant === 'overline' && css`
+  ${({ theme, variant }) => variant === 'overline' && css`
     line-height: ${theme.lineHeight.tight};
     font-size: ${theme.fontSize['2xs']};
     letter-spacing: 0.02rem;
