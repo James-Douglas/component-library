@@ -160,22 +160,25 @@ const ComboTag = ({
     [apiData],
   );
 
-  // use if we don't have a list or api, and use raw user input
   const tagKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      // prevent unwanted values from being set as a tag or set an alert
-      let alertState = false;
-      if (invalidTagCondition) {
-        alertState = invalidTagCondition(currentValue);
-      }
-      if (currentValue.trim().length > 0) {
-        setTags([...tags, { label: currentValue.trim(), alert: alertState }]);
-      }
-      setCurrentValue('');
-    }
+    // handle deleting tags via backspace
     if (e.key === 'Backspace' && e.target.value.length === 0 && tags.length) {
       const lastTag = tagElements[tagElements.length - 1].ref.current;
       lastTag.focus();
+    }
+    // use if we don't have a list or api, and use raw user input
+    if (!hasList) {
+      if (e.key === 'Enter') {
+        // prevent unwanted values from being set as a tag or set an alert
+        let alertState = false;
+        if (invalidTagCondition) {
+          alertState = invalidTagCondition(currentValue);
+        }
+        if (currentValue.trim().length > 0) {
+          setTags([...tags, { label: currentValue.trim(), alert: alertState }]);
+        }
+        setCurrentValue('');
+      }
     }
   };
 
@@ -440,7 +443,7 @@ const ComboTag = ({
               disabled={disabled}
               autocomplete={autocomplete}
               handleChange={comboHandleChange}
-              handleKeyDown={hasList ? null : tagKeyDown}
+              handleKeyDown={tagKeyDown}
               className={className}
               bordered={false}
               tabIndex="0"
