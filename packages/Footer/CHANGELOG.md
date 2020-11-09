@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.10.0...@comparethemarketau/manor-footer@0.11.0) (2020-11-09)
+
+
+### Features
+
+* **typography:** remove nomargins pro ([#470](https://github.com/comparethemarketau/manor-react/issues/470)) ([ad14285](https://github.com/comparethemarketau/manor-react/commit/ad14285b548116be2306e19bb989113397a11e3f))
+
+
+
+
+
 # [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.9.3...@comparethemarketau/manor-footer@0.10.0) (2020-11-06)
 
 

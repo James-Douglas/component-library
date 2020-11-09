@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-feature-list",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Manor FeatureList component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-typography": "^0.12.0",
+    "@comparethemarketau/manor-typography": "^0.13.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",

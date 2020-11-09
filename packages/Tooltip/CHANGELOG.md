@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.12.0...@comparethemarketau/manor-tooltip@0.13.0) (2020-11-09)
+
+
+### Features
+
+* **typography:** remove nomargins pro ([#470](https://github.com/comparethemarketau/manor-react/issues/470)) ([ad14285](https://github.com/comparethemarketau/manor-react/commit/ad14285b548116be2306e19bb989113397a11e3f))
+
+
+
+
+
 # [0.12.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.11.0...@comparethemarketau/manor-tooltip@0.12.0) (2020-11-06)
 
 
