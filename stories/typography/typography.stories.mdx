@@ -26,7 +26,6 @@ The Typography component can be used to render text content. A `variant` is requ
     const color = select('color', ['initial', 'inherit'], 'inherit');
     const display = select('display', ['initial', 'block', 'inline'], 'block');
     const noWrap = boolean('noWrap', false);
-    const noMargins = boolean('noMargins', true);
     return (
       <DemoContainer>
         <Typography
@@ -36,7 +35,6 @@ The Typography component can be used to render text content. A `variant` is requ
           color={color}
           display={display}
           noWrap={noWrap}
-          noMargins={noMargins}
       >
         Here is some text
       </Typography>

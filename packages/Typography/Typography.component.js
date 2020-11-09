@@ -28,7 +28,6 @@ const Typography = ({
   display,
   noWrap,
   style,
-  noMargins,
   className,
   ...props
 }) => {
@@ -42,7 +41,6 @@ const Typography = ({
       display={display}
       noWrap={noWrap}
       style={style}
-      noMargins={noMargins}
       className={className}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
@@ -108,10 +106,6 @@ Typography.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   /**
-   * Disables the default margins applied based on the element being rendered
-   */
-  noMargins: PropTypes.bool,
-  /**
    * Classes to be applied to the rendered element
    */
   className: PropTypes.string,
@@ -126,7 +120,6 @@ Typography.defaultProps = {
   noWrap: false,
   children: [],
   style: null,
-  noMargins: false,
   className: '',
 };
 

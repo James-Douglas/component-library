@@ -3,7 +3,7 @@ import React from 'react';
 
 // eslint-disable-next-line import/prefer-default-export
 export const StyledTypography = styled(({
-  component, variant, align, color, display, noMargins, noWrap, ...otherProps
+  component, variant, align, color, display, noWrap, ...otherProps
 }) => {
   const Tag = component;
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -24,92 +24,62 @@ export const StyledTypography = styled(({
     text-overflow: ellipsis;
   `};
   // H1
-  ${({ theme, variant, noMargins }) => variant === 'h1' && css`
+  ${({ theme, variant }) => variant === 'h1' && css`
     line-height: ${theme.lineHeight.tight};
     font-size: ${theme.fontSize['6xl']};
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['24']};
-    `}
   `};
   // H2
-  ${({ theme, variant, noMargins }) => variant === 'h2' && css`
+  ${({ theme, variant }) => variant === 'h2' && css`
     line-height: ${theme.lineHeight.tight};
     font-size: ${theme.fontSize['5xl']};
-   ${!noMargins && `
-      margin: 0 0 ${theme.spacing['20']};
-    `}
   `};
   // H3
-  ${({ theme, variant, noMargins }) => variant === 'h3' && css`
+  ${({ theme, variant }) => variant === 'h3' && css`
     line-height: ${theme.lineHeight.tight};
     font-size: ${theme.fontSize['3xl']};
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['16']};
-    `}
   `};
   // H4
-  ${({ theme, variant, noMargins }) => variant === 'h4' && css`
+  ${({ theme, variant }) => variant === 'h4' && css`
     line-height: ${theme.lineHeight.tight};
     font-size: ${theme.fontSize.xl};
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['16']};
-    `}
   `};
   // H5
-  ${({ theme, variant, noMargins }) => variant === 'h5' && css`
+  ${({ theme, variant }) => variant === 'h5' && css`
     font-weight: ${theme.fontWeight.semibold};
     font-size: ${theme.fontSize.lg};
     ${`@media only screen and (min-width: ${theme.breakpoints.md}})`}: {
       line-height: ${theme.lineHeight.tight};
     }
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['16']};
-    `}
   `};
   // H6
-  ${({ theme, variant, noMargins }) => variant === 'h6' && css`
+  ${({ theme, variant }) => variant === 'h6' && css`
     font-weight: ${theme.fontWeight.semibold};
     font-size: ${theme.fontSize.base};
     ${`@media only screen and (min-width: ${theme.breakpoints.md}})`}: {
       line-height: ${theme.lineHeight.tight};
     }
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['12']};
-    `}
   `};
   // SUBTITLE1
-  ${({ theme, variant, noMargins }) => variant === 'subtitle1' && css`
+  ${({ theme, variant }) => variant === 'subtitle1' && css`
     font-weight: ${theme.fontWeight.normal};
     line-height: ${theme.lineHeight.snug};
     font-size: ${theme.fontSize.lg};
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['12']};
-    `}
   `};
   // SUBTITLE2
-  ${({ theme, variant, noMargins }) => variant === 'subtitle2' && css`
+  ${({ theme, variant }) => variant === 'subtitle2' && css`
     font-weight: ${theme.fontWeight.bold};
     line-height: ${theme.lineHeight.snug};
     font-size: ${theme.fontSize.base};
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['12']};
-    `}
   `};
   // BODY1
-  ${({ theme, variant, noMargins }) => variant === 'body1' && css`
+  ${({ theme, variant }) => variant === 'body1' && css`
     line-height: ${theme.lineHeight.snug};
     font-size: ${theme.fontSize.base};
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['12']};
-    `}
   `};
   // BODY2
-  ${({ theme, variant, noMargins }) => variant === 'body2' && css`
+  ${({ theme, variant }) => variant === 'body2' && css`
     line-height: ${theme.lineHeight.snug};
     font-size: ${theme.fontSize.sm};
-    ${!noMargins && `
-      margin: 0 0 ${theme.spacing['12']};
-    `}
   `};
   // CAPTION
   ${({ theme, variant }) => variant === 'caption' && css`

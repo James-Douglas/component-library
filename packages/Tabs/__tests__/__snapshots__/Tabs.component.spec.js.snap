@@ -13,7 +13,7 @@ exports[`TabButton renders a TabButton 1`] = `
       class="sc-AxirZ iPjTQj"
     >
       <div
-        class="sc-AxjAm haunSI"
+        class="sc-AxjAm ckNpsi"
       >
         Refine Results
       </div>
@@ -35,7 +35,7 @@ exports[`TabButton renders multiple TabButtons 1`] = `
       class="sc-AxirZ iPjTQj"
     >
       <div
-        class="sc-AxjAm haunSI"
+        class="sc-AxjAm ckNpsi"
       >
         Refine Results1
       </div>
@@ -52,7 +52,7 @@ exports[`TabButton renders multiple TabButtons 1`] = `
       class="sc-AxirZ iPjTQj"
     >
       <div
-        class="sc-AxjAm haunSI"
+        class="sc-AxjAm ckNpsi"
       >
         Refine Results2
       </div>
@@ -176,7 +176,7 @@ exports[`Tabs renders a border 1`] = `
           class="sc-AxirZ bDbtlN"
         >
           <div
-            class="sc-AxjAm haunSI"
+            class="sc-AxjAm ckNpsi"
           >
             Refine Results
           </div>
@@ -193,7 +193,7 @@ exports[`Tabs renders a border 1`] = `
           class="sc-AxirZ iPjTQj"
         >
           <div
-            class="sc-AxjAm haunSI"
+            class="sc-AxjAm ckNpsi"
           >
             Edit Details
           </div>
@@ -252,7 +252,7 @@ exports[`Tabs renders additional classNames 1`] = `
           class="sc-AxirZ bDbtlN"
         >
           <div
-            class="sc-AxjAm haunSI"
+            class="sc-AxjAm ckNpsi"
           >
             Refine Results
           </div>
@@ -269,7 +269,7 @@ exports[`Tabs renders additional classNames 1`] = `
           class="sc-AxirZ iPjTQj"
         >
           <div
-            class="sc-AxjAm haunSI"
+            class="sc-AxjAm ckNpsi"
           >
             Edit Details
           </div>
@@ -328,7 +328,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
           class="sc-AxirZ bDbtlN"
         >
           <div
-            class="sc-AxjAm haunSI"
+            class="sc-AxjAm ckNpsi"
           >
             Refine Results
           </div>
@@ -345,7 +345,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
           class="sc-AxirZ iPjTQj"
         >
           <div
-            class="sc-AxjAm haunSI"
+            class="sc-AxjAm ckNpsi"
           >
             Edit Details
           </div>
