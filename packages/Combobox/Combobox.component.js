@@ -239,6 +239,7 @@ const Combobox = ({
         break;
       case 'ArrowUp':
         if (currentValue.length >= characterMinimum) {
+          event.preventDefault();
           if (focusedRef === null) {
             if (listInfoBoxContent) {
               if (document.activeElement === bottomButton.current) {
@@ -268,6 +269,7 @@ const Combobox = ({
         break;
       case 'ArrowDown':
         if (currentValue.length >= characterMinimum) {
+          event.preventDefault();
           if (focusedRef === filteredValues.length - 1) {
             if (listInfoBoxContent) {
               setFocusedRef(null);

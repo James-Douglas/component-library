@@ -222,6 +222,7 @@ const ComboTag = ({
 
   const keyboardAccessibility = (event) => {
     const closestLink = event.target.getElementsByTagName('a')[0];
+
     switch (event.key) {
       case 'Tab':
         break;
@@ -236,6 +237,7 @@ const ComboTag = ({
         break;
       case 'ArrowUp':
         if (currentValue.length >= characterMinimum) {
+          event.preventDefault();
           if (focusedRef === null) {
             setFocusedRef(apiData.length - 1);
             filteredValuesRefs[apiData.length - 1].current.focus();
@@ -250,6 +252,7 @@ const ComboTag = ({
         break;
       case 'ArrowDown':
         if (currentValue.length >= characterMinimum) {
+          event.preventDefault();
           if (focusedRef === apiData.length - 1) {
             setFocusedRef(0);
             filteredValuesRefs[0].current.focus();
@@ -418,9 +421,12 @@ const ComboTag = ({
             )}
           {(fade && !currentValue.length)
             && <StyledFade prefix={prefix} />}
-          <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible} hasList={hasList}>
-            {tagsVisible && tagElements.map(({ tagJsx }) => tagJsx)}
-          </StyledTagHolder>
+          {tagsVisible
+            && (
+            <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible} hasList={hasList}>
+              {tagElements.map(({ tagJsx }) => tagJsx)}
+            </StyledTagHolder>
+            )}
           <StyledInputWrap>
             {inlineTooltipActive
               && (

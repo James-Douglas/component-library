@@ -64,7 +64,7 @@ export const StyledTagHolder = styled.div`
 export const StyledFade = styled.div`
   position: absolute;
   height: ${({ theme }) => theme.spacing[44]};
-  width: 10rem;
+  width: 1.5rem;
   left: 0;
   ${({ prefix }) => prefix && css`
     left: ${({ theme }) => theme.spacing[40]};
@@ -79,7 +79,7 @@ export const StyledFade = styled.div`
     left: 0;
     pointer-events: none;
     background-image: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255, 1) 100%);
-    width: 10rem;
+    width: 1.5rem;
     height: 100%;
   }
 `;
