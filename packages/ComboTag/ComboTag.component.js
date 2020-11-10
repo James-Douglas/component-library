@@ -81,7 +81,6 @@ export function comboDropdownList(
 }
 
 export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon, currentValue) {
-  const renderText = (filteredValue) => <Typography variant="body2" noMargins>{filteredValue.substring(0, 0)}<b>{filteredValue.substring(0, currentValue.length)}</b>{filteredValue.substring(0 + currentValue.length, filteredValue.length)}</Typography>;
   return (
     <StyledList>
       {apiData.map((filteredValue, index) => (
@@ -99,7 +98,7 @@ export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, lis
               <FontAwesomeIcon icon={listIcon} size="sm" />
             </StyledIconWrap>
           )}
-          {renderText(filteredValue.label)}
+          <Typography variant="body2">{filteredValue.label}</Typography>
         </StyledListItem>
       ))}
     </StyledList>

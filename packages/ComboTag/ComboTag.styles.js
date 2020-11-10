@@ -44,9 +44,8 @@ export const StyledTagHolder = styled.div`
   float: left;
   align-items: center;
   z-index: ${({ theme }) => (theme.zIndex[10])};
-  padding-right: 15px;
   ${({ hasList }) => hasList && css`
-    max-width: 60%;
+    max-width: 55%;
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
