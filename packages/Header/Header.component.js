@@ -12,7 +12,7 @@ import {
 } from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, onSignOutSuccess,
+  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, doSignOutSuccess,
 }) => {
   const { isDesktop } = useContext(ManorContext);
   const size = (stuck || !isDesktop) ? 'small' : 'large';
@@ -34,7 +34,7 @@ const Header = ({
             }}
             visible="true"
             id="auth"
-            onSignOutSuccess={onSignOutSuccess}
+            doSignOutSuccess={doSignOutSuccess}
           />
           )}
         </StyledAdditionalContent>
@@ -83,7 +83,7 @@ Header.propTypes = {
   /**
    * Callback when the auth header successfully signs out
    */
-  onSignOutSuccess: PropTypes.func,
+  doSignOutSuccess: PropTypes.func,
 };
 
 Header.defaultProps = {
@@ -93,7 +93,7 @@ Header.defaultProps = {
   contactStrip: false,
   authuiURL: null,
   authuiComponentName: 'AuthHeader',
-  onSignOutSuccess: null,
+  doSignOutSuccess: null,
 };
 
 export default Header;
