@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.10.2...@comparethemarketau/manor-header@0.11.0) (2020-11-11)
+
+
+### Features
+
+* **bug:** react on binding issues ([#473](https://github.com/comparethemarketau/manor-react/issues/473)) ([dc26e2d](https://github.com/comparethemarketau/manor-react/commit/dc26e2d3d9d51f96bc73053e78c253d155fb8730))
+
+
+
+
+
 ## [0.10.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.10.1...@comparethemarketau/manor-header@0.10.2) (2020-11-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-header
