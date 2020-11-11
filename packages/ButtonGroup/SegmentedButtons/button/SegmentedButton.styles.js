@@ -15,7 +15,9 @@ export const StyledSegmentedButtonContent = styled.div`
   min-height: ${({ theme }) => theme.spacing[20]};
   text-align: center;
   width: auto;
-
+  & div {
+    margin-bottom: ${({ theme }) => theme.spacing[12]};
+  }
   ${({ fixed }) => fixed
     && css`
       width: 17.5rem;

@@ -50,7 +50,7 @@ const SegmentedButton = ({
             fixed={fixed}
             contentWidth={contentWidth}
           >
-            <Typography variant="body1" noMargins={false}>{title}</Typography>
+            <Typography variant="body1" component="div">{title}</Typography>
           </StyledSegmentedButtonContent>
         </StyledWrapper>
       </ButtonLabel>
