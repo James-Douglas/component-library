@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.16.0...@comparethemarketau/manor-buttongroup@0.16.1) (2020-11-11)
+
+
+### Bug Fixes
+
+* **segmentedbuttons:** add margin to segmentedbuttons label ([#474](https://github.com/comparethemarketau/manor-react/issues/474)) ([04d0a92](https://github.com/comparethemarketau/manor-react/commit/04d0a924377d98ea6422be15afc7169e04580642))
+
+
+
+
+
 # [0.16.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.15.0...@comparethemarketau/manor-buttongroup@0.16.0) (2020-11-09)
 
 
