@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.10.0...@comparethemarketau/manor-themes@0.11.0) (2020-11-12)
+
+
+### Features
+
+* **breakpoints:** fix breakpoint calculation ([#476](https://github.com/comparethemarketau/manor-react/issues/476)) ([61a051f](https://github.com/comparethemarketau/manor-react/commit/61a051f9cb6be17f55847c94ccd23d3206c632d3))
+
+
+
+
+
 # [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.9.0...@comparethemarketau/manor-themes@0.10.0) (2020-11-12)
 
 
