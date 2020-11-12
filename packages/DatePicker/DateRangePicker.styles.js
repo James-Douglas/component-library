@@ -1,12 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const StyledDateRangePickerWrap = styled.div`
-  width: ${({ theme }) => theme.spacing[176]};
   margin-right: ${({ theme }) => theme.spacing[24]};
-  .date-input-calendar {
-    padding-right: ${({ theme }) => theme.spacing[12]};
+  
+  input {
+    ${({ theme, breakpoint }) => (breakpoint === 'xs') && css`
+      padding-left: ${theme.spacing[8]};
+      padding-right: 0rem;
+    `};
   }
+  
   .input-wrap {
     label {
       path {
@@ -18,6 +22,10 @@ export const StyledDateRangePickerWrap = styled.div`
 
 export const StyledDateRangePicker = styled.div`
   display: flex;
+  & div :last-child {
+    margin-right: 0 !important;
+  }
+ 
 `;
 
 export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`

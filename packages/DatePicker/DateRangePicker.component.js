@@ -6,6 +6,7 @@ import React, {
   useLayoutEffect,
   useState,
   useEffect,
+  useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 import { DayPickerRangeController as RSDayPickerRange } from 'react-dates';
@@ -15,8 +16,9 @@ import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { DateInput } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 
-import { GlobalStyle, StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
+import { StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
 import { StyledDateRangePicker, StyledDateRangePickerWrap, StyledFontAwesomeIcon } from './DateRangePicker.styles';
 
 const DateRangePicker = ({
@@ -43,6 +45,7 @@ const DateRangePicker = ({
 }) => {
   const startDateId = useId(propsStartDateId);
   const endDateId = useId(propsEndDateId);
+  const { breakpoint } = useContext(ManorContext);
   const containerRef = React.useRef();
   const node = containerRef;
   const displayFormat = 'DD/MM/YYYY';
@@ -169,9 +172,8 @@ const DateRangePicker = ({
 
   return (
     <StyledDateRangePickerContainer ref={node}>
-      <GlobalStyle />
       <StyledDateRangePicker>
-        <StyledDateRangePickerWrap onKeyDown={keyboardAccessibilityFromDate}>
+        <StyledDateRangePickerWrap onKeyDown={keyboardAccessibilityFromDate} breakpoint={breakpoint}>
           <DateInput
             id={startDateId}
             tooltip={startDateTooltip}
@@ -189,7 +191,7 @@ const DateRangePicker = ({
             className="date-input-calendar"
           />
         </StyledDateRangePickerWrap>
-        <StyledDateRangePickerWrap>
+        <StyledDateRangePickerWrap breakpoint={breakpoint}>
           <DateInput
             id={endDateId}
             tooltip={endDateTooltip}

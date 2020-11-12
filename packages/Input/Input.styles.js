@@ -48,9 +48,9 @@ export const StyledClearIcon = styled.button`
   right: 0;
   width: ${({ theme }) => theme.spacing[44]};
   height: ${({ theme }) => theme.spacing[44]};
-  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive)) && css`
+  ${({ theme, breakpoint, expressive }) => (breakpoint === 'xl' && expressive) && css`
     height: ${theme.spacing[56]};
-  `}
+  `};
   transition: ${({ theme }) => theme.transition.default};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
   color: ${({ theme, isAutofill }) => (isAutofill ? theme.input.clearButton.colorAutofill : theme.input.clearButton.color)};
@@ -66,8 +66,10 @@ export const StyledAffix = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: ${({ theme, expressive }) => (expressive ? theme.spacing[16] : theme.spacing[48])};
-  padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[12]}`};
+  ${({ theme, expressive, breakpoint }) => (breakpoint !== 'xs' && css`
+    min-width: ${expressive ? theme.spacing[16] : theme.spacing[48]};
+  `)};
+  padding: ${({ theme, breakpoint }) => `${theme.spacing[8]} ${breakpoint === 'xs' ? theme.spacing[8] : theme.spacing[12]}`};
   height: ${({ theme }) => theme.input.height};
   ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive)) && css`
     height: ${theme.spacing[56]};
@@ -198,7 +200,7 @@ export const StyledInputClearWrap = styled.div`
 export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ...props }, ref) => <MaskedInput {...props} ref={ref} />))`
   font-family: ${({ theme }) => theme.fontFamily};
   padding-left: ${({ theme }) => theme.spacing[12]};
-  padding-right: ${({ theme }) => theme.spacing[36]};
+  padding-right: ${({ theme, breakpoint }) => (breakpoint === 'xs' ? theme.spacing[8] : theme.spacing[36])};
   display: block;
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize.base};

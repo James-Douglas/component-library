@@ -10,7 +10,7 @@ import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { DateInput } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
-import { GlobalStyle, StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
+import { StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
 
 import { StyledDateRangePickerWrap, StyledFontAwesomeIcon } from './SingleDatePicker.styles';
 
@@ -112,7 +112,6 @@ const SingleDatePicker = ({
 
   return (
     <StyledDateRangePickerContainer ref={node}>
-      <GlobalStyle />
       <StyledDateRangePickerWrap>
         <DateInput
           id={dateId}
