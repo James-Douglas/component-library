@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-grid@0.7.6...@comparethemarketau/manor-grid@0.7.7) (2020-11-12)
+
+**Note:** Version bump only for package @comparethemarketau/manor-grid
+
+
+
+
+
 ## [0.7.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-grid@0.7.5...@comparethemarketau/manor-grid@0.7.6) (2020-10-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-grid

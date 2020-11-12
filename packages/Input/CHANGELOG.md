@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.14.4...@comparethemarketau/manor-input@0.15.0) (2020-11-12)
+
+
+### Features
+
+* **datepicker:** improve datepicker on xs ([#475](https://github.com/comparethemarketau/manor-react/issues/475)) ([5c9ef8a](https://github.com/comparethemarketau/manor-react/commit/5c9ef8abe993946e91a85ef727304bc661f8fcb2))
+
+
+
+
+
 ## [0.14.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.14.3...@comparethemarketau/manor-input@0.14.4) (2020-11-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-input

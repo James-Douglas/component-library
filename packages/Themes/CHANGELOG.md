@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.9.0...@comparethemarketau/manor-themes@0.10.0) (2020-11-12)
+
+
+### Features
+
+* **datepicker:** improve datepicker on xs ([#475](https://github.com/comparethemarketau/manor-react/issues/475)) ([5c9ef8a](https://github.com/comparethemarketau/manor-react/commit/5c9ef8abe993946e91a85ef727304bc661f8fcb2))
+
+
+
+
+
 # [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.8.1...@comparethemarketau/manor-themes@0.9.0) (2020-10-21)
 
 

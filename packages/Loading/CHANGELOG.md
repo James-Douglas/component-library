@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.12](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-loading@0.4.11...@comparethemarketau/manor-loading@0.4.12) (2020-11-12)
+
+**Note:** Version bump only for package @comparethemarketau/manor-loading
+
+
+
+
+
 ## [0.4.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-loading@0.4.10...@comparethemarketau/manor-loading@0.4.11) (2020-11-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-loading

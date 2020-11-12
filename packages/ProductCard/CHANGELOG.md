@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-product-card@0.2.13...@comparethemarketau/manor-product-card@0.2.14) (2020-11-12)
+
+**Note:** Version bump only for package @comparethemarketau/manor-product-card
+
+
+
+
+
 ## [0.2.13](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-product-card@0.2.12...@comparethemarketau/manor-product-card@0.2.13) (2020-11-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-product-card
