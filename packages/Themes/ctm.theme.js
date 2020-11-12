@@ -12,12 +12,21 @@ const flexboxgrid = {
   },
 };
 
+/**
+ * These are used by ManorContext (and breakpoint hooks) to determine the breakpoint. Ranges are:
+ * (see useBreakpoint.js)
+ * xs: 0 - 767px
+ * sm 768px - 1023px
+ * md: 1024px - 1199px
+ * lg: 1200px - 1439px
+ * xl: 1440px+
+ */
 const breakpoints = {
-  xs: '375px',
-  sm: '768px',
-  md: '1024px',
+  xs: '767px',
+  sm: '1023px',
+  md: '1199px',
   lg: '1200px',
-  xl: '1440px',
+  xl: '1439px',
 };
 
 const colors = {
