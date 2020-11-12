@@ -4,6 +4,10 @@ const StyledCalendar = styled.div`
   position: absolute;
   z-index: ${({ theme }) => theme.zIndex[40]};
   top: ${({ theme }) => theme.spacing[80]};
+  & .CalendarMonth_table .CalendarDay__selected_span:hover {
+    background: ${({ theme }) => theme.datepicker.datepickerDayBackground};
+    color: ${({ theme }) => theme.datepicker.datepickerDayColor};
+  }
   
   & .DayPicker {
     font-family: ${({ theme }) => theme.fontFamily};
