@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.4.6...@comparethemarketau/manor-slider@0.5.0) (2020-11-13)
+
+
+### Features
+
+* **slider:** rework slider ([#481](https://github.com/comparethemarketau/manor-react/issues/481)) ([17e4e85](https://github.com/comparethemarketau/manor-react/commit/17e4e85d78f7fa5632b5f00355711ebbefc99f28))
+
+
+
+
+
 ## [0.4.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.4.5...@comparethemarketau/manor-slider@0.4.6) (2020-11-12)
 
 **Note:** Version bump only for package @comparethemarketau/manor-slider
