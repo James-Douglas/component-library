@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.13.2...@comparethemarketau/manor-date-picker@0.13.3) (2020-11-13)
+
+
+### Bug Fixes
+
+* **datepicker:** hover colors ([#479](https://github.com/comparethemarketau/manor-react/issues/479)) ([502bb95](https://github.com/comparethemarketau/manor-react/commit/502bb9598116d7afc9ff72d60ef4971553133517))
+
+
+
+
+
 ## [0.13.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.13.1...@comparethemarketau/manor-date-picker@0.13.2) (2020-11-12)
 
 
