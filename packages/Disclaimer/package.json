@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-disclaimer",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "description": "Manor Disclaimer component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -13,7 +13,7 @@
     "prepare": "cp package.json lib/ && cp README.md lib/ && cp CHANGELOG.md lib/"
   },
   "dependencies": {
-    "@comparethemarketau/manor-checkbox": "^0.11.6",
+    "@comparethemarketau/manor-checkbox": "^0.12.0",
     "@comparethemarketau/manor-field-validation": "^0.6.8",
     "@comparethemarketau/manor-hooks": "^0.4.8",
     "@comparethemarketau/manor-typography": "^0.13.2",
