@@ -1,5 +1,4 @@
 import React from 'react';
-import { ctmTheme } from '@comparethemarketau/manor-themes';
 import StepSlider, { formatMarks } from '../StepSlider.component';
 import { render, fireEvent } from '../../../testUtils';
 
@@ -12,21 +11,12 @@ describe('formatMarks', () => {
   it('returns empty array for empty marks', () => {
     expect(formatMarks([], 0)).toEqual([]);
   });
-  it('returns label for first and last values, notches for others', () => {
-    const result = formatMarks(testMarks, 4);
-    const { container: firstContainer } = render(result[0].label);
-    expect(firstContainer.querySelector('p')).toBeInTheDocument();
-    expect(firstContainer.querySelector('p')).toHaveTextContent('One');
-    const { container: secondContainer } = render(result[1].label);
-    expect(secondContainer.querySelector('p')).not.toBeInTheDocument();
-    expect(secondContainer.querySelector('div')).toHaveStyle(`border: ${ctmTheme.slider.notch.border}`);
-    const { container: thirdContainer } = render(result[2].label);
-    expect(thirdContainer.querySelector('p')).toBeInTheDocument();
-    expect(thirdContainer.querySelector('p')).toHaveTextContent('Three');
-  });
-  it('returns empty string for currently selected value', () => {
-    const result = formatMarks(testMarks, 1);
-    expect(result[0].label).toEqual('');
+  it('defines label for defaultIndicator', () => {
+    const newTestMarks = testMarks;
+    newTestMarks[0].defaultIndicator = true;
+    const result = formatMarks(newTestMarks, 4);
+    expect(result[0].label).toBeDefined();
+    expect(result[1].label).not.toBeDefined();
   });
 });
 

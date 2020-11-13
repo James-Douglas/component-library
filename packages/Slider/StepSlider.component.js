@@ -4,7 +4,7 @@ import { Typography } from '@comparethemarketau/manor-typography';
 import { Label } from '@comparethemarketau/manor-label';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
-import { ManorStyledSlider, StyledNotch } from './StepSlider.styles';
+import { ManorStyledSlider, StyledSliderLabels } from './StepSlider.styles';
 
 /**
  * We pass the Material slider a copy of the marks array, the objects
@@ -16,18 +16,12 @@ import { ManorStyledSlider, StyledNotch } from './StepSlider.styles';
  *   defaultIndicator: (optional) displays a styled notch to indicate the default value of the slider
  * }
  */
-export const formatMarks = (marks, currentValue) => marks.map((mark, index) => {
+export const formatMarks = (marks) => marks.map((mark, index) => {
   const { label, defaultIndicator, value } = mark;
   const newMark = {};
-  if (index === 0 || index === marks.length - 1) {
-    newMark.label = (<Typography variant="body1">{label}</Typography>);
-  } else {
-    newMark.label = (<StyledNotch defaultIndicator={defaultIndicator} />);
-  }
   newMark.value = value;
   newMark.actualLabel = label;
-  if (value === currentValue) {
-    // hide the mark for the currently selected value
+  if (defaultIndicator) {
     newMark.label = '';
   }
   return newMark;
@@ -46,7 +40,7 @@ const StepSlider = ({
   tooltip,
 }) => {
   const id = useId(propsId);
-  const marksForMui = formatMarks(marks, value);
+  const marksForMui = formatMarks(marks);
   const max = marksForMui[marksForMui.length - 1].value;
   const last = marksForMui.find((x) => x.value === value).value === max;
   const first = value === marksForMui[0].value;
@@ -76,10 +70,14 @@ const StepSlider = ({
   };
 
   return (
-    <>
+    <div>
       <div id={labelWrapId}>
         <Label htmlFor={id} text={label} tooltip={tooltip} />
       </div>
+      <StyledSliderLabels>
+        <Typography variant="body2">{marksForMui[0].actualLabel}</Typography>
+        <Typography variant="body2">{marksForMui[marksForMui.length - 1].actualLabel}</Typography>
+      </StyledSliderLabels>
       <ManorStyledSlider
         name={name}
         id={id}
@@ -99,7 +97,7 @@ const StepSlider = ({
         first={first}
         last={last}
       />
-    </>
+    </div>
   );
 };
 

@@ -6,51 +6,46 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <MUISlider {...otherProps} />
 ))`
-  & {
-    margin: ${({ theme }) => theme.slider.margin};
-    > span {
-      color: ${({ theme, disabled }) => (disabled ? theme.slider.disabled : theme.colors.primary500)};
-    }
-  }
+  padding-top: ${({ theme }) => `${theme.spacing[4]} !important`};
   & .MuiSlider-markLabel {
-    top: ${({ theme }) => `-${theme.spacing[12]}`};
-    p {
-      font-family: ${({ theme }) => theme.fontFamily};
-      font-size: ${({ theme }) => theme.slider.mark.fontSize};
-      color: ${({ theme, disabled }) => (disabled ? theme.slider.disabled : theme.slider.mark.color)};
-      font-weight: ${({ theme }) => theme.fontWeight.semibold};
-    }
-  }
-  & .MuiSlider-markActive {
-    display: none;
+    top: ${({ theme }) => theme.spacing[16]};
+    height: ${({ theme }) => theme.spacing[4]};
+    width: ${({ theme }) => theme.spacing[4]};
+    background-color: ${({ theme }) => theme.colors.primary500};
+    border-radius: 50%;
+    display: inline-block;
   }
   & .MuiSlider-mark {
+    height: ${({ theme }) => theme.spacing[4]};
+    width: 1px;
+  }
+  & .MuiSlider-mark:last-child {
     display: none;
   }
   & .MuiSlider-rail {
     color: ${({ theme }) => theme.slider.rail.color};
-    height: ${({ theme }) => theme.slider.rail.height};
-    border-radius: ${({ theme }) => theme.slider.rail.borderRadius};
+    height: ${({ theme }) => theme.spacing[4]};;
   }
   & .MuiSlider-track {
     border-radius: ${({ theme }) => theme.slider.track.borderRadius};
     color: ${({ theme, disabled }) => (disabled ? theme.slider.disabled : theme.slider.track.color)};
-    height: ${({ theme }) => theme.slider.track.height};
+    height: ${({ theme }) => theme.spacing[4]};;
   }
   & .MuiSlider-thumb {
-    height: ${({ theme }) => theme.slider.thumb.height};
-    width: ${({ theme }) => theme.slider.thumb.width};
+    top: .2rem;
+    height: ${({ theme }) => theme.spacing[16]};
+    width: ${({ theme }) => theme.spacing[16]};
     border: ${({ theme }) => theme.slider.thumb.border};
     box-shadow: ${({ theme }) => theme.slider.thumb.boxShadow};
   }
-  & .MuiSlider-valueLabel {
-    left: auto;
-    white-space: nowrap;
-  }
+   & .MuiSlider-valueLabel {
+     left: auto;
+     white-space: nowrap;
+   }
   & .MuiSlider-thumb {
     display: flex;
     > span {
-      transform: scale(1) translateY(1px) !important;
+      transform: scale(1) translateY(5px) !important;
        > span {
         transform: none;
         border-radius: ${({ theme }) => theme.slider.label.borderRadius};
@@ -68,14 +63,10 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
   }
 `;
 
-const StyledNotch = styled.div`
-  position: relative;
-  top: ${({ defaultIndicator }) => (defaultIndicator ? '.5rem' : '.6rem')};
-  width: ${({ theme, defaultIndicator }) => (defaultIndicator ? theme.slider.notch.defaultIndicator.height : theme.slider.notch.height)};
-  border: ${({ theme, defaultIndicator }) => (defaultIndicator ? theme.slider.notch.defaultIndicator.border : theme.slider.notch.border)};
-  transform: rotate(90deg);
+const StyledSliderLabels = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
 `;
 
-export {
-  ManorStyledSlider, StyledNotch,
-};
+export { ManorStyledSlider, StyledSliderLabels };
