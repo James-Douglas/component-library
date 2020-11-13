@@ -30,6 +30,7 @@ const Checkbox = ({
   label,
   disabled,
   validationMessage,
+  invalid,
   invertColour,
   handleClick,
   handleChange,
@@ -86,7 +87,7 @@ const Checkbox = ({
             checked={internalValue}
             isAutofill={isAutofill}
             disabled={disabled}
-            invalid={validationMessage && validationMessage.length > 0}
+            invalid={invalid || (validationMessage && validationMessage.length > 0)}
           >
             {renderIcon(icon, internalValue)}
           </StyledCheckbox>
@@ -140,6 +141,10 @@ Checkbox.propTypes = {
    */
   validationMessage: PropTypes.string,
   /**
+   * Used to display the invalid state of the component without specifying a validationMessage
+   */
+  invalid: PropTypes.bool,
+  /**
    * Changes the color of the checked state - blue bg, white tick, or white bg, blue tick.
    */
   invertColour: PropTypes.bool,
@@ -173,6 +178,7 @@ Checkbox.defaultProps = {
   isSelected: false,
   prefillValue: false,
   validationMessage: '',
+  invalid: false,
   invertColour: false,
   handleClick: null,
   handleChange: null,

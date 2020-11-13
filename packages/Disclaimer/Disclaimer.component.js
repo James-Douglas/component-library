@@ -3,13 +3,13 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@comparethemarketau/manor-typography';
+import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Checkbox } from '@comparethemarketau/manor-checkbox';
-import { FieldValidation } from '@comparethemarketau/manor-field-validation';
-import { StyledContent, StyledWrapper } from './Disclaimer.styles';
+import { StyledContent, StyledWrapper, StyledFieldValidation } from './Disclaimer.styles';
 
 const Disclaimer = ({
-  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur, validationMessage,
+  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur, validationMessage, topMargin,
 }) => {
   const id = useId(propsId);
   const content = createRef();
@@ -41,14 +41,16 @@ const Disclaimer = ({
   return (
     <>
       <StyledWrapper>
-        <Checkbox id={id} handleChange={changeHandler} isSelected={checked} handleFocus={handleFocus} handleBlur={handleBlur} />
-        <StyledContent ref={content} onClick={handleContentClick}>
+        <Checkbox id={id} handleChange={changeHandler} isSelected={checked} invalid={validationMessage && validationMessage.length > 0} handleFocus={handleFocus} handleBlur={handleBlur} />
+        <StyledContent ref={content} onClick={handleContentClick} topMargin={topMargin}>
           <Typography variant="body1" component="span">
             {children}
           </Typography>
         </StyledContent>
       </StyledWrapper>
-      <FieldValidation message={validationMessage} />
+      <StyledFieldValidation>
+        <FieldValidation message={validationMessage} />
+      </StyledFieldValidation>
     </>
   );
 };
@@ -86,6 +88,10 @@ Disclaimer.propTypes = {
    * Called on blur of the checkbox
    */
   handleBlur: PropTypes.func,
+  /**
+   * Adds top margin to the disclaimer text
+   */
+  topMargin: PropTypes.bool,
 };
 
 Disclaimer.defaultProps = {
@@ -96,6 +102,7 @@ Disclaimer.defaultProps = {
   handleChange: null,
   handleFocus: null,
   handleBlur: null,
+  topMargin: true,
 };
 
 export default Disclaimer;

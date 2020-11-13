@@ -81,6 +81,23 @@ describe('Checkbox', () => {
     expect(container.getElementsByTagName('svg')).toBeDefined();
   });
 
+  it('renders an invalid state with prop', () => {
+    const { container } = render(
+      <Checkbox
+        id="test-id"
+        invalid
+      >
+        <p>child content</p>
+      </Checkbox>,
+    );
+
+    const label = container.querySelector('label');
+    const labelStyle = label.firstChild;
+    fireEvent.click(label, { button: 0 });
+
+    expect(labelStyle).toHaveStyle(`border: ${ctmTheme.checkbox.invalid}`);
+  });
+
   it('accepts a prefill value', () => {
     const { container } = render(
       <Checkbox
