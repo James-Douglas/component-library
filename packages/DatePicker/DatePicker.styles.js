@@ -85,6 +85,10 @@ const StyledCalendar = styled.div`
  & .CalendarDay__selected:hover, .CalendarDay__hovered_span {
     background: ${({ theme }) => theme.datepicker.datepickerSelectedDayRangeBackground}
  }
+  & .CalendarDay__hovered_span:hover {
+    background: ${({ theme }) => theme.datepicker.datepickerDayBackground};
+    color: ${({ theme }) => theme.datepicker.datepickerDayColorSelected};
+  }
 `;
 
 const StyledDateRangePickerContainer = styled.div`
