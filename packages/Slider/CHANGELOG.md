@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.5.0...@comparethemarketau/manor-slider@0.6.0) (2020-11-15)
+
+
+### Features
+
+* **slider:** fix slider end labels ([#482](https://github.com/comparethemarketau/manor-react/issues/482)) ([3ea24c2](https://github.com/comparethemarketau/manor-react/commit/3ea24c256be7fdf567186c0dfa897d0aa45a635e))
+
+
+
+
+
 # [0.5.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.4.6...@comparethemarketau/manor-slider@0.5.0) (2020-11-13)
 
 
