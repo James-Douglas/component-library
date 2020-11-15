@@ -9,7 +9,15 @@ import { Checkbox } from '@comparethemarketau/manor-checkbox';
 import { StyledContent, StyledWrapper, StyledFieldValidation } from './Disclaimer.styles';
 
 const Disclaimer = ({
-  id: propsId, isSelected, children, handleChange, handleFocus, handleBlur, validationMessage, topMargin,
+  id: propsId,
+  isSelected,
+  children,
+  handleChange,
+  handleFocus,
+  handleBlur,
+  validationMessage,
+  topMargin,
+  smallText,
 }) => {
   const id = useId(propsId);
   const content = createRef();
@@ -43,7 +51,7 @@ const Disclaimer = ({
       <StyledWrapper>
         <Checkbox id={id} handleChange={changeHandler} isSelected={checked} invalid={validationMessage && validationMessage.length > 0} handleFocus={handleFocus} handleBlur={handleBlur} />
         <StyledContent ref={content} onClick={handleContentClick} topMargin={topMargin}>
-          <Typography variant="body1" component="span">
+          <Typography variant={smallText ? 'body2' : ''} component="span">
             {children}
           </Typography>
         </StyledContent>
@@ -92,6 +100,10 @@ Disclaimer.propTypes = {
    * Adds top margin to the disclaimer text
    */
   topMargin: PropTypes.bool,
+  /**
+   * Renders smaller (body2 rather than body1) text
+   */
+  smallText: PropTypes.bool,
 };
 
 Disclaimer.defaultProps = {
@@ -103,6 +115,7 @@ Disclaimer.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   topMargin: true,
+  smallText: false,
 };
 
 export default Disclaimer;

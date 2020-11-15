@@ -4,7 +4,7 @@ import { Typography } from '@comparethemarketau/manor-typography';
 import { Label } from '@comparethemarketau/manor-label';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
-import { ManorStyledSlider, StyledSliderLabels } from './StepSlider.styles';
+import { ManorStyledSlider, StyledSliderLabels, StyledWrapper } from './StepSlider.styles';
 
 /**
  * We pass the Material slider a copy of the marks array, the objects
@@ -70,7 +70,7 @@ const StepSlider = ({
   };
 
   return (
-    <div>
+    <StyledWrapper>
       <div id={labelWrapId}>
         <Label htmlFor={id} text={label} tooltip={tooltip} />
       </div>
@@ -97,7 +97,7 @@ const StepSlider = ({
         first={first}
         last={last}
       />
-    </div>
+    </StyledWrapper>
   );
 };
 

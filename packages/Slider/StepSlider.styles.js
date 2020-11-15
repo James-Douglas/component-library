@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Slider as MUISlider } from '@material-ui/core';
 import React from 'react';
 
@@ -46,6 +46,12 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
     display: flex;
     > span {
       transform: scale(1) translateY(5px) !important;
+      ${({ first }) => first && css`
+        left: 0;
+      `};
+      ${({ last }) => last && css`
+        right: 0;
+      `};
        > span {
         transform: none;
         border-radius: ${({ theme }) => theme.slider.label.borderRadius};
@@ -69,4 +75,8 @@ const StyledSliderLabels = styled.div`
   margin-top: 2rem;
 `;
 
-export { ManorStyledSlider, StyledSliderLabels };
+const StyledWrapper = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing[60]};
+`;
+
+export { ManorStyledSlider, StyledSliderLabels, StyledWrapper };
