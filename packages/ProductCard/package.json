@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-product-card",
-  "version": "0.2.16",
+  "version": "0.2.17",
   "description": "Manor Product Card component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,18 +18,18 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-button": "^0.7.6",
-    "@comparethemarketau/manor-card": "^0.6.10",
-    "@comparethemarketau/manor-checkbox": "^0.12.0",
-    "@comparethemarketau/manor-hooks": "^0.4.8",
-    "@comparethemarketau/manor-layout": "^0.2.10",
-    "@comparethemarketau/manor-link": "^0.6.5",
+    "@comparethemarketau/manor-button": "^0.7.7",
+    "@comparethemarketau/manor-card": "^0.6.11",
+    "@comparethemarketau/manor-checkbox": "^0.12.1",
+    "@comparethemarketau/manor-hooks": "^0.4.9",
+    "@comparethemarketau/manor-layout": "^0.2.11",
+    "@comparethemarketau/manor-link": "^0.6.6",
     "@comparethemarketau/manor-picture": "^0.4.1",
-    "@comparethemarketau/manor-pill": "^0.3.6",
-    "@comparethemarketau/manor-separator": "^0.5.8",
-    "@comparethemarketau/manor-tooltip": "^0.13.2",
-    "@comparethemarketau/manor-typography": "^0.13.2",
-    "@comparethemarketau/manor-utils": "^0.3.8",
+    "@comparethemarketau/manor-pill": "^0.3.7",
+    "@comparethemarketau/manor-separator": "^0.5.9",
+    "@comparethemarketau/manor-tooltip": "^0.13.3",
+    "@comparethemarketau/manor-typography": "^0.13.3",
+    "@comparethemarketau/manor-utils": "^0.3.9",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
@@ -37,7 +37,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.11.0"
+    "@comparethemarketau/manor-themes": "^0.11.1"
   },
   "peerDependencies": {
     "react": "^16.11.0",

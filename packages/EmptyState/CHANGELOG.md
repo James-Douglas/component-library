@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-empty-state@0.6.13...@comparethemarketau/manor-empty-state@0.6.14) (2020-11-15)
+
+
+### Bug Fixes
+
+* 🐛 various fixes from cx ([#477](https://github.com/comparethemarketau/manor-react/issues/477)) ([39b7a15](https://github.com/comparethemarketau/manor-react/commit/39b7a15ad8f4bb3432b2c667158eec0a90fef80c))
+
+
+
+
+
 ## [0.6.13](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-empty-state@0.6.12...@comparethemarketau/manor-empty-state@0.6.13) (2020-11-12)
 
 **Note:** Version bump only for package @comparethemarketau/manor-empty-state

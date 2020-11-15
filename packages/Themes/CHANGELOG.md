@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.11.0...@comparethemarketau/manor-themes@0.11.1) (2020-11-15)
+
+
+### Bug Fixes
+
+* 🐛 various fixes from cx ([#477](https://github.com/comparethemarketau/manor-react/issues/477)) ([39b7a15](https://github.com/comparethemarketau/manor-react/commit/39b7a15ad8f4bb3432b2c667158eec0a90fef80c))
+
+
+
+
+
 # [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.10.0...@comparethemarketau/manor-themes@0.11.0) (2020-11-12)
 
 

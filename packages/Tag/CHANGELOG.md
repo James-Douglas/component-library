@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.12](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tag@0.0.11...@comparethemarketau/manor-tag@0.0.12) (2020-11-15)
+
+
+### Bug Fixes
+
+* 🐛 various fixes from cx ([#477](https://github.com/comparethemarketau/manor-react/issues/477)) ([39b7a15](https://github.com/comparethemarketau/manor-react/commit/39b7a15ad8f4bb3432b2c667158eec0a90fef80c))
+
+
+
+
+
 ## [0.0.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tag@0.0.10...@comparethemarketau/manor-tag@0.0.11) (2020-11-12)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tag
