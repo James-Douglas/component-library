@@ -20,8 +20,8 @@ export const StyledTag = styled.div`
     `}
   }
   margin-left: ${({ theme }) => (theme.spacing[4])};
-  padding-left: ${({ theme }) => (theme.spacing[4])};
-  height: ${({ theme }) => (theme.spacing[36])};
+  padding-left: 0.6rem;
+  height: 3.7rem;
   border-radius: ${({ theme }) => (theme.borderRadius.default)};
   display: flex;
   flex: 0 0 auto;
@@ -71,6 +71,7 @@ export const StyledTagP = styled.p`
 `;
 
 export const StyledTagButton = styled.button`
+  height: ${({ theme }) => (theme.spacing[36])};
   color: ${({ theme }) => (theme.colors.primary500)};
   ${({ warning, alert, theme }) => (alert && warning) && css`
     color: ${theme.tag.alertTextColor};
@@ -78,5 +79,16 @@ export const StyledTagButton = styled.button`
   ${({ warning, alert, theme }) => (alert && !warning) && css`
     color: ${theme.tag.altAlertTextColor};
   `}
-  margin-top: 2px;
+  &:focus {
+    transition: ${({ theme }) => theme.transition.default};
+    border: ${({ theme }) => (theme.tag.regHover)};
+    border-radius: ${({ theme }) => (theme.borderRadius.default)};
+    outline: none;
+    ${({ warning, alert, theme }) => (alert && !warning) && css`
+      border: ${theme.tag.altAlertHover};
+    `}
+    ${({ warning, alert, theme }) => (alert && warning) && css`
+      border: ${theme.tag.alertHover};
+    `}
+  }
 `;

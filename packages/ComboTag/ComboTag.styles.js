@@ -5,6 +5,9 @@ export const StyledTagContainer = styled.div`
   ${({ hasList, theme }) => !hasList && css`
     background: ${theme.colors.white};
   `}
+  ${({ theme, bordered }) => bordered && css`
+    border: ${theme.borders.component};
+  `}
 `;
 
 export const StyledContainer = styled.div`

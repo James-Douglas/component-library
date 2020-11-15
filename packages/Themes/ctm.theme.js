@@ -197,6 +197,7 @@ const spacing = {
   256: '25.6rem',
   280: '28rem',
   360: '36rem',
+  600: '60rem',
 };
 const borderRadius = {
   none: '0',
@@ -425,8 +426,9 @@ const ctmTheme = {
     },
   },
   emptyState: {
-    maxWidth: spacing[360],
-    maxHeight: spacing[360],
+    containerMaxWidth: spacing[600],
+    imgMaxWidth: spacing[280],
+    imgMaxHeight: spacing[280],
   },
   featureList: {
     color: colors.success500,

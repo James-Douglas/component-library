@@ -137,6 +137,7 @@ const ComboTag = ({
   type,
   mask,
   guide,
+  bordered,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -411,7 +412,7 @@ const ComboTag = ({
         {description
           && <Label htmlFor={id} text={description} variant="description" />}
         {(alerts && tags.length > 0) && renderAlert()}
-        <StyledTagContainer hasList={hasList}>
+        <StyledTagContainer hasList={hasList} bordered={bordered}>
           {prefix
             && (
             <StyledPrefix onClick={prefixClickHandler || null}>
@@ -646,6 +647,10 @@ ComboTag.propTypes = {
    * Sets the type of the input
    */
   type: PropTypes.string,
+  /**
+   * Sets the border of the combo tag
+   */
+  bordered: PropTypes.string,
 };
 
 ComboTag.defaultProps = {
@@ -681,6 +686,7 @@ ComboTag.defaultProps = {
   mask: (value) => Array(value.length).fill(/./),
   guide: false,
   type: 'text',
+  bordered: false,
 };
 
 export default ComboTag;

@@ -28,7 +28,7 @@ const Tag = React.forwardRef(({
   };
 
   return (
-    <StyledTag ref={ref} alert={alert} warning={warning} onKeyDown={keyDownHandler} tabIndex="0">
+    <StyledTag ref={ref} alert={alert} warning={warning} onKeyDown={keyDownHandler} tabIndex="-1">
       {icon
         && (
         <StyledIconContainer warning={warning} alert={alert}>

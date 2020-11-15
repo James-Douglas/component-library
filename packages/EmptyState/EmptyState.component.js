@@ -5,7 +5,7 @@ import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Picture, picturePropTypes } from '@comparethemarketau/manor-picture';
 import placeholder from '../../images/sergei.png';
 import {
-  StyledEmptyState, StyledEmptyStateWrap, StyledPictureContainer,
+  StyledEmptyState, StyledEmptyStateWrap, StyledPictureContainer, StyledFlexContainer,
 } from './EmptyState.styles';
 
 const EmptyState = ({
@@ -26,9 +26,12 @@ const EmptyState = ({
   return (
     <StyledEmptyState className={className}>
       <StyledEmptyStateWrap desktop={isDesktop} className={className}>
-        <StyledPictureContainer>
-          <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
-        </StyledPictureContainer>
+        <StyledFlexContainer>
+          <StyledPictureContainer>
+            <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
+          </StyledPictureContainer>
+        </StyledFlexContainer>
+
         <div>
           <Typography align={textPosition} variant="h3">{heading}</Typography>
           <Typography align={textPosition} variant="body1">{children}</Typography>
