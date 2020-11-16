@@ -8,7 +8,7 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
 ))`
   padding-top: ${({ theme }) => `${theme.spacing[4]} !important`};
   & .MuiSlider-markLabel {
-    top: ${({ theme }) => theme.spacing[16]};
+    top: ${({ theme }) => theme.spacing[20]};
     height: ${({ theme }) => theme.spacing[4]};
     width: ${({ theme }) => theme.spacing[4]};
     background-color: ${({ theme }) => theme.colors.primary500};
@@ -16,7 +16,7 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
     display: inline-block;
   }
   & .MuiSlider-mark {
-    height: ${({ theme }) => theme.spacing[4]};
+    height: ${({ theme }) => theme.spacing[8]};
     width: 1px;
   }
   & .MuiSlider-mark:last-child {
@@ -24,17 +24,17 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
   }
   & .MuiSlider-rail {
     color: ${({ theme }) => theme.slider.rail.color};
-    height: ${({ theme }) => theme.spacing[4]};;
+    height: ${({ theme }) => theme.spacing[8]};;
   }
   & .MuiSlider-track {
     border-radius: ${({ theme }) => theme.slider.track.borderRadius};
     color: ${({ theme, disabled }) => (disabled ? theme.slider.disabled : theme.slider.track.color)};
-    height: ${({ theme }) => theme.spacing[4]};;
+    height: ${({ theme }) => theme.spacing[8]};;
   }
   & .MuiSlider-thumb {
     top: .2rem;
-    height: ${({ theme }) => theme.spacing[16]};
-    width: ${({ theme }) => theme.spacing[16]};
+    height: ${({ theme }) => theme.spacing[20]};
+    width: ${({ theme }) => theme.spacing[20]};
     border: ${({ theme }) => theme.slider.thumb.border};
     box-shadow: ${({ theme }) => theme.slider.thumb.boxShadow};
   }
@@ -44,6 +44,7 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
    }
   & .MuiSlider-thumb {
     display: flex;
+    margin-left: -9px;
     > span {
       transform: scale(1) translateY(5px) !important;
       ${({ first }) => first && css`
