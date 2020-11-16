@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-modal",
-  "version": "0.8.31",
+  "version": "0.8.32",
   "description": "Manor Modal component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-button": "^0.7.7",
+    "@comparethemarketau/manor-button": "^0.8.0",
     "@comparethemarketau/manor-grid": "^0.7.9",
     "@comparethemarketau/manor-hooks": "^0.4.9",
     "@comparethemarketau/manor-overlay": "^0.4.0",
