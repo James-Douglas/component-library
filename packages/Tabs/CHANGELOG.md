@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tabs@0.10.3...@comparethemarketau/manor-tabs@0.10.4) (2020-11-16)
+
+
+### Bug Fixes
+
+* 🐛 removed padding, bug at smaller res with many panels ([#486](https://github.com/comparethemarketau/manor-react/issues/486)) ([632c27b](https://github.com/comparethemarketau/manor-react/commit/632c27b99e5b7e87b19b9aad794de7e27ab584a0))
+
+
+
+
+
 ## [0.10.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tabs@0.10.2...@comparethemarketau/manor-tabs@0.10.3) (2020-11-15)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tabs
