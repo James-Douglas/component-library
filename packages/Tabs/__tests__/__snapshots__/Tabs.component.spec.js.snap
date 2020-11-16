@@ -163,7 +163,7 @@ exports[`Tabs renders a border 1`] = `
     style="min-height: initial;"
   >
     <div
-      class="sc-AxhUy bzQxEL tab-button-wrap"
+      class="sc-AxhUy dFAQPK tab-button-wrap"
     >
       <button
         class="sc-AxiKw gMuLxb 
@@ -239,7 +239,7 @@ exports[`Tabs renders additional classNames 1`] = `
     style="min-height: initial;"
   >
     <div
-      class="sc-AxhUy bzQxEL tab-button-wrap"
+      class="sc-AxhUy dFAQPK tab-button-wrap"
     >
       <button
         class="sc-AxiKw gMuLxb 
@@ -315,7 +315,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
     style="min-height: initial;"
   >
     <div
-      class="sc-AxhUy bzQxEL tab-button-wrap"
+      class="sc-AxhUy dFAQPK tab-button-wrap"
     >
       <button
         class="sc-AxiKw gMuLxb 
