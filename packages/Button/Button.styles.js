@@ -127,6 +127,8 @@ const tertiaryVariant = css`
     box-shadow: none;
   }
   width: auto;
+  margin-left: -${({ theme }) => theme.spacing[8]};
+  margin-right: -${({ theme }) => theme.spacing[8]};
 `;
 
 export const BaseTag = styled.div`
