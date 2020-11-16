@@ -121,13 +121,12 @@ const tertiaryVariant = css`
   color: ${({ theme }) => theme.button.tertiary.color};
   fill: ${({ theme }) => theme.button.tertiary.fill};
   background: ${({ theme }) => theme.button.tertiary.background};
-  :hover {
-    background: ${({ theme }) => theme.button.tertiary.backgroundHover};
-  }
+  :hover,
   :focus {
-    color: ${({ theme }) => theme.button.tertiary.colorhover};
-    fill: ${({ theme }) => theme.button.tertiary.colorhover};
+    background: ${({ theme }) => theme.button.tertiary.backgroundHover};
+    box-shadow: none;
   }
+  width: auto;
 `;
 
 export const BaseTag = styled.div`
