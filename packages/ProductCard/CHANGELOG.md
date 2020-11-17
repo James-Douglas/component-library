@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-product-card@0.2.19...@comparethemarketau/manor-product-card@0.3.0) (2020-11-17)
+
+
+### Features
+
+* export product provider from ProductCard ([#487](https://github.com/comparethemarketau/manor-react/issues/487)) ([8e786a6](https://github.com/comparethemarketau/manor-react/commit/8e786a61dea15e12eae9a8d99fbe7984d45c97c2))
+
+
+
+
+
 ## [0.2.19](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-product-card@0.2.18...@comparethemarketau/manor-product-card@0.2.19) (2020-11-16)
 
 **Note:** Version bump only for package @comparethemarketau/manor-product-card
