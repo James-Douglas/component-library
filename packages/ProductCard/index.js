@@ -15,6 +15,7 @@ import ProductInfoWrapper from './Product/ProductInfoWrapper/ProductInfoWrapper'
 import ProductSelect from './Product/ProductSelect/ProductSelect';
 import ProductSelectWrapper from './Product/ProductSelectWrapper/ProductSelectWrapper';
 import ProductCompareToggle from './Product/ProductCompareToggle/ProductCompareToggle';
+import ProductProvider from './Context/ProductProvider';
 
 export {
   ProductCard,
@@ -34,4 +35,5 @@ export {
   ProductSelect,
   ProductSelectWrapper,
   ProductCompareToggle,
+  ProductProvider,
 };
