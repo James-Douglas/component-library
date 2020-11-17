@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const StyledDateRangePickerWrap = styled.div`
   margin-right: ${({ theme }) => theme.spacing[24]};
-  
+  width: 50%;
   input {
     ${({ theme, breakpoint }) => (breakpoint === 'xs') && css`
       padding-left: ${theme.spacing[8]};
@@ -22,6 +22,7 @@ export const StyledDateRangePickerWrap = styled.div`
 
 export const StyledDateRangePicker = styled.div`
   display: flex;
+  max-width: ${({ theme }) => theme.spacing[44]};
   & div :last-child {
     margin-right: 0 !important;
   }
