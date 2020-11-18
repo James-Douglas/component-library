@@ -118,6 +118,7 @@ const ComboTag = ({
   disabled,
   characterMinimum,
   placeholder,
+  validationMessage,
   className,
   handleChange,
   handleInput,
@@ -447,6 +448,7 @@ const ComboTag = ({
               placeholder={placeholder}
               value={currentValue}
               disabled={disabled}
+              validationMessage={validationMessage}
               autocomplete={autocomplete}
               handleChange={comboHandleChange}
               handleKeyDown={tagKeyDown}
@@ -651,6 +653,10 @@ ComboTag.propTypes = {
    * Sets the border of the combo tag
    */
   bordered: PropTypes.string,
+  /**
+   * Displays given validation message and invalid styles on the component when provided.
+   */
+  validationMessage: PropTypes.string,
 };
 
 ComboTag.defaultProps = {
@@ -687,6 +693,7 @@ ComboTag.defaultProps = {
   guide: false,
   type: 'text',
   bordered: false,
+  validationMessage: null,
 };
 
 export default ComboTag;
