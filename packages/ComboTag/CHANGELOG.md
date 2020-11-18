@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.5.4...@comparethemarketau/manor-combo-tag@0.6.0) (2020-11-18)
+
+
+### Features
+
+* 🎸 pass validation prop ([#489](https://github.com/comparethemarketau/manor-react/issues/489)) ([ed76d55](https://github.com/comparethemarketau/manor-react/commit/ed76d559cdb1f9ac042f7acf6f6d4cecb44f4576))
+
+
+
+
+
 ## [0.5.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.5.3...@comparethemarketau/manor-combo-tag@0.5.4) (2020-11-15)
 
 
