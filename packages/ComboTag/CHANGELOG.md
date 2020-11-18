@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.6.0...@comparethemarketau/manor-combo-tag@0.6.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* 🐛 custom validation positioning for combo ([#490](https://github.com/comparethemarketau/manor-react/issues/490)) ([0d00642](https://github.com/comparethemarketau/manor-react/commit/0d00642f485c4c90b95fab530866947e5cb272e7))
+
+
+
+
+
 # [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.5.4...@comparethemarketau/manor-combo-tag@0.6.0) (2020-11-18)
 
 
