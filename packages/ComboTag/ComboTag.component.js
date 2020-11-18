@@ -170,7 +170,7 @@ const ComboTag = ({
     }
     // use if we don't have a list or api, and use raw user input
     if (!hasList) {
-      if (e.key === 'Enter') {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === ',') {
         // prevent unwanted values from being set as a tag or set an alert
         let alertState = false;
         if (invalidTagCondition) {

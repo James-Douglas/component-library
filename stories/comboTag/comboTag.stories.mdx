@@ -177,8 +177,35 @@ a click handler.
       const condition = (x, y) => {
         return x > 100;
       }
+      const maskFunc = val => {
+        const raw = val.toString().replace(/^0+|[^0-9]+/g, '0');
+        const rawArray = raw.split('');
+        const result = [];
+        for (let i = rawArray.length; i > 0; i -= 1) {
+          result.push(/\d/);
+        }
+        return result.reverse();
+      };
       return (
         <div style={{ padding: '2%', marginTop: '200px'}}>
+          <ComboTag
+            id="tag-id-1"
+            placeholder='Type in your destination and then press enter'
+            handleInput={(value) => {
+              // eslint-disable-next-line no-console
+              console.log(value)
+              setComboTagValue(value)
+            }}
+            mask={maskFunc}
+            handleChange={() => {}}
+            invalidTagCondition={condition}
+            tagAlertIcon={faExclamationCircle}
+            label="With a label"
+            description="And a description"
+            bordered
+          />
+          <br/>
+          <br/>
           <ComboTag
             id="tag-id-2"
             placeholder='Type in your destination and then press enter'
@@ -187,11 +214,12 @@ a click handler.
               console.log(value)
               setComboTagValue(value)
             }}
+            mask={maskFunc}
             handleChange={() => {}}
             invalidTagCondition={condition}
             tagAlertIcon={faExclamationCircle}
-            label="With a label"
-            description="And a description"
+            label="Masked number field"
+            description="You can still press space, enter and comma to add a tag"
             bordered
           />
         </div>

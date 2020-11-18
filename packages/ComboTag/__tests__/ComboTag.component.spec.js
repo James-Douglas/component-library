@@ -278,9 +278,41 @@ describe('ComboTag', () => {
 
     const inputField = container.querySelector('#combo-tag');
     inputField.focus();
-    fireEvent.change(inputField, { target: { value: 'new tag' } });
+    fireEvent.change(inputField, { target: { value: 'newTagOnEnter' } });
     fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
-    expect(getByText('new tag')).toBeInTheDocument();
+    expect(getByText('newTagOnEnter')).toBeInTheDocument();
+  });
+
+  it('adds a tag on keypress (space)', () => {
+    const { container, getByText } = render(
+      <ComboTag
+        handleChange={() => {}}
+        id="combo-tag"
+        placeholder="start typing"
+      />,
+    );
+
+    const inputField = container.querySelector('#combo-tag');
+    inputField.focus();
+    fireEvent.change(inputField, { target: { value: 'newTagOnSpace' } });
+    fireEvent.keyDown(inputField, { key: ' ', code: 32 });
+    expect(getByText('newTagOnSpace')).toBeInTheDocument();
+  });
+
+  it('adds a tag on keypress (comma)', () => {
+    const { container, getByText } = render(
+      <ComboTag
+        handleChange={() => {}}
+        id="combo-tag"
+        placeholder="start typing"
+      />,
+    );
+
+    const inputField = container.querySelector('#combo-tag');
+    inputField.focus();
+    fireEvent.change(inputField, { target: { value: 'newTagOnComma' } });
+    fireEvent.keyDown(inputField, { key: ',', code: 188 });
+    expect(getByText('newTagOnComma')).toBeInTheDocument();
   });
 
   it('accepts a custom validity check of the input', () => {
