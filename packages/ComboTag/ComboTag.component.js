@@ -12,6 +12,7 @@ import { EmptyState } from '@comparethemarketau/manor-empty-state';
 import { Tag } from '@comparethemarketau/manor-tag';
 import { Tooltip } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
+import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 
 import {
   StyledContainer,
@@ -448,7 +449,6 @@ const ComboTag = ({
               placeholder={placeholder}
               value={currentValue}
               disabled={disabled}
-              validationMessage={validationMessage}
               autocomplete={autocomplete}
               handleChange={comboHandleChange}
               handleKeyDown={tagKeyDown}
@@ -483,6 +483,8 @@ const ComboTag = ({
       </div>
       {hasList
         && <StyledBorder />}
+      {validationMessage
+        && <FieldValidation message={validationMessage} />}
     </StyledContainer>
   );
 };

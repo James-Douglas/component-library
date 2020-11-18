@@ -18,6 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
+    "@comparethemarketau/manor-field-validation": "^0.6.9",
     "@comparethemarketau/manor-empty-state": "^0.6.14",
     "@comparethemarketau/manor-hooks": "^0.4.9",
     "@comparethemarketau/manor-input": "^0.15.2",
