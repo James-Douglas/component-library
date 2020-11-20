@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.14.0...@comparethemarketau/manor-date-picker@0.15.0) (2020-11-20)
+
+
+### Features
+
+* **daterangepicker:** fix daterangepicker field size issues ([#493](https://github.com/comparethemarketau/manor-react/issues/493)) ([bb5399a](https://github.com/comparethemarketau/manor-react/commit/bb5399ac568d72923b9fb1230fe635aaa8fa4ce4))
+
+
+
+
+
 # [0.14.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.13.4...@comparethemarketau/manor-date-picker@0.14.0) (2020-11-17)
 
 
