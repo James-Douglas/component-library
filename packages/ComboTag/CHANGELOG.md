@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.6.2...@comparethemarketau/manor-combo-tag@0.7.0) (2020-11-20)
+
+
+### Features
+
+* **combotag:** stop combotag firing on mount, update storybook ([#492](https://github.com/comparethemarketau/manor-react/issues/492)) ([34033ab](https://github.com/comparethemarketau/manor-react/commit/34033ab5ae0bda5348c577ed90b0d66214438dae))
+
+
+
+
+
 ## [0.6.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.6.1...@comparethemarketau/manor-combo-tag@0.6.2) (2020-11-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combo-tag
