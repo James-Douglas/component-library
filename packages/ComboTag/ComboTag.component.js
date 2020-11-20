@@ -386,10 +386,10 @@ const ComboTag = ({
 
   // fire handleChange func (if passed) with the current tags
   useEffect(() => {
-    if (handleChange) {
+    if (handleChange && JSON.stringify(tags) !== JSON.stringify(selectedTags)) {
       handleChange(tags);
     }
-  }, [tags, handleChange]);
+  }, [tags, selectedTags]);
 
   const { title, body } = errorTooltip;
 
