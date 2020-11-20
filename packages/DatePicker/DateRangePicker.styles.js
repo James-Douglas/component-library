@@ -22,7 +22,7 @@ export const StyledDateRangePickerWrap = styled.div`
 
 export const StyledDateRangePicker = styled.div`
   display: flex;
-  max-width: ${({ theme }) => theme.spacing[44]};
+  max-width: ${({ theme }) => '48rem'};
   & div :last-child {
     margin-right: 0 !important;
   }
