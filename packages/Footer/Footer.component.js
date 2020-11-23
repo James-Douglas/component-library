@@ -13,6 +13,7 @@ const Footer = ({
 }) => {
   const currentYear = new Date().getFullYear();
   const footerRef = useRef(null);
+  const throttledResize = useRef(null);
 
   const [windowWidth, setWindowWidth] = useState();
   const [footerHeight, setFooterHeight] = useState();
@@ -42,14 +43,15 @@ const Footer = ({
   useLayoutEffect(() => {
     if (sticky) {
       const handleResize = () => setWindowWidth(window.innerWidth);
-      const throttledResize = throttle(handleResize, 25);
+      if (!throttledResize.current) {
+        throttledResize.current = throttle(handleResize, 25);
+      }
       setFooterHeight(footerRef.current.offsetHeight);
-      window.addEventListener('resize', throttledResize);
-      return () => {
-        window.removeEventListener('resize', throttledResize);
-      };
+      window.addEventListener('resize', throttledResize.current);
     }
-    return null;
+    return () => {
+      window.removeEventListener('resize', throttledResize.current);
+    };
   }, [sticky, windowWidth]);
 
   return (
