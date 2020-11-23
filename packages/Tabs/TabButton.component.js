@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@comparethemarketau/manor-typography';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import TabsContext from './TabsContext';
 import { StyledTabButton, StyledTabButtonContent } from './TabButton.styles';
 
@@ -8,6 +9,7 @@ const TabButton = ({
   name, label, handleClick,
 }) => {
   const tabContext = useContext(TabsContext);
+  const { breakpoint } = useContext(ManorContext);
 
   const clickHandler = (e) => {
     tabContext.changeTab(name);
@@ -30,7 +32,7 @@ const TabButton = ({
       active={active}
       onClick={clickHandler}
     >
-      <StyledTabButtonContent active={active}>
+      <StyledTabButtonContent active={active} breakpoint={breakpoint}>
         <Typography variant="body1" component="div" color="inherit" align="center">{label}</Typography>
       </StyledTabButtonContent>
     </StyledTabButton>

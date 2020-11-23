@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components';
 
 const StyledTabButtonContent = styled.div`
-  padding: ${({ theme }) => `${theme.spacing[16]} ${theme.spacing[8]}`};
+  ${({ theme, breakpoint }) => (breakpoint === 'xs') && css`
+    padding: ${theme.spacing[8]} ${theme.spacing[8]}
+  `}
+  ${({ theme, breakpoint }) => (breakpoint !== 'xs') && css`
+    padding: ${theme.spacing[16]} ${theme.spacing[0]}
+  `}
   ${({ active }) => active && css`
     div {
      margin: 0;

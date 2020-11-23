@@ -10,7 +10,7 @@ exports[`TabButton renders a TabButton 1`] = `
     type="button"
   >
     <div
-      class="sc-AxirZ iPjTQj"
+      class="sc-AxirZ fysrUx"
     >
       <div
         class="sc-AxjAm ckNpsi"
@@ -32,7 +32,7 @@ exports[`TabButton renders multiple TabButtons 1`] = `
     type="button"
   >
     <div
-      class="sc-AxirZ iPjTQj"
+      class="sc-AxirZ fysrUx"
     >
       <div
         class="sc-AxjAm ckNpsi"
@@ -49,7 +49,7 @@ exports[`TabButton renders multiple TabButtons 1`] = `
     type="button"
   >
     <div
-      class="sc-AxirZ iPjTQj"
+      class="sc-AxirZ fysrUx"
     >
       <div
         class="sc-AxjAm ckNpsi"
@@ -173,7 +173,7 @@ exports[`Tabs renders a border 1`] = `
         type="button"
       >
         <div
-          class="sc-AxirZ bDbtlN"
+          class="sc-AxirZ hDOHDz"
         >
           <div
             class="sc-AxjAm ckNpsi"
@@ -190,7 +190,7 @@ exports[`Tabs renders a border 1`] = `
         type="button"
       >
         <div
-          class="sc-AxirZ iPjTQj"
+          class="sc-AxirZ fysrUx"
         >
           <div
             class="sc-AxjAm ckNpsi"
@@ -249,7 +249,7 @@ exports[`Tabs renders additional classNames 1`] = `
         type="button"
       >
         <div
-          class="sc-AxirZ bDbtlN"
+          class="sc-AxirZ hDOHDz"
         >
           <div
             class="sc-AxjAm ckNpsi"
@@ -266,7 +266,7 @@ exports[`Tabs renders additional classNames 1`] = `
         type="button"
       >
         <div
-          class="sc-AxirZ iPjTQj"
+          class="sc-AxirZ fysrUx"
         >
           <div
             class="sc-AxjAm ckNpsi"
@@ -325,7 +325,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
         type="button"
       >
         <div
-          class="sc-AxirZ bDbtlN"
+          class="sc-AxirZ hDOHDz"
         >
           <div
             class="sc-AxjAm ckNpsi"
@@ -342,7 +342,7 @@ exports[`Tabs renders correctly with minimal props 1`] = `
         type="button"
       >
         <div
-          class="sc-AxirZ iPjTQj"
+          class="sc-AxirZ fysrUx"
         >
           <div
             class="sc-AxjAm ckNpsi"
