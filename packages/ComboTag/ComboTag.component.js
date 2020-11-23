@@ -144,7 +144,7 @@ const ComboTag = ({
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
   const [currentValue, setCurrentValue] = useState((value && value.length) && value);
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(selectedTags);
   const [tagElements, setTagElements] = useState([]);
   const [alerts, setAlerts] = useState(false);
   const [tagsVisible, setTagsVisible] = useState(true);
@@ -187,8 +187,7 @@ const ComboTag = ({
   // used if we have a list (expected with an api)
   const handleSelectItem = (tag) => {
     setInlineTooltipActive(false);
-    const tagExists = tags.filter((t) => tag.label === t.label);
-    if (!tagExists.length) {
+    if (!tags.some((t) => tag.label === t.label)) {
       setTags([...tags, tag]);
     } else {
       setInlineTooltipActive(true);
@@ -384,23 +383,19 @@ const ComboTag = ({
     }
   }, [tagElements, tagsWidth, updateTagsWidth, hasList]);
 
-  // fire handleChange func (if passed) with the current tags
-  useEffect(() => {
-    if (handleChange && JSON.stringify(tags) !== JSON.stringify(selectedTags)) {
-      handleChange(tags);
-    }
-  }, [tags, selectedTags]);
-
-  const { title, body } = errorTooltip;
-
   // if the selected tags prop updates, add tags to state
   useEffect(() => {
-    if (selectedTags.length !== tags.length) {
-      setTags(selectedTags);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTags, setTags]);
+    setTags(selectedTags);
+  }, [selectedTags]);
 
+  // fire handleChange func (if passed) with the current tags
+  useEffect(() => {
+    if (handleChange) {
+      handleChange(tags);
+    }
+  }, [tags]);
+
+  const { title, body } = errorTooltip;
   return (
     <StyledContainer>
       <div
