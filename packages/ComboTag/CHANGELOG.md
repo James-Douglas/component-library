@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.7.0...@comparethemarketau/manor-combo-tag@0.8.0) (2020-11-23)
+
+
+### Features
+
+* **combotag:** stop handleChange firing when selectedTags prop updates ([#494](https://github.com/comparethemarketau/manor-react/issues/494)) ([25dedda](https://github.com/comparethemarketau/manor-react/commit/25deddaf177f2f4bae8e265741179f71704f8826))
+
+
+
+
+
 # [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.6.2...@comparethemarketau/manor-combo-tag@0.7.0) (2020-11-20)
 
 
