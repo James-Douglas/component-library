@@ -1,8 +1,12 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { spacingPropTypes } from '@comparethemarketau/manor-utils';
+import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import ProductContext from '../../Context/ProductContext';
-import { Wrapper, Cents, Sup } from './ProductCost.styles';
+import {
+  Wrapper, Cents, Sup, StyledTooltip,
+} from './ProductCost.styles';
 
 const multipliers = {
   ANNUALLY: {
@@ -28,6 +32,8 @@ const ProductCost = ({
   padding,
   className = '',
   size = '5xl',
+  tooltip,
+  tooltipVerticalAlign = 'top',
 }) => {
   const { product } = useContext(ProductContext);
 
@@ -47,6 +53,7 @@ const ProductCost = ({
         .{cents}
         {product.priceDisclaimer && <Sup>*</Sup>}
       </Cents>
+      {tooltip && <StyledTooltip {...tooltip} verticalAlign={tooltipVerticalAlign} />}
     </Wrapper>
   );
 };
@@ -57,6 +64,8 @@ ProductCost.propTypes = {
   size: PropTypes.string,
   padding: spacingPropTypes,
   className: PropTypes.string,
+  tooltip: PropTypes.shape(tooltipPropTypes),
+  tooltipVerticalAlign: PropTypes.oneOf(['top', 'baseline']),
 };
 
 ProductCost.defaultProps = {
@@ -65,6 +74,8 @@ ProductCost.defaultProps = {
   size: '5xl',
   padding: ['12', '0', '0', '0'],
   className: '',
+  tooltip: {},
+  tooltipVerticalAlign: 'top',
 };
 
 export default ProductCost;

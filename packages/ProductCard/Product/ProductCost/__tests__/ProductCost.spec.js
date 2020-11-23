@@ -22,4 +22,27 @@ describe('ProductCost', () => {
     expect(getByText('$8')).toBeInTheDocument();
     expect(getByText('.33')).toBeInTheDocument();
   });
+  it('renders with tooltip', () => {
+    const { container } = render(
+      <ProductTestWrapper product={{ name: 'test', cost: { price: '1.00' } }}>
+        <ProductCost tooltip={{ title: 'tooltip title', body: 'body' }} />
+      </ProductTestWrapper>,
+    );
+    const toolTip = container.querySelector('[role="tooltip"]');
+    expect(toolTip).toBeInTheDocument();
+    expect(toolTip).toHaveStyle('vertical-align: top');
+  });
+  it('renders with tooltip with vertical-align prop', () => {
+    const { container } = render(
+      <ProductTestWrapper product={{ name: 'test', cost: { price: '1.00' } }}>
+        <ProductCost
+          tooltip={{ title: 'tooltip title', body: 'body' }}
+          tooltipVerticalAlign="baseline"
+        />
+      </ProductTestWrapper>,
+    );
+    const toolTip = container.querySelector('[role="tooltip"]');
+    expect(toolTip).toBeInTheDocument();
+    expect(toolTip).toHaveStyle('vertical-align: baseline');
+  });
 });
