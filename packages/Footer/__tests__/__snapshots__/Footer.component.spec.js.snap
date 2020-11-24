@@ -3,5 +3,5 @@
 exports[`Footer renders with minimal props 1`] = `
 "<div class=\\"sc-AxmLO fpKobE\\" style=\\"padding-top: 0px;\\"><div class=\\"sc-fzozJi bCRRkH\\"><div class=\\"sc-AxgMl gNWlHe\\"><div class=\\"sc-AxiKw sc-Axmtr gBljuT row \\"><div class=\\"sc-AxhCb sc-AxhUy imVIcg 
         
-      \\"><div class=\\"sc-fzoLsD hNnqoR\\"><span class=\\"sc-AxjAm inSjZe\\">© 2020 Compare The Market. All rights reserved. ACN: 117323 378. AFSL 422926.</span></div></div></div></div></div></div>"
+      \\"><div class=\\"sc-fzoLsD hNnqoR\\"><span class=\\"sc-AxjAm inSjZe\\">© 2020 Compare The Market. All rights reserved. ACN: 117 323 378. AFSL 422926.</span></div></div></div></div></div></div>"
 `;

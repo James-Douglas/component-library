@@ -18,7 +18,7 @@ const Footer = ({
   const [windowWidth, setWindowWidth] = useState();
   const [footerHeight, setFooterHeight] = useState();
 
-  const copyRightText = 'Compare The Market. All rights reserved. ACN: 117323 378. AFSL 422926.';
+  const copyRightText = 'Compare The Market. All rights reserved. ACN: 117 323 378. AFSL 422926.';
 
   // switch here to add more cases if necessary
   const renderVariant = () => {
