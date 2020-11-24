@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.16.4...@comparethemarketau/manor-buttongroup@0.16.5) (2020-11-24)
+
+
+### Bug Fixes
+
+* 🐛 remove wrapping margin on validation for buttons ([#498](https://github.com/comparethemarketau/manor-react/issues/498)) ([5b8be8c](https://github.com/comparethemarketau/manor-react/commit/5b8be8c2667731c846a1b85f343e6b4cedb62a9b))
+
+
+
+
+
 ## [0.16.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.16.3...@comparethemarketau/manor-buttongroup@0.16.4) (2020-11-15)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
