@@ -43,7 +43,6 @@ export const StyledSegmentedButtons = styled.div`
 
 export const StyledValidationWrapper = styled.div`
   width: 100%;
-  margin-left: ${({ theme }) => theme.spacing[8]};
 `;
 
 export const StyledEvenDivWrapper = styled.div`
