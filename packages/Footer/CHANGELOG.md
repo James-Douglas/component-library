@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.11.4...@comparethemarketau/manor-footer@0.11.5) (2020-11-24)
+
+
+### Bug Fixes
+
+* **footer:** updated footer acn formatting ([#499](https://github.com/comparethemarketau/manor-react/issues/499)) ([fe8b306](https://github.com/comparethemarketau/manor-react/commit/fe8b3068bd77d9d26dc084a07786a783056b1db1))
+
+
+
+
+
 ## [0.11.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.11.3...@comparethemarketau/manor-footer@0.11.4) (2020-11-23)
 
 **Note:** Version bump only for package @comparethemarketau/manor-footer
