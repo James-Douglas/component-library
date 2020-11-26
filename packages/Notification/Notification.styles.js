@@ -91,6 +91,7 @@ export const StyledActions = styled.div`
   a {
     font-size: ${({ theme }) => theme.fontSize.sm};
     margin-bottom: 0;
+    text-decoration: none;
   }
 `;
 
@@ -99,7 +100,6 @@ export const StyledActionText = styled.div`
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.fontSize.sm};
   cursor: pointer;
-  text-decoration: underline;
 `;
 
 export const StyledFontAwesomeWrap = styled.div`
