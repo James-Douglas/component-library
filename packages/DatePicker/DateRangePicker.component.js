@@ -49,8 +49,10 @@ const DateRangePicker = ({
   const containerRef = React.useRef();
   const node = containerRef;
   const displayFormat = 'DD/MM/YYYY';
-  const [startDate, setStartDate] = useState(startDateValue);
-  const [endDate, setEndDate] = useState(endDateValue);
+  const [startDate, setStartDate] = useState(startDateValue ? startDateValue.format(displayFormat) : '');
+  const [startDateMoment, setStartDateMoment] = useState(startDateValue ? moment(startDateValue, displayFormat, true) : null);
+  const [endDate, setEndDate] = useState(endDateValue ? endDateValue.format(displayFormat) : '');
+  const [endDateMoment, setEndDateMoment] = useState(endDateValue ? moment(endDateValue, displayFormat, true) : null);
   const [focusedInput, setFocusedInput] = useState(START_DATE);
   const [isVisisble, setIsVisisble] = useState(pickerVisible);
   const [startDateValidationMessageText, setStartDateValidationMessage] = useState(null);
@@ -64,16 +66,19 @@ const DateRangePicker = ({
     setIsVisisble(pickerVisible);
   }, [pickerVisible]);
 
-  const dateIsBlocked = useCallback((date) => (isDayBlocked !== undefined && typeof isDayBlocked === 'function' ? isDayBlocked(date) : false), [isDayBlocked]);
+  const dateIsBlocked = useCallback((date) => (typeof isDayBlocked === 'function' ? isDayBlocked(date) : false), [isDayBlocked]);
 
   const onDatesChange = (dates) => {
     // If the user tries to change the endDate to be before the startDate, the airbnb picker just sets the startDate to
     // the selected endDate. CX instead want to not set the endDate and display an error.
     if (dates.startDate && !dates.endDate && endDate && dates.startDate !== startDate) {
-      setEndDate(dates.startDate);
+      setEndDate(dates.startDate.format(displayFormat));
+      setEndDateMoment(dates.startDate);
     } else {
-      setStartDate(dates.startDate);
-      setEndDate(dates.endDate);
+      setStartDate(dates.startDate.format(displayFormat));
+      setStartDateMoment(dates.startDate);
+      setEndDate(dates.endDate ? dates.endDate.format(displayFormat) : moment('', displayFormat, true));
+      setEndDateMoment(dates.endDate);
     }
     if (focusedInput === END_DATE) {
       setIsVisisble(false);
@@ -81,10 +86,22 @@ const DateRangePicker = ({
   };
 
   useEffect(() => {
-    startDate && startDate.isValid() && !dateIsBlocked(startDate) && setStartDateValidationMessage(null);
-    endDate && endDate.isValid() && !dateIsBlocked(endDate) && setEndDateValidationMessage(null);
-    handleChange && handleChange({ startDate, endDate });
-  }, [startDate, endDate, dateIsBlocked, handleChange]);
+    if (startDate) {
+      setStartDateMoment(moment(startDate, displayFormat, true));
+    }
+  }, [startDate]);
+
+  useEffect(() => {
+    if (endDate) {
+      setEndDateMoment(moment(endDate, displayFormat, true));
+    }
+  }, [endDate]);
+
+  useEffect(() => {
+    startDateMoment && startDateMoment.isValid() && !dateIsBlocked(startDateMoment) && setStartDateValidationMessage(null);
+    endDateMoment && endDateMoment.isValid() && !dateIsBlocked(endDateMoment) && setEndDateValidationMessage(null);
+    handleChange && handleChange({ startDate: startDateMoment, endDate: endDateMoment });
+  }, [startDateMoment, endDateMoment]);
 
   const fieldNameHandleFocus = (range) => {
     setIsVisisble(true);
@@ -98,7 +115,6 @@ const DateRangePicker = ({
   const keyboardAccessibilityFromDate = (event) => {
     if (event.key === 'Tab') {
       setIsVisisble(true);
-      calendarArea && calendarArea.current && calendarArea.current.focus();
     }
   };
 
@@ -108,18 +124,20 @@ const DateRangePicker = ({
 
   const startDateHandleChange = (value) => {
     const parsed = moment(value, displayFormat, true);
-    setStartDate(parsed);
+    setStartDate(value);
+    setStartDateMoment(parsed);
   };
 
   const endDateHandleChange = (value) => {
     const parsed = moment(value, displayFormat, true);
-    setEndDate(parsed);
+    setEndDate(value);
+    setEndDateMoment(parsed);
   };
 
   useEffect(() => {
-    if (startDate) {
-      if (startDate.isValid()) {
-        if (dateIsBlocked(startDate)) {
+    if (startDateMoment) {
+      if (startDateMoment.isValid()) {
+        if (dateIsBlocked(startDateMoment)) {
           setStartDateValidationMessage(startDateValidationMessage);
           setFocusedInput(END_DATE);
           return;
@@ -130,13 +148,13 @@ const DateRangePicker = ({
         setStartDateValidationMessage(startDateValidationMessage);
       }
     }
-  }, [dateIsBlocked, isDayBlocked, startDate, startDateValidationMessage]);
+  }, [dateIsBlocked, startDateMoment, startDateValidationMessage]);
 
   useEffect(() => {
-    if (endDate) {
-      if (endDate.isValid()) {
+    if (endDateMoment) {
+      if (endDateMoment.isValid()) {
         setIsVisisble(false);
-        if (dateIsBlocked(endDate)) {
+        if (dateIsBlocked(endDateMoment)) {
           setEndDateValidationMessage(endDateValidationMessage);
           return;
         }
@@ -145,7 +163,7 @@ const DateRangePicker = ({
         setEndDateValidationMessage(endDateValidationMessage);
       }
     }
-  }, [dateIsBlocked, endDate, endDateValidationMessage, isDayBlocked]);
+  }, [dateIsBlocked, endDateMoment, endDateValidationMessage]);
 
   const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {
@@ -181,7 +199,7 @@ const DateRangePicker = ({
             label={startDateAriaLabel}
             ariaLabelledBy={startDateAriaLabelledBy}
             ariaDescribedBy={startDateAriaDescribedBy}
-            value={startDate && startDate.format(displayFormat)}
+            value={startDate || ''}
             suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
             handleFocus={startDateHandleFocus}
             handleChange={startDateHandleChange}
@@ -199,7 +217,7 @@ const DateRangePicker = ({
             label={endDateAriaLabel}
             ariaLabelledBy={endDateAriaLabelledBy}
             ariaDescribedBy={endDateAriaDescribedBy}
-            value={endDate && endDate.format(displayFormat)}
+            value={endDate || ''}
             suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
             handleFocus={endDateHandleFocus}
             handleChange={endDateHandleChange}
@@ -219,8 +237,8 @@ const DateRangePicker = ({
           role="calendar"
         >
           <RSDayPickerRange
-            startDate={startDate && startDate.isValid() ? startDate : null} // momentPropTypes.momentObj or null,
-            endDate={endDate && endDate.isValid() ? endDate : null} // momentPropTypes.momentObj or null,
+            startDate={startDateMoment && startDateMoment.isValid() ? startDateMoment : null} // momentPropTypes.momentObj or null,
+            endDate={endDateMoment && endDateMoment.isValid() ? endDateMoment : null} // momentPropTypes.momentObj or null,
             onDatesChange={onDatesChange} // PropTypes.func.isRequired,
             focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
             onFocusChange={focusHandler} // PropTypes.func.isRequired,

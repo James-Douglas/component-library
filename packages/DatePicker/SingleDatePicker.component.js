@@ -50,7 +50,11 @@ const SingleDatePicker = ({
     const parsed = moment(_value, displayFormat, true);
     setSelectedDate(parsed);
     setIsVisisble(false);
-    setValue(_value);
+    if (moment.isMoment(_value)) {
+      setValue(_value.format(displayFormat));
+    } else {
+      setValue(_value);
+    }
   };
 
   useEffect(() => {
@@ -120,7 +124,7 @@ const SingleDatePicker = ({
           label={dateAriaLabel}
           ariaLabelledBy={ariaLabelledBy}
           ariaDescribedBy={ariaDescribedBy}
-          value={selectedDate && selectedDate.format(displayFormat)}
+          value={value}
           prefixContent=""
           suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
           handleFocus={dateHandleFocus}

@@ -282,33 +282,6 @@ describe('DateRangePicker', () => {
     expect(getByText('Please enter correct s date')).toBeInTheDocument();
   });
 
-  it('check default value in date', () => {
-    const handleChangeF = jest.fn();
-    const startDate = moment('2020-03-20T00:00:00.000');
-    const endDate = moment('2020-04-20T00:00:00.000');
-    const numberOfMonths = 3;
-    const { container } = render(
-      <DateRangePicker
-        startDateId="start-date"
-        startDateAriaLabel="Start Date"
-        startDateValue={startDate}
-        handleChange={handleChangeF}
-        endDateId="end-date"
-        endDateValue={endDate}
-        endDateAriaLabel="End Date"
-        numberOfMonths={numberOfMonths}
-        endDateValidationMessage="Please enter correct s date"
-        startDateValidationMessage="Please enter correct e date"
-      />,
-    );
-    const startDateInput = container.querySelector('#start-date');
-    act(() => {
-      startDateInput.focus();
-    });
-    fireEvent.keyDown(startDateInput, { key: 'Tab', keyCode: 9 });
-    const calendarArea = container.querySelector('[role="calendar"]');
-    expect(calendarArea).toHaveFocus();
-  });
   it('check accessibility esc', () => {
     const numberOfMonths = 3;
     const { container } = render(
