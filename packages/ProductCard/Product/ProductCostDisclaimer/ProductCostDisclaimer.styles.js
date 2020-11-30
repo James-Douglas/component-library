@@ -3,7 +3,6 @@ import { Typography } from '@comparethemarketau/manor-typography';
 
 const Wrapper = styled.div`
   color: ${({ theme }) => theme.colors.grey600};
-  font-size: 0.8em;
   text-align: ${({ alignRight }) => (alignRight ? 'right' : 'initial')};
 `;
 
@@ -12,6 +11,7 @@ const Sup = styled.sup`
 `;
 
 const StyledTypography = styled(Typography)`
+  font-size: ${({ theme, size }) => theme.fontSize[size]};
   text-align: ${({ textAlign }) => textAlign};
 `;
 

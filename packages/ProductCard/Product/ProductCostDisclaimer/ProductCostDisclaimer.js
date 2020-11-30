@@ -11,8 +11,8 @@ const ProductCostDisclaimer = ({
   const { product: { priceDisclaimer } } = useContext(ProductContext);
   if (!priceDisclaimer) return null;
   return (
-    <Wrapper {...{ className, size }}>
-      <StyledTypography variant="body2" textAlign={textAlign}><Sup>*</Sup>{priceDisclaimer}</StyledTypography>
+    <Wrapper {...{ className }}>
+      <StyledTypography variant="body2" size={size} textAlign={textAlign}><Sup>*</Sup>{priceDisclaimer}</StyledTypography>
     </Wrapper>
   );
 };
