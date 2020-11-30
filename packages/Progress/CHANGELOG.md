@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-progress@0.7.10...@comparethemarketau/manor-progress@0.7.11) (2020-11-30)
+
+**Note:** Version bump only for package @comparethemarketau/manor-progress
+
+
+
+
+
 ## [0.7.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-progress@0.7.9...@comparethemarketau/manor-progress@0.7.10) (2020-11-15)
 
 **Note:** Version bump only for package @comparethemarketau/manor-progress
