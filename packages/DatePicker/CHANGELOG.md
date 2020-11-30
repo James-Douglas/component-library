@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.15.1...@comparethemarketau/manor-date-picker@0.16.0) (2020-11-30)
+
+
+### Features
+
+* **datepickers:** various tweaks based on travel feedback ([#504](https://github.com/comparethemarketau/manor-react/issues/504)) ([b4a0ebe](https://github.com/comparethemarketau/manor-react/commit/b4a0ebe3d2f52d5f4429a0b5aefbc36d71213e8f))
+
+
+
+
+
 ## [0.15.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.15.0...@comparethemarketau/manor-date-picker@0.15.1) (2020-11-30)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
