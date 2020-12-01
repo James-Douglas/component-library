@@ -4,11 +4,11 @@ import MaskedInput from 'react-text-mask';
 import { StyledLabel } from '@comparethemarketau/manor-label';
 
 const labelAnimation = (props) => keyframes`
-  0% { 
+  0% {
     visibility: hidden;
     top: 12px;
   }
-  100% { 
+  100% {
     top: ${props.breakpoint === 'xl' ? '7px' : '5px'};
     visibility: visible;
   }
@@ -179,11 +179,12 @@ export const StyledInputClearWrap = styled.div`
   width: 100%;
   min-height: ${({ theme }) => `calc(${theme.input.height} + 0.1rem)`};
   ${({ theme, breakpoint, expressive }) => ((breakpoint === 'xl' && expressive)) && css`
-    height: 'calc(${theme.spacing[56]} + 0.1rem)'};
+    height: calc(${theme.spacing[56]} + 0.1rem)};
   `}
   margin-right: 0.1rem;
   ${({ theme, expressive }) => expressive && css`
     & input {
+      border: none;
       padding-left: ${theme.spacing[8]};
     }
   `}
