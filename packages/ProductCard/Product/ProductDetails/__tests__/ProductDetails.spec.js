@@ -11,9 +11,9 @@ describe('ProductDetails', () => {
       </ProductTestWrapper>,
     );
     expect(container.querySelector('.test')).toBeInTheDocument();
-    const link = container.querySelector('a');
-    expect(link).toBeInTheDocument();
-    expect(link.innerHTML).toContain('Product details');
+    const button = container.querySelector('button');
+    expect(button).toBeInTheDocument();
+    expect(button.innerHTML).toContain('Product details');
   });
   it('calls onDetails on click', () => {
     const detailsHandler = jest.fn();
@@ -22,8 +22,8 @@ describe('ProductDetails', () => {
         <ProductDetails className="test" />
       </ProductTestWrapper>,
     );
-    const link = container.querySelector('a');
-    fireEvent.click(link);
+    const button = container.querySelector('button');
+    fireEvent.click(button);
     expect(detailsHandler).toHaveBeenCalled();
   });
 });

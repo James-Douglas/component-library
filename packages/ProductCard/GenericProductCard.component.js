@@ -32,6 +32,7 @@ GenericProductCard.propTypes = {
       intervalText: PropTypes.string,
     }),
     priceDisclaimer: PropTypes.string,
+    excessText: PropTypes.string,
   }).isRequired,
   /**
    * Handler for pressing the "More Details" button.

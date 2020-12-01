@@ -1,10 +1,9 @@
 import React, { useCallback, useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt } from '@fortawesome/pro-regular-svg-icons';
-import { Link } from '@comparethemarketau/manor-link';
+import { Button } from '@comparethemarketau/manor-button';
 import PropTypes from 'prop-types';
 import ProductContext from '../../Context/ProductContext';
-import { Wrapper, StyledTypography } from './ProductDetails.styles';
+import { Wrapper } from './ProductDetails.styles';
 
 const ProductDetails = ({ className = '' }) => {
   const { onDetails, product } = useContext(ProductContext);
@@ -19,11 +18,9 @@ const ProductDetails = ({ className = '' }) => {
 
   return (
     <Wrapper className={className}>
-      <StyledTypography variant="body1">
-        <Link onClick={doClick} href="#" underline="none">
-          Product details <FontAwesomeIcon icon={faFileAlt} />
-        </Link>
-      </StyledTypography>
+      <Button variant="tertiary" handleClick={doClick} icon={faFileAlt} iconAlign="right">
+        Product details
+      </Button>
     </Wrapper>
   );
 };

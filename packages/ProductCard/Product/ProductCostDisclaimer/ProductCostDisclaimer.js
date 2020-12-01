@@ -8,11 +8,11 @@ const ProductCostDisclaimer = ({
   size = '2xs',
   textAlign = 'center',
 }) => {
-  const { product: { priceDisclaimer } } = useContext(ProductContext);
-  if (!priceDisclaimer) return null;
+  const { product: { priceDisclaimer, excessText } } = useContext(ProductContext);
+  if (!priceDisclaimer && !excessText) return null;
   return (
     <Wrapper {...{ className }}>
-      <StyledTypography variant="body2" size={size} textAlign={textAlign}><Sup>*</Sup>{priceDisclaimer}</StyledTypography>
+      <StyledTypography variant="body2" size={size} textAlign={textAlign}>{priceDisclaimer && <Sup>*</Sup>}{priceDisclaimer}{excessText}</StyledTypography>
     </Wrapper>
   );
 };
