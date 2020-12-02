@@ -30,7 +30,7 @@ describe('Pill', () => {
         selected
       />,
     );
-    expect(container.firstChild).toHaveStyle(`border: 1px solid ${ctmTheme.colors.primary500}`);
+    expect(container.firstChild).toHaveStyle(`background: ${ctmTheme.colors.primary50}`);
   });
 
   it('can render a pill which responds to a click event', () => {
