@@ -6,13 +6,13 @@ import { spacingPropTypes } from '@comparethemarketau/manor-utils';
 import ProductProvider from './Context/ProductProvider';
 
 const GenericProductCard = ({
-  product, onDetails, onSelect, padding, className, children,
+  product, onDetails, onSelect, padding, margin, className, children,
 }) => (
   <ProductProvider {...{
     product, onDetails, onSelect,
   }}
   >
-    <Card padding={padding} className={className}>
+    <Card padding={padding} margin={margin} className={className}>
       {children}
     </Card>
   </ProductProvider>
@@ -47,11 +47,13 @@ GenericProductCard.propTypes = {
    */
   children: PropTypes.node.isRequired,
   padding: spacingPropTypes,
+  margin: spacingPropTypes,
   className: PropTypes.string,
 };
 
 GenericProductCard.defaultProps = {
   padding: ['16'],
+  margin: ['4', '4', '16'],
   className: '',
 };
 
