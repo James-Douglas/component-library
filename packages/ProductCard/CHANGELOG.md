@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-product-card@0.3.3...@comparethemarketau/manor-product-card@0.4.0) (2020-12-02)
+
+
+### Features
+
+* **productcard:** expose margin on GenericProductCard ([#507](https://github.com/comparethemarketau/manor-react/issues/507)) ([6e5c3cb](https://github.com/comparethemarketau/manor-react/commit/6e5c3cbfc1ce237fd842e5687bc0696d38e9eccb))
+
+
+
+
+
 ## [0.3.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-product-card@0.3.2...@comparethemarketau/manor-product-card@0.3.3) (2020-12-01)
 
 **Note:** Version bump only for package @comparethemarketau/manor-product-card
