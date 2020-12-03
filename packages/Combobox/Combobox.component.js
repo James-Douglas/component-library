@@ -3,12 +3,12 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { Typography } from '@comparethemarketau/manor-typography';
+import { Input } from '@comparethemarketau/manor-input';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
-import { Input } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
-import { Overlay } from '@comparethemarketau/manor-overlay';
 import { picturePropTypes } from '@comparethemarketau/manor-picture';
 import { EmptyState } from '@comparethemarketau/manor-empty-state';
 
@@ -24,6 +24,7 @@ import {
   StyledList,
   StyledListItem,
   WrapList,
+  StyledIconCloseModal,
 } from './Combobox.styles';
 
 export function comboDropdownList(
@@ -297,7 +298,6 @@ const Combobox = ({
 
   return (
     <>
-      {mobileOverlay && isMobileModalView && (<Overlay opacityLevel={0.3} visible={mobileOverlay} onClose={closeFieldModal} handleClick={closeFieldModal} />)}
       {(mobileOverlay || isDesktop) && (
         <>
           <StyledDiv
@@ -349,6 +349,7 @@ const Combobox = ({
                 listVisible,
               )}
             />
+            {!isDesktop && <StyledIconCloseModal icon={faTimes} variant="tertiary" handleClick={() => { setIsMobileModalView(false); }} />}
           </StyledDiv>
         </>
       )}

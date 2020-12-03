@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Button } from '@comparethemarketau/manor-button';
 
 export const StyledDropdownList = styled.div`
   position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')};
@@ -83,7 +84,7 @@ export const StyledButtonWrap = styled.div`
 export const StyledDiv = styled.div`
   ${({ desktop }) => !desktop && css`
     width: ${({ theme }) => (theme.maxWidth.full)};
-    top: ${({ theme }) => theme.spacing[136]};
+    top: -${({ theme }) => theme.spacing[16]};
     position: fixed;
     right: ${({ theme }) => theme.spacing[16]};
     left: ${({ theme }) => theme.spacing[16]};
@@ -97,27 +98,28 @@ export const StyledDiv = styled.div`
       left: ${({ theme }) => theme.spacing[16]};
       position: fixed;
       top: ${({ theme }) => theme.spacing[162]};
-      p {
-        display: none;
-      }
     }
     z-index: ${({ theme }) => (theme.zIndex[40])};
   `}
+
+  .input-wrap {
+    width: 80%;
+  }
 `;
 
 export const WrapList = styled.div`
   position: relative;
   ${({ desktop }) => !desktop && css`
-    width: auto;
-    right: ${({ theme }) => theme.spacing[8]};
-    left: ${({ theme }) => theme.spacing[8]};
+    width: 100%;
+    right: 0;
+    left: 0;
     position: fixed;
-    bottom: ${({ theme }) => theme.spacing[32]};
-    top: ${({ theme }) => theme.spacing[148]};
+    bottom: 0;
+    top: 0;
     background: ${({ theme }) => theme.colors.white};
     border-radius: ${({ theme }) => theme.borderRadius.default};
     padding-top: ${({ theme }) => theme.spacing[72]};
-    max-height: initial;
+    max-height: 100vh;
     overflow: hidden;
     &:after {
       position: absolute;
@@ -157,7 +159,7 @@ export const StyledEmptyStateMessage = styled.div`
   right: ${({ theme }) => theme.spacing[16]};
   left: ${({ theme }) => theme.spacing[16]};
   max-height: ${({ theme }) => (theme.spacing[200])};
-  top: ${({ theme }) => theme.spacing[280]};
+  top: ${({ theme }) => theme.spacing[92]};
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.combo.list.item.color};
   text-align: center;
@@ -169,4 +171,13 @@ export const StyledEmptyStateMessage = styled.div`
     max-height: ${({ theme }) => (theme.spacing[100])};
   }
   z-index: ${({ theme }) => (theme.zIndex[50])};
+`;
+
+export const StyledIconCloseModal = styled(Button)`
+  ${({ desktop }) => !desktop && css`
+    font-size: ${({ theme }) => theme.fontSize['3xl']};
+    position: absolute;
+    right: 7%;
+    top: ${({ theme }) => (theme.spacing[32])};
+  `}
 `;
