@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-product-card",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Manor Product Card component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -25,7 +25,7 @@
     "@comparethemarketau/manor-layout": "^0.2.12",
     "@comparethemarketau/manor-link": "^0.6.7",
     "@comparethemarketau/manor-picture": "^0.4.1",
-    "@comparethemarketau/manor-pill": "^0.3.8",
+    "@comparethemarketau/manor-pill": "^0.4.0",
     "@comparethemarketau/manor-separator": "^0.5.10",
     "@comparethemarketau/manor-tooltip": "^0.13.4",
     "@comparethemarketau/manor-typography": "^0.13.4",
