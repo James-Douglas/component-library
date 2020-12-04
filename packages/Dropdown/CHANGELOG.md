@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.9.8...@comparethemarketau/manor-dropdown@0.10.0) (2020-12-04)
+
+
+### Features
+
+* **textdropdown:** changed cursor type ([#510](https://github.com/comparethemarketau/manor-react/issues/510)) ([9a4fd95](https://github.com/comparethemarketau/manor-react/commit/9a4fd95d1954e7590022f8807ff4d8906fbbc720))
+
+
+
+
+
 ## [0.9.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.9.7...@comparethemarketau/manor-dropdown@0.9.8) (2020-11-30)
 
 **Note:** Version bump only for package @comparethemarketau/manor-dropdown

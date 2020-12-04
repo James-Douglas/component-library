@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-disclaimer@0.12.2...@comparethemarketau/manor-disclaimer@0.12.3) (2020-12-04)
+
+**Note:** Version bump only for package @comparethemarketau/manor-disclaimer
+
+
+
+
+
 ## [0.12.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-disclaimer@0.12.1...@comparethemarketau/manor-disclaimer@0.12.2) (2020-11-30)
 
 **Note:** Version bump only for package @comparethemarketau/manor-disclaimer
