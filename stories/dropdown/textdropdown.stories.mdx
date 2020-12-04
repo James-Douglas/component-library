@@ -16,38 +16,32 @@ import getTooltipKnobs from '../tooltipKnobs';
 The TextDropdown can be used to present users with a list of options from which they can choose. On mobile devices the
 Manor TextDropdown presents a full screen overlay of selectable options when the user interacts with it.
 
-<Story name="TextDropdown">
-  {() => {
-    const [value, setValue] = useState('Default');
-    return (
-      <div style={{ padding: '2%' }}>
-        <FluidContainer>
-          <Row>
-            <Column>
-              <div style={{ marginBottom: '40px', width: '100%' }}>
-                <TextDropdown
-                  id="input-one"
-                  label="Example Label"
-                  value={value}
-                  tooltip={{ title: 'A dropdown tooltip!' }}
-                  handleChange={(event, value, option) => {
-                    console.log(`option: ${option}, value: ${value}`);
-                    setValue(value);
-                  }}
-                >
-                  <TextDropdownItem value="Default">Default Item - Title</TextDropdownItem>
-                  <TextDropdownItem value="First">First Item - Title</TextDropdownItem>
-                  <TextDropdownItem value="Second">Second Item - Title</TextDropdownItem>
-                  <TextDropdownItem value="Third">Third Item - Title</TextDropdownItem>
-                </TextDropdown>
-              </div>
-            </Column>
-          </Row>
-        </FluidContainer>
-      </div>
-    );
-  }}
-</Story>
+<Preview>
+    <Story name="TextDropdown">
+      {() => {
+        const [value, setValue] = useState('Default');
+        return (
+          <div style={{ padding: '2%' }}>
+            <TextDropdown
+              id="input-one"
+              label="Example Label"
+              value={value}
+              tooltip={{ title: 'A dropdown tooltip!' }}
+              handleChange={(event, value, option) => {
+                console.log(`option: ${option}, value: ${value}`);
+                setValue(value);
+              }}
+            >
+              <TextDropdownItem value="Default">Default Item - Title</TextDropdownItem>
+              <TextDropdownItem value="First">First Item - Title</TextDropdownItem>
+              <TextDropdownItem value="Second">Second Item - Title</TextDropdownItem>
+              <TextDropdownItem value="Third">Third Item - Title</TextDropdownItem>
+            </TextDropdown>
+          </div>
+        );
+      }}
+    </Story>
+</Preview>
 
 ### Props (TextDropdown)
 <Props of={TextDropdown} />

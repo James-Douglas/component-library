@@ -12,6 +12,9 @@ const useStyles = makeStyles({
     backgroundColor: 'transparent !important',
     fontWeight: 600,
   },
+  item: {
+    cursor: 'pointer',
+  },
 });
 
 const TextDropdownItemInner = ({
@@ -40,7 +43,7 @@ const TextDropdownItemInner = ({
       selected={selected}
       classes={{
         ...(classes || {}),
-        selected: styles.selected,
+        root: styles.item,
       }}
       className={className}
       ListItemClasses={ListItemClasses}
@@ -62,22 +65,27 @@ const TextDropdownItem = ({
   className,
   ListItemClasses,
   ...props
-}) => (
-  <ThemedMUIDropdown
-    {...props}
-    button={button}
-    dense={dense}
-    disableGutters={disableGutters}
-    value={value}
-    role={role}
-    disabled={disabled}
-    selected={selected}
-    classes={classes}
-    className={className}
-    ListItemClasses={ListItemClasses}
-  />
-);
-
+}) => {
+  const styles = useStyles();
+  return (
+    <ThemedMUIDropdown
+      {...props}
+      button={button}
+      dense={dense}
+      disableGutters={disableGutters}
+      value={value}
+      role={role}
+      disabled={disabled}
+      selected={selected}
+      classes={{
+        ...(classes || {}),
+        selected: styles.selected,
+      }}
+      className={className}
+      ListItemClasses={ListItemClasses}
+    />
+  );
+};
 TextDropdownItem.propTypes = {
   /**
    * Treat as a button

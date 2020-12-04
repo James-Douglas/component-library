@@ -8,7 +8,7 @@ export const StyledTooltipIcon = styled.div`
   && css`
     margin-left: ${theme.spacing[8]};
   `}
-  font-size: ${({ theme }) => theme.fontSize.base};
+  font-size: inherit;
   height: ${({ theme }) => theme.spacing[16]};
   ${({ theme, children }) => !children && css`
     width: ${theme.spacing[16]};
