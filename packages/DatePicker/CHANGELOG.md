@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.16.2...@comparethemarketau/manor-date-picker@0.17.0) (2020-12-07)
+
+
+### Features
+
+* **daterangepicker:** allow startDate > endDate and vice versa ([#512](https://github.com/comparethemarketau/manor-react/issues/512)) ([902a9dd](https://github.com/comparethemarketau/manor-react/commit/902a9dd7cf74889f49d71b9985a052ac9c084212))
+
+
+
+
+
 ## [0.16.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.16.1...@comparethemarketau/manor-date-picker@0.16.2) (2020-12-04)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
