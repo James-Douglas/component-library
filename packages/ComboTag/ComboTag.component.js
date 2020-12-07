@@ -195,6 +195,12 @@ const ComboTag = ({
     setListVisible(false);
     setFocusedRef(null);
     setCurrentValue('');
+    if (comboInputRef.current) {
+      const storedRef = comboInputRef.current.inputElement;
+      setTimeout(() => {
+        storedRef.focus();
+      }, 100);
+    }
   };
 
   const comboHandleChange = useCallback((valueInput) => {
@@ -319,18 +325,16 @@ const ComboTag = ({
       handleInput(currentValue);
     }
   }, [currentValue, handleInput]);
+
   // block the handleToggle from firing on initial render
   useMountEffect(() => {
     firstUpdate.current = false;
   });
 
-  // if tags, show tags and focus on the input
+  // if tags, show tags
   useEffect(() => {
     if (tags.length && !listVisible) {
       setTagsVisible(true);
-      if (comboInputRef.current) {
-        comboInputRef.current.inputElement.focus();
-      }
     } else {
       setTagsVisible(false);
     }
@@ -393,6 +397,7 @@ const ComboTag = ({
     if (handleChange) {
       handleChange(tags);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags]);
 
   const { title, body } = errorTooltip;
