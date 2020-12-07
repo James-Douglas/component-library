@@ -37,6 +37,7 @@ const DateRangePicker = ({
   endDateAriaDescribedBy,
   endDateValue,
   numberOfMonths,
+  minimumNights,
   endDateValidationMessage,
   startDateValidationMessage,
   isDayBlocked,
@@ -69,11 +70,16 @@ const DateRangePicker = ({
   const dateIsBlocked = useCallback((date) => (typeof isDayBlocked === 'function' ? isDayBlocked(date) : false), [isDayBlocked]);
 
   const onDatesChange = (dates) => {
-    // If the user tries to change the endDate to be before the startDate, the airbnb picker just sets the startDate to
-    // the selected endDate. CX instead want to not set the endDate and display an error.
+    // By default, the airbnb datepicker won't allow the selection of a startDate after the endDate (or vice versa).
+    // we do want to allow this (And have validation show an error), so this takes care of that
     if (dates.startDate && !dates.endDate && endDate && dates.startDate !== startDate) {
-      setEndDate(dates.startDate.format(displayFormat));
-      setEndDateMoment(dates.startDate);
+      if (focusedInput === END_DATE) {
+        setEndDate(dates.startDate.format(displayFormat));
+        setEndDateMoment(dates.startDate);
+      } else {
+        setStartDate(dates.startDate.format(displayFormat));
+        setStartDateMoment(dates.startDate);
+      }
     } else {
       setStartDate(dates.startDate.format(displayFormat));
       setStartDateMoment(dates.startDate);
@@ -101,6 +107,7 @@ const DateRangePicker = ({
     startDateMoment && startDateMoment.isValid() && !dateIsBlocked(startDateMoment) && setStartDateValidationMessage(null);
     endDateMoment && endDateMoment.isValid() && !dateIsBlocked(endDateMoment) && setEndDateValidationMessage(null);
     handleChange && handleChange({ startDate: startDateMoment, endDate: endDateMoment });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDateMoment, endDateMoment]);
 
   const fieldNameHandleFocus = (range) => {
@@ -245,6 +252,7 @@ const DateRangePicker = ({
             numberOfMonths={numberOfMonths}
             hideKeyboardShortcutsPanel
             isDayBlocked={isDayBlocked}
+            minimumNights={minimumNights}
           />
         </StyledCalendar>
       )}
@@ -314,6 +322,10 @@ DateRangePicker.propTypes = {
    */
   numberOfMonths: PropTypes.number,
   /**
+   * Sets the minimum number of nights between start and end dates (0 allows startDate === endDate)
+   */
+  minimumNights: PropTypes.number,
+  /**
    * Displays given validation message and invalid styles on the component when provided.
    */
   endDateValidationMessage: PropTypes.string,
@@ -352,6 +364,7 @@ DateRangePicker.defaultProps = {
   endDateAriaLabel: '',
   endDateValue: null,
   numberOfMonths: 1,
+  minimumNights: 0,
   endDateValidationMessage: null,
   startDateValidationMessage: null,
   isDayBlocked: undefined,
