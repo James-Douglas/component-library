@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.14.1...@comparethemarketau/manor-notification@0.14.2) (2020-12-08)
+
+**Note:** Version bump only for package @comparethemarketau/manor-notification
+
+
+
+
+
 ## [0.14.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-notification@0.14.0...@comparethemarketau/manor-notification@0.14.1) (2020-11-30)
 
 **Note:** Version bump only for package @comparethemarketau/manor-notification
