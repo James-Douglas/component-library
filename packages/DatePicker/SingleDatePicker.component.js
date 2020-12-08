@@ -69,7 +69,7 @@ const SingleDatePicker = ({
         setValidationMessageDate(validationMessage);
       }
     } else {
-      setValidationMessageDate(null);
+      setValidationMessageDate(validationMessage || null);
     }
   }, [selectedDate, isDayBlocked, validationMessage, setValidationMessageDate]);
 
