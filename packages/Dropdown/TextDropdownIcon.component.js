@@ -14,7 +14,6 @@ const useStyles = makeStyles({
     color: theme.colors.primary500,
     width: '1.1rem',
     position: 'absolute',
-    top: '50%',
     right: 0,
     transform: 'translate(-50%, -50%)',
   }),

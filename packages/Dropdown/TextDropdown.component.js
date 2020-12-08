@@ -19,6 +19,8 @@ const useStyles = makeStyles({
   root: (theme) => ({
     color: theme.colors.primary500,
     background: 'transparent !important',
+    fontSize: theme.fontSize.base,
+    fontFamily: theme.fontFamily,
   }),
 });
 

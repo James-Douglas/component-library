@@ -12,12 +12,15 @@ const useStyles = makeStyles({
     backgroundColor: 'transparent !important',
     fontWeight: 600,
   },
-  item: {
+  item: (theme) => ({
+    fontFamily: theme.fontFamily,
     cursor: 'pointer',
-  },
+    fontSize: theme.fontSize ? theme.fontSize.base : '1.6rem',
+  }),
 });
 
 const TextDropdownItemInner = ({
+  theme,
   button,
   dense,
   disableGutters,
@@ -30,7 +33,7 @@ const TextDropdownItemInner = ({
   ListItemClasses,
   ...props
 }) => {
-  const styles = useStyles();
+  const styles = useStyles(theme);
   return (
     <MUIMenuItem
       {...props}
