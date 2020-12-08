@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.10.0...@comparethemarketau/manor-dropdown@0.11.0) (2020-12-08)
+
+
+### Features
+
+* **textdropdown:** passing down our style to textdropdown ([#513](https://github.com/comparethemarketau/manor-react/issues/513)) ([a3ad7e3](https://github.com/comparethemarketau/manor-react/commit/a3ad7e38d8458e16d5617c91e4a507b5170f4808))
+
+
+
+
+
 # [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.9.8...@comparethemarketau/manor-dropdown@0.10.0) (2020-12-04)
 
 
