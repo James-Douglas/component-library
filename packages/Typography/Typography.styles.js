@@ -9,8 +9,8 @@ export const StyledTypography = styled(({
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <Tag {...otherProps} />;
 })`
-  margin-block-start: 0;
-  margin-block-end: 0;
+  margin-top: 0;
+  margin-bottom: 0;
   font-family: SourceSansPro, Arial, sans-serif;
   text-align: ${({ align }) => align};
   color: ${({ color }) => color};

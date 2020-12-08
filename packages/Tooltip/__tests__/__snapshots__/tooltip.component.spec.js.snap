@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getContent() returns correct content for body only 1`] = `"<div class=\\"sc-AxiKw eyKtTE\\"><div class=\\"sc-AxhUy lirMfo\\"><span class=\\"sc-AxjAm cxZNdg\\">test body</span></div></div>"`;
+exports[`getContent() returns correct content for body only 1`] = `"<div class=\\"sc-AxiKw eyKtTE\\"><div class=\\"sc-AxhUy lirMfo\\"><span class=\\"sc-AxjAm qdXBT\\">test body</span></div></div>"`;
 
-exports[`getContent() returns correct content for title and body 1`] = `"<div class=\\"sc-AxiKw eyKtTE\\"><div class=\\"sc-AxhCb yRgYw\\"><span class=\\"sc-AxjAm cxZNdg\\">test title</span></div><div class=\\"sc-AxhUy lirMfo\\"><span class=\\"sc-AxjAm cxZNdg\\">test body</span></div></div>"`;
+exports[`getContent() returns correct content for title and body 1`] = `"<div class=\\"sc-AxiKw eyKtTE\\"><div class=\\"sc-AxhCb yRgYw\\"><span class=\\"sc-AxjAm qdXBT\\">test title</span></div><div class=\\"sc-AxhUy lirMfo\\"><span class=\\"sc-AxjAm qdXBT\\">test body</span></div></div>"`;
 
-exports[`getContent() returns correct content for title only 1`] = `"<div class=\\"sc-AxiKw eyKtTE\\"><div class=\\"sc-AxhCb yRgYw\\"><span class=\\"sc-AxjAm cxZNdg\\">test title</span></div><div class=\\"sc-AxhUy lirMfo\\"><span class=\\"sc-AxjAm cxZNdg\\"></span></div></div>"`;
+exports[`getContent() returns correct content for title only 1`] = `"<div class=\\"sc-AxiKw eyKtTE\\"><div class=\\"sc-AxhCb yRgYw\\"><span class=\\"sc-AxjAm qdXBT\\">test title</span></div><div class=\\"sc-AxhUy lirMfo\\"><span class=\\"sc-AxjAm qdXBT\\"></span></div></div>"`;
