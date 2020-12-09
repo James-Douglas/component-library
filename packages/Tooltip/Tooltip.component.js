@@ -183,16 +183,16 @@ export const tooltipPropTypes = {
    */
   title: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.array,
-    PropTypes.object,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
   ]),
   /**
    * Body content for the tooltip
    */
   body: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.array,
-    PropTypes.object,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
   ]),
   /**
    * Label for screen readers
