@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.18.2...@comparethemarketau/manor-date-picker@0.18.3) (2020-12-09)
+
+
+### Bug Fixes
+
+* **datepickers:** disable transition due to ios safari bug ([#517](https://github.com/comparethemarketau/manor-react/issues/517)) ([d79f79c](https://github.com/comparethemarketau/manor-react/commit/d79f79c93a5771ed67db430c77b9c260050f3324))
+
+
+
+
+
 ## [0.18.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.18.1...@comparethemarketau/manor-date-picker@0.18.2) (2020-12-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
