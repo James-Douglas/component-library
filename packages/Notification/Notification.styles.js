@@ -5,8 +5,10 @@ export const StyledNotification = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: ${({ theme }) => theme.fontWeight.normal};
   line-height: ${({ theme }) => theme.lineHeight.tight};
-  border-left: ${({ theme, variant }) => `${theme.spacing[4]} solid ${theme.notification[variant].color}`};
   display: flex;
+  ${({ theme, type, variant }) => type !== 'slimInline' && css`
+    border-left: ${theme.spacing[4]} solid ${theme.notification[variant].color};
+  `};
   ${({
     theme, defaultWhiteBackground,
   }) => defaultWhiteBackground && css`
@@ -14,7 +16,7 @@ export const StyledNotification = styled.div`
   `};
   ${({
     theme, type, background, variant,
-  }) => (type === 'hint' && background) && css`
+  }) => ((type === 'hint' || type === 'slimInline') && background) && css`
     background: ${theme.notification[variant].background};
   `};
   ${({ theme, type }) => type === 'toast' && css`
@@ -63,6 +65,13 @@ export const StyledHeading = styled.div`
     color: ${(variant === 'warning') ? `${theme.notification.aaColor}` : `${theme.notification[variant].color}`};
     font-weight: ${theme.fontWeight.semibold};
   `};
+  ${({ theme, type }) => type === 'slimInline' && css` 
+    font-size: ${theme.fontSize.xl};
+    display: inline-block;
+    & span {
+      font-size: ${theme.fontSize.xl};
+    }
+  `};
   & p {
     margin: 0px;
     color: ${({ theme }) => theme.colors.grey900}
@@ -72,9 +81,21 @@ export const StyledHeading = styled.div`
 export const StyledContent = styled.div`
   padding: 0px;
   ${({ theme, title }) => title === '' && css`padding-top: ${theme.spacing[4]};`} 
-  font-size: ${({ theme }) => theme.fontSize.sm};
+  ${({ theme, type, title }) => type === 'slimInline' && title !== '' && css` 
+    padding-left: ${theme.spacing[12]};
+  `};
+  ${({ theme, type }) => type !== 'slimInline' && css` 
+    font-size: ${theme.fontSize.sm};
+  `};
   color: ${({ theme }) => theme.colors.grey800};
   width: 95%;
+  ${({ theme, type }) => type === 'slimInline' && css` 
+    font-size: ${theme.fontSize.base};
+    display: inline;
+    & span {
+      font-size: ${theme.fontSize.base};
+    }
+  `};
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -85,11 +106,21 @@ export const StyledContent = styled.div`
 `;
 
 export const StyledActions = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: ${({ theme }) => theme.spacing[12]};
+  ${({ theme, type }) => type === 'slimInline' && css` 
+    display: inline-block;
+    margin-top: ${theme.spacing[0]};
+  `};
+  ${({ theme, type }) => type !== 'slimInline' && css` 
+    display: flex;
+    margin-top: ${theme.spacing[12]};
+    justify-content: space-between;
+  `};
   a {
     font-size: ${({ theme }) => theme.fontSize.sm};
+    ${({ theme, type }) => type === 'slimInline' && css` 
+      padding-left: ${theme.spacing[8]};
+      display: inline-block;
+    `};
     margin-bottom: 0;
     text-decoration: none;
   }
@@ -99,6 +130,10 @@ export const StyledActionText = styled.div`
   color: ${({ theme }) => theme.colors.primary500};
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.fontSize.sm};
+  ${({ theme, type }) => type === 'slimInline' && css` 
+    padding-left: ${theme.spacing[8]};
+    display: inline-block;
+  `};
   cursor: pointer;
 `;
 

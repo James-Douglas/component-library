@@ -49,6 +49,7 @@ const Notification = ({
   content,
   primaryAction,
   secondaryAction,
+  hideActionIcons,
   icon,
   customIcon,
   closeButton,
@@ -66,13 +67,14 @@ const Notification = ({
 
   const iconVariant = customIcon || notificationIcon(variant);
 
-  const getAction = (action, isPrimary) => {
+  const getAction = (action, isPrimary, hideIcon) => {
     const faIcon = isPrimary ? faLongArrowLeft : faInfoCircleRegular;
+    const styledIcon = hideIcon ? '' : (<StyledFontAwesomeWrap><FontAwesomeIcon icon={faIcon} size="1x" /></StyledFontAwesomeWrap>);
 
     if (!action.link) {
-      return <StyledActionText onClick={action.handleClick}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faIcon} size="1x" /></StyledFontAwesomeWrap>{action.content}</StyledActionText>;
+      return <StyledActionText onClick={action.handleClick} type={type}>{styledIcon}{action.content}</StyledActionText>;
     }
-    return <Link href={action.link} onClick={action.handleClick}><StyledFontAwesomeWrap><FontAwesomeIcon icon={faIcon} size="1x" /></StyledFontAwesomeWrap>{action.content}</Link>;
+    return <Link href={action.link} onClick={action.handleClick}>{styledIcon}{action.content}</Link>;
   };
 
   useEffect(() => {
@@ -107,11 +109,11 @@ const Notification = ({
         </StyledContent>
         {(primaryAction || secondaryAction)
           && (
-            <StyledActions>
+            <StyledActions type={type}>
               {(primaryAction && type !== 'hint')
-                && getAction(primaryAction, true)}
+                && getAction(primaryAction, true, hideActionIcons)}
               {(secondaryAction && type !== 'hint')
-                && getAction(secondaryAction, false)}
+                && getAction(secondaryAction, false, hideActionIcons)}
             </StyledActions>
           )}
       </StyledNotificationContentWrap>
@@ -157,12 +159,17 @@ Notification.propTypes = {
     handleClick: PropTypes.func,
   }),
   /**
-   * Component type, inline, toast or hint
+   * Hide icons for the component's actions
+   */
+  hideActionIcons: PropTypes.bool,
+  /**
+   * Component type, inline, toast, hint or slimInline
    */
   type: PropTypes.PropTypes.oneOf([
     'inline',
     'toast',
     'hint',
+    'slimInline',
   ]),
   /**
    * Defines the color and type of icon for the component
@@ -229,6 +236,7 @@ Notification.defaultProps = {
   content: '',
   primaryAction: null,
   secondaryAction: null,
+  hideActionIcons: false,
   type: 'inline',
   variant: 'general',
   icon: false,
