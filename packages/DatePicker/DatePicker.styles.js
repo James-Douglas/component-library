@@ -12,6 +12,20 @@ const StyledCalendar = styled.div`
   & .DayPicker {
     font-family: ${({ theme }) => theme.fontFamily};
   }
+  
+  & .DayPicker_transitionContainer__horizontal {
+    -webkit-transition-property: none;
+    -moz-transition-property: none;
+    -o-transition-property: none;
+    transition-property: none;
+    height: auto !important;
+  }
+  & .CalendarMonthGrid__horizontal {
+    position: relative;
+  }
+  & .CalendarMonthGrid_month__hidden {
+    display: none;
+  }
   & .DayPickerNavigation_button .DayPickerNavigation_svg__horizontal {
     fill: ${({ theme }) => theme.datepicker.navigationButtonColor};
   }
