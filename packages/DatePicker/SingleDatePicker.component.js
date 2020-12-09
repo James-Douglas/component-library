@@ -146,6 +146,7 @@ const SingleDatePicker = ({
             numberOfMonths={numberOfMonths}
             focused
             isDayBlocked={isDayBlocked || undefined}
+            transitionDuration={0}
           />
         </StyledCalendar>
       )}

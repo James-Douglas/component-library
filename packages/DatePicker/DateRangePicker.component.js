@@ -253,6 +253,7 @@ const DateRangePicker = ({
             hideKeyboardShortcutsPanel
             isDayBlocked={isDayBlocked}
             minimumNights={minimumNights}
+            transitionDuration={0}
           />
         </StyledCalendar>
       )}
