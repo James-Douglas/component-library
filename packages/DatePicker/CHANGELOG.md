@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.18.3...@comparethemarketau/manor-date-picker@0.18.4) (2020-12-09)
+
+
+### Bug Fixes
+
+* **datepicker:** fixes for ios safari clipping calendar ([#519](https://github.com/comparethemarketau/manor-react/issues/519)) ([a7afa60](https://github.com/comparethemarketau/manor-react/commit/a7afa60ada5d05c371aec6d51928c6d406e47b57))
+
+
+
+
+
 ## [0.18.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.18.2...@comparethemarketau/manor-date-picker@0.18.3) (2020-12-09)
 
 
