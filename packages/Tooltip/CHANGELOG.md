@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.14.1...@comparethemarketau/manor-tooltip@0.15.0) (2020-12-09)
+
+
+### Features
+
+* **tooltip:** fixed types and added an example for advanced body ([#516](https://github.com/comparethemarketau/manor-react/issues/516)) ([f5aa1f5](https://github.com/comparethemarketau/manor-react/commit/f5aa1f5c1035a7bf27feda994b58582640af2aa8))
+
+
+
+
+
 ## [0.14.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.14.0...@comparethemarketau/manor-tooltip@0.14.1) (2020-12-08)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tooltip
