@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { Link } from '@comparethemarketau/manor-link';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import {
   faInfoCircle as faInfoCircleRegular,
   faLongArrowLeft,
@@ -65,11 +66,12 @@ const Notification = ({
     }
   };
 
+  const { isDesktop } = useContext(ManorContext);
   const iconVariant = customIcon || notificationIcon(variant);
 
   const getAction = (action, isPrimary, hideIcon) => {
     const faIcon = isPrimary ? faLongArrowLeft : faInfoCircleRegular;
-    const styledIcon = hideIcon ? '' : (<StyledFontAwesomeWrap><FontAwesomeIcon icon={faIcon} size="1x" /></StyledFontAwesomeWrap>);
+    const styledIcon = hideIcon ? <></> : (<StyledFontAwesomeWrap><FontAwesomeIcon icon={faIcon} size="1x" /></StyledFontAwesomeWrap>);
 
     if (!action.link) {
       return <StyledActionText onClick={action.handleClick} type={type}>{styledIcon}{action.content}</StyledActionText>;
@@ -87,11 +89,7 @@ const Notification = ({
 
   return (
     <StyledNotification type={type} variant={variant} position={position} icon={icon} background={background} defaultWhiteBackground={defaultWhiteBackground} className={className}>
-      {(closeButton && type !== 'hint') && (
-        <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
-          <FontAwesomeIcon icon={faTimes} size="lg" />
-        </StyledIcon>
-      )}
+
       {(icon && type !== 'hint') && (
         <StyledNotificationImage variant={variant}>
           <FontAwesomeIcon icon={iconVariant} size="lg" />
@@ -100,11 +98,11 @@ const Notification = ({
       <StyledNotificationContentWrap>
         {title
           && (
-            <StyledHeading type={type} variant={variant}>
+            <StyledHeading type={type} variant={variant} desktop={isDesktop}>
               <Typography variant="body1" component="span">{title}</Typography>
             </StyledHeading>
           )}
-        <StyledContent title={title} type={type}>
+        <StyledContent title={title} type={type} desktop={isDesktop}>
           <Typography variant="body2" component="span">{content}</Typography>
         </StyledContent>
         {(primaryAction || secondaryAction)
@@ -116,7 +114,13 @@ const Notification = ({
                 && getAction(secondaryAction, false, hideActionIcons)}
             </StyledActions>
           )}
+
       </StyledNotificationContentWrap>
+      {(closeButton && type !== 'hint') && (
+        <StyledIcon onClick={iconHandler} onKeyPress={iconHandler} aria-label="Close Dialog" tabIndex="0" role="button" aria-pressed="false">
+          <FontAwesomeIcon icon={faTimes} size="lg" />
+        </StyledIcon>
+      )}
     </StyledNotification>
   );
 };

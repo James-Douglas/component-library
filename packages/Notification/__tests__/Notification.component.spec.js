@@ -47,6 +47,22 @@ describe('Notification()', () => {
     expect(childDiv).toHaveStyleRule('background', `${ctmTheme.colors.warning50}`);
   });
 
+  it('renders a background on slimInline notification if prop is supplied', () => {
+    const { container } = render(
+      <Notification
+        type="slimInline"
+        variant="warning"
+        background
+        title="Notification title goes here"
+        content="Provider will capture the full description."
+        icon
+      />,
+    );
+    const childDiv = container.firstChild;
+    expect(childDiv).not.toHaveStyleRule('border-left', `0.4rem solid ${ctmTheme.colors.warning500}`);
+    expect(childDiv).toHaveStyleRule('background', `${ctmTheme.colors.warning50}`);
+  });
+
   it('renders the title with the same color as the border', () => {
     const { container } = render(
       <Notification
@@ -91,8 +107,8 @@ describe('Notification()', () => {
         handleClose={setIsVisibleNotification}
       />,
     );
-    const childDiv = container.firstChild;
-    const closeBtn = container.firstChild.firstChild;
+    const childDiv = container.lastChild;
+    const closeBtn = container.lastChild.lastChild;
     const errorIcon = container.getElementsByClassName('fa-engine-warning')[0];
     closeBtn.click();
     expect(setIsVisibleNotification).toBeCalled();
@@ -241,5 +257,56 @@ describe('Notification()', () => {
 
     fireEvent.click(actionItem);
     expect(primaryAction).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders a slimInline notification with action callback when action has no icon', () => {
+    const primaryAction = jest.fn();
+    const action = {
+      content: 'Test',
+      handleClick: primaryAction,
+    };
+    const { getByText } = render(
+      <Notification
+        type="slimInline"
+        variant="general"
+        title="Notification title goes here"
+        content="Provider will capture the full description."
+        hideActionIcons
+        primaryAction={action}
+      />,
+    );
+    const actionItem = getByText('Test');
+
+    fireEvent.click(actionItem);
+    expect(primaryAction).toHaveBeenCalledTimes(1);
+  });
+
+  it('slimInline Notification with primary and secondary actions when action has no icon', () => {
+    const { container, getByText } = render(
+      <Notification
+        type="slimInline"
+        variant="general"
+        title="Notification title goes here"
+        content="Provider will capture the full description."
+        hideActionIcons
+        primaryAction={
+          {
+            content: 'primary action',
+            link: '#',
+          }
+        }
+        secondaryAction={
+          {
+            content: 'secondary action',
+            link: '#/',
+          }
+        }
+      />,
+    );
+    const links = container.querySelectorAll('a');
+    expect(links[0].getAttribute('href')).toBe('#');
+    expect(links[1].getAttribute('href')).toBe('#/');
+    expect(getByText('primary action')).toBeInTheDocument();
+    expect(getByText('secondary action')).toBeInTheDocument();
   });
 });

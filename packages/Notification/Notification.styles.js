@@ -46,12 +46,10 @@ export const StyledNotificationImage = styled.div`
 `;
 
 export const StyledIcon = styled.div`
-  position: absolute;
-  right: ${({ theme }) => theme.spacing[20]}; 
-  top: '1.8rem'; /* custom alignment for icon */
   cursor: pointer;
   z-index: ${({ theme }) => theme.zIndex[10]};
   opacity: 0.5;
+  margin-left: 0.5rem;
 `;
 
 export const StyledNotificationContentWrap = styled.div`
@@ -65,9 +63,11 @@ export const StyledHeading = styled.div`
     color: ${(variant === 'warning') ? `${theme.notification.aaColor}` : `${theme.notification[variant].color}`};
     font-weight: ${theme.fontWeight.semibold};
   `};
+  ${({ type, desktop }) => type === 'slimInline' && desktop && css` 
+    display: inline-block;
+  `};
   ${({ theme, type }) => type === 'slimInline' && css` 
     font-size: ${theme.fontSize.xl};
-    display: inline-block;
     & span {
       font-size: ${theme.fontSize.xl};
     }
@@ -81,7 +81,9 @@ export const StyledHeading = styled.div`
 export const StyledContent = styled.div`
   padding: 0px;
   ${({ theme, title }) => title === '' && css`padding-top: ${theme.spacing[4]};`} 
-  ${({ theme, type, title }) => type === 'slimInline' && title !== '' && css` 
+  ${({
+    theme, type, title, desktop,
+  }) => type === 'slimInline' && title !== '' && desktop && css` 
     padding-left: ${theme.spacing[12]};
   `};
   ${({ theme, type }) => type !== 'slimInline' && css` 
@@ -91,6 +93,7 @@ export const StyledContent = styled.div`
   width: 95%;
   ${({ theme, type }) => type === 'slimInline' && css` 
     font-size: ${theme.fontSize.base};
+    padding-right: ${theme.spacing[8]};
     display: inline;
     & span {
       font-size: ${theme.fontSize.base};
@@ -107,7 +110,7 @@ export const StyledContent = styled.div`
 
 export const StyledActions = styled.div`
   ${({ theme, type }) => type === 'slimInline' && css` 
-    display: inline-block;
+    display: inline;
     margin-top: ${theme.spacing[0]};
   `};
   ${({ theme, type }) => type !== 'slimInline' && css` 
@@ -118,7 +121,7 @@ export const StyledActions = styled.div`
   a {
     font-size: ${({ theme }) => theme.fontSize.sm};
     ${({ theme, type }) => type === 'slimInline' && css` 
-      padding-left: ${theme.spacing[8]};
+      padding-right: ${theme.spacing[8]};
       display: inline-block;
     `};
     margin-bottom: 0;
@@ -131,7 +134,7 @@ export const StyledActionText = styled.div`
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.fontSize.sm};
   ${({ theme, type }) => type === 'slimInline' && css` 
-    padding-left: ${theme.spacing[8]};
+    padding-right: ${theme.spacing[8]};
     display: inline-block;
   `};
   cursor: pointer;
