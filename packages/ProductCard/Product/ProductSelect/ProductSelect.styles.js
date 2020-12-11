@@ -1,7 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Button } from '@comparethemarketau/manor-button';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   max-width: 15rem;
 `;
 
-export default Wrapper;
+export const StyledButton = styled(Button)`
+  ${({ slimButton, theme }) => slimButton && css`
+    padding: ${theme.spacing[8]};
+  `}
+`;
