@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-product-card@0.4.4...@comparethemarketau/manor-product-card@0.5.0) (2020-12-11)
+
+
+### Features
+
+* 🎸 prop to slimline the button ([#521](https://github.com/comparethemarketau/manor-react/issues/521)) ([f6263af](https://github.com/comparethemarketau/manor-react/commit/f6263aff7d84e9a6825fb10364cc2c7642c2cf1d))
+
+
+
+
+
 ## [0.4.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-product-card@0.4.3...@comparethemarketau/manor-product-card@0.4.4) (2020-12-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-product-card
