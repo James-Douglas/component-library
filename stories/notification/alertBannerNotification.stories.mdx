@@ -9,14 +9,14 @@ import { faBadgeDollar } from '@fortawesome/pro-solid-svg-icons/faBadgeDollar';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContainer.component';
 
-<Meta title="Components/Notifications/SlimInline" component={Notification} />
+<Meta title="Components/Notifications/AlertBanner" component={Notification} />
 
-# Slim Inline Notifications
+# Alert Banner Notifications
 
 ### General Notification
 
 <Preview>
-  <Story name="slim inline general notification">
+  <Story name="Alert Banner general notification">
     {() => {
       const [ demo0, setDemo0 ] = useState(true);
       const [ demo1, setDemo1 ] = useState(true);
@@ -26,7 +26,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
         <div>
             {demo0 &&
               <Notification
-                type="slimInline"
+                type="alertBanner"
                 variant="general"
                 background
                 hideActionIcons
@@ -63,7 +63,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                   <Column xsOffset={1} cols={10}>
                     {demo1 &&
                       <Notification
-                        type="slimInline"
+                        type="alertBanner"
                         variant="general"
                         background
                         hideActionIcons
@@ -100,7 +100,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                   <Column xsOffset={1} cols={10}>
                     {demo2 &&
                       <Notification
-                        type="slimInline"
+                        type="alertBanner"
                         variant="general"
                         background
                         hideActionIcons
@@ -137,7 +137,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                     <div style={{width: '50%'}}>
                       {demo3 &&
                         <Notification
-                          type="slimInline"
+                          type="alertBanner"
                           variant="general"
                           background
                           hideActionIcons
@@ -181,7 +181,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
 ### Success Notification
 
 <Preview>
-  <Story name="slim inline success notification">
+  <Story name="Alert Banner success notification">
     {() => {
       const [ demo0, setDemo0 ] = useState(true);
       const [ demo1, setDemo1 ] = useState(true);
@@ -191,7 +191,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
          <div>
              {demo0 &&
                 <Notification
-                  type="slimInline"
+                  type="alertBanner"
                   variant="success"
                   background
                   hideActionIcons
@@ -228,7 +228,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                     <Column xsOffset={1} cols={10}>
                       {demo1 &&
                         <Notification
-                          type="slimInline"
+                          type="alertBanner"
                           variant="success"
                           background
                           hideActionIcons
@@ -265,7 +265,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                     <Column xsOffset={1} cols={10}>
                       {demo2 &&
                         <Notification
-                          type="slimInline"
+                          type="alertBanner"
                           variant="success"
                           background
                           hideActionIcons
@@ -303,7 +303,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                       <div style={{width: '50%'}}>
                         {demo3 &&
                           <Notification
-                            type="slimInline"
+                            type="alertBanner"
                             variant="success"
                             background
                             hideActionIcons
@@ -347,7 +347,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
 ### Warning Notification
 
 <Preview>
-  <Story name="slim inline warning notification">
+  <Story name="Alert Banner warning notification">
     {() => {
       const [ demo0, setDemo0 ] = useState(true);
       const [ demo1, setDemo1 ] = useState(true);
@@ -357,7 +357,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
         <div>
             {demo0 &&
               <Notification
-                type="slimInline"
+                type="alertBanner"
                 variant="warning"
                 background
                 hideActionIcons
@@ -394,7 +394,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                   <Column xsOffset={1} cols={10}>
                     {demo1 &&
                       <Notification
-                        type="slimInline"
+                        type="alertBanner"
                         variant="warning"
                         background
                         hideActionIcons
@@ -431,7 +431,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                   <Column xsOffset={1} cols={10}>
                     {demo2 &&
                       <Notification
-                        type="slimInline"
+                        type="alertBanner"
                         variant="warning"
                         background
                         hideActionIcons
@@ -468,7 +468,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                     <div style={{width: '50%'}}>
                       {demo3 &&
                         <Notification
-                          type="slimInline"
+                          type="alertBanner"
                           variant="warning"
                           background
                           hideActionIcons
@@ -510,7 +510,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
 </Preview>
 
 <Preview>
-  <Story name="slim inline error notification">
+  <Story name="Alert Banner error notification">
     {() => {
       const [ demo0, setDemo0 ] = useState(true);
       const [ demo1, setDemo1 ] = useState(true);
@@ -520,7 +520,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
         <div>
             {demo0 &&
               <Notification
-                type="slimInline"
+                type="alertBanner"
                 variant="error"
                 background
                 hideActionIcons
@@ -557,7 +557,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                   <Column xsOffset={1} cols={10}>
                     {demo1 &&
                       <Notification
-                        type="slimInline"
+                        type="alertBanner"
                         variant="error"
                         background
                         hideActionIcons
@@ -594,7 +594,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                   <Column xsOffset={1} cols={10}>
                     {demo2 &&
                       <Notification
-                        type="slimInline"
+                        type="alertBanner"
                         variant="error"
                         background
                         hideActionIcons
@@ -631,7 +631,7 @@ import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContai
                     <div style={{width: '50%'}}>
                       {demo3 &&
                         <Notification
-                          type="slimInline"
+                          type="alertBanner"
                           variant="error"
                           background
                           hideActionIcons

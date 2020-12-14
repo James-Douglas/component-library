@@ -47,10 +47,10 @@ describe('Notification()', () => {
     expect(childDiv).toHaveStyleRule('background', `${ctmTheme.colors.warning50}`);
   });
 
-  it('renders a background on slimInline notification if prop is supplied', () => {
+  it('renders a background on alertBanner notification if prop is supplied', () => {
     const { container } = render(
       <Notification
-        type="slimInline"
+        type="alertBanner"
         variant="warning"
         background
         title="Notification title goes here"
@@ -259,7 +259,7 @@ describe('Notification()', () => {
     expect(primaryAction).toHaveBeenCalledTimes(1);
   });
 
-  it('renders a slimInline notification with action callback when action has no icon', () => {
+  it('renders a alertBanner notification with action callback when action has no icon', () => {
     const primaryAction = jest.fn();
     const action = {
       content: 'Test',
@@ -267,7 +267,7 @@ describe('Notification()', () => {
     };
     const { getByText } = render(
       <Notification
-        type="slimInline"
+        type="alertBanner"
         variant="general"
         title="Notification title goes here"
         content="Provider will capture the full description."
@@ -281,10 +281,10 @@ describe('Notification()', () => {
     expect(primaryAction).toHaveBeenCalledTimes(1);
   });
 
-  it('slimInline Notification with primary and secondary actions when action has no icon', () => {
+  it('alertBanner Notification with primary and secondary actions when action has no icon', () => {
     const { container, getByText } = render(
       <Notification
-        type="slimInline"
+        type="alertBanner"
         variant="general"
         title="Notification title goes here"
         content="Provider will capture the full description."

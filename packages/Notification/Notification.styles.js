@@ -6,7 +6,7 @@ export const StyledNotification = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.normal};
   line-height: ${({ theme }) => theme.lineHeight.tight};
   display: flex;
-  ${({ theme, type, variant }) => type !== 'slimInline' && css`
+  ${({ theme, type, variant }) => type !== 'alertBanner' && css`
     border-left: ${theme.spacing[4]} solid ${theme.notification[variant].color};
   `};
   ${({
@@ -16,7 +16,7 @@ export const StyledNotification = styled.div`
   `};
   ${({
     theme, type, background, variant,
-  }) => ((type === 'hint' || type === 'slimInline') && background) && css`
+  }) => ((type === 'hint' || type === 'alertBanner') && background) && css`
     background: ${theme.notification[variant].background};
   `};
   ${({ theme, type }) => type === 'toast' && css`
@@ -63,10 +63,10 @@ export const StyledHeading = styled.div`
     color: ${(variant === 'warning') ? `${theme.notification.aaColor}` : `${theme.notification[variant].color}`};
     font-weight: ${theme.fontWeight.semibold};
   `};
-  ${({ type, desktop }) => type === 'slimInline' && desktop && css` 
+  ${({ type, desktop }) => type === 'alertBanner' && desktop && css` 
     display: inline-block;
   `};
-  ${({ theme, type }) => type === 'slimInline' && css` 
+  ${({ theme, type }) => type === 'alertBanner' && css` 
     font-size: ${theme.fontSize.xl};
     & span {
       font-size: ${theme.fontSize.xl};
@@ -83,15 +83,15 @@ export const StyledContent = styled.div`
   ${({ theme, title }) => title === '' && css`padding-top: ${theme.spacing[4]};`} 
   ${({
     theme, type, title, desktop,
-  }) => type === 'slimInline' && title !== '' && desktop && css` 
+  }) => type === 'alertBanner' && title !== '' && desktop && css` 
     padding-left: ${theme.spacing[12]};
   `};
-  ${({ theme, type }) => type !== 'slimInline' && css` 
+  ${({ theme, type }) => type !== 'alertBanner' && css` 
     font-size: ${theme.fontSize.sm};
   `};
   color: ${({ theme }) => theme.colors.grey800};
   width: 95%;
-  ${({ theme, type }) => type === 'slimInline' && css` 
+  ${({ theme, type }) => type === 'alertBanner' && css` 
     font-size: ${theme.fontSize.base};
     padding-right: ${theme.spacing[8]};
     display: inline;
@@ -109,18 +109,18 @@ export const StyledContent = styled.div`
 `;
 
 export const StyledActions = styled.div`
-  ${({ theme, type }) => type === 'slimInline' && css` 
+  ${({ theme, type }) => type === 'alertBanner' && css` 
     display: inline;
     margin-top: ${theme.spacing[0]};
   `};
-  ${({ theme, type }) => type !== 'slimInline' && css` 
+  ${({ theme, type }) => type !== 'alertBanner' && css` 
     display: flex;
     margin-top: ${theme.spacing[12]};
     justify-content: space-between;
   `};
   a {
     font-size: ${({ theme }) => theme.fontSize.sm};
-    ${({ theme, type }) => type === 'slimInline' && css` 
+    ${({ theme, type }) => type === 'alertBanner' && css` 
       padding-right: ${theme.spacing[8]};
       display: inline-block;
     `};
@@ -133,7 +133,7 @@ export const StyledActionText = styled.div`
   color: ${({ theme }) => theme.colors.primary500};
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.fontSize.sm};
-  ${({ theme, type }) => type === 'slimInline' && css` 
+  ${({ theme, type }) => type === 'alertBanner' && css` 
     padding-right: ${theme.spacing[8]};
     display: inline-block;
   `};

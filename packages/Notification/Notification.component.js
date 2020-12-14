@@ -167,13 +167,13 @@ Notification.propTypes = {
    */
   hideActionIcons: PropTypes.bool,
   /**
-   * Component type, inline, toast, hint or slimInline
+   * Component type, inline, toast, hint or alertBanner
    */
   type: PropTypes.PropTypes.oneOf([
     'inline',
     'toast',
     'hint',
-    'slimInline',
+    'alertBanner',
   ]),
   /**
    * Defines the color and type of icon for the component
