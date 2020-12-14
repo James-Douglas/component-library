@@ -654,7 +654,7 @@ ComboTag.propTypes = {
   /**
    * Sets the border of the combo tag
    */
-  bordered: PropTypes.string,
+  bordered: PropTypes.bool,
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
