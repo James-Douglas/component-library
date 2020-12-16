@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-utils@0.3.10...@comparethemarketau/manor-utils@0.4.0) (2020-12-16)
+
+
+### Features
+
+* **layout:** remove customBreakpoints, xl references ([#524](https://github.com/comparethemarketau/manor-react/issues/524)) ([9fb68cd](https://github.com/comparethemarketau/manor-react/commit/9fb68cdcf20e079580a7a2a582edc99701bdad13))
+
+
+
+
+
 ## [0.3.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-utils@0.3.9...@comparethemarketau/manor-utils@0.3.10) (2020-11-30)
 
 **Note:** Version bump only for package @comparethemarketau/manor-utils

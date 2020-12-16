@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-fonts",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "Manor Fonts component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@comparethemarketau/manor-themes": "^0.11.2",
-    "@comparethemarketau/manor-utils": "^0.3.10",
+    "@comparethemarketau/manor-utils": "^0.4.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

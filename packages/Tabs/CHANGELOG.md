@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tabs@0.10.7...@comparethemarketau/manor-tabs@0.10.8) (2020-12-16)
+
+**Note:** Version bump only for package @comparethemarketau/manor-tabs
+
+
+
+
+
 ## [0.10.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tabs@0.10.6...@comparethemarketau/manor-tabs@0.10.7) (2020-12-08)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tabs
