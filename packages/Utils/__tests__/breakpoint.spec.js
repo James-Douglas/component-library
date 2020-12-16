@@ -2,11 +2,10 @@ import { getBreakpoint, isDesktop } from '../breakpoint';
 
 let windowSpy;
 const breakpoints = {
-  xs: 576,
-  sm: 768,
-  md: 992,
-  lg: 1200,
-  xl: 1900,
+  xs: 767,
+  sm: 1023,
+  md: 1199,
+  lg: 1439,
 };
 
 beforeEach(() => {
@@ -25,34 +24,31 @@ describe('getBreakpoint()', () => {
   });
   it('returns sm for sm screen', () => {
     windowSpy.mockImplementation(() => ({
-      innerWidth: 577,
+      innerWidth: 780,
     }));
     expect(getBreakpoint(breakpoints)).toEqual('sm');
   });
   it('returns md for md screen', () => {
     windowSpy.mockImplementation(() => ({
-      innerWidth: 769,
+      innerWidth: 1100,
     }));
     expect(getBreakpoint(breakpoints)).toEqual('md');
   });
   it('returns lg for lg screen', () => {
     windowSpy.mockImplementation(() => ({
-      innerWidth: 993,
+      innerWidth: 1201,
     }));
     expect(getBreakpoint(breakpoints)).toEqual('lg');
   });
-  it('returns xl for xl screen', () => {
+  it('returns lg for really large screens', () => {
     windowSpy.mockImplementation(() => ({
-      innerWidth: 1201,
+      innerWidth: 2200,
     }));
-    expect(getBreakpoint(breakpoints)).toEqual('xl');
+    expect(getBreakpoint(breakpoints)).toEqual('lg');
   });
 });
 
 describe('isDesktop()', () => {
-  it('returns true when breakpoint is xl', () => {
-    expect(isDesktop('xl')).toBeTruthy();
-  });
   it('returns true when breakpoint is lg', () => {
     expect(isDesktop('lg')).toBeTruthy();
   });

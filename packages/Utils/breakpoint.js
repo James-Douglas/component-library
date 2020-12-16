@@ -8,7 +8,7 @@ function getBreakpoint(breakpoints) {
   return found.breakpoint;
 }
 function isDesktop(breakpoint = getBreakpoint()) {
-  return ['md', 'lg', 'xl'].includes(breakpoint);
+  return ['md', 'lg'].includes(breakpoint);
 }
 
 export { getBreakpoint, isDesktop };

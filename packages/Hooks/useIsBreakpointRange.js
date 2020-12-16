@@ -1,25 +1,15 @@
-import useBreakpoint from './useBreakpoint';
+import { useContext } from 'react';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 
-const BREAKPOINTS = ['xs', 'sm', 'md', 'lg', 'xl'];
 const BREAKPOINT_FROM = 'xs';
-const BREAKPOINT_TO = 'xl';
+const BREAKPOINT_TO = 'lg';
+const breakpoints = ['xs', 'sm', 'md', 'lg'];
 
 export default function useIsBreakpointRange(options = {}) {
-  let breakpoints = BREAKPOINTS;
-  let breakpointFrom = BREAKPOINT_FROM;
-  let breakpointTo = BREAKPOINT_TO;
-  if (options.customBreakpoints) {
-    breakpoints = Object.keys(options.customBreakpoints);
-    [breakpointFrom] = breakpoints;
-    [breakpointTo] = breakpoints.slice(-1);
-  }
-  if (options.breakpointFrom) {
-    breakpointFrom = options.breakpointFrom;
-  }
-  if (options.breakpointTo) {
-    breakpointTo = options.breakpointTo;
-  }
-  const breakpoint = useBreakpoint(true, (options && options.customBreakpoints) && options.customBreakpoints);
+  const breakpointFrom = options.breakpointFrom || BREAKPOINT_FROM;
+  const breakpointTo = options.breakpointTo || BREAKPOINT_TO;
+  const { breakpoint } = useContext(ManorContext);
+
   const breakpointFromIndex = breakpoints.indexOf(breakpointFrom);
   const breakpointToIndex = breakpoints.indexOf(breakpointTo);
 

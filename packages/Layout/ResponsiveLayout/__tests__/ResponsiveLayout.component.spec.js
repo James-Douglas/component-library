@@ -153,14 +153,14 @@ describe('ResponsiveLayout', () => {
 
     expect(childContent).toBeInTheDocument();
 
-    mockBreakpointValue = 'xl';
+    mockBreakpointValue = 'lg';
     ({ container } = render(ui));
     childContent = container.querySelector('.child-content');
 
-    expect(childContent).not.toBeInTheDocument();
+    expect(childContent).toBeInTheDocument();
   });
 
-  it('rrenders on devices that are between sm and lg breakpoint', () => {
+  it('renders on devices that are between sm and lg breakpoint', () => {
     mockBreakpointValue = 'md';
     const ui = (
       <ResponsiveLayout isFrom="sm" upTo="lg">
@@ -172,7 +172,7 @@ describe('ResponsiveLayout', () => {
 
     expect(childContent).toBeInTheDocument();
 
-    mockBreakpointValue = 'xl';
+    mockBreakpointValue = 'xs';
     ({ container } = render(ui));
     childContent = container.querySelector('.child-content');
 

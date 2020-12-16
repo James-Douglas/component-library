@@ -56,16 +56,16 @@ ResponsiveLayout.propTypes = {
    */
   is: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
   ]),
   /**
    * Renders on devices that are from a breakpoint value
    */
-  isFrom: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  isFrom: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
   /**
    * Renders on devices that is up to a breakpoint value
    */
-  upTo: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+  upTo: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * Additional check to render
    */
@@ -77,7 +77,7 @@ ResponsiveLayout.defaultProps = {
   isMobile: false,
   is: false,
   isFrom: 'xs',
-  upTo: 'xl',
+  upTo: 'lg',
   andIs: true,
 };
 

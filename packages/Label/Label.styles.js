@@ -17,7 +17,7 @@ export const StyledLabel = styled.label`
     text-transform: uppercase;
     font-weight: ${theme.fontWeight.bold};
     letter-spacing: ${theme.spacing.px};
-    font-size: ${breakpoint === 'xl' ? theme.fontSize.xs : theme.fontSize['2xs']};
+    font-size: ${breakpoint === 'lg' ? theme.fontSize.xs : theme.fontSize['2xs']};
     color: ${theme.colors.grey600};
   `}
     ${({
@@ -37,7 +37,7 @@ export const StyledLabel = styled.label`
     text-transform: uppercase;
     color: ${theme.label.inField};
     font-weight: bold;
-    font-size: ${breakpoint === 'xl' ? theme.fontSize.xs : theme.fontSize['2xs']};
+    font-size: ${breakpoint === 'lg' ? theme.fontSize.xs : theme.fontSize['2xs']};
     letter-spacing: 0.1em;
     line-height: 15px;
   `}
