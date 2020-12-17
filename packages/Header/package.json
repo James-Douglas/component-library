@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-header",
-  "version": "0.11.6",
+  "version": "0.11.7",
   "description": "Manor Header component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

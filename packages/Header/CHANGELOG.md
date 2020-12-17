@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.11.6...@comparethemarketau/manor-header@0.11.7) (2020-12-17)
+
+
+### Bug Fixes
+
+* using function in core library with polyfill to render micro-ui ([#526](https://github.com/comparethemarketau/manor-react/issues/526)) ([0ff5751](https://github.com/comparethemarketau/manor-react/commit/0ff5751605c492f625d2ee526edde7877794102f))
+
+
+
+
+
 ## [0.11.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.11.5...@comparethemarketau/manor-header@0.11.6) (2020-12-16)
 
 **Note:** Version bump only for package @comparethemarketau/manor-header
