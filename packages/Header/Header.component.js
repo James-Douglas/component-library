@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { MicroUIComponent } from '@sackrin/react-micro-ui-hooks/lib/Components';
+import { MicroUIComponent } from '@sackrin/react-micro-ui/lib/Components';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import Contact from './Contact/Contact.component';
