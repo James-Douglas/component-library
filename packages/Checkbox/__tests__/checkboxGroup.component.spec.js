@@ -3,6 +3,7 @@ import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render, fireEvent } from '../../../testUtils';
 import CheckboxGroup, { generateGroup } from '../CheckboxGroup.component';
 import Checkbox from '../Checkbox.component';
+import sergei from '../../../images/sergei.png';
 
 describe('generateGroup', () => {
   // eslint-disable-next-line react/prop-types
@@ -134,7 +135,36 @@ describe('CheckboxGroup.component', () => {
         <Checkbox id="A-3"><p>A-3 check</p></Checkbox>
       </CheckboxGroup>,
     );
-    const tooltipExist = container.querySelector(' div[role="tooltip"]');
+    const tooltipExist = container.querySelector('div[role="tooltip"]');
     expect(tooltipExist).toBeInTheDocument();
+  });
+
+  it('render with img', () => {
+    const { container } = render(
+      <CheckboxGroup groupId="test-group-id" colSize={5}>
+        <Checkbox id="A-1" image={sergei}>A-1 check</Checkbox>
+        <Checkbox id="A-2">A-2 check</Checkbox>
+        <Checkbox id="A-3">A-3 check</Checkbox>
+      </CheckboxGroup>,
+    );
+    const chk1Img = container.querySelector('label[for="A-1"] img');
+    expect(chk1Img).toBeInTheDocument();
+    expect(chk1Img).toHaveAttribute('src', 'sergei.png');
+    const chk2Img = container.querySelector('label[for="A-2"] img');
+    expect(chk2Img).not.toBeInTheDocument();
+  });
+
+  it('renders boxed checkboxes', () => {
+    const { container } = render(
+      <CheckboxGroup groupId="test-group-id" colSize={5}>
+        <Checkbox id="A-1" variant="boxed">A-1 check</Checkbox>
+        <Checkbox id="A-2">A-2 check</Checkbox>
+        <Checkbox id="A-3">A-3 check</Checkbox>
+      </CheckboxGroup>,
+    );
+    const chkA1Div = container.querySelector('#A-1').closest('div');
+    expect(chkA1Div).toHaveStyle(`border: 1px solid ${ctmTheme.colors.grey100}`);
+    const chkA2Div = container.querySelector('#A-2').closest('div');
+    expect(chkA2Div).not.toHaveStyle(`border: 1px solid ${ctmTheme.colors.grey100}`);
   });
 });

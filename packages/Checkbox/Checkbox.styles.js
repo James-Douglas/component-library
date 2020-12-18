@@ -14,9 +14,46 @@ export const StyledHiddenInput = styled.input`
 `;
 
 export const StyledWrap = styled.div`
-  display: flex;
-  margin-bottom: ${({ theme }) => theme.spacing[12]};
-  min-width: 3rem;
+  ${({ disabled, theme, variant }) => {
+    if (variant === 'boxed') {
+      if (!disabled) {
+        return css`
+        border: 1px solid ${theme.colors.grey100};
+        padding: ${theme.spacing[8]} ${theme.spacing[0]} ${theme.spacing[12]} ${theme.spacing[16]};
+        box-shadow: ${theme.checkbox.boxedShadow};
+        :hover {
+          background: ${theme.colors.primary50};
+          border: ${theme.checkbox.borderHover};
+          cursor: pointer;
+        }
+        :active, :focus {
+          border: ${theme.checkbox.borderHover};
+        }
+        :hover ${StyledCheckbox}, :active ${StyledCheckbox}, :focus ${StyledCheckbox} {
+          border: ${theme.checkbox.borderHover};
+        }
+        margin-bottom: ${theme.spacing[12]};
+      `;
+      }
+      return css`
+        cursor: not-allowed;
+        padding: ${theme.spacing[8]} ${theme.spacing[0]} ${theme.spacing[12]} ${theme.spacing[16]};
+        background: ${theme.checkbox.backgroundDisabled};
+        border: 1px solid ${theme.colors.grey100};
+        color: ${theme.checkbox.colorDisabled};
+        opacity:${theme.checkbox.disabledOpacity};
+        margin-bottom: ${theme.spacing[12]};
+      `;
+    }
+    return css`  
+    display: flex;
+    margin-bottom: ${theme.spacing[12]};
+    min-width: 3rem;
+    `;
+  }}
+  ${({ isFocused, theme, variant }) => (isFocused && variant === 'boxed') && css`
+  border: ${theme.checkbox.borderHover};
+  `}
 `;
 
 export const StyledCheckbox = styled.div`
@@ -63,6 +100,9 @@ export const StyledCheckbox = styled.div`
     color: ${theme.checkbox.colorDisabled};
     opacity:${theme.checkbox.disabledOpacity};
   `}
+  ${({ disabled, theme, variant }) => disabled && variant === 'boxed' && css`
+    border: 1px solid ${theme.colors.grey500};
+  `}
   ${({ theme, invalid }) => invalid && css`
     border: ${theme.checkbox.invalid};
     :hover {
@@ -76,18 +116,18 @@ export const StyledLabel = styled.label`
   font-weight: ${({ theme }) => theme.fontWeight.normal};
   color: ${({ theme }) => theme.colors.grey900};
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   cursor: pointer;
   margin-top: ${({ theme }) => theme.spacing[4]};
 
   ${({ disabled }) => disabled && css`
     cursor: not-allowed;
   `};
-  :hover ${StyledCheckbox}{
+  :hover ${StyledCheckbox} {
     border: ${({ theme, disabled }) => (disabled ? null : theme.checkbox.borderHover)};
   }
-  :active ${StyledCheckbox}{
-    border: ${({ theme, disabled }) => (disabled ? null : theme.checkbox.active)};
+  :active ${StyledCheckbox} {
+   border: ${({ theme, disabled }) => (disabled ? null : theme.checkbox.borderHover)};
   }
 `;
 
@@ -95,4 +135,11 @@ export const StyledContent = styled.div`
   margin: ${({ theme }) => theme.checkbox.contentMargin};
   pointer-events: none;
   font-size: ${({ theme }) => theme.fontSize.base};
+  line-height: ${({ theme }) => theme.spacing[24]};
+`;
+
+export const StyledImg = styled.img`
+  min-width: ${({ theme }) => theme.spacing[24]};
+  height: ${({ theme }) => theme.spacing[24]};
+  margin-left: ${({ theme }) => theme.spacing[8]};
 `;

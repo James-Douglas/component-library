@@ -6,6 +6,7 @@ import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
 import CheckboxGroupView from './checkboxGroup.view';
 import getTooltipKnobs from '../tooltipKnobs';
+import sergei from '../../images/sergei.png';
 
 <Meta title="Components/Checkbox" component={Checkbox} />
 
@@ -76,6 +77,31 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
               <Checkbox id="x-2" label="Two" />
               <Checkbox id="x-3" label="Three" />
               <Checkbox id="x-4" label="Four" />
+            </CheckboxGroup>
+          </Column>
+        </Row>
+      </Container>
+    </div>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="boxed checkbox group">
+    <div style={{ padding: '2%' }}>
+      <Container>
+        <Row>
+          <Column>
+             <CheckboxGroup
+              label="Checkbox group example with boxed variant"
+              tooltip={{ title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
+              groupId="group-2"
+              colSize={12}
+              handleChange={(checkboxes) => {console.warn(checkboxes)}}
+            >
+              <Checkbox disabled="true" id="b-1" label="One - disabled" variant="boxed" />
+              <Checkbox id="b-2" image={sergei} label="Two with an image" variant="boxed" />
+              <Checkbox id="b-3" label="Three" variant="boxed" />
+              <Checkbox id="b-4" label="This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label." variant="boxed"/>
             </CheckboxGroup>
           </Column>
         </Row>

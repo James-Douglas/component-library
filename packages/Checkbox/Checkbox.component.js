@@ -11,6 +11,7 @@ import {
   StyledHiddenInput,
   StyledLabel,
   StyledWrap,
+  StyledImg,
 } from './Checkbox.styles';
 
 export const renderIcon = (icon, value) => {
@@ -39,11 +40,14 @@ const Checkbox = ({
   isSelected,
   prefillValue,
   className,
+  variant,
+  image,
 }) => {
   const [internalValue, setInternalValue] = useState(getInitialValue(isSelected, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, isSelected, isDirty);
   const id = useId(propsId);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (!prefillValue) {
@@ -62,9 +66,23 @@ const Checkbox = ({
     }
   };
 
+  const focusHandler = () => {
+    setIsFocused(true);
+    if (handleFocus) {
+      handleFocus();
+    }
+  };
+
+  const blurHandler = () => {
+    setIsFocused(false);
+    if (handleBlur) {
+      handleBlur();
+    }
+  };
+
   return (
     <>
-      <StyledWrap className={className}>
+      <StyledWrap onClick={variant === 'boxed' && !disabled ? toggleEventHandler : null} isFocused={isFocused} className={className} variant={variant} disabled={disabled}>
         <StyledHiddenInput
           id={id}
           name={id}
@@ -75,12 +93,13 @@ const Checkbox = ({
           onChange={toggleEventHandler}
           checked={internalValue}
           aria-checked={internalValue}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onFocus={focusHandler}
+          onBlur={blurHandler}
         />
         <StyledLabel
           disabled={disabled}
-          htmlFor={id}
+          htmlFor={variant !== 'boxed' ? id : null}
+          variant={variant}
         >
           <StyledCheckbox
             invertColour={invertColour}
@@ -88,9 +107,14 @@ const Checkbox = ({
             isAutofill={isAutofill}
             disabled={disabled}
             invalid={invalid || (validationMessage && validationMessage.length > 0)}
+            variant={variant}
           >
             {renderIcon(icon, internalValue)}
           </StyledCheckbox>
+          {image
+            && (
+              <StyledImg src={image} />
+            )}
           {label
             && (
               <StyledContent>
@@ -168,6 +192,14 @@ Checkbox.propTypes = {
    * Classes to be applied to the Checkbox component
    */
   className: PropTypes.string,
+  /**
+   * Variant
+   */
+  variant: PropTypes.oneOf(['default', 'boxed']),
+  /**
+   * Image
+   */
+  image: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
@@ -185,6 +217,8 @@ Checkbox.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   className: '',
+  variant: 'default',
+  image: '',
 };
 
 export default Checkbox;
