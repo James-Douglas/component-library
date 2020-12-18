@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-provider@0.7.13...@comparethemarketau/manor-provider@0.7.14) (2020-12-18)
+
+**Note:** Version bump only for package @comparethemarketau/manor-provider
+
+
+
+
+
 ## [0.7.13](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-provider@0.7.12...@comparethemarketau/manor-provider@0.7.13) (2020-12-16)
 
 **Note:** Version bump only for package @comparethemarketau/manor-provider
