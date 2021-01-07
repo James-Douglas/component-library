@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.11.9...@comparethemarketau/manor-footer@0.12.0) (2021-01-07)
+
+
+### Features
+
+* 🎸 removed product cards ([#527](https://github.com/comparethemarketau/manor-react/issues/527)) ([681626a](https://github.com/comparethemarketau/manor-react/commit/681626a8fee4924aec50602fed22a23e48f7761d))
+
+
+### BREAKING CHANGES
+
+* 🧨 product cards removed from manor
+
+
+
+
+
 ## [0.11.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.11.8...@comparethemarketau/manor-footer@0.11.9) (2020-12-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-footer
