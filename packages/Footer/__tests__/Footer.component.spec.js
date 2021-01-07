@@ -4,6 +4,8 @@ import 'jest-styled-components';
 
 import Footer from '../Footer.component';
 
+const currentYear = new Date().getFullYear();
+
 describe('Footer', () => {
   it('renders with minimal props', () => {
     const { container } = render(<Footer />);
@@ -50,7 +52,7 @@ describe('Footer', () => {
     );
     const pTags = container.getElementsByTagName('span');
     expect(pTags[0].textContent).toBe('test disclaimer');
-    expect(pTags[1].textContent).toBe('© 2020 Compare The Market. All rights reserved. ACN: 117 323 378. AFSL 422926.');
+    expect(pTags[1].textContent).toBe(`© ${currentYear} Compare The Market. All rights reserved. ACN: 117 323 378. AFSL 422926.`);
   });
 
   it('renders a customer accounts footer type', () => {
@@ -60,7 +62,7 @@ describe('Footer', () => {
       </Footer>,
     );
     const pTags = container.getElementsByTagName('span');
-    expect(pTags[0].textContent).toBe('© 2020 Compare The Market. All rights reserved. ACN: 117 323 378. AFSL 422926.');
+    expect(pTags[0].textContent).toBe(`© ${currentYear} Compare The Market. All rights reserved. ACN: 117 323 378. AFSL 422926.`);
     expect(pTags[1].textContent).toBe('test disclaimer');
   });
 });
