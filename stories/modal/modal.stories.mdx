@@ -92,8 +92,9 @@ Unlike a Drawer, Modals can always be closed by the user.
     const className = text('className');
     const componentPropsId = 'Component Props';
     const title = text('Title', 'Modal Title goes here', componentPropsId);
+    const primaryActionTitle = text('Primary Action Title', '', componentPropsId);
     return (
-      <Modal id={id} visible={visible} className={className} size={size} title={title}>
+      <Modal id={id} visible={visible} className={className} size={size} title={title} primaryActionTitle={primaryActionTitle}>
         <Typography variant="body1">Toggle the visible prop to close</Typography>
         <Typography variant="body1">Inspect the Modal to see the id and additional classes</Typography>
       </Modal>

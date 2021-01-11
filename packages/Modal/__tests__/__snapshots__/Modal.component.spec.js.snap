@@ -129,7 +129,7 @@ exports[`Modal renders with minimal props 1`] = `
 
 .c8 {
   padding: 2rem 2.4rem 0;
-  height: calc(100% - 6.8rem);
+  height: calc(100% - 68px);
 }
 
 .c9 {

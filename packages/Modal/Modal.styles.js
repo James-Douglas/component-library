@@ -73,7 +73,9 @@ export const StyledCloseIcon = styled.div`
 
 export const StyledContent = styled.div`
   padding: ${({ theme }) => `${theme.spacing[20]} ${theme.spacing[24]} 0`};
-  height: ${({ theme, showSupplementaryBar, desktop }) => `calc(100% - ${theme.spacing[desktop && showSupplementaryBar ? 156 : 68]})`};
+  height: ${({
+    theme, showSupplementaryBar, desktop, modalHeaderBarHeight,
+  }) => `calc(100% - ${desktop && showSupplementaryBar ? ((modalHeaderBarHeight || 68) + 88) : (modalHeaderBarHeight || 68)}px)`};
   overflow-y: ${({ desktop }) => (desktop ? '' : 'scroll')};
   overflow-x: ${({ desktop }) => (desktop ? '' : 'hidden')}; 
 `;

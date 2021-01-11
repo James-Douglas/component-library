@@ -132,7 +132,7 @@ Drawer.defaultProps = {
   overlayOpacity: 0.7,
   handleOverlayClick: null,
   keyLine: false,
-  zIndex: 30,
+  zIndex: 999999,
 };
 
 export default Drawer;

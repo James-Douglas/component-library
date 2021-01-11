@@ -41,7 +41,9 @@ const Modal = ({
   zIndex,
 }) => {
   const id = useId(propsId);
+  const headerBarRef = useRef(null);
   const supplementaryBarRef = useRef(null);
+  const [headerBarHeight, setHeaderBarHeight] = useState();
   const [supplementaryBarHeight, setSupplementaryBarHeight] = useState();
 
   const { isDesktop } = useContext(ManorContext);
@@ -49,6 +51,28 @@ const Modal = ({
   const classNames = `
     ${className}
   `;
+
+  useLayoutEffect(() => {
+    if (headerBarRef) {
+      const handleHeaderBarResize = () => {
+        if (headerBarRef.current) {
+          setHeaderBarHeight(headerBarRef.current.offsetHeight);
+        }
+      };
+      const throttledHeaderBarResize = throttle(handleHeaderBarResize, 25);
+      window.addEventListener('resize', throttledHeaderBarResize);
+      return () => {
+        window.removeEventListener('resize', throttledHeaderBarResize);
+      };
+    }
+    return null;
+  }, [headerBarRef, headerBarHeight]);
+
+  useEffect(() => {
+    if (headerBarRef && headerBarRef.current) {
+      setHeaderBarHeight(headerBarRef.current.offsetHeight);
+    }
+  }, [visible]);
 
   useLayoutEffect(() => {
     if (supplementaryBarRef) {
@@ -73,7 +97,7 @@ const Modal = ({
   }, [visible]);
 
   const Header = () => (
-    <StyledModalHeader desktop={isDesktop}>
+    <StyledModalHeader ref={headerBarRef} desktop={isDesktop}>
       <Container>
         <Row removeMarginBottom>
           <Column halign="center">
@@ -199,7 +223,7 @@ const Modal = ({
           <StyledAlignment visible={visible} zIndex={zIndex}>
             <StyledModal id={id} className={classNames} desktop={isDesktop}>
               {Header()}
-              <StyledContent desktop={isDesktop} showSupplementaryBar={showSupplementaryBar}>
+              <StyledContent desktop={isDesktop} modalHeaderBarHeight={headerBarHeight} showSupplementaryBar={showSupplementaryBar}>
                 <StyledContentChildren desktop={isDesktop} supplementaryBarHeight={supplementaryBarHeight} showSupplementaryBar={showSupplementaryBar}>{children}</StyledContentChildren>
                 {ActionButtons()}
                 {SupplementaryBar()}
@@ -306,7 +330,7 @@ Modal.defaultProps = {
   handleSecondaryActionClick: null,
   titleIcon: null,
   title: '',
-  zIndex: 30,
+  zIndex: 999999,
   showSupplementaryBar: false,
   supplementaryBarOptions: {
     showRequestCall: true,
