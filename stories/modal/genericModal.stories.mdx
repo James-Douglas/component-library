@@ -1,0 +1,39 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+import { useState } from 'react';
+import { GenericModal } from '@comparethemarketau/manor-modal';
+import { Typography } from '@comparethemarketau/manor-typography';
+import { Button } from '@comparethemarketau/manor-button';
+import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
+
+<Meta title="Components/Modal/GenericModal" component={GenericModal} />
+
+# GenericModal
+
+A "bare bones" modal, the GenericModal functions similarly to the Modal component, but is not opinionated about content layout, size etc.
+
+**Switch to canvas view to see examples**
+
+<Story name="generic modal" parameters={{ docs: { disable: true } }}>
+  {() => {
+    const [ visible, setVisible ] = useState(false);
+    return (
+      <div style={{ padding: '2%' }}>
+        <FluidContainer>
+          <Row>
+            <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
+              <Button id='preview-btn' variant='secondary' handleClick={() => setVisible(!visible)}>Modal preview</Button>
+            </Column>
+            <GenericModal id='preview-modal' visible={visible} handleClose={() => {setVisible(false)}} overlay handleOverlayClick={() => setVisible(false)}>
+              <div style={{ height: '300px', maxWidth: '1200px' }}>
+                <Typography variant="body1"> It is the percentage of money you borrow for a home loan compared to the value of the property. It is used to assess your risk factor as a borrower; lenders will calculate your LVR before deciding whether or to approve you for a home loan. Home loans which are over 80% LVR are considered high risk. As a result, most lenders will charge extra fees, such as Lender’s Mortgage Insurance (LMI), in order to protect themselves in case you default.</Typography>
+              </div>
+            </GenericModal>
+          </Row>
+        </FluidContainer>
+      </div>
+    )
+  }}
+</Story>
+
+### Props - GenericModal
+<Props of={GenericModal} />

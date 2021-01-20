@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenericModal renders with minimal props 1`] = `
+.c0 {
+  background: #FFFFFF;
+  box-shadow: 0 1.5rem 3rem 0 rgba(0,0,0,0.11),0 0.5rem 1.5rem 0 rgba(0,0,0,0.08);
+  z-index: inherit;
+  pointer-events: auto;
+  position: relative;
+  -webkit-animation-name: bMDMvv;
+  animation-name: bMDMvv;
+  -webkit-animation-duration: .3s;
+  animation-duration: .3s;
+}
+
+<div
+  class="c0"
+  id="test-modal"
+/>
+`;
