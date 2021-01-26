@@ -1,9 +1,11 @@
+/* eslint-disable react/forbid-prop-types */
 import React, {
   useRef, useState, useLayoutEffect, useEffect, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPhone, faComments } from '@fortawesome/pro-regular-svg-icons';
+import FocusTrap from 'focus-trap-react';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { throttle } from '@comparethemarketau/manor-utils';
 import { ManorContext } from '@comparethemarketau/manor-provider';
@@ -20,6 +22,18 @@ import {
   StyledTitleIcon, StyledTitleContainer, SeparatorContainer, StyledSupplementaryBarItemIcon,
   StyledLink,
 } from './Modal.styles';
+
+// eslint-disable-next-line react/prop-types
+const Wrapper = ({ trapFocus, focusTrapOptions, children }) => {
+  if (trapFocus) {
+    return (
+      <FocusTrap focusTrapOptions={focusTrapOptions}>
+        {children}
+      </FocusTrap>
+    );
+  }
+  return <>{children}</>;
+};
 
 const Modal = ({
   id: propsId,
@@ -39,6 +53,8 @@ const Modal = ({
   showSupplementaryBar,
   supplementaryBarOptions,
   zIndex,
+  trapFocus,
+  focusTrapOptions,
 }) => {
   const id = useId(propsId);
   const headerBarRef = useRef(null);
@@ -220,16 +236,18 @@ const Modal = ({
       {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
       {visible
         && (
-          <StyledAlignment visible={visible} zIndex={zIndex}>
-            <StyledModal id={id} className={classNames} desktop={isDesktop}>
-              {Header()}
-              <StyledContent desktop={isDesktop} modalHeaderBarHeight={headerBarHeight} showSupplementaryBar={showSupplementaryBar}>
-                <StyledContentChildren desktop={isDesktop} supplementaryBarHeight={supplementaryBarHeight} showSupplementaryBar={showSupplementaryBar}>{children}</StyledContentChildren>
-                {ActionButtons()}
-                {SupplementaryBar()}
-              </StyledContent>
-            </StyledModal>
-          </StyledAlignment>
+          <Wrapper trapFocus={trapFocus} focusTrapOptions={focusTrapOptions}>
+            <StyledAlignment visible={visible} zIndex={zIndex}>
+              <StyledModal id={id} className={classNames} desktop={isDesktop}>
+                {Header()}
+                <StyledContent desktop={isDesktop} modalHeaderBarHeight={headerBarHeight} showSupplementaryBar={showSupplementaryBar}>
+                  <StyledContentChildren desktop={isDesktop} supplementaryBarHeight={supplementaryBarHeight} showSupplementaryBar={showSupplementaryBar}>{children}</StyledContentChildren>
+                  {ActionButtons()}
+                  {SupplementaryBar()}
+                </StyledContent>
+              </StyledModal>
+            </StyledAlignment>
+          </Wrapper>
         )}
     </>
   );
@@ -313,6 +331,17 @@ Modal.propTypes = {
     showChatOnline: PropTypes.bool,
     phoneNumber: PropTypes.string,
   }),
+  /**
+   * Traps focus within the modal
+   */
+  trapFocus: PropTypes.bool,
+  /**
+   * Options to be passed to the focus-trap library
+   * Common use case: By default the library deactivates the trap when the Escape key is pressed, for our
+   * use case we likely want to disable that with focusTrapOptions: { escapeDeactivates: false }
+   * https://github.com/focus-trap/focus-trap#focustrap--createfocustrapelement-createoptions
+   */
+  focusTrapOptions: PropTypes.object,
 };
 
 Modal.defaultProps = {
@@ -337,6 +366,8 @@ Modal.defaultProps = {
     showChatOnline: true,
     phoneNumber: '',
   },
+  trapFocus: false,
+  focusTrapOptions: {},
 };
 
 export default Modal;
