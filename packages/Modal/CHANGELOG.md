@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.9.0...@comparethemarketau/manor-modal@0.10.0) (2021-01-26)
+
+
+### Features
+
+* **modal:** add ability to trap focus to modals ([#535](https://github.com/comparethemarketau/manor-react/issues/535)) ([ae6350a](https://github.com/comparethemarketau/manor-react/commit/ae6350a14cf2c1adc3608ccacf5d4204df09b1ed))
+
+
+
+
+
 # [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.8.41...@comparethemarketau/manor-modal@0.9.0) (2021-01-20)
 
 
