@@ -64,7 +64,14 @@ export const StyledDrawer = styled.div`
 export const StyledDrawerPreviewButton = styled(Button)`
   ${({ theme }) => css`
     background: ${theme.colors.primary50};
-    top: -35px;
+    ${({ keyLine }) => keyLine && css`
+      border-top: ${theme.drawer.borderTop};
+      top: -35px;
+    `}
+    ${({ keyLine }) => !keyLine && css`
+      top: -37px;
+    `}
+    left: 5%;
     border-bottom-right-radius: ${theme.spacing[0]};
     border-bottom-left-radius: ${theme.spacing[0]};
     margin-bottom: ${theme.spacing[0]};
