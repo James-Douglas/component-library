@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer } from '@comparethemarketau/manor-drawer';
+import { DrawerHorizontal } from '@comparethemarketau/manor-drawer';
 import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
@@ -21,8 +21,8 @@ const DrawerBottom = () => {
 
   return (
     <ManorProvider>
-      <Drawer
-        size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '160px'}`}
+      <DrawerHorizontal
+        size={300}
         keyLine={!(breakpoint === 'xs' || breakpoint === 'sm')}
         visible={show}
         direction="bottom"
@@ -42,7 +42,7 @@ const DrawerBottom = () => {
             </Row>
           </FluidContainer>
         </StyledDrawerContent>
-      </Drawer>
+      </DrawerHorizontal>
       <div>
         <Row className="row-view">
           <Column cols={12} valign="center">
@@ -53,7 +53,7 @@ const DrawerBottom = () => {
                 <Button
                   id="btn01"
                   variant="primary"
-                  handleClick={() => setShow(!show)}
+                  handleClick={() => {setShow(!show)}}
                 >
                   Click me
                 </Button>

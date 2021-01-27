@@ -10,9 +10,9 @@ import {
   StyledDrawerCloseBase,
   StyledDrawerText,
   StyledIcon,
-} from './Drawer.styles';
+} from './DrawerVertical.styles';
 
-const Drawer = ({
+const DrawerVertical = ({
   id: propsId,
   direction,
   size,
@@ -62,13 +62,13 @@ const Drawer = ({
   );
 };
 
-Drawer.propTypes = {
+DrawerVertical.propTypes = {
   /**
    *  Unique identifier for the Drawer
    */
   id: PropTypes.string,
   /**
-   *  Direction param play a role in how we interpret a slide's movement within a frame.
+   *  Direction param to dictate where the drawer is coming from.
    */
   direction: PropTypes.string,
   /**
@@ -120,7 +120,7 @@ Drawer.propTypes = {
   zIndex: PropTypes.number,
 };
 
-Drawer.defaultProps = {
+DrawerVertical.defaultProps = {
   id: null,
   direction: 'right',
   size: '80%',
@@ -135,4 +135,4 @@ Drawer.defaultProps = {
   zIndex: 999999,
 };
 
-export default Drawer;
+export default DrawerVertical;

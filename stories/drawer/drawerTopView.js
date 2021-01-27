@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ManorProvider } from '@comparethemarketau/manor-provider';
-import { Drawer } from '@comparethemarketau/manor-drawer';
+import { DrawerHorizontal } from '@comparethemarketau/manor-drawer';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { Button } from '@comparethemarketau/manor-button';
@@ -31,8 +31,8 @@ const DrawerTop = () => {
   };
   return (
     <ManorProvider>
-      <Drawer
-        size="150px"
+      <DrawerHorizontal
+        size={250}
         visible={show}
         direction="top"
         handleClose={() => setShow(false)}
@@ -49,7 +49,7 @@ const DrawerTop = () => {
             </Column>
           </Row>
         </StyledDrawerContent>
-      </Drawer>
+      </DrawerHorizontal>
       <StyledBar />
       <Container>
         <Row className="row-view">

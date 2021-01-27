@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ManorProvider } from '@comparethemarketau/manor-provider';
-import { Drawer } from '@comparethemarketau/manor-drawer';
+import { DrawerVertical } from '@comparethemarketau/manor-drawer';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { Button } from '@comparethemarketau/manor-button';
@@ -29,7 +29,7 @@ const DrawerLeft = () => {
   const breakpoint = useBreakpoint(false);
   return (
     <ManorProvider>
-      <Drawer
+      <DrawerVertical
         size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '50%'}`}
         visible={show}
         handleClose={() => setShow(false)}
@@ -48,7 +48,7 @@ const DrawerLeft = () => {
             </Column>
           </Row>
         </Container>
-      </Drawer>
+      </DrawerVertical>
       <StyledBar />
       <Container>
         <Row className="row-view">

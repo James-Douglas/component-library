@@ -1,3 +1,4 @@
-import Drawer from './Drawer.component';
+import DrawerHorizontal from './DrawerHorizontal.component';
+import DrawerVertical from './DrawerVertical.component';
 
-export { Drawer };
+export { DrawerHorizontal, DrawerVertical };

@@ -8,14 +8,6 @@ const animateRight = keyframes`
   from { right: -100% }
   to { right: 0 }
 `;
-const animateTop = keyframes`
-  from { top: -100% }
-  to { top: 0 }
-`;
-const animateBottom = keyframes`
-  from { bottom: -100% }
-  to { bottom: 0}
-`;
 
 export const StyledDrawer = styled.div`
   *, *:before, *:after {
@@ -32,24 +24,10 @@ export const StyledDrawer = styled.div`
   z-index: ${({ zIndex }) => zIndex};
   box-shadow: ${({ theme }) => theme.drawer.shadow};
   padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[4]}`};
-  ${({ size, direction }) => direction === 'top' && css`
-    animation-name: ${animateTop};
-    height: ${size};
-    width: 100%;
-    top: 0;
-    left: 0;
-  `}
   ${({ size, direction }) => direction === 'left' && css`
     animation-name: ${animateLeft};
     width: ${size};
     top: 0;
-    left: 0;
-  `}
-  ${({ size, direction }) => direction === 'bottom' && css`
-    animation-name: ${animateBottom};
-    width: 100%;
-    height: ${size};
-    bottom: 0;
     left: 0;
   `}
   ${({ size, direction }) => direction === 'right' && css`
@@ -85,14 +63,6 @@ export const StyledDrawerCloseBase = styled.div`
   z-index: inherit;
   width: 100%;
 
-  ${({ direction }) => direction === 'top' && css`
-    width: 100%;
-    animation-name: ${animateTop};
-  `}
-  ${({ direction }) => direction === 'bottom' && css`
-    width: 100%;
-    animation-name: ${animateBottom};
-  `}
   ${({ theme, direction, size }) => direction === 'left' && css`
     width: calc(${size} - ${theme.spacing[8]});
     animation-name: ${animateLeft};

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ManorProvider } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useBreakpoint } from '@comparethemarketau/manor-hooks';
-import { Drawer } from '@comparethemarketau/manor-drawer';
+import { DrawerHorizontal, DrawerVertical } from '@comparethemarketau/manor-drawer';
 import { FluidContainer, Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { Button } from '@comparethemarketau/manor-button';
 import { Modal } from '@comparethemarketau/manor-modal';
@@ -41,9 +41,9 @@ const DrawerMix = () => {
   };
   return (
     <ManorProvider>
-      <Drawer
+      <DrawerHorizontal
         id="1"
-        size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '300px'}`}
+        size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '200' : '300'}`}
         visible={show}
         direction="bottom"
         handleClose={() => { setOpenLayers(openLayers.filter((item) => item !== 'secondary')); setShow(false); }}
@@ -117,8 +117,8 @@ const DrawerMix = () => {
             </Row>
           </FluidContainer>
         </StyledDrawerContent>
-      </Drawer>
-      <Drawer
+      </DrawerHorizontal>
+      <DrawerVertical
         size={`${breakpoint === 'xs' || breakpoint === 'sm' ? '100%' : '50%'}`}
         visible={showLeft}
         direction="right"
@@ -246,7 +246,7 @@ const DrawerMix = () => {
             </Column>
           </Row>
         </Container>
-      </Drawer>
+      </DrawerVertical>
       <div>
         <Row className="row-view">
           <Column cols={12} valign="center">
