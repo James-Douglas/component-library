@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-drawer",
-  "version": "0.6.14",
+  "version": "0.7.0",
   "description": "Manor Drawer component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
