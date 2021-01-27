@@ -85,6 +85,7 @@ const Input = React.forwardRef(({
   handleFocus,
   handleBlur,
   handleKeyDown,
+  handleKeyUp,
   mask,
   guide,
   dataList,
@@ -170,6 +171,12 @@ const Input = React.forwardRef(({
     }
   };
 
+  const keyUpHandler = (e) => {
+    if (handleKeyUp) {
+      handleKeyUp(e);
+    }
+  };
+
   const affixClick = () => {
     localRef.current.inputElement.focus();
   };
@@ -211,6 +218,7 @@ const Input = React.forwardRef(({
               onFocus={focusHandler}
               onBlur={blurHandler}
               onKeyDown={keyDownHandler}
+              onKeyUp={keyUpHandler}
               maxLength={maxlength}
               isAutofill={isAutofill}
               ref={localRef}
@@ -326,6 +334,10 @@ Input.propTypes = {
    */
   handleOnClick: PropTypes.func,
   /**
+   * Function called when keyup is pressed
+   */
+  handleKeyUp: PropTypes.func,
+  /**
    * Function called when keydown is pressed
    */
   handleKeyDown: PropTypes.func,
@@ -407,6 +419,7 @@ Input.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   handleKeyDown: null,
+  handleKeyUp: null,
   required: true,
   disabled: false,
   readonly: false,

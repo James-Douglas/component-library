@@ -156,34 +156,51 @@ const ComboTag = ({
   const [tagsWidth, setTagsWidth] = useState(0);
   const [inlineTooltipActive, setInlineTooltipActive] = useState(false);
   const hasList = !!apiData;
+  const [editMode, setEditMode] = useState(true);
 
   const filteredValuesRefs = useMemo(
     () => apiData && apiData.map((item) => React.createRef()),
     [apiData],
   );
 
-  const tagKeyDown = (e) => {
-    // handle deleting tags via backspace
-    if (e.key === 'Backspace' && e.target.value.length === 0 && tags.length) {
-      const lastTag = tagElements[tagElements.length - 1].ref.current;
-      lastTag.focus();
-    }
-    // use if we don't have a list or api, and use raw user input
+  const tagKeyUp = (e) => {
     if (!hasList) {
-      if (e.key === 'Enter' || e.key === ' ' || e.key === ',') {
-        // prevent unwanted values from being set as a tag or set an alert
+      // Older browsers may return "Spacebar" instead of " " for the Space Bar key. Firefox did so until version 37, as did Internet Explorer 9, 10, and 11.
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',') {
+        setCurrentValue('');
+        setEditMode(false);
+        return;
+      }
+
+      if (e.target.value.length >= 1) {
+        setEditMode(true);
+      }
+
+      setTags((prevTagArray) => {
         let alertState = false;
+        const lastTag = prevTagArray[prevTagArray.length - 1];
+        // prevent unwanted values from being set as a tag or set an alert
         if (invalidTagCondition) {
           alertState = invalidTagCondition(currentValue);
         }
-        if (currentValue.trim().length > 0) {
-          setTags([...tags, { label: currentValue.trim(), alert: alertState }]);
+        if (lastTag && editMode) {
+          prevTagArray.pop();
         }
-        setCurrentValue('');
-      }
+        // prevent empty tags
+        if (currentValue.trim() === '') {
+          return [...prevTagArray];
+        }
+        return [...prevTagArray, { label: currentValue.trim(), alert: alertState }];
+      });
     }
   };
 
+  const tagKeyDown = (e) => {
+    if (e.key === 'Backspace' && e.target.value.length === 0 && tags.length) {
+      const lastTag = tagElements[tagElements.length - 1].ref.current;
+      lastTag && lastTag.focus();
+    }
+  };
   // used if we have a list (expected with an api)
   const handleSelectItem = (tag) => {
     setInlineTooltipActive(false);
@@ -278,6 +295,8 @@ const ComboTag = ({
   };
 
   const deleteTagHandler = useCallback((i) => {
+    setCurrentValue('');
+    setEditMode(false);
     setTags(tags.filter((_, index) => index !== i));
   }, [tags]);
 
@@ -349,11 +368,12 @@ const ComboTag = ({
 
   // store the refs, the jsx and the alert state of the tag
   useEffect(() => {
-    const temp = tags.map((tag, i) => {
+    const temp = tags.map((tag, i, arr) => {
       const tagRef = React.createRef();
       const {
         label, alert, shortName,
       } = tag;
+
       return {
         ref: tagRef,
         tagJsx: <Tag
@@ -401,6 +421,7 @@ const ComboTag = ({
   }, [tags]);
 
   const { title, body } = errorTooltip;
+
   return (
     <StyledContainer>
       <div
@@ -451,7 +472,9 @@ const ComboTag = ({
               disabled={disabled}
               autocomplete={autocomplete}
               handleChange={comboHandleChange}
+              handleKeyUp={tagKeyUp}
               handleKeyDown={tagKeyDown}
+
               className={className}
               bordered={false}
               tabIndex="0"

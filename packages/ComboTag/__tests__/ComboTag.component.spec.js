@@ -2,6 +2,7 @@ import React from 'react';
 import 'jest-styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
+import userEvent from '@testing-library/user-event';
 import { fireEvent, render } from '../../../testUtils';
 import ComboTag from '../ComboTag.component';
 
@@ -267,7 +268,7 @@ describe('ComboTag', () => {
     expect(listElems.length).toBe(0);
   });
 
-  it('adds a tag on keypress (enter)', () => {
+  it('adds a tag on keypress', () => {
     const { container, getByText } = render(
       <ComboTag
         handleChange={() => {}}
@@ -277,13 +278,14 @@ describe('ComboTag', () => {
     );
 
     const inputField = container.querySelector('#combo-tag');
-    inputField.focus();
-    fireEvent.change(inputField, { target: { value: 'newTagOnEnter' } });
-    fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
-    expect(getByText('newTagOnEnter')).toBeInTheDocument();
+    userEvent.type(inputField, 'newtag');
+    expect(inputField).toHaveValue('newtag');
+    fireEvent.keyUp(inputField, { key: ' ', code: 32 });
+    expect(inputField).toHaveValue('');
+    expect(getByText('newtag')).toBeInTheDocument();
   });
 
-  it('adds a tag on keypress (space)', () => {
+  it('clears the input field on space, enter or comma', () => {
     const { container, getByText } = render(
       <ComboTag
         handleChange={() => {}}
@@ -293,51 +295,32 @@ describe('ComboTag', () => {
     );
 
     const inputField = container.querySelector('#combo-tag');
-    inputField.focus();
-    fireEvent.change(inputField, { target: { value: 'newTagOnSpace' } });
-    fireEvent.keyDown(inputField, { key: ' ', code: 32 });
-    expect(getByText('newTagOnSpace')).toBeInTheDocument();
-  });
+    // on space, delete input value
+    userEvent.type(inputField, 'space');
+    expect(inputField).toHaveValue('space');
+    fireEvent.keyUp(inputField, { key: ' ', code: 32 });
+    expect(inputField).toHaveValue('');
 
-  it('adds a tag on keypress (comma)', () => {
-    const { container, getByText } = render(
-      <ComboTag
-        handleChange={() => {}}
-        id="combo-tag"
-        placeholder="start typing"
-      />,
-    );
+    // on comma, delete input value
+    userEvent.type(inputField, 'comma');
+    expect(inputField).toHaveValue('comma');
+    fireEvent.keyUp(inputField, { key: ',', code: 188 });
+    expect(inputField).toHaveValue('');
 
-    const inputField = container.querySelector('#combo-tag');
-    inputField.focus();
-    fireEvent.change(inputField, { target: { value: 'newTagOnComma' } });
-    fireEvent.keyDown(inputField, { key: ',', code: 188 });
-    expect(getByText('newTagOnComma')).toBeInTheDocument();
-  });
+    // on enter, delete input value
+    userEvent.type(inputField, 'enter');
+    expect(inputField).toHaveValue('enter');
+    fireEvent.keyUp(inputField, { key: 'Enter', code: 13 });
+    expect(inputField).toHaveValue('');
 
-  it('accepts a custom validity check of the input', () => {
-    const condition = (x, y) => x > 100;
-    const { container, getByText } = render(
-      <ComboTag
-        handleChange={() => {}}
-        id="combo-tag"
-        placeholder="start typing"
-        invalidTagCondition={condition}
-      />,
-    );
-
-    const inputField = container.querySelector('#combo-tag');
-    inputField.focus();
-    fireEvent.change(inputField, { target: { value: 'new tag' } });
-    fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
-    expect(getByText('new tag')).toBeInTheDocument();
-    fireEvent.change(inputField, { target: { value: '111' } });
-    fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
-    expect(getByText('111')).toBeInTheDocument();
+    // expect all values to be tags
+    expect(getByText('space')).toBeInTheDocument();
+    expect(getByText('comma')).toBeInTheDocument();
+    expect(getByText('enter')).toBeInTheDocument();
   });
 
   it('if an item is invalid, renders the error state for the tag', () => {
-    const condition = (x, y) => x > 100;
+    const condition = (x) => x > 100;
     const { container, getByText } = render(
       <ComboTag
         handleChange={() => {}}
@@ -348,9 +331,8 @@ describe('ComboTag', () => {
     );
 
     const inputField = container.querySelector('#combo-tag');
-    inputField.focus();
-    fireEvent.change(inputField, { target: { value: '111' } });
-    fireEvent.keyDown(inputField, { key: 'Enter', code: 13 });
+    userEvent.type(inputField, '111');
+    fireEvent.keyUp(inputField, { key: 'Enter', code: 13 });
     expect(getByText('111')).toBeInTheDocument();
     const invalidTag = getByText('111');
     expect(invalidTag.parentElement).toHaveStyleRule('background', `${ctmTheme.colors.error50}`);
