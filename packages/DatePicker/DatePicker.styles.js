@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledCalendar = styled.div`
   position: absolute;
-  z-index: ${({ theme }) => theme.zIndex[40]};
+  z-index: ${({ theme }) => theme.zIndex[20]};
   top: ${({ theme }) => theme.spacing[80]};
   & .CalendarMonth_table .CalendarDay__selected_span:hover {
     background: ${({ theme }) => theme.datepicker.datepickerDayBackground};
