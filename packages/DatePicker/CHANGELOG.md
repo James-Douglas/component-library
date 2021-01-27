@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.18.6...@comparethemarketau/manor-date-picker@0.19.0) (2021-01-27)
+
+
+### Features
+
+* **datepicker:** reduce calendar zindex to 20 ([#537](https://github.com/comparethemarketau/manor-react/issues/537)) ([3ae2a10](https://github.com/comparethemarketau/manor-react/commit/3ae2a10d3e6bb96bbcaeeba5e61a687e71577c09))
+
+
+
+
+
 ## [0.18.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.18.5...@comparethemarketau/manor-date-picker@0.18.6) (2020-12-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
