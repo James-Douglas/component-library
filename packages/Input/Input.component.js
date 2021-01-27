@@ -218,6 +218,8 @@ const Input = React.forwardRef(({
               expressive={expressive}
               breakpoint={breakpoint}
               style={style}
+              disableClearIcon={disableClearIcon}
+              suffixContent={suffixContent}
             />
             {renderClearIcon(internalValue, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint)}
           </StyledInputClearWrap>

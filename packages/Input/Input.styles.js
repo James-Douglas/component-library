@@ -201,7 +201,9 @@ export const StyledInputClearWrap = styled.div`
 export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ...props }, ref) => <MaskedInput {...props} ref={ref} />))`
   font-family: ${({ theme }) => theme.fontFamily};
   padding-left: ${({ theme }) => theme.spacing[12]};
-  padding-right: ${({ theme, breakpoint }) => (breakpoint === 'xs' ? theme.spacing[8] : theme.spacing[36])};
+  padding-right: ${({
+    theme, breakpoint, disableClearIcon, suffixContent,
+  }) => (breakpoint === 'xs' || (disableClearIcon && !suffixContent) ? theme.spacing[breakpoint === 'xs' ? 8 : 12] : theme.spacing[36])};
   display: block;
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize.base};

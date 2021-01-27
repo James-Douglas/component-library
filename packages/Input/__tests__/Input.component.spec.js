@@ -141,6 +141,39 @@ describe('Input.component', () => {
     expect(inputWrap).toHaveStyleRule('border', ctmTheme.borders.invalid);
   });
 
+  it('renders reduced padding right when no suffix or disableClearIcon', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        validationMessage="invalid"
+        handleChange={() => {}}
+        disableClearIcon
+      />,
+    );
+
+    const inputField = container.querySelector('input');
+    expect(inputField).toHaveStyleRule('padding-right', ctmTheme.spacing[12]);
+  });
+
+  it('renders extra padding right when suffix', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        validationMessage="invalid"
+        handleChange={() => {}}
+        disableClearIcon
+        suffixContent={<div />}
+      />,
+    );
+
+    const inputField = container.querySelector('input');
+    expect(inputField).toHaveStyleRule('padding-right', ctmTheme.spacing[36]);
+  });
+
   it('renders an a prefix and a suffix', () => {
     const { getByText } = render(
       <Input
