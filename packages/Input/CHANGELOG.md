@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.17.1...@comparethemarketau/manor-input@0.18.0) (2021-01-27)
+
+
+### Features
+
+* **input:** updated input padding when disableClearIcon or no suffix ([#534](https://github.com/comparethemarketau/manor-react/issues/534)) ([6e67ef6](https://github.com/comparethemarketau/manor-react/commit/6e67ef6d121314190bba70864f46696c543fe5c4))
+
+
+
+
+
 ## [0.17.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.17.0...@comparethemarketau/manor-input@0.17.1) (2020-12-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-input
