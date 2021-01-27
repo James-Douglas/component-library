@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-drawer@0.7.0...@comparethemarketau/manor-drawer@0.8.0) (2021-01-27)
+
+
+* Feature/tr 238 drawer function expansion (#540) ([7fdcd1f](https://github.com/comparethemarketau/manor-react/commit/7fdcd1f218c60d409ed64b88ed0626f90f8194c5)), closes [#540](https://github.com/comparethemarketau/manor-react/issues/540)
+
+
+### BREAKING CHANGES
+
+* This will break as the Drawer component does not exist, the new names are
+DrawerVertical and DrawerHorizontal
+
+* feat: updating drawer preview state management
+
+* feat: updating drawer preview state management
+
+* fix: drawer preview button styling
+
+Co-authored-by: Lee Wallis <lee.wallis@comparethemarket.com.au>
+
+
+
+
+
 # [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-drawer@0.6.14...@comparethemarketau/manor-drawer@0.7.0) (2021-01-27)
 
 
