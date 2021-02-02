@@ -100,6 +100,10 @@ const ComboTag = ({
         return;
       }
 
+      if (e.target.value.length === 0) {
+        setEditMode(false);
+      }
+
       if (e.target.value.length >= 1) {
         setEditMode(true);
       }
