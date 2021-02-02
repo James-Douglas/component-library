@@ -77,7 +77,7 @@ const ComboTag = ({
   const [tagsWidth, setTagsWidth] = useState(0);
   const [inlineTooltipActive, setInlineTooltipActive] = useState(false);
   const hasList = !!apiData;
-  const [editMode, setEditMode] = useState(true);
+  const [editMode, setEditMode] = useState(false);
 
   const filteredValuesRefs = useMemo(
     () => apiData && apiData.map((item) => React.createRef()),
