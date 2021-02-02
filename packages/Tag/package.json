@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-tag",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Manor Tag component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
