@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 import { Input } from '@comparethemarketau/manor-input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-import { Typography } from '@comparethemarketau/manor-typography';
 import { useIsDesktop, useId, useMountEffect } from '@comparethemarketau/manor-hooks';
 import { picturePropTypes } from '@comparethemarketau/manor-picture';
-import { EmptyState } from '@comparethemarketau/manor-empty-state';
 import { Tag } from '@comparethemarketau/manor-tag';
 import { Tooltip } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
+import comboDropDownList from './comboDropdownList';
 
 import {
   StyledContainer,
@@ -20,14 +19,6 @@ import {
   StyledTagContainer,
   StyledTagHolder,
   StyledBorder,
-  StyledComboList,
-  StyledComboListWrap,
-  StyledDropdownList,
-  StyledEmptyStateMessage,
-  StyledIconWrap,
-  StyledList,
-  StyledListItem,
-  WrapList,
   StyledPrefix,
   StyledFade,
   StyledAlertText,
@@ -35,76 +26,6 @@ import {
   StyledErrorToolTip,
   StyledAlertIcon,
 } from './ComboTag.styles';
-
-export function comboDropdownList(
-  desktop,
-  listIcon,
-  characterMinimum,
-  apiData,
-  handleSelectItem,
-  filteredValuesRefs,
-  listVisible,
-  currentValue,
-  emptyStateChildren,
-  emptyStatePicture,
-  emptyStateClassName,
-  emptyStateHeading,
-  renderView,
-) {
-  const positionDesktop = !desktop ? 'relative' : 'absolute';
-  const emptyState = !listVisible;
-  const positionConst = emptyState ? 'hidden' : positionDesktop;
-  const noResultCondition = apiData.length === 0 && currentValue.length >= characterMinimum;
-
-  return (
-    <WrapList desktop={desktop}>
-      <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
-        <StyledComboListWrap renderView={renderView}>
-          <StyledComboList desktop={desktop}>
-            {!emptyState && comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon, currentValue)}
-            {noResultCondition && (
-              <StyledEmptyStateMessage>
-                <EmptyState
-                  picture={emptyStatePicture}
-                  className={`${emptyStateClassName} empty-state-wrap`}
-                  heading={emptyStateHeading}
-                  textPosition="center"
-                >
-                  {emptyStateChildren}
-                </EmptyState>
-              </StyledEmptyStateMessage>
-            )}
-          </StyledComboList>
-        </StyledComboListWrap>
-      </StyledDropdownList>
-    </WrapList>
-  );
-}
-
-export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon, currentValue) {
-  return (
-    <StyledList>
-      {apiData.map((filteredValue, index) => (
-        <StyledListItem
-          tabIndex="0"
-          key={`option-${filteredValue.label}`}
-          role="listitem"
-          data-type="list"
-          onMouseDown={() => handleSelectItem(filteredValue)}
-          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleSelectItem(filteredValue)}
-          ref={filteredValuesRefs[index]}
-        >
-          {listIcon && (
-            <StyledIconWrap>
-              <FontAwesomeIcon icon={listIcon} size="sm" />
-            </StyledIconWrap>
-          )}
-          <Typography variant="body2">{filteredValue.label}</Typography>
-        </StyledListItem>
-      ))}
-    </StyledList>
-  );
-}
 
 const ComboTag = ({
   id: propsId,
@@ -169,6 +90,13 @@ const ComboTag = ({
       if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',') {
         setCurrentValue('');
         setEditMode(false);
+        setTags((prevTagArray) => {
+          const lastTag = prevTagArray[prevTagArray.length - 1];
+          if (lastTag) {
+            prevTagArray.pop();
+          }
+          return [...prevTagArray, { ...lastTag, visible: true }];
+        });
         return;
       }
 
@@ -190,7 +118,7 @@ const ComboTag = ({
         if (currentValue.trim() === '') {
           return [...prevTagArray];
         }
-        return [...prevTagArray, { label: currentValue.trim(), alert: alertState }];
+        return [...prevTagArray, { label: currentValue.trim(), alert: alertState, visible: false }];
       });
     }
   };
@@ -201,6 +129,7 @@ const ComboTag = ({
       lastTag && lastTag.focus();
     }
   };
+
   // used if we have a list (expected with an api)
   const handleSelectItem = (tag) => {
     setInlineTooltipActive(false);
@@ -368,15 +297,16 @@ const ComboTag = ({
 
   // store the refs, the jsx and the alert state of the tag
   useEffect(() => {
-    const temp = tags.map((tag, i, arr) => {
+    const temp = tags.map((tag, i) => {
       const tagRef = React.createRef();
       const {
-        label, alert, shortName,
+        label, alert, shortName, visible,
       } = tag;
 
       return {
         ref: tagRef,
         tagJsx: <Tag
+          visible={visible}
           warning={hasList}
           icon={alert ? tagAlertIcon : null}
           key={`item-${label + i}`}
@@ -485,7 +415,7 @@ const ComboTag = ({
               type={type}
               mask={mask}
               guide={guide}
-              dataList={() => hasList && comboDropdownList(
+              dataList={() => hasList && comboDropDownList(
                 desktop,
                 listIcon,
                 characterMinimum,

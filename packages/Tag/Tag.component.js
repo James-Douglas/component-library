@@ -7,7 +7,7 @@ import {
 } from './Tag.styles';
 
 const Tag = React.forwardRef(({
-  value, alert, warning, onClickDelete, icon, onKeyDown, elementRef,
+  value, alert, warning, onClickDelete, icon, onKeyDown, elementRef, visible,
 }, ref) => {
   const deleteHandler = () => {
     if (onClickDelete) {
@@ -28,7 +28,7 @@ const Tag = React.forwardRef(({
   };
 
   return (
-    <StyledTag ref={ref} alert={alert} warning={warning} onKeyDown={keyDownHandler} tabIndex="-1">
+    <StyledTag ref={ref} alert={alert} warning={warning} onKeyDown={keyDownHandler} visible={visible} tabIndex="-1">
       {icon
         && (
         <StyledIconContainer warning={warning} alert={alert}>
@@ -81,6 +81,10 @@ Tag.propTypes = {
    * a ref to the element (usually an input) that the tags are used with, to fire a focus event on
    */
   elementRef: PropTypes.element,
+  /**
+   * decides if the tag is visible or not
+   */
+  visible: PropTypes.bool,
 };
 
 Tag.defaultProps = {
@@ -90,6 +94,8 @@ Tag.defaultProps = {
   warning: true,
   elementRef: null,
   onKeyDown: null,
+  visible: true,
+
 };
 
 export default Tag;

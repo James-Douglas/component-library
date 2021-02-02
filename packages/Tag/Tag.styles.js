@@ -47,6 +47,9 @@ export const StyledTag = styled.div`
     cursor: pointer;
   }
   border: 1px solid transparent;
+  ${({ visible }) => !visible && css`
+    display: none;
+  `}
 `;
 
 export const StyledIconContainer = styled.div`

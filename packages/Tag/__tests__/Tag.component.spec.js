@@ -121,4 +121,13 @@ describe('Combo', () => {
     expect(icon[1].parentElement).toHaveStyleRule('color', `${ctmTheme.colors.error700}`);
     expect(icon[1]).toBeDefined();
   });
+
+  it('it does not render a tag if visible is set', () => {
+    const { container } = render(
+      <Tag value="I should be invisible" onClickDelete={() => {}} visible={false} />,
+    );
+
+    const tag = container.querySelector('div');
+    expect(tag).toHaveStyleRule('display', 'none');
+  });
 });

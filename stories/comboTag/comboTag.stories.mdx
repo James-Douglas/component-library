@@ -193,10 +193,9 @@ a click handler.
             placeholder='Type in your destination and then press enter'
             handleInput={(value) => {
               // eslint-disable-next-line no-console
-              console.log(value)
+              // console.log(value)
               setComboTagValue(value)
             }}
-            
             handleChange={() => {}}
             invalidTagCondition={condition}
             tagAlertIcon={faExclamationCircle}
@@ -208,10 +207,10 @@ a click handler.
           <br/>
           <ComboTag
             id="tag-id-2"
-            placeholder='Type in your destination and then press enter'
+            placeholder='Numbers only, renders alert state when condtion is met (num > 100)'
             handleInput={(value) => {
               // eslint-disable-next-line no-console
-              console.log(value)
+              // console.log(value)
               setComboTagValue(value)
             }}
             mask={maskFunc}
