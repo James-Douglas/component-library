@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-drawer@0.8.0...@comparethemarketau/manor-drawer@0.8.1) (2021-02-03)
+
+
+### Bug Fixes
+
+* **drawer:** fix contnets visible on safari after drawer closed ([#553](https://github.com/comparethemarketau/manor-react/issues/553)) ([a8dec99](https://github.com/comparethemarketau/manor-react/commit/a8dec9918e859f637045f1fb54bf79c6207ee09b))
+
+
+
+
+
 # [0.8.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-drawer@0.7.0...@comparethemarketau/manor-drawer@0.8.0) (2021-01-27)
 
 
