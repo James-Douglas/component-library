@@ -117,6 +117,5 @@ export const StyledDrawerText = styled.div`
     padding-top: ${theme.spacing[4]};
   `}
   overflow: auto;
-  position: fixed;
   height: ${({ size }) => `${size}px`};
 `;
