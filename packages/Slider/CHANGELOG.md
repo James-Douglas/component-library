@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.7.6...@comparethemarketau/manor-slider@0.7.7) (2021-02-05)
+
+
+### Bug Fixes
+
+* **slider:** change slider indicator background color to primary500 ([#554](https://github.com/comparethemarketau/manor-react/issues/554)) ([f13ccba](https://github.com/comparethemarketau/manor-react/commit/f13ccba3c7a7bcf722e04cc7a4932f2d127dc4cf))
+
+
+
+
+
 ## [0.7.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-slider@0.7.5...@comparethemarketau/manor-slider@0.7.6) (2020-12-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-slider
