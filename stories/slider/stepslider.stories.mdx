@@ -153,6 +153,7 @@ Allows selection from a range of discrete values.
   const [luggage, setLuggage] = useState(5000);
   const [car, setCar] = useState(0);
   const [additional, setAdditional] = useState(5000);
+  const [excess, setExcess] = useState(5000);
   const cancellationMarks = [
     {
       value: 0,
@@ -270,6 +271,32 @@ Allows selection from a range of discrete values.
       label: '$50,000+'
     },
   ]
+  const excessMarks = [
+    {
+      value: 0,
+      label: 'None'
+    },
+    {
+      value: 1000,
+      label: '$1,500'
+    },
+    {
+      value: 2000,
+      label: '$2,000'
+    },
+    {
+      value: 3000,
+      label: '$3,000'
+    },
+    {
+      value: 4000,
+      label: '$4,000'
+    },
+    {
+      value: 5000,
+      label: '$5,000'
+    },
+  ]
   const handleChange = (e, key, newValue) => {
     switch (key) {
       case 'cancellation':
@@ -283,6 +310,9 @@ Allows selection from a range of discrete values.
         break;
       case 'additional':
         setAdditional(newValue);
+        break;
+      case 'excess':
+        setExcess(newValue);
         break;
       default:
         break;
@@ -338,6 +368,20 @@ Allows selection from a range of discrete values.
           label={(<>Minimum amount of cover for <strong>additional expenses</strong></>)}
           tooltip={{
             title: 'Additional excess',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          }}
+        />
+      </div>
+      <div>
+        <StepSlider
+          name="test-excess"
+          value={excess}
+          marks={excessMarks}
+          sortOrderAscending={false}
+          onChange={(e, newValue) => handleChange(e, 'excess', newValue)}
+          label={(<>Minimum amount of cover for <strong>excess</strong> (Sorted Descending)</>)}
+          tooltip={{
+            title: 'Excess',
             body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
           }}
         />

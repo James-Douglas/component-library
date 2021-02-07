@@ -44,3 +44,29 @@ describe('StepSlider', () => {
     expect(handleChangeCommitted).toHaveBeenCalled();
   });
 });
+
+describe('Descending StepSlider', () => {
+  it('renders descending slider with given value selected', () => {
+    const { container } = render(<StepSlider marks={testMarks} value={2} name="test" sortOrderAscending={false} />);
+    expect(container.querySelector('input')).toHaveValue('2');
+  });
+  it('calls change handlers on value change', () => {
+    const handleChange = jest.fn();
+    const handleChangeCommitted = jest.fn();
+    const { getByRole } = render(
+      <StepSlider
+        marks={testMarks}
+        value={1}
+        name="test"
+        onChange={handleChange}
+        onChangeCommitted={handleChangeCommitted}
+        sortOrderAscending={false}
+      />,
+    );
+    const slider = getByRole('slider');
+    fireEvent.mouseDown(slider);
+    fireEvent.mouseUp(document.body);
+    expect(handleChange).toHaveBeenCalled();
+    expect(handleChangeCommitted).toHaveBeenCalled();
+  });
+});

@@ -4,7 +4,9 @@ import { Typography } from '@comparethemarketau/manor-typography';
 import { Label } from '@comparethemarketau/manor-label';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
-import { ManorStyledSlider, StyledSliderLabels, StyledWrapper } from './StepSlider.styles';
+import {
+  ManorStyledSliderRtl, ManorStyledSlider, StyledSliderLabels, StyledWrapper,
+} from './StepSlider.styles';
 
 /**
  * We pass the Material slider a copy of the marks array, the objects
@@ -38,6 +40,7 @@ const StepSlider = ({
   onChange,
   onChangeCommitted,
   tooltip,
+  sortOrderAscending,
 }) => {
   const id = useId(propsId);
   const marksForMui = formatMarks(marks);
@@ -69,15 +72,8 @@ const StepSlider = ({
     }
   };
 
-  return (
-    <StyledWrapper>
-      <div id={labelWrapId}>
-        <Label htmlFor={id} text={label} tooltip={tooltip} />
-      </div>
-      <StyledSliderLabels>
-        <Typography variant="body2">{marksForMui[0].actualLabel}</Typography>
-        <Typography variant="body2">{marksForMui[marksForMui.length - 1].actualLabel}</Typography>
-      </StyledSliderLabels>
+  const sliderNode = sortOrderAscending
+    ? (
       <ManorStyledSlider
         name={name}
         id={id}
@@ -97,6 +93,39 @@ const StepSlider = ({
         first={first}
         last={last}
       />
+    ) : (
+      <ManorStyledSliderRtl
+        name={name}
+        id={id}
+        value={value}
+        aria-label={label}
+        aria-valuetext={ariaValueText}
+        aria-labelledby={labelWrapId}
+        disabled={disabled}
+        marks={marksForMui}
+        onChange={handleChange}
+        onChangeCommitted={handleChangeCommitted}
+        valueLabelDisplay="on"
+        valueLabelFormat={valueLabelFormat}
+        step={null}
+        min={0}
+        max={max}
+        first={first}
+        last={last}
+        track="inverted"
+      />
+    );
+
+  return (
+    <StyledWrapper>
+      <div id={labelWrapId}>
+        <Label htmlFor={id} text={label} tooltip={tooltip} />
+      </div>
+      <StyledSliderLabels>
+        <Typography variant="body2">{sortOrderAscending ? marksForMui[0].actualLabel : marksForMui[marksForMui.length - 1].actualLabel}</Typography>
+        <Typography variant="body2">{sortOrderAscending ? marksForMui[marksForMui.length - 1].actualLabel : marksForMui[0].actualLabel}</Typography>
+      </StyledSliderLabels>
+      {sliderNode}
     </StyledWrapper>
   );
 };
@@ -117,6 +146,8 @@ StepSlider.propTypes = {
   /**
    * Marks indicate predetermined values to which the user can move the slider.
    * It should contain objects with value and label keys. Minimum of 3 marks required.
+   * the value prop for each array item must be provided in ascending order - set the sortOrderAscending prop to false
+   * to alter how they appear when rendered.
    */
   marks: PropTypes.arrayOf(
     PropTypes.shape({
@@ -150,6 +181,10 @@ StepSlider.propTypes = {
    * Tooltip object (see Tooltip documentation)
    */
   tooltip: PropTypes.shape(tooltipPropTypes),
+  /**
+   * This allows the sort order to be reversed when the component is rendered
+   */
+  sortOrderAscending: PropTypes.bool,
 };
 
 StepSlider.defaultProps = {
@@ -160,6 +195,7 @@ StepSlider.defaultProps = {
   onChange: () => {},
   onChangeCommitted: () => {},
   tooltip: {},
+  sortOrderAscending: true,
 };
 
 export default StepSlider;
