@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.19.2...@comparethemarketau/manor-date-picker@0.20.0) (2021-02-07)
+
+
+### Features
+
+* **datepicker:** fix selected hover styles ([#557](https://github.com/comparethemarketau/manor-react/issues/557)) ([58feb16](https://github.com/comparethemarketau/manor-react/commit/58feb162f3322fdaba987da2fd2322e732534294))
+
+
+
+
+
 ## [0.19.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.19.1...@comparethemarketau/manor-date-picker@0.19.2) (2021-01-27)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
