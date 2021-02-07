@@ -6,7 +6,7 @@ const StyledCalendar = styled.div`
   top: ${({ theme }) => theme.spacing[80]};
   & .CalendarMonth_table .CalendarDay__selected_span:hover {
     background: ${({ theme }) => theme.datepicker.datepickerDayBackground};
-    color: ${({ theme }) => theme.datepicker.datepickerDayColor};
+    color: ${({ theme }) => theme.datepicker.datepickerDayColorSelected};
   }
   
   & .DayPicker {
@@ -75,6 +75,7 @@ const StyledCalendar = styled.div`
     color: ${({ theme }) => theme.datepicker.datepickerDayColorSelected};
     &:hover {
       background: ${({ theme }) => theme.datepicker.datepickerSelectedDayEdgeBackgroundHover};
+      color: ${({ theme }) => theme.datepicker.datepickerDayColorSelected};
     }
   }
   & .SingleDatePicker_picker {
@@ -96,7 +97,7 @@ const StyledCalendar = styled.div`
     top:  ${({ theme }) => theme.spacing[8]};
     font-size: ${({ theme }) => theme.fontSize.xl};
  }
- & .CalendarDay__selected:hover, .CalendarDay__hovered_span {
+ & .CalendarDay__hovered_span {
     background: ${({ theme }) => theme.datepicker.datepickerSelectedDayRangeBackground}
  }
   & .CalendarDay__hovered_span:hover {
