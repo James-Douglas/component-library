@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.20.0...@comparethemarketau/manor-date-picker@0.21.0) (2021-02-08)
+
+
+### Features
+
+* **daterangepicker:** add readonly prop ([#558](https://github.com/comparethemarketau/manor-react/issues/558)) ([c0742f2](https://github.com/comparethemarketau/manor-react/commit/c0742f2d60780cc79e28a9c58edb4748ab90932c))
+
+
+
+
+
 # [0.20.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.19.2...@comparethemarketau/manor-date-picker@0.20.0) (2021-02-07)
 
 
