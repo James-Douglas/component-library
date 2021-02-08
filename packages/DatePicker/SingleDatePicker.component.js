@@ -130,7 +130,7 @@ const SingleDatePicker = ({
           handleFocus={dateHandleFocus}
           handleBlur={dateHandleBlur}
           handleChange={dateHandleChange}
-          readonly={readonly}
+          readOnly={readonly}
           disableClearIcon
           validationMessage={validationMessageDate}
           className="date-input-calendar"

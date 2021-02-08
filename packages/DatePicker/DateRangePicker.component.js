@@ -43,6 +43,7 @@ const DateRangePicker = ({
   isDayBlocked,
   handleChange,
   pickerVisible,
+  readonly,
 }) => {
   const startDateId = useId(propsStartDateId);
   const endDateId = useId(propsEndDateId);
@@ -254,6 +255,7 @@ const DateRangePicker = ({
             isDayBlocked={isDayBlocked}
             minimumNights={minimumNights}
             transitionDuration={0}
+            readOnly={readonly}
           />
         </StyledCalendar>
       )}
@@ -347,6 +349,10 @@ DateRangePicker.propTypes = {
    * Allows manual control over the visibility of the picker
    */
   pickerVisible: PropTypes.bool,
+  /**
+   * Specifies that the date input should be read-only. However you can still set dates from the picker
+   */
+  readonly: PropTypes.bool,
 };
 
 DateRangePicker.defaultProps = {
@@ -371,6 +377,7 @@ DateRangePicker.defaultProps = {
   isDayBlocked: undefined,
   handleChange: null,
   pickerVisible: false,
+  readonly: false,
 };
 
 export default DateRangePicker;
