@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.11.8...@comparethemarketau/manor-header@0.11.9) (2021-02-09)
+
+**Note:** Version bump only for package @comparethemarketau/manor-header
+
+
+
+
+
 ## [0.11.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.11.7...@comparethemarketau/manor-header@0.11.8) (2020-12-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-header

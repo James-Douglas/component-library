@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-modal",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "Manor Modal component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -23,7 +23,7 @@
     "@comparethemarketau/manor-hooks": "^0.5.1",
     "@comparethemarketau/manor-overlay": "^0.4.0",
     "@comparethemarketau/manor-separator": "^0.5.11",
-    "@comparethemarketau/manor-typography": "^0.13.6",
+    "@comparethemarketau/manor-typography": "^0.14.0",
     "@comparethemarketau/manor-utils": "^0.4.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
@@ -32,7 +32,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-input": "^0.18.1"
+    "@comparethemarketau/manor-input": "^0.18.2"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.7.11",

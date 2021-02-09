@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.13.6...@comparethemarketau/manor-typography@0.14.0) (2021-02-09)
+
+
+### Bug Fixes
+
+* the header tags are currently not responsive - so they don't resize ([#559](https://github.com/comparethemarketau/manor-react/issues/559)) ([6dff2c3](https://github.com/comparethemarketau/manor-react/commit/6dff2c31d5c3ac8e4b76ef2db013a488ecf6c449))
+
+
+### BREAKING CHANGES
+
+* adding responsive breakpoints so will disrupt layouts
+
+Co-authored-by: Lee Wallis <lee.wallis@comparethemarket.com.au>
+
+
+
+
+
 ## [0.13.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.13.5...@comparethemarketau/manor-typography@0.13.6) (2020-12-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-typography

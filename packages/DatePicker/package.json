@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-date-picker",
-  "version": "0.21.0",
+  "version": "0.21.1",
   "description": "Manor DatePicker component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@comparethemarketau/manor-hooks": "^0.5.1",
-    "@comparethemarketau/manor-input": "^0.18.1",
-    "@comparethemarketau/manor-tooltip": "^0.15.2",
+    "@comparethemarketau/manor-input": "^0.18.2",
+    "@comparethemarketau/manor-tooltip": "^0.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
