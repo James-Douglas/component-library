@@ -59,6 +59,17 @@ export const StyledDropdownButton = styled.div`
        cursor: default;
     }
   `}
+  ${({ mode }) => mode === 'text' && css`
+    border: none;
+    &:hover,
+    &:focus {
+      border: none;
+    }
+    & div {
+      padding-left: 0;
+      color: ${({ theme }) => theme.colors.primary500};
+    }
+  `}
 `;
 
 export const StyledListul = styled.ul`
