@@ -114,7 +114,7 @@ selection will update to the selected option.
     const disabled = boolean('disabled', false, componentPropsId);
     const required = boolean('required', false, componentPropsId);
     const prefixContent = text('prefix', '', componentPropsId);
-    const variant = select('variant', ['default', 'text'], 'default', componentPropsId);
+    const dropdownVariant = select('variant', ['default', 'text'], 'default', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
@@ -129,7 +129,7 @@ selection will update to the selected option.
                 selectedValue="Second"
                 prefixContent={prefixContent}
                 validationMessage={validationMessage}
-                variant={variant}
+                variant={dropdownVariant}
                 tooltip={{
                   title,
                   body,
