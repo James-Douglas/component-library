@@ -54,6 +54,20 @@ Manor Dropdown presents a full screen overlay of selectable options when the use
                       <DropdownItem value="Third">Third Item - Title</DropdownItem>
                     </Dropdown>
                   </div>
+                  <div style={{ marginBottom: '40px', width: '100%' }}>
+                    <Dropdown
+                      id="input-two"
+                      label="Dropdown Label"
+                      tooltip={{ title: 'A dropdown tooltip too!', body: 'Woo-hoo' }}
+                      handleChange={(event, value, option) => { console.log(`option: ${option}, value: ${value}`); }}
+                      variant="text"
+                    >
+                      <DropdownItem value="Default">Default Item - Title</DropdownItem>
+                      <DropdownItem value="First">First Item - Title</DropdownItem>
+                      <DropdownItem value="Second">Second Item - Title</DropdownItem>
+                      <DropdownItem value="Third">Third Item - Title</DropdownItem>
+                    </Dropdown>
+                  </div>
                 </Column>
               </Row>
             </FluidContainer>
@@ -100,7 +114,7 @@ selection will update to the selected option.
     const disabled = boolean('disabled', false, componentPropsId);
     const required = boolean('required', false, componentPropsId);
     const prefixContent = text('prefix', '', componentPropsId);
-    const mode = select('mode', ['default', 'text'], 'default', componentPropsId);
+    const variant = select('variant', ['default', 'text'], 'default', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
@@ -115,7 +129,7 @@ selection will update to the selected option.
                 selectedValue="Second"
                 prefixContent={prefixContent}
                 validationMessage={validationMessage}
-                mode={mode}
+                variant={variant}
                 tooltip={{
                   title,
                   body,

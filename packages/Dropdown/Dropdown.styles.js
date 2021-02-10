@@ -59,7 +59,7 @@ export const StyledDropdownButton = styled.div`
        cursor: default;
     }
   `}
-  ${({ mode }) => mode === 'text' && css`
+  ${({ variant }) => variant === 'text' && css`
     border: none;
     &:hover,
     &:focus {

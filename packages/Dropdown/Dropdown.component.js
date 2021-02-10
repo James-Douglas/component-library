@@ -43,7 +43,7 @@ const Dropdown = ({
   handleChange,
   handleFocus,
   handleBlur,
-  mode,
+  variant,
 }) => {
   const id = useId(propsId);
   const dropdownWrapper = useRef();
@@ -240,7 +240,7 @@ const Dropdown = ({
             tabIndex={0}
             invalid={validationMessage && validationMessage.length > 0}
             disabled={disabled}
-            mode={mode}
+            variant={variant}
           >
             <StyledDropdownContent disabled={disabled}>
               {prefixContent && <StyledAffix>{prefixContent}</StyledAffix>}
@@ -320,7 +320,7 @@ Dropdown.propTypes = {
   /**
    * alters the visual style of the dropdown 'default' / null is standard, 'text' replaces the MUI 'TextDropdown' component
    */
-  mode: PropTypes.string,
+  variant: PropTypes.string,
 };
 
 Dropdown.defaultProps = {
@@ -337,7 +337,7 @@ Dropdown.defaultProps = {
   handleChange: null,
   handleFocus: null,
   handleBlur: null,
-  mode: 'default',
+  variant: 'default',
 };
 
 export default Dropdown;
