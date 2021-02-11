@@ -215,7 +215,7 @@ const DateRangePicker = ({
             disableClearIcon
             prefixContent=""
             className="date-input-calendar"
-            readOnly={readonly}
+            readonly={readonly}
           />
         </StyledDateRangePickerWrap>
         <StyledDateRangePickerWrap breakpoint={breakpoint}>
@@ -234,7 +234,7 @@ const DateRangePicker = ({
             disableClearIcon
             prefixContent=""
             className="date-input-calendar"
-            readOnly={readonly}
+            readonly={readonly}
           />
         </StyledDateRangePickerWrap>
       </StyledDateRangePicker>
