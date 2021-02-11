@@ -79,7 +79,11 @@ Button.propTypes = {
   /**
    * The button/link contents
    */
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
   /**
    * Defines the type of button to be used. Defaults to `primary`. available types are `primary`, `secondary`,
    * `tertiary`, `text`, `link`, and `footer-link`.
