@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-buttongroup",
-  "version": "0.16.12",
+  "version": "0.16.13",
   "description": "Manor ButtonGroup components",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.6.13",
+    "@comparethemarketau/manor-field-validation": "^0.7.0",
     "@comparethemarketau/manor-hooks": "^0.5.1",
     "@comparethemarketau/manor-label": "^0.8.2",
     "@comparethemarketau/manor-picture": "^0.4.1",

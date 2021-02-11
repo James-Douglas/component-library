@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-checkbox",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "description": "Manor Checkbox component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@comparethemarketau/manor-field-validation": "^0.6.13",
+    "@comparethemarketau/manor-field-validation": "^0.7.0",
     "@comparethemarketau/manor-grid": "^0.7.12",
     "@comparethemarketau/manor-hooks": "^0.5.1",
     "@comparethemarketau/manor-label": "^0.8.2",
