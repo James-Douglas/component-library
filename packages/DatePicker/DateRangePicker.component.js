@@ -215,6 +215,7 @@ const DateRangePicker = ({
             disableClearIcon
             prefixContent=""
             className="date-input-calendar"
+            readOnly={readonly}
           />
         </StyledDateRangePickerWrap>
         <StyledDateRangePickerWrap breakpoint={breakpoint}>
@@ -233,6 +234,7 @@ const DateRangePicker = ({
             disableClearIcon
             prefixContent=""
             className="date-input-calendar"
+            readOnly={readonly}
           />
         </StyledDateRangePickerWrap>
       </StyledDateRangePicker>
@@ -255,7 +257,6 @@ const DateRangePicker = ({
             isDayBlocked={isDayBlocked}
             minimumNights={minimumNights}
             transitionDuration={0}
-            readOnly={readonly}
           />
         </StyledCalendar>
       )}

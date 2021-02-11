@@ -3,7 +3,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/no-children-prop */
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
@@ -73,6 +73,9 @@ const TextDropdownInner = ({
     },
     [handleChange],
   );
+  useEffect(() => {
+    console.warn('WARNING: the manor TextDropdown component will be deprecated soon. please use the manor Dropdown component with variant="text" moving forward.');
+  }, []);
   return (
     <ThemeProvider theme={muiTheme(theme)}>
       <Label {...labelProps} text={label} tooltip={tooltip} />

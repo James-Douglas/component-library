@@ -228,7 +228,7 @@ const Dropdown = ({
 
   return (
     <>
-      <StyledDropdownMainWrap onKeyDown={keyboardAccessibility} id={id}>
+      <StyledDropdownMainWrap onKeyDown={keyboardAccessibility} id={id} variant={variant}>
         <Label htmlFor={id} text={label} tooltip={tooltip} />
         <StyledDropdownContainer ref={dropdownWrapper}>
           <StyledDropdownButton
@@ -242,16 +242,16 @@ const Dropdown = ({
             disabled={disabled}
             variant={variant}
           >
-            <StyledDropdownContent disabled={disabled}>
+            <StyledDropdownContent disabled={disabled} variant={variant}>
               {prefixContent && <StyledAffix>{prefixContent}</StyledAffix>}
               {option && <span>{option}</span>}
               {!value && placeholder && <StyledPlaceholder>{placeholder}</StyledPlaceholder>}
-              <StyledSvgArrow disabled={disabled}><FontAwesomeIcon icon={faChevronDown} size="sm" flip={isDropdownOpen ? 'vertical' : null} /></StyledSvgArrow>
+              <StyledSvgArrow disabled={disabled} variant={variant}><FontAwesomeIcon icon={faChevronDown} size="sm" flip={isDropdownOpen ? 'vertical' : null} /></StyledSvgArrow>
             </StyledDropdownContent>
           </StyledDropdownButton>
           {renderDropdownList()}
         </StyledDropdownContainer>
-        <SupportingElements required={required} disabled={disabled} label={label} />
+        {variant !== 'text' && <SupportingElements required={required} disabled={disabled} label={label} />}
         <FieldValidation message={validationMessage} />
       </StyledDropdownMainWrap>
     </>
@@ -319,6 +319,7 @@ Dropdown.propTypes = {
   handleBlur: PropTypes.func,
   /**
    * alters the visual style of the dropdown 'default' / null is standard, 'text' replaces the MUI 'TextDropdown' component
+   * If using 'text' or 'text-fixed-chevron' please also use the placeholder prop so that the dropdown field is perceptible
    */
   variant: PropTypes.string,
 };

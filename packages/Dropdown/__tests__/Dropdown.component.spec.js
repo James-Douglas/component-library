@@ -374,13 +374,29 @@ describe('Dropdown', () => {
     expect(getByText('Third Item - Title').parentNode).toHaveFocus();
   });
 
-  it('renders the variant with a selectedValue', () => {
+  it('renders the variant "text" with a selectedValue', () => {
     const { getByText } = render(
       <Dropdown
         id="input-one"
         label="Dropdown Label"
         selectedValue="2First"
         variant="text"
+      >
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+      </Dropdown>,
+    );
+
+    expect(getByText('2First Item - Title')).toBeInTheDocument();
+  });
+
+  it('renders the variant "text-fixed-chevron" with a selectedValue', () => {
+    const { getByText } = render(
+      <Dropdown
+        id="input-one"
+        label="Dropdown Label"
+        selectedValue="2First"
+        variant="text-fixed-chevron"
       >
         <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
         <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>

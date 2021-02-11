@@ -61,6 +61,7 @@ Manor Dropdown presents a full screen overlay of selectable options when the use
                       tooltip={{ title: 'A dropdown tooltip too!', body: 'Woo-hoo' }}
                       handleChange={(event, value, option) => { console.log(`option: ${option}, value: ${value}`); }}
                       variant="text"
+                      placeholder="Please select a value"
                     >
                       <DropdownItem value="Default">Default Item - Title</DropdownItem>
                       <DropdownItem value="First">First Item - Title</DropdownItem>
@@ -114,7 +115,7 @@ selection will update to the selected option.
     const disabled = boolean('disabled', false, componentPropsId);
     const required = boolean('required', false, componentPropsId);
     const prefixContent = text('prefix', '', componentPropsId);
-    const dropdownVariant = select('variant', ['default', 'text'], 'default', componentPropsId);
+    const dropdownVariant = select('variant', ['default', 'text', 'text-fixed-chevron'], 'default', componentPropsId);
     const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
@@ -129,6 +130,7 @@ selection will update to the selected option.
                 selectedValue="Second"
                 prefixContent={prefixContent}
                 validationMessage={validationMessage}
+                placeholder={placeholder}
                 variant={dropdownVariant}
                 tooltip={{
                   title,

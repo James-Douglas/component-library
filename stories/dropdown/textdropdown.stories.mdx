@@ -8,6 +8,7 @@ import { Checkbox } from '@comparethemarketau/manor-checkbox';
 import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
 import { useIsDesktop } from '@comparethemarketau/manor-hooks';
 import getTooltipKnobs from '../tooltipKnobs';
+import { Notification } from '@comparethemarketau/manor-notification';
 
 <Meta title="Components/Dropdown/TextDropdown" component={TextDropdown} />
 
@@ -22,6 +23,9 @@ Manor TextDropdown presents a full screen overlay of selectable options when the
         const [value, setValue] = useState('Default');
         return (
           <div style={{ padding: '2%' }}>
+            <h1 style={{ color: 'red' }}>Please dont use this component in future</h1>
+            <h2 style={{ color: 'red' }}>Please use the manor 'Dropdown' component using variant="text" instead. This material UI component has some keyboard accessibility issues which we cannot resolve because it is maintained by an external party.</h2>
+            <br />
             <TextDropdown
               id="input-one"
               label="Example Label"

@@ -9,13 +9,21 @@ export const StyledDropdownMainWrap = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing[20]};
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize.base};
+  ${({ variant }) => (variant === 'text' || variant === 'text-fixed-chevron') && css`
+    & div:first-of-type {
+      margin-bottom: ${({ theme }) => theme.spacing[0]};
+    }
+  `}
 `;
 
 export const StyledSvgArrow = styled.span`
-  position: absolute;
+  position: ${({ variant }) => (variant === 'text' ? 'static' : 'absolute')};
   right: ${({ theme }) => theme.spacing[16]};
   top: ${({ theme }) => theme.spacing[12]};
   color: ${({ theme, disabled }) => (disabled ? theme.colors.inputDisabledTextOnGray : theme.dropdown.caretFill)};
+  ${({ variant }) => variant === 'text' && css`
+    margin-left: ${({ theme }) => theme.spacing[8]};
+  `}
 `;
 
 export const StyledDropdownContent = styled.div`
@@ -26,18 +34,21 @@ export const StyledDropdownContent = styled.div`
   display: inline-flex;
   align-items: center;
   position: relative;
-  height: ${({ theme }) => theme.dropdown.height};
-  padding: ${({ theme }) => (`${theme.spacing['8']} ${theme.spacing['12']}`)};
+  height: ${({ theme, variant }) => (variant === 'text' || variant === 'text-fixed-chevron' ? theme.spacing[40] : theme.dropdown.height)};
+  padding: ${({ theme, variant }) => (variant === 'text' || variant === 'text-fixed-chevron' ? '0' : `${theme.spacing['8']} ${theme.spacing['12']}`)};
   color: ${({ theme }) => theme.dropdown.color};
 `;
 
 export const StyledDropdownButton = styled.div`
   background: ${({ theme }) => theme.dropdown.background};
   border: ${({ theme }) => theme.borders.component};
-  &:hover,
+  &:hover {
+    border: ${({ theme, variant }) => (variant === 'text' || variant === 'text-fixed-chevron' ? 'none' : theme.combo.list.item.borderFocus)};
+    background-color: ${({ theme, variant }) => (variant === 'text' || variant === 'text-fixed-chevron' ? theme.colors.primary50 : theme.dropdown.background)};
+  }
   &:focus {
-    border: ${({ theme }) => theme.combo.list.item.borderFocus};
-    outline: none;
+    border: ${({ theme, variant }) => (variant === 'text' || variant === 'text-fixed-chevron' ? 'none' : theme.combo.list.item.borderFocus)};
+    outline: ${({ theme, variant }) => (variant === 'text' || variant === 'text-fixed-chevron' ? theme.combo.list.item.borderFocus : 'none')};
   }
   &:hover {
     cursor: pointer;
@@ -59,12 +70,8 @@ export const StyledDropdownButton = styled.div`
        cursor: default;
     }
   `}
-  ${({ variant }) => variant === 'text' && css`
+  ${({ variant }) => (variant === 'text' || variant === 'text-fixed-chevron') && css`
     border: none;
-    &:hover,
-    &:focus {
-      border: none;
-    }
     & div {
       padding-left: 0;
       color: ${({ theme }) => theme.colors.primary500};
