@@ -33,6 +33,7 @@ const Dropdown = ({
   id: propsId,
   selectedValue,
   label,
+  labelProps,
   placeholder,
   tooltip,
   children,
@@ -229,7 +230,13 @@ const Dropdown = ({
   return (
     <>
       <StyledDropdownMainWrap onKeyDown={keyboardAccessibility} id={id} variant={variant}>
-        <Label htmlFor={id} text={label} tooltip={tooltip} />
+        <Label
+          htmlFor={id}
+          text={label}
+          tooltip={tooltip}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...labelProps}
+        />
         <StyledDropdownContainer ref={dropdownWrapper}>
           <StyledDropdownButton
             ref={button}
@@ -267,6 +274,13 @@ Dropdown.propTypes = {
    * Label for the input
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  /**
+   * Additional Label props for the dropdown input's label
+   */
+  labelProps: PropTypes.shape({
+    variant: PropTypes.oneOf(['default', 'compact', 'description']),
+    className: PropTypes.string,
+  }),
   /**
    * The placeholder text for the Dropdown
    */
@@ -327,6 +341,7 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
   id: null,
   label: '',
+  labelProps: {},
   placeholder: '',
   tooltip: {},
   selectedValue: null,

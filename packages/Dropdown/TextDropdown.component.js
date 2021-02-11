@@ -74,6 +74,7 @@ const TextDropdownInner = ({
     [handleChange],
   );
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.warn('WARNING: the manor TextDropdown component will be deprecated soon. please use the manor Dropdown component with variant="text" moving forward.');
   }, []);
   return (
