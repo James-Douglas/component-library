@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.8.4...@comparethemarketau/manor-button@0.9.0) (2021-02-11)
+
+
+### Features
+
+* upgrade buttons text to accept nodes ([#564](https://github.com/comparethemarketau/manor-react/issues/564)) ([7df4c6d](https://github.com/comparethemarketau/manor-react/commit/7df4c6d19491e0f3f9f271af36323006f503df6c))
+
+
+
+
+
 ## [0.8.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.8.3...@comparethemarketau/manor-button@0.8.4) (2020-12-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-button
