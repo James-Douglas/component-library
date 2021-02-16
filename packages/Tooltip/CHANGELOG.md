@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.15.3...@comparethemarketau/manor-tooltip@0.16.0) (2021-02-16)
+
+
+### Features
+
+* adding iconsize prop for easier design changes ([#569](https://github.com/comparethemarketau/manor-react/issues/569)) ([a580e69](https://github.com/comparethemarketau/manor-react/commit/a580e69296a299ee6618966b0889b771d72995cf))
+
+
+
+
+
 ## [0.15.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.15.2...@comparethemarketau/manor-tooltip@0.15.3) (2021-02-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tooltip
