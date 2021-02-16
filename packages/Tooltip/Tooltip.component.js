@@ -45,6 +45,7 @@ const Tooltip = ({
   children,
   active,
   className,
+  iconSize,
 }) => {
   const id = useId(propsId);
   const [pinned, setPinned] = useState(false);
@@ -157,7 +158,7 @@ const Tooltip = ({
         <>
           <Typography id={screenReaderLabelId} variant="srOnly">{screenReaderLabel}</Typography>
           {
-            children || <FontAwesomeIcon icon={faInfoCircle} />
+            children || <FontAwesomeIcon icon={faInfoCircle} size={iconSize} />
           }
         </>
       </StyledTooltipIcon>
@@ -225,6 +226,10 @@ export const tooltipPropTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Size of the tooltip icon - FontAwesome sizing
+   */
+  iconSize: PropTypes.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
 };
 
 const defaultProps = {
@@ -239,6 +244,7 @@ const defaultProps = {
   variant: 'dark',
   className: 'ctm-tooltip',
   children: null,
+  iconSize: '1x',
 };
 
 Tooltip.propTypes = tooltipPropTypes;
