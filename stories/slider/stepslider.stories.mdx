@@ -82,6 +82,7 @@ Allows selection from a range of discrete values.
     const id = text('id', 'test', componentPropsId);
     const label = text('label', 'How much cover do you want?', componentPropsId);
     const disabled = boolean('disabled', false, componentPropsId);
+    const sortOrderAscending = boolean('Sort order ascending', true, componentPropsId);
     const [value, setValue] = useState(5000);
     const marks = [
       {
@@ -139,6 +140,7 @@ Allows selection from a range of discrete values.
             screenReaderLabel,
             variant
           }}
+          sortOrderAscending={sortOrderAscending}
         />
       </div>
     );

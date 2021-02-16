@@ -22,6 +22,7 @@ const useMUIStyles = MUIMakeStyles(() => ({
     '& .MuiSlider-track': {
       color: '#d4d4d4',
       backgroundColor: '#d4d4d4',
+      borderRadius: 0,
     },
   },
 }));
@@ -34,6 +35,9 @@ const ManorStyledSliderRtl = styled(({ last, first, ...otherProps }) => {
   );
 })`
   padding-top: ${({ theme }) => `${theme.spacing[4]} !important`};
+  & .MuiSlider-thumb {
+    color: ${({ theme }) => theme.colors.primary500};
+  }
   & .MuiSlider-markLabel {
     top: ${({ theme }) => theme.spacing[20]};
     height: ${({ theme }) => theme.spacing[4]};
@@ -103,6 +107,9 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
   <MUISlider {...otherProps} />
 ))`
   padding-top: ${({ theme }) => `${theme.spacing[4]} !important`};
+  & .MuiSlider-thumb {
+    color: ${({ theme }) => theme.colors.primary500};
+  }
   & .MuiSlider-markLabel {
     top: ${({ theme }) => theme.spacing[20]};
     height: ${({ theme }) => theme.spacing[4]};
@@ -134,11 +141,11 @@ const ManorStyledSlider = styled(({ last, first, ...otherProps }) => (
     border: ${({ theme }) => theme.slider.thumb.border};
     box-shadow: ${({ theme }) => theme.slider.thumb.boxShadow};
   }
-   & .MuiSlider-valueLabel {
-     left: auto;
-     white-space: nowrap;
-     color: ${({ theme }) => theme.colors.primary500};
-   }
+  & .MuiSlider-valueLabel {
+    left: auto;
+    white-space: nowrap;
+    color: ${({ theme }) => theme.colors.primary500};
+  }
   & .MuiSlider-thumb {
     display: flex;
     margin-left: -9px;
