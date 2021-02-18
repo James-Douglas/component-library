@@ -125,7 +125,7 @@ const Modal = ({
               )}
               {title && (
                 <StyledTitle desktop={isDesktop}>
-                  <Typography variant="h3">{title}</Typography>
+                  <Typography variant="h2">{title}</Typography>
                 </StyledTitle>
               )}
             </StyledTitleContainer>
