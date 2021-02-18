@@ -87,7 +87,7 @@ const ComboTag = ({
   const tagKeyUp = (e) => {
     if (!hasList) {
       // Older browsers may return "Spacebar" instead of " " for the Space Bar key. Firefox did so until version 37, as did Internet Explorer 9, 10, and 11.
-      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',') {
+      if (currentValue !== '' && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',')) {
         setCurrentValue('');
         setEditMode(false);
         setTags((prevTagArray) => {
