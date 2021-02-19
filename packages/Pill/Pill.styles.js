@@ -3,6 +3,10 @@ import { Chip as MUIChip } from '@material-ui/core';
 import { Typography } from '@comparethemarketau/manor-typography';
 import React from 'react';
 
+const ManorStyledPillToggle = styled.div`
+  display: inline-flex;
+`;
+
 const ManorStyledPill = styled(({ ...otherProps }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <MUIChip {...otherProps} />
@@ -34,4 +38,4 @@ const StyledLabel = styled(Typography)`
   font-weight: ${({ theme }) => theme.fontWeight.semibold};
 `;
 
-export { ManorStyledPill, StyledLabel };
+export { ManorStyledPillToggle, ManorStyledPill, StyledLabel };

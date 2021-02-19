@@ -8,7 +8,8 @@ import { muiTheme } from '@comparethemarketau/manor-themes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/pro-regular-svg-icons/faPlus';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { ManorStyledPill, StyledLabel } from './Pill.styles';
+import { useId } from '@comparethemarketau/manor-hooks';
+import { ManorStyledPillToggle, ManorStyledPill, StyledLabel } from './Pill.styles';
 
 const PillInner = ({
   theme,
@@ -47,6 +48,7 @@ const PillInner = ({
 const ThemedMUIChip = withTheme(PillInner);
 
 const Pill = ({
+  id: propsId,
   selected,
   icon,
   style,
@@ -59,6 +61,7 @@ const Pill = ({
   classes,
   ...props
 }) => {
+  const id = useId(propsId);
   const [isSelected, setIsSelected] = useState(selected);
 
   useEffect(() => {
@@ -71,30 +74,36 @@ const Pill = ({
   };
 
   return (
-    <ThemedMUIChip
-      {...props}
-      label={(
-        <StyledLabel
-          variant={size === 'medium' ? 'body1' : 'body2'}
-          noMargins
-        >
-          {label}
-        </StyledLabel>
-      )}
-      selected={isSelected}
-      icon={icon}
-      size={size}
-      handleClick={clickHandler}
-      disabled={disabled}
-      deleteIcon={<FontAwesomeIcon icon={isSelected ? faCheckCircle : faPlus} />}
-      component={component}
-      classes={classes}
-      className={className}
-    />
+    <ManorStyledPillToggle id={id}>
+      <ThemedMUIChip
+        {...props}
+        label={(
+          <StyledLabel
+            variant={size === 'medium' ? 'body1' : 'body2'}
+            noMargins
+          >
+            {label}
+          </StyledLabel>
+        )}
+        selected={isSelected}
+        icon={icon}
+        size={size}
+        handleClick={clickHandler}
+        disabled={disabled}
+        deleteIcon={<FontAwesomeIcon icon={isSelected ? faCheckCircle : faPlus} />}
+        component={component}
+        classes={classes}
+        className={className}
+      />
+    </ManorStyledPillToggle>
   );
 };
 
 Pill.propTypes = {
+  /**
+   * Unique identifier for the dropdown item
+   */
+  id: PropTypes.string,
   /**
    * Defines whether the pill is currently selected
    */
@@ -140,6 +149,7 @@ Pill.propTypes = {
 };
 
 Pill.defaultProps = {
+  id: null,
   selected: false,
   style: undefined,
   component: undefined,
