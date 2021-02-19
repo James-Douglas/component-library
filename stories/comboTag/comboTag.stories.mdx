@@ -55,8 +55,8 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                       alt: 'Image of magnifying glass',
                       title: 'Oops',
                     }}
-                    emptyStateHeading= "Sorry, your search did not produce any results."
-                    emptyStateChildren='Try adjusting your search or filter to find what you are looking for.'
+                    emptyStateHeading="Sorry, no results found."
+                    emptyStateChildren="Please check spelling or try a different country."
                     handleInput={(value) => {
                       // eslint-disable-next-line no-console
                       console.log(value)
@@ -167,12 +167,12 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
 ## Keypress variant
 
 The ComboTag component can also be set as a text only variant. If no data/list items are passed via the apiData prop, the user can hit the enter key to set a tag.
-Additionally a condition can be passed to set the error state of the tag, as we no longer draw that information from the returned api object. The prefix, if provided, can also be passed 
+Additionally a condition can be passed to set the error state of the tag, as we no longer draw that information from the returned api object. The prefix, if provided, can also be passed
 a click handler.
 
 <Preview>
   <Story name="ComboTag (Keypress version)">
-    {() => { 
+    {() => {
       const [comboTagValue, setComboTagValue] = useState('');
       const condition = (x, y) => {
         return x > 100;
