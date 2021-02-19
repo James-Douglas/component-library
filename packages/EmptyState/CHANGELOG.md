@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-empty-state@0.6.18...@comparethemarketau/manor-empty-state@0.7.0) (2021-02-19)
+
+
+### Features
+
+* **emptystate:** styling tweaks based on cx feedback ([#575](https://github.com/comparethemarketau/manor-react/issues/575)) ([9b2c860](https://github.com/comparethemarketau/manor-react/commit/9b2c860a69237c942d3c482e3e8ec73576c41f3e))
+
+
+
+
+
 ## [0.6.18](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-empty-state@0.6.17...@comparethemarketau/manor-empty-state@0.6.18) (2021-02-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-empty-state
