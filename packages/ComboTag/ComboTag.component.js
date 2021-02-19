@@ -401,7 +401,7 @@ const ComboTag = ({
               )}
             <Input
               id={id}
-              placeholder={placeholder}
+              placeholder={tags.length === 0 && placeholder}
               value={currentValue}
               disabled={disabled}
               autocomplete={autocomplete}
