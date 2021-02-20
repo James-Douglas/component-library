@@ -55,9 +55,9 @@ const Footer = ({
   }, [sticky, windowWidth]);
 
   return (
-    <StyledWrapper style={{ paddingTop: footerHeight }}>
+    <StyledWrapper className={className} style={{ paddingTop: footerHeight }}>
       <StyledPosition background={background} sticky={sticky}>
-        <Container className={className} padding={['16']}>
+        <Container padding={['16']}>
           <Row removeMarginBottom>
             <Column cols={12}>
               <StyledFooterBar ref={footerRef}>
