@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.12.1...@comparethemarketau/manor-footer@0.12.2) (2021-02-20)
+
+
+### Bug Fixes
+
+* **footer:** apply className to outermost div on footer ([#578](https://github.com/comparethemarketau/manor-react/issues/578)) ([16a19a5](https://github.com/comparethemarketau/manor-react/commit/16a19a5d5d59d230d7f8f9f1b3b435c6b60aea7d))
+
+
+
+
+
 ## [0.12.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-footer@0.12.0...@comparethemarketau/manor-footer@0.12.1) (2021-02-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-footer
