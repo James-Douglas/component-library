@@ -38,6 +38,7 @@ const ComboTag = ({
   description,
   autocomplete,
   disabled,
+  disableClearIcon,
   characterMinimum,
   placeholder,
   validationMessage,
@@ -404,6 +405,7 @@ const ComboTag = ({
               placeholder={tags.length === 0 && placeholder}
               value={currentValue}
               disabled={disabled}
+              disableClearIcon={disableClearIcon}
               autocomplete={autocomplete}
               handleChange={comboHandleChange}
               handleKeyUp={tagKeyUp}
@@ -536,6 +538,10 @@ ComboTag.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Disables the clear icon when true
+   */
+  disableClearIcon: PropTypes.bool,
+  /**
    * Define a minimum number of characters to be typed before showing the list
    */
   characterMinimum: PropTypes.number,
@@ -626,6 +632,7 @@ ComboTag.defaultProps = {
   description: '',
   apiData: null,
   disabled: false,
+  disableClearIcon: false,
   value: '',
   autocomplete: 'off',
   characterMinimum: 1,
