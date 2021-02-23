@@ -16,7 +16,7 @@ export const StyledFlexContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: ${({ theme }) => theme.spacing[32]};
-  margin-bottom: ${({ theme, desktop }) => (desktop ? theme.spacing[24] : theme.spacing[8])};
+  margin-bottom: ${({ theme }) => theme.spacing[32]};
 
 `;
 
