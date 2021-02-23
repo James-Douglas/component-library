@@ -7,8 +7,8 @@ exports[`GenericModal renders with minimal props 1`] = `
   z-index: inherit;
   pointer-events: auto;
   position: relative;
-  -webkit-animation-name: bMDMvv;
-  animation-name: bMDMvv;
+  -webkit-animation-name: jkFcyt;
+  animation-name: jkFcyt;
   -webkit-animation-duration: .3s;
   animation-duration: .3s;
 }

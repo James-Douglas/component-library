@@ -10,12 +10,18 @@ module.exports = {
     ],
     '@babel/preset-react',
   ],
+  plugins: ["babel-plugin-styled-components"],
   env: {
-    development: {
-      plugins: ['babel-plugin-styled-components'],
-    },
     test: {
-      plugins: ['@babel/plugin-transform-runtime'],
+      plugins: ['@babel/plugin-transform-runtime',
+      [
+        "babel-plugin-styled-components",
+        {
+          "ssr": false,
+          "displayName": false,
+        }
+      ]
+    ],
     },
   },
 };
