@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-notification",
-  "version": "0.14.8",
+  "version": "0.14.9",
   "description": "Manor Notification component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

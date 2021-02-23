@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-card",
-  "version": "0.6.14",
+  "version": "0.6.15",
   "description": "Manor Card component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
