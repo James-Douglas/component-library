@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-empty-state@0.7.0...@comparethemarketau/manor-empty-state@0.8.0) (2021-02-23)
+
+
+### Features
+
+* **emptystate:** add padding to bottom of image ([#581](https://github.com/comparethemarketau/manor-react/issues/581)) ([ec4493d](https://github.com/comparethemarketau/manor-react/commit/ec4493d21af4fa386d2c35f258834c36f8260904))
+
+
+
+
+
 # [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-empty-state@0.6.18...@comparethemarketau/manor-empty-state@0.7.0) (2021-02-19)
 
 

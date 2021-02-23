@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-empty-state",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Manor EmptyState component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
