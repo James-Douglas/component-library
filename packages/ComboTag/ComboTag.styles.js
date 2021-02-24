@@ -22,7 +22,7 @@ export const StyledPrefix = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: inherit;
   float: left;
   ${({ onClick }) => onClick && css`
     cursor: pointer;
@@ -46,7 +46,7 @@ export const StyledTagHolder = styled.div`
   display: flex;
   float: left;
   align-items: center;
-  z-index: ${({ theme }) => (theme.zIndex[10])};
+  z-index: 1;
   ${({ hasList }) => hasList && css`
     max-width: 55%;
     overflow-x: scroll;
@@ -71,7 +71,7 @@ export const StyledFade = styled.div`
   ${({ prefix }) => prefix && css`
     left: ${({ theme }) => theme.spacing[40]};
   `};
-  z-index: ${({ theme }) => (theme.zIndex[20])};
+  z-index: 2;
   pointer-events: none;
   &:after {
     content: "";
