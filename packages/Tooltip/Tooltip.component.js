@@ -57,7 +57,7 @@ const Tooltip = ({
   const hideTooltip = () => {
     setTippyVisible(false);
     setPinned(false);
-    document.body.removeEventListener('click', hideTooltip);
+    document.body.removeEventListener('click', bodyClickListener);
   };
 
   const showTooltip = () => {
@@ -74,11 +74,17 @@ const Tooltip = ({
     window.removeEventListener('scroll', hideTooltip);
   };
 
+  const bodyClickListener = (e) => {
+    if (tippyVisible && tooltipElement.current && !tooltipElement.current.contains(e.target)) {
+      hideTooltip();
+    }
+  };
+
   useUnmountEffect(() => {
     if (tippyInstance) {
       tippyInstance.destroy();
     }
-    document.body.removeEventListener('click', hideTooltip);
+    document.body.removeEventListener('click', bodyClickListener);
     removeOnShowListeners();
   });
 
@@ -90,7 +96,7 @@ const Tooltip = ({
 
   const onTippyShow = () => {
     document.body.click();
-    document.body.addEventListener('click', hideTooltip);
+    document.body.addEventListener('click', bodyClickListener);
     addOnShowListeners();
   };
 
@@ -119,11 +125,8 @@ const Tooltip = ({
     <StyledTippy
       content={getContent(title, body, variant)}
       arrow={arrow}
-      distance="1rem"
       animation="scale"
       duration={[150, 75]}
-      hideOnClick={false}
-      trigger="manual"
       onCreate={(instance) => setTippyInstance(instance)}
       onShow={onTippyShow}
       visible={tippyVisible}

@@ -46,21 +46,21 @@ describe('Tooltip', () => {
 
   it('renders tooltip click', () => {
     const { container } = render(<Tooltip body="test tooltip content" />);
-    const toolTip = container.querySelector('[role="tooltip"]');
-    fireEvent.click(toolTip);
-    const toolTipBlack = document.querySelector('.tippy-popper');
-    expect(toolTipBlack).toBeInTheDocument();
+    const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
+    fireEvent.click(tooltipTriggerElement);
+    const tooltip = document.querySelector('div[data-tippy-root]');
+    expect(tooltip).toBeInTheDocument();
   });
 
   it('renders tooltip hover', () => {
     const { container, getByText } = render(<Tooltip body="test tooltip content" />);
-    const toolTip = container.querySelector('[role="tooltip"]');
-    fireEvent.mouseOver(toolTip);
-    const toolTipBlack = document.querySelector('.tippy-popper');
-    expect(toolTipBlack).toHaveStyle('visibility: visible');
+    const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
+    fireEvent.mouseOver(tooltipTriggerElement);
+    const tooltip = document.querySelector('div[data-tippy-root]');
+    expect(tooltip).toHaveStyle('visibility: visible');
     expect(getByText('test tooltip content')).toBeInTheDocument();
-    fireEvent.mouseLeave(toolTip);
-    expect(toolTipBlack).toHaveStyle('visibility: hidden');
+    fireEvent.mouseLeave(tooltipTriggerElement);
+    expect(tooltip).toHaveStyle('visibility: hidden');
   });
 
   it('renders tooltip correctly', () => {
@@ -74,18 +74,18 @@ describe('Tooltip', () => {
     render(<Tooltip body="test tooltip content" />);
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
-    const tooltipElement = document.body.querySelector('.tippy-popper');
+    const tooltipElement = document.querySelector('div[data-tippy-root]');
     expect(tooltipElement).toBeInTheDocument();
 
     fireEvent.keyDown(tooltipTriggerElement, { key: 'Escape', code: 27 });
-    expect(document.body.querySelector('.tippy-popper')).not.toBeVisible();
+    expect(document.body.querySelector('div[data-tippy-root]')).not.toBeVisible();
   });
 
   it('tooltip on click body', async () => {
     render(<Tooltip body="test tooltip content" />);
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
-    const tooltipElement = document.querySelector('.tippy-popper');
+    const tooltipElement = document.querySelector('div[data-tippy-root]');
     act(() => {
       document.body.click();
     });
@@ -98,7 +98,7 @@ describe('Tooltip', () => {
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
 
-    const tooltipElement = document.body.querySelector('.tippy-popper');
+    const tooltipElement = document.querySelector('div[data-tippy-root]');
     expect(tooltipElement).toBeInTheDocument();
 
     fireEvent.click(document.body);
@@ -111,7 +111,7 @@ describe('Tooltip', () => {
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
 
-    const tooltipElement = document.body.querySelector('.tippy-popper');
+    const tooltipElement = document.querySelector('div[data-tippy-root]');
     expect(tooltipElement).toBeInTheDocument();
 
     fireEvent.blur(tooltipTriggerElement);

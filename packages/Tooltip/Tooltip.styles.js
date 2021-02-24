@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Tippy from '@tippy.js/react';
+import Tippy from '@tippyjs/react';
 
 export const StyledTooltipIcon = styled.div`
   display: inline-block;
