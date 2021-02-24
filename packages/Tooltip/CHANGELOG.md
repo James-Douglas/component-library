@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.16.2...@comparethemarketau/manor-tooltip@0.17.0) (2021-02-24)
+
+
+### Features
+
+* **tooltip:** fix tooltip flickering on ipad ([#582](https://github.com/comparethemarketau/manor-react/issues/582)) ([994c0eb](https://github.com/comparethemarketau/manor-react/commit/994c0eb58245067d854deabe5f2fcb1e712a27a3))
+
+
+
+
+
 ## [0.16.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.16.1...@comparethemarketau/manor-tooltip@0.16.2) (2021-02-23)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tooltip
