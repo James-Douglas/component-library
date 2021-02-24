@@ -87,7 +87,9 @@ const ComboTag = ({
 
   const tagKeyUp = (e) => {
     if (!hasList) {
-      // Older browsers may return "Spacebar" instead of " " for the Space Bar key. Firefox did so until version 37, as did Internet Explorer 9, 10, and 11.
+      // Older browsers may return e.key ==="Spacebar" instead of " " for the Space Bar key. Firefox did so until
+      // version 37, as did Internet Explorer 9, 10, and 11.
+      // also note issue with space and comma detection in android: https://github.com/comparethemarketau/manor-react/issues/585
       if (currentValue !== '' && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',')) {
         setCurrentValue('');
         setEditMode(false);
