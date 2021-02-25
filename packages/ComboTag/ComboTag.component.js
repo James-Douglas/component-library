@@ -464,7 +464,7 @@ ComboTag.propTypes = {
   /**
    * Description for the ComboTag.
    */
-  description: PropTypes.string,
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Custom handler to attach to the combo field - used to get the value of the selected combo item.
    */
