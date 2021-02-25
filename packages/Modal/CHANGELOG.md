@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.10.10...@comparethemarketau/manor-modal@0.10.11) (2021-02-25)
+
+
+### Bug Fixes
+
+* fixed up modal calc issues in css and manor spacing ([#588](https://github.com/comparethemarketau/manor-react/issues/588)) ([74be2b3](https://github.com/comparethemarketau/manor-react/commit/74be2b379d908adf9779503398fb5e453c546d3f))
+
+
+
+
+
 ## [0.10.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.10.9...@comparethemarketau/manor-modal@0.10.10) (2021-02-24)
 
 **Note:** Version bump only for package @comparethemarketau/manor-modal
