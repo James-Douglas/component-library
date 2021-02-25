@@ -1,5 +1,10 @@
 import styled, { keyframes } from 'styled-components';
 
+// These are not ideal, but they are reused calcs for the modal setup.
+// It mainly covers default behaviour and also accommodates padding in height calcs.
+const defaultModalHeaderHeight = 68;
+const supplementaryHeaderPadding = 20;
+
 export const StyledAlignment = styled.div`
   width: 100%;
   height: 100%;
@@ -41,7 +46,7 @@ export const StyledModal = styled.div`
 
 export const StyledModalHeader = styled.div`
   background: ${({ theme, desktop }) => (desktop ? theme.colors.white : theme.colors.grey100)};
-  padding: 1.9rem 2.4rem;
+  padding: 1.9rem ${({ theme }) => theme.spacing[24]};
 `;
 
 export const StyledTitleContainer = styled.div`
@@ -61,7 +66,7 @@ export const StyledTitleIcon = styled.div`
   color: ${({ theme }) => theme.colors.primary500};
   display: inline-block;
   font-size: ${({ theme }) => theme.fontSize['3xl']};
-  margin-right: 1.6rem;
+  margin-right: ${({ theme }) => theme.spacing[16]};
 `;
 
 export const StyledCloseIcon = styled.div`
@@ -74,10 +79,10 @@ export const StyledCloseIcon = styled.div`
 export const StyledContent = styled.div`
   padding: ${({ theme }) => `${theme.spacing[20]} ${theme.spacing[24]} 0`};
   height: ${({
-    theme, showSupplementaryBar, desktop, modalHeaderBarHeight,
-  }) => `calc(100% - ${desktop && showSupplementaryBar ? ((modalHeaderBarHeight || 68) + 88) : (modalHeaderBarHeight || 68)}px)`};
+    showSupplementaryBar, desktop, modalHeaderBarHeight,
+  }) => `calc(100% - ${desktop && showSupplementaryBar ? ((modalHeaderBarHeight || defaultModalHeaderHeight) + 88) : (modalHeaderBarHeight + supplementaryHeaderPadding || defaultModalHeaderHeight)}px)`};
   overflow-y: ${({ desktop }) => (desktop ? '' : 'scroll')};
-  overflow-x: ${({ desktop }) => (desktop ? '' : 'hidden')}; 
+  overflow-x: ${({ desktop }) => (desktop ? '' : 'hidden')};
 `;
 
 export const StyledContentChildren = styled.div`
@@ -93,8 +98,8 @@ export const StyledContentButtons = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 1.2rem 0;
-  margin: 0 -2.4rem 0;
+  padding: 0 ${({ theme }) => theme.spacing[32]};
+  margin: 0 -${({ theme }) => theme.spacing[24]} 0;
   height: ${({ theme }) => theme.spacing[80]};
   border-top: ${({ theme }) => `1px solid ${theme.colors.grey100}`};
 `;
@@ -105,13 +110,12 @@ export const StyledPrimaryButton = styled.div`
 
 export const StyledSecondaryButton = styled.div`
   display: inline-block;
-  margin-right: 2rem;
 `;
 
 export const StyledSupplementaryBar = styled.div`
   background: ${({ theme }) => theme.colors.primary50};
-  padding: ${({ theme }) => theme.spacing[16]};
-  margin: 0 -2.4rem 0;
+  padding: ${({ theme }) => theme.spacing[16]} ${({ theme }) => theme.spacing[32]};
+  margin: 0 -${({ theme }) => theme.spacing[24]} 0;
 `;
 
 export const StyledSupplementaryBarItem = styled.div`
