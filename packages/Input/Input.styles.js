@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading,react/display-name,react/prop-types */
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import MaskedInput from 'react-text-mask';
@@ -197,8 +198,9 @@ export const StyledInputClearWrap = styled.div`
 
 `;
 
-// eslint-disable-next-line react/jsx-props-no-spreading,react/display-name,react/prop-types
-export const StyledInput = styled(React.forwardRef(({ isAutofill, expressive, ...props }, ref) => <MaskedInput {...props} ref={ref} />))`
+export const StyledInput = styled(React.forwardRef(({
+  isAutofill, expressive, disableClearIcon, suffixContent, ...props
+}, ref) => <MaskedInput {...props} ref={ref} />))`
   font-family: ${({ theme }) => theme.fontFamily};
   padding-left: ${({ theme }) => theme.spacing[12]};
   padding-right: ${({
