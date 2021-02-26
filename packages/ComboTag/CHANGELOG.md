@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.9.9...@comparethemarketau/manor-combo-tag@0.10.0) (2021-02-26)
+
+
+### Features
+
+* **combotag:** tablet undo button, delete tag bugs ([#590](https://github.com/comparethemarketau/manor-react/issues/590)) ([daa198f](https://github.com/comparethemarketau/manor-react/commit/daa198ffd8074d0d67bd727e919d5c15e62a2a5f))
+
+
+
+
+
 ## [0.9.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.9.8...@comparethemarketau/manor-combo-tag@0.9.9) (2021-02-26)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combo-tag
