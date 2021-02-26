@@ -307,7 +307,11 @@ Dropdown.propTypes = {
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
-  validationMessage: PropTypes.string,
+  validationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   /**
    * Disables the button via a class on its wrapper, and an attribute on the dropdown
    */

@@ -163,7 +163,11 @@ Checkbox.propTypes = {
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
-  validationMessage: PropTypes.string,
+  validationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   /**
    * Used to display the invalid state of the component without specifying a validationMessage
    */

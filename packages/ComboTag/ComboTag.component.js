@@ -630,7 +630,11 @@ ComboTag.propTypes = {
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
-  validationMessage: PropTypes.string,
+  validationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
 };
 
 ComboTag.defaultProps = {

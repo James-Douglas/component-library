@@ -83,7 +83,11 @@ Disclaimer.propTypes = {
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
-  validationMessage: PropTypes.string,
+  validationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   /**
    * Called on change with the value of the Disclaimers checkbox
    */

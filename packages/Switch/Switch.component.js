@@ -95,7 +95,11 @@ Switch.propTypes = {
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
-  validationMessage: PropTypes.string,
+  validationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   /**
    * Manor theme, if not provided the ctm theme will be used.
    */

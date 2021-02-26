@@ -191,7 +191,11 @@ SingleDatePicker.propTypes = {
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
-  validationMessage: PropTypes.string,
+  validationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   /**
    * Function called by the datepicker to determine if a day should be blocked from selection
    * (x: [moment instance]) => boolean)

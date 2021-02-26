@@ -332,11 +332,19 @@ DateRangePicker.propTypes = {
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
-  endDateValidationMessage: PropTypes.string,
+  endDateValidationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   /**
    * Displays given validation message and invalid styles on the component when provided.
    */
-  startDateValidationMessage: PropTypes.string,
+  startDateValidationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   /**
    * Function called by the datepicker to determine if a day should be blocked from selection
    * (x: [moment instance]) => boolean)

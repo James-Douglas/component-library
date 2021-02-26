@@ -32,7 +32,11 @@ SupportingElements.propTypes = {
   /**
    * Whether the field has validationMessage
    */
-  validationMessage: PropTypes.string,
+  validationMessage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   /**
    * Whether the field is disabled, if true Optional Text will not be rendered even if field is required
    */
