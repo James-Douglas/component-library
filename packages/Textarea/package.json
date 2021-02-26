@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-textarea",
-  "version": "0.10.19",
+  "version": "0.10.20",
   "description": "Manor Textarea component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.7.2",
+    "@comparethemarketau/manor-field-validation": "^0.7.3",
     "@comparethemarketau/manor-hooks": "^0.5.1",
     "@comparethemarketau/manor-label": "^0.8.7",
     "@comparethemarketau/manor-supporting-elements": "^0.5.18",
