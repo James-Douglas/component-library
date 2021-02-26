@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-field-validation@0.7.1...@comparethemarketau/manor-field-validation@0.7.2) (2021-02-26)
+
+
+### Bug Fixes
+
+* **field-validation:** removed z-index ([#592](https://github.com/comparethemarketau/manor-react/issues/592)) ([80cb892](https://github.com/comparethemarketau/manor-react/commit/80cb8926cef018e3835801c705ce2f3eb809125e))
+
+
+
+
+
 ## [0.7.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-field-validation@0.7.0...@comparethemarketau/manor-field-validation@0.7.1) (2021-02-26)
 
 **Note:** Version bump only for package @comparethemarketau/manor-field-validation

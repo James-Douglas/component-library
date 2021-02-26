@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.18.9...@comparethemarketau/manor-input@0.18.10) (2021-02-26)
+
+**Note:** Version bump only for package @comparethemarketau/manor-input
+
+
+
+
+
 ## [0.18.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.18.8...@comparethemarketau/manor-input@0.18.9) (2021-02-26)
 
 
