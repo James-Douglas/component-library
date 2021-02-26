@@ -6,7 +6,6 @@ export const StyledFieldValidation = styled.div`
   }
   display: table;
   position: relative;
-  z-index: ${({ theme }) => theme.zIndex['20']};
   margin-top: ${({ theme }) => theme.spacing['8']};
 `;
 
