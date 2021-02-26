@@ -105,6 +105,7 @@ const ComboTag = ({
 
       if (e.target.value.length === 0) {
         setEditMode(false);
+        setCurrentValue('');
       }
 
       if (e.target.value.length >= 1) {
@@ -231,8 +232,6 @@ const ComboTag = ({
   };
 
   const deleteTagHandler = useCallback((i) => {
-    setCurrentValue('');
-    setEditMode(false);
     setTags(tags.filter((_, index) => index !== i));
   }, [tags]);
 
