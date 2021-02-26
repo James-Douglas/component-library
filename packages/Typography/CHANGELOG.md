@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.14.0...@comparethemarketau/manor-typography@0.14.1) (2021-02-26)
+
+**Note:** Version bump only for package @comparethemarketau/manor-typography
+
+
+
+
+
 # [0.14.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.13.6...@comparethemarketau/manor-typography@0.14.0) (2021-02-09)
 
 

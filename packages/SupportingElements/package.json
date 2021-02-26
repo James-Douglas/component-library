@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-supporting-elements",
-  "version": "0.5.16",
+  "version": "0.5.17",
   "description": "Manor SupportingElements component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-typography": "^0.14.0",
+    "@comparethemarketau/manor-typography": "^0.14.1",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
