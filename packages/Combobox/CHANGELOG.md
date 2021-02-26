@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.21](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.12.20...@comparethemarketau/manor-combobox@0.12.21) (2021-02-26)
+
+
+### Bug Fixes
+
+* 🐛 validation prop to accept nodes, arrays and strings ([#594](https://github.com/comparethemarketau/manor-react/issues/594)) ([657f23e](https://github.com/comparethemarketau/manor-react/commit/657f23e54af7f9374e1c7f89c60f7752bada1716))
+
+
+
+
+
 ## [0.12.20](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.12.19...@comparethemarketau/manor-combobox@0.12.20) (2021-02-26)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combobox

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.20](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.16.19...@comparethemarketau/manor-buttongroup@0.16.20) (2021-02-26)
+
+
+### Bug Fixes
+
+* 🐛 validation prop to accept nodes, arrays and strings ([#594](https://github.com/comparethemarketau/manor-react/issues/594)) ([657f23e](https://github.com/comparethemarketau/manor-react/commit/657f23e54af7f9374e1c7f89c60f7752bada1716))
+
+
+
+
+
 ## [0.16.19](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.16.18...@comparethemarketau/manor-buttongroup@0.16.19) (2021-02-26)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
