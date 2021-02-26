@@ -27,7 +27,11 @@ FieldValidation.propTypes = {
   /**
    * The message to display. If null or empty string, this component will not render.
    */
-  message: PropTypes.string,
+  message: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
 };
 
 FieldValidation.defaultProps = {
