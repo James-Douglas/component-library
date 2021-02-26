@@ -56,7 +56,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                       title: 'Oops',
                     }}
                     emptyStateHeading="Sorry, no results found."
-                    emptyStateChildren="Please check spelling or try a different country."
+                    emptyStateChildren={<>Please check spelling <br/>or try a different country.</>}
                     handleInput={(value) => {
                       // eslint-disable-next-line no-console
                       console.log(value)

@@ -80,7 +80,11 @@ Tag.propTypes = {
   /**
    * a ref to the element (usually an input) that the tags are used with, to fire a focus event on
    */
-  elementRef: PropTypes.element,
+  elementRef: PropTypes.oneOfType([
+    PropTypes.element,
+    // eslint-disable-next-line react/forbid-prop-types
+    PropTypes.object,
+  ]),
   /**
    * decides if the tag is visible or not
    */

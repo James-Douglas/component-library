@@ -403,7 +403,7 @@ const ComboTag = ({
               )}
             <Input
               id={id}
-              placeholder={tags.length === 0 && placeholder}
+              placeholder={tags.length === 0 ? placeholder : ''}
               value={currentValue}
               disabled={disabled}
               disableClearIcon={disableClearIcon}
@@ -555,10 +555,6 @@ ComboTag.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Message for empty state
-   */
-  emptyStateChildren: PropTypes.string,
-  /**
    *  Picture props (see the Picture component documentation)
    */
   emptyStatePicture: PropTypes.shape(picturePropTypes),
@@ -569,7 +565,19 @@ ComboTag.propTypes = {
   /**
    * The heading text underneath the image
    */
-  emptyStateHeading: PropTypes.string,
+  emptyStateHeading: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  /**
+   * Message for empty state
+   */
+  emptyStateChildren: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
   /**
    * The text to display as an alert message
    */

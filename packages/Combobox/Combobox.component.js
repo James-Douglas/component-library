@@ -493,10 +493,6 @@ Combobox.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Message for empty state
-   */
-  emptyStateChildren: PropTypes.string,
-  /**
    *  Picture props (see the Picture component documentation)
    */
   emptyStatePicture: PropTypes.shape(picturePropTypes),
@@ -508,7 +504,19 @@ Combobox.propTypes = {
   /**
    * The heading text underneath the image
    */
-  emptyStateHeading: PropTypes.string,
+  emptyStateHeading: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  /**
+   * Message for empty state
+   */
+  emptyStateChildren: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
   /**
    * Message to help user start typing
    */
