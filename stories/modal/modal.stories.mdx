@@ -30,6 +30,7 @@ Unlike a Drawer, Modals can always be closed by the user.
     const [ visibleModal2, setVisibleModal2 ] = useState(false);
     const [ visibleModal3, setVisibleModal3 ] = useState(false);
     const [ visibleModal4, setVisibleModal4 ] = useState(false);
+    const [ visibleModal5, setVisibleModal5 ] = useState(false);
     return (
       <div style={{ padding: '2%' }}>
         <FluidContainer>
@@ -48,6 +49,9 @@ Unlike a Drawer, Modals can always be closed by the user.
             </Column>
             <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
               <Button id='preview-btn5' variant='secondary' handleClick={() => setVisibleModal4(!visibleModal4)}>Modal preview without supplementary bar, long text</Button>
+            </Column>
+            <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
+              <Button id='preview-btn6' variant='secondary' handleClick={() => setVisibleModal5(!visibleModal5)}>Modal preview with dynamic height</Button>
             </Column>
             <Modal id='preview-modal' visible={visible} handleClose={() => {setVisible(false)}} size="sm" overlay handleOverlayClick={() => setVisible(false)} title="Modal title goes here">
               <Typography variant="body1"> It is the percentage of money you borrow for a home loan compared to the value of the property. It is used to assess your risk factor as a borrower; lenders will calculate your LVR before deciding whether or to approve you for a home loan. Home loans which are over 80% LVR are considered high risk. As a result, most lenders will charge extra fees, such as Lender’s Mortgage Insurance (LMI), in order to protect themselves in case you default.</Typography>
@@ -86,6 +90,11 @@ Unlike a Drawer, Modals can always be closed by the user.
                 <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
                 <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
               </div>
+            </Modal>
+            <Modal id='preview-modal6' dynamicHeight secondaryActionTitle={'Secondary Button'} visible={visibleModal5} handleClose={() => setVisibleModal5(false)} size="sm" overlay handleOverlayClick={() => setVisibleModal5(false)}  title="Modal title goes here" titleIcon={<FontAwesomeIcon icon={faLightbulb}/>}>
+             <div>
+                <Typography variant="body1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.</Typography>
+                </div>
             </Modal>
           </Row>
         </FluidContainer>

@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 // These are not ideal, but they are reused calcs for the modal setup.
 // It mainly covers default behaviour and also accommodates padding in height calcs.
@@ -36,12 +36,14 @@ export const StyledModal = styled.div`
   max-width: 76.8rem;
   min-width: 35rem;
   width: ${({ desktop }) => (desktop ? '76.8rem' : '100%')};
-  min-height: 30rem;
-  height: ${({ desktop }) => (desktop ? '80%' : '100%')};
+  ${({ dynamicHeight }) => !dynamicHeight
+    && css`
+      height: ${({ desktop }) => (desktop ? '80%' : '100%')};
+    `}
   pointer-events: auto;
   position: relative;
   animation-name: ${animateIn};
-  animation-duration: .3s;
+  animation-duration: 0.3s;
 `;
 
 export const StyledModalHeader = styled.div`

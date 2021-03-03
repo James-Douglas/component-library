@@ -37,6 +37,7 @@ const Wrapper = ({ trapFocus, focusTrapOptions, children }) => {
 
 const Modal = ({
   id: propsId,
+  dynamicHeight,
   title,
   titleIcon,
   visible,
@@ -238,7 +239,7 @@ const Modal = ({
         && (
           <Wrapper trapFocus={trapFocus} focusTrapOptions={focusTrapOptions}>
             <StyledAlignment visible={visible} zIndex={zIndex}>
-              <StyledModal id={id} className={classNames} desktop={isDesktop}>
+              <StyledModal id={id} className={classNames} desktop={isDesktop} dynamicHeight={dynamicHeight}>
                 {Header()}
                 <StyledContent desktop={isDesktop} modalHeaderBarHeight={headerBarHeight} showSupplementaryBar={showSupplementaryBar}>
                   <StyledContentChildren desktop={isDesktop} supplementaryBarHeight={supplementaryBarHeight} showSupplementaryBar={showSupplementaryBar}>{children}</StyledContentChildren>
@@ -256,7 +257,7 @@ const Modal = ({
 Modal.propTypes = {
   /**
    * Unique identifier for the modal
-  */
+   */
   id: PropTypes.string,
   /**
    * Bool for modal opening/closing. Handled via state in the parent component
@@ -267,6 +268,10 @@ Modal.propTypes = {
    * close the modal on click of the overlay
    */
   handleClose: PropTypes.func,
+  /**
+   * To specify whether the modal should scale its height according to content size
+   */
+  dynamicHeight: PropTypes.bool,
   /**
    * Extend styles with additional classNames
    */
@@ -347,6 +352,7 @@ Modal.propTypes = {
 Modal.defaultProps = {
   id: null,
   visible: false,
+  dynamicHeight: false,
   handleClose: null,
   className: '',
   children: '',

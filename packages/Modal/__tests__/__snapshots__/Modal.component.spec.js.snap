@@ -94,14 +94,13 @@ exports[`Modal renders with minimal props 1`] = `
   max-width: 76.8rem;
   min-width: 35rem;
   width: 76.8rem;
-  min-height: 30rem;
   height: 80%;
   pointer-events: auto;
   position: relative;
   -webkit-animation-name: jkFcyt;
   animation-name: jkFcyt;
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
 }
 
 .c1 {
