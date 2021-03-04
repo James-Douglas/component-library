@@ -152,7 +152,7 @@ DateInput.propTypes = {
   /**
    * Format of date string.
    */
-  format: PropTypes.oneOfType([
+  format: PropTypes.oneOf([
     'DD/MM/YYYY',
     'DD/MM/YY',
     'MM/YYYY',
