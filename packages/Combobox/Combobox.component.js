@@ -416,14 +416,10 @@ Combobox.propTypes = {
     PropTypes.node,
   ]),
   /**
-   * Renders the given (FontAwesome) icon next to options in the list
+   * Renders the given FontAwesome icon next to options in the list
    */
   listIcon: PropTypes.oneOfType([
-    PropTypes.shape({
-      prefix: PropTypes.string,
-      iconName: PropTypes.string,
-      icon: PropTypes.array, // eslint-disable-line
-    }),
+    PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
   /**

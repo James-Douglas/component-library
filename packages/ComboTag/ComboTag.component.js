@@ -486,25 +486,17 @@ ComboTag.propTypes = {
    */
   apiData: PropTypes.arrayOf(PropTypes.object),
   /**
-   * Renders the given (FontAwesome) icon next to options in the list
+   * Renders the given FontAwesome icon next to options in the list
    */
   listIcon: PropTypes.oneOfType([
-    PropTypes.shape({
-      prefix: PropTypes.string,
-      iconName: PropTypes.string,
-      icon: PropTypes.array, // eslint-disable-line
-    }),
+    PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
   /**
    * Renders the given (FontAwesome) as a prefix
    */
   prefix: PropTypes.oneOfType([
-    PropTypes.shape({
-      prefix: PropTypes.string,
-      iconName: PropTypes.string,
-      icon: PropTypes.array, // eslint-disable-line
-    }),
+    PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
   /**
@@ -515,11 +507,7 @@ ComboTag.propTypes = {
    * Renders the given (FontAwesome) icon for a tag in its alert state
    */
   tagAlertIcon: PropTypes.oneOfType([
-    PropTypes.shape({
-      prefix: PropTypes.string,
-      iconName: PropTypes.string,
-      icon: PropTypes.array, // eslint-disable-line
-    }),
+    PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
   /**

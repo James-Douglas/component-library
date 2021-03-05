@@ -116,14 +116,10 @@ IconToggle.propTypes = {
    */
   handleClick: PropTypes.func,
   /**
-   * Icon from fontAweseom to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).
+   * Icon from FontAwesome to be rendered on the toggle. (Note if a pictureOptions object is also passed this prop will be overridden).
    */
   icon: PropTypes.oneOfType([
-    PropTypes.shape({
-      prefix: PropTypes.string,
-      iconName: PropTypes.string,
-      icon: PropTypes.array, // eslint-disable-line
-    }),
+    PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
 };

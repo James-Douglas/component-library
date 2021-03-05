@@ -138,14 +138,10 @@ Checkbox.propTypes = {
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
-   * Defines the icon needed for the checkbox.
+   * The FontAwesome icon for the checkbox.
    */
   icon: PropTypes.oneOfType([
-    PropTypes.shape({
-      prefix: PropTypes.string,
-      iconName: PropTypes.string,
-      icon: PropTypes.array, // eslint-disable-line
-    }),
+    PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
   /**

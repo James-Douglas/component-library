@@ -51,14 +51,10 @@ Tag.propTypes = {
    */
   value: PropTypes.string,
   /**
-   * Renders the given (FontAwesome) before the text
+   * Renders the given FontAwesome icon before the text
    */
   icon: PropTypes.oneOfType([
-    PropTypes.shape({
-      prefix: PropTypes.string,
-      iconName: PropTypes.string,
-      icon: PropTypes.array, // eslint-disable-line
-    }),
+    PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
   /**

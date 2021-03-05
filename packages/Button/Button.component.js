@@ -98,14 +98,10 @@ Button.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * The icon to be supplied with the button. Defaults to none.
+   * The FontAwesome icon to be supplied with the button. Defaults to none.
    */
   icon: PropTypes.oneOfType([
-    PropTypes.shape({
-      prefix: PropTypes.string,
-      iconName: PropTypes.string,
-      icon: PropTypes.array, // eslint-disable-line
-    }),
+    PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
   /**
