@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-checkbox@0.13.10...@comparethemarketau/manor-checkbox@0.13.11) (2021-03-05)
+
+**Note:** Version bump only for package @comparethemarketau/manor-checkbox
+
+
+
+
+
 ## [0.13.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-checkbox@0.13.9...@comparethemarketau/manor-checkbox@0.13.10) (2021-02-26)
 
 **Note:** Version bump only for package @comparethemarketau/manor-checkbox
