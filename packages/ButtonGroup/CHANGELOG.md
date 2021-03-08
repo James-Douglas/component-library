@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.23](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.16.22...@comparethemarketau/manor-buttongroup@0.16.23) (2021-03-08)
+
+
+### Bug Fixes
+
+* updated breakpoint in segmentedbutton component ([#600](https://github.com/comparethemarketau/manor-react/issues/600)) ([e3499d0](https://github.com/comparethemarketau/manor-react/commit/e3499d0158ea383ca922324ebf53f13c21a68825))
+
+
+
+
+
 ## [0.16.22](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.16.21...@comparethemarketau/manor-buttongroup@0.16.22) (2021-03-05)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
