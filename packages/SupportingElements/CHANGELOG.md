@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-supporting-elements@0.5.18...@comparethemarketau/manor-supporting-elements@0.6.0) (2021-03-08)
+
+
+### Features
+
+* **various:** various fixes to resolve console warnings ([#602](https://github.com/comparethemarketau/manor-react/issues/602)) ([efbe8ff](https://github.com/comparethemarketau/manor-react/commit/efbe8ff4e4632d388f83bd6090b7ef116d450ebc))
+
+
+
+
+
 ## [0.5.18](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-supporting-elements@0.5.17...@comparethemarketau/manor-supporting-elements@0.5.18) (2021-02-26)
 
 
