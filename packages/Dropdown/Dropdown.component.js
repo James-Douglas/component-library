@@ -292,7 +292,10 @@ Dropdown.propTypes = {
   /**
    * The currently selected value of the Dropdown (use to preselect)
    */
-  selectedValue: PropTypes.string,
+  selectedValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   /**
    * Label for the Dropdown.
    */

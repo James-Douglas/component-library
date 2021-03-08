@@ -49,9 +49,9 @@ const Disclaimer = ({
   return (
     <>
       <StyledWrapper>
-        <Checkbox id={id} handleChange={changeHandler} isSelected={checked} invalid={validationMessage && validationMessage.length > 0} handleFocus={handleFocus} handleBlur={handleBlur} />
+        <Checkbox id={id} handleChange={changeHandler} isSelected={checked} invalid={!!validationMessage && validationMessage.length > 0} handleFocus={handleFocus} handleBlur={handleBlur} />
         <StyledContent ref={content} onClick={handleContentClick} topMargin={topMargin}>
-          <Typography variant={smallText ? 'body2' : ''} component="span">
+          <Typography variant={smallText ? 'body2' : 'body1'} component="span">
             {children}
           </Typography>
         </StyledContent>

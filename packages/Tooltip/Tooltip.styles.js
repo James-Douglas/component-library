@@ -1,8 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading,react/display-name,react/prop-types */
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Tippy from '@tippyjs/react';
 
-export const StyledTooltipIcon = styled.div`
+export const StyledTooltipIcon = styled(React.forwardRef(({
+  textAnchor, pinned, tippyVisible, desktop, ...otherProps
+}, ref) => <div {...otherProps} ref={ref} />))`
   display: inline-block;
   ${({ theme, textAnchor }) => !textAnchor
   && css`

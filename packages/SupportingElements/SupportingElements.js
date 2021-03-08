@@ -13,7 +13,7 @@ const SupportingElements = ({
       {!required && (
         <>
           <Typography variant="srOnly">The {label} field is optional</Typography>
-          <Typography variant="caption">Optional</Typography>
+          <Typography variant="caption" component="span">Optional</Typography>
         </>
       )}
     </StyledOptionalText>

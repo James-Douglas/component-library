@@ -142,7 +142,7 @@ StepSlider.propTypes = {
   /**
    * The value of the slider. For ranged sliders, provide an array with two values.
    */
-  value: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   /**
    * Marks indicate predetermined values to which the user can move the slider.
    * It should contain objects with value and label keys. Minimum of 3 marks required.

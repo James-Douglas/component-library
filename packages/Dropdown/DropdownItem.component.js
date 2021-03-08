@@ -62,11 +62,17 @@ DropdownItem.propTypes = {
   /**
    * The value associated with the content
    */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
   /**
    * The currently selected Dropdown value. Set by the `Dropdown` component.
    */
-  selectedValue: PropTypes.string,
+  selectedValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   /**
    * Click handler. Set by the `Dropdown` component.
    */
@@ -75,7 +81,6 @@ DropdownItem.propTypes = {
    * KeyDown handler. Set by the `Dropdown` component.
    */
   handleKeyDown: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
   /**
    * Manor theme, if not provided the ctm theme will be used.
    */
