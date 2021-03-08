@@ -29,11 +29,10 @@ export const StyledSegmentedButtonContent = styled.div`
       width: ${contentWidth};
     `};
 
-  ${({ fixed }) => !fixed
+  ${({ fixed, breakpoint }) => !fixed
+    && (breakpoint === 'xs')
     && css`
-      @media only screen and (max-width: 576px) {
-        width: auto;
-      }
+      width: auto;
     `};
 `;
 

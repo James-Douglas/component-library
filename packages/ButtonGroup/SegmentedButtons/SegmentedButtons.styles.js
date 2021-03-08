@@ -11,12 +11,11 @@ export const StyledSegmentedButtons = styled.div`
       align-self: flex-start;
     `};
 
-  ${({ fixed }) => fixed !== true
+  ${({ fixed, breakpoint }) => fixed !== true
+    && (breakpoint === 'xs')
     && css`
-      @media only screen and (max-width: 576px) {
-        flex-direction: column;
-        display: flex;
-      }
+      flex-direction: column;
+      display: flex;
     `};
 
   ${({ fixed, cols, contentWidth }) => fixed

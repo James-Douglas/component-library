@@ -1,11 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {
+  useState, useEffect, useCallback, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import {
   StyledSegmentedButtons,
   StyledValidationWrapper,
@@ -89,6 +92,7 @@ const SegmentedButtons = ({
   flex,
   fixed,
 }) => {
+  const { breakpoint } = useContext(ManorContext);
   const groupId = useId(propsId);
   const [selectedButtonValue, setSelectedButtonValue] = useState(selectedValue);
   const buttonHandler = useCallback(
