@@ -84,7 +84,7 @@ const DateRangePicker = ({
     } else {
       setStartDate(dates.startDate.format(displayFormat));
       setStartDateMoment(dates.startDate);
-      setEndDate(dates.endDate ? dates.endDate.format(displayFormat) : moment('', displayFormat, true));
+      setEndDate(dates.endDate ? dates.endDate.format(displayFormat) : '');
       setEndDateMoment(dates.endDate);
     }
     if (focusedInput === END_DATE) {
