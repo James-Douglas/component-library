@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useIsDesktop } from '@comparethemarketau/manor-hooks';
 
@@ -6,18 +6,18 @@ const DesktopLayout = ({
   children,
   className,
 }) => {
-  const renderChildren = () => {
+  const renderedChildren = useMemo(() => {
     if (className === '') return children;
     return (
       <div className={className}>
         {children}
       </div>
     );
-  };
+  }, [className, children]);
   if (!useIsDesktop()) return null;
   return (
     <>
-      {renderChildren()}
+      {renderedChildren}
     </>
   );
 };

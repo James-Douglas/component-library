@@ -11,7 +11,7 @@ describe('Logo', () => {
     srcsets: [
       {
         srcset: CTMLogoStacked,
-        media: `(max-width: ${ctmTheme.breakpoints.lg}`,
+        media: `(max-width: ${ctmTheme.breakpoints.lg})`,
       },
       {
         srcset: CTMLogoInline,

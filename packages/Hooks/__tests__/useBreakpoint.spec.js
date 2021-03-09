@@ -9,6 +9,15 @@ jest.mock('../../Utils/breakpoint', () => ({
   getBreakpoint: jest.fn(() => mockBreakpointValue),
 }));
 
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.runOnlyPendingTimers();
+  jest.useRealTimers();
+});
+
 describe('useBreakpoint', () => {
   // eslint-disable-next-line react/prop-types
   const Wrapper = ({ children }) => (
@@ -30,16 +39,15 @@ describe('useBreakpoint', () => {
     window.addEventListener = jest.fn((event, cb) => {
       map[event] = cb;
     });
-    const { result } = renderHook(
-      () => useBreakpoint(false),
+    const { result } = renderHook(() => useBreakpoint(true),
       {
         wrapper: Wrapper,
-      },
-    );
+      });
     expect(result.current).toEqual('xs');
     mockBreakpointValue = 'lg';
     act(() => {
       map.resize();
+      jest.advanceTimersByTime(200);
     });
     expect(result.current).toEqual('lg');
   });

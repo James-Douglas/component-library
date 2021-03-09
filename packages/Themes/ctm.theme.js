@@ -28,6 +28,13 @@ const breakpoints = {
   lg: '1439px',
 };
 
+const breakpointsNumeric = {
+  xs: 767,
+  sm: 1023,
+  md: 1199,
+  lg: 1439,
+};
+
 const colors = {
   brandMidnightBlue: '#001443',
   brandDarkBlue: '#001564',
@@ -640,6 +647,7 @@ const ctmTheme = {
     height: '100px',
   },
   breakpoints,
+  breakpointsNumeric,
   borders,
   colors,
   fontFamily,

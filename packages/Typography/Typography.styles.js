@@ -27,10 +27,10 @@ export const StyledTypography = styled(({
   ${({ theme, variant }) => variant === 'h1' && css`
     line-height: ${theme.lineHeight.tight};
     font-size: ${theme.fontSize['4xl']};
-    @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.sm}`}) {
       font-size: ${theme.fontSize['5xl']};
     }
-    @media only screen and (min-width: ${theme.breakpoints.md}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.md}`}) {
       font-size: ${theme.fontSize['6xl']};
     }
   `};
@@ -38,10 +38,10 @@ export const StyledTypography = styled(({
   ${({ theme, variant }) => variant === 'h2' && css`
     line-height: ${theme.lineHeight.tighter};
     font-size: ${theme.fontSize['2xl']};
-    @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.sm}`}) {
       font-size: ${theme.fontSize['3xl']};
     }
-    @media only screen and (min-width: ${theme.breakpoints.md}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.md}`}) {
       font-size: ${theme.fontSize['5xl']};
     }
   `};
@@ -49,10 +49,10 @@ export const StyledTypography = styled(({
   ${({ theme, variant }) => variant === 'h3' && css`
     line-height: ${theme.lineHeight.tight};
     font-size: ${theme.fontSize.lg};
-    @media only screen and (min-width: ${theme.breakpoints.sm}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.sm}`}) {
       font-size: ${theme.fontSize.xl};
     }
-    @media only screen and (min-width: ${theme.breakpoints.md}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.md}`}) {
       font-size: ${theme.fontSize['3xl']};
     }
   `};
@@ -60,7 +60,7 @@ export const StyledTypography = styled(({
   ${({ theme, variant }) => variant === 'h4' && css`
     line-height: ${theme.lineHeight.tighter};
     font-size: ${theme.fontSize.lg};
-    @media only screen and (min-width: ${theme.breakpoints.md}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.md}`}) {
       font-size: ${theme.fontSize.xl};
     }
   `};
@@ -69,7 +69,7 @@ export const StyledTypography = styled(({
     line-height: ${theme.lineHeight.snug};
     font-weight: ${theme.fontWeight.semibold};
     font-size: ${theme.fontSize.base};
-    @media only screen and (min-width: ${theme.breakpoints.md}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.md}`}) {
       line-height: ${theme.lineHeight.tighter};
       font-size: ${theme.fontSize.lg};
     }
@@ -79,7 +79,7 @@ export const StyledTypography = styled(({
     line-height: ${theme.lineHeight.normal};
     font-weight: ${theme.fontWeight.semibold};
     font-size: ${theme.fontSize.sm};
-    @media only screen and (min-width: ${theme.breakpoints.md}) {
+    @media only screen and (min-width: ${`${theme.breakpoints.md}`}) {
       line-height: ${theme.lineHeight.tight};
       font-size: ${theme.fontSize.base};
     }

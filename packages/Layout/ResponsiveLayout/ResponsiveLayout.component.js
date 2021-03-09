@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useBreakpoint, useIsBreakpointRange } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useIsBreakpointRange } from '@comparethemarketau/manor-hooks';
 import DesktopLayout from '../DesktopLayout/DesktopLayout.component';
 import MobileLayout from '../MobileLayout/MobileLayout.component';
 
@@ -13,7 +14,7 @@ const ResponsiveLayout = ({
   upTo,
   andIs,
 }) => {
-  const breakpoint = useBreakpoint();
+  const { breakpoint } = useContext(ManorContext);
   const isBreakpointRange = useIsBreakpointRange({ breakpointFrom: isFrom, breakpointTo: upTo });
 
   if (!andIs) return null;

@@ -1,4 +1,4 @@
-import useBreakpoint, { getThemeBreakpoints, listenForBreakpointChanges } from './useBreakpoint';
+import useBreakpoint, { getThemeBreakpoints } from './useBreakpoint';
 import useIsBreakpointRange from './useIsBreakpointRange';
 import useId from './useId';
 import useInterval from './useInterval';
@@ -11,7 +11,6 @@ import useUnmountEffect from './useUnmountEffect';
 
 export {
   getThemeBreakpoints,
-  listenForBreakpointChanges,
   useBreakpoint,
   useIsBreakpointRange,
   useId,
