@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-input",
-  "version": "0.18.14",
+  "version": "0.18.15",
   "description": "Manor Input component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,12 +18,12 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.7.3",
-    "@comparethemarketau/manor-hooks": "^0.5.1",
-    "@comparethemarketau/manor-label": "^0.8.8",
-    "@comparethemarketau/manor-supporting-elements": "^0.6.0",
-    "@comparethemarketau/manor-tooltip": "^0.18.0",
-    "@comparethemarketau/manor-typography": "^0.14.1",
+    "@comparethemarketau/manor-field-validation": "^0.7.4",
+    "@comparethemarketau/manor-hooks": "^0.6.0",
+    "@comparethemarketau/manor-label": "^0.8.9",
+    "@comparethemarketau/manor-supporting-elements": "^0.6.1",
+    "@comparethemarketau/manor-tooltip": "^0.18.1",
+    "@comparethemarketau/manor-typography": "^0.15.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
@@ -32,7 +32,7 @@
     "react-text-mask": "^5.4.3"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.12.0"
+    "@comparethemarketau/manor-themes": "^0.13.0"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.7.11",

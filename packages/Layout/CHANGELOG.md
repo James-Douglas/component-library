@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-layout@0.3.1...@comparethemarketau/manor-layout@0.4.0) (2021-03-09)
+
+
+### Features
+
+* **breakpoints:** refactor breakpoint/resize listeners for performance ([#603](https://github.com/comparethemarketau/manor-react/issues/603)) ([4c2642a](https://github.com/comparethemarketau/manor-react/commit/4c2642a48a31224f0006dd771bc75d79c2207c6b))
+
+
+
+
+
 ## [0.3.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-layout@0.3.0...@comparethemarketau/manor-layout@0.3.1) (2020-12-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-layout
