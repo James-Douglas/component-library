@@ -97,6 +97,7 @@ const Input = React.forwardRef(({
   removeGutters,
   disableFocusStyles,
   style,
+  gtmPidAnonymous,
 }, ref) => {
   const id = useId(propsId);
   const [ariaLabelledByIds, setAriaLabelledByIds] = useState({});
@@ -185,7 +186,7 @@ const Input = React.forwardRef(({
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
       {!expressive
         && <Label htmlFor={id} text={label} id={ariaLabelledByIds.label} tooltip={tooltipOptions} removeGutters={removeGutters} />}
-      <StyledInputContainer className="input-container">
+      <StyledInputContainer className={`input-container ${gtmPidAnonymous ? 'data-hj-class' : ''}`}>
         <StyledInputWrap
           isAutofill={isAutofill}
           disabled={disabled}
@@ -398,6 +399,10 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ])),
+  /**
+   * Used to indicate if a field contains personally identifying data which needs to remain anonymous from google analytics
+   */
+  gtmPidAnonymous: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -437,6 +442,7 @@ Input.defaultProps = {
   removeGutters: false,
   disableFocusStyles: false,
   style: {},
+  gtmPidAnonymous: false,
 };
 
 export default Input;
