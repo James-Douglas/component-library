@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-combo-tag",
-  "version": "0.10.9",
+  "version": "0.10.10",
   "description": "Manor comboTag component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -21,7 +21,7 @@
     "@comparethemarketau/manor-empty-state": "^0.8.2",
     "@comparethemarketau/manor-field-validation": "^0.7.4",
     "@comparethemarketau/manor-hooks": "^0.6.0",
-    "@comparethemarketau/manor-input": "^0.18.15",
+    "@comparethemarketau/manor-input": "^0.18.16",
     "@comparethemarketau/manor-label": "^0.8.9",
     "@comparethemarketau/manor-picture": "^0.4.1",
     "@comparethemarketau/manor-tag": "^0.0.18",
