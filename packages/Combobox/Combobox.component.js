@@ -320,9 +320,9 @@ const Combobox = ({
             )}
             <Input
               id={id}
-              tooltip={tooltip}
+              tooltip={!mobileOverlay && tooltip}
               placeholder={placeholder}
-              label={label}
+              label={!mobileOverlay && label}
               value={currentValue}
               prefillValue={prefillValue}
               required

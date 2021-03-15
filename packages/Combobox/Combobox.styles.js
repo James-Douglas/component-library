@@ -84,7 +84,7 @@ export const StyledButtonWrap = styled.div`
 export const StyledDiv = styled.div`
   ${({ desktop }) => !desktop && css`
     width: ${({ theme }) => (theme.maxWidth.full)};
-    top: -${({ theme }) => theme.spacing[16]};
+    top: ${({ theme }) => theme.spacing[4]};
     position: fixed;
     right: ${({ theme }) => theme.spacing[16]};
     left: ${({ theme }) => theme.spacing[16]};
@@ -178,6 +178,6 @@ export const StyledIconCloseModal = styled(Button)`
     font-size: ${({ theme }) => theme.fontSize['3xl']};
     position: absolute;
     right: 7%;
-    top: ${({ theme }) => (theme.spacing[32])};
+    top: ${({ theme }) => (theme.spacing[12])};
   `}
 `;
