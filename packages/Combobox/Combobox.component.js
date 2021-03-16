@@ -125,6 +125,7 @@ const Combobox = ({
   emptyStateClassName,
   emptyStateHeading,
   helperMessage,
+  disableClearIcon,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -348,6 +349,7 @@ const Combobox = ({
                 filteredValuesRefs,
                 listVisible,
               )}
+              disableClearIcon={disableClearIcon}
             />
             {!isDesktop && <StyledIconCloseModal icon={faTimes} variant="tertiary" handleClick={() => { setIsMobileModalView(false); }} />}
           </StyledDiv>
@@ -373,6 +375,7 @@ const Combobox = ({
             disableClearIcon
             tabIndex="0"
             role="comboMobileField"
+            disableClearIcon={disableClearIcon}
           />
         </StyledDefault>
       )}
@@ -521,6 +524,10 @@ Combobox.propTypes = {
    * Message to help user start typing
    */
   helperMessage: PropTypes.string,
+  /**
+   * Disables the clear icon when true
+   */
+  disableClearIcon: PropTypes.bool,
 };
 
 Combobox.defaultProps = {
@@ -550,6 +557,7 @@ Combobox.defaultProps = {
   emptyStateClassName: '',
   emptyStateHeading: 'No results found',
   helperMessage: 'Please start typing',
+  disableClearIcon: false,
 };
 
 export default Combobox;
