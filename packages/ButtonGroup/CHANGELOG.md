@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.0...@comparethemarketau/manor-buttongroup@0.17.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* **component:** fix lint issues ([#607](https://github.com/comparethemarketau/manor-react/issues/607)) ([0c64272](https://github.com/comparethemarketau/manor-react/commit/0c64272b9e3ff3c7d0200033e2e9951cc439b059))
+
+
+
+
+
 # [0.17.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.16.24...@comparethemarketau/manor-buttongroup@0.17.0) (2021-03-09)
 
 
