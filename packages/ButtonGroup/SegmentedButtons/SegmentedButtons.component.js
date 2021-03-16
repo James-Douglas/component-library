@@ -1,6 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {
+  useState, useEffect, useCallback, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
@@ -88,6 +91,7 @@ const SegmentedButtons = ({
   flex,
   fixed,
 }) => {
+  const { breakpoint } = useContext(ManorContext);
   const groupId = useId(propsId);
   const [selectedButtonValue, setSelectedButtonValue] = useState(selectedValue);
   const buttonHandler = useCallback(
@@ -128,6 +132,7 @@ const SegmentedButtons = ({
         flex={flex}
         fixed={fixed}
         cols={buttonArray.length}
+        breakpoint={breakpoint}
       >
         {formatEvenOrOddButtons(buttonArray, fixed, contentWidth)}
       </StyledSegmentedButtons>
