@@ -140,12 +140,6 @@ const ComboTag = ({
     setListVisible(false);
     setFocusedRef(null);
     setCurrentValue('');
-    if (comboInputRef.current) {
-      const storedRef = comboInputRef.current.inputElement;
-      setTimeout(() => {
-        storedRef.focus();
-      }, 100);
-    }
   };
 
   const comboHandleChange = useCallback((valueInput) => {
@@ -153,8 +147,8 @@ const ComboTag = ({
     setInlineTooltipActive(false);
     if (hasList) {
       setListVisible(!!valueInput.length);
-      scrollAndFocusInput(false);
     }
+    scrollAndFocusInput(false);
   }, [setCurrentValue, setListVisible, hasList]);
 
   const handleOnFocus = (event) => {
@@ -294,21 +288,9 @@ const ComboTag = ({
       }
     }
     if (comboInputRef.current && focus) {
-      comboInputRef.current.inputElement.scrollIntoView();
       comboInputRef.current.inputElement.focus();
     }
   };
-
-  // clear the tooltip automatically
-  useEffect(() => {
-    const toolTipTimeout = setTimeout(() => {
-      setInlineTooltipActive(false);
-    }, 3000);
-
-    return () => {
-      clearTimeout(toolTipTimeout);
-    };
-  }, [inlineTooltipActive]);
 
   const memoizedTagElements = useMemo(
     () => tagElements.map(({ tagJsx }) => tagJsx), [tagElements],

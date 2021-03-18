@@ -1,7 +1,19 @@
 import styled, { css } from 'styled-components';
 
+export const StyledContainer = styled.div`
+  display: flex;
+  position: relative;
+  background: ${({ theme }) => (theme.colors.white)};
+  border: ${({ theme }) => (theme.borders.transparent)};
+  border-bottom: ${({ theme, hasList }) => hasList && (theme.borders.active)};
+  ${({ hasList, componentFocused, theme }) => (hasList && componentFocused) && css`
+    border: ${theme.borders.active};
+  `}
+`;
+
 export const StyledPresentationLayer = styled.div`
   height: 100%;
+  width: 100%;
 `;
 
 export const StyledTagContainer = styled.div`
@@ -15,21 +27,11 @@ export const StyledTagContainer = styled.div`
   `}
 `;
 
-export const StyledContainer = styled.div`
-  position: relative;
-  background: ${({ theme }) => (theme.colors.white)};
-  border: ${({ theme }) => (theme.borders.transparent)};
-  border-bottom: ${({ theme, hasList }) => hasList && (theme.borders.active)};
-  ${({ hasList, componentFocused, theme }) => (hasList && componentFocused) && css`
-    border: ${theme.borders.active};
-  `}
-`;
-
 export const StyledPrefixContainer = styled.div`
   display: flex;
-  flex-direction: column;
   float: left;
   height: 100%;
+  flex-direction: column;
 `;
 
 export const StyledPrefix = styled.div`

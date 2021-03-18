@@ -199,13 +199,13 @@ export const StyledInputClearWrap = styled.div`
 `;
 
 export const StyledInput = styled(React.forwardRef(({
-  isAutofill, expressive, disableClearIcon, suffixContent, ...props
+  isAutofill, expressive, disableClearIcon, ...props
 }, ref) => <MaskedInput {...props} ref={ref} />))`
   font-family: ${({ theme }) => theme.fontFamily};
   padding-left: ${({ theme }) => theme.spacing[12]};
   padding-right: ${({
-    theme, breakpoint, disableClearIcon, suffixContent,
-  }) => (breakpoint === 'xs' || (disableClearIcon && !suffixContent) ? theme.spacing[breakpoint === 'xs' ? 8 : 12] : theme.spacing[36])};
+    theme, disableClearIcon,
+  }) => (disableClearIcon ? theme.spacing[12] : theme.spacing[36])};
   display: block;
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize.base};
