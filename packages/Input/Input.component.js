@@ -186,7 +186,7 @@ const Input = React.forwardRef(({
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
       {!expressive
         && <Label htmlFor={id} text={label} id={ariaLabelledByIds.label} tooltip={tooltipOptions} removeGutters={removeGutters} />}
-      <StyledInputContainer className={`input-container ${gtmPidAnonymous ? 'data-hj-class' : ''}`}>
+      <StyledInputContainer className={`input-container ${gtmPidAnonymous ? 'data-hj-suppress' : ''}`}>
         <StyledInputWrap
           isAutofill={isAutofill}
           disabled={disabled}
