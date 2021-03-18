@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.18](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.18.17...@comparethemarketau/manor-input@0.18.18) (2021-03-18)
+
+
+### Bug Fixes
+
+* **SML-1413:** wrong class name ([#610](https://github.com/comparethemarketau/manor-react/issues/610)) ([2cd2cef](https://github.com/comparethemarketau/manor-react/commit/2cd2cefa0786db5ab05795fe33e1fb8f5687eecc))
+
+
+
+
+
 ## [0.18.17](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.18.16...@comparethemarketau/manor-input@0.18.17) (2021-03-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-input
