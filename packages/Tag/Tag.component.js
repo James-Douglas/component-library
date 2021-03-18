@@ -7,7 +7,7 @@ import {
 } from './Tag.styles';
 
 const Tag = React.forwardRef(({
-  value, alert, warning, onClickDelete, icon, onKeyDown, elementRef, visible,
+  value, alert, onClickDelete, icon, onKeyDown, elementRef, visible,
 }, ref) => {
   const deleteHandler = () => {
     if (onClickDelete) {
@@ -28,15 +28,15 @@ const Tag = React.forwardRef(({
   };
 
   return (
-    <StyledTag ref={ref} alert={alert} warning={warning} onKeyDown={keyDownHandler} visible={visible} tabIndex="-1">
+    <StyledTag ref={ref} alert={alert} onKeyDown={keyDownHandler} visible={visible} tabIndex="-1">
       {icon
         && (
-        <StyledIconContainer warning={warning} alert={alert}>
+        <StyledIconContainer alert={alert}>
           <FontAwesomeIcon icon={icon} size="lg" />
         </StyledIconContainer>
         )}
-      <StyledTagP alert={alert} warning={warning}>{value}</StyledTagP>
-      <StyledTagButton onClick={deleteHandler} alert={alert} warning={warning}>
+      <StyledTagP alert={alert}>{value}</StyledTagP>
+      <StyledTagButton onClick={deleteHandler} alert={alert}>
         <FontAwesomeIcon icon={faTimes} size="sm" />
       </StyledTagButton>
     </StyledTag>
@@ -70,10 +70,6 @@ Tag.propTypes = {
    */
   onKeyDown: PropTypes.func,
   /**
-   * set the alert style to warning, else its an error style
-   */
-  warning: PropTypes.bool,
-  /**
    * a ref to the element (usually an input) that the tags are used with, to fire a focus event on
    */
   elementRef: PropTypes.oneOfType([
@@ -91,7 +87,6 @@ Tag.defaultProps = {
   value: '',
   icon: null,
   alert: false,
-  warning: true,
   elementRef: null,
   onKeyDown: null,
   visible: true,

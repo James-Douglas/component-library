@@ -15,7 +15,10 @@ export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, lis
           key={`option-${filteredValue.label}`}
           role="listitem"
           data-type="list"
-          onMouseDown={() => handleSelectItem(filteredValue)}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            handleSelectItem(filteredValue);
+          }}
           onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleSelectItem(filteredValue)}
           ref={filteredValuesRefs[index]}
         >

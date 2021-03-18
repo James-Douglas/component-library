@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components';
 
+export const StyledPresentationLayer = styled.div`
+  height: 100%;
+`;
+
 export const StyledTagContainer = styled.div`
-  width: 100%;
+  display: flex;
+  min-height: ${({ theme, hasList }) => (hasList ? theme.spacing[60] : theme.spacing[44])};
   ${({ hasList, theme }) => !hasList && css`
     background: ${theme.colors.white};
   `}
@@ -12,78 +17,56 @@ export const StyledTagContainer = styled.div`
 
 export const StyledContainer = styled.div`
   position: relative;
+  background: ${({ theme }) => (theme.colors.white)};
+  border: ${({ theme }) => (theme.borders.transparent)};
+  border-bottom: ${({ theme, hasList }) => hasList && (theme.borders.active)};
+  ${({ hasList, componentFocused, theme }) => (hasList && componentFocused) && css`
+    border: ${theme.borders.active};
+  `}
+`;
+
+export const StyledPrefixContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  float: left;
+  height: 100%;
 `;
 
 export const StyledPrefix = styled.div`
   position: relative;
-  height: ${({ theme }) => (theme.spacing[44])};
+  height: ${({ theme, hasList }) => (hasList ? theme.spacing[60] : theme.spacing[44])};
   width: ${({ theme }) => theme.spacing[44]};
   color: ${({ theme }) => theme.colors.primary500};
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: inherit;
-  float: left;
+  flex: 1;
   ${({ onClick }) => onClick && css`
     cursor: pointer;
   `}
 `;
 
 export const StyledInputWrap = styled.div`
-  background: ${({ theme }) => (theme.colors.white)};
-`;
-
-export const StyledBorder = styled.div`
-  position: absolute;
-  top: ${({ theme }) => (`${theme.spacing[44]}0.1rem`)};
-  border-bottom: ${({ theme }) => (theme.borders.active)};
-  width: 100%;
+  flex: 1;
+  & input {
+    width: 100%;
+    min-width: 100px;
+    margin-top: 0.4rem;
+    height: 3.7rem;
+  }
 `;
 
 export const StyledTagHolder = styled.div`
   position: relative;
-  height: ${({ theme }) => (theme.spacing[44])};
   display: flex;
-  float: left;
   align-items: center;
   z-index: 1;
-  ${({ hasList }) => hasList && css`
-    max-width: 55%;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-    ::-webkit-scrollbar { 
-      display: none;  /* Safari and Chrome */
-    }
-  `}
-  ${({ hasList }) => !hasList && css`
-    flex-wrap: wrap;
-    height: auto;
-  `}
-`;
-
-export const StyledFade = styled.div`
-  position: absolute;
-  height: ${({ theme }) => theme.spacing[44]};
-  width: 1.5rem;
-  left: 0;
-  ${({ prefix }) => prefix && css`
-    left: ${({ theme }) => theme.spacing[40]};
-  `};
-  z-index: 2;
-  pointer-events: none;
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    pointer-events: none;
-    background-image: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255, 1) 100%);
-    width: 1.5rem;
-    height: 100%;
-  }
+  width: 100%;
+  flex-wrap: wrap;
+  height: auto;
+  max-height: 11.4rem;
+  overflow-x: hidden;
 `;
 
 export const StyledDropdownList = styled.div`
@@ -118,7 +101,7 @@ export const StyledListItem = styled.li`
   display: flex;
   align-items: center;
   position: relative;
-  min-height: ${({ theme }) => theme.spacing[52]};
+  min-height: ${({ theme }) => theme.spacing[28]};
   border: ${({ theme }) => theme.borders.transparent};
   padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[40]}`};
   color: ${({ theme }) => (theme.combo.list.item.color)};
@@ -161,7 +144,7 @@ export const StyledButtonWrap = styled.div`
 `;
 
 export const WrapList = styled.div`
-    position: relative;
+  position: relative;
 `;
 
 export const StyledComboListWrap = styled.div`
@@ -179,26 +162,6 @@ export const StyledEmptyStateMessage = styled.div`
   color: ${({ theme }) => theme.combo.list.item.color};
   text-align: center;
   z-index: ${({ theme }) => (theme.zIndex[50])};
-`;
-
-export const StyledAlertText = styled.div`
-  font-family: ${({ theme }) => theme.fontFamily};
-  font-size: ${({ theme }) => theme.fontSize.xs};
-  color: ${({ theme }) => theme.colors.grey700};
-  margin-bottom ${({ theme }) => theme.spacing[8]};
-`;
-
-export const StyledAlertIcon = styled.div`
-  float: left;
-  margin: ${({ theme }) => `${theme.spacing[4]} ${theme.spacing[8]} 0 0`};
-  color: ${({ theme }) => theme.colors.warning700};
-`;
-
-export const StyledLink = styled.div`
-  display: inline;
-  font-size: ${({ theme }) => theme.fontSize.xs};
-  color: ${({ theme }) => theme.colors.primary500};
-  cursor: pointer;
 `;
 
 export const StyledErrorToolTip = styled.div`

@@ -7,7 +7,7 @@ import fakeApiData from './countries';
 import { useState, useEffect } from 'react';
 import { faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import { faExclamationCircle } from '@fortawesome/pro-solid-svg-icons';
-import noResultsImg from '../../images/NoSearchResult.png';
+import noResultsImg from '../../images/search.svg';
 
 <Meta title="Components/ComboTag" component={ComboTag} />
 
@@ -40,7 +40,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
       console.log('filtered data from story', filteredData)
     }, [comboTagValue])
     return (
-      <div style={{ padding: '2%', marginTop: '200px'}}>
+      <div style={{ padding: '2%', marginTop: '200px' }}>
          <FluidContainer>
              <Row>
                <Column>
@@ -55,6 +55,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                       alt: 'Image of magnifying glass',
                       title: 'Oops',
                     }}
+                    disableClearIcon
                     emptyStateHeading="Sorry, no results found."
                     emptyStateChildren={<>Please check spelling <br/>or try a different country.</>}
                     handleInput={(value) => {
@@ -65,13 +66,6 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                     handleChange={(tags) => {
                       // eslint-disable-next-line no-console
                       console.log('"handleChange func:" the current tags are:', tags)}
-                    }
-                    alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
-                    alertTooltip={
-                      {
-                        title: "appears on the Smartraveller.gov.au Do not travel list.",
-                        body: "You have selected one or more destinations that appear on the Smartraveller.gov.au 'Do not travel’ or ‘Reconsider Your Need to Travel’ lists. Most policies will not cover you for losses relating to travel to these countries.",
-                      }
                     }
                     errorTooltip={
                       {

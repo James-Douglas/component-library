@@ -21,24 +21,9 @@ describe('Combo', () => {
     expect(tagButton).toHaveStyleRule('color', `${ctmTheme.colors.primary500}`);
   });
 
-  it('renders an alert tag with its default colors (warning)', () => {
-    const { container } = render(
-      <Tag value={"I'm an alert tag"} warning alert onClickDelete={() => {}} />,
-    );
-
-    const tag = container.querySelector('div');
-    const tagP = tag.querySelector('p');
-    const tagButton = tag.querySelector('button');
-
-    expect(tag).toHaveStyleRule('background', `${ctmTheme.colors.warning50}`);
-    expect(tagP.textContent).toBe("I'm an alert tag");
-    expect(tagP).toHaveStyleRule('color', `${ctmTheme.colors.warning700}`);
-    expect(tagButton).toHaveStyleRule('color', `${ctmTheme.colors.warning700}`);
-  });
-
   it('renders an alert tag with its error colors', () => {
     const { container } = render(
-      <Tag value={"I'm an alert tag"} warning={false} alert onClickDelete={() => {}} />,
+      <Tag value={"I'm an alert tag"} alert onClickDelete={() => {}} />,
     );
 
     const tag = container.querySelector('div');
@@ -94,24 +79,24 @@ describe('Combo', () => {
     expect(icon[1]).toBeDefined();
   });
 
-  it('renders a custom icon if provided and has a warning color, and the close icon by default', () => {
+  it('renders a custom icon if provided and the close icon by default', () => {
     const { container } = render(
       <>
-        <Tag value={"I'm a tag"} warning alert icon={faExclamationCircle} onClickDelete={() => {}} />
+        <Tag value={"I'm a tag"} alert icon={faExclamationCircle} onClickDelete={() => {}} />
       </>,
     );
 
     const icon = container.querySelectorAll('svg');
-    expect(icon[0].parentElement).toHaveStyleRule('color', `${ctmTheme.colors.warning700}`);
+    expect(icon[0].parentElement).toHaveStyleRule('color', `${ctmTheme.colors.error700}`);
     expect(icon[0]).toBeDefined();
-    expect(icon[1].parentElement).toHaveStyleRule('color', `${ctmTheme.colors.warning700}`);
+    expect(icon[1].parentElement).toHaveStyleRule('color', `${ctmTheme.colors.error700}`);
     expect(icon[1]).toBeDefined();
   });
 
   it('renders a custom icon if provided and has an error color, and the close icon by default', () => {
     const { container } = render(
       <>
-        <Tag value={"I'm a tag"} warning={false} alert icon={faExclamationCircle} onClickDelete={() => {}} />
+        <Tag value={"I'm a tag"} alert icon={faExclamationCircle} onClickDelete={() => {}} />
       </>,
     );
 

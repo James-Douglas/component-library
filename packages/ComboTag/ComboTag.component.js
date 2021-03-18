@@ -1,10 +1,9 @@
 import React, {
-  useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef,
+  useState, useMemo, useCallback, useEffect, useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from '@comparethemarketau/manor-input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { useIsDesktop, useId, useMountEffect } from '@comparethemarketau/manor-hooks';
 import { picturePropTypes } from '@comparethemarketau/manor-picture';
 import { Tag } from '@comparethemarketau/manor-tag';
@@ -14,17 +13,14 @@ import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import comboDropDownList from './comboDropdownList';
 
 import {
+  StyledPresentationLayer,
   StyledContainer,
   StyledInputWrap,
   StyledTagContainer,
   StyledTagHolder,
-  StyledBorder,
+  StyledPrefixContainer,
   StyledPrefix,
-  StyledFade,
-  StyledAlertText,
-  StyledLink,
   StyledErrorToolTip,
-  StyledAlertIcon,
 } from './ComboTag.styles';
 
 const ComboTag = ({
@@ -52,8 +48,6 @@ const ComboTag = ({
   emptyStateClassName,
   emptyStateHeading,
   renderView,
-  alertText,
-  alertTooltip,
   errorTooltip,
   tagAlertIcon,
   selectedTags,
@@ -68,17 +62,14 @@ const ComboTag = ({
   const [currentValue, setCurrentValue] = useState((value && value.length) && value);
   const [tags, setTags] = useState(selectedTags);
   const [tagElements, setTagElements] = useState([]);
-  const [alerts, setAlerts] = useState(false);
-  const [tagsVisible, setTagsVisible] = useState(true);
   const [focusedRef, setFocusedRef] = useState(null);
   const desktop = useIsDesktop();
   const tagHolderRef = useRef(null);
   const comboInputRef = useRef(null);
-  const [fade, setFade] = useState(false);
-  const [tagsWidth, setTagsWidth] = useState(0);
   const [inlineTooltipActive, setInlineTooltipActive] = useState(false);
-  const hasList = !!apiData;
   const [editMode, setEditMode] = useState(false);
+  const [componentFocused, setComponentFocused] = useState(false);
+  const hasList = !!apiData;
 
   const filteredValuesRefs = useMemo(
     () => apiData && apiData.map((item) => React.createRef()),
@@ -87,7 +78,7 @@ const ComboTag = ({
 
   const tagKeyUp = (e) => {
     if (!hasList) {
-      // Older browsers may return e.key ==="Spacebar" instead of " " for the Space Bar key. Firefox did so until
+      // Older browsers may return e.key === "Spacebar" instead of " " for the Space Bar key. Firefox did so until
       // version 37, as did Internet Explorer 9, 10, and 11.
       // also note issue with space and comma detection in android: https://github.com/comparethemarketau/manor-react/issues/585
       if (currentValue !== '' && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',')) {
@@ -160,10 +151,14 @@ const ComboTag = ({
   const comboHandleChange = useCallback((valueInput) => {
     setCurrentValue(valueInput);
     setInlineTooltipActive(false);
-    hasList && setListVisible(!!valueInput.length);
+    if (hasList) {
+      setListVisible(!!valueInput.length);
+      scrollAndFocusInput(false);
+    }
   }, [setCurrentValue, setListVisible, hasList]);
 
   const handleOnFocus = (event) => {
+    setComponentFocused(true);
     if (event.target.tagName === 'BUTTON') {
       return;
     }
@@ -176,6 +171,7 @@ const ComboTag = ({
   };
 
   const handleOnBlur = (event) => {
+    setComponentFocused(false);
     if (handleBlur) {
       handleBlur(event);
     }
@@ -235,43 +231,6 @@ const ComboTag = ({
     setTags(tags.filter((_, index) => index !== i));
   }, [tags]);
 
-  const updateTagsWidth = useCallback(() => {
-    let tempWidth = 10;
-    tagElements.forEach(({ ref }) => {
-      tempWidth += parseInt(ref.current.getBoundingClientRect().width, 10);
-    });
-    setTagsWidth(tempWidth);
-  }, [tagElements]);
-
-  // this functionality was intended for the smart traveller api that would return a bool to show that the country was red flagged
-  // currently not in use but kept for future cases
-  const renderAlert = useCallback(() => {
-    // eslint-disable-next-line no-shadow
-    const alertTags = tagElements.reduce((result, { tagJsx: { props: { value } }, alert }) => [...result, ...alert ? [value] : []], []);
-    const alertStr = alertTags.join(', ').replace(/,(?!.*,)/gmi, ' and');
-    const { title, body } = alertTooltip;
-    return (
-      <>
-        <StyledAlertIcon>
-          <FontAwesomeIcon icon={faFlag} size="lg" />
-        </StyledAlertIcon>
-        <StyledAlertText>
-          <b>{alertStr}&nbsp;</b>
-          {alertText}&nbsp;
-          <Tooltip
-            title={`${alertStr} ${title}`}
-            body={body}
-            placement="top"
-            variant="light"
-            screenReaderLabel={`${alertStr} ${title}`}
-          >
-            <StyledLink>Learn more</StyledLink>
-          </Tooltip>
-        </StyledAlertText>
-      </>
-    );
-  }, [alertText, alertTooltip, tagElements]);
-
   const firstUpdate = useRef(true);
 
   useEffect(() => {
@@ -285,22 +244,6 @@ const ComboTag = ({
     firstUpdate.current = false;
   });
 
-  // if tags, show tags
-  useEffect(() => {
-    if (tags.length && !listVisible) {
-      setTagsVisible(true);
-    } else {
-      setTagsVisible(false);
-    }
-  }, [tags, listVisible]);
-
-  // if alerts, show alerts
-  useEffect(() => {
-    if (hasList) {
-      setAlerts(tagElements.some(({ alert }) => alert === true));
-    }
-  }, [tagElements, hasList]);
-
   // store the refs, the jsx and the alert state of the tag
   useEffect(() => {
     const temp = tags.map((tag, i) => {
@@ -313,7 +256,6 @@ const ComboTag = ({
         ref: tagRef,
         tagJsx: <Tag
           visible={visible}
-          warning={hasList}
           icon={alert ? tagAlertIcon : null}
           key={`item-${label + i}`}
           value={shortName || label}
@@ -328,20 +270,6 @@ const ComboTag = ({
     });
     setTagElements(temp);
   }, [tags, deleteTagHandler, hasList, tagAlertIcon]);
-
-  // update width of tag holder and trigger the fade effect
-  useLayoutEffect(() => {
-    if (hasList && tagElements.length && tagHolderRef.current) {
-      updateTagsWidth();
-      const tagHolderRefWidth = tagHolderRef.current.getBoundingClientRect().width;
-      if (tagHolderRefWidth < tagsWidth) {
-        tagHolderRef.current.scrollLeft += Math.ceil(tagsWidth);
-        setFade(true);
-      } else {
-        setFade(false);
-      }
-    }
-  }, [tagElements, tagsWidth, updateTagsWidth, hasList]);
 
   // if the selected tags prop updates, add tags to state
   useEffect(() => {
@@ -358,9 +286,37 @@ const ComboTag = ({
 
   const { title, body } = errorTooltip;
 
+  const scrollAndFocusInput = (focus = true) => {
+    // ensure container is fully scrolled
+    if (tagHolderRef.current) {
+      if (tagHolderRef.current.scrollTop !== tagHolderRef.current.scrollHeight) {
+        tagHolderRef.current.scrollTop = tagHolderRef.current.scrollHeight;
+      }
+    }
+    if (comboInputRef.current && focus) {
+      comboInputRef.current.inputElement.scrollIntoView();
+      comboInputRef.current.inputElement.focus();
+    }
+  };
+
+  // clear the tooltip automatically
+  useEffect(() => {
+    const toolTipTimeout = setTimeout(() => {
+      setInlineTooltipActive(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(toolTipTimeout);
+    };
+  }, [inlineTooltipActive]);
+
+  const memoizedTagElements = useMemo(
+    () => tagElements.map(({ tagJsx }) => tagJsx), [tagElements],
+  );
+
   return (
-    <StyledContainer>
-      <div
+    <StyledContainer componentFocused={componentFocused} hasList={hasList}>
+      <StyledPresentationLayer
         role="presentation"
         onBlur={handleOnBlur}
         onFocus={handleOnFocus}
@@ -370,24 +326,21 @@ const ComboTag = ({
           && <Label htmlFor={id} text={componentLabel} />}
         {description
           && <Label htmlFor={id} text={description} variant="description" />}
-        {(alerts && tags.length > 0) && renderAlert()}
+
+        {prefix
+          && (
+            <StyledPrefixContainer>
+              <StyledPrefix onClick={prefixClickHandler} hasList={hasList}>
+                <FontAwesomeIcon icon={prefix} size="lg" />
+              </StyledPrefix>
+            </StyledPrefixContainer>
+
+          )}
         <StyledTagContainer hasList={hasList} bordered={bordered}>
-          {prefix
-            && (
-            <StyledPrefix onClick={prefixClickHandler || null}>
-              <FontAwesomeIcon icon={prefix} size="lg" />
-            </StyledPrefix>
-            )}
-          {(fade && !currentValue.length)
-            && <StyledFade prefix={prefix} />}
-          {tagsVisible
-            && (
-            <StyledTagHolder ref={tagHolderRef} tags={tags} tagsVisible={tagsVisible} hasList={hasList}>
-              {tagElements.map(({ tagJsx }) => tagJsx)}
-            </StyledTagHolder>
-            )}
-          <StyledInputWrap>
-            {inlineTooltipActive
+          <StyledTagHolder ref={tagHolderRef} tags={tags} hasList={hasList} onClick={() => { hasList && scrollAndFocusInput(); }}>
+            {memoizedTagElements}
+            <StyledInputWrap hasList={hasList}>
+              {inlineTooltipActive
               && (
               <StyledErrorToolTip tabIndex="-1">
                 <Tooltip
@@ -395,56 +348,60 @@ const ComboTag = ({
                   title={title}
                   body={body}
                   placement="top-end"
-                  variant="light"
                   screenReaderLabel={body}
                 >&nbsp;
                 </Tooltip>
               </StyledErrorToolTip>
               )}
-            <Input
-              id={id}
-              placeholder={tags.length === 0 ? placeholder : ''}
-              value={currentValue}
-              disabled={disabled}
-              disableClearIcon={disableClearIcon}
-              autocomplete={autocomplete}
-              handleChange={comboHandleChange}
-              handleKeyUp={tagKeyUp}
-              handleKeyDown={tagKeyDown}
-
-              className={className}
-              bordered={false}
-              tabIndex="0"
-              role={hasList ? 'combobox' : null}
-              removeGutters
-              ref={comboInputRef}
-              disableFocusStyles
-              type={type}
-              mask={mask}
-              guide={guide}
-              dataList={() => hasList && comboDropDownList(
-                desktop,
-                listIcon,
-                characterMinimum,
-                apiData,
-                handleSelectItem,
-                filteredValuesRefs,
-                listVisible,
-                currentValue,
-                emptyStateChildren,
-                emptyStatePicture,
-                emptyStateClassName,
-                emptyStateHeading,
-                renderView,
-              )}
-            />
-          </StyledInputWrap>
+              <Input
+                id={id}
+                placeholder={tags.length === 0 ? placeholder : ''}
+                value={currentValue}
+                disabled={disabled}
+                disableClearIcon={disableClearIcon}
+                autocomplete={autocomplete}
+                handleChange={comboHandleChange}
+                handleKeyUp={tagKeyUp}
+                handleKeyDown={tagKeyDown}
+                className={className}
+                bordered={false}
+                tabIndex="0"
+                role={hasList ? 'combobox' : null}
+                removeGutters
+                ref={comboInputRef}
+                disableFocusStyles
+                type={type}
+                mask={mask}
+                guide={guide}
+              />
+            </StyledInputWrap>
+          </StyledTagHolder>
         </StyledTagContainer>
-      </div>
-      {hasList
-        && <StyledBorder />}
-      {validationMessage
+
+        {validationMessage
         && <FieldValidation message={validationMessage} />}
+
+        {hasList
+        && (
+        <div>
+          {comboDropDownList(
+            desktop,
+            listIcon,
+            characterMinimum,
+            apiData,
+            handleSelectItem,
+            filteredValuesRefs,
+            listVisible,
+            currentValue,
+            emptyStateChildren,
+            emptyStatePicture,
+            emptyStateClassName,
+            emptyStateHeading,
+            renderView,
+          )}
+        </div>
+        )}
+      </StyledPresentationLayer>
     </StyledContainer>
   );
 };
@@ -567,21 +524,6 @@ ComboTag.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]),
   /**
-   * The text to display as an alert message
-   */
-  alertText: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  /**
-   * The text to display as an alert tooltip
-   */
-  alertTooltip: PropTypes.shape({
-    title: PropTypes.string,
-    body: PropTypes.string,
-  }),
-  /**
    * The text to display as an error tooltip
    */
   errorTooltip: PropTypes.shape({
@@ -646,8 +588,6 @@ ComboTag.defaultProps = {
   emptyStatePicture: null,
   emptyStateClassName: '',
   emptyStateHeading: 'No results found',
-  alertText: '',
-  alertTooltip: {},
   errorTooltip: {},
   tagAlertIcon: null,
   selectedTags: [],
