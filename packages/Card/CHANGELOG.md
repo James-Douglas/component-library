@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.17](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-card@0.6.16...@comparethemarketau/manor-card@0.6.17) (2021-03-18)
+
+**Note:** Version bump only for package @comparethemarketau/manor-card
+
+
+
+
+
 ## [0.6.16](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-card@0.6.15...@comparethemarketau/manor-card@0.6.16) (2021-03-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-card
