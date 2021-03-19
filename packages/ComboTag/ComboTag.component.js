@@ -299,13 +299,14 @@ const ComboTag = ({
   );
 
   return (
-    <StyledOuterWrapper>
+    <StyledOuterWrapper hasList={hasList}>
       <StyledContainer componentFocused={componentFocused} hasList={hasList}>
         <StyledPresentationLayer
           role="presentation"
           onBlur={handleOnBlur}
           onFocus={handleOnFocus}
           onKeyDown={keyboardAccessibility}
+          hasList={hasList}
         >
           {componentLabel
           && <Label htmlFor={id} text={componentLabel} />}

@@ -2,7 +2,9 @@ import styled, { css } from 'styled-components';
 
 export const StyledOuterWrapper = styled.div`
   width: 100%;
-  display: flex;
+  ${({ hasList }) => hasList && css`
+    display: flex;
+  `}
 `;
 
 export const StyledContainer = styled.div`
@@ -20,7 +22,9 @@ export const StyledContainer = styled.div`
 export const StyledPresentationLayer = styled.div`
   height: 100%;
   width: 100%;
+  ${({ hasList }) => hasList && css`
   display: flex;
+`}
 `;
 
 export const StyledTagContainer = styled.div`
