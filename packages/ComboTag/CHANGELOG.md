@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.15](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.10.14...@comparethemarketau/manor-combo-tag@0.10.15) (2021-03-19)
+
+
+### Bug Fixes
+
+* 🐛 no flex for non list variant ([#612](https://github.com/comparethemarketau/manor-react/issues/612)) ([9609cdc](https://github.com/comparethemarketau/manor-react/commit/9609cdcda9246c175b778d46e9afff5978b28c84))
+
+
+
+
+
 ## [0.10.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.10.13...@comparethemarketau/manor-combo-tag@0.10.14) (2021-03-19)
 
 
