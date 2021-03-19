@@ -1,8 +1,14 @@
 import styled, { css } from 'styled-components';
 
+export const StyledOuterWrapper = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
 export const StyledContainer = styled.div`
   display: flex;
   position: relative;
+  width: 100%;
   background: ${({ theme }) => (theme.colors.white)};
   border: ${({ theme }) => (theme.borders.transparent)};
   border-bottom: ${({ theme, hasList }) => hasList && (theme.borders.active)};
@@ -14,10 +20,12 @@ export const StyledContainer = styled.div`
 export const StyledPresentationLayer = styled.div`
   height: 100%;
   width: 100%;
+  display: flex;
 `;
 
 export const StyledTagContainer = styled.div`
   display: flex;
+  width: 100%;
   min-height: ${({ theme, hasList }) => (hasList ? theme.spacing[60] : theme.spacing[44])};
   ${({ hasList, theme }) => !hasList && css`
     background: ${theme.colors.white};
@@ -169,4 +177,11 @@ export const StyledEmptyStateMessage = styled.div`
 export const StyledErrorToolTip = styled.div`
   height: 0;
   pointer-events: none;
+`;
+
+export const StyledComboListContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 `;

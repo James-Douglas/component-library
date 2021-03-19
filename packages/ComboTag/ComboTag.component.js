@@ -21,6 +21,8 @@ import {
   StyledPrefixContainer,
   StyledPrefix,
   StyledErrorToolTip,
+  StyledComboListContainer,
+  StyledOuterWrapper,
 } from './ComboTag.styles';
 
 const ComboTag = ({
@@ -297,19 +299,20 @@ const ComboTag = ({
   );
 
   return (
-    <StyledContainer componentFocused={componentFocused} hasList={hasList}>
-      <StyledPresentationLayer
-        role="presentation"
-        onBlur={handleOnBlur}
-        onFocus={handleOnFocus}
-        onKeyDown={keyboardAccessibility}
-      >
-        {componentLabel
+    <StyledOuterWrapper>
+      <StyledContainer componentFocused={componentFocused} hasList={hasList}>
+        <StyledPresentationLayer
+          role="presentation"
+          onBlur={handleOnBlur}
+          onFocus={handleOnFocus}
+          onKeyDown={keyboardAccessibility}
+        >
+          {componentLabel
           && <Label htmlFor={id} text={componentLabel} />}
-        {description
+          {description
           && <Label htmlFor={id} text={description} variant="description" />}
 
-        {prefix
+          {prefix
           && (
             <StyledPrefixContainer>
               <StyledPrefix onClick={prefixClickHandler} hasList={hasList}>
@@ -318,11 +321,11 @@ const ComboTag = ({
             </StyledPrefixContainer>
 
           )}
-        <StyledTagContainer hasList={hasList} bordered={bordered}>
-          <StyledTagHolder ref={tagHolderRef} tags={tags} hasList={hasList} onClick={() => { hasList && scrollAndFocusInput(); }}>
-            {memoizedTagElements}
-            <StyledInputWrap hasList={hasList}>
-              {inlineTooltipActive
+          <StyledTagContainer hasList={hasList} bordered={bordered}>
+            <StyledTagHolder ref={tagHolderRef} tags={tags} hasList={hasList} onClick={() => { hasList && scrollAndFocusInput(); }}>
+              {memoizedTagElements}
+              <StyledInputWrap hasList={hasList}>
+                {inlineTooltipActive
               && (
               <StyledErrorToolTip tabIndex="-1">
                 <Tooltip
@@ -335,37 +338,37 @@ const ComboTag = ({
                 </Tooltip>
               </StyledErrorToolTip>
               )}
-              <Input
-                id={id}
-                placeholder={tags.length === 0 ? placeholder : ''}
-                value={currentValue}
-                disabled={disabled}
-                disableClearIcon={disableClearIcon}
-                autocomplete={autocomplete}
-                handleChange={comboHandleChange}
-                handleKeyUp={tagKeyUp}
-                handleKeyDown={tagKeyDown}
-                className={className}
-                bordered={false}
-                tabIndex="0"
-                role={hasList ? 'combobox' : null}
-                removeGutters
-                ref={comboInputRef}
-                disableFocusStyles
-                type={type}
-                mask={mask}
-                guide={guide}
-              />
-            </StyledInputWrap>
-          </StyledTagHolder>
-        </StyledTagContainer>
+                <Input
+                  id={id}
+                  placeholder={tags.length === 0 ? placeholder : ''}
+                  value={currentValue}
+                  disabled={disabled}
+                  disableClearIcon={disableClearIcon}
+                  autocomplete={autocomplete}
+                  handleChange={comboHandleChange}
+                  handleKeyUp={tagKeyUp}
+                  handleKeyDown={tagKeyDown}
+                  className={className}
+                  bordered={false}
+                  tabIndex="0"
+                  role={hasList ? 'combobox' : null}
+                  removeGutters
+                  ref={comboInputRef}
+                  disableFocusStyles
+                  type={type}
+                  mask={mask}
+                  guide={guide}
+                />
+              </StyledInputWrap>
+            </StyledTagHolder>
+          </StyledTagContainer>
 
-        {validationMessage
+          {validationMessage
         && <FieldValidation message={validationMessage} />}
 
-        {hasList
+          {hasList
         && (
-        <div>
+        <StyledComboListContainer>
           {comboDropDownList(
             desktop,
             listIcon,
@@ -381,10 +384,11 @@ const ComboTag = ({
             emptyStateHeading,
             renderView,
           )}
-        </div>
+        </StyledComboListContainer>
         )}
-      </StyledPresentationLayer>
-    </StyledContainer>
+        </StyledPresentationLayer>
+      </StyledContainer>
+    </StyledOuterWrapper>
   );
 };
 
