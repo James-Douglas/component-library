@@ -58,6 +58,7 @@ const ComboTag = ({
   mask,
   guide,
   bordered,
+  gtmPidAnonymous,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -359,6 +360,7 @@ const ComboTag = ({
                   type={type}
                   mask={mask}
                   guide={guide}
+                  gtmPidAnonymous={gtmPidAnonymous}
                 />
               </StyledInputWrap>
             </StyledTagHolder>
@@ -552,6 +554,10 @@ ComboTag.propTypes = {
     PropTypes.node,
     PropTypes.array,
   ]),
+  /**
+   * Used to indicate if a field contains personally identifying data which needs to remain anonymous from google analytics
+   */
+  gtmPidAnonymous: PropTypes.bool,
 };
 
 ComboTag.defaultProps = {
@@ -588,6 +594,7 @@ ComboTag.defaultProps = {
   type: 'text',
   bordered: false,
   validationMessage: null,
+  gtmPidAnonymous: false,
 };
 
 export default ComboTag;

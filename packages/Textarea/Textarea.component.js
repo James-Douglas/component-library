@@ -55,6 +55,7 @@ const Textarea = ({
   handleChange,
   handleFocus,
   handleBlur,
+  gtmPidAnonymous,
   className,
 }) => {
   const id = useId(propsId);
@@ -65,6 +66,7 @@ const Textarea = ({
   const [stateValue, setStateValue] = useState(getInitialValue(value, prefillValue));
   const [textAreaRemainChars, setTextAreaRemainChars] = useState(charLimit);
   const textAreaElement = useRef(null);
+  const gtmPidAnonymousClass = gtmPidAnonymous ? 'data-hj-suppress' : null;
 
   useEffect(() => {
     let valueToUse = '';
@@ -110,7 +112,6 @@ const Textarea = ({
   }
 
   const validation = validationMessageToDisplay && validationMessageToDisplay.length;
-
   return (
     <>
       <Label htmlFor={id} text={label} tooltip={tooltip} />
@@ -135,6 +136,7 @@ const Textarea = ({
           validation={validation}
           textAreaRemainChars={textAreaRemainChars}
           aria-describedby={`${!required ? `${id}-optional-indicator` : ''} ${maxLength || maxChars ? `${id}-maxlength-indicator` : ''}  `}
+          className={gtmPidAnonymousClass}
         />
         <SupportingElements
           validationMessage={validationMessage}
@@ -236,6 +238,10 @@ Textarea.propTypes = {
    * Classes to be applied to the Textarea component
    */
   className: PropTypes.string,
+  /**
+   * Used to indicate if a field contains personally identifying data which needs to remain anonymous from google analytics
+  */
+  gtmPidAnonymous: PropTypes.bool,
 };
 
 Textarea.defaultProps = {
@@ -258,6 +264,7 @@ Textarea.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   className: '',
+  gtmPidAnonymous: false,
 };
 
 export default Textarea;

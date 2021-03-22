@@ -109,7 +109,7 @@ const Input = React.forwardRef(({
   const { breakpoint } = useContext(ManorContext);
   const localRef = ref || useRef(null);
   const [tooltipOptions, setTooltipOptions] = useState(tooltip);
-
+  const gtmPidAnonymousClass = gtmPidAnonymous ? 'data-hj-suppress' : null;
   useEffect(() => {
     const describedBy = {};
     const labelledBy = {
@@ -186,7 +186,7 @@ const Input = React.forwardRef(({
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
       {!expressive
         && <Label htmlFor={id} text={label} id={ariaLabelledByIds.label} tooltip={tooltipOptions} removeGutters={removeGutters} />}
-      <StyledInputContainer className={`input-container ${gtmPidAnonymous ? 'data-hj-suppress' : ''}`}>
+      <StyledInputContainer className={`input-container${gtmPidAnonymous ? ' data-hj-suppress' : ''}`}>
         <StyledInputWrap
           isAutofill={isAutofill}
           disabled={disabled}
@@ -235,7 +235,7 @@ const Input = React.forwardRef(({
         </StyledInputWrap>
         <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
       </StyledInputContainer>
-      {dataList && <div>{dataList()}</div>}
+      {dataList && <div className={gtmPidAnonymousClass}>{dataList()}</div>}
       <FieldValidation message={validationMessage} />
     </StyledWrapper>
   );

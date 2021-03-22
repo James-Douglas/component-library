@@ -79,7 +79,7 @@ describe('DateInput', () => {
     expect(handler.mock.calls[1][0]).toBe('11/12/2000');
   });
 
-  it('calls focus and blur handlers', () => {
+  it('calls focus and blur handlers, check suppress class', () => {
     const focusHandler = jest.fn();
     const blurHandler = jest.fn();
     const { container } = render(
@@ -88,6 +88,7 @@ describe('DateInput', () => {
         handleFocus={focusHandler}
         handleBlur={blurHandler}
         handleChange={() => {}}
+        gtmPidAnonymous
       />,
     );
     const currencyInput = container.querySelector('input');
@@ -95,6 +96,8 @@ describe('DateInput', () => {
     expect(focusHandler).toHaveBeenCalled();
     fireEvent.blur(currencyInput);
     expect(blurHandler).toHaveBeenCalled();
+    const inputField = container.querySelector('.input-container');
+    expect(inputField).toHaveClass('data-hj-suppress');
   });
 
   it('constrains mask based on "format" prop', () => {
@@ -130,5 +133,8 @@ describe('DateInput', () => {
 
     fireEvent.input(input, { target: { value: '012000' } });
     expect(input.value).toEqual('01/2000');
+
+    const inputField = container.querySelector('.input-container');
+    expect(inputField).not.toHaveClass('data-hj-suppress');
   });
 });

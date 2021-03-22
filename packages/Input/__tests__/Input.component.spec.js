@@ -354,5 +354,22 @@ describe('Input.component', () => {
     expect(inputWrap).toHaveStyleRule('border', ctmTheme.borders.active);
     inputField.blur();
     expect(inputWrap).toHaveStyleRule('border', ctmTheme.borders.prefill);
+    expect(inputFieldWrap).not.toHaveClass('data-hj-suppress');
+  });
+  it('renders input with suppress class', () => {
+    const { container } = render(
+      <Input
+        id="test-id"
+        type="text"
+        placeholder="placeholder test"
+        validationMessage="invalid"
+        handleChange={() => {}}
+        disableClearIcon
+        gtmPidAnonymous
+      />,
+    );
+
+    const inputFieldWrap = container.querySelector('.input-container');
+    expect(inputFieldWrap).toHaveClass('data-hj-suppress');
   });
 });

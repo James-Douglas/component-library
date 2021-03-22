@@ -126,6 +126,7 @@ const Combobox = ({
   emptyStateHeading,
   helperMessage,
   disableClearIcon,
+  gtmPidAnonymous,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -350,6 +351,7 @@ const Combobox = ({
                 listVisible,
               )}
               disableClearIcon={disableClearIcon}
+              gtmPidAnonymous={gtmPidAnonymous}
             />
             {!isDesktop && <StyledIconCloseModal icon={faTimes} variant="tertiary" handleClick={() => { setIsMobileModalView(false); }} />}
           </StyledDiv>
@@ -372,7 +374,6 @@ const Combobox = ({
             handleOnClick={setMobileFocus}
             handleChange={() => {}}
             handleFocus={setMobileFocus}
-            disableClearIcon
             tabIndex="0"
             role="comboMobileField"
             disableClearIcon={disableClearIcon}
@@ -528,6 +529,10 @@ Combobox.propTypes = {
    * Disables the clear icon when true
    */
   disableClearIcon: PropTypes.bool,
+  /**
+   * Used to indicate if a field contains personally identifying data which needs to remain anonymous from google analytics
+  */
+  gtmPidAnonymous: PropTypes.bool,
 };
 
 Combobox.defaultProps = {
@@ -558,6 +563,7 @@ Combobox.defaultProps = {
   emptyStateHeading: 'No results found',
   helperMessage: 'Please start typing',
   disableClearIcon: false,
+  gtmPidAnonymous: false,
 };
 
 export default Combobox;

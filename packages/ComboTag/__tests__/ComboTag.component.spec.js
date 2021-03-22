@@ -353,5 +353,23 @@ describe('ComboTag', () => {
     const prefix = container.querySelector('svg');
     fireEvent.click(prefix.parentElement);
     expect(prefixCb).toHaveBeenCalled();
+    const inputField = container.querySelector('.input-container');
+    expect(inputField).not.toHaveClass('data-hj-suppress');
+  });
+  it('renders suppress class', () => {
+    const prefixCb = jest.fn();
+    const { container } = render(
+      <ComboTag
+        prefix={faMapMarkerAlt}
+        prefixClickHandler={prefixCb}
+        handleChange={() => {}}
+        apiData={apiData}
+        value="a"
+        id="combo-tag"
+        gtmPidAnonymous
+      />,
+    );
+    const inputField = container.querySelector('.input-container');
+    expect(inputField).toHaveClass('data-hj-suppress');
   });
 });

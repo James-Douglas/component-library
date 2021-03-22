@@ -28,6 +28,7 @@ const DateInput = ({
   suffixContent,
   disableClearIcon,
   format,
+  gtmPidAnonymous,
 }) => {
   const id = useId(propsId);
   const mask = format.split('').map((x) => (x === '/' ? x : /\d/));
@@ -57,6 +58,7 @@ const DateInput = ({
       handleFocus={handleFocus}
       handleBlur={handleBlur}
       disableClearIcon={disableClearIcon}
+      gtmPidAnonymous={gtmPidAnonymous}
     />
   );
 };
@@ -159,6 +161,10 @@ DateInput.propTypes = {
     'MM/YY',
     'YYYY',
   ]),
+  /**
+   * Used to indicate if a field contains personally identifying data which needs to remain anonymous from google analytics
+  */
+  gtmPidAnonymous: PropTypes.bool,
 };
 
 DateInput.defaultProps = {
@@ -181,6 +187,7 @@ DateInput.defaultProps = {
   suffixContent: '',
   disableClearIcon: false,
   format: 'DD/MM/YYYY',
+  gtmPidAnonymous: false,
 };
 
 export default DateInput;

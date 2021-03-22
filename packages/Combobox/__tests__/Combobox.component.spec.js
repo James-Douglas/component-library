@@ -19,7 +19,7 @@ jest.mock('../../Utils/breakpoint', () => ({
 }));
 
 describe('Combo', () => {
-  it('renders correct number options', () => {
+  it('renders correct number options, renders correct with suppress class', () => {
     const { container } = render(
       <Combobox
         handleChange={() => {}}
@@ -29,12 +29,15 @@ describe('Combo', () => {
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
+        gtmPidAnonymous
       />,
     );
     const inputField = container.querySelector('#combo-id-first');
     inputField.focus();
     const list = container.getElementsByTagName('li');
     expect(list.length).toBe(3);
+    const inputContainer = inputField.parentElement.parentElement.parentElement;
+    expect(inputContainer).toHaveClass('data-hj-suppress');
   });
 
   it('renders no options', () => {
@@ -87,6 +90,8 @@ describe('Combo', () => {
     expect(inputField).toHaveValue('prese');
     fireEvent.change(inputField, { target: { value: 'present' } });
     expect(inputField).toHaveValue('present');
+    const inputContainer = inputField.parentElement.parentElement.parentElement;
+    expect(inputContainer).not.toHaveClass('data-hj-suppress');
   });
 
   it('calls focus and blur handlers when provided', () => {
