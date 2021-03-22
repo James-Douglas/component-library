@@ -300,98 +300,100 @@ const ComboTag = ({
   );
 
   return (
-    <StyledOuterWrapper hasList={hasList}>
-      <StyledContainer componentFocused={componentFocused} hasList={hasList}>
-        <StyledPresentationLayer
-          role="presentation"
-          onBlur={handleOnBlur}
-          onFocus={handleOnFocus}
-          onKeyDown={keyboardAccessibility}
-          hasList={hasList}
-        >
-          {componentLabel
-          && <Label htmlFor={id} text={componentLabel} />}
-          {description
-          && <Label htmlFor={id} text={description} variant="description" />}
+    <>
+      {componentLabel
+      && <Label htmlFor={id} text={componentLabel} />}
+      {description
+      && <Label htmlFor={id} text={description} variant="description" />}
+      <StyledOuterWrapper hasList={hasList}>
+        <StyledContainer componentFocused={componentFocused} hasList={hasList}>
+          <StyledPresentationLayer
+            role="presentation"
+            onBlur={handleOnBlur}
+            onFocus={handleOnFocus}
+            onKeyDown={keyboardAccessibility}
+            hasList={hasList}
+          >
 
-          {prefix
+            {prefix
+            && (
+              <StyledPrefixContainer>
+                <StyledPrefix onClick={prefixClickHandler} hasList={hasList}>
+                  <FontAwesomeIcon icon={prefix} size="lg" />
+                </StyledPrefix>
+              </StyledPrefixContainer>
+
+            )}
+            <StyledTagContainer hasList={hasList} bordered={bordered}>
+              <StyledTagHolder ref={tagHolderRef} tags={tags} hasList={hasList} onClick={() => { hasList && scrollAndFocusInput(); }}>
+                {memoizedTagElements}
+                <StyledInputWrap hasList={hasList}>
+                  {inlineTooltipActive
+                && (
+                <StyledErrorToolTip tabIndex="-1">
+                  <Tooltip
+                    active={inlineTooltipActive}
+                    title={title}
+                    body={body}
+                    placement="top-end"
+                    screenReaderLabel={body}
+                  >&nbsp;
+                  </Tooltip>
+                </StyledErrorToolTip>
+                )}
+                  <Input
+                    id={id}
+                    placeholder={tags.length === 0 ? placeholder : ''}
+                    value={currentValue}
+                    disabled={disabled}
+                    disableClearIcon={disableClearIcon}
+                    autocomplete={autocomplete}
+                    handleChange={comboHandleChange}
+                    handleKeyUp={tagKeyUp}
+                    handleKeyDown={tagKeyDown}
+                    className={className}
+                    bordered={false}
+                    tabIndex="0"
+                    role={hasList ? 'combobox' : null}
+                    removeGutters
+                    ref={comboInputRef}
+                    disableFocusStyles
+                    type={type}
+                    mask={mask}
+                    guide={guide}
+                    gtmPidAnonymous={gtmPidAnonymous}
+                  />
+                </StyledInputWrap>
+              </StyledTagHolder>
+            </StyledTagContainer>
+
+            {validationMessage
+          && <FieldValidation message={validationMessage} />}
+
+            {hasList
           && (
-            <StyledPrefixContainer>
-              <StyledPrefix onClick={prefixClickHandler} hasList={hasList}>
-                <FontAwesomeIcon icon={prefix} size="lg" />
-              </StyledPrefix>
-            </StyledPrefixContainer>
-
+          <StyledComboListContainer>
+            {comboDropDownList(
+              desktop,
+              listIcon,
+              characterMinimum,
+              apiData,
+              handleSelectItem,
+              filteredValuesRefs,
+              listVisible,
+              currentValue,
+              emptyStateChildren,
+              emptyStatePicture,
+              emptyStateClassName,
+              emptyStateHeading,
+              renderView,
+            )}
+          </StyledComboListContainer>
           )}
-          <StyledTagContainer hasList={hasList} bordered={bordered}>
-            <StyledTagHolder ref={tagHolderRef} tags={tags} hasList={hasList} onClick={() => { hasList && scrollAndFocusInput(); }}>
-              {memoizedTagElements}
-              <StyledInputWrap hasList={hasList}>
-                {inlineTooltipActive
-              && (
-              <StyledErrorToolTip tabIndex="-1">
-                <Tooltip
-                  active={inlineTooltipActive}
-                  title={title}
-                  body={body}
-                  placement="top-end"
-                  screenReaderLabel={body}
-                >&nbsp;
-                </Tooltip>
-              </StyledErrorToolTip>
-              )}
-                <Input
-                  id={id}
-                  placeholder={tags.length === 0 ? placeholder : ''}
-                  value={currentValue}
-                  disabled={disabled}
-                  disableClearIcon={disableClearIcon}
-                  autocomplete={autocomplete}
-                  handleChange={comboHandleChange}
-                  handleKeyUp={tagKeyUp}
-                  handleKeyDown={tagKeyDown}
-                  className={className}
-                  bordered={false}
-                  tabIndex="0"
-                  role={hasList ? 'combobox' : null}
-                  removeGutters
-                  ref={comboInputRef}
-                  disableFocusStyles
-                  type={type}
-                  mask={mask}
-                  guide={guide}
-                  gtmPidAnonymous={gtmPidAnonymous}
-                />
-              </StyledInputWrap>
-            </StyledTagHolder>
-          </StyledTagContainer>
-
-          {validationMessage
-        && <FieldValidation message={validationMessage} />}
-
-          {hasList
-        && (
-        <StyledComboListContainer>
-          {comboDropDownList(
-            desktop,
-            listIcon,
-            characterMinimum,
-            apiData,
-            handleSelectItem,
-            filteredValuesRefs,
-            listVisible,
-            currentValue,
-            emptyStateChildren,
-            emptyStatePicture,
-            emptyStateClassName,
-            emptyStateHeading,
-            renderView,
-          )}
-        </StyledComboListContainer>
-        )}
-        </StyledPresentationLayer>
-      </StyledContainer>
-    </StyledOuterWrapper>
+          </StyledPresentationLayer>
+        </StyledContainer>
+      </StyledOuterWrapper>
+    </>
   );
 };
 

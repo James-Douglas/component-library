@@ -166,8 +166,6 @@ export const StyledComboListWrap = styled.div`
   overflow-y: auto;
 `;
 
-export const StyledComboList = styled.div``;
-
 export const StyledEmptyStateMessage = styled.div`
   position: relative;
   box-shadow: ${({ theme }) => (theme.combo.list.shadow)};

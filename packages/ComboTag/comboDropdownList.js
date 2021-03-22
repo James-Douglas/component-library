@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { EmptyState } from '@comparethemarketau/manor-empty-state';
 import { Typography } from '@comparethemarketau/manor-typography';
 import {
-  StyledComboList, StyledComboListWrap, StyledDropdownList, StyledEmptyStateMessage, WrapList, StyledIconWrap, StyledList, StyledListItem,
+  StyledComboListWrap, StyledDropdownList, StyledEmptyStateMessage, WrapList, StyledIconWrap, StyledList, StyledListItem,
 } from './ComboTag.styles';
 
 export function comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon) {
@@ -58,7 +58,7 @@ function comboDropdownList(
     <WrapList desktop={desktop}>
       <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
         <StyledComboListWrap renderView={renderView}>
-          <StyledComboList desktop={desktop}>
+          <div>
             {!emptyState && comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon)}
             {noResultCondition && (
               <StyledEmptyStateMessage>
@@ -72,7 +72,7 @@ function comboDropdownList(
                 </EmptyState>
               </StyledEmptyStateMessage>
             )}
-          </StyledComboList>
+          </div>
         </StyledComboListWrap>
       </StyledDropdownList>
     </WrapList>
