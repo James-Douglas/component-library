@@ -59,6 +59,7 @@ const ComboTag = ({
   guide,
   bordered,
   gtmPidAnonymous,
+  comboListSpacing,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -387,6 +388,7 @@ const ComboTag = ({
               emptyStateClassName,
               emptyStateHeading,
               renderView,
+              comboListSpacing,
             )}
           </StyledComboListContainer>
           )}
@@ -560,6 +562,10 @@ ComboTag.propTypes = {
    * Used to indicate if a field contains personally identifying data which needs to remain anonymous from google analytics
    */
   gtmPidAnonymous: PropTypes.bool,
+  /**
+   * Define if there's margin top of the list (a gap between the input and the list)
+   */
+  comboListSpacing: PropTypes.bool,
 };
 
 ComboTag.defaultProps = {
@@ -597,6 +603,7 @@ ComboTag.defaultProps = {
   bordered: false,
   validationMessage: null,
   gtmPidAnonymous: false,
+  comboListSpacing: true,
 };
 
 export default ComboTag;

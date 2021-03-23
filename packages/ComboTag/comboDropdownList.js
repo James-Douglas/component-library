@@ -48,6 +48,7 @@ function comboDropdownList(
   emptyStateClassName,
   emptyStateHeading,
   renderView,
+  comboListSpacing,
 ) {
   const positionDesktop = !desktop ? 'relative' : 'absolute';
   const emptyState = !listVisible;
@@ -56,7 +57,7 @@ function comboDropdownList(
 
   return (
     <WrapList desktop={desktop}>
-      <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
+      <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop} comboListSpacing={comboListSpacing}>
         <StyledComboListWrap renderView={renderView}>
           <div>
             {!emptyState && comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon)}

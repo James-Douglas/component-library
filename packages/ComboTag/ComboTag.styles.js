@@ -90,7 +90,10 @@ export const StyledDropdownList = styled.div`
   display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')};
   background: ${({ theme }) => (theme.combo.list.background)};
   box-shadow: ${({ theme }) => (theme.combo.list.shadow)};
-  margin-top: ${({ theme }) => (theme.spacing[8])};
+  margin-top: ${({ theme }) => (theme.spacing.px)};
+  ${({ theme, comboListSpacing }) => comboListSpacing && css`
+    margin-top: ${theme.spacing[8]};
+  `}
   &:focus {
     outline: none;
   }
