@@ -144,6 +144,12 @@ const ComboTag = ({
     setListVisible(false);
     setFocusedRef(null);
     setCurrentValue('');
+    if (comboInputRef.current) {
+      const storedRef = comboInputRef.current.inputElement;
+      setTimeout(() => {
+        storedRef.focus();
+      }, 100);
+    }
   };
 
   const comboHandleChange = useCallback((valueInput) => {
