@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.18](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.10.17...@comparethemarketau/manor-combo-tag@0.10.18) (2021-03-24)
+
+
+### Bug Fixes
+
+* 🐛 bring back focus functionality on keypress ([#616](https://github.com/comparethemarketau/manor-react/issues/616)) ([69c9a7c](https://github.com/comparethemarketau/manor-react/commit/69c9a7c19d67c3a5818c9789f68415955b828d05))
+
+
+
+
+
 ## [0.10.17](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.10.16...@comparethemarketau/manor-combo-tag@0.10.17) (2021-03-23)
 
 
