@@ -74,6 +74,7 @@ const ComboTag = ({
   const [editMode, setEditMode] = useState(false);
   const [componentFocused, setComponentFocused] = useState(false);
   const hasList = !!apiData;
+  const maxLabelLength = 26;
 
   const filteredValuesRefs = useMemo(
     () => apiData && apiData.map((item) => React.createRef()),
@@ -251,10 +252,15 @@ const ComboTag = ({
   // store the refs, the jsx and the alert state of the tag
   useEffect(() => {
     const temp = tags.map((tag, i) => {
+      let ellipsisLabel = '';
       const tagRef = React.createRef();
       const {
         label, alert, shortName, visible,
       } = tag;
+      if (label.length > maxLabelLength) {
+        // trim the label and add an elipsis if exceeds max length
+        ellipsisLabel = `${label.substring(0, maxLabelLength)}...`;
+      }
 
       return {
         ref: tagRef,
@@ -262,7 +268,7 @@ const ComboTag = ({
           visible={visible}
           icon={alert ? tagAlertIcon : null}
           key={`item-${label + i}`}
-          value={shortName || label}
+          value={shortName || ellipsisLabel || label}
           alert={alert}
           ref={tagRef}
           onClickDelete={() => deleteTagHandler(i)}
@@ -328,7 +334,6 @@ const ComboTag = ({
                   <FontAwesomeIcon icon={prefix} size="lg" />
                 </StyledPrefix>
               </StyledPrefixContainer>
-
             )}
             <StyledTagContainer hasList={hasList} bordered={bordered}>
               <StyledTagHolder ref={tagHolderRef} tags={tags} hasList={hasList} onClick={() => { hasList && scrollAndFocusInput(); }}>

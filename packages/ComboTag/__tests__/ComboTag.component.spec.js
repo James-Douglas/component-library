@@ -20,6 +20,7 @@ const apiData = [
   { label: 'Turkey', code: 'TR', alert: false },
   { label: 'United Kingdom', code: 'GB', alert: false },
   { label: 'Yemen', code: 'YE', alert: false },
+  { label: 'Delaware (United States of America)', code: 'US', alert: false },
 ];
 
 const emptyApiData = [];
@@ -39,7 +40,7 @@ describe('ComboTag', () => {
     expect(inputField).toHaveStyleRule('border: transparent');
     inputField.focus();
     const list = container.getElementsByTagName('li');
-    expect(list.length).toBe(12);
+    expect(list.length).toBe(13);
   });
 
   it('renders no options', () => {
@@ -184,10 +185,10 @@ describe('ComboTag', () => {
     const inputField = container.querySelector('#combo-tag');
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
-    const focusItem = container.getElementsByTagName('li')[11];
+    const focusItem = container.getElementsByTagName('li')[12];
     expect(focusItem).toHaveFocus();
     fireEvent.keyDown(inputField, { key: 'ArrowUp', code: 38 });
-    const nextFocusItem = container.getElementsByTagName('li')[10];
+    const nextFocusItem = container.getElementsByTagName('li')[11];
     expect(nextFocusItem).toHaveFocus();
   });
 
@@ -249,6 +250,22 @@ describe('ComboTag', () => {
     fireEvent.keyDown(inputField, { key: 'Tab', code: 9 });
     clearButton.focus();
     expect(clearButton).toHaveFocus();
+  });
+
+  it('if tag exceeds max length, cut it and add ellipsis', () => {
+    const { container, getByText } = render(
+      <ComboTag
+        handleChange={() => {}}
+        id="combo-tag"
+        apiData={apiData}
+      />,
+    );
+    const inputField = container.querySelector('#combo-tag');
+    inputField.focus();
+    fireEvent.input(inputField, { target: { value: 'delaware' } });
+    const currentItem = container.getElementsByTagName('li')[12];
+    fireEvent.mouseDown(currentItem);
+    expect(getByText('Delaware (United States of...')).toBeInTheDocument();
   });
 
   // raw input (no list) variant
