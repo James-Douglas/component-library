@@ -166,3 +166,7 @@ myTheme.borders.component = '2px solid yellow';
     <App />
 </ManorProvider>
 ```
+
+### Personally Identifiable Information (PII) & Personal Credit Information (PCI) Compliance
+A number of Manor components have a prop, `gtmPidAnonymous`, that can be used to indicate the field is used to collect personally identifiable information. When using such components, be sure to set this to `true` so that a css class is added to the component that informs tracking software that it should obfuscate its contents.
+When adding new components to Manor, be sure to consider if it could potentially be used to capture PII/PCI and if so, include this functionality in it's implementation.
