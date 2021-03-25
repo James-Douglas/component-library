@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.10.19...@comparethemarketau/manor-combo-tag@0.11.0) (2021-03-25)
+
+
+### Features
+
+* 🎸 ellipsis for longer tags ([#619](https://github.com/comparethemarketau/manor-react/issues/619)) ([831a591](https://github.com/comparethemarketau/manor-react/commit/831a59173a31f3ab108cc33d7ce66e44ad7db2b5))
+
+
+
+
+
 ## [0.10.19](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.10.18...@comparethemarketau/manor-combo-tag@0.10.19) (2021-03-25)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combo-tag
