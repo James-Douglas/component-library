@@ -321,7 +321,6 @@ const ComboTag = ({
             onKeyDown={keyboardAccessibility}
             hasList={hasList}
           >
-
             {prefix
             && (
               <StyledPrefixContainer>

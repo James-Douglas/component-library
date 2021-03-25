@@ -80,7 +80,7 @@ export const StyledTagHolder = styled.div`
   flex-wrap: wrap;
   height: auto;
   max-height: 11.4rem;
-  overflow-x: hidden;
+  overflow-x: scroll;
 `;
 
 export const StyledDropdownList = styled.div`
