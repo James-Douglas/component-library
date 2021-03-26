@@ -3,6 +3,7 @@ import { withKnobs, text, boolean, number, object, array } from '@storybook/addo
 import { ComboTag } from '@comparethemarketau/manor-combo-tag';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { FluidContainer, Column, Row } from '@comparethemarketau/manor-grid';
+import { Button } from '@comparethemarketau/manor-button';
 import fakeApiData from './countries';
 import { useState, useEffect } from 'react';
 import { faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
@@ -39,6 +40,13 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
       }
       console.log('filtered data from story', filteredData)
     }, [comboTagValue])
+    const [tags, setTags] = useState([]);
+    const tagBtnClick = () => {
+      setTags([...tags, {label: "I'm a tag!", alert: false,}])
+    }
+    const longTagBtnClick = () => {
+      setTags([...tags, {label: "I'm a really long that that should be clipped tag!", alert: false,}])
+    }
     return (
       <div style={{ padding: '2%', marginTop: '200px' }}>
          <FluidContainer>
@@ -74,8 +82,15 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                         body: "You have already added this destination",
                       }
                     }
+                    selectedTags={tags}
                   />
                   </div>
+              </Column>
+            </Row>
+            <Row>
+              <Column cols={8}>
+                <Button id="demo-btn" variant="secondary" handleClick={tagBtnClick} style={{marginTop: '100px'}}>Add a tag</Button>
+                <Button id="demo-btn" variant="secondary" handleClick={longTagBtnClick}>Add a long tag (will be truncated)</Button>
               </Column>
             </Row>
          </FluidContainer>

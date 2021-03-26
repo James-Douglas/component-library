@@ -284,6 +284,7 @@ const ComboTag = ({
   // if the selected tags prop updates, add tags to state
   useEffect(() => {
     setTags(selectedTags);
+    scrollAndFocusInput(false);
   }, [selectedTags]);
 
   // fire handleChange func (if passed) with the current tags
