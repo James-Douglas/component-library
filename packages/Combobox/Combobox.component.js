@@ -38,6 +38,7 @@ export function comboDropdownList(
   handleSelectItem,
   filteredValuesRefs,
   listVisible,
+  renderView,
 ) {
   const positionDesktop = !desktop ? 'relative' : 'absolute';
   const emptyState = !listVisible || currentPrefillValue.length < characterMinimum;
@@ -46,7 +47,7 @@ export function comboDropdownList(
   return (
     <WrapList desktop={desktop}>
       <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
-        <StyledComboListWrap desktop={desktop}>
+        <StyledComboListWrap desktop={desktop} renderView={renderView}>
           <StyledComboList desktop={desktop}>
             {!emptyState && comboDataList(filteredValues, handleSelectItem, filteredValuesRefs, listIcon)}
           </StyledComboList>
@@ -112,7 +113,6 @@ const Combobox = ({
   required,
   disabled,
   characterMinimum,
-  renderLimit,
   listInfoBoxContent,
   tooltip,
   className,
@@ -127,6 +127,7 @@ const Combobox = ({
   helperMessage,
   disableClearIcon,
   gtmPidAnonymous,
+  renderView,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -138,19 +139,9 @@ const Combobox = ({
   const { isDesktop } = useContext(ManorContext);
   const mobileOverlay = !isDesktop && isMobileModalView;
 
-  const filteredValues = useMemo(
-    () => {
-      if (currentValue.length < characterMinimum) {
-        return [];
-      }
-      return apiData.filter((item) => item.toLowerCase().includes(currentValue.toLowerCase())).slice(0, renderLimit);
-    },
-    [currentValue, characterMinimum, apiData, renderLimit],
-  );
-
-  const filteredValuesRefs = useMemo(
-    () => filteredValues.map((item) => React.createRef()),
-    [filteredValues],
+  const dataRefs = useMemo(
+    () => apiData.map((item) => React.createRef()),
+    [apiData],
   );
 
   const setMobileFocus = () => {
@@ -246,47 +237,47 @@ const Combobox = ({
           if (focusedRef === null) {
             if (listInfoBoxContent) {
               if (document.activeElement === bottomButton.current) {
-                setFocusedRef(filteredValues.length - 1);
-                filteredValuesRefs[filteredValues.length - 1].current.focus();
+                setFocusedRef(apiData.length - 1);
+                dataRefs[apiData.length - 1].current.focus();
               } else {
                 setFocusedRef(null);
                 bottomButton.current.focus();
               }
             } else {
-              setFocusedRef(filteredValues.length - 1);
-              filteredValuesRefs[filteredValues.length - 1].current.focus();
+              setFocusedRef(apiData.length - 1);
+              dataRefs[apiData.length - 1].current.focus();
             }
           } else if (focusedRef === 0) {
             if (listInfoBoxContent) {
               setFocusedRef(null);
               bottomButton.current.focus();
             } else {
-              setFocusedRef(filteredValues.length - 1);
-              filteredValuesRefs[filteredValues.length - 1].current.focus();
+              setFocusedRef(apiData.length - 1);
+              dataRefs[apiData.length - 1].current.focus();
             }
           } else {
             setFocusedRef(focusedRef - 1);
-            filteredValuesRefs[focusedRef - 1].current.focus();
+            dataRefs[focusedRef - 1].current.focus();
           }
         }
         break;
       case 'ArrowDown':
         if (currentValue.length >= characterMinimum) {
           event.preventDefault();
-          if (focusedRef === filteredValues.length - 1) {
+          if (focusedRef === apiData.length - 1) {
             if (listInfoBoxContent) {
               setFocusedRef(null);
               bottomButton.current.focus();
             } else {
               setFocusedRef(0);
-              filteredValuesRefs[0].current.focus();
+              dataRefs[0].current.focus();
             }
           } else if (focusedRef === null) {
             setFocusedRef(0);
-            filteredValuesRefs[0].current.focus();
+            dataRefs[0].current.focus();
           } else {
             setFocusedRef(focusedRef + 1);
-            filteredValuesRefs[focusedRef + 1].current.focus();
+            dataRefs[focusedRef + 1].current.focus();
           }
         }
         break;
@@ -296,7 +287,7 @@ const Combobox = ({
   };
 
   const emptyStateCondition = currentValue.length < characterMinimum;
-  const noResultCondition = filteredValues.length === 0 && currentValue.length >= characterMinimum;
+  const noResultCondition = apiData.length === 0 && currentValue.length >= characterMinimum;
 
   return (
     <>
@@ -345,10 +336,11 @@ const Combobox = ({
                 bottomButton,
                 currentValue,
                 characterMinimum,
-                filteredValues,
+                apiData,
                 handleSelectItem,
-                filteredValuesRefs,
+                dataRefs,
                 listVisible,
+                renderView,
               )}
               disableClearIcon={disableClearIcon}
               gtmPidAnonymous={gtmPidAnonymous}
@@ -477,9 +469,9 @@ Combobox.propTypes = {
    */
   characterMinimum: PropTypes.number,
   /**
-   * Defines a limit for the number of options to display in the dropdown list
+   * Defines a limit for the viewable items in the list before scrolling
    */
-  renderLimit: PropTypes.number,
+  renderView: PropTypes.number,
   /**
    * Content to be displayed in the blue bar at the bottom of the options list, if not supplied, the blue bar
    * will not be displayed.
@@ -550,7 +542,6 @@ Combobox.defaultProps = {
   suffixContent: '',
   autocomplete: 'off',
   characterMinimum: 3,
-  renderLimit: 10,
   listInfoBoxContent: '',
   tooltip: {},
   className: '',
@@ -564,6 +555,7 @@ Combobox.defaultProps = {
   helperMessage: 'Please start typing',
   disableClearIcon: false,
   gtmPidAnonymous: false,
+  renderView: 10,
 };
 
 export default Combobox;

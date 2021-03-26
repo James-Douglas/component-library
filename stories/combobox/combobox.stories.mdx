@@ -5,6 +5,7 @@ import { Combobox } from '@comparethemarketau/manor-combobox';
 import { FluidContainer, Column, Row } from '@comparethemarketau/manor-grid';
 import fakeApiData from './jsonPlaceholder';
 import getTooltipKnobs from '../tooltipKnobs';
+import { useState, useEffect } from 'react';
 
 <Meta title="Components/Combobox" component={Combobox} />
 
@@ -19,20 +20,34 @@ the input field.
 <Preview>
   <Story name="combo preview" height="250px">
   {() => {
-    const apiData = fakeApiData.map((obj) => obj.title);
+    const [comboBoxValue, setComboBoxValue] = useState('');
+    const [apiData, setApiData] = useState([]);
+    useEffect(() => {
+      const filteredData = fakeApiData
+        .filter((obj) => obj.title.toLowerCase().includes(comboBoxValue.toLowerCase())).map(obj => obj)
+        .map((item) => {
+          return item.title;
+        });
+      if (filteredData.length > 33) {
+        setApiData(filteredData.slice(0, 33));
+      } else {
+        setApiData(filteredData)
+      }
+      console.log('filtered data from story', filteredData)
+    }, [comboBoxValue])
     return (
-      <div style={{ padding: '2%' }}>
+      <div style={{ padding: '2%',  marginBottom: '400px'}}>
          <FluidContainer>
              <Row>
                <Column>
                   <Combobox
                     label="Example Combobox label"
                     description='Example description'
+                    placeholder="Enter text (e.g. ser)"
                     apiData={apiData}
                     id="combo-id-first"
-                    value="ser"
                     required={false}
-                    renderLimit={3}
+                    renderView={5}
                     emptyStatePicture={{
                       src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
                       srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
@@ -51,6 +66,7 @@ the input field.
                     }}
                     handleInput={(value) => {
                       // eslint-disable-next-line no-console
+                      setComboBoxValue(value)
                       console.log(value)
                     }}
                     inlineFiltering={true}

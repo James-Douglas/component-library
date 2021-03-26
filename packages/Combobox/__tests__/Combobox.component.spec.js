@@ -18,14 +18,17 @@ jest.mock('../../Utils/breakpoint', () => ({
   isDesktop: jest.fn(() => mockUseIsDesktopValue),
 }));
 
+const filterApiData = (value) => apiData.filter((item) => item.toLowerCase().includes(value.toLowerCase()));
+
 describe('Combo', () => {
   it('renders correct number options, renders correct with suppress class', () => {
+    const value = 'que';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="que"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -170,12 +173,13 @@ describe('Combo', () => {
   });
 
   it('renders correct when click', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -192,12 +196,13 @@ describe('Combo', () => {
 
   it('selects an item passed it via callback', () => {
     const onSelectCb = jest.fn();
+    const value = 'pre';
     const { container } = render(
       <Combobox
         handleChange={onSelectCb}
         label="First Combo label"
-        prefillValue="pre"
-        apiData={apiData}
+        prefillValue={value}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -215,13 +220,14 @@ describe('Combo', () => {
 
   it('selects an item passed it via callback', () => {
     const onInputCb = jest.fn();
+    const value = 'pre';
     const { container } = render(
       <Combobox
         handleInput={onInputCb}
         handleChange={() => {}}
         label="First Combo label"
-        prefillValue="pre"
-        apiData={apiData}
+        prefillValue={value}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -234,12 +240,13 @@ describe('Combo', () => {
   });
 
   it('renders correct when click', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -255,12 +262,13 @@ describe('Combo', () => {
   });
 
   it('renders correct when click on second', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent="Can’t find your address?"
         required={false}
@@ -294,12 +302,13 @@ describe('Combo', () => {
   });
 
   it('accessibility - arrow up', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         required={false}
         characterMinimum={5}
@@ -336,12 +345,13 @@ describe('Combo', () => {
   });
 
   it('renders correct opposite characterMinimum and visibility list', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -450,12 +460,13 @@ describe('Combo', () => {
   });
 
   it('accessibility - arrow down', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -479,12 +490,13 @@ describe('Combo', () => {
   });
 
   it('accessibility - goes by list and exit', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         required={false}
         characterMinimum={5}
@@ -529,12 +541,13 @@ describe('Combo', () => {
   });
 
   it('accessibility - goes up by list and exit', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         required={false}
         characterMinimum={5}
@@ -557,12 +570,13 @@ describe('Combo', () => {
   });
 
   it('accessibility - ArrowUp maxLength condition', () => {
+    const value = 'pr';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="pr"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         required={false}
         characterMinimum={5}
@@ -576,12 +590,13 @@ describe('Combo', () => {
   });
 
   it('accessibility - arrow up and continue focus on blue button', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -608,12 +623,13 @@ describe('Combo', () => {
   });
 
   it('accessibility - arrow down then  click enter', () => {
+    const value = 'prese';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="prese"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -772,12 +788,13 @@ describe('Combo', () => {
   });
   it('check on item close', () => {
     mockUseIsDesktopValue = false;
+    const value = 'pr';
     const { container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="pr"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}
@@ -820,12 +837,13 @@ describe('Combo', () => {
   });
   it('no results check condition ', () => {
     mockUseIsDesktopValue = false;
+    const value = 'random';
     const { getByText, container } = render(
       <Combobox
         handleChange={() => {}}
-        prefillValue="random"
+        prefillValue={value}
         label="First Combo label"
-        apiData={apiData}
+        apiData={filterApiData(value)}
         id="combo-id-first"
         listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
         required={false}

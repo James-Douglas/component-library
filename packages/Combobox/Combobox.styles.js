@@ -142,6 +142,8 @@ export const StyledComboListWrap = styled.div`
     max-width: ${({ theme }) => (theme.maxWidth.full)};
     height: ${({ theme }) => (theme.minHeight.full)};
   `}
+  max-height: ${({ renderView }) => `${renderView * 52}px`};
+  overflow-y: auto;
 `;
 
 export const StyledComboList = styled.div`
