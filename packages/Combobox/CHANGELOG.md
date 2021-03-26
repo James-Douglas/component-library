@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.12.33...@comparethemarketau/manor-combobox@0.13.0) (2021-03-26)
+
+
+### Bug Fixes
+
+* **combobox:** removed filtering of results ([#621](https://github.com/comparethemarketau/manor-react/issues/621)) ([c9fa4d8](https://github.com/comparethemarketau/manor-react/commit/c9fa4d806f49e2477979463ad6f6df713efeb667))
+
+
+### BREAKING CHANGES
+
+* **combobox:** we are now using renderView
+
+ETT-2001
+
+* fix(combobox): removed filteredValues
+
+ETT-2001
+
+Co-authored-by: Patrick Jones <patrick.jones@comparethemarket.com.au>
+
+
+
+
+
 ## [0.12.33](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.12.32...@comparethemarketau/manor-combobox@0.12.33) (2021-03-22)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combobox
