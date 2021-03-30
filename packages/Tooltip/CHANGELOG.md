@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.18.2...@comparethemarketau/manor-tooltip@0.19.0) (2021-03-30)
+
+
+### Bug Fixes
+
+* 🐛 removed variant prop from tooltip ([#622](https://github.com/comparethemarketau/manor-react/issues/622)) ([47f60d5](https://github.com/comparethemarketau/manor-react/commit/47f60d5f7b55db299ef3fcb39b3c00b19f3d22d5))
+
+
+### BREAKING CHANGES
+
+* variant prop is removed - tooltips need to be styled with classname if
+needed currently
+
+
+
+
+
 ## [0.18.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.18.1...@comparethemarketau/manor-tooltip@0.18.2) (2021-03-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tooltip
