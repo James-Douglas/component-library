@@ -13,6 +13,8 @@ The Tooltip component is used to display additional information on hover over th
 Form components will typically expose a tooltip prop, internally form components handle
 tooltip positioning.
 
+Please note that the `variant` prop has been removed - the latest tippy.js doesn't support it. Style with the classname if required.
+
 <Preview>
   <Story name="tooltip" height="150px">
     <div style={{ padding: '2%'}}>
@@ -37,11 +39,11 @@ tooltip positioning.
 
 <Story name="tooltip with props" height="150px" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
-    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs();
+    const { title, body, placement, screenReaderLabel }= getTooltipKnobs();
     return (
       <div style={{ padding: '2%'}}>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: variant === 'light' ? '#042649' : 'inherit' }}>
-          <Tooltip title={title} body={body} placement={placement} variant={variant} screenReaderLabel={screenReaderLabel} />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <Tooltip title={title} body={body} placement={placement} screenReaderLabel={screenReaderLabel} />
         </div>
       </div>
     );

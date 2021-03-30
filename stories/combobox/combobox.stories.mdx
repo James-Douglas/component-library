@@ -130,7 +130,7 @@ in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
     const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
     const helperMessage = text('helperMessage', 'Please start typing', tooltipGroupId);
     const listInfoBoxContent = text('listInfoBoxContent', 'This is secondary information', componentPropsId);
-    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
+    const { title, body, placement, screenReaderLabel }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%'}}>
         <FluidContainer>
@@ -162,7 +162,6 @@ in `apiData`, the `emptyStateHeading` and `emptyStateChildren` are displayed.
                   body,
                   placement,
                   screenReaderLabel,
-                  variant
                 }}
               />
             </Column>

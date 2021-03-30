@@ -43,7 +43,7 @@ import getTooltipKnobs from '../../tooltipKnobs';
     const disabled = boolean('disabled', false, componentPropsId);
     const readonly = boolean('readonly', false, componentPropsId);
     const currencySymbol = text('currencySymbol', '$', componentPropsId);
-    const { title, body, placement, screenReaderLabel, variant } = getTooltipKnobs(tooltipGroupId);
+    const { title, body, placement, screenReaderLabel } = getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
         <CurrencyInput
@@ -54,7 +54,6 @@ import getTooltipKnobs from '../../tooltipKnobs';
             body,
             placement,
             screenReaderLabel,
-            variant
           }}
           validationMessage={validationMessage}
           maxLength={maxLength}

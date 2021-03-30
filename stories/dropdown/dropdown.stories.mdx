@@ -116,7 +116,7 @@ selection will update to the selected option.
     const required = boolean('required', false, componentPropsId);
     const prefixContent = text('prefix', '', componentPropsId);
     const dropdownVariant = select('variant', ['default', 'text', 'text-fixed-chevron'], 'default', componentPropsId);
-    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
+    const { title, body, placement, screenReaderLabel }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
         <FluidContainer>
@@ -137,7 +137,6 @@ selection will update to the selected option.
                   body,
                   placement,
                   screenReaderLabel,
-                  variant
                 }}
                 handleChange={(event, value, option) => { console.log('VALUE:', value, 'OPTION:', option); }}
                 handleFocus={() => { console.log('dropdown was focused') }}

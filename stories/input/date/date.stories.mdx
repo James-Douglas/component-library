@@ -65,7 +65,7 @@ import getTooltipKnobs from '../../tooltipKnobs';
     const readonly = boolean('readonly', false, componentPropsId);
     const prefixContent = text('prefixContent', undefined, componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
-    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
+    const { title, body, placement, screenReaderLabel }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
         <DateInput
@@ -75,7 +75,6 @@ import getTooltipKnobs from '../../tooltipKnobs';
             body,
             placement,
             screenReaderLabel,
-            variant
           }}
           validationMessage={validationMessage}
           maxLength={maxLength}

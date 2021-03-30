@@ -20,7 +20,6 @@ const getTooltipKnobs = (groupId = null) => {
     body: text('body', 'This is a an example tooltip', groupId),
     placement: select('placement', placementOptions, 'right', groupId),
     screenReaderLabel: text('screenReaderLabel', 'tooltip screenReaderLabel', groupId),
-    variant: select('variant', { dark: 'dark', light: 'light' }, 'dark', groupId),
   };
 };
 
