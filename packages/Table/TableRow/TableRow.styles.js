@@ -1,12 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledTableRow = styled.div`
   color: inherit;
   display: table-row;
   vertical-align: middle;
-  &:hover {
-    background: ${({ hover, theme }) => (hover ? theme.table.rowHoverBackground : 'none')};
-  }
+  ${({ theme, hover }) => hover && css`
+    background: ${theme.table.rowHoverBackground};
+  `}
 `;
-
 export default StyledTableRow;

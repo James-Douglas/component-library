@@ -5,7 +5,6 @@ export const StyledDropdownMainWrap = styled.div`
     box-sizing: border-box;
   }
   position: relative;
-  width: 100%;
   margin-bottom: ${({ theme }) => theme.spacing[20]};
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize.base};
@@ -40,7 +39,7 @@ export const StyledDropdownContent = styled.div`
 `;
 
 export const StyledDropdownButton = styled.div`
-  background: ${({ theme }) => theme.dropdown.background};
+  background: ${({ theme, variant }) => (variant === 'text' || variant === 'text-fixed-chevron' ? 'transparent' : theme.dropdown.background)};
   border: ${({ theme }) => theme.borders.component};
   &:hover {
     border: ${({ theme, variant }) => (variant === 'text' || variant === 'text-fixed-chevron' ? 'none' : theme.combo.list.item.borderFocus)};
@@ -72,8 +71,11 @@ export const StyledDropdownButton = styled.div`
   `}
   ${({ variant }) => (variant === 'text' || variant === 'text-fixed-chevron') && css`
     border: none;
+    border-radius: ${({ theme }) => theme.borderRadius.default};
+    transition: ${({ theme }) => theme.transition.default};
     & div {
-      padding-left: 0;
+      padding-left: ${({ theme }) => theme.spacing['8']};
+      padding-right: ${({ theme }) => theme.spacing['8']};
       color: ${({ theme }) => theme.colors.primary500};
     }
   `}
@@ -148,6 +150,11 @@ export const StyledAffix = styled.span`
 export const StyledDropdownContainer = styled.div`
   position: relative;
   width: 100%;
+  ${({ variant }) => (variant === 'text' || variant === 'text-fixed-chevron') && css`
+    margin-left: -${({ theme }) => theme.spacing[8]};
+    margin-right: -${({ theme }) => theme.spacing[8]};
+    width: auto;
+  `}
 `;
 
 export const StyledPlaceholder = styled.span`

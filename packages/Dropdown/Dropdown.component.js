@@ -237,7 +237,7 @@ const Dropdown = ({
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...labelProps}
         />
-        <StyledDropdownContainer ref={dropdownWrapper}>
+        <StyledDropdownContainer ref={dropdownWrapper} variant={variant}>
           <StyledDropdownButton
             ref={button}
             role="button"

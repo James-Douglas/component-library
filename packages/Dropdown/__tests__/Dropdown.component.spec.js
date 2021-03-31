@@ -405,4 +405,24 @@ describe('Dropdown', () => {
 
     expect(getByText('2First Item - Title')).toBeInTheDocument();
   });
+
+  it('renders the variant "text" with correct styles', () => {
+    mockUseIsDesktopValue = false;
+    const { container } = render(
+      <Dropdown
+        id="input-one"
+        label="Dropdown Label"
+        variant="text"
+      >
+        <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+        <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+      </Dropdown>,
+    );
+    const dropdownWrapper = container.querySelector('[role="button"]').parentElement;
+    expect(dropdownWrapper).toHaveStyleRule('margin-left', `-${ctmTheme.spacing[8]}`);
+    expect(dropdownWrapper).toHaveStyleRule('margin-right', `-${ctmTheme.spacing[8]}`);
+    expect(dropdownWrapper).toHaveStyleRule('width', 'auto');
+    const buttonDropdown = container.querySelector('[role="button"]');
+    expect(buttonDropdown).toHaveStyleRule('background', 'transparent');
+  });
 });
