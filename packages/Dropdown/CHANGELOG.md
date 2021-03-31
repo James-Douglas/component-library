@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.3...@comparethemarketau/manor-dropdown@0.12.4) (2021-03-31)
+
+**Note:** Version bump only for package @comparethemarketau/manor-dropdown
+
+
+
+
+
 ## [0.12.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.2...@comparethemarketau/manor-dropdown@0.12.3) (2021-03-30)
 
 **Note:** Version bump only for package @comparethemarketau/manor-dropdown
