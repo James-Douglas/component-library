@@ -24,11 +24,11 @@ import {
  * @param body {string} - Optional body for the tooltip
  * @returns {*}
  */
-export function getContent(title, body) {
+export function getContent(title, body, variant) {
   return (
     <StyledTooltipContent>
-      {title ? <StyledTooltipTitle><Typography variant="body2" component="span">{title}</Typography></StyledTooltipTitle> : ''}
-      <StyledTooltipBody><Typography variant="body2" component="span">{body}</Typography></StyledTooltipBody>
+      {title ? <StyledTooltipTitle variant={variant}><Typography variant="body2" component="span">{title}</Typography></StyledTooltipTitle> : ''}
+      <StyledTooltipBody variant={variant}><Typography variant="body2" component="span">{body}</Typography></StyledTooltipBody>
     </StyledTooltipContent>
   );
 }
@@ -39,6 +39,7 @@ const Tooltip = ({
   title,
   body,
   placement,
+  variant,
   screenReaderLabelId,
   screenReaderLabel,
   children,
@@ -122,7 +123,7 @@ const Tooltip = ({
 
   return (
     <StyledTippy
-      content={getContent(title, body)}
+      content={getContent(title, body, variant)}
       arrow={arrow}
       animation="scale"
       duration={[150, 75]}
@@ -132,6 +133,7 @@ const Tooltip = ({
       placement={isDesktop ? placement : 'bottom'}
       maxWidth={500}
       delay={125}
+      variant={variant}
       className={className}
     >
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
@@ -212,6 +214,10 @@ export const tooltipPropTypes = {
     'right-start', 'right-end',
   ]),
   /**
+   * Light or dark variant (see design system documentation for use cases)
+   */
+  variant: PropTypes.oneOf(['dark', 'light']),
+  /**
    * Classes to be applied to the Tooltip component
    */
   className: PropTypes.string,
@@ -238,6 +244,7 @@ const defaultProps = {
   screenReaderLabel: '',
   screenReaderLabelId: '',
   placement: 'right',
+  variant: 'dark',
   className: 'ctm-tooltip',
   children: null,
   iconSize: '1x',

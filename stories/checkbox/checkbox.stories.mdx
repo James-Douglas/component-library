@@ -157,7 +157,7 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
     const checkboxBIsSelected = boolean('isSelected', false, checkboxBPropsId);
     const checkboxBInvalid = boolean('invalid', false, checkboxBPropsId);
     const checkboxBInvertColor = boolean('invertColour', false, checkboxBPropsId);
-    const { title, body, placement, screenReaderLabel } = getTooltipKnobs(tooltipGroupId);
+    const { title, body, placement, screenReaderLabel, variant } = getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
         <CheckboxGroup
@@ -171,6 +171,7 @@ be used singularly via the `Checkbox` component, or can be grouped logically via
             body,
             placement,
             screenReaderLabel,
+            variant
           }}
         >
           <Checkbox id={checkboxAId} label={checkboxALabel} disabled={checkboxADisabled} isSelected={checkboxAIsSelected} invalid={checkboxAInvalid} invertColour={checkboxAInvertColor} />

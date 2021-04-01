@@ -61,11 +61,16 @@ export const StyledTippy = styled(({ variant, ...props }) => (<Tippy {...props} 
   &.tippy-content {
     padding: 0;
   }
-  &.tippy-tooltip {
-    background-color: ${({ theme, variant }) => (variant === 'dark'
+  &.tippy-box {
+    background: ${({ theme, variant }) => (variant === 'dark'
     ? theme.tooltip.background
     : theme.tooltip.backgroundLight)};
     box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.1);
+  }
+  &.tippy-box > .tippy-arrow {
+    color: ${({ theme, variant }) => (variant === 'dark'
+    ? theme.tooltip.background
+    : theme.tooltip.backgroundLight)};
   }
   &.tippy-tooltip[data-placement^='right'] > .tippy-arrow {
     border-right-color: ${({ theme, variant }) => (variant === 'dark'

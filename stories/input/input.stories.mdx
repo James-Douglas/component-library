@@ -83,7 +83,7 @@ populated with `prefillValue` and prefilled styles will be applied.
     const prefixContent = text('prefixContent', '', componentPropsId);
     const prefixBlock = boolean('prefixBlock', false, componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
-    const { title, body, placement, screenReaderLabel }= getTooltipKnobs(tooltipGroupId);
+    const { title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
         <Input
@@ -94,6 +94,7 @@ populated with `prefillValue` and prefilled styles will be applied.
             body,
             placement,
             screenReaderLabel,
+            variant
           }}
           validationMessage={validationMessage}
           maxLength={maxLength}
