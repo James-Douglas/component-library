@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-modal",
-  "version": "0.10.27",
+  "version": "0.10.28",
   "description": "Manor Modal component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -32,7 +32,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-input": "^0.18.21"
+    "@comparethemarketau/manor-input": "^0.18.22"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.7.11",
