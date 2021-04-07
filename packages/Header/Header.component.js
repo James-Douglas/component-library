@@ -12,7 +12,7 @@ import {
 } from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, doSignOutSuccess,
+  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, doSignOutSuccess, authVerifyMobile,
 }) => {
   const { isDesktop } = useContext(ManorContext);
   const size = (stuck || !isDesktop) ? 'small' : 'large';
@@ -35,6 +35,7 @@ const Header = ({
             visible="true"
             id="auth"
             doSignOutSuccess={doSignOutSuccess}
+            verifyMobile={authVerifyMobile}
           />
           )}
         </StyledAdditionalContent>
@@ -84,6 +85,10 @@ Header.propTypes = {
    * Callback when the auth header successfully signs out
    */
   doSignOutSuccess: PropTypes.func,
+  /**
+   * Should we ask the user to verify their mobile on sign in or sign up
+   */
+  authVerifyMobile: PropTypes.bool,
 };
 
 Header.defaultProps = {
@@ -94,6 +99,7 @@ Header.defaultProps = {
   authuiURL: null,
   authuiComponentName: 'AuthHeader',
   doSignOutSuccess: null,
+  authVerifyMobile: false,
 };
 
 export default Header;
