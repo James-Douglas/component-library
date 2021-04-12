@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.4...@comparethemarketau/manor-buttongroup@0.17.5) (2021-04-12)
+
+
+### Bug Fixes
+
+* **segmented-button:** added grey to disable state of button ([#627](https://github.com/comparethemarketau/manor-react/issues/627)) ([58a4a11](https://github.com/comparethemarketau/manor-react/commit/58a4a11a7096e5eec0a8488385445bddb108a8d9))
+
+
+
+
+
 ## [0.17.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.3...@comparethemarketau/manor-buttongroup@0.17.4) (2021-04-01)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup

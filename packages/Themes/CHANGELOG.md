@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.13.1...@comparethemarketau/manor-themes@0.13.2) (2021-04-12)
+
+
+### Bug Fixes
+
+* **segmented-button:** added grey to disable state of button ([#627](https://github.com/comparethemarketau/manor-react/issues/627)) ([58a4a11](https://github.com/comparethemarketau/manor-react/commit/58a4a11a7096e5eec0a8488385445bddb108a8d9))
+
+
+
+
+
 ## [0.13.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.13.0...@comparethemarketau/manor-themes@0.13.1) (2021-03-18)
 
 **Note:** Version bump only for package @comparethemarketau/manor-themes

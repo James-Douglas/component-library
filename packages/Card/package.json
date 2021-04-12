@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-card",
-  "version": "0.6.17",
+  "version": "0.6.18",
   "description": "Manor Card component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,8 +18,8 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.6.1",
-    "@comparethemarketau/manor-utils": "^0.4.3",
+    "@comparethemarketau/manor-hooks": "^0.6.2",
+    "@comparethemarketau/manor-utils": "^0.4.4",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.19.1...@comparethemarketau/manor-tooltip@0.19.2) (2021-04-12)
+
+**Note:** Version bump only for package @comparethemarketau/manor-tooltip
+
+
+
+
+
 ## [0.19.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-tooltip@0.19.0...@comparethemarketau/manor-tooltip@0.19.1) (2021-04-01)
 
 **Note:** Version bump only for package @comparethemarketau/manor-tooltip
