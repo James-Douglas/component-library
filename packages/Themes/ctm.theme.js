@@ -609,6 +609,7 @@ const ctmTheme = {
     },
     button: {
       text: colors.grey900,
+      disabledColor: colors.grey500,
     },
     multiSelect: {
       width: '30.4rem',

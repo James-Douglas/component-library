@@ -3,6 +3,10 @@ import styled, { css } from 'styled-components';
 export const StyledWrapper = styled.div`
   padding: 1.4rem 1.6rem 0.2rem 1.6rem;
   color: ${({ theme }) => theme.toggle.button.text};
+  ${({ disabled }) => disabled
+    && css`
+      color: ${({ theme }) => theme.toggle.button.disabledColor};
+    `};
 `;
 
 export const StyledSegmentedButtonContent = styled.div`

@@ -45,7 +45,7 @@ const SegmentedButton = ({
       handleClick={handleClick}
     >
       <ButtonLabel id={id}>
-        <StyledWrapper>
+        <StyledWrapper disabled={disabled}>
           <StyledSegmentedButtonContent
             fixed={fixed}
             contentWidth={contentWidth}
