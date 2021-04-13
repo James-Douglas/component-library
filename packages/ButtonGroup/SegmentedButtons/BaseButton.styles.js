@@ -13,7 +13,7 @@ export const StyledButton = styled.div`
   &:not(:first-child) {
     border-left: ${({ theme }) => theme.borders.component};
   }
-  &:hover {
+  &:hover:not([disabled]) {
     border: ${({ theme }) => theme.borders.hover};
     z-index: 1;
   }

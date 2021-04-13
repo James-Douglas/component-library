@@ -38,6 +38,7 @@ const BaseButton = ({
       ref={wrapperElement}
       className={className}
       checked={checked}
+      disabled={disabled}
     >
       <StyledToggleInput
         tabIndex={0}
