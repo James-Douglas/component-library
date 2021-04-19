@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-link",
-  "version": "0.6.11",
+  "version": "0.6.12",
   "description": "Manor Link component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

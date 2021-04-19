@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-utils",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Manor Utils",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",

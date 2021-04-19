@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-notification",
-  "version": "0.14.13",
+  "version": "0.14.14",
   "description": "Manor Notification component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,8 +18,8 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.6.2",
-    "@comparethemarketau/manor-link": "^0.6.11",
+    "@comparethemarketau/manor-hooks": "^0.6.3",
+    "@comparethemarketau/manor-link": "^0.6.12",
     "@comparethemarketau/manor-typography": "^0.15.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-light-svg-icons": "^5.12.1",

@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-pill",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Manor Pill component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.6.2",
+    "@comparethemarketau/manor-hooks": "^0.6.3",
     "@comparethemarketau/manor-themes": "^0.13.2",
     "@comparethemarketau/manor-typography": "^0.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
