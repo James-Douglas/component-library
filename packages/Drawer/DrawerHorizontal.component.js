@@ -1,11 +1,14 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, {
+  useRef, useState, useEffect, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
-import { useId } from '@comparethemarketau/manor-hooks';
+import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useId, useMountEffect } from '@comparethemarketau/manor-hooks';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import { Container } from '@comparethemarketau/manor-grid';
-import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import classnames from 'classnames';
 import {
   StyledDrawer,
@@ -30,15 +33,29 @@ const DrawerHorizontal = ({
   keyLine,
   zIndex,
   preview,
+  trackingLabel,
 }) => {
   const id = useId(propsId);
   const drawerElement = useRef(null);
   const [visibility, setVisibility] = useState(visible);
   const [previewClicked, setPreviewClicked] = useState(preview.clicked || false);
+  const { trackInteraction } = useContext(ManorContext);
+  const firstUpdate = useRef(true);
 
   useEffect(() => {
     setVisibility(visible);
   }, [visible, setVisibility]);
+
+  // Dont track the initial mount of the drawer unless it's being mounted in the visible state
+  useEffect(() => {
+    if (!firstUpdate.current || visibility) {
+      trackInteraction(visibility ? 'Show' : 'Hide', 'Drawer', direction, trackingLabel, '');
+    }
+  }, [visibility, firstUpdate, direction, trackingLabel, trackInteraction]);
+
+  useMountEffect(() => {
+    firstUpdate.current = false;
+  });
 
   return (
     <>
@@ -89,13 +106,17 @@ const DrawerHorizontal = ({
 
 DrawerHorizontal.propTypes = {
   /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
+  /**
    *  Unique identifier for the Drawer
    */
   id: PropTypes.string,
   /**
    *  Direction param to dictate where the drawer is coming from.
    */
-  direction: PropTypes.string,
+  direction: PropTypes.oneOf(['top', 'bottom']),
   /**
    *  Defines height or width (depending from direction) of the slide (size in pixels).
    */
@@ -156,7 +177,7 @@ DrawerHorizontal.propTypes = {
 
 DrawerHorizontal.defaultProps = {
   id: null,
-  direction: 'right',
+  direction: 'bottom',
   size: 250,
   children: '',
   closeButton: false,

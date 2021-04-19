@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="How to/Development/Development guide" />
+
+# Development
+
+## Package management
+
+The manor repository is a lerna/yarn workspace monorepo - please ensure you only use yarn as your package manager.
+
+## Common commands
+
+- `yarn storybook` - runs storybook for development
+- `yarn test` - runs the tests (this is actually a CI version used on bamboo, for development see `yarn tdd`)
+- `yarn tdd` - runs the tests with logs
+- `yarn lint` - runs the linter
+- `yarn build` - runs the build
+- `yarn commit` - runs git-cz - we rely on commit message formatting so all commits should be run via this command.
+
+## Committing
+
+Please use `yarn commit` to commit, this command runs `git-cz` which will guide your through committing to ensure
+it is properly formatted.
+
+Be sure to check out the
+[Contribution guidelines for this project](https://github.com/comparethemarketau/manor-react/blob/master/CONTRIBUTING.md)
+before your first commit!
+
+## Merging your changes
+
+To ensure that your feature triggers a release of the library, please format your merge commit with the following
+structure (using `yarn commit` will guide you through this):
+
+`feat(componentName): change summary/ticket number here`
+
+You can then remove the description field, and merge your changes
+
+## Pipeline
+
+[Bamboo build plan](https://bamboo.comparethemarket.com.au/browse/APUI-MFB)
+
+### Feature branches
+
+Navigate to the manor build plan (above) and enable your branch (if necessary). A second step ("Deploy Feature Instance")
+can be run once a build has completed to deploy a feature branch. The feature branch will be accessible at
+`http://<ticket>.dev.comparethemarket.cloud/` (e.g. `http://sml-1504.dev.comparethemarket.cloud/`).
+
+Like all CTM feature branches, this relies on correct branch naming (`feature/<ticket>-<description>`)
+
+

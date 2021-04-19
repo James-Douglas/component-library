@@ -37,4 +37,10 @@ describe('Logo', () => {
     const { container } = render(<Logo size="small" picture={pictureProps} />);
     expect(container.querySelector('#logo')).toHaveStyle(`height: ${ctmTheme.logo.heightSmall}`);
   });
+
+  describe('interaction tracking', () => {
+    it('tracks click events', () => {
+
+    });
+  });
 });

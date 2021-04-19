@@ -26,6 +26,7 @@ export function getToggleContent(id, icon, title, description) {
 }
 
 const IconToggle = ({
+  trackingLabel,
   id: propsId,
   title,
   description,
@@ -39,8 +40,10 @@ const IconToggle = ({
   handleBlur,
   handleClick,
   icon,
+  toggleGroupLabel,
 }) => {
   const id = useId(propsId);
+
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
@@ -59,6 +62,9 @@ const IconToggle = ({
       handleFocus={handleFocus}
       handleBlur={handleBlur}
       handleClick={handleClick}
+      trackingLabel={trackingLabel}
+      toggleGroupLabel={toggleGroupLabel}
+      variant="IconToggle"
     >
       {getToggleContent(id, icon, title, description)}
     </BaseToggle>
@@ -66,6 +72,10 @@ const IconToggle = ({
 };
 
 IconToggle.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the IconToggle
    */
@@ -122,6 +132,10 @@ IconToggle.propTypes = {
     PropTypes.object, // eslint-disable-line
     PropTypes.string,
   ]),
+  /**
+   * Label of the toggle group, the ToggleGroup automatically populates this
+   */
+  toggleGroupLabel: PropTypes.string,
 };
 
 IconToggle.defaultProps = {
@@ -136,6 +150,7 @@ IconToggle.defaultProps = {
   handleBlur: null,
   handleClick: null,
   icon: null,
+  toggleGroupLabel: '',
 };
 
 export default IconToggle;

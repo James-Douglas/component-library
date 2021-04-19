@@ -24,7 +24,8 @@
   },
   "devDependencies": {
     "@comparethemarketau/manor-provider": "^0.8.2",
-    "@comparethemarketau/manor-themes": "^0.13.2"
+    "@comparethemarketau/manor-themes": "^0.13.2",
+    "react-tracking": "^8.1.0"
   },
   "peerDependencies": {
     "react": "^16.11.0",

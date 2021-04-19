@@ -30,6 +30,7 @@ export function getDisplayLabel(label, backgroundColor) {
 }
 
 const ColorToggle = ({
+  trackingLabel,
   id: propsId,
   label,
   backgroundColor,
@@ -43,8 +44,10 @@ const ColorToggle = ({
   handleFocus,
   handleBlur,
   handleClick,
+  toggleGroupLabel,
 }) => {
   const id = useId(propsId);
+
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
@@ -68,6 +71,9 @@ const ColorToggle = ({
       handleFocus={handleFocus}
       handleBlur={handleBlur}
       handleClick={handleClick}
+      trackingLabel={trackingLabel}
+      toggleGroupLabel={toggleGroupLabel}
+      variant="ColorToggle"
     >
       <ToggleLabel id={id}>
         <StyledColourToggle>
@@ -80,6 +86,10 @@ const ColorToggle = ({
 };
 
 ColorToggle.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the ColorToggle
    */
@@ -133,6 +143,10 @@ ColorToggle.propTypes = {
    * Handler function called on click of the toggle
    */
   handleClick: PropTypes.func,
+  /**
+   * Label of the toggle group, the ToggleGroup automatically populates this
+   */
+  toggleGroupLabel: PropTypes.string,
 };
 
 ColorToggle.defaultProps = {
@@ -147,6 +161,7 @@ ColorToggle.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   handleClick: null,
+  toggleGroupLabel: '',
 };
 
 export default ColorToggle;

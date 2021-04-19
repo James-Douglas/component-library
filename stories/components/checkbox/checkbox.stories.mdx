@@ -1,0 +1,184 @@
+import { useState } from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
+import { Checkbox, CheckboxGroup } from '@comparethemarketau/manor-checkbox';
+import { Container, Row, Column } from '@comparethemarketau/manor-grid';
+import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import CheckboxGroupView from './checkboxGroup.view';
+import getTooltipKnobs from '../../tooltipKnobs';
+import sergei from '../../../images/sergei.png';
+
+<Meta title="Components/Checkbox" component={Checkbox} />
+
+# Checkbox
+
+Checkboxes allow users to select one or more options by clicking on the checkbox or it's label. In Manor, checkboxes can
+be used singularly via the `Checkbox` component, or can be grouped logically via the `CheckboxGroup` component.
+
+<Preview>
+  <Story name="checkbox">
+    {() => {
+      const [ error, setError ] = useState('Please check the box');
+      const handler = (id, value) => {
+        if (value) {
+          setError('')
+        } else {
+          setError('Please check the box')
+        }
+      }
+      return (
+        <div style={{ padding: '2%' }}>
+          <Container>
+            <Row>
+              <Column cols={4}>
+                <Checkbox id="chk1" label="A checkbox" trackingLabel="A checkbox" />
+                <Checkbox id="chk2" label="A selected checkbox" trackingLabel="A selected checkbox" isSelected />
+              </Column>
+              <Column cols={4}>
+                <Checkbox id="chk3" label="A prefilled checkbox" trackingLabel="A prefilled checkbox" prefillValue />
+                <Checkbox id="chk4" label="An errored checkbox" trackingLabel="An errored checkbox" validationMessage={error} handleChange={(id, value) => { handler(id, value)} }/>
+              </Column>
+              <Column cols={4}>
+                <Checkbox id="chk5" label="A disabled checkbox" trackingLabel="A disabled checkbox" disabled />
+              </Column>
+            </Row>
+          </Container>
+        </div>
+      )
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="checkbox group">
+    <div style={{ padding: '2%' }}>
+      <Container>
+        <Row>
+          <Column>
+            <CheckboxGroup
+              label="Checkbox group example"
+              tooltip={{ trackingLabel: 'checkbox group example tooltip', title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
+              groupId="group-1"
+              colSize={12}
+              handleChange={(checkboxes) => {console.warn(checkboxes)}}
+            >
+              <Checkbox id="A-1" label="One" trackingLabel="One" />
+              <Checkbox id="A-2" label="Two" trackingLabel="Two" />
+              <Checkbox id="A-3" label="Three" trackingLabel="Three" />
+            </CheckboxGroup>
+             <CheckboxGroup
+              label="Another checkbox group example"
+              tooltip={{ trackingLabel: 'another checkbox group example tooltip', title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
+              groupId="group-2"
+              colSize={12}
+              handleChange={(checkboxes) => {console.warn(checkboxes)}}
+            >
+              <Checkbox id="x-1" label="One" trackingLabel="One" />
+              <Checkbox id="x-2" label="Two" trackingLabel="Two" />
+              <Checkbox id="x-3" label="Three" trackingLabel="Three" />
+              <Checkbox id="x-4" label="Four" trackingLabel="Four" />
+            </CheckboxGroup>
+          </Column>
+        </Row>
+      </Container>
+    </div>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="boxed checkbox group">
+    <div style={{ padding: '2%' }}>
+      <Container>
+        <Row>
+          <Column>
+             <CheckboxGroup
+              label="Checkbox group example with boxed variant"
+              tooltip={{ trackingLabel: 'checkbox group example boxed tooltip', title: 'Checkbox group', body: 'This is a tooltip for the checkbox group' }}
+              groupId="group-2"
+              colSize={12}
+              handleChange={(checkboxes) => {console.warn(checkboxes)}}
+            >
+              <Checkbox disabled="true" id="b-1" label="One - disabled" trackingLabel="One - disabled" variant="boxed" />
+              <Checkbox id="b-2" image={sergei} label="Two with an image" trackingLabel="Two with an image" variant="boxed" />
+              <Checkbox id="b-3" label="Three" trackingLabel="Three" variant="boxed" />
+              <Checkbox id="b-4" label="This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label. This is a very long label."  trackingLabel="This is a very long label." variant="boxed"/>
+            </CheckboxGroup>
+          </Column>
+        </Row>
+      </Container>
+    </div>
+  </Story>
+</Preview>
+
+<Story name="checkbox group demo" parameters={{ docs: { disable: true } }}>
+  <div style={{ padding: '2%'}}>
+     <CheckboxGroupView />
+  </div>
+</Story>
+
+## Behaviour
+
+* Clicking on either the checkbox or it's label will toggle the checkbox.
+
+### Accessibility
+* Checkboxes can be focused via the `Tab` key.
+* Checkboxes can be toggled via the `Space` key when focused.
+
+### Checkbox Props
+
+<Props of={Checkbox} />
+
+### CheckboxGroup Props
+
+<Props of={CheckboxGroup} />
+
+<Story name="checkbox with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const checkboxGroupPropsId = 'CheckboxGroup props';
+    const checkboxAPropsId = 'Checkbox A props';
+    const checkboxBPropsId = 'Checkbox B props';
+    const tooltipGroupId = 'Tooltip Props';
+    //checkbox group
+    const groupId = text('groupId', 'checkbox-with-props', checkboxGroupPropsId);
+    const label = text('label', 'Checkbox group label', checkboxGroupPropsId);
+    const validationMessage = text('validationMessage', '', checkboxGroupPropsId);
+    const colSize = number('colSize', 6, {}, checkboxGroupPropsId);
+    //checkbox A
+    const checkboxAId = text('id', 'checkbox-a', checkboxAPropsId);
+    const checkboxALabel = text('label', 'Checkbox A', checkboxAPropsId);
+    const checkboxADisabled = boolean('disabled', false, checkboxAPropsId);
+    const checkboxAIsSelected = boolean('isSelected', false, checkboxAPropsId);
+    const checkboxAInvalid = boolean('invalid', false, checkboxAPropsId);
+    const checkboxAInvertColor = boolean('invertColour', false, checkboxAPropsId);
+   //checkbox B
+    const checkboxBId = text('id', 'checkbox-b', checkboxBPropsId);
+    const checkboxBLabel = text('label', 'Checkbox B', checkboxBPropsId);
+    const checkboxBDisabled = boolean('disabled', false, checkboxBPropsId);
+    const checkboxBIsSelected = boolean('isSelected', false, checkboxBPropsId);
+    const checkboxBInvalid = boolean('invalid', false, checkboxBPropsId);
+    const checkboxBInvertColor = boolean('invertColour', false, checkboxBPropsId);
+    const { trackingLabel, title, body, placement, screenReaderLabel, variant } = getTooltipKnobs(tooltipGroupId);
+    return (
+      <div style={{ padding: '2%' }}>
+        <CheckboxGroup
+          groupId={groupId}
+          label={label}
+          validationMessage={validationMessage}
+          colSize={colSize}
+          handleChange={()=>{}}
+          tooltip={{
+            trackingLabel,
+            title,
+            body,
+            placement,
+            screenReaderLabel,
+            variant
+          }}
+        >
+          <Checkbox id={checkboxAId} label={checkboxALabel} trackingLabel={checkboxALabel} disabled={checkboxADisabled} isSelected={checkboxAIsSelected} invalid={checkboxAInvalid} invertColour={checkboxAInvertColor} />
+          <Checkbox id={checkboxBId} label={checkboxBLabel} trackingLabel={checkboxBLabel} disabled={checkboxBDisabled} isSelected={checkboxBIsSelected} invalid={checkboxBInvalid} invertColour={checkboxBInvertColor} />
+        </CheckboxGroup>
+      </div>
+    )
+  }}
+</Story>

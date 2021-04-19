@@ -1,0 +1,222 @@
+import { useState } from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, boolean} from '@storybook/addon-knobs';
+import { Notification } from '@comparethemarketau/manor-notification';
+import { Container, Row, Column } from '@comparethemarketau/manor-grid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowLeft } from '@fortawesome/pro-regular-svg-icons/faLongArrowLeft';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
+import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContainer.component';
+
+<Meta title="Components/Notifications/Hint" component={Notification} />
+
+# Hint Notifications
+
+### General Notification
+### Please note that the warning variant title is dark grey for accessibility reasons.
+
+<Preview>
+  <Story name="hint general notification">
+    {() => {
+      return (
+        <div style={{ padding: '2%', background: '#F6F6F6' }}>
+        <FluidContainer>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <Notification
+                  trackingLabel="hint notification #1"
+                  type='hint'
+                  closeButton
+                  background
+                  variant="general"
+                  title="Notification title goes here"
+                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                >
+                </Notification>
+              </Column>
+            </Row>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <Notification
+                  trackingLabel="hint notification #2"
+                  type='hint'
+                  variant="general"
+                  defaultWhiteBackground={false}
+                  title="Notification title goes here"
+                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                >
+                </Notification>
+              </Column>
+            </Row>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <div style={{width: '50%'}}>
+                  <Notification
+                    trackingLabel="hint notification #3"
+                    type='hint'
+                    variant="general"
+                    title="Notification title goes here"
+                    content="Provider will capture the full description"
+                  />
+                </div>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+### Success Notification
+
+<Preview>
+  <Story name="hint success notification">
+    {() => {
+      return (
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <Notification
+                  trackingLabel="hint notification #4"
+                  type='hint'
+                  background
+                  variant="success"
+                  title="Notification title goes here"
+                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                />
+              </Column>
+            </Row>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <Notification
+                  trackingLabel="hint notification #5"
+                  type='hint'
+                  variant="success"
+                  title="Notification title goes here"
+                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                />
+              </Column>
+            </Row>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <div style={{width: '50%'}}>
+                  <Notification
+                    trackingLabel="hint notification #6"
+                    type='hint'
+                    variant="success"
+                    title="Notification title goes here"
+                    content="Provider will capture the full description"
+                  />
+                </div>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+### Warning Notification
+
+<Preview>
+  <Story name="hint warning notification">
+    {() => {
+      return (
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                  <Notification
+                    trackingLabel="hint notification #7"
+                    type='hint'
+                    background
+                    variant="warning"
+                    title="Notification title goes here"
+                    content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                  />
+              </Column>
+            </Row>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <Notification
+                  trackingLabel="hint notification #8"
+                  type='hint'
+                  variant="warning"
+                  title="Notification title goes here"
+                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                />
+              </Column>
+            </Row>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <div style={{width: '50%'}}>
+                  <Notification
+                    trackingLabel="hint notification #9"
+                    type='hint'
+                    variant="warning"
+                    title="Notification title goes here"
+                    content="Provider will capture the full description"
+                  />
+                </div>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="hint error notification">
+    {() => {
+      return (
+        <div style={{ padding: '2%' }}>
+          <FluidContainer>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <Notification
+                  type='hint'
+                  background
+                  variant="error"
+                  title="Notification title goes here"
+                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                />
+              </Column>
+            </Row>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <Notification
+                  type='hint'
+                  variant="error"
+                  title="Notification title goes here"
+                  content="The insurance provider will capture the full description and replacement value of the item(s) you wish to specify later"
+                />
+              </Column>
+            </Row>
+            <Row>
+              <Column xsOffset={1} cols={10}>
+                <div style={{width: '50%'}}>
+                  <Notification
+                    type='hint'
+                    variant="error"
+                    title="Notification title goes here"
+                    content="Provider will capture the full description"
+                  />
+                </div>
+              </Column>
+            </Row>
+          </FluidContainer>
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+
+<Props of={Notification} />
+
+

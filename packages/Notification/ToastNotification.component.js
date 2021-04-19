@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useId } from '@comparethemarketau/manor-hooks';
 import AnimatedNotification from './ToastNotification.styles';
 import { removeToast } from './events';
 
 const ToastNotification = ({
-  id: propId,
+  trackingLabel,
+  id,
   variant,
   title,
   content,
@@ -14,9 +14,13 @@ const ToastNotification = ({
   closeButton,
   autoClose,
 }) => {
-  const id = useId(propId);
+  const closeHandler = () => {
+    removeToast(id);
+  };
+
   return (
     <AnimatedNotification
+      trackingLabel={trackingLabel}
       type="toast"
       id={id}
       variant={variant}
@@ -25,7 +29,7 @@ const ToastNotification = ({
       primaryAction={primaryAction}
       icon={icon}
       closeButton={closeButton}
-      handleClose={() => removeToast(id)}
+      handleClose={closeHandler}
       autoClose={autoClose}
     />
   );
@@ -33,9 +37,13 @@ const ToastNotification = ({
 
 ToastNotification.propTypes = {
   /**
-   * Id of the component (generated id for toasts only)
+   * A descriptive label used in tracking user interactions with this component
    */
-  id: PropTypes.string,
+  trackingLabel: PropTypes.string.isRequired,
+  /**
+   * Id of the component (a unique id is required for toasts)
+   */
+  id: PropTypes.string.isRequired,
   /**
    * Title of the component
    */
@@ -95,7 +103,6 @@ ToastNotification.propTypes = {
 };
 
 ToastNotification.defaultProps = {
-  id: '',
   title: '',
   content: '',
   primaryAction: null,

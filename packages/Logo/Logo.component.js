@@ -4,14 +4,19 @@ import { Picture, picturePropTypes } from '@comparethemarketau/manor-picture';
 import StyledLogo from './Logo.styles';
 
 const Logo = ({
-  size, link, picture,
+  size, link, picture, handleClick,
 }) => {
   const {
     src, srcsets, alt, title, className,
   } = picture;
+  const clickHandler = () => {
+    if (handleClick) {
+      handleClick();
+    }
+  };
   return (
     <StyledLogo size={size} id="logo">
-      <a href={link}>
+      <a href={link} onClick={clickHandler}>
         <Picture
           src={src}
           srcsets={srcsets}
@@ -34,11 +39,13 @@ Logo.propTypes = {
    */
   size: PropTypes.oneOf(['small', 'large']),
   picture: PropTypes.shape(picturePropTypes).isRequired,
+  handleClick: PropTypes.func,
 };
 
 Logo.defaultProps = {
   link: 'https://www.comparethemarket.com.au',
   size: 'large',
+  handleClick: null,
 };
 
 export default Logo;

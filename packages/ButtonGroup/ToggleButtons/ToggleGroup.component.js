@@ -17,6 +17,7 @@ export const getChildren = (
   contentWidth,
   contentHeight,
   buttons,
+  label,
 ) => (
   children.map((child, index) => {
     const key = `toggle-${groupId}-${index}`;
@@ -30,6 +31,7 @@ export const getChildren = (
       contentWidth,
       contentHeight,
       button: buttons,
+      toggleGroupLabel: label,
     };
     return React.cloneElement(child, propsToAdd);
   })
@@ -53,23 +55,26 @@ const ToggleGroup = ({
 }) => {
   const groupId = useId(propsId);
   const [selectedToggleValue, setSelectedToggleValue] = useState(selectedValue);
+
   const toggleHandler = useCallback((value) => {
     setSelectedToggleValue(value);
     if (handleToggle) {
       handleToggle(value);
     }
   }, [setSelectedToggleValue, handleToggle]);
+
   // If the selected value externally changes we want to reflect this in our toggle selection state
   useEffect(() => {
     setSelectedToggleValue(selectedValue);
   }, [selectedValue, setSelectedToggleValue]);
+
   return (
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} removeGutters={!!description} />
       {description
         && <Label htmlFor={groupId} text={description} variant="description" />}
       <StyledToggleGroup id={groupId} className={className} buttons={buttons} contentWidth={contentWidth}>
-        {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight, buttons)}
+        {getChildren(groupId, children, name, selectedToggleValue, toggleHandler, handleClick, validationMessage, contentWidth, contentHeight, buttons, label)}
       </StyledToggleGroup>
       <StyledValidationWrapper>
         <FieldValidation message={validationMessage} />

@@ -9,6 +9,7 @@ import { Checkbox } from '@comparethemarketau/manor-checkbox';
 import { StyledContent, StyledWrapper, StyledFieldValidation } from './Disclaimer.styles';
 
 const Disclaimer = ({
+  trackingLabel,
   id: propsId,
   isSelected,
   children,
@@ -49,7 +50,15 @@ const Disclaimer = ({
   return (
     <>
       <StyledWrapper>
-        <Checkbox id={id} handleChange={changeHandler} isSelected={checked} invalid={!!validationMessage && validationMessage.length > 0} handleFocus={handleFocus} handleBlur={handleBlur} />
+        <Checkbox
+          id={id}
+          trackingLabel={trackingLabel}
+          handleChange={changeHandler}
+          isSelected={checked}
+          invalid={!!validationMessage && validationMessage.length > 0}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
+        />
         <StyledContent ref={content} onClick={handleContentClick} topMargin={topMargin}>
           <Typography variant={smallText ? 'body2' : 'body1'} component="span">
             {children}
@@ -64,6 +73,10 @@ const Disclaimer = ({
 };
 
 Disclaimer.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the disclaimers' checkbox
    */

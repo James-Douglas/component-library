@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="How to/Usage/Whitelabeling & Theming" />
+
+## Whitelabeling
+
+Whitelabeling can be achieved via theming and Manor has been developed with this capability.
+
+### Using a theme
+
+The easiest way to theme is to import the base (CTM) theme, override variables as desired, then pass the modified theme to `ManorProvider`:
+
+```
+//app.js
+import { ctmTheme as myTheme } from '@comparethemarketau/manor-themes';
+
+myTheme.colors.primary50 = '#3deb34';
+myTheme.accordion.background = 'red';
+myTheme.borders.component = '2px solid yellow';
+
+<ManorProvider theme={myTheme}>
+    <App />
+</ManorProvider>
+```
+
+

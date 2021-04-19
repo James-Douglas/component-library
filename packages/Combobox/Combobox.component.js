@@ -2,6 +2,7 @@ import React, {
   useState, useMemo, useCallback, useEffect, useLayoutEffect, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
+import { useDebouncedCallback } from 'use-debounce';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { Typography } from '@comparethemarketau/manor-typography';
@@ -128,6 +129,7 @@ const Combobox = ({
   disableClearIcon,
   gtmPidAnonymous,
   renderView,
+  trackingLabel,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -136,7 +138,7 @@ const Combobox = ({
   const [focusedRef, setFocusedRef] = useState(null);
   const bottomButton = React.createRef();
   const mobileModalRef = React.createRef();
-  const { isDesktop } = useContext(ManorContext);
+  const { isDesktop, trackInteraction } = useContext(ManorContext);
   const mobileOverlay = !isDesktop && isMobileModalView;
 
   const dataRefs = useMemo(
@@ -152,10 +154,16 @@ const Combobox = ({
     setIsMobileModalView(false);
   };
 
+  const debouncedTrackSelection = useDebouncedCallback(
+    (selectedValue) => trackInteraction('Selection', 'Combo Box', 'Combo Box', trackingLabel, selectedValue),
+    1000,
+  );
+
   const handleSelectItem = (selectedValue) => {
     setCurrentValue(selectedValue);
     setListVisible(false);
     setFocusedRef(null);
+    debouncedTrackSelection(selectedValue);
     if (mobileOverlay) {
       closeFieldModal();
     }
@@ -164,13 +172,19 @@ const Combobox = ({
     }
   };
 
+  const debouncedTrackInput = useDebouncedCallback(
+    (valueInput) => trackInteraction('Input', 'Combo Box', 'Combo Box', trackingLabel, valueInput),
+    1000,
+  );
+
   const comboHandleChange = useCallback((valueInput) => {
     setCurrentValue(valueInput);
     setListVisible(!!valueInput.length);
+    debouncedTrackInput(valueInput);
     if (handleInput) {
       handleInput(valueInput);
     }
-  }, [setCurrentValue, setListVisible, handleInput]);
+  }, [setCurrentValue, setListVisible, handleInput, debouncedTrackInput]);
 
   const handleUserKeyPress = useCallback((event) => {
     const { keyCode } = event;
@@ -194,15 +208,12 @@ const Combobox = ({
   }, [isMobileModalView, mobileModalRef]);
 
   const handleOnFocus = (event) => {
-    if (
-      // ignore tooltip icon
-      event.target.getAttribute('role') === 'tooltip'
-      // ignore clear button
-      || event.target.tagName === 'BUTTON'
-    ) {
+    // ignore tooltip icon & clear button
+    if (event.target.getAttribute('role') === 'tooltip' || event.target.tagName === 'BUTTON') {
       return;
     }
     setListVisible(!!currentValue.length);
+    trackInteraction('Focus', 'Combo Box', 'Combo Box', trackingLabel, currentValue || '');
     if (handleFocus) {
       handleFocus();
     }
@@ -329,6 +340,7 @@ const Combobox = ({
               tabIndex="0"
               ref={mobileModalRef}
               role="comboField"
+              disableInteractionTracking
               dataList={() => comboDropdownList(
                 isDesktop,
                 listInfoBoxContent,
@@ -369,6 +381,7 @@ const Combobox = ({
             tabIndex="0"
             role="comboMobileField"
             disableClearIcon={disableClearIcon}
+            disableInteractionTracking
           />
         </StyledDefault>
       )}
@@ -379,6 +392,10 @@ const Combobox = ({
 Combobox.displayName = 'Combo';
 
 Combobox.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the Combobox
    */

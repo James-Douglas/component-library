@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/pro-regular-svg-icons/faChevronDown';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Row, Column, FluidContainer } from '@comparethemarketau/manor-grid';
-
 import PropTypes from 'prop-types';
 
 import {
@@ -14,6 +13,7 @@ import {
 } from './AccordionPanel.styles';
 
 const AccordionPanel = ({
+  trackingLabel,
   title,
   children,
   show,
@@ -21,7 +21,7 @@ const AccordionPanel = ({
   handleClickGroup,
   className,
 }) => {
-  const { isDesktop } = useContext(ManorContext);
+  const { isDesktop, trackInteraction } = useContext(ManorContext);
   const [isVisible, setIsVisible] = useState(show);
   const [isFocus, setIsFocus] = useState(false);
   const direction = isVisible ? 'vertical' : null;
@@ -31,7 +31,8 @@ const AccordionPanel = ({
       if (handleClickGroup) {
         handleClickGroup(!isVisible);
       }
-      return setIsVisible(!isVisible);
+      trackInteraction(!isVisible ? 'Expand' : 'Contract', 'Accordion', 'Accordion', trackingLabel, trackingLabel);
+      setIsVisible(!isVisible);
     }, 110);
   };
 
@@ -49,9 +50,11 @@ const AccordionPanel = ({
   const handleFocus = () => {
     setIsFocus(true);
   };
+
   const handleBlur = () => {
     setIsFocus(false);
   };
+
   return (
     <StyledAccordionPanel isFocus={isFocus} className={className} role="tablist" aria-label="Information tabs">
       <StyledAccordionHead
@@ -90,6 +93,10 @@ const AccordionPanel = ({
 };
 
 AccordionPanel.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * The accordion's content
    */

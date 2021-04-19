@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import StepSlider, { formatMarks } from '../StepSlider.component';
 import { render, fireEvent } from '../../../testUtils';
 
@@ -22,34 +23,10 @@ describe('formatMarks', () => {
 
 describe('StepSlider', () => {
   it('renders with given value selected', () => {
-    const { container } = render(<StepSlider marks={testMarks} value={2} name="test" />);
+    const { container } = render(<StepSlider trackingLabel="test" marks={testMarks} value={2} name="test" />);
     expect(container.querySelector('input')).toHaveValue('2');
   });
-  it('calls change handlers on value change', () => {
-    const handleChange = jest.fn();
-    const handleChangeCommitted = jest.fn();
-    const { getByRole } = render(
-      <StepSlider
-        marks={testMarks}
-        value={1}
-        name="test"
-        onChange={handleChange}
-        onChangeCommitted={handleChangeCommitted}
-      />,
-    );
-    const slider = getByRole('slider');
-    fireEvent.mouseDown(slider);
-    fireEvent.mouseUp(document.body);
-    expect(handleChange).toHaveBeenCalled();
-    expect(handleChangeCommitted).toHaveBeenCalled();
-  });
-});
 
-describe('Descending StepSlider', () => {
-  it('renders descending slider with given value selected', () => {
-    const { container } = render(<StepSlider marks={testMarks} value={2} name="test" sortOrderAscending={false} />);
-    expect(container.querySelector('input')).toHaveValue('2');
-  });
   it('calls change handlers on value change', () => {
     const handleChange = jest.fn();
     const handleChangeCommitted = jest.fn();
@@ -60,7 +37,6 @@ describe('Descending StepSlider', () => {
         name="test"
         onChange={handleChange}
         onChangeCommitted={handleChangeCommitted}
-        sortOrderAscending={false}
       />,
     );
     const slider = getByRole('slider');
@@ -68,5 +44,59 @@ describe('Descending StepSlider', () => {
     fireEvent.mouseUp(document.body);
     expect(handleChange).toHaveBeenCalled();
     expect(handleChangeCommitted).toHaveBeenCalled();
+  });
+
+  describe('Descending StepSlider', () => {
+    it('renders descending slider with given value selected', () => {
+      const { container } = render(<StepSlider trackingLabel="test" marks={testMarks} value={2} name="test" sortOrderAscending={false} />);
+      expect(container.querySelector('input')).toHaveValue('2');
+    });
+
+    it('calls change handlers on value change', () => {
+      const handleChange = jest.fn();
+      const handleChangeCommitted = jest.fn();
+      const { getByRole } = render(
+        <StepSlider
+          trackingLabel="test"
+          marks={testMarks}
+          value={1}
+          name="test"
+          onChange={handleChange}
+          onChangeCommitted={handleChangeCommitted}
+          sortOrderAscending={false}
+        />,
+      );
+      const slider = getByRole('slider');
+      fireEvent.mouseDown(slider);
+      fireEvent.mouseUp(document.body);
+      expect(handleChange).toHaveBeenCalled();
+      expect(handleChangeCommitted).toHaveBeenCalled();
+    });
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks change events', () => {
+      const { trackEvent } = useTracking();
+      const { getByRole } = render(
+        <StepSlider
+          trackingLabel="test"
+          marks={testMarks}
+          value={1}
+          name="test"
+        />,
+      );
+      const slider = getByRole('slider');
+      fireEvent.mouseDown(slider);
+      fireEvent.mouseUp(document.body);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Change',
+          ixn_label: 'test',
+          ixn_object: 'Slider',
+          ixn_type: 'Step Slider',
+          ixn_value: 'One',
+        },
+      });
+    });
   });
 });

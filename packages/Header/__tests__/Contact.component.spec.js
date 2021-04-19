@@ -1,6 +1,7 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render } from '../../../testUtils';
+import { fireEvent, render } from '../../../testUtils';
 import Contact from '../Contact/Contact.component';
 import 'jest-styled-components';
 
@@ -55,5 +56,24 @@ describe('Contact', () => {
     const { container } = render(<Contact number="1800 000 001" iconSize="lg" />);
     const icon = container.querySelector('svg');
     expect(icon).toHaveClass('fa-lg');
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks click events', () => {
+      const { trackEvent } = useTracking();
+      mockUseIsDesktopValue = true;
+      const { container } = render(<Contact number="1800 000 001" size="large" />);
+      const link = container.querySelector('[target="link-target"]');
+      fireEvent.click(link);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Click',
+          ixn_label: '',
+          ixn_object: 'Header',
+          ixn_type: 'Contact',
+          ixn_value: '',
+        },
+      });
+    });
   });
 });

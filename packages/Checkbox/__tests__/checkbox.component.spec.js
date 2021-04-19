@@ -1,5 +1,6 @@
 import React from 'react';
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render, fireEvent } from '../../../testUtils';
 import Checkbox, { renderIcon } from '../Checkbox.component';
@@ -35,6 +36,7 @@ describe('Checkbox', () => {
     const mockTestClick = jest.fn();
     const { container } = render(
       <Checkbox
+        trackingLabel="test"
         id="test-id"
         icon={faTimes}
         disabled={false}
@@ -63,6 +65,7 @@ describe('Checkbox', () => {
   it('renders an invalid state', () => {
     const { container } = render(
       <Checkbox
+        trackingLabel="test"
         id="test-id"
         validationMessage="error"
       >
@@ -84,6 +87,7 @@ describe('Checkbox', () => {
   it('renders an invalid state with prop', () => {
     const { container } = render(
       <Checkbox
+        trackingLabel="test"
         id="test-id"
         invalid
       >
@@ -101,6 +105,7 @@ describe('Checkbox', () => {
   it('accepts a prefill value', () => {
     const { container } = render(
       <Checkbox
+        trackingLabel="test"
         id="test-id"
         isSelected
       />,
@@ -112,7 +117,7 @@ describe('Checkbox', () => {
 
   it('checks on click', () => {
     const changeHandler = jest.fn();
-    const { container } = render(<Checkbox id="test-id" disabled={false} invertColour handleChange={changeHandler} />);
+    const { container } = render(<Checkbox trackingLabel="test" id="test-id" disabled={false} invertColour handleChange={changeHandler} />);
 
     const checkbox = container.querySelector('#test-id');
     const label = container.querySelector('label');
@@ -125,7 +130,7 @@ describe('Checkbox', () => {
   });
 
   it('click is disabled when disabled prop is supplied', () => {
-    const { container } = render(<Checkbox id="test-id" disabled />);
+    const { container } = render(<Checkbox trackingLabel="test" id="test-id" disabled />);
 
     const checkbox = container.querySelector('#test-id');
     const label = container.querySelector('label');
@@ -137,7 +142,7 @@ describe('Checkbox', () => {
 
   it('calls focus handler on focus', () => {
     const handleFocus = jest.fn();
-    const { container } = render(<Checkbox id="test-id" handleFocus={handleFocus} />);
+    const { container } = render(<Checkbox trackingLabel="test" id="test-id" handleFocus={handleFocus} />);
     const input = container.querySelector('input');
     input.focus();
     expect(handleFocus).toHaveBeenCalled();
@@ -145,7 +150,7 @@ describe('Checkbox', () => {
 
   it('calls blur handler on blur', () => {
     const handleBlur = jest.fn();
-    const { container } = render(<Checkbox id="test-id" handleBlur={handleBlur} />);
+    const { container } = render(<Checkbox trackingLabel="test" id="test-id" handleBlur={handleBlur} />);
     const input = container.querySelector('input');
     input.focus();
     input.blur();
@@ -155,10 +160,38 @@ describe('Checkbox', () => {
   it('calls handleClick on click', () => {
     const handleClick = jest.fn();
     const { container } = render(
-      <Checkbox id="test-id" handleClick={handleClick} />,
+      <Checkbox trackingLabel="test" id="test-id" handleClick={handleClick} />,
     );
     const label = container.querySelector('label');
     fireEvent.click(label, { button: 0 });
     expect(handleClick).toHaveBeenCalled();
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks Select and Unselect events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(<Checkbox trackingLabel="test" id="test-id" />);
+      const input = container.querySelector('input');
+      fireEvent.click(input);
+      expect(trackEvent.mock.calls[0][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Select',
+          ixn_label: 'test',
+          ixn_object: 'Checkbox',
+          ixn_type: 'Checkbox',
+          ixn_value: '',
+        },
+      });
+      fireEvent.click(input);
+      expect(trackEvent.mock.calls[1][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Unselect',
+          ixn_label: 'test',
+          ixn_object: 'Checkbox',
+          ixn_type: 'Checkbox',
+          ixn_value: '',
+        },
+      });
+    });
   });
 });

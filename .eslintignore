@@ -1,3 +1,4 @@
 **/*.js
 # Enable linting just for some files
 !packages/**/*.js
+**/node_modules/*

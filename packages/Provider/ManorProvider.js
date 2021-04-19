@@ -1,11 +1,12 @@
 import React, {
-  createContext, useContext, useMemo, useEffect, useState,
+  createContext, useContext, useMemo, useEffect, useState, useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider, ThemeContext } from 'styled-components';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { useBreakpoint } from '@comparethemarketau/manor-hooks';
-import { isDesktop } from '@comparethemarketau/manor-utils';
+import { isDesktop, createTrackingEvent } from '@comparethemarketau/manor-utils';
 
 export const ManorContext = createContext();
 
@@ -13,16 +14,25 @@ const ManorProvider = ({ children }) => {
   const theme = useContext(ThemeContext);
   const breakpoint = useBreakpoint(true);
   const [desktop, setDesktop] = useState(null);
+  const { Track, trackEvent } = useTracking({ event: 'INTERACTION_EVENT' }, { dispatch: (data) => window && window.CtMDataLayer && window.CtMDataLayer.push(data) });
 
   useEffect(() => {
     setDesktop(isDesktop(breakpoint));
   }, [breakpoint]);
 
-  const value = useMemo(() => ({ breakpoint, isDesktop: desktop, theme }), [breakpoint, desktop, theme]);
+  const trackInteraction = useCallback((action, object, type, label, value) => {
+    trackEvent(createTrackingEvent(action, object, type, label, value));
+  }, [trackEvent]);
+
+  const value = useMemo(() => ({
+    breakpoint, isDesktop: desktop, theme, trackInteraction,
+  }), [breakpoint, desktop, theme, trackInteraction]);
 
   return (
     <ManorContext.Provider value={value}>
-      {children}
+      <Track>
+        {children}
+      </Track>
     </ManorContext.Provider>
   );
 };

@@ -21,7 +21,8 @@
     "@comparethemarketau/manor-hooks": "^0.6.2",
     "@comparethemarketau/manor-themes": "^0.13.2",
     "@comparethemarketau/manor-utils": "^0.4.4",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-tracking": "^8.1.0"
   },
   "peerDependencies": {
     "react": "^16.11.0",

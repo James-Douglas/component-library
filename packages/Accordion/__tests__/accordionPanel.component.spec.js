@@ -1,6 +1,7 @@
 import React from 'react';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import 'jest-styled-components';
+import { useTracking } from 'react-tracking';
 import {
   fireEvent, render, act,
 } from '../../../testUtils';
@@ -20,23 +21,25 @@ jest.mock('../../Utils/breakpoint', () => ({
 
 describe('Accordion', () => {
   it('renders correctly without prop', () => {
-    const { getByText } = render(<AccordionPanel title="Position to purchase" />);
+    const { getByText } = render(<AccordionPanel trackingLabel="test" title="Position to purchase" />);
     expect(getByText('Position to purchase')).toBeInTheDocument();
   });
+
   it('renders correctly when open accordion', () => {
-    const { container } = render(<AccordionPanel show />);
+    const { container } = render(<AccordionPanel trackingLabel="test" show />);
     const accordion = container.querySelector('[role="tablist"]');
     expect(accordion).toHaveStyleRule('border', `${ctmTheme.borders.transparent}`);
   });
+
   it('renders correctly with arrow', () => {
-    const { container } = render(<AccordionPanel show title="Position to purchase">Accordion</AccordionPanel>);
+    const { container } = render(<AccordionPanel trackingLabel="test" show title="Position to purchase">Accordion</AccordionPanel>);
     const accordionMain = container.querySelector('svg');
     expect(accordionMain).toHaveAttribute('viewBox');
   });
 
   it('click on accordion head', () => {
     jest.useFakeTimers();
-    const { container } = render(<AccordionPanel show />);
+    const { container } = render(<AccordionPanel trackingLabel="test" show />);
     const svg = container.querySelector('[role="img"]');
     const accordionHead = container.querySelector('[role="tab"]');
     const accordionBody = container.querySelector('[role="tabpanel"]');
@@ -56,7 +59,7 @@ describe('Accordion', () => {
 
   it('works on focus/when leaving focus', () => {
     const { container } = render(
-      <AccordionPanel title="Accordion title">
+      <AccordionPanel trackingLabel="test" title="Accordion title">
         <div><p>Accordion content</p></div>
       </AccordionPanel>,
     );
@@ -73,7 +76,7 @@ describe('Accordion', () => {
   it('check handleClickGroup function is called', () => {
     jest.useFakeTimers();
     const handleClickGroup = jest.fn();
-    const { container } = render(<AccordionPanel show handleClickGroup={handleClickGroup} />);
+    const { container } = render(<AccordionPanel trackingLabel="test" show handleClickGroup={handleClickGroup} />);
     const accordionHead = container.querySelector('[role="tab"]');
     const accordion = container.querySelector('[role="tablist"]');
     fireEvent.click(accordionHead);
@@ -87,7 +90,7 @@ describe('Accordion', () => {
   it('works on keydown', () => {
     jest.useFakeTimers();
     const { container } = render(
-      <AccordionPanel title="Accordion title">
+      <AccordionPanel trackingLabel="test" title="Accordion title">
         <div><p>Accordion content</p></div>
       </AccordionPanel>,
     );
@@ -112,11 +115,47 @@ describe('Accordion', () => {
   it('check font-size on resize', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
-      <AccordionPanel title="Accordion title">
+      <AccordionPanel trackingLabel="test" title="Accordion title">
         <div><p>Accordion content</p></div>
       </AccordionPanel>,
     );
     const accordionHead = container.querySelector('[role="tab"]');
     expect(accordionHead).toHaveStyleRule('font-size', `${ctmTheme.fontSize.lg}`);
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks Expand and Contract interactions', () => {
+      jest.useFakeTimers();
+      const { trackEvent } = useTracking();
+      const { container } = render(<AccordionPanel trackingLabel="test" />);
+      const accordionHead = container.querySelector('[role="tab"]');
+      fireEvent.click(accordionHead);
+      act(() => {
+        jest.runAllTimers();
+      });
+      expect(trackEvent.mock.calls[0][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Expand',
+          ixn_label: 'test',
+          ixn_object: 'Accordion',
+          ixn_type: 'Accordion',
+          ixn_value: 'test',
+        },
+      });
+      fireEvent.click(accordionHead);
+      act(() => {
+        jest.runAllTimers();
+      });
+      expect(trackEvent).toHaveBeenCalledTimes(2);
+      expect(trackEvent.mock.calls[1][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Contract',
+          ixn_label: 'test',
+          ixn_object: 'Accordion',
+          ixn_type: 'Accordion',
+          ixn_value: 'test',
+        },
+      });
+    });
   });
 });

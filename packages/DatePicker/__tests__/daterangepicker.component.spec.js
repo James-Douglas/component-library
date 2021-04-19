@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { act } from 'react-dom/test-utils';
+import { useTracking } from 'react-tracking';
 import {
   fireEvent, render, getByLabelText,
 } from '../../../testUtils';
@@ -13,6 +13,7 @@ describe('DateRangePicker', () => {
     const endDate = moment('2020-04-20T00:00:00.000');
     const { container } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -29,6 +30,7 @@ describe('DateRangePicker', () => {
     expect(startDateLabel).toBeInTheDocument();
     expect(endDateLabel).toBeInTheDocument();
   });
+
   it('renders correct number options when focus on end date', () => {
     const handleChangeF = jest.fn();
     const startDate = moment('2020-03-20T00:00:00.000');
@@ -36,6 +38,7 @@ describe('DateRangePicker', () => {
     const numberOfMonths = 3;
     const { container } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -52,30 +55,28 @@ describe('DateRangePicker', () => {
     const endDateInput = container.querySelector('#end-date');
     const datepickerWrapBeforeFocus = container.querySelector('[role="application"]');
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
-    act(() => {
-      endDateInput.focus();
-    });
+    endDateInput.focus();
     expect(endDateInput).toHaveFocus();
     const visibleMonths = container.getElementsByClassName('CalendarMonth');
     // 3 visible + 2 hidden
     expect(visibleMonths.length).toBe(numberOfMonths + 2);
     const datepickerWrapAfterFocus = container.querySelector('[role=application]');
     expect(datepickerWrapAfterFocus).toBeInTheDocument();
-    act(() => {
-      endDateInput.focus();
-      fireEvent.click(getByLabelText(container, 'Tuesday, April 28, 2020', { exact: false }));
-    });
+    endDateInput.focus();
+    fireEvent.click(getByLabelText(container, 'Tuesday, April 28, 2020', { exact: false }));
     expect(handleChangeF).toHaveBeenCalled();
     expect(visibleMonths.length).toBe(0);
     expect(endDateInput).toHaveValue('28/04/2020');
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
   });
+
   it('click outside of dropdown', () => {
     const startDate = moment('2020-03-20T00:00:00.000');
     const endDate = moment('2020-04-20T00:00:00.000');
     const numberOfMonths = 3;
     const { container } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -91,16 +92,12 @@ describe('DateRangePicker', () => {
     const datepickerWrapBeforeFocus = container.querySelector('[role=application]');
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
     const input = container.querySelector('#start-date');
-    act(() => {
-      input.focus();
-    });
+    input.focus();
     const visibleMonths = container.getElementsByClassName('CalendarMonth');
     expect(visibleMonths.length).toBe(numberOfMonths + 2);
     const datepickerWrapAfterFocus = container.querySelector('[role=application]');
     expect(datepickerWrapAfterFocus).toBeInTheDocument();
-    act(() => {
-      document.dispatchEvent(evt);
-    });
+    document.dispatchEvent(evt);
     expect(visibleMonths.length).toBe(0);
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
   });
@@ -110,6 +107,7 @@ describe('DateRangePicker', () => {
     const endDate = moment().endOf('month');
     const { container } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -124,9 +122,7 @@ describe('DateRangePicker', () => {
     const input = container.querySelector('#start-date');
     const datepickerWrapBeforeFocus = container.querySelector('[role=presentation]');
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
-    act(() => {
-      input.focus();
-    });
+    input.focus();
     const datepickerWrapAfterFocus = container.querySelector('[role=presentation]');
     expect(datepickerWrapAfterFocus).toBeInTheDocument();
   });
@@ -137,6 +133,7 @@ describe('DateRangePicker', () => {
     const numberOfMonths = 3;
     const { container } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -154,9 +151,7 @@ describe('DateRangePicker', () => {
     const input = container.querySelector('#start-date');
     const datepickerWrapBeforeFocus = container.querySelector('[role="application"]');
     expect(datepickerWrapBeforeFocus).not.toBeInTheDocument();
-    act(() => {
-      input.focus();
-    });
+    input.focus();
     expect(input).toHaveFocus();
     const visibleMonths = container.getElementsByClassName('CalendarMonth');
     // 3 visible + 2 hidden
@@ -174,6 +169,7 @@ describe('DateRangePicker', () => {
     const numberOfMonths = 3;
     const { container } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -189,10 +185,8 @@ describe('DateRangePicker', () => {
     );
     const input = container.querySelector('#end-date');
     const visibleMonths = container.getElementsByClassName('CalendarMonth');
-    act(() => {
-      input.focus();
-      fireEvent.change(input, { target: { value: '04/03/2020' } });
-    });
+    input.focus();
+    fireEvent.change(input, { target: { value: '04/03/2020' } });
     expect(visibleMonths.length).toBe(0);
     const datepickerWrapAfterChoice = container.querySelector('[role="application"]');
     expect(datepickerWrapAfterChoice).not.toBeInTheDocument();
@@ -204,6 +198,7 @@ describe('DateRangePicker', () => {
     const numberOfMonths = 3;
     const { container } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -219,10 +214,8 @@ describe('DateRangePicker', () => {
     );
     const input = container.querySelector('#start-date');
     const visibleMonths = container.getElementsByClassName('CalendarMonth');
-    act(() => {
-      input.focus();
-      fireEvent.change(input, { target: { value: '04/03/2020' } });
-    });
+    input.focus();
+    fireEvent.change(input, { target: { value: '04/03/2020' } });
     expect(visibleMonths.length).toBe(numberOfMonths + 2);
     const datepickerWrapAfterChoice = container.querySelector('[role="application"]');
     expect(datepickerWrapAfterChoice).toBeInTheDocument();
@@ -234,6 +227,7 @@ describe('DateRangePicker', () => {
     const numberOfMonths = 3;
     const { container, getByText } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -248,10 +242,8 @@ describe('DateRangePicker', () => {
       />,
     );
     const inputStart = container.querySelector('#start-date');
-    act(() => {
-      inputStart.focus();
-      fireEvent.change(inputStart, { target: { value: '04/03/202' } });
-    });
+    inputStart.focus();
+    fireEvent.change(inputStart, { target: { value: '04/03/202' } });
     expect(getByText('Please enter correct e date')).toBeInTheDocument();
   });
 
@@ -261,6 +253,7 @@ describe('DateRangePicker', () => {
     const numberOfMonths = 3;
     const { container, getByText } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -275,10 +268,8 @@ describe('DateRangePicker', () => {
       />,
     );
     const inputEnd = container.querySelector('#end-date');
-    act(() => {
-      inputEnd.focus();
-      fireEvent.change(inputEnd, { target: { value: '04/03/202' } });
-    });
+    inputEnd.focus();
+    fireEvent.change(inputEnd, { target: { value: '04/03/202' } });
     expect(getByText('Please enter correct s date')).toBeInTheDocument();
   });
 
@@ -286,6 +277,7 @@ describe('DateRangePicker', () => {
     const numberOfMonths = 3;
     const { container } = render(
       <DateRangePicker
+        trackingLabel="date range picker test"
         startDateId="start-date"
         startDateTooltip={{ title: 'Start Date' }}
         startDateAriaLabel="Start Date"
@@ -304,5 +296,116 @@ describe('DateRangePicker', () => {
     expect(visibleMonths.length).toBe(numberOfMonths + 2);
     fireEvent.keyDown(startDateInput, { key: 'Escape', keyCode: 27 });
     expect(visibleMonths.length).toBe(0);
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus event', () => {
+      const { trackEvent } = useTracking();
+      const startDate = moment('2020-03-20T00:00:00.000');
+      const endDate = moment('2020-04-20T00:00:00.000');
+      const numberOfMonths = 3;
+      const { container } = render(
+        <DateRangePicker
+          trackingLabel="date range picker test"
+          startDateId="start-date"
+          startDateTooltip={{ title: 'Start Date' }}
+          startDateAriaLabel="Start Date"
+          startDateValue={startDate}
+          endDateId="end-date"
+          endDateTooltip={{ title: 'End Date' }}
+          endDateAriaLabel="End Date"
+          endDateValue={endDate}
+          numberOfMonths={numberOfMonths}
+          endDateValidationMessageText="Please enter correct date"
+        />,
+      );
+      const endDateInput = container.querySelector('#end-date');
+      endDateInput.focus();
+      expect(trackEvent.mock.calls[0][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'date range picker test',
+          ixn_object: 'Date Picker',
+          ixn_type: 'Date Range',
+          ixn_value: {
+            'End Date': '20/04/2020',
+            'Start Date': '20/03/2020',
+          },
+        },
+      });
+    });
+  });
+
+  it('tracks input event', () => {
+    const { trackEvent } = useTracking();
+    const startDate = moment('2020-03-20T00:00:00.000');
+    const endDate = moment('2020-04-20T00:00:00.000');
+    const numberOfMonths = 3;
+    const { container } = render(
+      <DateRangePicker
+        trackingLabel="date range picker test"
+        startDateId="start-date"
+        startDateTooltip={{ title: 'Start Date' }}
+        startDateAriaLabel="Start Date"
+        startDateValue={startDate}
+        endDateId="end-date"
+        endDateTooltip={{ title: 'End Date' }}
+        endDateAriaLabel="End Date"
+        endDateValue={endDate}
+        numberOfMonths={numberOfMonths}
+        endDateValidationMessageText="Please enter correct date"
+      />,
+    );
+    const endDateInput = container.querySelector('#end-date');
+    fireEvent.change(endDateInput, { target: { value: '21/04/2020' } });
+    expect(trackEvent).toHaveBeenCalledWith({
+      interaction: {
+        ixn_action: 'Input',
+        ixn_label: 'date range picker test',
+        ixn_object: 'Date Picker',
+        ixn_type: 'Date Range',
+        ixn_value: {
+          'End Date': '21/04/2020',
+          'Start Date': '20/03/2020',
+        },
+      },
+    });
+  });
+
+  it('tracks selection event', () => {
+    const { trackEvent } = useTracking();
+    const startDate = moment('2020-03-20T00:00:00.000');
+    const endDate = moment('2020-04-20T00:00:00.000');
+    const numberOfMonths = 3;
+    const { container } = render(
+      <DateRangePicker
+        trackingLabel="date range picker test"
+        startDateId="start-date"
+        startDateTooltip={{ title: 'Start Date' }}
+        startDateAriaLabel="Start Date"
+        startDateValue={startDate}
+        endDateId="end-date"
+        endDateTooltip={{ title: 'End Date' }}
+        endDateAriaLabel="End Date"
+        endDateValue={endDate}
+        numberOfMonths={numberOfMonths}
+        endDateValidationMessageText="Please enter correct date"
+      />,
+    );
+    const endDateInput = container.querySelector('#end-date');
+    endDateInput.focus();
+    fireEvent.click(getByLabelText(container, 'Tuesday, April 28, 2020', { exact: false }));
+    expect(trackEvent).toHaveBeenCalledWith({
+      interaction: {
+        ixn_action: 'Selection',
+        ixn_label: 'date range picker test',
+        ixn_object: 'Date Picker',
+        ixn_type: 'Date Range',
+        ixn_value: {
+          'End Date': '28/04/2020',
+          'Start Date': '20/03/2020',
+        },
+      },
+    });
   });
 });

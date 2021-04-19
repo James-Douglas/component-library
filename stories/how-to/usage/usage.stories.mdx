@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="How to/Usage/Using Manor" />
+
+# Usage
+
+#### ManorProvider
+
+ManorProvider's primary purpose is to provide a Theme to Manor components. Additionally, it contains logic for interaction
+tracking (used by Manor components), and for convenience you can use it to get breakpoint information.
+
+`yarn add @comparethemarketau/manor-provider`
+
+Within your application, ManorProvider needs to be higher in the component tree than any components you intend on using.  Typically, this means wrapping
+your application with ManorProvider as such:
+
+
+```
+import React, { useContext } from 'react';
+import { ManorProvider, ManorContext } from '@comparethemarketau/manor-provider';
+
+const App = () => {
+  const { breakpoint, isDesktop } = useContext(ManorContext);
+  return (
+    <ManorProvider>
+      ... your app here
+    </ManorProvider>
+  );
+}
+```
+
+#### Import components as required
+
+```
+import { Header } from '@comparethemarketau/manor-header';
+import { Footer } from '@comparethemarketau/manor-footer';
+
+const MyComponent = () => (
+  <>
+    <Header />
+    <Footer />
+  </>
+);
+```
+

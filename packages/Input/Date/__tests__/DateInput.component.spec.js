@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render, fireEvent } from '../../../../testUtils';
 import DateInput from '../DateInput.component';
@@ -12,6 +13,7 @@ describe('DateInput', () => {
   it('renders with lots of props', () => {
     const { container } = render(
       <DateInput
+        trackingLabel="test"
         id="test-id"
         handleChange={() => {}}
         label="test label"
@@ -36,7 +38,7 @@ describe('DateInput', () => {
   });
 
   it('displays input masking', () => {
-    const { container } = render(<DateInput id="test-id" handleChange={() => {}} />);
+    const { container } = render(<DateInput trackingLabel="test" id="test-id" handleChange={() => {}} />);
 
     const input = container.querySelector('input');
 
@@ -67,7 +69,7 @@ describe('DateInput', () => {
 
   it('calls change handler on change', () => {
     const handler = jest.fn();
-    const { container } = render(<DateInput id="test-id" handleChange={handler} />);
+    const { container } = render(<DateInput trackingLabel="test" id="test-id" handleChange={handler} />);
 
     const input = container.querySelector('input');
     fireEvent.input(input, { target: { value: '11/13/2000' } });
@@ -84,6 +86,7 @@ describe('DateInput', () => {
     const blurHandler = jest.fn();
     const { container } = render(
       <DateInput
+        trackingLabel="test"
         id="test-id"
         handleFocus={focusHandler}
         handleBlur={blurHandler}
@@ -103,6 +106,7 @@ describe('DateInput', () => {
   it('constrains mask based on "format" prop', () => {
     const { container } = render(
       <DateInput
+        trackingLabel="test"
         id="test-id"
         handleChange={() => {}}
         format="MM/YYYY"
@@ -136,5 +140,87 @@ describe('DateInput', () => {
 
     const inputField = container.querySelector('.input-container');
     expect(inputField).not.toHaveClass('data-hj-suppress');
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <DateInput
+          trackingLabel="test"
+          id="test-id"
+          handleChange={() => {}}
+          format="MM/YYYY"
+        />,
+      );
+      const inputField = container.querySelector('#test-id');
+      fireEvent.focus(inputField);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Date',
+          ixn_value: '',
+        },
+      });
+    });
+
+    it('tracks input events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <DateInput
+          trackingLabel="test"
+          id="test-id"
+          handleChange={() => {}}
+          format="DD/MM/YYYY"
+        />,
+      );
+      const inputField = container.querySelector('#test-id');
+      fireEvent.input(inputField, { target: { value: '01012021' } });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Input',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Date',
+          ixn_value: '01/01/2021',
+        },
+      });
+    });
+
+    it('tracks clear events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <DateInput
+          trackingLabel="test"
+          id="test-id"
+          handleChange={() => {}}
+          format="DD/MM/YYYY"
+        />,
+      );
+      const inputField = container.querySelector('#test-id');
+      fireEvent.change(inputField, { target: { value: '01022021' } });
+      const clearBtn = container.querySelector('.input-clear-button');
+      fireEvent.click(clearBtn);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Input',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Date',
+          ixn_value: '01/02/2021',
+        },
+      });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Clear',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Date',
+          ixn_value: '',
+        },
+      });
+    });
   });
 });

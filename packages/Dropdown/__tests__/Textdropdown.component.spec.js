@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import TextDropdown from '../TextDropdown.component';
 import TextDropdownItem from '../TextDropdownItem.component';
 import { fireEvent, render } from '../../../testUtils';
@@ -6,7 +7,7 @@ import { fireEvent, render } from '../../../testUtils';
 describe('TextDropdown', () => {
   it('can render a text dropdown with provided options', () => {
     const { getByText } = render(
-      <TextDropdown label="Example Dropdown">
+      <TextDropdown trackingLabel="test" label="Example Dropdown">
         <TextDropdownItem value="ONE">Option One</TextDropdownItem>
         <TextDropdownItem value="TWO">Option Two</TextDropdownItem>
         <TextDropdownItem value="THREE">Option Three</TextDropdownItem>
@@ -17,7 +18,7 @@ describe('TextDropdown', () => {
 
   it('can display the correct options when clicked', () => {
     const { getByRole, getByText } = render(
-      <TextDropdown label="Example Dropdown">
+      <TextDropdown trackingLabel="test" label="Example Dropdown">
         <TextDropdownItem value="ONE">Option One</TextDropdownItem>
         <TextDropdownItem value="TWO">Option Two</TextDropdownItem>
         <TextDropdownItem value="THREE">Option Three</TextDropdownItem>
@@ -33,7 +34,7 @@ describe('TextDropdown', () => {
   it('can respond to a clicked option', () => {
     const mockChangeCallback = jest.fn();
     const { getByRole, getByText } = render(
-      <TextDropdown label="Example Dropdown" handleChange={mockChangeCallback}>
+      <TextDropdown trackingLabel="test" label="Example Dropdown" handleChange={mockChangeCallback}>
         <TextDropdownItem value="ONE">Option One</TextDropdownItem>
         <TextDropdownItem value="TWO">Option Two</TextDropdownItem>
         <TextDropdownItem value="THREE">Option Three</TextDropdownItem>
@@ -48,7 +49,7 @@ describe('TextDropdown', () => {
 
   it('can render with a preselected value', () => {
     const { getByText } = render(
-      <TextDropdown label="Example Dropdown" value="ONE">
+      <TextDropdown trackingLabel="test" label="Example Dropdown" value="ONE">
         <TextDropdownItem value="ONE">Option One</TextDropdownItem>
         <TextDropdownItem value="TWO">Option Two</TextDropdownItem>
         <TextDropdownItem value="THREE">Option Three</TextDropdownItem>
@@ -61,6 +62,7 @@ describe('TextDropdown', () => {
     const mockClickCallback = jest.fn();
     const { container } = render(
       <TextDropdown
+        trackingLabel="test"
         label="Example Dropdown"
         value="ONE"
         handleClick={mockClickCallback}
@@ -82,6 +84,7 @@ describe('TextDropdown', () => {
     const mockFocusCallback = jest.fn();
     const { container } = render(
       <TextDropdown
+        trackingLabel="test"
         label="Example Dropdown"
         value="ONE"
         handleFocus={mockFocusCallback}
@@ -97,5 +100,59 @@ describe('TextDropdown', () => {
     fakeEl.focus();
     fakeEl.click();
     expect(mockFocusCallback.mock.calls.length).toBe(1);
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <TextDropdown trackingLabel="test" label="Example Dropdown">
+          <TextDropdownItem value="ONE">Option One</TextDropdownItem>
+          <TextDropdownItem value="TWO">Option Two</TextDropdownItem>
+          <TextDropdownItem value="THREE">Option Three</TextDropdownItem>
+        </TextDropdown>,
+      );
+
+      const fakeEl = container.querySelector(
+        '[data-manor-element="text dropdown"]',
+      );
+      fakeEl.focus();
+      fakeEl.click();
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'test',
+          ixn_object: 'Dropdown',
+          ixn_type: 'Text Dropdown',
+          ixn_value: '',
+        },
+      });
+    });
+
+    it('tracks selection events', () => {
+      const { trackEvent } = useTracking();
+      const { getByRole, getByText } = render(
+        <TextDropdown trackingLabel="test" label="Example Dropdown">
+          <TextDropdownItem value="ONE">Option One</TextDropdownItem>
+          <TextDropdownItem value="TWO">Option Two</TextDropdownItem>
+          <TextDropdownItem value="THREE">Option Three</TextDropdownItem>
+        </TextDropdown>,
+      );
+
+      const buttonEl = getByRole('button');
+      fireEvent.mouseDown(buttonEl);
+      const optionTwoEl = getByText('Option Two');
+      optionTwoEl.click();
+
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Selection',
+          ixn_label: 'test',
+          ixn_object: 'Dropdown',
+          ixn_type: 'Text Dropdown',
+          ixn_value: 'TWO',
+        },
+      });
+    });
   });
 });

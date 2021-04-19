@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/pro-light-svg-icons/faTimes';
-import { useId } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useId, useMountEffect } from '@comparethemarketau/manor-hooks';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import { Container } from '@comparethemarketau/manor-grid';
 import {
@@ -13,6 +14,7 @@ import {
 } from './DrawerVertical.styles';
 
 const DrawerVertical = ({
+  trackingLabel,
   id: propsId,
   direction,
   size,
@@ -29,6 +31,19 @@ const DrawerVertical = ({
 }) => {
   const id = useId(propsId);
   const drawerElement = useRef(null);
+  const { trackInteraction } = useContext(ManorContext);
+  const firstUpdate = useRef(true);
+
+  // Dont track the initial mount of the drawer unless it's being mounted in the visible state
+  useEffect(() => {
+    if (!firstUpdate.current || visible) {
+      trackInteraction(visible ? 'Show' : 'Hide', 'Drawer', direction, trackingLabel, '');
+    }
+  }, [visible, firstUpdate, trackInteraction, direction, trackingLabel]);
+
+  useMountEffect(() => {
+    firstUpdate.current = false;
+  });
 
   return (
     <>
@@ -64,13 +79,17 @@ const DrawerVertical = ({
 
 DrawerVertical.propTypes = {
   /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
+  /**
    *  Unique identifier for the Drawer
    */
   id: PropTypes.string,
   /**
    *  Direction param to dictate where the drawer is coming from.
    */
-  direction: PropTypes.string,
+  direction: PropTypes.oneOf(['left', 'right']),
   /**
    *  Defines height or width (depending from direction) of the slide.
    */

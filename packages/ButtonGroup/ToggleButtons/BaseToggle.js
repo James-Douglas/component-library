@@ -1,9 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useContext, useEffect, useRef, useState,
+} from 'react';
 import PropTypes from 'prop-types';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { StyledToggle, StyledToggleInput } from './BaseToggle.styles';
 
 const BaseToggle = ({
+  trackingLabel,
   id: propsId,
   value,
   name,
@@ -19,8 +23,12 @@ const BaseToggle = ({
   className,
   button,
   inputType,
+  variant,
+  toggleGroupLabel,
 }) => {
   const id = useId(propsId);
+  const { trackInteraction } = useContext(ManorContext);
+
   const [checked, setChecked] = useState(selectedValue || false);
   const wrapperElement = useRef(null);
 
@@ -31,6 +39,7 @@ const BaseToggle = ({
   const changeHandler = (e) => {
     const targetChecked = e.target.checked;
     setChecked(targetChecked);
+    trackInteraction('Click', 'Toggle Buttons', variant, toggleGroupLabel, trackingLabel);
     handleToggle(value);
   };
 
@@ -64,6 +73,10 @@ const BaseToggle = ({
 };
 
 BaseToggle.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the BaseToggle
    */
@@ -120,6 +133,14 @@ BaseToggle.propTypes = {
    * The type attribute for the underlying input element
    */
   inputType: PropTypes.oneOf(['radio', 'checkbox']),
+  /**
+   * The type of toggle, used in interaction tracking.
+   */
+  variant: PropTypes.oneOf(['ColorToggle', 'CustomToggle', 'IconToggle', 'MultiSelectToggle', 'ImageToggle', 'TextToggle']).isRequired,
+  /**
+   * Label of the toggle group, the ToggleGroup automatically populates this
+   */
+  toggleGroupLabel: PropTypes.string,
 };
 
 BaseToggle.defaultProps = {
@@ -136,6 +157,7 @@ BaseToggle.defaultProps = {
   handleClick: null,
   button: null,
   inputType: 'radio',
+  toggleGroupLabel: '',
 };
 
 export default BaseToggle;

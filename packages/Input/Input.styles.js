@@ -195,7 +195,6 @@ export const StyledInputClearWrap = styled.div`
       padding-top: 16px;
     }
   `}
-
 `;
 
 export const StyledInput = styled(React.forwardRef(({

@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   addons: [
     '@storybook/addon-docs',
@@ -27,10 +29,23 @@ module.exports = {
           {
             "pragmaFrag": "React.Fragment"
           },
-          "storybook-transform-jsx"
+          "storybook-transform-jsx",
+          [
+            "@babel/plugin-proposal-decorators",
+            {
+              "legacy": true
+            }
+          ]
         ]
       ]
     },
     sourceLoaderOptions: null,
   },
+  webpackFinal: async (config, { configType }) => {
+    config.plugins[1].options = {
+      ...config.plugins[1].options,
+      template: path.resolve(__dirname, 'index.override.ejs'),
+    }
+    return config;
+  }
 };

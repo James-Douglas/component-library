@@ -1,5 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render, fireEvent } from '../../../testUtils';
 import Notification from '../Notification.component';
@@ -9,6 +10,7 @@ describe('Notification()', () => {
   it('Notification renders with minimal props', () => {
     const { getByText } = render(
       <Notification
+        trackingLabel="test"
         content="The insurance provider"
       />,
     );
@@ -18,6 +20,7 @@ describe('Notification()', () => {
   it('Notification variant general, type inline - renders by default', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         title="Notification title goes here"
         content="Provider will capture the full description."
         icon
@@ -34,6 +37,7 @@ describe('Notification()', () => {
   it('renders a background on hint notification if prop is supplied', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         type="hint"
         variant="warning"
         background
@@ -50,6 +54,7 @@ describe('Notification()', () => {
   it('renders a background on alertBanner notification if prop is supplied', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         type="alertBanner"
         variant="warning"
         background
@@ -66,6 +71,7 @@ describe('Notification()', () => {
   it('renders the title with the same color as the border', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         type="hint"
         variant="error"
         title="Notification title goes here"
@@ -82,6 +88,7 @@ describe('Notification()', () => {
   it('does not render the title as the same color as the border if its variant={"warning"}', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         type="hint"
         variant="warning"
         title="Notification title goes here"
@@ -99,6 +106,7 @@ describe('Notification()', () => {
     const setIsVisibleNotification = jest.fn();
     const { container } = render(
       <Notification
+        trackingLabel="test"
         variant="error"
         title="Notification title goes here"
         content="Provider will capture the full description."
@@ -120,6 +128,7 @@ describe('Notification()', () => {
   it('Notification variant warning', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         title="Notification title goes here"
         content="Provider will capture the full description."
         variant="warning"
@@ -136,6 +145,7 @@ describe('Notification()', () => {
   it('Notification variant success', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         variant="success"
         icon
         title="Notification title goes here"
@@ -152,6 +162,7 @@ describe('Notification()', () => {
   it('Notification variant general', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         variant="general"
         title="Notification title goes here"
         content="Provider will capture the full description."
@@ -168,6 +179,7 @@ describe('Notification()', () => {
   it('Notification with primary and secondary actions', () => {
     const { container, getByText } = render(
       <Notification
+        trackingLabel="test"
         variant="general"
         title="Notification title goes here"
         content="Provider will capture the full description."
@@ -199,6 +211,7 @@ describe('Notification()', () => {
         <ToastManager />
         <div id="test-wrap">
           <Notification
+            trackingLabel="test"
             type="toast"
             position="bottom"
             variant="general"
@@ -221,6 +234,7 @@ describe('Notification()', () => {
   it('renders a hint notification', () => {
     const { container } = render(
       <Notification
+        trackingLabel="test"
         type="hint"
         variant="general"
         title="Notification title goes here"
@@ -246,6 +260,7 @@ describe('Notification()', () => {
     };
     const { getByText } = render(
       <Notification
+        trackingLabel="test"
         variant="general"
         title="Notification title goes here"
         content="Provider will capture the full description."
@@ -267,6 +282,7 @@ describe('Notification()', () => {
     };
     const { getByText } = render(
       <Notification
+        trackingLabel="test"
         type="alertBanner"
         variant="general"
         title="Notification title goes here"
@@ -284,6 +300,7 @@ describe('Notification()', () => {
   it('alertBanner Notification with primary and secondary actions when action has no icon', () => {
     const { container, getByText } = render(
       <Notification
+        trackingLabel="test"
         type="alertBanner"
         variant="general"
         title="Notification title goes here"
@@ -308,5 +325,29 @@ describe('Notification()', () => {
     expect(links[1].getAttribute('href')).toBe('#/');
     expect(getByText('primary action')).toBeInTheDocument();
     expect(getByText('secondary action')).toBeInTheDocument();
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks dismiss events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <Notification
+          trackingLabel="test"
+          content="The insurance provider"
+          closeButton
+        />,
+      );
+      const closeBtn = container.lastChild.lastChild;
+      closeBtn.click();
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Dismiss',
+          ixn_label: 'test',
+          ixn_object: 'Notification',
+          ixn_type: 'Inline',
+          ixn_value: '',
+        },
+      });
+    });
   });
 });

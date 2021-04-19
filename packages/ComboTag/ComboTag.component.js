@@ -1,9 +1,11 @@
 import React, {
-  useState, useMemo, useCallback, useEffect, useRef,
+  useState, useMemo, useCallback, useEffect, useRef, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
+import { useDebouncedCallback } from 'use-debounce';
 import { Input } from '@comparethemarketau/manor-input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useIsDesktop, useId, useMountEffect } from '@comparethemarketau/manor-hooks';
 import { picturePropTypes } from '@comparethemarketau/manor-picture';
 import { Tag } from '@comparethemarketau/manor-tag';
@@ -26,6 +28,7 @@ import {
 } from './ComboTag.styles';
 
 const ComboTag = ({
+  trackingLabel,
   id: propsId,
   apiData,
   prefix,
@@ -73,6 +76,7 @@ const ComboTag = ({
   const [inlineTooltipActive, setInlineTooltipActive] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [componentFocused, setComponentFocused] = useState(false);
+  const { trackInteraction } = useContext(ManorContext);
   const hasList = !!apiData;
   const maxLabelLength = 26;
 
@@ -87,6 +91,7 @@ const ComboTag = ({
       // version 37, as did Internet Explorer 9, 10, and 11.
       // also note issue with space and comma detection in android: https://github.com/comparethemarketau/manor-react/issues/585
       if (currentValue !== '' && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',')) {
+        trackInteraction('Input', 'Combo Tag', 'Combo Tag', trackingLabel, currentValue);
         setCurrentValue('');
         setEditMode(false);
         setTags((prevTagArray) => {
@@ -122,6 +127,7 @@ const ComboTag = ({
         if (currentValue.trim() === '') {
           return [...prevTagArray];
         }
+        trackInteraction('Selection', 'Combo Tag', 'Combo Tag', trackingLabel, currentValue.trim());
         return [...prevTagArray, { label: currentValue.trim(), alert: alertState, visible: false }];
       });
     }
@@ -134,11 +140,17 @@ const ComboTag = ({
     }
   };
 
+  const debouncedTrackSelection = useDebouncedCallback(
+    (selectedValue) => trackInteraction('Selection', 'Combo Tag', 'Combo Tag', trackingLabel, selectedValue),
+    1000,
+  );
+
   // used if we have a list (expected with an api)
   const handleSelectItem = (tag) => {
     setInlineTooltipActive(false);
     if (!tags.some((t) => tag.label === t.label)) {
       setTags([...tags, tag]);
+      debouncedTrackSelection(tag.label);
     } else {
       setInlineTooltipActive(true);
     }
@@ -153,17 +165,29 @@ const ComboTag = ({
     }
   };
 
+  const debouncedTrackInput = useDebouncedCallback(
+    (newValue) => trackInteraction('Input', 'Combo Tag', 'Combo Tag', trackingLabel, newValue),
+    1000,
+  );
+
   const comboHandleChange = useCallback((valueInput) => {
+    debouncedTrackInput(valueInput);
     setCurrentValue(valueInput);
     setInlineTooltipActive(false);
     if (hasList) {
       setListVisible(!!valueInput.length);
     }
     scrollAndFocusInput(false);
-  }, [setCurrentValue, setListVisible, hasList]);
+  }, [setCurrentValue, setListVisible, hasList, debouncedTrackInput]);
+
+  const debouncedTrackFocus = useDebouncedCallback(
+    () => trackInteraction('Focus', 'Combo Tag', 'Combo Tag', trackingLabel, tags.map(({ label }) => label).join(', ')),
+    1000,
+  );
 
   const handleOnFocus = (event) => {
     setComponentFocused(true);
+    debouncedTrackFocus();
     if (event.target.tagName === 'BUTTON') {
       return;
     }
@@ -233,8 +257,11 @@ const ComboTag = ({
   };
 
   const deleteTagHandler = useCallback((i) => {
-    setTags(tags.filter((_, index) => index !== i));
-  }, [tags]);
+    const copy = JSON.parse(JSON.stringify(tags));
+    const removed = copy.splice(i, 1);
+    trackInteraction('Delete', 'ComboTag', 'ComboTag', trackingLabel, removed[0].label);
+    setTags(copy);
+  }, [tags, trackingLabel, trackInteraction]);
 
   const firstUpdate = useRef(true);
 
@@ -374,6 +401,7 @@ const ComboTag = ({
                     mask={mask}
                     guide={guide}
                     gtmPidAnonymous={gtmPidAnonymous}
+                    disableInteractionTracking
                   />
                 </StyledInputWrap>
               </StyledTagHolder>
@@ -413,6 +441,10 @@ const ComboTag = ({
 ComboTag.displayName = 'ComboTag';
 
 ComboTag.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the Combobox
    */

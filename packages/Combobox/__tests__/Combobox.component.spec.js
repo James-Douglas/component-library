@@ -1,6 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { useTracking } from 'react-tracking';
 import { fireEvent, render } from '../../../testUtils';
 import Combobox from '../Combobox.component';
 
@@ -25,6 +26,7 @@ describe('Combo', () => {
     const value = 'que';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -46,6 +48,7 @@ describe('Combo', () => {
   it('renders no options', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="nope"
         label="First Combo label"
@@ -62,6 +65,7 @@ describe('Combo', () => {
   it('renders correct changed characterMinimum', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="pres"
         label="First Combo label"
@@ -79,6 +83,7 @@ describe('Combo', () => {
   it('on input, set value func is called', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         label="First Combo label"
         apiData={apiData}
@@ -102,6 +107,7 @@ describe('Combo', () => {
     const handleBlur = jest.fn();
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleFocus={handleFocus}
         handleBlur={handleBlur}
         handleChange={() => {}}
@@ -123,6 +129,7 @@ describe('Combo', () => {
   it('renders with value', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         value="presentation dfsdf que ffgddfg"
         prefillValue="prese"
@@ -141,6 +148,7 @@ describe('Combo', () => {
   it('renders correct with link text', () => {
     const { getByText, container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -159,6 +167,7 @@ describe('Combo', () => {
   it('renders correct with list info box', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="pre"
         label="First Combo label"
@@ -176,6 +185,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -199,6 +209,7 @@ describe('Combo', () => {
     const value = 'pre';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={onSelectCb}
         label="First Combo label"
         prefillValue={value}
@@ -223,6 +234,7 @@ describe('Combo', () => {
     const value = 'pre';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleInput={onInputCb}
         handleChange={() => {}}
         label="First Combo label"
@@ -243,6 +255,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -265,6 +278,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -286,6 +300,7 @@ describe('Combo', () => {
   it('renders correct with link', () => {
     const { container, getByText } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -305,6 +320,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -327,6 +343,7 @@ describe('Combo', () => {
   it('accessibility - default case ', () => {
     const { container, getByText } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="pr"
         label="First Combo label"
@@ -348,6 +365,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -371,6 +389,7 @@ describe('Combo', () => {
   it('renders correct with link href', () => {
     const { container, getByText } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -389,6 +408,7 @@ describe('Combo', () => {
   it('renders correct with link href', () => {
     const { container, getByText } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -407,6 +427,7 @@ describe('Combo', () => {
   it('renders correct without link', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -424,6 +445,7 @@ describe('Combo', () => {
   it('check default border property', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -441,6 +463,7 @@ describe('Combo', () => {
   it('renders correct when focus and blur', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -463,6 +486,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -493,6 +517,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -524,6 +549,7 @@ describe('Combo', () => {
   it('accessibility - Check arrowDown condition when length more', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="pre"
         label="First Combo label"
@@ -544,6 +570,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -573,6 +600,7 @@ describe('Combo', () => {
     const value = 'pr';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -593,6 +621,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -626,6 +655,7 @@ describe('Combo', () => {
     const value = 'prese';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -647,6 +677,7 @@ describe('Combo', () => {
   it('accessibility - click enter', () => {
     const { container, getByText } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -672,6 +703,7 @@ describe('Combo', () => {
   it('accessibility - click tab', () => {
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="prese"
         label="First Combo label"
@@ -697,6 +729,7 @@ describe('Combo', () => {
   it('accessibility - default case ', () => {
     const { container, getByText } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="pr"
         label="First Combo label"
@@ -718,6 +751,7 @@ describe('Combo', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="pr"
         label="First Combo label"
@@ -741,6 +775,7 @@ describe('Combo', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="pr"
         label="First Combo label"
@@ -762,10 +797,12 @@ describe('Combo', () => {
     focusItem.focus();
     fireEvent.keyDown(focusItem, { key: 'Enter', keyCode: 13 });
   });
+
   it('check padding', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue="pr"
         label="First Combo label"
@@ -786,11 +823,13 @@ describe('Combo', () => {
     expect(listitem).toHaveStyleRule('padding', `${ctmTheme.spacing[8]} ${ctmTheme.spacing[40]}`);
     expect(listitem).toHaveStyleRule('cursor', 'pointer');
   });
+
   it('check on item close', () => {
     mockUseIsDesktopValue = false;
     const value = 'pr';
     const { container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -814,10 +853,12 @@ describe('Combo', () => {
     const listitemSumAfterClick = container.querySelectorAll('[role="listitem"]');
     expect(listitemSumAfterClick.length).toBe(0);
   });
+
   it('empty state check condition ', () => {
     mockUseIsDesktopValue = false;
     const { getByText, container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue=""
         label="First Combo label"
@@ -835,11 +876,13 @@ describe('Combo', () => {
     const emptyState = getByText('Please start typing');
     expect(emptyState).toBeInTheDocument();
   });
+
   it('no results check condition ', () => {
     mockUseIsDesktopValue = false;
     const value = 'random';
     const { getByText, container } = render(
       <Combobox
+        trackingLabel="test combobox"
         handleChange={() => {}}
         prefillValue={value}
         label="First Combo label"
@@ -856,5 +899,108 @@ describe('Combo', () => {
     inputField.click();
     const emptyState = getByText('Sorry, no results found');
     expect(emptyState).toBeInTheDocument();
+  });
+});
+describe('combobox interaction tracking', () => {
+  it('tracks focus events', () => {
+    mockUseIsDesktopValue = true;
+    const { trackEvent } = useTracking();
+    const value = 'que';
+    const { container } = render(
+      <Combobox
+        trackingLabel="test combobox"
+        handleChange={() => {}}
+        prefillValue={value}
+        label="First Combo label"
+        apiData={filterApiData(value)}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        gtmPidAnonymous
+      />,
+    );
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
+    expect(trackEvent).toHaveBeenCalledWith({
+      interaction: {
+        ixn_action: 'Focus',
+        ixn_label: 'test combobox',
+        ixn_object: 'Combo Box',
+        ixn_type: 'Combo Box',
+        ixn_value: 'que',
+      },
+    });
+  });
+
+  it('tracks input events', () => {
+    mockUseIsDesktopValue = true;
+    const { trackEvent } = useTracking();
+    const { container } = render(
+      <Combobox
+        trackingLabel="test combobox"
+        handleChange={() => {}}
+        prefillValue=""
+        label="First Combo label"
+        apiData={apiData}
+        id="combo-id-first"
+        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
+    const inputField = container.querySelector('input');
+    fireEvent.change(inputField, { target: { value: 'pre' } });
+    expect(trackEvent).toHaveBeenCalledWith({
+      interaction: {
+        ixn_action: 'Input',
+        ixn_label: 'test combobox',
+        ixn_object: 'Combo Box',
+        ixn_type: 'Combo Box',
+        ixn_value: 'pre',
+      },
+    });
+  });
+
+  it('tracks selection events', () => {
+    mockUseIsDesktopValue = true;
+    const { trackEvent } = useTracking();
+    const value = 'pre';
+    const { container } = render(
+      <Combobox
+        trackingLabel="test combobox"
+        handleChange={() => {
+        }}
+        prefillValue={value}
+        label="First Combo label"
+        apiData={filterApiData(value)}
+        id="combo-id-first"
+        listInfoBoxContent={(
+          <>
+            <span>Can’t find your address?</span>
+            {' '}
+            <a href="https://www.comparethemarket.com.au">Compare The Market</a>
+          </>
+          )}
+        required={false}
+        characterMinimum={2}
+        tooltip={{ title: 'Combo component' }}
+      />,
+    );
+    const inputField = container.querySelector('#combo-id-first');
+    inputField.focus();
+    const currentItem = container.getElementsByTagName('li')[0];
+    const input = container.querySelector('input');
+    fireEvent.mouseDown(currentItem);
+    expect(input.value).toBe('et presentation tempora');
+    expect(trackEvent).toHaveBeenCalledWith({
+      interaction: {
+        ixn_action: 'Selection',
+        ixn_label: 'test combobox',
+        ixn_object: 'Combo Box',
+        ixn_type: 'Combo Box',
+        ixn_value: 'et presentation tempora',
+      },
+    });
   });
 });

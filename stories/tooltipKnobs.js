@@ -16,6 +16,7 @@ const getTooltipKnobs = (groupId = null) => {
     'right-end': 'right-end',
   };
   return {
+    trackingLabel: text('trackingLabel', 'test trackingLabel', groupId),
     title: text('title', 'Tooltip Title', groupId),
     body: text('body', 'This is a an example tooltip', groupId),
     placement: select('placement', placementOptions, 'right', groupId),

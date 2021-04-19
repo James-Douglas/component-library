@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { muiTheme } from '@comparethemarketau/manor-themes';
 import { Link as MUILink } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -34,23 +35,36 @@ const ManorMuiLink = ({
 const ThemedMuiLink = withTheme(ManorMuiLink);
 
 const Link = ({
-  href, onClick, target, rel, title, role, underline, children, style,
-}) => (
-  <ThemedMuiLink
-    href={href}
-    target={target}
-    rel={rel}
-    title={title}
-    onClick={onClick}
-    role={role}
-    underline={underline}
-    style={style}
-  >
-    {children}
-  </ThemedMuiLink>
-);
+  trackingLabel, href, handleClick, target, rel, title, role, underline, children, style,
+}) => {
+  const { trackInteraction } = useContext(ManorContext);
+
+  const clickHandler = (e) => {
+    if (handleClick) handleClick(e);
+    trackInteraction('Click', 'Link', 'Link', trackingLabel, href);
+  };
+
+  return (
+    <ThemedMuiLink
+      href={href}
+      target={target}
+      rel={rel}
+      title={title}
+      onClick={clickHandler}
+      role={role}
+      underline={underline}
+      style={style}
+    >
+      {children}
+    </ThemedMuiLink>
+  );
+};
 
 Link.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * href for the link
    */
@@ -58,7 +72,7 @@ Link.propTypes = {
   /**
    * onClick function for the link
    */
-  onClick: PropTypes.func,
+  handleClick: PropTypes.func,
   /**
    * target attribute for the rendered <a> element
    */
@@ -96,7 +110,7 @@ Link.propTypes = {
 
 Link.defaultProps = {
   href: '',
-  onClick: null,
+  handleClick: null,
   target: null,
   rel: null,
   title: null,

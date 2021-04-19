@@ -3,12 +3,16 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/no-children-prop */
-import React, { useCallback, useEffect } from 'react';
+import React, {
+  useCallback, useContext, useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
+import { useDebouncedCallback } from 'use-debounce';
+import { Select as MUISelect } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { muiTheme } from '@comparethemarketau/manor-themes';
-import { Select as MUISelect } from '@material-ui/core';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Label } from '@comparethemarketau/manor-label';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
@@ -119,6 +123,7 @@ const TextDropdownInner = ({
 const ThemedMUIDropdown = withTheme(TextDropdownInner);
 
 const TextDropdown = ({
+  trackingLabel,
   theme,
   id,
   variant,
@@ -146,38 +151,64 @@ const TextDropdown = ({
   classes,
   className,
   ...props
-}) => (
-  <ThemedMUIDropdown
-    {...props}
-    id={id}
-    variant={variant}
-    value={value}
-    label={label}
-    labelProps={labelProps}
-    tooltip={tooltip}
-    tabIndex={tabIndex}
-    open={open}
-    validation={validation}
-    validationProps={validationProps}
-    renderValue={renderValue}
-    defaultValue={defaultValue}
-    displayEmpty={displayEmpty}
-    autoWidth={autoWidth}
-    handleOpen={handleOpen}
-    handleBlur={handleBlur}
-    handleFocus={handleFocus}
-    handleChange={handleChange}
-    handleClick={handleClick}
-    handleClose={handleClose}
-    children={children}
-    Input={Input}
-    IconComponent={IconComponent}
-    classes={classes}
-    className={className}
-  />
-);
+}) => {
+  const { trackInteraction } = useContext(ManorContext);
+
+  const changeHandler = (event, selectedValue, option) => {
+    trackInteraction('Selection', 'Dropdown', 'Text Dropdown', trackingLabel, selectedValue);
+    if (handleChange) {
+      handleChange(event, selectedValue, option);
+    }
+  };
+
+  const debouncedTrackFocus = useDebouncedCallback(
+    () => trackInteraction('Focus', 'Dropdown', 'Text Dropdown', trackingLabel, value),
+    500,
+  );
+
+  const focusHandler = (event, selectedValue, option) => {
+    debouncedTrackFocus(value);
+    if (handleFocus) {
+      handleFocus(event, selectedValue, option);
+    }
+  };
+  return (
+    <ThemedMUIDropdown
+      {...props}
+      id={id}
+      variant={variant}
+      value={value}
+      label={label}
+      labelProps={labelProps}
+      tooltip={tooltip}
+      tabIndex={tabIndex}
+      open={open}
+      validation={validation}
+      validationProps={validationProps}
+      renderValue={renderValue}
+      defaultValue={defaultValue}
+      displayEmpty={displayEmpty}
+      autoWidth={autoWidth}
+      handleOpen={handleOpen}
+      handleBlur={handleBlur}
+      handleFocus={focusHandler}
+      handleChange={changeHandler}
+      handleClick={handleClick}
+      handleClose={handleClose}
+      children={children}
+      Input={Input}
+      IconComponent={IconComponent}
+      classes={classes}
+      className={className}
+    />
+  );
+};
 
 TextDropdown.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * The id of the component
    */

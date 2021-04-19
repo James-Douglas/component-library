@@ -2,7 +2,8 @@ import React from 'react';
 import 'jest-styled-components';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
-import { render } from '../../../testUtils';
+import { useTracking } from 'react-tracking';
+import { fireEvent, render } from '../../../testUtils';
 import Button from '../Button.component';
 
 describe('Button', () => {
@@ -161,5 +162,39 @@ describe('Button', () => {
     );
     const btn = container.querySelector('#test-id');
     expect(btn).toHaveStyleRule('cursor', 'not-allowed');
+  });
+
+  it('calls handleClick on click', () => {
+    const clickHandler = jest.fn();
+    const { container } = render(
+      <Button id="test-id" variant="hero" handleClick={clickHandler}>
+        test content
+      </Button>,
+    );
+    const btn = container.querySelector('#test-id');
+    fireEvent.click(btn);
+    expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks clicks', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <Button id="test-id" trackingLabel="test" variant="tertiary" href="#">
+          test thing
+        </Button>,
+      );
+      const btn = container.querySelector('#test-id');
+      fireEvent.click(btn);
+      expect(trackEvent.mock.calls[0][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Click',
+          ixn_label: 'test',
+          ixn_object: 'Button',
+          ixn_type: 'tertiary',
+          ixn_value: 'test',
+        },
+      });
+    });
   });
 });

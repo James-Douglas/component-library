@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render, fireEvent } from '../../../testUtils';
 import Tabs, { renderChildren } from '../Tabs.component';
@@ -186,6 +187,28 @@ describe('TabButton', () => {
     expect(getByText('Refine Results1')).toBeInTheDocument();
     expect(getByText('Refine Results2')).toBeInTheDocument();
     expect(container).toMatchSnapshot();
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks click events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <TabsContext.Provider value={{ changeTab: () => {} }}>
+          <TabButton name="test" label="Refine Results" />
+        </TabsContext.Provider>,
+      );
+      const tabBtn = container.querySelector('.tab-button');
+      fireEvent.click(tabBtn);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Click',
+          ixn_label: 'Refine Results',
+          ixn_object: 'Tab',
+          ixn_type: 'Tab',
+          ixn_value: '',
+        },
+      });
+    });
   });
 });
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { Link } from '@comparethemarketau/manor-link';
-import { ManorContext } from '@comparethemarketau/manor-provider';
 import {
   faInfoCircle as faInfoCircleRegular,
   faLongArrowLeft,
@@ -41,7 +41,15 @@ const notificationIcon = (variant) => {
   }
 };
 
+const trackingTypes = {
+  inline: 'Inline',
+  toast: 'Toast',
+  hint: 'Hint',
+  alertBanner: 'Alert Banner',
+};
+
 const Notification = ({
+  trackingLabel,
   id,
   type,
   variant,
@@ -60,7 +68,10 @@ const Notification = ({
   background,
   defaultWhiteBackground,
 }) => {
+  const { trackInteraction } = useContext(ManorContext);
+
   const iconHandler = () => {
+    trackInteraction('Dismiss', 'Notification', trackingTypes[type], trackingLabel, '');
     if (handleClose) {
       handleClose();
     }
@@ -126,6 +137,10 @@ const Notification = ({
 };
 
 Notification.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Id of the component (generated id for toasts only)
    */

@@ -10,10 +10,15 @@ import { Label } from '@comparethemarketau/manor-label';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { StyledContainer, StyledInnerRow } from './CheckboxGroup.styles';
 
-export const generateGroup = (colSize, children, callback, selectedCheckboxes) => {
+export const generateGroup = (colSize, children, callback, selectedCheckboxes, label) => {
   if (children) {
     return children.map((child) => {
-      const component = React.cloneElement(child, { handleChange: callback, isSelected: selectedCheckboxes.includes(child.props.id) });
+      const component = React.cloneElement(child,
+        {
+          handleChange: callback,
+          isSelected: selectedCheckboxes.includes(child.props.id),
+          groupLabel: label,
+        });
       return (
         <Column cols={colSize} key={`key-${child.props.id}`}>
           {component}
@@ -65,7 +70,7 @@ const CheckboxGroup = ({
         <Column cols={isDesktop ? 10 : 12}>
           <StyledContainer id={groupId}>
             <StyledInnerRow>
-              {generateGroup(colSize, children, handleCheckboxClick, selectedCheckboxes)}
+              {generateGroup(colSize, children, handleCheckboxClick, selectedCheckboxes, label)}
             </StyledInnerRow>
           </StyledContainer>
           <FieldValidation message={validationMessage} />

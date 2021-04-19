@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { muiTheme } from '@comparethemarketau/manor-themes';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Tooltip, tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Typography } from '@comparethemarketau/manor-typography';
-
 import { withTheme } from 'styled-components';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Switch as MUISwitch, FormGroup as MUIFormGroup, FormControlLabel as MUIFormControlLabel } from '@material-ui/core';
 import StyledMargin from './Switch.styles';
 
 const Switch = ({
-  theme, name, id, checked, className, label, tooltip, labelVariant, labelPlacement, disabled, value, onChange, required, validationMessage,
+  trackingLabel, theme, name, id, checked, className, label, tooltip, labelVariant, labelPlacement, disabled, value, onChange, required, validationMessage,
 }) => {
+  const { trackInteraction } = useContext(ManorContext);
+
+  const handleChange = (event, newValue) => {
+    trackInteraction(newValue ? 'Select' : 'Unselect', 'Switch', 'Switch', trackingLabel, newValue ? 'On' : 'Off');
+    if (onChange) onChange(event, newValue);
+  };
+
   const labelTypography = <Typography variant={labelVariant} component="div">{label} {tooltip && <Tooltip title={tooltip.title} body={tooltip.body} />}</Typography>;
 
   return (
     <ThemeProvider theme={muiTheme(theme)}>
       <StyledMargin className={className}>
         <MUIFormGroup row>
-          <MUIFormControlLabel control={<MUISwitch color="primary" name={name} id={id} checked={checked} disabled={disabled} value={value} onChange={onChange} required={required} />} label={labelTypography} labelPlacement={labelPlacement} />
+          <MUIFormControlLabel control={<MUISwitch color="primary" name={name} id={id} checked={checked} disabled={disabled} value={value} onChange={handleChange} required={required} />} label={labelTypography} labelPlacement={labelPlacement} />
         </MUIFormGroup>
       </StyledMargin>
       <FieldValidation message={validationMessage} />
@@ -28,6 +35,10 @@ const Switch = ({
 };
 
 Switch.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * The name attribute for the switch
    */

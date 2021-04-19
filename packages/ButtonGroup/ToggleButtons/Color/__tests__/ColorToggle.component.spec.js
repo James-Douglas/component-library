@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { render, fireEvent } from '../../../../../testUtils';
 import ColorToggle, {
   getDisplayBackgroundColor,
@@ -47,7 +48,7 @@ describe('getDisplayLabel', () => {
 describe('ColorToggle', () => {
   it('renders with minimal props', () => {
     const { getByText, container } = render(
-      <ColorToggle backgroundColor="black" id="test-a" value="ttt" />,
+      <ColorToggle backgroundColor="black" trackingLabel="test-tracking-label" id="test-a" value="ttt" />,
     );
     expect(container.innerHTML).toMatchSnapshot();
     expect(getByText('Black')).toBeInTheDocument();
@@ -60,6 +61,7 @@ describe('ColorToggle', () => {
   it('renders with #333333 fontColor', () => {
     const { getByText, container } = render(
       <ColorToggle
+        trackingLabel="test-tracking-label"
         backgroundColor="black"
         id="test-a"
         fontColor="#333333"
@@ -81,6 +83,7 @@ describe('ColorToggle', () => {
   it('renders with #FFFFFF fontColor', () => {
     const { getByText, container } = render(
       <ColorToggle
+        trackingLabel="test-tracking-label"
         backgroundColor="black"
         id="test-a"
         fontColor="#FFFFFF"
@@ -104,6 +107,7 @@ describe('ColorToggle', () => {
     const { container } = render(
       <ColorToggle
         backgroundColor="black"
+        trackingLabel="test-tracking-label"
         id="test-a"
         value="ttt"
         fontColor="white"
@@ -114,5 +118,31 @@ describe('ColorToggle', () => {
     fireEvent.click(element);
     expect(onToggleCb).toHaveBeenCalled();
     expect(onToggleCb.mock.calls[0][0]).toEqual('ttt');
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks clicks', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <ColorToggle
+          id="test"
+          backgroundColor="black"
+          trackingLabel="test-tracking-label"
+          value="test"
+          handleToggle={() => {}}
+        />,
+      );
+      const input = container.querySelector('input');
+      fireEvent.click(input);
+      expect(trackEvent.mock.calls[0][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Click',
+          ixn_label: '',
+          ixn_object: 'Toggle Buttons',
+          ixn_type: 'ColorToggle',
+          ixn_value: 'test-tracking-label',
+        },
+      });
+    });
   });
 });

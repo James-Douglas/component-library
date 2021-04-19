@@ -5,6 +5,7 @@ import BaseToggle from '../BaseToggle';
 import ToggleLabel from '../ToggleLabel';
 
 const CustomToggle = ({
+  trackingLabel,
   id: propsId,
   value,
   name,
@@ -15,14 +16,17 @@ const CustomToggle = ({
   handleFocus,
   handleBlur,
   handleClick,
+  toggleGroupLabel,
   children,
 }) => {
   const id = useId(propsId);
+
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
     }
   };
+
   return (
     <BaseToggle
       id={id}
@@ -36,6 +40,9 @@ const CustomToggle = ({
       handleFocus={handleFocus}
       handleBlur={handleBlur}
       handleClick={handleClick}
+      trackingLabel={trackingLabel}
+      toggleGroupLabel={toggleGroupLabel}
+      variant="CustomToggle"
     >
       <ToggleLabel id={id}>
         {children}
@@ -45,6 +52,10 @@ const CustomToggle = ({
 };
 
 CustomToggle.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the CustomToggle
    */
@@ -87,6 +98,10 @@ CustomToggle.propTypes = {
    */
   handleClick: PropTypes.func,
   children: PropTypes.node,
+  /**
+   * Label of the toggle group, the ToggleGroup automatically populates this
+   */
+  toggleGroupLabel: PropTypes.string,
 };
 
 CustomToggle.defaultProps = {
@@ -100,6 +115,7 @@ CustomToggle.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   handleClick: null,
+  toggleGroupLabel: '',
 };
 
 export default CustomToggle;

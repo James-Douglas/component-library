@@ -7,13 +7,15 @@ import React, {
   useState,
   useEffect,
   useContext,
+  useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import { DayPickerRangeController as RSDayPickerRange } from 'react-dates';
 import { START_DATE, END_DATE } from 'react-dates/constants';
 import moment from 'moment';
+import { useDebouncedCallback } from 'use-debounce';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
-import { useId } from '@comparethemarketau/manor-hooks';
+import { useId, useMountEffect, usePrevious } from '@comparethemarketau/manor-hooks';
 import { DateInput } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { ManorContext } from '@comparethemarketau/manor-provider';
@@ -21,7 +23,10 @@ import { ManorContext } from '@comparethemarketau/manor-provider';
 import { StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
 import { StyledDateRangePicker, StyledDateRangePickerWrap, StyledFontAwesomeIcon } from './DateRangePicker.styles';
 
+const DISPLAY_FORMAT = 'DD/MM/YYYY';
+
 const DateRangePicker = ({
+  trackingLabel,
   startDateId: propsStartDateId,
   startDateTooltip,
   startDatePlaceholder,
@@ -47,22 +52,40 @@ const DateRangePicker = ({
 }) => {
   const startDateId = useId(propsStartDateId);
   const endDateId = useId(propsEndDateId);
-  const { breakpoint } = useContext(ManorContext);
+  const { breakpoint, trackInteraction } = useContext(ManorContext);
   const containerRef = React.useRef();
   const node = containerRef;
-  const displayFormat = 'DD/MM/YYYY';
-  const [startDate, setStartDate] = useState(startDateValue ? startDateValue.format(displayFormat) : '');
-  const [startDateMoment, setStartDateMoment] = useState(startDateValue ? moment(startDateValue, displayFormat, true) : null);
-  const [endDate, setEndDate] = useState(endDateValue ? endDateValue.format(displayFormat) : '');
-  const [endDateMoment, setEndDateMoment] = useState(endDateValue ? moment(endDateValue, displayFormat, true) : null);
+  const [startDate, setStartDate] = useState(startDateValue ? startDateValue.format(DISPLAY_FORMAT) : '');
+  const [startDateMoment, setStartDateMoment] = useState(startDateValue ? moment(startDateValue, DISPLAY_FORMAT, true) : null);
+  const [endDate, setEndDate] = useState(endDateValue ? endDateValue.format(DISPLAY_FORMAT) : '');
+  const [endDateMoment, setEndDateMoment] = useState(endDateValue ? moment(endDateValue, DISPLAY_FORMAT, true) : null);
   const [focusedInput, setFocusedInput] = useState(START_DATE);
   const [isVisisble, setIsVisisble] = useState(pickerVisible);
   const [startDateValidationMessageText, setStartDateValidationMessage] = useState(null);
   const [endDateValidationMessageText, setEndDateValidationMessage] = useState(null);
   const calendarArea = createRef();
+  const [componentHasFocus, setComponentHasFocus] = useState(false);
+  const hadFocus = usePrevious(componentHasFocus);
+  const firstUpdate = useRef(true);
+
   const focusHandler = (value) => {
     setFocusedInput(value || START_DATE);
   };
+
+  const blurHandler = (e) => {
+    if (!node.current.contains(e.target) && node.current !== e.target) {
+      setComponentHasFocus(false);
+    }
+  };
+
+  useEffect(() => {
+    if (componentHasFocus && !hadFocus) {
+      trackInteraction('Focus', 'Date Picker', 'Date Range', trackingLabel, {
+        [startDateAriaLabel || 'start']: startDate,
+        [endDateAriaLabel || 'end']: endDate,
+      });
+    }
+  }, [trackInteraction, trackingLabel, startDate, endDate, componentHasFocus, hadFocus, startDateAriaLabel, endDateAriaLabel]);
 
   useEffect(() => {
     setIsVisisble(pickerVisible);
@@ -75,34 +98,56 @@ const DateRangePicker = ({
     // we do want to allow this (And have validation show an error), so this takes care of that
     if (dates.startDate && !dates.endDate && endDate && dates.startDate !== startDate) {
       if (focusedInput === END_DATE) {
-        setEndDate(dates.startDate.format(displayFormat));
+        setEndDate(dates.startDate.format(DISPLAY_FORMAT));
         setEndDateMoment(dates.startDate);
       } else {
-        setStartDate(dates.startDate.format(displayFormat));
+        setStartDate(dates.startDate.format(DISPLAY_FORMAT));
         setStartDateMoment(dates.startDate);
       }
     } else {
-      setStartDate(dates.startDate.format(displayFormat));
+      setStartDate(dates.startDate.format(DISPLAY_FORMAT));
       setStartDateMoment(dates.startDate);
-      setEndDate(dates.endDate ? dates.endDate.format(displayFormat) : '');
+      setEndDate(dates.endDate ? dates.endDate.format(DISPLAY_FORMAT) : '');
       setEndDateMoment(dates.endDate);
     }
     if (focusedInput === END_DATE) {
       setIsVisisble(false);
     }
+    debouncedTrackSelection(
+      dates.startDate ? dates.startDate.format(DISPLAY_FORMAT) : '',
+      dates.endDate ? dates.endDate.format(DISPLAY_FORMAT) : '',
+    );
   };
 
   useEffect(() => {
     if (startDate) {
-      setStartDateMoment(moment(startDate, displayFormat, true));
+      setStartDateMoment(moment(startDate, DISPLAY_FORMAT, true));
     }
   }, [startDate]);
 
   useEffect(() => {
     if (endDate) {
-      setEndDateMoment(moment(endDate, displayFormat, true));
+      setEndDateMoment(moment(endDate, DISPLAY_FORMAT, true));
     }
   }, [endDate]);
+
+  const debouncedTrackInput = useDebouncedCallback(
+    (start, end) => {
+      trackInteraction('Input', 'Date Picker', 'Date Range', trackingLabel, {
+        [startDateAriaLabel || 'start']: start,
+        [endDateAriaLabel || 'end']: end,
+      });
+    }, 1000,
+  );
+
+  const debouncedTrackSelection = useDebouncedCallback(
+    (start, end) => {
+      trackInteraction('Selection', 'Date Picker', 'Date Range', trackingLabel, {
+        [startDateAriaLabel || 'start']: start,
+        [endDateAriaLabel || 'end']: end,
+      });
+    }, 1000,
+  );
 
   useEffect(() => {
     startDateMoment && startDateMoment.isValid() && !dateIsBlocked(startDateMoment) && setStartDateValidationMessage(null);
@@ -118,6 +163,9 @@ const DateRangePicker = ({
 
   const startDateHandleFocus = () => {
     fieldNameHandleFocus(START_DATE);
+    if (!componentHasFocus) {
+      setComponentHasFocus(true);
+    }
   };
 
   const keyboardAccessibilityFromDate = (event) => {
@@ -128,16 +176,21 @@ const DateRangePicker = ({
 
   const endDateHandleFocus = () => {
     fieldNameHandleFocus(END_DATE);
+    if (!componentHasFocus) {
+      setComponentHasFocus(true);
+    }
   };
 
   const startDateHandleChange = (value) => {
-    const parsed = moment(value, displayFormat, true);
+    const parsed = moment(value, DISPLAY_FORMAT, true);
+    debouncedTrackInput(value, endDate);
     setStartDate(value);
     setStartDateMoment(parsed);
   };
 
   const endDateHandleChange = (value) => {
-    const parsed = moment(value, displayFormat, true);
+    const parsed = moment(value, DISPLAY_FORMAT, true);
+    debouncedTrackInput(startDate, value);
     setEndDate(value);
     setEndDateMoment(parsed);
   };
@@ -196,6 +249,10 @@ const DateRangePicker = ({
     };
   }, [escFunction, handleClickOutside]);
 
+  useMountEffect(() => {
+    firstUpdate.current = false;
+  });
+
   return (
     <StyledDateRangePickerContainer ref={node}>
       <StyledDateRangePicker>
@@ -210,12 +267,15 @@ const DateRangePicker = ({
             value={startDate || ''}
             suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
             handleFocus={startDateHandleFocus}
+            handleBlur={blurHandler}
             handleChange={startDateHandleChange}
             validationMessage={startDateValidationMessageText}
             disableClearIcon
             prefixContent=""
             className="date-input-calendar"
             readonly={readonly}
+            disableInteractionTracking
+            trackingLabel={trackingLabel}
           />
         </StyledDateRangePickerWrap>
         <StyledDateRangePickerWrap breakpoint={breakpoint}>
@@ -229,12 +289,15 @@ const DateRangePicker = ({
             value={endDate || ''}
             suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
             handleFocus={endDateHandleFocus}
+            handleBlur={blurHandler}
             handleChange={endDateHandleChange}
             validationMessage={endDateValidationMessageText}
             disableClearIcon
             prefixContent=""
             className="date-input-calendar"
             readonly={readonly}
+            disableInteractionTracking
+            trackingLabel={trackingLabel}
           />
         </StyledDateRangePickerWrap>
       </StyledDateRangePicker>
@@ -265,6 +328,10 @@ const DateRangePicker = ({
 };
 
 DateRangePicker.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    *  Unique identifier for the start date input.
    */

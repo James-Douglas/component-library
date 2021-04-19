@@ -1,5 +1,6 @@
 import React from 'react';
 import 'jest-styled-components';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { render, fireEvent } from '../../../testUtils';
 import Input, {
@@ -93,13 +94,14 @@ describe('renderAffix()', () => {
 
 describe('Input.component', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<Input id="test-id" handleChange={() => {}} />);
+    const { container } = render(<Input trackingLabel="test" id="test-id" handleChange={() => {}} />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('renders with props', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -128,6 +130,7 @@ describe('Input.component', () => {
   it('renders an invalid input', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -144,6 +147,7 @@ describe('Input.component', () => {
   it('renders reduced padding right when no suffix or disableClearIcon', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -160,6 +164,7 @@ describe('Input.component', () => {
   it('renders an a prefix and a suffix', () => {
     const { getByText } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -179,6 +184,7 @@ describe('Input.component', () => {
   it('adds focus styles on focus and removes on blur', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -200,6 +206,7 @@ describe('Input.component', () => {
   it('accepts a prefill value and renders with prefill styling', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -221,6 +228,7 @@ describe('Input.component', () => {
     const clearValueCb = jest.fn();
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -244,6 +252,7 @@ describe('Input.component', () => {
     // https://github.com/testing-library/dom-testing-library/issues/332
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -261,6 +270,7 @@ describe('Input.component', () => {
   it('has a readonly true attribute', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -279,6 +289,7 @@ describe('Input.component', () => {
     const focusCb = jest.fn();
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -291,13 +302,13 @@ describe('Input.component', () => {
     const inputField = container.querySelector('#test-id');
     fireEvent.focus(inputField);
     expect(focusCb.mock.calls.length).toBe(1);
-    expect(focusCb.mock.calls[0][0]).toBe(undefined);
   });
 
   it('has a blur handler when passed in', () => {
     const blurCb = jest.fn();
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -310,12 +321,12 @@ describe('Input.component', () => {
     const inputField = container.querySelector('#test-id');
     fireEvent.blur(inputField);
     expect(blurCb.mock.calls.length).toBe(1);
-    expect(blurCb.mock.calls[0][0]).toBe(undefined);
   });
 
   it('applies border on blur', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -335,6 +346,7 @@ describe('Input.component', () => {
   it('applies border on blur when prefill is true', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         label="[Fieldset label] With tooltip"
         id="input-one"
         tooltip={{ title: 'input demo' }}
@@ -359,6 +371,7 @@ describe('Input.component', () => {
   it('renders input with suppress class', () => {
     const { container } = render(
       <Input
+        trackingLabel="test"
         id="test-id"
         type="text"
         placeholder="placeholder test"
@@ -371,5 +384,95 @@ describe('Input.component', () => {
 
     const inputFieldWrap = container.querySelector('.input-container');
     expect(inputFieldWrap).toHaveClass('data-hj-suppress');
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <Input
+          trackingLabel="test"
+          id="test-id"
+          type="text"
+          placeholder="placeholder test"
+          maxlength={5}
+          handleChange={() => {}}
+        />,
+      );
+
+      const inputField = container.querySelector('#test-id');
+      fireEvent.focus(inputField);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Input',
+          ixn_value: '',
+        },
+      });
+    });
+
+    it('tracks input events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <Input
+          trackingLabel="test"
+          id="test-id"
+          type="text"
+          placeholder="placeholder test"
+          maxlength={5}
+          handleChange={() => {}}
+        />,
+      );
+
+      const inputField = container.querySelector('#test-id');
+      fireEvent.change(inputField, { target: { value: 'abcd' } });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Input',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Input',
+          ixn_value: 'abcd',
+        },
+      });
+    });
+
+    it('tracks clear event', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <Input
+          trackingLabel="test"
+          id="test-id"
+          type="text"
+          placeholder="placeholder test"
+          handleChange={() => {}}
+        />,
+      );
+
+      const inputField = container.querySelector('#test-id');
+      fireEvent.change(inputField, { target: { value: 'abcd' } });
+      const clearBtn = container.querySelector('.input-clear-button');
+      fireEvent.click(clearBtn);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Input',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Input',
+          ixn_value: 'abcd',
+        },
+      });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Clear',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Input',
+          ixn_value: '',
+        },
+      });
+    });
   });
 });

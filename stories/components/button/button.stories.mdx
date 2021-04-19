@@ -1,0 +1,216 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+import { Button } from '@comparethemarketau/manor-button';
+import { Container, FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
+import { Overline } from '@comparethemarketau/manor-typography';
+import { default as DemoContainer, StyledRow } from './button-view-styles';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons/faInfoCircle';
+
+<Meta title="Components/Button" component={Button} />
+
+# Button
+
+The Button component has four available variants: `hero`, `primary`, `secondary`, `tertiary`.
+
+The Button can be styled with an icon and can be configured according to the design system.
+
+All Button variants bar `tertiary` have an optional `inverted` prop for use against dark backgrounds.
+
+Button width is set to `100%` by default, so the Button fills the width of its parent container. The width
+attribute can be overridden via the `width` prop if desired.
+
+As an escape hatch for situational styling, the style prop can be used for cases where the button needs to be aligned in a different flex position, for example.
+
+The tagtype prop can be used to set the html type attribute, for example setting the button to be a `submit` type.
+
+If the `href` prop is supplied, the underlying HTML tag will be an `a`, otherwise this will be a `button` tag. This does not
+affect the styling, which is determined via the supplied `variant`.
+
+## Hero
+<Preview>
+  <Story name="hero button">
+    <div style={{ padding: '2%' }}>
+      <FluidContainer>
+        <Row>
+          <Column cols={4}>
+            <Button id="hero-btn01" trackingLabel="hero-btn01" variant="hero" href='#'>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="hero-btn02" trackingLabel="hero-btn02" variant="hero" icon={faInfoCircle}>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="hero-btn03" trackingLabel="hero-btn03" variant="hero" icon={faInfoCircle} iconAlign='right'>Compare the market</Button>
+          </Column>
+        </Row>
+        <StyledRow>
+          <Column cols={4}>
+            <Button id="hero-btn04" trackingLabel="hero-btn04" variant="hero" inverted >Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="hero-btn05" trackingLabel="hero-btn05" variant="hero" inverted icon={faInfoCircle}>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="hero-btn06" trackingLabel="hero-btn06" variant="hero" inverted icon={faInfoCircle} iconAlign='right'>Compare the market</Button>
+          </Column>
+        </StyledRow>
+        <Row>
+          <Column cols={4}>
+            <Button id="hero-btn07" trackingLabel="hero-btn07" variant="hero" disabled>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="hero-btn08" trackingLabel="hero-btn08" variant="hero" inverted iconButton icon={faInfoCircle} />
+          </Column>
+        </Row>
+      </FluidContainer>
+    </div>
+  </Story>
+</Preview>
+
+## Primary
+<Preview>
+  <Story name="primary button">
+    <div style={{ padding: '2%' }}>
+      <FluidContainer>
+        <Row>
+          <Column cols={4}>
+            <Button id="primary-btn01" trackingLabel="primary-btn01" variant="primary" >Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="primary-btn02" trackingLabel="primary-btn02" variant="primary" icon={faInfoCircle}>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="primary-btn03" trackingLabel="primary-btn03" variant="primary" icon={faInfoCircle} iconAlign='right'>Compare the market</Button>
+          </Column>
+        </Row>
+        <StyledRow>
+          <Column cols={4}>
+            <Button id="primary-btn04" trackingLabel="primary-btn04" variant="primary" inverted >Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="primary-btn05" trackingLabel="primary-btn05" variant="primary" inverted icon={faInfoCircle}>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="primary-btn06" trackingLabel="primary-btn06" variant="primary" inverted icon={faInfoCircle} iconAlign='right'>Compare the market</Button>
+          </Column>
+        </StyledRow>
+        <Row>
+          <Column cols={4}>
+            <Button id="primary-btn07" trackingLabel="primary-btn07" variant="primary" disabled>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="primary-btn08" trackingLabel="primary-btn08" variant="primary" inverted iconButton icon={faInfoCircle} />
+          </Column>
+        </Row>
+      </FluidContainer>
+    </div>
+  </Story>
+</Preview>
+
+## Secondary
+<Preview>
+  <Story name="secondary button">
+    <div style={{ padding: '2%' }}>
+      <FluidContainer>
+        <Row>
+          <Column cols={4}>
+            <Button id="secondary-btn01" trackingLabel="secondary-btn01" variant="secondary" >Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="secondary-btn02" trackingLabel="secondary-btn02" variant="secondary" icon={faInfoCircle}>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="secondary-btn03" trackingLabel="secondary-btn03" variant="secondary" icon={faInfoCircle} iconAlign='right'>Compare the market</Button>
+          </Column>
+        </Row>
+        <StyledRow>
+          <Column cols={4}>
+            <Button id="secondary-btn04" trackingLabel="secondary-btn04" variant="secondary" inverted >Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="secondary-btn05" trackingLabel="secondary-btn05" variant="secondary" inverted icon={faInfoCircle}>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="secondary-btn06" trackingLabel="secondary-btn06" variant="secondary" inverted icon={faInfoCircle} iconAlign='right'>Compare the market</Button>
+          </Column>
+        </StyledRow>
+        <Row>
+          <Column cols={4}>
+            <Button id="secondary-btn07" trackingLabel="secondary-btn07" variant="secondary" disabled>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="secondary-btn08" trackingLabel="secondary-btn08" variant="secondary" inverted iconButton icon={faInfoCircle} />
+          </Column>
+        </Row>
+      </FluidContainer>
+    </div>
+  </Story>
+</Preview>
+
+## Tertiary
+<Preview>
+  <Story name="tertiary button">
+    <div style={{ padding: '2%'}}>
+      <FluidContainer>
+        <Row>
+          <Column cols={4}>
+            <Button id="tertiary-btn01" trackingLabel="tertiary-btn01" variant="tertiary" >Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="tertiary-btn02" trackingLabel="tertiary-btn02" variant="tertiary" icon={faInfoCircle}>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="tertiary-btn03" trackingLabel="tertiary-btn03" variant="tertiary" icon={faInfoCircle} iconAlign='right'>Compare the market</Button>
+          </Column>
+        </Row>
+        <Row>
+          <Column cols={4}>
+            <Button id="tertiary-btn04" trackingLabel="tertiary-btn04" variant="tertiary" disabled>Compare the market</Button>
+          </Column>
+          <Column cols={4}>
+            <Button id="tertiary-btn05" trackingLabel="tertiary-btn05" variant="tertiary" iconButton icon={faInfoCircle} />
+          </Column>
+        </Row>
+      </FluidContainer>
+    </div>
+  </Story>
+</Preview>
+
+### Props
+
+<Props of={Button} />
+
+<Story name="button with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
+  {() => {
+    const id = text('id', 'btn1');
+    const variant = select('variant', ['hero', 'primary', 'secondary', 'tertiary'], 'hero');
+    const inverted = boolean('inverted', false);
+    const children = text('content', 'Compare the market');
+    const disabled = boolean('disabled',  false);
+    const iconAlign = select('icon align', ['left', 'right'], 'left');
+    const href = text('href', '#');
+    const target = text('target', '_blank');
+    const rel = text('rel', '');
+    const iconButton = boolean('iconButton', false);
+    return (
+      <div style={{ padding: '2%', background: 'white' }}>
+        <div>
+          <Button
+            trackingLabel="example button"
+            id={id}
+            variant={variant}
+            inverted={inverted}
+            disabled={disabled}
+            icon={faInfoCircle}
+            iconAlign={iconAlign}
+            href={href}
+            target={target}
+            rel={rel}
+            iconButton={iconButton}
+          >
+            {children}
+          </Button>
+        </div>
+      </div>
+    );
+  }}
+</Story>

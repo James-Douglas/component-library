@@ -12,17 +12,22 @@ const CTMLogo = ({
   size, inverted, className,
 }) => {
   const theme = useContext(ThemeContext);
-  const { breakpoint } = useContext(ManorContext);
+  const { breakpoint, trackInteraction } = useContext(ManorContext);
   let src = CTMLogoStacked;
+
   if (breakpoint === 'md') {
     src = inverted ? CTMLogoStackedInverted : CTMLogoStacked;
   } else if (breakpoint !== 'xs') {
     src = inverted ? CTMLogoInlineInverted : CTMLogoInline;
   }
+
+  const trackClickEvent = () => trackInteraction('Click', 'Logo', 'CTM Logo', '', 'https://www.comparethemarket.com.au');
+
   return (
     <Logo
       size={size}
       link="https://www.comparethemarket.com.au"
+      handleClick={trackClickEvent}
       picture={{
         src,
         srcsets: [

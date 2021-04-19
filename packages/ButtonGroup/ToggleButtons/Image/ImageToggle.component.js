@@ -32,6 +32,7 @@ export function getImageToggleContent(src, srcsets, alt, pictureTitle, id, toggl
 }
 
 const ImageToggle = ({
+  trackingLabel,
   id: propsId,
   title,
   description,
@@ -48,6 +49,7 @@ const ImageToggle = ({
   srcsets,
   alt,
   pictureTitle,
+  toggleGroupLabel,
 }) => {
   const toggleHandler = () => {
     if (handleToggle) {
@@ -67,6 +69,9 @@ const ImageToggle = ({
       handleFocus={handleFocus}
       handleBlur={handleBlur}
       handleClick={handleClick}
+      trackingLabel={trackingLabel}
+      toggleGroupLabel={toggleGroupLabel}
+      variant="ImageToggle"
     >
       {getImageToggleContent(src, srcsets, alt, pictureTitle, id, title, description)}
     </BaseToggle>
@@ -74,6 +79,10 @@ const ImageToggle = ({
 };
 
 ImageToggle.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the ImageToggle
    */
@@ -144,6 +153,10 @@ ImageToggle.propTypes = {
    * title attribute for the image
    */
   pictureTitle: PropTypes.string,
+  /**
+   * Label of the toggle group, the ToggleGroup automatically populates this
+   */
+  toggleGroupLabel: PropTypes.string,
 };
 
 ImageToggle.defaultProps = {
@@ -161,6 +174,7 @@ ImageToggle.defaultProps = {
   srcsets: [],
   alt: '',
   pictureTitle: '',
+  toggleGroupLabel: '',
 };
 
 export default ImageToggle;

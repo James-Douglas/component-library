@@ -8,10 +8,13 @@ import { StyledContact, StyledIconWrap, StyledIframe } from './Contact.styles';
 const Contact = ({
   number, size, contactStrip, iconSize,
 }) => {
-  const { isDesktop } = useContext(ManorContext);
+  const { isDesktop, trackInteraction } = useContext(ManorContext);
+
+  const trackContactClick = () => trackInteraction('Click', 'Header', 'Contact', '', '');
+
   return (
     <>
-      <StyledContact isDesktop={isDesktop} contactStrip={contactStrip} size={size} href={`tel:${number}`} target="link-target">
+      <StyledContact onClick={trackContactClick} isDesktop={isDesktop} contactStrip={contactStrip} size={size} href={`tel:${number}`} target="link-target">
         <StyledIconWrap>
           <FontAwesomeIcon icon={faPhone} size={iconSize} flip="horizontal" />
         </StyledIconWrap>

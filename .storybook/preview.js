@@ -13,7 +13,7 @@ addParameters({
   options: {
     storySort: {
       method: 'alphabetical',
-      order: ['Welcome', 'Foundation', 'Components'],
+      order: ['Welcome', 'How to', ['Usage', 'Development', ['Development guide']], 'Foundation', 'Components'],
       locales: 'en-AU',
     }
   },

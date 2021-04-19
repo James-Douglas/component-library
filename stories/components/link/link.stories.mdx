@@ -1,0 +1,32 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Link } from '@comparethemarketau/manor-link';
+import { Typography } from '@comparethemarketau/manor-typography';
+
+<Meta title="Components/Link" />
+
+# Link
+
+Renders a link
+
+<Preview>
+  <Story name="link">
+    <Link trackingLabel="test link" href="#">this is a link</Link>
+  </Story>
+</Preview>
+
+### Within Typography
+<Preview>
+  <Story name="link within typography">
+    <Typography variant="body1">
+      <Link trackingLabel="test link" href="javascript:void(0);" handleClick={(e) => {
+        e.preventDefault();
+        console.log('link clicked');
+      }}>
+        this is a link
+        </Link>
+    </Typography>
+  </Story>
+</Preview>
+
+#### Props
+<Props of={Link} />

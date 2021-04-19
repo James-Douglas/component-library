@@ -1,5 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useRef, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
+import { useDebouncedCallback } from 'use-debounce';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { usePrefill, useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
@@ -37,6 +41,7 @@ export function getRemainingCharsContent(maxChars, maxLength, id, textAreaRemain
 }
 
 const Textarea = ({
+  trackingLabel,
   label,
   tooltip,
   validationMessage,
@@ -58,6 +63,7 @@ const Textarea = ({
   gtmPidAnonymous,
   className,
 }) => {
+  const { trackInteraction } = useContext(ManorContext);
   const id = useId(propsId);
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
@@ -96,12 +102,31 @@ const Textarea = ({
     textAreaElement.current.setCustomValidity(charsExceed ? 'Maximum characters exceeded' : '');
   }, [charsExceed]);
 
+  const debouncedTrackInput = useDebouncedCallback(
+    (newValue) => trackInteraction('Input', 'Text Box', 'Text Box', trackingLabel, newValue ? newValue.substring(0, 32) : ''),
+    1000,
+  );
+
   const changeHandler = (event) => {
     event.preventDefault();
     setIsDirty(true);
     setStateValue(event.target.value);
+    debouncedTrackInput(event.target.value);
     if (handleChange) {
       handleChange(event.target.value);
+    }
+  };
+
+  const debouncedTrackFocus = useDebouncedCallback(
+    () => trackInteraction('Focus', 'Text Box', 'Text Box', trackingLabel, stateValue ? stateValue.substring(0, 32) : ''),
+    1000,
+  );
+
+  const focusHandler = (event) => {
+    event.preventDefault();
+    debouncedTrackFocus();
+    if (handleFocus) {
+      handleFocus(event);
     }
   };
 
@@ -121,7 +146,7 @@ const Textarea = ({
           ref={textAreaElement}
           value={stateValue}
           onChange={changeHandler}
-          onFocus={handleFocus}
+          onFocus={focusHandler}
           onBlur={handleBlur}
           id={id}
           name={name}
@@ -152,6 +177,10 @@ const Textarea = ({
 };
 
 Textarea.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the Textarea
    */

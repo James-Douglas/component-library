@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { render, fireEvent } from '../../../../testUtils';
 import 'jest-styled-components';
 import BaseToggle from '../BaseToggle';
@@ -7,6 +8,8 @@ describe('BaseToggle', () => {
   it('renders with minimal props', () => {
     const { container } = render(
       <BaseToggle
+        toggleGroupLabel="test-group-label"
+        trackingLabel="test-tracking-label"
         type="square"
         id="test-square"
         value="test"
@@ -19,6 +22,8 @@ describe('BaseToggle', () => {
   it('sets checked when selectedId equals id', () => {
     const { container } = render(
       <BaseToggle
+        toggleGroupLabel="test-group-label"
+        trackingLabel="test-tracking-label"
         type="square"
         id="test-selected-id"
         value="test"
@@ -34,6 +39,8 @@ describe('BaseToggle', () => {
     const onToggleCb = jest.fn();
     const { container } = render(
       <BaseToggle
+        toggleGroupLabel="test-group-label"
+        trackingLabel="test-tracking-label"
         type="square"
         id="test-square"
         value="testt"
@@ -52,6 +59,8 @@ describe('BaseToggle', () => {
     const { container } = render(
       <BaseToggle
         type="square"
+        toggleGroupLabel="test-group-label"
+        trackingLabel="test-tracking-label"
         handleToggle={() => {}}
         id="test"
         value="testt"
@@ -72,6 +81,8 @@ describe('BaseToggle', () => {
     const { container } = render(
       <BaseToggle
         handleToggle={handleToggle}
+        toggleGroupLabel="test-group-label"
+        trackingLabel="test-tracking-label"
         id="test"
         value="test"
         handleClick={handleClick}
@@ -82,5 +93,32 @@ describe('BaseToggle', () => {
     fireEvent.click(input);
     expect(handleToggle).toHaveBeenCalledTimes(1);
     expect(handleClick).toHaveBeenCalledTimes(2);
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks clicks', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <BaseToggle
+          id="test"
+          toggleGroupLabel="test-group-label"
+          trackingLabel="test-tracking-label"
+          value="test"
+          variant="ColorToggle"
+          handleToggle={() => {}}
+        />,
+      );
+      const input = container.querySelector('input');
+      fireEvent.click(input);
+      expect(trackEvent.mock.calls[0][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Click',
+          ixn_label: 'test-group-label',
+          ixn_object: 'Toggle Buttons',
+          ixn_type: 'ColorToggle',
+          ixn_value: 'test-tracking-label',
+        },
+      });
+    });
   });
 });

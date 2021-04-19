@@ -30,6 +30,7 @@ import {
 } from './Dropdown.styles';
 
 const Dropdown = ({
+  trackingLabel,
   id: propsId,
   selectedValue,
   label,
@@ -49,7 +50,7 @@ const Dropdown = ({
   const id = useId(propsId);
   const dropdownWrapper = useRef();
   const button = useRef();
-  const { isDesktop } = useContext(ManorContext);
+  const { isDesktop, trackInteraction } = useContext(ManorContext);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState();
@@ -70,6 +71,7 @@ const Dropdown = ({
     if (handleFocus) {
       handleFocus();
     }
+    trackInteraction('Focus', 'Dropdown', 'Dropdown', trackingLabel, value || '');
   };
 
   const handleBlurDropdownButton = () => {
@@ -87,9 +89,10 @@ const Dropdown = ({
   // click handler for dropdownItems
   const onItemClick = useCallback((event, optionValue, option) => {
     setValue(optionValue);
+    trackInteraction('Selection', 'Dropdown', 'Dropdown', trackingLabel, optionValue);
     setOption(option);
     handleChange && handleChange(event, optionValue, option);
-  }, [setValue, handleChange]);
+  }, [trackInteraction, trackingLabel, handleChange]);
 
   // map dropdownItems with additional props
   const childrenWithProps = useMemo(() => React.Children.map(children, (child) => React.cloneElement(child, {
@@ -266,6 +269,10 @@ const Dropdown = ({
 };
 
 Dropdown.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the dropdown
    */

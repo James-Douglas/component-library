@@ -1,6 +1,7 @@
 import React from 'react';
 import 'jest-styled-components';
 import { act } from 'react-dom/test-utils';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { fireEvent, render } from '../../../testUtils';
 import Dropdown from '../Dropdown.component';
@@ -22,6 +23,7 @@ describe('Dropdown', () => {
   it('accessibility check for arrow down', async () => {
     const { container, getByText } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
       >
@@ -62,6 +64,7 @@ describe('Dropdown', () => {
   it('accessibility check for arrow up', () => {
     const { container, getByText } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
       >
@@ -98,6 +101,7 @@ describe('Dropdown', () => {
   it('click outside of dropdown', () => {
     const { container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
       >
@@ -124,6 +128,7 @@ describe('Dropdown', () => {
   it('click on dropdown ', () => {
     const { container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
       >
@@ -148,6 +153,7 @@ describe('Dropdown', () => {
   it('accessibility check for arrow down if nothing selected', () => {
     const { container, getByText } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         forceFullWidth
         label="Dropdown Label"
@@ -181,6 +187,7 @@ describe('Dropdown', () => {
   it('accessibility check for edgecase', () => {
     const { container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
       >
@@ -200,6 +207,7 @@ describe('Dropdown', () => {
   it('accessibility check for enter', () => {
     const { container, getByText } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
       >
@@ -230,6 +238,7 @@ describe('Dropdown', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
       >
@@ -249,6 +258,7 @@ describe('Dropdown', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         disabled
@@ -270,6 +280,7 @@ describe('Dropdown', () => {
     mockUseIsDesktopValue = false;
     const { getByText } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         prefixContent="Prefix"
@@ -285,6 +296,7 @@ describe('Dropdown', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         prefixContent="Prefix"
@@ -301,6 +313,7 @@ describe('Dropdown', () => {
   it('renders with a selectedValue', () => {
     const { getByText } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         selectedValue="2First"
@@ -316,6 +329,7 @@ describe('Dropdown', () => {
     const valueCb = jest.fn();
     const { getByText, container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         selectedValue="2First"
@@ -342,6 +356,7 @@ describe('Dropdown', () => {
     const valueCb = jest.fn();
     const { getByText, container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         selectedValue="2First"
@@ -377,6 +392,7 @@ describe('Dropdown', () => {
   it('renders the variant "text" with a selectedValue', () => {
     const { getByText } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         selectedValue="2First"
@@ -393,6 +409,7 @@ describe('Dropdown', () => {
   it('renders the variant "text-fixed-chevron" with a selectedValue', () => {
     const { getByText } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         selectedValue="2First"
@@ -410,6 +427,7 @@ describe('Dropdown', () => {
     mockUseIsDesktopValue = false;
     const { container } = render(
       <Dropdown
+        trackingLabel="input-one"
         id="input-one"
         label="Dropdown Label"
         variant="text"
@@ -424,5 +442,63 @@ describe('Dropdown', () => {
     expect(dropdownWrapper).toHaveStyleRule('width', 'auto');
     const buttonDropdown = container.querySelector('[role="button"]');
     expect(buttonDropdown).toHaveStyleRule('background', 'transparent');
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <Dropdown
+          trackingLabel="input-one"
+          id="input-one"
+          label="Dropdown Label"
+        >
+          <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+          <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+        </Dropdown>,
+      );
+
+      const dropdown = container.querySelector('[role="button"]');
+      dropdown.focus();
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'input-one',
+          ixn_object: 'Dropdown',
+          ixn_type: 'Dropdown',
+          ixn_value: '',
+        },
+      });
+    });
+
+    it('tracks selection events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <Dropdown
+          trackingLabel="input-one"
+          id="input-one"
+          label="Dropdown Label"
+          selectedValue="2First"
+        >
+          <DropdownItem value="1Default" id="1">1Default Item - Title</DropdownItem>
+          <DropdownItem value="2First" id="2">2First Item - Title</DropdownItem>
+        </Dropdown>,
+      );
+
+      const buttonDropdown = container.querySelector('[role="button"]');
+      fireEvent.click(buttonDropdown);
+      const listItems = container.querySelectorAll('li');
+      fireEvent.click(listItems[0]);
+
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Selection',
+          ixn_label: 'input-one',
+          ixn_object: 'Dropdown',
+          ixn_type: 'Dropdown',
+          ixn_value: '1Default',
+        },
+      });
+    });
   });
 });

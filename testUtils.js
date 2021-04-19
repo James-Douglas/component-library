@@ -4,6 +4,12 @@ import {
 } from '@testing-library/react';
 import ManorProvider from './packages/Provider/ManorProvider';
 
+jest.mock('react-tracking', () => ({
+  useTracking: jest.fn(() => ({
+    Track: ({ children }) => <>{children}</>,
+  })),
+}));
+
 const ManorTestWrapper = ({ children }) => (
   <ManorProvider>
     {children}

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { usePrefill, useId } from '@comparethemarketau/manor-hooks';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 
@@ -26,6 +27,7 @@ export const renderIcon = (icon, value) => {
 export const getInitialValue = (isSelected, prefillValue) => isSelected || prefillValue || false;
 
 const Checkbox = ({
+  trackingLabel,
   id: propsId,
   icon,
   label,
@@ -43,6 +45,7 @@ const Checkbox = ({
   variant,
   image,
 }) => {
+  const { trackInteraction } = useContext(ManorContext);
   const [internalValue, setInternalValue] = useState(getInitialValue(isSelected, prefillValue));
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, isSelected, isDirty);
@@ -57,10 +60,9 @@ const Checkbox = ({
 
   const toggleEventHandler = (e) => {
     const targValue = e.target.checked;
-
     setIsDirty(true);
     setInternalValue(targValue);
-
+    trackInteraction(targValue ? 'Select' : 'Unselect', 'Checkbox', 'Checkbox', trackingLabel, '');
     if (handleChange) {
       handleChange(id, targValue);
     }
@@ -129,6 +131,10 @@ const Checkbox = ({
 };
 
 Checkbox.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the checkbox.
    */

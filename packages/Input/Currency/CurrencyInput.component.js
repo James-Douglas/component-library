@@ -5,6 +5,7 @@ import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import Input, { getInitialValue } from '../Input.component';
 
 const CurrencyInput = ({
+  trackingLabel,
   id: propsId,
   label,
   ariaLabelledBy,
@@ -86,11 +87,17 @@ const CurrencyInput = ({
       className={className}
       handleFocus={handleFocus}
       handleBlur={handleBlur}
+      trackingFieldType="Currency"
+      trackingLabel={trackingLabel}
     />
   );
 };
 
 CurrencyInput.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    *  Unique id for the Currency input
    */

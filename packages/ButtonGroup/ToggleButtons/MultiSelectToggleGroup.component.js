@@ -16,6 +16,7 @@ export const getChildren = (
   handleToggle,
   handleClick,
   validationMessage,
+  label,
 ) => (
   children.map((child, index) => {
     const key = `toggle-${groupId}-${index}`;
@@ -26,6 +27,7 @@ export const getChildren = (
       handleToggle,
       handleClick,
       invalid: !!validationMessage && validationMessage.length > 0,
+      toggleGroupLabel: label,
     };
     return React.cloneElement(child, propsToAdd);
   })
@@ -73,7 +75,7 @@ const MultiSelectToggleGroup = ({
     <>
       <Label htmlFor={groupId} text={label} tooltip={tooltip} />
       <StyledToggleGroup id={groupId} className={className}>
-        {getChildren(groupId, children, name, selectedToggleValues, toggleHandler, handleClick, validationMessage)}
+        {getChildren(groupId, children, name, selectedToggleValues, toggleHandler, handleClick, validationMessage, label)}
       </StyledToggleGroup>
       <StyledValidationWrapper>
         <FieldValidation message={validationMessage} />

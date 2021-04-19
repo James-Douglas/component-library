@@ -8,6 +8,7 @@ import Input from '../Input.component';
 import StyledFontAwesomeIcon from './DateInput.styles';
 
 const DateInput = ({
+  trackingLabel,
   id: propsId,
   label,
   ariaLabelledBy,
@@ -29,6 +30,7 @@ const DateInput = ({
   disableClearIcon,
   format,
   gtmPidAnonymous,
+  disableInteractionTracking,
 }) => {
   const id = useId(propsId);
   const mask = format.split('').map((x) => (x === '/' ? x : /\d/));
@@ -59,11 +61,18 @@ const DateInput = ({
       handleBlur={handleBlur}
       disableClearIcon={disableClearIcon}
       gtmPidAnonymous={gtmPidAnonymous}
+      trackingLabel={trackingLabel}
+      disableInteractionTracking={disableInteractionTracking}
+      trackingFieldType="Date"
     />
   );
 };
 
 DateInput.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique id for the Date input
    */
@@ -165,6 +174,11 @@ DateInput.propTypes = {
    * Used to indicate if a field contains personally identifying data which needs to remain anonymous from google analytics
   */
   gtmPidAnonymous: PropTypes.bool,
+  /**
+   * Set automatically by other Manor components that render the Input so they handle interaction
+   * tracking within themselves. You should never need to set this.
+   */
+  disableInteractionTracking: PropTypes.bool,
 };
 
 DateInput.defaultProps = {
@@ -188,6 +202,7 @@ DateInput.defaultProps = {
   disableClearIcon: false,
   format: 'DD/MM/YYYY',
   gtmPidAnonymous: false,
+  disableInteractionTracking: false,
 };
 
 export default DateInput;

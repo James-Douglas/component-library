@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="How to/Development/Testing locally" />
+
+# Using Manor packages locally in another project
+
+You might find yourself wanting to pull in your changes to a project using Manor without having to do release (e.g to
+validate that a fix works). This can be done via `yarn link` (or `npm link`):
+
+1. Link `react`, `react-dom` and `styled-components` from the project using Manor,
+*(This is important because it prevents multiple copies of the above libraries being present at runtime, which causes
+things to break and can be confusing to debug)*:
+ * `cd /path/to/your_project/node_modules/react && yarn link`
+ * `cd /path/to/your_project/node_modules/react-dom && yarn link`
+ * `cd /path/to/your_project/node_modules/styled-components && yarn link`
+2. In Manor, use the linked libraries from step 1:
+ * `cd /path/to/manor-react/packages/PackageToBuild`
+ * `yarn link react && yarn link react-dom && yarn link styled-components`
+3. Rebuild Manor Packages
+ * run `yarn build` within the package you wish to test
+4. Link the build package
+* Copy the packages package.json file into the lib folder (from within the `manor-react/packages/PackageToBuild` directory): `cp ./package.json ./lib/package.json`
+* `cd lib`
+* `yarn link`
+5. Link the Manor package in your project
+* `cd /path/to/your_project`
+* `yarn link @comparethemarketau/manor-<YourPackageHere>`

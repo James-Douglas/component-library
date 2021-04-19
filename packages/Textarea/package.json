@@ -24,12 +24,15 @@
     "@comparethemarketau/manor-supporting-elements": "^0.6.3",
     "@comparethemarketau/manor-tooltip": "^0.19.2",
     "@comparethemarketau/manor-typography": "^0.15.2",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "use-debounce": "^6.0.0"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.13.2"
+    "@comparethemarketau/manor-themes": "^0.13.2",
+    "react-tracking": "^8.1.0"
   },
   "peerDependencies": {
+    "@comparethemarketau/manor-provider": "^0.8.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "styled-components": "^5.0.0"

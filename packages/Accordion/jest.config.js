@@ -4,6 +4,7 @@ module.exports = {
   ...baseConfig,
   roots: [
     '<rootDir>/packages/Accordion',
+    '<rootDir>/__mocks__',
   ],
   collectCoverageFrom: [
     '*.{js,jsx,ts,tsx}',

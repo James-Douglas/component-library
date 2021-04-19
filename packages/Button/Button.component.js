@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import {
   StyledIcon,
@@ -9,6 +10,7 @@ import {
 } from './Button.styles';
 
 const Button = ({
+  trackingLabel,
   id: propsId,
   variant,
   inverted,
@@ -27,6 +29,8 @@ const Button = ({
   iconButton,
 }) => {
   const id = useId(propsId);
+  const { trackInteraction } = useContext(ManorContext);
+
   const renderContent = () => {
     if (icon) {
       return (
@@ -40,12 +44,20 @@ const Button = ({
     }
     return <>{children}</>;
   };
+
+  const clickHandler = useCallback(() => {
+    trackInteraction('Click', 'Button', variant, trackingLabel, trackingLabel);
+    if (handleClick) {
+      handleClick();
+    }
+  }, [handleClick, trackingLabel, trackInteraction, variant]);
+
   const renderButton = () => {
     const isButton = !href.length > 0;
     return (
       <BaseTag
         as={isButton ? 'button' : 'a'}
-        onClick={handleClick}
+        onClick={clickHandler}
         id={id}
         variant={variant}
         iconAlign={iconAlign}
@@ -72,6 +84,10 @@ const Button = ({
 };
 
 Button.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the button
    */

@@ -10,7 +10,15 @@ module.exports = {
     ],
     '@babel/preset-react',
   ],
-  plugins: ["babel-plugin-styled-components"],
+  plugins: [
+    "babel-plugin-styled-components",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
+  ],
   env: {
     test: {
       plugins: ['@babel/plugin-transform-runtime',

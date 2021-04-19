@@ -2,6 +2,7 @@ import React, {
   useState, useEffect, useRef, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
+import { useDebouncedCallback } from 'use-debounce';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import { ManorContext } from '@comparethemarketau/manor-provider';
@@ -62,6 +63,7 @@ export const getInitialValue = (value, prefillValue) => value || prefillValue ||
 
 // eslint-disable-next-line react/display-name
 const Input = React.forwardRef(({
+  trackingLabel,
   id: propsId,
   label,
   ariaLabelledBy,
@@ -98,6 +100,8 @@ const Input = React.forwardRef(({
   disableFocusStyles,
   style,
   gtmPidAnonymous,
+  disableInteractionTracking,
+  trackingFieldType,
 }, ref) => {
   const id = useId(propsId);
   const [ariaLabelledByIds, setAriaLabelledByIds] = useState({});
@@ -106,10 +110,11 @@ const Input = React.forwardRef(({
   const [isDirty, setIsDirty] = useState(false);
   const isAutofill = usePrefill(prefillValue, value, isDirty);
   const [isFocusActive, setFocusActive] = useState(false);
-  const { breakpoint } = useContext(ManorContext);
+  const { breakpoint, trackInteraction } = useContext(ManorContext);
   const localRef = ref || useRef(null);
   const [tooltipOptions, setTooltipOptions] = useState(tooltip);
   const gtmPidAnonymousClass = gtmPidAnonymous ? 'data-hj-suppress' : null;
+
   useEffect(() => {
     const describedBy = {};
     const labelledBy = {
@@ -130,16 +135,30 @@ const Input = React.forwardRef(({
     setAriaLabelledByIds({ ...labelledBy });
   }, [tooltip, setTooltipOptions, setAriaDescribedByIds, id, setAriaLabelledByIds, prefixContent, suffixContent]);
 
+  const doTrackEvent = (action, val) => {
+    if (!disableInteractionTracking) {
+      trackInteraction(action, 'Input', trackingFieldType, trackingLabel, val);
+    }
+  };
+
+  const debouncedTrack = useDebouncedCallback(
+    (newValue) => doTrackEvent('Input', newValue),
+    1500,
+  );
+
   const clearInput = () => {
     setIsDirty(true);
     setInternalValue('');
     handleChange('');
+    doTrackEvent('Clear', '');
   };
 
   const changeHandler = (e) => {
     setIsDirty(true);
-    setInternalValue(e.target.value);
-    handleChange(e.target.value);
+    const { value: newValue } = e.target;
+    setInternalValue(newValue);
+    handleChange(newValue);
+    debouncedTrack(newValue);
   };
 
   useEffect(() => {
@@ -152,16 +171,17 @@ const Input = React.forwardRef(({
     setInternalValue(valueToUse);
   }, [prefillValue, value]);
 
-  const focusHandler = () => {
+  const focusHandler = (e) => {
     if (handleFocus) {
-      handleFocus();
+      handleFocus(e);
     }
     setFocusActive(true);
+    doTrackEvent('Focus', internalValue);
   };
 
-  const blurHandler = () => {
+  const blurHandler = (e) => {
     if (handleBlur) {
-      handleBlur();
+      handleBlur(e);
     }
     setFocusActive(false);
   };
@@ -242,6 +262,10 @@ const Input = React.forwardRef(({
 });
 
 Input.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the Input
    */
@@ -402,6 +426,16 @@ Input.propTypes = {
    * Used to indicate if a field contains personally identifying data which needs to remain anonymous from google analytics
    */
   gtmPidAnonymous: PropTypes.bool,
+  /**
+   * Set automatically by other Manor components that render the Input so they handle interaction
+   * tracking within themselves. You should never need to set this.
+   */
+  disableInteractionTracking: PropTypes.bool,
+  /**
+   * Set automatically by parent Manor components that render an input so the interaction type is tracked correctly.
+   * If using the Input you can omit this and it will default to the correct value.
+   */
+  trackingFieldType: PropTypes.oneOf(['Input', 'Date', 'Expressive', 'Currency']),
 };
 
 Input.defaultProps = {
@@ -442,6 +476,8 @@ Input.defaultProps = {
   disableFocusStyles: false,
   style: {},
   gtmPidAnonymous: false,
+  disableInteractionTracking: false,
+  trackingFieldType: 'Input',
 };
 
 export default Input;

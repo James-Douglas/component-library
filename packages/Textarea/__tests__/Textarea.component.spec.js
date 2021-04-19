@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { fireEvent, render } from '../../../testUtils';
 import 'jest-styled-components';
@@ -59,7 +60,7 @@ describe('getRemainingCharsContent()', () => {
 
 describe('Textarea.component.js', () => {
   it('renders with id prop', () => {
-    const { container } = render(<Textarea label="test" id="blah" />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" id="blah" />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
@@ -78,13 +79,13 @@ describe('Textarea.component.js', () => {
       maxlength: '',
       maxchars: '',
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     expect(container.innerHTML).toMatchSnapshot();
   });
 
   it('on input, set value func is called', () => {
     const getValueCb = jest.fn();
-    const { container } = render(<Textarea label="test" id="input-id" handleChange={getValueCb} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" id="input-id" handleChange={getValueCb} />);
 
     const textareaField = container.querySelector('textarea');
     fireEvent.change(textareaField, { target: { value: 'thing' } });
@@ -96,7 +97,7 @@ describe('Textarea.component.js', () => {
   it('calls focus & blur handlers', () => {
     const handleFocus = jest.fn();
     const handleBlur = jest.fn();
-    const { container } = render(<Textarea label="test" id="input-id" handleFocus={handleFocus} handleBlur={handleBlur} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" id="input-id" handleFocus={handleFocus} handleBlur={handleBlur} />);
     const textareaField = container.querySelector('textarea');
     fireEvent.focus(textareaField);
     expect(handleFocus).toHaveBeenCalled();
@@ -111,7 +112,7 @@ describe('Textarea.component.js', () => {
       validationMessage: 'invalid',
       value: 'Hello World',
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement).toHaveStyle(`border: ${ctmTheme.borders.invalid}`);
   });
@@ -122,7 +123,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       prefillValue: 'autofilled value test',
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement.value).toBe('autofilled value test');
   });
@@ -133,7 +134,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       required: true,
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement).toHaveAttribute('required');
   });
@@ -145,7 +146,7 @@ describe('Textarea.component.js', () => {
       disabled: true,
       value: 'helloworld',
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement).toHaveAttribute('disabled');
   });
@@ -158,7 +159,7 @@ describe('Textarea.component.js', () => {
       value: '',
       disabled: true,
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement).toHaveAttribute('id', 'textarea-id');
   });
@@ -170,7 +171,7 @@ describe('Textarea.component.js', () => {
       name: 'thisisatest',
       disabled: true,
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement).toHaveAttribute('name', 'thisisatest');
   });
@@ -181,7 +182,7 @@ describe('Textarea.component.js', () => {
       label: 'this is a test',
       value: 'Hello World',
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const theTextareaElement = container.querySelector('#textarea-id');
     expect(theTextareaElement.value).toBe('Hello World');
   });
@@ -193,7 +194,7 @@ describe('Textarea.component.js', () => {
       value: 'Hello World',
       disabled: true,
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const theTextareaElement = container.querySelector('#textarea-id');
     expect(theTextareaElement.value).toBe('Hello World');
   });
@@ -205,7 +206,7 @@ describe('Textarea.component.js', () => {
       value: '',
       maxLength: '7',
     };
-    const { container } = render(<Textarea label="test" {...props} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const theTextareaElement = container.querySelector('.manor-maxlength-indicator');
     expect(theTextareaElement.innerHTML).toContain('7');
     const theTextareaElement1 = container.querySelector('.manor-textarea-default.invalid');
@@ -220,7 +221,7 @@ describe('Textarea.component.js', () => {
       maxLength: '7',
       autofill: true,
     };
-    const { container, getByText } = render(<Textarea label="test" {...props} />);
+    const { container, getByText } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement).toHaveStyleRule('border', ctmTheme.borders.invalid);
     expect(getByText('-3')).toBeInTheDocument();
@@ -233,7 +234,7 @@ describe('Textarea.component.js', () => {
       value: 'hello',
       maxChars: '7',
     };
-    const { getByText, container } = render(<Textarea label="test" {...props} />);
+    const { getByText, container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(getByText('2')).toBeInTheDocument();
     fireEvent.change(textAreaElement, { target: { value: 'helloworld' } });
@@ -249,7 +250,7 @@ describe('Textarea.component.js', () => {
       maxChars: '7',
       autofill: true,
     };
-    const { getByText, container } = render(<Textarea label="test" {...props} />);
+    const { getByText, container } = render(<Textarea trackingLabel="test" label="test" {...props} />);
     const textAreaElement = container.querySelector('textarea');
     expect(textAreaElement).toHaveStyleRule('border', ctmTheme.borders.invalid);
     expect(getByText('-3')).toBeInTheDocument();
@@ -267,8 +268,42 @@ describe('Textarea.component.js', () => {
       autofill: true,
       required: false,
     };
-    const { container } = render(<Textarea label="test" {...props} tooltip={tooltip} />);
+    const { container } = render(<Textarea trackingLabel="test" label="test" {...props} tooltip={tooltip} />);
     const tooltipExist = container.querySelector(' div[role="tooltip"]');
     expect(tooltipExist).toBeInTheDocument();
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(<Textarea trackingLabel="test" label="test" id="input-id" />);
+      const textareaField = container.querySelector('textarea');
+      fireEvent.focus(textareaField);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'test',
+          ixn_object: 'Text Box',
+          ixn_type: 'Text Box',
+          ixn_value: '',
+        },
+      });
+    });
+    it('tracks input events (trimmed to 32 chars)', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(<Textarea trackingLabel="test" label="test" id="input-id" />);
+      const textareaField = container.querySelector('textarea');
+      fireEvent.focus(textareaField);
+      fireEvent.change(textareaField, { target: { value: 'this is some test input with a length that is greater than 32 characters' } });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Input',
+          ixn_label: 'test',
+          ixn_object: 'Text Box',
+          ixn_type: 'Text Box',
+          ixn_value: 'this is some test input with a l',
+        },
+      });
+    });
   });
 });

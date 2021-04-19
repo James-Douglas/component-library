@@ -3,6 +3,7 @@ import 'jest-styled-components';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
 import { faMapMarkerAlt } from '@fortawesome/pro-light-svg-icons';
 import userEvent from '@testing-library/user-event';
+import { useTracking } from 'react-tracking';
 import { fireEvent, render } from '../../../testUtils';
 import ComboTag from '../ComboTag.component';
 
@@ -29,6 +30,7 @@ describe('ComboTag', () => {
   it('renders options', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         apiData={apiData}
         id="combo-tag"
@@ -46,6 +48,7 @@ describe('ComboTag', () => {
   it('renders no options', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         apiData={emptyApiData}
         id="combo-tag"
@@ -62,6 +65,7 @@ describe('ComboTag', () => {
   it('renders no options if character minimum is not met', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         apiData={apiData}
         value="a"
@@ -76,6 +80,7 @@ describe('ComboTag', () => {
   it('on input, set value func is called', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         apiData={apiData}
       />,
@@ -92,6 +97,7 @@ describe('ComboTag', () => {
     const handleBlur = jest.fn();
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleFocus={handleFocus}
         handleBlur={handleBlur}
         handleChange={() => {}}
@@ -109,6 +115,7 @@ describe('ComboTag', () => {
   it('renders with value', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         value="presentation dfsdf que ffgddfg"
         apiData={apiData}
@@ -122,6 +129,7 @@ describe('ComboTag', () => {
   it('renders a tag when li is selected', () => {
     const { container, getByText } = render(
       <ComboTag
+        trackingLabel="test combotag"
         apiData={apiData}
         id="combo-tag"
         placeholder="Select or start typing destination(s)..."
@@ -143,6 +151,7 @@ describe('ComboTag', () => {
     const onSelectCb = jest.fn();
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={onSelectCb}
         apiData={apiData}
         value="a"
@@ -160,6 +169,7 @@ describe('ComboTag', () => {
     const onInputCb = jest.fn();
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleInput={onInputCb}
         handleChange={() => {}}
         apiData={apiData}
@@ -176,6 +186,7 @@ describe('ComboTag', () => {
   it('accessibility - arrow up', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         apiData={apiData}
         value="a"
@@ -195,6 +206,7 @@ describe('ComboTag', () => {
   it('accessibility - arrow down', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         apiData={apiData}
         value="a"
@@ -217,6 +229,7 @@ describe('ComboTag', () => {
   it('accessibility - arrow down then click enter', () => {
     const { container, getByText } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         apiData={apiData}
         value="a"
@@ -235,6 +248,7 @@ describe('ComboTag', () => {
   it('accessibility - click tab', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         apiData={apiData}
         id="combo-tag"
@@ -255,6 +269,7 @@ describe('ComboTag', () => {
   it('if tag exceeds max length, cut it and add ellipsis', () => {
     const { container, getByText } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         id="combo-tag"
         apiData={apiData}
@@ -272,6 +287,7 @@ describe('ComboTag', () => {
   it('does not render a dropdown list', () => {
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         id="combo-tag"
         value="a"
@@ -288,6 +304,7 @@ describe('ComboTag', () => {
   it('adds a tag on keypress', () => {
     const { container, getByText } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         id="combo-tag"
         placeholder="start typing"
@@ -305,6 +322,7 @@ describe('ComboTag', () => {
   it('clears the input field on space, enter or comma', () => {
     const { container, getByText } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         id="combo-tag"
         placeholder="start typing"
@@ -340,6 +358,7 @@ describe('ComboTag', () => {
     const condition = (x) => x > 100;
     const { container, getByText } = render(
       <ComboTag
+        trackingLabel="test combotag"
         handleChange={() => {}}
         id="combo-tag"
         placeholder="start typing"
@@ -359,6 +378,7 @@ describe('ComboTag', () => {
     const prefixCb = jest.fn();
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         prefix={faMapMarkerAlt}
         prefixClickHandler={prefixCb}
         handleChange={() => {}}
@@ -377,6 +397,7 @@ describe('ComboTag', () => {
     const prefixCb = jest.fn();
     const { container } = render(
       <ComboTag
+        trackingLabel="test combotag"
         prefix={faMapMarkerAlt}
         prefixClickHandler={prefixCb}
         handleChange={() => {}}
@@ -388,5 +409,150 @@ describe('ComboTag', () => {
     );
     const inputField = container.querySelector('.input-container');
     expect(inputField).toHaveClass('data-hj-suppress');
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <ComboTag
+          trackingLabel="test combotag"
+          handleChange={() => {}}
+          apiData={apiData}
+          value="a"
+          id="combo-tag"
+        />,
+      );
+      const inputField = container.querySelector('#combo-tag');
+      inputField.focus();
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'test combotag',
+          ixn_object: 'Combo Tag',
+          ixn_type: 'Combo Tag',
+          ixn_value: '',
+        },
+      });
+    });
+
+    it('tracks input events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <ComboTag
+          trackingLabel="test combotag"
+          handleChange={() => {}}
+          apiData={apiData}
+          value="a"
+          id="combo-tag"
+        />,
+      );
+      const inputField = container.querySelector('#combo-tag');
+      inputField.focus();
+      fireEvent.change(inputField, { target: { value: '111' } });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Input',
+          ixn_label: 'test combotag',
+          ixn_object: 'Combo Tag',
+          ixn_type: 'Combo Tag',
+          ixn_value: '111',
+        },
+      });
+    });
+
+    it('tracks selection events keyboard', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <ComboTag
+          trackingLabel="test combotag"
+          handleChange={() => {}}
+          id="combo-tag"
+          placeholder="start typing"
+        />,
+      );
+      const inputField = container.querySelector('#combo-tag');
+      inputField.focus();
+      userEvent.type(inputField, '111');
+      fireEvent.keyUp(inputField, { key: 'Enter', code: 13 });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Selection',
+          ixn_label: 'test combotag',
+          ixn_object: 'Combo Tag',
+          ixn_type: 'Combo Tag',
+          ixn_value: '111',
+        },
+      });
+    });
+
+    it('tracks selection events list', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <ComboTag
+          trackingLabel="test combotag"
+          apiData={apiData}
+          id="combo-tag"
+          placeholder="Select or start typing destination(s)..."
+          handleInput={() => {}}
+          handleChange={() => {}}
+        />,
+      );
+
+      const inputField = container.querySelector('#combo-tag');
+      inputField.focus();
+      fireEvent.input(inputField, { target: { value: 'aus' } });
+      const firstLi = container.getElementsByTagName('li')[0];
+      fireEvent.mouseDown(firstLi);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Selection',
+          ixn_label: 'test combotag',
+          ixn_object: 'Combo Tag',
+          ixn_type: 'Combo Tag',
+          ixn_value: 'Australia',
+        },
+      });
+    });
+
+    it('tracks delete events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <ComboTag
+          trackingLabel="test combotag"
+          apiData={apiData}
+          id="combo-tag"
+          placeholder="Select or start typing destination(s)..."
+          handleInput={() => {}}
+          handleChange={() => {}}
+        />,
+      );
+
+      const inputField = container.querySelector('#combo-tag');
+      inputField.focus();
+      fireEvent.input(inputField, { target: { value: 'aus' } });
+      const firstLi = container.getElementsByTagName('li')[0];
+      fireEvent.mouseDown(firstLi);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Selection',
+          ixn_label: 'test combotag',
+          ixn_object: 'Combo Tag',
+          ixn_type: 'Combo Tag',
+          ixn_value: 'Australia',
+        },
+      });
+      const tag = container.querySelector('button');
+      fireEvent.click(tag);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Delete',
+          ixn_object: 'ComboTag',
+          ixn_type: 'ComboTag',
+          ixn_label: 'test combotag',
+          ixn_value: 'Australia',
+        },
+      });
+    });
   });
 });

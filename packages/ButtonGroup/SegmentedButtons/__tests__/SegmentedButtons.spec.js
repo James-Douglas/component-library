@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { render, fireEvent } from '../../../../testUtils';
 import SegmentedButtons, {
   generateButtons,
@@ -300,6 +301,7 @@ describe('SegmentedButtons', () => {
     const { container } = render(
       <SegmentedButtons
         id="toggle-group"
+        trackingLabel="test-segmented-buttons"
         name="test-toggle-group"
         handleToggle={() => {}}
         buttonsContent={[
@@ -334,6 +336,7 @@ describe('SegmentedButtons', () => {
     const { container } = render(
       <SegmentedButtons
         name="test-toggle-group-b"
+        trackingLabel="test-segmented-buttons"
         handleToggle={onToggleCb}
         buttonsContent={[
           {
@@ -366,6 +369,7 @@ describe('SegmentedButtons', () => {
     const { container } = render(
       <SegmentedButtons
         name="test-toggle-group-b"
+        trackingLabel="test-segmented-buttons"
         handleToggle={onToggleCb}
         handleClick={onClickCb}
         buttonsContent={[
@@ -395,6 +399,7 @@ describe('SegmentedButtons', () => {
     const { container } = render(
       <SegmentedButtons
         name="test-toggle-group-b"
+        trackingLabel="test-segmented-buttons"
         handleToggle={handleChangeCb}
         tooltip={tooltip}
         buttonsContent={[
@@ -413,5 +418,52 @@ describe('SegmentedButtons', () => {
     );
     const tooltipWrapper = container.querySelector('[role="tooltip"]');
     expect(tooltipWrapper).toBeInTheDocument();
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks clicks', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <SegmentedButtons
+          name="test-toggle-group-b"
+          trackingLabel="test-segmented-buttons"
+          buttonsContent={[
+            {
+              label: 'button1',
+              value: 1,
+              id: 'a',
+            },
+            {
+              label: 'button2',
+              value: 2,
+              id: 'b',
+            },
+          ]}
+        />,
+      );
+      const buttonA = container.querySelector('#a');
+      fireEvent.click(buttonA);
+      const buttonB = container.querySelector('#b');
+      fireEvent.click(buttonB);
+      expect(trackEvent).toHaveBeenCalledTimes(2);
+      expect(trackEvent.mock.calls[0][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Click',
+          ixn_label: 'test-segmented-buttons',
+          ixn_object: 'Segmented Buttons',
+          ixn_type: 'auto',
+          ixn_value: 'button1',
+        },
+      });
+      expect(trackEvent.mock.calls[1][0]).toStrictEqual({
+        interaction: {
+          ixn_action: 'Click',
+          ixn_label: 'test-segmented-buttons',
+          ixn_object: 'Segmented Buttons',
+          ixn_type: 'auto',
+          ixn_value: 'button2',
+        },
+      });
+    });
   });
 });

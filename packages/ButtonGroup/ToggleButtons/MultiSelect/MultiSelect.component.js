@@ -19,6 +19,7 @@ import {
 } from './MultiSelect.styles';
 
 const MultiSelectToggle = ({
+  trackingLabel,
   id: propsId,
   title,
   description,
@@ -33,8 +34,10 @@ const MultiSelectToggle = ({
   handleClick,
   icon,
   image,
+  toggleGroupLabel,
 }) => {
   const id = useId(propsId);
+
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
@@ -87,6 +90,9 @@ const MultiSelectToggle = ({
       handleBlur={handleBlur}
       handleClick={handleClick}
       inputType="checkbox"
+      trackingLabel={trackingLabel}
+      toggleGroupLabel={toggleGroupLabel}
+      variant="MultiSelectToggle"
     >
       <ToggleLabel id={id}>
         <StyledIconToggleContent>
@@ -105,6 +111,10 @@ const MultiSelectToggle = ({
 };
 
 MultiSelectToggle.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the toggle
    */
@@ -179,6 +189,10 @@ MultiSelectToggle.propTypes = {
     alt: PropTypes.string,
     title: PropTypes.string,
   }),
+  /**
+   * Label of the toggle group, the ToggleGroup automatically populates this
+   */
+  toggleGroupLabel: PropTypes.string,
 };
 
 MultiSelectToggle.defaultProps = {
@@ -195,6 +209,7 @@ MultiSelectToggle.defaultProps = {
   handleClick: null,
   icon: null,
   image: null,
+  toggleGroupLabel: '',
 };
 
 export default MultiSelectToggle;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import { useMountEffect, useUnmountEffect } from '@comparethemarketau/manor-hooks';
 
@@ -17,14 +17,29 @@ const StyledWrap = styled.div`
 `;
 
 const ToastManager = () => {
-  const [toasts, setToasts] = useState([]);
+  const [toasts, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case 'add':
+        return [...state, action.toast];
+      case 'remove':
+        return state.filter((n) => n.props.id !== action.id);
+      default:
+        return state;
+    }
+  }, []);
 
   const add = ({ detail: toast }) => {
-    setToasts((prevToasts) => [...prevToasts, toast]);
+    dispatch({
+      type: 'add',
+      toast,
+    });
   };
 
   const remove = ({ detail: id }) => {
-    setToasts(toasts.filter((n) => n.props.id !== id));
+    dispatch({
+      type: 'remove',
+      id,
+    });
   };
 
   useMountEffect(() => {

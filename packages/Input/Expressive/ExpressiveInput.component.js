@@ -4,6 +4,7 @@ import { useId } from '@comparethemarketau/manor-hooks';
 import Input from '../Input.component';
 
 const ExpressiveInput = ({
+  trackingLabel,
   id: propsId,
   label,
   ariaLabelledBy,
@@ -58,11 +59,17 @@ const ExpressiveInput = ({
       mask={mask}
       guide={guide}
       disableClearIcon={disableClearIcon}
+      trackingLabel={trackingLabel}
+      trackingFieldType="Expressive"
     />
   );
 };
 
 ExpressiveInput.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    *  Unique id for the expressive input
    */

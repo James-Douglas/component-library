@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withTheme } from 'styled-components';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import { muiTheme } from '@comparethemarketau/manor-themes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/pro-regular-svg-icons/faPlus';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { ManorStyledPillToggle, ManorStyledPill, StyledLabel } from './Pill.styles';
 
@@ -48,6 +49,7 @@ const PillInner = ({
 const ThemedMUIChip = withTheme(PillInner);
 
 const Pill = ({
+  trackingLabel,
   id: propsId,
   selected,
   icon,
@@ -62,6 +64,7 @@ const Pill = ({
   ...props
 }) => {
   const id = useId(propsId);
+  const { trackInteraction } = useContext(ManorContext);
   const [isSelected, setIsSelected] = useState(selected);
 
   useEffect(() => {
@@ -69,6 +72,7 @@ const Pill = ({
   }, [selected]);
 
   const clickHandler = () => {
+    trackInteraction(!isSelected ? 'Select' : 'Unselect', 'Pill', 'Pill', trackingLabel, '');
     setIsSelected(!isSelected);
     handleClick && handleClick(!isSelected);
   };
@@ -100,6 +104,10 @@ const Pill = ({
 };
 
 Pill.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the dropdown item
    */

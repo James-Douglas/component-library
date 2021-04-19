@@ -4,12 +4,12 @@ import Disclaimer from '../Disclaimer.component';
 
 describe('Disclaimer', () => {
   it('renders with minimal props', () => {
-    const { container } = render(<Disclaimer id="test" />);
+    const { container } = render(<Disclaimer trackingLabel="test" id="test" />);
     expect(container.innerHTML).toMatchSnapshot();
   });
   it('checks on click', () => {
     const changeHandler = jest.fn();
-    const { container } = render(<Disclaimer id="test" handleChange={changeHandler} />);
+    const { container } = render(<Disclaimer trackingLabel="test" id="test" handleChange={changeHandler} />);
     const checkbox = container.querySelector('#test');
     fireEvent.click(checkbox);
     expect(checkbox.checked).toBe(true);
@@ -18,7 +18,7 @@ describe('Disclaimer', () => {
   });
   it('checks on click of label', () => {
     const changeHandler = jest.fn();
-    const { container, getByText } = render(<Disclaimer id="test-2" handleChange={changeHandler}>test disclaimer text</Disclaimer>);
+    const { container, getByText } = render(<Disclaimer trackingLabel="test" id="test-2" handleChange={changeHandler}>test disclaimer text</Disclaimer>);
     const checkbox = container.querySelector('#test-2');
     const disclaimerText = getByText('test disclaimer text');
     fireEvent.click(disclaimerText);

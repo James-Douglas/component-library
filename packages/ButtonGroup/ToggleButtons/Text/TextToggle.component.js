@@ -7,6 +7,7 @@ import ToggleLabel from '../ToggleLabel';
 import { StyledContent, StyledTextToggleContent, StyledWrapper } from './TextToggle.styles';
 
 const TextToggle = ({
+  trackingLabel,
   id: propsId,
   title,
   value,
@@ -22,8 +23,10 @@ const TextToggle = ({
   handleClick,
   button,
   greyed,
+  toggleGroupLabel,
 }) => {
   const id = useId(propsId);
+
   const toggleHandler = () => {
     if (handleToggle) {
       handleToggle(value);
@@ -42,6 +45,9 @@ const TextToggle = ({
       handleBlur={handleBlur}
       handleClick={handleClick}
       button={button}
+      variant="TextToggle"
+      toggleGroupLabel={toggleGroupLabel}
+      trackingLabel={trackingLabel}
     >
       <ToggleLabel id={id} button={button} greyed={greyed}>
         <StyledWrapper button={button} greyed={greyed}>
@@ -59,6 +65,10 @@ const TextToggle = ({
 };
 
 TextToggle.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the toggle
    */
@@ -131,6 +141,10 @@ TextToggle.propTypes = {
    * Greys out the toggle when true.
    */
   greyed: PropTypes.bool,
+  /**
+   * Label of the toggle group, the ToggleGroup automatically populates this
+   */
+  toggleGroupLabel: PropTypes.string,
 };
 
 TextToggle.defaultProps = {
@@ -148,6 +162,7 @@ TextToggle.defaultProps = {
   handleClick: null,
   button: null,
   greyed: false,
+  toggleGroupLabel: '',
 };
 
 export default TextToggle;

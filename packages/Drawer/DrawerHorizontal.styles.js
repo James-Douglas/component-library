@@ -3,17 +3,22 @@ import { Button } from '@comparethemarketau/manor-button';
 
 const animateTop = (size) => keyframes`
   from { top: -${size}px }
-  to { top: ${size}px }
+  to { top: 0px }
 `;
 
 const animateBottomPreview = (preview, size) => keyframes`
   from { bottom: -${size - preview.viewArea}px }
-  to { bottom: 0}
+  to { bottom: 0px }
+`;
+
+const animateTopPreview = (preview, size) => keyframes`
+  from { top: -${size - preview.viewArea}px }
+  to { top: 0px }
 `;
 
 const animateBottom = (size) => keyframes`
   from { bottom: -${size}px }
-  to { bottom: 0}
+  to { bottom: 0px }
 `;
 
 export const StyledDrawer = styled.div`
@@ -29,7 +34,6 @@ export const StyledDrawer = styled.div`
   background: ${({ theme }) => theme.drawer.background};
   z-index: ${({ zIndex }) => zIndex};
   box-shadow: ${({ theme }) => theme.drawer.shadow};
-  padding: ${({ theme }) => `0 ${theme.spacing[4]} ${theme.spacing[4]}`};
   animation-duration: 0.4s;
   animation-timing-function: ease;
   animation-delay: 0s;
@@ -52,6 +56,10 @@ export const StyledDrawer = styled.div`
     ${({ direction, preview, size }) => direction === 'bottom' && css`
       animation-name: ${preview.viewArea ? animateBottomPreview(preview, size) : animateBottom(size)};
       bottom: 0;
+    `}
+    ${({ direction, preview, size }) => direction === 'top' && css`
+      animation-name: ${preview.viewArea ? animateTopPreview(preview, size) : animateTop(size)};
+      top: 0;
     `}
   }
   &.StyledDrawerPreview {

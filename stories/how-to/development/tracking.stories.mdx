@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="How to/Development/Interaction tracking" />
+
+# Interaction tracking
+
+Interaction tracking has been implemented in Manor for a number of components that CX wish to gain insights
+for (things like focus, click, input events). These components now have a mandatory `trackingLabel` prop which is a
+contextually relevant label used to identify the page element being tracked - e.g. an inputs label. We can't
+just use an input's label as it either may not be present, or may not be a simple string.
+
+ManorProvider defines a tracking dispatch action when it detects the `window.CtMDataLayer.` object, which vertical
+applications make available through adding a tracking script to their `index.html`. It also makes a tracking function
+`trackInteraction` available to components, which components then use when tracking specific events:
+
+```
+e.g.
+
+const handleFocus = () => {
+  trackInteraction('Focus', 'Component', 'Component', trackingLabel, value);
+}
+
+
+trackInteraction(action: string, object: string, type: string, label: string, value: any)
+```
+
+## Implementing tracking in new components
+
+CX should include tracking requirements as Acceptance Criteria for any new components. The exact implementation will
+depend highly on the component being implemented, but existing components should serve as a useful guide.
+
+One thing to note is that often we want to debounce events so we aren't spamming the datalayer with information that isn't
+useful. (e.g. Marketing/CX want to know that "abcd" was input in a single event, not an event each time a character is
+input "a", "ab", "abc", "abcd").
+
+### Testing tracking in storybook
+
+To be able to test interaction tracking in storybook, we added a GTM tracking script into storybook, which is linked
+to a specific GTM environment for manor testing. This has been done in `.storybook/index.override.ejs` which is an override
+template for the main storybook container.
+
+By default this script is only injected when the NODE_ENV is production (i.e. in the built storybook that runs on dev). To
+enable it locally, run storybook as such `NODE_ENV=production yarn storybook`
+
+You can verify interaction tracking events by directly inspecting `window.CtMDataLayer` in Storybook's console (select the
+actual stories iframe), or with a browser extension like dataslayer.
+
+For further details, see the Continuous Improvement documentation where interaction was implemented:
+
+https://ctmaus.atlassian.net/wiki/spaces/DEL/pages/1043235289/Cycle+14+-+Improved+User+Interaction+Reporting+for+Atlas+Manor+Journeys+-+Travel+Energy
+https://ctmaus.atlassian.net/wiki/spaces/MAR/pages/1063485445/Atlas+Individual+Manor+Components

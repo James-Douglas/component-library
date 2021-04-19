@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, {
-  useState, useEffect, useCallback, useContext,
+  useState, useEffect, useCallback, useContext, useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 import { ManorContext } from '@comparethemarketau/manor-provider';
@@ -76,6 +76,7 @@ export const formatEvenOrOddButtons = (buttonArray, fixed, contentWidth) => {
 };
 
 const SegmentedButtons = ({
+  trackingLabel,
   id: propsId,
   label,
   description,
@@ -91,17 +92,25 @@ const SegmentedButtons = ({
   flex,
   fixed,
 }) => {
-  const { breakpoint } = useContext(ManorContext);
+  const { breakpoint, trackInteraction } = useContext(ManorContext);
   const groupId = useId(propsId);
   const [selectedButtonValue, setSelectedButtonValue] = useState(selectedValue);
+
+  const type = useMemo(() => {
+    if (flex) return 'flex';
+    if (fixed) return 'fixed';
+    return 'auto';
+  }, [flex, fixed]);
+
   const buttonHandler = useCallback(
     (value) => {
       setSelectedButtonValue(value);
+      trackInteraction('Click', 'Segmented Buttons', type, trackingLabel, buttonsContent.find((buttonContent) => buttonContent.value === value).label);
       if (handleToggle) {
         handleToggle(value);
       }
     },
-    [setSelectedButtonValue, handleToggle],
+    [setSelectedButtonValue, handleToggle, trackInteraction, buttonsContent, trackingLabel, type],
   );
   // If the selected value externally changes we want to reflect this in our toggle selection state
   useEffect(() => {
@@ -144,6 +153,10 @@ const SegmentedButtons = ({
 };
 
 SegmentedButtons.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the segmented button group
    */

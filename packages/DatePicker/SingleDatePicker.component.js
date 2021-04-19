@@ -1,20 +1,24 @@
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, {
-  useCallback, useEffect, useLayoutEffect, useRef, useState,
+  useCallback, useContext, useEffect, useLayoutEffect, useRef, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import { DayPickerSingleDateController as RDSingleDatePicker } from 'react-dates';
 import moment from 'moment';
 import { faCalendarAlt } from '@fortawesome/pro-regular-svg-icons';
-import { useId } from '@comparethemarketau/manor-hooks';
+import { ManorContext } from '@comparethemarketau/manor-provider';
+import { useId, usePrevious } from '@comparethemarketau/manor-hooks';
 import { DateInput } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
+import { useDebouncedCallback } from 'use-debounce';
 import { StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
-
 import { StyledDateRangePickerWrap, StyledFontAwesomeIcon } from './SingleDatePicker.styles';
 
+const displayFormat = 'DD/MM/YYYY';
+
 const SingleDatePicker = ({
+  trackingLabel,
   dateId: propsDateId,
   dateTooltip,
   datePlaceholder,
@@ -30,11 +34,12 @@ const SingleDatePicker = ({
   pickerVisible,
 }) => {
   const dateId = useId(propsDateId);
+  const { trackInteraction } = useContext(ManorContext);
   const node = useRef();
-  const displayFormat = 'DD/MM/YYYY';
   const [selectedDate, setSelectedDate] = useState(date);
   const [value, setValue] = useState(selectedDate && selectedDate.format(displayFormat));
-
+  const [hasFocus, setHasFocus] = useState(false);
+  const hadFocus = usePrevious(hasFocus);
   const [isVisisble, setIsVisisble] = useState(pickerVisible);
   const [validationMessageDate, setValidationMessageDate] = useState(null);
 
@@ -43,18 +48,34 @@ const SingleDatePicker = ({
   }, [pickerVisible]);
 
   const dateHandleFocus = () => {
+    if (!hasFocus) {
+      setHasFocus(true);
+    }
     setIsVisisble(true);
   };
+
+  const debouncedTrackInput = useDebouncedCallback(
+    (inputValue) => trackInteraction('Input', 'Date Picker', 'Single Date', trackingLabel, inputValue),
+    1000,
+  );
 
   const dateHandleChange = (_value) => {
     const parsed = moment(_value, displayFormat, true);
     setSelectedDate(parsed);
     setIsVisisble(false);
     if (moment.isMoment(_value)) {
-      setValue(_value.format(displayFormat));
+      const formatted = _value.format(displayFormat);
+      setValue(formatted);
+      // debouncedTrackInput(formatted);
     } else {
       setValue(_value);
+      debouncedTrackInput(_value);
     }
+  };
+
+  const handleDatePickerSelection = (_value) => {
+    dateHandleChange(_value);
+    trackInteraction('Selection', 'Date Picker', 'Single Date', trackingLabel, moment.isMoment(_value) ? _value.format(displayFormat) : '');
   };
 
   useEffect(() => {
@@ -77,7 +98,10 @@ const SingleDatePicker = ({
     handleChange && handleChange(selectedDate);
   }, [selectedDate, handleChange]);
 
-  const dateHandleBlur = () => {
+  const dateHandleBlur = (e) => {
+    if (!node.current.contains(e.target) && node.current !== e.target) {
+      setHasFocus(false);
+    }
     const parsed = moment(value, displayFormat, true);
 
     if (parsed.isValid()) {
@@ -90,6 +114,12 @@ const SingleDatePicker = ({
       setValidationMessageDate(validationMessage);
     }
   };
+
+  useEffect(() => {
+    if (hasFocus && !hadFocus) {
+      trackInteraction('Focus', 'Date Picker', 'Single Date', trackingLabel, value ? value.toString() : '');
+    }
+  }, [trackInteraction, trackingLabel, value, hasFocus, hadFocus]);
 
   const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {
@@ -134,13 +164,15 @@ const SingleDatePicker = ({
           disableClearIcon
           validationMessage={validationMessageDate}
           className="date-input-calendar"
+          trackingLabel={trackingLabel}
+          disableInteractionTracking
         />
       </StyledDateRangePickerWrap>
       {isVisisble && (
         <StyledCalendar>
           <RDSingleDatePicker
             date={selectedDate && selectedDate.isValid() ? selectedDate : null}
-            onDateChange={dateHandleChange}
+            onDateChange={handleDatePickerSelection}
             keepOpenOnDateSelect
             hideKeyboardShortcutsPanel
             numberOfMonths={numberOfMonths}
@@ -155,6 +187,10 @@ const SingleDatePicker = ({
 };
 
 SingleDatePicker.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the date input.
    */

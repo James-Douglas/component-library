@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useDebouncedCallback } from 'use-debounce';
+import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { Label } from '@comparethemarketau/manor-label';
 import { useId } from '@comparethemarketau/manor-hooks';
@@ -30,6 +32,7 @@ export const formatMarks = (marks) => marks.map((mark, index) => {
 });
 
 const StepSlider = ({
+  trackingLabel,
   name,
   id: propsId,
   value,
@@ -42,6 +45,7 @@ const StepSlider = ({
   tooltip,
   sortOrderAscending,
 }) => {
+  const { trackInteraction } = useContext(ManorContext);
   const id = useId(propsId);
   const marksForMui = formatMarks(marks);
   const max = marksForMui[marksForMui.length - 1].value;
@@ -54,9 +58,15 @@ const StepSlider = ({
     return <Typography variant="body2">{mark ? mark.actualLabel : ''}</Typography>;
   };
 
+  const debouncedTrackChange = useDebouncedCallback(
+    (newValue) => trackInteraction('Change', 'Slider', 'Step Slider', trackingLabel, newValue),
+    1000,
+  );
+
   const handleChange = (e, newValue) => {
+    const mark = marksForMui.find((m) => m.value === newValue);
+    debouncedTrackChange(mark.actualLabel);
     if (onChange) {
-      const mark = marksForMui.find((m) => m.value === newValue);
       if (mark) {
         onChange(e, mark.value);
       }
@@ -131,6 +141,10 @@ const StepSlider = ({
 };
 
 StepSlider.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Name attribute of the hidden input element.
    */

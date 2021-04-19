@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { render, fireEvent } from '../../../../testUtils';
 import CurrencyInput from '../CurrencyInput.component';
 
@@ -12,6 +13,7 @@ describe('CurrencyInput', () => {
   it('renders with lots of props', () => {
     const { container, getByText } = render(
       <CurrencyInput
+        trackingLabel="test"
         id="test-id"
         label="label-test"
         placeholder="placeholder test"
@@ -38,6 +40,7 @@ describe('CurrencyInput', () => {
   it('displays formatted input', () => {
     const { container } = render(
       <CurrencyInput
+        trackingLabel="test"
         id="test-id"
         handleChange={() => {}}
       />,
@@ -74,6 +77,7 @@ describe('CurrencyInput', () => {
     const handler = jest.fn();
     const { container } = render(
       <CurrencyInput
+        trackingLabel="test"
         id="test-id"
         handleChange={handler}
       />,
@@ -92,6 +96,7 @@ describe('CurrencyInput', () => {
     const blurHandler = jest.fn();
     const { container } = render(
       <CurrencyInput
+        trackingLabel="test"
         id="test-id"
         handleFocus={focusHandler}
         handleBlur={blurHandler}
@@ -108,6 +113,7 @@ describe('CurrencyInput', () => {
   it('removes disallowed characters and formats the input', () => {
     const { container } = render(
       <CurrencyInput
+        trackingLabel="test"
         id="test-id"
         handleChange={() => {}}
       />,
@@ -122,6 +128,7 @@ describe('CurrencyInput', () => {
   it('does not allow leading zeros', () => {
     const { container } = render(
       <CurrencyInput
+        trackingLabel="test"
         id="test-id"
         handleChange={() => {}}
       />,
@@ -136,6 +143,7 @@ describe('CurrencyInput', () => {
   it('limits input to given maxLength', () => {
     const { container } = render(
       <CurrencyInput
+        trackingLabel="test"
         id="test-id"
         handleChange={() => {}}
         maxlength={5}
@@ -146,5 +154,87 @@ describe('CurrencyInput', () => {
     fireEvent.input(currencyInput, { target: { value: '22222222' } });
 
     expect(currencyInput.value).toEqual('22,222');
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <CurrencyInput
+          trackingLabel="test"
+          id="test-id"
+          handleChange={() => {}}
+          maxlength={5}
+        />,
+      );
+      const inputField = container.querySelector('#test-id');
+      fireEvent.focus(inputField);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Currency',
+          ixn_value: '',
+        },
+      });
+    });
+
+    it('tracks input events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <CurrencyInput
+          trackingLabel="test"
+          id="test-id"
+          handleChange={() => {}}
+          maxlength={5}
+        />,
+      );
+      const inputField = container.querySelector('#test-id');
+      fireEvent.change(inputField, { target: { value: '1111' } });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Input',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Currency',
+          ixn_value: '1,111',
+        },
+      });
+    });
+
+    it('tracks clear events', () => {
+      const { trackEvent } = useTracking();
+      const { container } = render(
+        <CurrencyInput
+          trackingLabel="test"
+          id="test-id"
+          handleChange={() => {}}
+          maxlength={5}
+        />,
+      );
+      const inputField = container.querySelector('#test-id');
+      fireEvent.change(inputField, { target: { value: '1111' } });
+      const clearBtn = container.querySelector('.input-clear-button');
+      fireEvent.click(clearBtn);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Input',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Currency',
+          ixn_value: '1,111',
+        },
+      });
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Clear',
+          ixn_label: 'test',
+          ixn_object: 'Input',
+          ixn_type: 'Currency',
+          ixn_value: '',
+        },
+      });
+    });
   });
 });

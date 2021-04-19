@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
 import { act } from 'react-dom/test-utils';
 import { render, fireEvent } from '../../../testUtils';
 import 'jest-styled-components';
@@ -45,7 +46,7 @@ describe('Tooltip', () => {
   });
 
   it('renders tooltip click', () => {
-    const { container } = render(<Tooltip body="test tooltip content" />);
+    const { container } = render(<Tooltip trackingLabel="test" body="test tooltip content" />);
     const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
     const tooltip = document.querySelector('div[data-tippy-root]');
@@ -53,7 +54,7 @@ describe('Tooltip', () => {
   });
 
   it('renders tooltip hover', () => {
-    const { container, getByText } = render(<Tooltip body="test tooltip content" />);
+    const { container, getByText } = render(<Tooltip trackingLabel="test" body="test tooltip content" />);
     const tooltipTriggerElement = container.querySelector('[role="tooltip"]');
     fireEvent.mouseOver(tooltipTriggerElement);
     const tooltip = document.querySelector('div[data-tippy-root]');
@@ -64,14 +65,14 @@ describe('Tooltip', () => {
   });
 
   it('renders tooltip correctly', () => {
-    const { container, getByText } = render(<Tooltip body="test tooltip content" />);
+    const { container, getByText } = render(<Tooltip trackingLabel="test" body="test tooltip content" />);
     const tooltipTriggerElement = container.querySelector('svg');
     fireEvent.click(tooltipTriggerElement);
     expect(getByText('test tooltip content')).toBeInTheDocument();
   });
 
   it('dismisses tooltip on escape key', async () => {
-    render(<Tooltip body="test tooltip content" />);
+    render(<Tooltip trackingLabel="test" body="test tooltip content" />);
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
     const tooltipElement = document.querySelector('div[data-tippy-root]');
@@ -82,7 +83,7 @@ describe('Tooltip', () => {
   });
 
   it('tooltip on click body', async () => {
-    render(<Tooltip body="test tooltip content" />);
+    render(<Tooltip trackingLabel="test" body="test tooltip content" />);
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
     const tooltipElement = document.querySelector('div[data-tippy-root]');
@@ -93,7 +94,7 @@ describe('Tooltip', () => {
   });
 
   it('dismisses tooltip on click outside', () => {
-    render(<Tooltip body="test tooltip content" />);
+    render(<Tooltip trackingLabel="test" body="test tooltip content" />);
 
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
@@ -106,7 +107,7 @@ describe('Tooltip', () => {
   });
 
   it('dismisses tooltip on blur', () => {
-    render(<Tooltip body="test tooltip content" />);
+    render(<Tooltip trackingLabel="test" body="test tooltip content" />);
 
     const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
     fireEvent.click(tooltipTriggerElement);
@@ -116,5 +117,23 @@ describe('Tooltip', () => {
 
     fireEvent.blur(tooltipTriggerElement);
     expect(tooltipElement).not.toBeVisible();
+  });
+
+  describe('interaction tracking', () => {
+    it('tracks focus events', () => {
+      const { trackEvent } = useTracking();
+      render(<Tooltip trackingLabel="test" body="test tooltip content" active />);
+      const tooltipTriggerElement = document.body.querySelector('[role="tooltip"]');
+      fireEvent.click(tooltipTriggerElement);
+      expect(trackEvent).toHaveBeenCalledWith({
+        interaction: {
+          ixn_action: 'Focus',
+          ixn_label: 'test',
+          ixn_object: 'Tool Tip',
+          ixn_type: 'Tool Tip',
+          ixn_value: '',
+        },
+      });
+    });
   });
 });

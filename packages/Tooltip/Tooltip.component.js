@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
+import { useDebouncedCallback } from 'use-debounce';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useUnmountEffect, useId } from '@comparethemarketau/manor-hooks';
 import { Typography } from '@comparethemarketau/manor-typography';
@@ -34,6 +35,7 @@ export function getContent(title, body, variant) {
 }
 
 const Tooltip = ({
+  trackingLabel,
   id: propsId,
   arrow,
   title,
@@ -49,7 +51,7 @@ const Tooltip = ({
 }) => {
   const id = useId(propsId);
   const [pinned, setPinned] = useState(false);
-  const { isDesktop } = useContext(ManorContext);
+  const { isDesktop, trackInteraction } = useContext(ManorContext);
   const [tippyInstance, setTippyInstance] = useState(null);
   const [tippyVisible, setTippyVisible] = useState(false);
   const tooltipElement = useRef(null);
@@ -60,10 +62,20 @@ const Tooltip = ({
     document.body.removeEventListener('click', bodyClickListener);
   };
 
+  const debouncedTrackFocus = useDebouncedCallback(
+    () => {
+      // Check the tooltip is still visible so we dont track accidental mouseovers
+      if (tippyVisible) {
+        trackInteraction('Focus', 'Tool Tip', 'Tool Tip', trackingLabel, '');
+      }
+    },
+    1000,
+  );
   const showTooltip = () => {
     if (!tippyVisible) {
       setTippyVisible(true);
     }
+    debouncedTrackFocus();
   };
 
   const addOnShowListeners = () => {
@@ -170,6 +182,10 @@ const Tooltip = ({
 };
 
 export const tooltipPropTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * An id for the tooltip element
    */

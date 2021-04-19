@@ -37,7 +37,7 @@ const Accordion = ({
   collapse,
 }) => (
   <>
-    { AccordionGroupChildren(children, className, collapse) }
+    {AccordionGroupChildren(children, className, collapse)}
   </>
 );
 

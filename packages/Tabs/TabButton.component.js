@@ -9,10 +9,11 @@ const TabButton = ({
   name, label, handleClick,
 }) => {
   const tabContext = useContext(TabsContext);
-  const { breakpoint } = useContext(ManorContext);
+  const { breakpoint, trackInteraction } = useContext(ManorContext);
 
   const clickHandler = (e) => {
     tabContext.changeTab(name);
+    trackInteraction('Click', 'Tab', 'Tab', label, '');
     if (handleClick) {
       handleClick(e);
     }
