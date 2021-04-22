@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-combobox",
-  "version": "0.13.4",
+  "version": "0.13.5",
   "description": "Manor Combobox component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-button": "^0.9.5",
+    "@comparethemarketau/manor-button": "^0.9.6",
     "@comparethemarketau/manor-empty-state": "^0.8.5",
     "@comparethemarketau/manor-hooks": "^0.6.3",
     "@comparethemarketau/manor-input": "^0.18.24",

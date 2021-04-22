@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.9.5...@comparethemarketau/manor-button@0.9.6) (2021-04-22)
+
+
+### Bug Fixes
+
+* **button:** pass event to button click handler ([#629](https://github.com/comparethemarketau/manor-react/issues/629)) ([517b00a](https://github.com/comparethemarketau/manor-react/commit/517b00ae929eef78d1ffd3d21a48059abf34b8f4))
+
+
+
+
+
 ## [0.9.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.9.4...@comparethemarketau/manor-button@0.9.5) (2021-04-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-button
