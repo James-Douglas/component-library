@@ -45,10 +45,10 @@ const Button = ({
     return <>{children}</>;
   };
 
-  const clickHandler = useCallback(() => {
+  const clickHandler = useCallback((e) => {
     trackInteraction('Click', 'Button', variant, trackingLabel, trackingLabel);
     if (handleClick) {
-      handleClick();
+      handleClick(e);
     }
   }, [handleClick, trackingLabel, trackInteraction, variant]);
 
