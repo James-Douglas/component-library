@@ -14,7 +14,7 @@ import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { SupportingElements } from '@comparethemarketau/manor-supporting-elements';
 
 import {
-  StyledAffix, StyledClearIcon, StyledInput, StyledInputClearWrap, StyledInputContainer, StyledInputWrap, StyledWrapper,
+  StyledAffix, StyledClearIcon, StyledInput, StyledMaskInput, StyledInputClearWrap, StyledInputContainer, StyledInputWrap, StyledWrapper,
 } from './Input.styles';
 
 export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint) => {
@@ -61,6 +61,8 @@ export const renderAffix = (affixType, affixContent, isAutofill, disabled, affix
 
 export const getInitialValue = (value, prefillValue) => value || prefillValue || '';
 
+const unwantedSymbols = ['e', 'E', '+', '-'];
+
 // eslint-disable-next-line react/display-name
 const Input = React.forwardRef(({
   trackingLabel,
@@ -102,6 +104,7 @@ const Input = React.forwardRef(({
   gtmPidAnonymous,
   disableInteractionTracking,
   trackingFieldType,
+  controlled,
 }, ref) => {
   const id = useId(propsId);
   const [ariaLabelledByIds, setAriaLabelledByIds] = useState({});
@@ -156,8 +159,8 @@ const Input = React.forwardRef(({
   const changeHandler = (e) => {
     setIsDirty(true);
     const { value: newValue } = e.target;
-    setInternalValue(newValue);
     handleChange(newValue);
+    if (!controlled) setInternalValue(newValue);
     debouncedTrack(newValue);
   };
 
@@ -187,6 +190,10 @@ const Input = React.forwardRef(({
   };
 
   const keyDownHandler = (e) => {
+    // disallow number characters such as "e", "E", "+", "-" if input type is number
+    if (type === 'number') {
+      unwantedSymbols.includes(e.key) && e.preventDefault();
+    }
     if (handleKeyDown) {
       handleKeyDown(e);
     }
@@ -202,6 +209,16 @@ const Input = React.forwardRef(({
     localRef.current.inputElement.focus();
   };
 
+  // render a masked component if prop is there
+  const Component = mask ? StyledMaskInput : StyledInput;
+
+  // throw error if we're using a mask + number type input (check the docs page for more info on this)
+  if (Component.displayName === 'Inputstyles__StyledMaskInput' && type === 'number') {
+    throw new Error('input type="number" is not supported by masking libraries. Set the mask to false and add your own custom masking with the handleChange function. Check out manor storybook for an example https://services.dev.comparethemarket.cloud/manor/?path=/story/welcome--page');
+  }
+
+  // console.warn('controlled? ', controlled)
+  // console.log('input.component VALUE:', internalValue)
   return (
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
       {!expressive
@@ -221,7 +238,7 @@ const Input = React.forwardRef(({
           <StyledInputClearWrap className="input-clear-wrap" expressive={expressive} inputValue={internalValue} breakpoint={breakpoint}>
             {expressive
               && <Label htmlFor={id} text={label} removeGutters={removeGutters} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
-            <StyledInput
+            <Component
               mask={mask}
               guide={guide}
               id={id}
@@ -230,7 +247,7 @@ const Input = React.forwardRef(({
               placeholder={placeholder}
               disabled={disabled}
               readOnly={readonly}
-              value={internalValue}
+              value={controlled ? value : internalValue}
               aria-labelledby={[...ariaLabelledBy, Object.entries(ariaLabelledByIds).map(([_, ariaLabelledById]) => ariaLabelledById)].join(',')}
               aria-describedby={[...ariaDescribedBy, Object.entries(ariaDescribedByIds).map(([_, ariaDescribedById]) => ariaDescribedById)].join(',')}
               onChange={changeHandler}
@@ -304,7 +321,11 @@ Input.propTypes = {
    * Due to a limitation in browser API, other input types, such as email or number, cannot be supported.
    * However, it is normal to let the user enter an email or a number in an input type text combined the appropriate input mask.
    */
-  mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
+  mask: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.func,
+    PropTypes.bool,
+  ]),
   /**
    * Sets the guide mode
    */
@@ -436,6 +457,10 @@ Input.propTypes = {
    * If using the Input you can omit this and it will default to the correct value.
    */
   trackingFieldType: PropTypes.oneOf(['Input', 'Date', 'Expressive', 'Currency']),
+  /**
+   * Manually set this prop to true if you intend to controll the value/add custom masking
+   */
+  controlled: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -445,9 +470,7 @@ Input.defaultProps = {
   tooltip: {},
   ariaLabelledBy: [],
   ariaDescribedBy: [],
-  // there is a bug in text-mask where disabling the mask (setting to false) causes the input value to not
-  // reset when the clear icon is clicked (PR:https://github.com/text-mask/text-mask/pull/831)
-  mask: (value) => Array(value.length).fill(/./),
+  mask: false,
   guide: false,
   maxlength: null,
   type: 'text',
@@ -478,6 +501,7 @@ Input.defaultProps = {
   gtmPidAnonymous: false,
   disableInteractionTracking: false,
   trackingFieldType: 'Input',
+  controlled: false,
 };
 
 export default Input;

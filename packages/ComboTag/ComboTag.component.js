@@ -63,6 +63,7 @@ const ComboTag = ({
   bordered,
   gtmPidAnonymous,
   comboListSpacing,
+  controlled,
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
@@ -158,7 +159,7 @@ const ComboTag = ({
     setFocusedRef(null);
     setCurrentValue('');
     if (comboInputRef.current) {
-      const storedRef = comboInputRef.current.inputElement;
+      const storedRef = comboInputRef.current;
       setTimeout(() => {
         storedRef.focus();
       }, 100);
@@ -171,14 +172,21 @@ const ComboTag = ({
   );
 
   const comboHandleChange = useCallback((valueInput) => {
-    debouncedTrackInput(valueInput);
-    setCurrentValue(valueInput);
+    if (controlled) {
+      const modifiedValue = handleInput(valueInput);
+      setCurrentValue(modifiedValue);
+      debouncedTrackInput(modifiedValue);
+    } else {
+      setCurrentValue(valueInput);
+      debouncedTrackInput(valueInput);
+    }
+
     setInlineTooltipActive(false);
     if (hasList) {
       setListVisible(!!valueInput.length);
     }
     scrollAndFocusInput(false);
-  }, [setCurrentValue, setListVisible, hasList, debouncedTrackInput]);
+  }, [controlled, hasList, handleInput, debouncedTrackInput]);
 
   const debouncedTrackFocus = useDebouncedCallback(
     () => trackInteraction('Focus', 'Combo Tag', 'Combo Tag', trackingLabel, tags.map(({ label }) => label).join(', ')),
@@ -300,7 +308,7 @@ const ComboTag = ({
           ref={tagRef}
           onClickDelete={() => deleteTagHandler(i)}
           onKeyDown={() => deleteTagHandler(i)}
-          elementRef={comboInputRef.current.inputElement}
+          elementRef={comboInputRef.current}
         />,
         alert,
       };
@@ -332,7 +340,7 @@ const ComboTag = ({
       }
     }
     if (comboInputRef.current && focus) {
-      comboInputRef.current.inputElement.focus();
+      comboInputRef.current.focus();
     }
   };
 
@@ -402,6 +410,7 @@ const ComboTag = ({
                     guide={guide}
                     gtmPidAnonymous={gtmPidAnonymous}
                     disableInteractionTracking
+                    controlled={controlled}
                   />
                 </StyledInputWrap>
               </StyledTagHolder>
@@ -580,7 +589,7 @@ ComboTag.propTypes = {
    * Due to a limitation in browser API, other input types, such as email or number, cannot be supported.
    * However, it is normal to let the user enter an email or a number in an input type text combined the appropriate input mask.
    */
-  mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
+  mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func, PropTypes.bool]),
   /**
    * Sets the guide mode
    */
@@ -609,6 +618,10 @@ ComboTag.propTypes = {
    * Define if there's margin top of the list (a gap between the input and the list)
    */
   comboListSpacing: PropTypes.bool,
+  /**
+   * Manually set this prop to true if you intend to control the value/add custom masking
+   */
+  controlled: PropTypes.bool,
 };
 
 ComboTag.defaultProps = {
@@ -638,15 +651,14 @@ ComboTag.defaultProps = {
   prefix: null,
   prefixClickHandler: null,
   invalidTagCondition: null,
-  // there is a bug in text-mask where disabling the mask (setting to false) causes the input value to not
-  // reset when the clear icon is clicked (PR:https://github.com/text-mask/text-mask/pull/831)
-  mask: (value) => Array(value.length).fill(/./),
+  mask: false,
   guide: false,
   type: 'text',
   bordered: false,
   validationMessage: null,
   gtmPidAnonymous: false,
   comboListSpacing: true,
+  controlled: false,
 };
 
 export default ComboTag;

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from '@comparethemarketau/manor-input';
 import StyledBackground from '../../view-styles';
 
 const prefixSuffixView = () => {
+
+  const [thing, setthing] = useState();
   const logValue = (value) => {
     // eslint-disable-next-line no-console
     console.log(value);

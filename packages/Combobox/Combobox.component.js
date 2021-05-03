@@ -203,7 +203,7 @@ const Combobox = ({
 
   useEffect(() => {
     if (isMobileModalView && mobileModalRef) {
-      mobileModalRef.current.inputElement.focus();
+      mobileModalRef.current.focus();
     }
   }, [isMobileModalView, mobileModalRef]);
 
@@ -553,7 +553,7 @@ Combobox.defaultProps = {
   validationMessage: null,
   required: false,
   disabled: false,
-  value: '',
+  value: null,
   prefillValue: '',
   prefixContent: '',
   suffixContent: '',

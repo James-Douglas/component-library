@@ -70,12 +70,13 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                     emptyStateChildren={<>Please check spelling <br/>or try a different country.</>}
                     handleInput={(value) => {
                       // eslint-disable-next-line no-console
-                      console.log(value)
-                      setComboTagValue(value)
+                      setComboTagValue(value);
                     }}
-                    handleChange={(tags) => {
+                    handleChange={(currentTags) => {
                       // eslint-disable-next-line no-console
-                      console.log('"handleChange func:" the current tags are:', tags)}
+                      console.log('"handleChange func:" the current tags are:', currentTags)
+                      setTags(currentTags)
+                      }
                     }
                     errorTooltip={
                       {
@@ -185,30 +186,35 @@ a click handler.
 <Preview>
   <Story name="ComboTag (Keypress version)">
     {() => {
-      const [comboTagValue, setComboTagValue] = useState('');
+      const masking = val => {
+        const raw = val.toString().replace(/^0+|[0-9][ ,]+/g, '0');
+        const trimmed = raw.substring(0, 2);
+        const removeLeadingZeros = parseInt(trimmed, 10).toString();
+        const rawArray = removeLeadingZeros.split('');
+        const result = [];
+        for (let i = 0; i < rawArray.length; i++) {
+          result.push(/^[0-9]/);
+        }
+        return result.reverse();
+      };
       const condition = (x, y) => {
         return x > 100;
       }
-      const maskFunc = val => {
-        const raw = val.toString().replace(/^0+|[^0-9]+/g, '0');
-        const rawArray = raw.split('');
-        const result = [];
-        for (let i = rawArray.length; i > 0; i -= 1) {
-          result.push(/\d/);
+      const customMasking = value => {
+        if (value) {
+          const raw = value.replace(/^0+|[0-9][ ,]+/g, "0");
+          const trimmed = raw.substring(0, 2);
+          const removeLeadingZeros = parseInt(trimmed, 10).toString();
+          return removeLeadingZeros;
         }
-        return result.reverse();
+        return '';
       };
       return (
         <div style={{ padding: '2%', marginTop: '200px'}}>
           <ComboTag
-            trackingLabel="Yet another ComboTag example"
+            trackingLabel="Yet another ComboTag example 1"
             id="tag-id-1"
-            placeholder='Type in your destination and then press enter'
-            handleInput={(value) => {
-              // eslint-disable-next-line no-console
-              // console.log(value)
-              setComboTagValue(value)
-            }}
+            placeholder='Type something...'
             handleChange={() => {}}
             invalidTagCondition={condition}
             tagAlertIcon={faExclamationCircle}
@@ -219,20 +225,30 @@ a click handler.
           <br/>
           <br/>
           <ComboTag
+            trackingLabel="Yet another ComboTag example 2"
             id="tag-id-2"
-            placeholder='Numbers only, renders alert state when condtion is met (num > 100)'
-            handleInput={(value) => {
-              // eslint-disable-next-line no-console
-              // console.log(value)
-              setComboTagValue(value)
-            }}
-            mask={maskFunc}
+            placeholder='Type something...'
             handleChange={() => {}}
+            mask={masking}
             invalidTagCondition={condition}
             tagAlertIcon={faExclamationCircle}
-            label="Masked number field"
+            label="Masking via the mask prop"
+            description="And a description"
+            bordered
+          />
+          <br/>
+          <br/>
+          <ComboTag
+            trackingLabel="Yet another ComboTag example 3"
+            id="tag-id-3"
+            placeholder='Type something...'
+            type="number"
+            handleInput={(value) => customMasking(value)}
+            tagAlertIcon={faExclamationCircle}
+            label="Masking via custom handleInput mask (input has type='number')"
             description="You can still press space, enter and comma to add a tag"
             bordered
+            controlled
           />
         </div>
       )

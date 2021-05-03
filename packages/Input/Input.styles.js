@@ -197,9 +197,43 @@ export const StyledInputClearWrap = styled.div`
   `}
 `;
 
-export const StyledInput = styled(React.forwardRef(({
-  isAutofill, expressive, disableClearIcon, ...props
+export const StyledMaskInput = styled(React.forwardRef(({
+  isAutofill, expressive, disableClearIcon, trackingLabel, ...props
 }, ref) => <MaskedInput {...props} ref={ref} />))`
+  font-family: ${({ theme }) => theme.fontFamily};
+  padding-left: ${({ theme }) => theme.spacing[12]};
+  padding-right: ${({
+    theme, disableClearIcon,
+  }) => (disableClearIcon ? theme.spacing[12] : theme.spacing[36])};
+  display: block;
+  width: 100%;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  border: ${({ theme }) => theme.borders.transparent};
+  height: ${({ theme }) => theme.input.height};
+  ${({ theme, breakpoint, expressive }) => ((breakpoint === 'lg' && expressive)) && css`
+    height: ${theme.spacing[56]};
+    font-size: ${theme.fontSize.xl};
+    ::placeholder {
+      font-size: ${theme.fontSize.xl};
+    }
+  `}
+  -moz-appearance: textfield;
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-ms-clear {
+    display: none;
+  }
+  :focus,
+  :active,
+  :hover {
+    outline: 0;
+  }
+`;
+
+export const StyledInput = styled.input`
   font-family: ${({ theme }) => theme.fontFamily};
   padding-left: ${({ theme }) => theme.spacing[12]};
   padding-right: ${({

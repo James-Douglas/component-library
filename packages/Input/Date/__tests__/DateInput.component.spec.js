@@ -33,7 +33,6 @@ describe('DateInput', () => {
     expect(placeholder).toBe('DD/MM/YYYY');
     expect(svg).toBeInTheDocument();
     expect(input.value).toBe('01/01/2019');
-
     expect(inputWrap.firstChild).toHaveStyle(`border: ${ctmTheme.borders.prefill}`);
   });
 

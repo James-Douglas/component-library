@@ -8,6 +8,7 @@ import WhiteBackgroundView from './input-on-white-background';
 import PrefixSuffix from './input-prefix-suffix';
 import InputTypes from './input-types';
 import InputStates from './input-states';
+import InputMasking from './input-masking';
 import getTooltipKnobs from '../../tooltipKnobs';
 
 <Meta title="Components/Input" component={Input} />
@@ -16,6 +17,10 @@ import getTooltipKnobs from '../../tooltipKnobs';
 
 The Input component allows users to input data into a field. Display and functionality can be customized in a number of
 ways, including setting prefix & suffix content, adding a mask, etc (see props).
+
+Please note that when using a mask, input `type='number'` will throw an error. This is due to masking libraries not supporting number inputs, as they in turn
+don't support `setSelectionRange` which masking libraries rely on. To solve this we have decided to render a masked input only if you need it. If you happen to need both, 
+then a custom function can be appiled via the `handleChange` prop
 
 <Preview>
   <Story name="input">
@@ -70,7 +75,6 @@ populated with `prefillValue` and prefilled styles will be applied.
 ## Props
 
 <Props of={Input} />
-
 
 <Story name="input with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
@@ -140,4 +144,8 @@ populated with `prefillValue` and prefilled styles will be applied.
 
 <Story name="input states"  parameters={{ docs: { disable: true } }}>
   <InputStates />
+</Story>
+
+<Story name="input masking with type=number"  parameters={{ docs: { disable: true } }}>
+  <InputMasking />
 </Story>
