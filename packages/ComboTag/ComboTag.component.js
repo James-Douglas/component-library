@@ -146,6 +146,12 @@ const ComboTag = ({
     1000,
   );
 
+  const inputRef = () => {
+    if (comboInputRef.current.inputElement !== null && comboInputRef.current.inputElement !== undefined) {
+      return comboInputRef.current.inputElement;
+    }
+    return comboInputRef.current;
+  };
   // used if we have a list (expected with an api)
   const handleSelectItem = (tag) => {
     setInlineTooltipActive(false);
@@ -159,7 +165,7 @@ const ComboTag = ({
     setFocusedRef(null);
     setCurrentValue('');
     if (comboInputRef.current) {
-      const storedRef = comboInputRef.current;
+      const storedRef = inputRef();
       setTimeout(() => {
         storedRef.focus();
       }, 100);
@@ -170,6 +176,19 @@ const ComboTag = ({
     (newValue) => trackInteraction('Input', 'Combo Tag', 'Combo Tag', trackingLabel, newValue),
     1000,
   );
+
+  const scrollAndFocusInput = useCallback((focus = true) => {
+    // ensure container is fully scrolled
+    if (tagHolderRef.current) {
+      if (tagHolderRef.current.scrollTop !== tagHolderRef.current.scrollHeight) {
+        tagHolderRef.current.scrollTop = tagHolderRef.current.scrollHeight;
+      }
+    }
+    if (comboInputRef.current && focus) {
+      const ref = inputRef();
+      ref.focus();
+    }
+  }, [comboInputRef]);
 
   const comboHandleChange = useCallback((valueInput) => {
     if (controlled) {
@@ -186,7 +205,7 @@ const ComboTag = ({
       setListVisible(!!valueInput.length);
     }
     scrollAndFocusInput(false);
-  }, [controlled, hasList, handleInput, debouncedTrackInput]);
+  }, [controlled, hasList, handleInput, debouncedTrackInput, scrollAndFocusInput]);
 
   const debouncedTrackFocus = useDebouncedCallback(
     () => trackInteraction('Focus', 'Combo Tag', 'Combo Tag', trackingLabel, tags.map(({ label }) => label).join(', ')),
@@ -296,7 +315,7 @@ const ComboTag = ({
         // trim the label and add an elipsis if exceeds max length
         ellipsisLabel = `${label.substring(0, maxLabelLength)}...`;
       }
-
+      const elementRef = inputRef();
       return {
         ref: tagRef,
         tagJsx: <Tag
@@ -308,7 +327,7 @@ const ComboTag = ({
           ref={tagRef}
           onClickDelete={() => deleteTagHandler(i)}
           onKeyDown={() => deleteTagHandler(i)}
-          elementRef={comboInputRef.current}
+          elementRef={elementRef}
         />,
         alert,
       };
@@ -320,6 +339,7 @@ const ComboTag = ({
   useEffect(() => {
     setTags(selectedTags);
     scrollAndFocusInput(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTags]);
 
   // fire handleChange func (if passed) with the current tags
@@ -331,18 +351,6 @@ const ComboTag = ({
   }, [tags]);
 
   const { title, body } = errorTooltip;
-
-  const scrollAndFocusInput = (focus = true) => {
-    // ensure container is fully scrolled
-    if (tagHolderRef.current) {
-      if (tagHolderRef.current.scrollTop !== tagHolderRef.current.scrollHeight) {
-        tagHolderRef.current.scrollTop = tagHolderRef.current.scrollHeight;
-      }
-    }
-    if (comboInputRef.current && focus) {
-      comboInputRef.current.focus();
-    }
-  };
 
   const memoizedTagElements = useMemo(
     () => tagElements.map(({ tagJsx }) => tagJsx), [tagElements],

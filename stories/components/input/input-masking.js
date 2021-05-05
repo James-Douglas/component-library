@@ -12,7 +12,7 @@ const InputMasking = () => {
   return (
     <StyledBackground color="white">
       <Input
-        label="Controlled input with custom mask (not using a masking library)"
+        label="Controlled input with a custom mask (not using a masking library)"
         placeholder="example@email.com"
         handleChange={(value) => customMask(value)}
         value={maskedValue}

@@ -217,8 +217,6 @@ const Input = React.forwardRef(({
     throw new Error('input type="number" is not supported by masking libraries. Set the mask to false and add your own custom masking with the handleChange function. Check out manor storybook for an example https://services.dev.comparethemarket.cloud/manor/?path=/story/welcome--page');
   }
 
-  // console.warn('controlled? ', controlled)
-  // console.log('input.component VALUE:', internalValue)
   return (
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
       {!expressive
