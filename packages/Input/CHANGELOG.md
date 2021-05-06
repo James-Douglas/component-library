@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.18.26...@comparethemarketau/manor-input@0.19.0) (2021-05-06)
+
+
+### Features
+
+* 🎸 expose inputmode prop, combo to listen to . char ([#634](https://github.com/comparethemarketau/manor-react/issues/634)) ([1883b4a](https://github.com/comparethemarketau/manor-react/commit/1883b4afb90a74292d3ce68ab60bb82fe7f64e23))
+
+
+
+
+
 ## [0.18.26](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-input@0.18.25...@comparethemarketau/manor-input@0.18.26) (2021-05-05)
 
 
