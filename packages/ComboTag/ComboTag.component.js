@@ -58,6 +58,7 @@ const ComboTag = ({
   selectedTags,
   invalidTagCondition,
   type,
+  inputMode,
   mask,
   guide,
   bordered,
@@ -91,7 +92,7 @@ const ComboTag = ({
       // Older browsers may return e.key === "Spacebar" instead of " " for the Space Bar key. Firefox did so until
       // version 37, as did Internet Explorer 9, 10, and 11.
       // also note issue with space and comma detection in android: https://github.com/comparethemarketau/manor-react/issues/585
-      if (currentValue !== '' && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',')) {
+      if (currentValue !== '' && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === ',' || e.key === '.')) {
         trackInteraction('Input', 'Combo Tag', 'Combo Tag', trackingLabel, currentValue);
         setCurrentValue('');
         setEditMode(false);
@@ -414,6 +415,7 @@ const ComboTag = ({
                     ref={comboInputRef}
                     disableFocusStyles
                     type={type}
+                    inputMode={inputMode}
                     mask={mask}
                     guide={guide}
                     gtmPidAnonymous={gtmPidAnonymous}
@@ -607,6 +609,10 @@ ComboTag.propTypes = {
    */
   type: PropTypes.string,
   /**
+   * The inputmode for the input
+   */
+  inputMode: PropTypes.string,
+  /**
    * Sets the border of the combo tag
    */
   bordered: PropTypes.bool,
@@ -662,6 +668,7 @@ ComboTag.defaultProps = {
   mask: false,
   guide: false,
   type: 'text',
+  inputMode: 'text',
   bordered: false,
   validationMessage: null,
   gtmPidAnonymous: false,

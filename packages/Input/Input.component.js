@@ -74,6 +74,7 @@ const Input = React.forwardRef(({
   tooltip,
   validationMessage,
   type,
+  inputMode,
   placeholder,
   value,
   prefillValue,
@@ -242,6 +243,7 @@ const Input = React.forwardRef(({
               id={id}
               name={id}
               type={type}
+              inputMode={inputMode}
               placeholder={placeholder}
               disabled={disabled}
               readOnly={readonly}
@@ -340,6 +342,10 @@ Input.propTypes = {
    * Type of input (such as number, text, tel etc).
    */
   type: PropTypes.string,
+  /**
+   * The inputmode for the input
+   */
+  inputMode: PropTypes.string,
   /**
    * The placeholder text for the input.
    */
@@ -472,6 +478,7 @@ Input.defaultProps = {
   guide: false,
   maxlength: null,
   type: 'text',
+  inputMode: 'text',
   placeholder: '',
   value: '',
   prefillValue: '',

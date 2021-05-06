@@ -11,6 +11,7 @@ const ExpressiveInput = ({
   ariaDescribedBy,
   validationMessage,
   type,
+  inputMode,
   placeholder,
   value,
   prefillValue,
@@ -40,6 +41,7 @@ const ExpressiveInput = ({
       inFieldLabel
       expressive
       type={type}
+      inputMode={inputMode}
       handleChange={handleChange}
       prefixContent={prefixContent}
       prefixBlock={prefixBlock}
@@ -114,6 +116,10 @@ ExpressiveInput.propTypes = {
    * Type of input (such as number, text, tel etc).
    */
   type: PropTypes.string,
+  /**
+   * The inputmode for the input
+   */
+  inputMode: PropTypes.string,
   /**
    * Sets the value of the input
    */
@@ -193,6 +199,7 @@ ExpressiveInput.defaultProps = {
   mask: (value) => Array(value.length).fill(/./),
   guide: false,
   type: 'text',
+  inputMode: 'text',
   value: null,
   validationMessage: '',
   ariaLabelledBy: [],
