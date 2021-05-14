@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.15](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-label@0.8.14...@comparethemarketau/manor-label@0.8.15) (2021-05-14)
+
+
+### Bug Fixes
+
+* **label:** proptypes error ([#632](https://github.com/comparethemarketau/manor-react/issues/632)) ([95e42c3](https://github.com/comparethemarketau/manor-react/commit/95e42c3cddb17b410b2270311a34cd5e48803eae))
+
+
+
+
+
 ## [0.8.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-label@0.8.13...@comparethemarketau/manor-label@0.8.14) (2021-04-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-label
