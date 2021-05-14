@@ -91,7 +91,7 @@ Label.defaultProps = {
   variant: 'default',
   htmlFor: null,
   text: '',
-  tooltip: {},
+  tooltip: null,
   inFieldLabel: false,
   prefixContent: '',
   breakpoint: null,
