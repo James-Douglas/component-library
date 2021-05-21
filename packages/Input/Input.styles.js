@@ -64,6 +64,7 @@ export const StyledAffix = styled.span`
   font-family: ${({ theme }) => theme.fontFamily};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: ${({ theme }) => theme.fontSize.base};
+  color: ${({ theme }) => theme.colors.grey600};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,6 +72,7 @@ export const StyledAffix = styled.span`
     min-width: ${expressive ? theme.spacing[16] : theme.spacing[48]};
   `)};
   padding: ${({ theme, breakpoint }) => `${theme.spacing[8]} ${breakpoint === 'xs' ? theme.spacing[8] : theme.spacing[12]}`};
+  padding: ${({ theme, breakpoint, affixType }) => affixType === 'prefix' && css`${theme.spacing[8]} ${theme.spacing[0]} ${theme.spacing[8]} ${breakpoint === 'xs' ? theme.spacing[8] : theme.spacing[12]}}`};
   height: ${({ theme }) => theme.input.height};
   ${({ theme, breakpoint, expressive }) => ((breakpoint === 'lg' && expressive)) && css`
     height: ${theme.spacing[56]};

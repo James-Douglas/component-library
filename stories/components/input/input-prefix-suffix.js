@@ -82,6 +82,7 @@ const prefixSuffixView = () => {
         required={false}
         disabled={false}
         suffixContent="suffix"
+        prefixBlock={true}
         handleChange={(value) => logValue(value)}
       />
     </StyledBackground>

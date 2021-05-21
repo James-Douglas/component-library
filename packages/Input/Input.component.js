@@ -47,7 +47,7 @@ export const renderAffix = (affixType, affixContent, isAutofill, disabled, affix
         isAutofill={isAutofill}
         disabled={disabled}
         onClick={affixClick}
-        prefixBlock={affixType === 'prefix' && prefixBlock}
+        prefixBlock={prefixBlock}
         expressive={expressive}
         breakpoint={breakpoint}
         id={ariaDescribedById}
@@ -402,7 +402,7 @@ Input.propTypes = {
     PropTypes.node,
   ]),
   /**
-   * Display the Block style prefix (grey background)
+   * Display the Block style - is called prefix but works for suffix as well (grey background)
    */
   prefixBlock: PropTypes.bool,
   /**
