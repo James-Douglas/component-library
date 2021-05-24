@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.21](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-feature-list@0.4.20...@comparethemarketau/manor-feature-list@0.4.21) (2021-05-24)
+
+**Note:** Version bump only for package @comparethemarketau/manor-feature-list
+
+
+
+
+
 ## [0.4.20](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-feature-list@0.4.19...@comparethemarketau/manor-feature-list@0.4.20) (2021-04-12)
 
 **Note:** Version bump only for package @comparethemarketau/manor-feature-list

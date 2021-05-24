@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-tabs",
-  "version": "0.10.16",
+  "version": "0.10.17",
   "description": "Manor Tabs component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,13 +18,13 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-typography": "^0.15.2",
-    "@comparethemarketau/manor-utils": "^0.4.5",
+    "@comparethemarketau/manor-typography": "^0.15.3",
+    "@comparethemarketau/manor-utils": "^0.4.6",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-provider": "^0.8.3",
-    "@comparethemarketau/manor-themes": "^0.13.2",
+    "@comparethemarketau/manor-provider": "^0.8.4",
+    "@comparethemarketau/manor-themes": "^0.14.0",
     "react-tracking": "^8.1.0"
   },
   "peerDependencies": {

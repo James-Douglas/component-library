@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.12.2...@comparethemarketau/manor-combo-tag@0.12.3) (2021-05-24)
+
+**Note:** Version bump only for package @comparethemarketau/manor-combo-tag
+
+
+
+
+
 ## [0.12.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.12.1...@comparethemarketau/manor-combo-tag@0.12.2) (2021-05-21)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combo-tag

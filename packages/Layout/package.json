@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-layout",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Manor Layout component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,7 +18,7 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-hooks": "^0.6.3",
+    "@comparethemarketau/manor-hooks": "^0.6.4",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

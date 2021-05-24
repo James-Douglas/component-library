@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.13.2...@comparethemarketau/manor-themes@0.14.0) (2021-05-24)
+
+
+### Features
+
+* **ETT-1780:** updated hero500 colour ([#636](https://github.com/comparethemarketau/manor-react/issues/636)) ([19ae587](https://github.com/comparethemarketau/manor-react/commit/19ae58727c2a3a0b5d113872cf21e8df59bebec3))
+
+
+
+
+
 ## [0.13.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.13.1...@comparethemarketau/manor-themes@0.13.2) (2021-04-12)
 
 

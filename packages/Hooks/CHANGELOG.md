@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-hooks@0.6.3...@comparethemarketau/manor-hooks@0.6.4) (2021-05-24)
+
+**Note:** Version bump only for package @comparethemarketau/manor-hooks
+
+
+
+
+
 ## [0.6.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-hooks@0.6.2...@comparethemarketau/manor-hooks@0.6.3) (2021-04-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-hooks

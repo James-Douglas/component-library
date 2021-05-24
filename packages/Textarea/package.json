@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-textarea",
-  "version": "0.11.8",
+  "version": "0.11.9",
   "description": "Manor Textarea component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,17 +18,17 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.7.6",
-    "@comparethemarketau/manor-hooks": "^0.6.3",
-    "@comparethemarketau/manor-label": "^0.8.15",
-    "@comparethemarketau/manor-supporting-elements": "^0.6.3",
-    "@comparethemarketau/manor-tooltip": "^0.19.3",
-    "@comparethemarketau/manor-typography": "^0.15.2",
+    "@comparethemarketau/manor-field-validation": "^0.7.7",
+    "@comparethemarketau/manor-hooks": "^0.6.4",
+    "@comparethemarketau/manor-label": "^0.8.16",
+    "@comparethemarketau/manor-supporting-elements": "^0.6.4",
+    "@comparethemarketau/manor-tooltip": "^0.19.4",
+    "@comparethemarketau/manor-typography": "^0.15.3",
     "prop-types": "^15.7.2",
     "use-debounce": "^6.0.0"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.13.2",
+    "@comparethemarketau/manor-themes": "^0.14.0",
     "react-tracking": "^8.1.0"
   },
   "peerDependencies": {

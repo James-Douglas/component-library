@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.13](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-link@0.6.12...@comparethemarketau/manor-link@0.6.13) (2021-05-24)
+
+**Note:** Version bump only for package @comparethemarketau/manor-link
+
+
+
+
+
 ## [0.6.12](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-link@0.6.11...@comparethemarketau/manor-link@0.6.12) (2021-04-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-link
