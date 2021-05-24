@@ -33,7 +33,7 @@ exports[`Button renders correctly with minimal props 1`] = `
   font-weight: 700;
   color: #FFFFFF;
   fill: #FFFFFF;
-  background: #0f8a28;
+  background: #0f8928;
 }
 
 .c1 > .sc-AxjAm {
@@ -132,7 +132,7 @@ exports[`Button renders with props 1`] = `
   flex-direction: row-reverse;
   color: #FFFFFF;
   fill: #FFFFFF;
-  background: #0f8a28;
+  background: #0f8928;
 }
 
 .c1 > .c2 {

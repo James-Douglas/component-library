@@ -52,7 +52,7 @@ const colors = {
   hero50: '#e7f3ea',
   hero300: '#57ad69',
   hero400: '#339c48',
-  hero500: '#0f8a28',
+  hero500: '#0f8928',
   hero600: '#0d7522',
   hero700: '#0b611c',
   grey50: '#fafafa',
