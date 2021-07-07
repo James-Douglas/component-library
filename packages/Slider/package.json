@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-slider",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "description": "Manor Slider component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
