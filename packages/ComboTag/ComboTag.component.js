@@ -356,7 +356,6 @@ const ComboTag = ({
   const memoizedTagElements = useMemo(
     () => tagElements.map(({ tagJsx }) => tagJsx), [tagElements],
   );
-
   return (
     <>
       {componentLabel
@@ -388,6 +387,7 @@ const ComboTag = ({
                 && (
                 <StyledErrorToolTip tabIndex="-1">
                   <Tooltip
+                    trackingLabel={`Tooltip for ${trackingLabel}`}
                     active={inlineTooltipActive}
                     title={title}
                     body={body}
@@ -398,6 +398,7 @@ const ComboTag = ({
                 </StyledErrorToolTip>
                 )}
                   <Input
+                    trackingLabel={`Input for ${trackingLabel}`}
                     id={id}
                     placeholder={tags.length === 0 ? placeholder : ''}
                     value={currentValue}

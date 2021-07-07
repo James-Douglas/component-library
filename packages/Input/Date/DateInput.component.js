@@ -184,7 +184,7 @@ DateInput.propTypes = {
 DateInput.defaultProps = {
   id: null,
   value: '',
-  tooltip: {},
+  tooltip: null,
   ariaLabelledBy: [],
   ariaDescribedBy: [],
   validationMessage: null,

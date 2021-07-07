@@ -44,6 +44,7 @@ const StepSlider = ({
   onChangeCommitted,
   tooltip,
   sortOrderAscending,
+  ariaLabel,
 }) => {
   const { trackInteraction } = useContext(ManorContext);
   const id = useId(propsId);
@@ -82,13 +83,33 @@ const StepSlider = ({
     }
   };
 
+  /**
+   * TODO expose ariaLabelledby and ariaDescribedby props
+   * so that additional ids can be used to populate these fields
+   * and then expand the logic to add another warning for checking
+   * if the developer has not populated at least one of the following fields label
+   * (type string) || aria-label || aria-labelledby || aria-describedby
+   *
+   * @returns string
+   */
+  function getAriaLabel() {
+    if (label && (typeof label === 'string' || label instanceof String) && label !== StepSlider.defaultProps.label && ariaLabel === StepSlider.defaultProps.ariaLabel) {
+      return label;
+    }
+
+    if (ariaLabel === StepSlider.defaultProps.ariaLabel) {
+      console.warn('The aria-label attribute has been set with the as default value of "Slider" please set the ariaLabel prop with a descriptive string label for the field');
+    }
+    return ariaLabel;
+  }
+
   const sliderNode = sortOrderAscending
     ? (
       <ManorStyledSlider
         name={name}
         id={id}
         value={value}
-        aria-label={label}
+        aria-label={getAriaLabel()}
         aria-valuetext={ariaValueText}
         aria-labelledby={labelWrapId}
         disabled={disabled}
@@ -108,7 +129,7 @@ const StepSlider = ({
         name={name}
         id={id}
         value={value}
-        aria-label={label}
+        aria-label={getAriaLabel()}
         aria-valuetext={ariaValueText}
         aria-labelledby={labelWrapId}
         disabled={disabled}
@@ -178,6 +199,10 @@ StepSlider.propTypes = {
    */
   ariaValueText: PropTypes.string,
   /**
+   * Provides an accessible label for the ManorStyledSlider or ManorStyledSliderRtl.
+   */
+  ariaLabel: PropTypes.string,
+  /**
    * If true, the slider will be disabled.
    */
   disabled: PropTypes.bool,
@@ -208,8 +233,9 @@ StepSlider.defaultProps = {
   disabled: false,
   onChange: () => {},
   onChangeCommitted: () => {},
-  tooltip: {},
+  tooltip: null,
   sortOrderAscending: true,
+  ariaLabel: 'Slider',
 };
 
 export default StepSlider;

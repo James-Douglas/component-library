@@ -253,7 +253,7 @@ SingleDatePicker.propTypes = {
 
 SingleDatePicker.defaultProps = {
   dateId: null,
-  dateTooltip: {},
+  dateTooltip: null,
   datePlaceholder: '',
   dateAriaLabel: '',
   ariaLabelledBy: [],

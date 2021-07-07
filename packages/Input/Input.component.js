@@ -218,6 +218,14 @@ const Input = React.forwardRef(({
     throw new Error('input type="number" is not supported by masking libraries. Set the mask to false and add your own custom masking with the handleChange function. Check out manor storybook for an example https://services.dev.comparethemarket.cloud/manor/?path=/story/welcome--page');
   }
 
+  // Prevent: Warning: Received `false` for a non-boolean attribute `mask`.
+  function getMask() {
+    if (mask) {
+      return mask;
+    }
+    return undefined;
+  }
+
   return (
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
       {!expressive
@@ -238,7 +246,7 @@ const Input = React.forwardRef(({
             {expressive
               && <Label htmlFor={id} text={label} removeGutters={removeGutters} inFieldLabel={inFieldLabel} prefixContent={prefixContent} breakpoint={breakpoint} />}
             <Component
-              mask={mask}
+              mask={getMask()}
               guide={guide}
               id={id}
               name={id}
@@ -471,7 +479,7 @@ Input.defaultProps = {
   id: null,
   label: '',
   inFieldLabel: false,
-  tooltip: {},
+  tooltip: null,
   ariaLabelledBy: [],
   ariaDescribedBy: [],
   mask: false,

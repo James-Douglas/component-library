@@ -40,7 +40,7 @@ describe('DateRangePicker', () => {
       <DateRangePicker
         trackingLabel="date range picker test"
         startDateId="start-date"
-        startDateTooltip={{ title: 'Start Date' }}
+        startDateTooltip={{ title: 'Start Date', trackingLabel: 'startDateTooltip' }}
         startDateAriaLabel="Start Date"
         startDateValue={startDate}
         endDateId="end-date"

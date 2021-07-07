@@ -84,7 +84,6 @@ const Pill = ({
         label={(
           <StyledLabel
             variant={size === 'medium' ? 'body1' : 'body2'}
-            noMargins
           >
             {label}
           </StyledLabel>

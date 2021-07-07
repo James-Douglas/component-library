@@ -36,6 +36,7 @@ const Wrapper = ({ trapFocus, focusTrapOptions, children }) => {
 };
 
 const Modal = ({
+  trackingLabel,
   id: propsId,
   dynamicHeight,
   title,
@@ -147,17 +148,16 @@ const Modal = ({
     if (!showButtons) {
       return null;
     }
-
     return (
       <StyledContentButtons>
         {secondaryActionTitle && (
           <StyledSecondaryButton>
-            <Button id="secondary-btn" variant="tertiary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem' }} handleClick={handleSecondaryActionClick}>{secondaryActionTitle}</Button>
+            <Button id="secondary-btn" variant="tertiary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem' }} handleClick={handleSecondaryActionClick} trackingLabel={`Secondary button for ${trackingLabel}`}>{secondaryActionTitle}</Button>
           </StyledSecondaryButton>
         )}
         {primaryActionTitle && (
           <StyledPrimaryButton>
-            <Button id="primary-btn" variant="primary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem' }} handleClick={handlePrimaryActionClick}>{primaryActionTitle}</Button>
+            <Button id="primary-btn" variant="primary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem' }} handleClick={handlePrimaryActionClick} trackingLabel={`Primary button for ${trackingLabel}`}>{primaryActionTitle}</Button>
           </StyledPrimaryButton>
         )}
       </StyledContentButtons>
@@ -255,6 +255,10 @@ const Modal = ({
 };
 
 Modal.propTypes = {
+  /**
+   * A descriptive label used in tracking user interactions with this component
+   */
+  trackingLabel: PropTypes.string.isRequired,
   /**
    * Unique identifier for the modal
    */

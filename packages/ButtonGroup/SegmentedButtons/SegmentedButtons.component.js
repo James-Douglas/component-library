@@ -236,7 +236,7 @@ SegmentedButtons.defaultProps = {
   label: '',
   description: '',
   handleClick: null,
-  tooltip: {},
+  tooltip: null,
   validationMessage: null,
   selectedValue: null,
   contentWidth: null,

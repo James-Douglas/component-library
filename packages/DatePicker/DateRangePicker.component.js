@@ -434,7 +434,7 @@ DateRangePicker.propTypes = {
 DateRangePicker.defaultProps = {
   startDateId: null,
   endDateId: null,
-  startDateTooltip: {},
+  startDateTooltip: null,
   startDatePlaceholder: '',
   startDateAriaLabel: '',
   startDateAriaLabelledBy: [],
@@ -442,7 +442,7 @@ DateRangePicker.defaultProps = {
   endDateAriaLabelledBy: [],
   endDateAriaDescribedBy: [],
   startDateValue: null,
-  endDateTooltip: {},
+  endDateTooltip: null,
   endDatePlaceholder: '',
   endDateAriaLabel: '',
   endDateValue: null,
