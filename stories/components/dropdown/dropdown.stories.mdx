@@ -116,6 +116,8 @@ selection will update to the selected option.
     const required = boolean('required', false, componentPropsId);
     const prefixContent = text('prefix', '', componentPropsId);
     const dropdownVariant = select('variant', ['default', 'text', 'text-fixed-chevron'], 'default', componentPropsId);
+    const className = text('className', '', componentPropsId);
+    const DropdownItemClassName = text('DropdownItemClassName', '', componentPropsId);
     const { trackingLabel, title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
@@ -143,13 +145,14 @@ selection will update to the selected option.
                 handleChange={(event, value, option) => { console.log('VALUE:', value, 'OPTION:', option); }}
                 handleFocus={() => { console.log('dropdown was focused') }}
                 handleBlur={() => { console.log('dropdown lost focus') }}
+                className={className}
               >
-                <DropdownItem value="Default">Default Item - Title</DropdownItem>
-                <DropdownItem value="First">First Item - Title</DropdownItem>
-                <DropdownItem value="Second">Second Item - Title</DropdownItem>
-                <DropdownItem value="Third">Third Item - Title</DropdownItem>
-                <DropdownItem value="TRex">Tyrannosaurus Rex</DropdownItem>
-                <DropdownItem value="Tutu">Tutu Train</DropdownItem>
+                <DropdownItem DropdownItemClassName={DropdownItemClassName} value="Default">Default Item - Title</DropdownItem>
+                <DropdownItem DropdownItemClassName={DropdownItemClassName} value="First">First Item - Title</DropdownItem>
+                <DropdownItem DropdownItemClassName={DropdownItemClassName} value="Second">Second Item - Title</DropdownItem>
+                <DropdownItem DropdownItemClassName={DropdownItemClassName} value="Third">Third Item - Title</DropdownItem>
+                <DropdownItem DropdownItemClassName={DropdownItemClassName} value="TRex">Tyrannosaurus Rex</DropdownItem>
+                <DropdownItem DropdownItemClassName={DropdownItemClassName} value="Tutu">Tutu Train</DropdownItem>
               </Dropdown>
             </Column>
           </Row>

@@ -46,6 +46,7 @@ const Dropdown = ({
   handleFocus,
   handleBlur,
   variant,
+  className,
 }) => {
   const id = useId(propsId);
   const dropdownWrapper = useRef();
@@ -251,6 +252,7 @@ const Dropdown = ({
             invalid={validationMessage && validationMessage.length > 0}
             disabled={disabled}
             variant={variant}
+            className={className}
           >
             <StyledDropdownContent disabled={disabled} variant={variant}>
               {prefixContent && <StyledAffix>{prefixContent}</StyledAffix>}
@@ -350,6 +352,10 @@ Dropdown.propTypes = {
    * If using 'text' or 'text-fixed-chevron' please also use the placeholder prop so that the dropdown field is perceptible
    */
   variant: PropTypes.string,
+  /**
+   * Additional classname props for dropdown text
+   */
+  className: PropTypes.string,
 };
 
 Dropdown.defaultProps = {
@@ -368,6 +374,7 @@ Dropdown.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   variant: 'default',
+  className: '',
 };
 
 export default Dropdown;

@@ -14,6 +14,7 @@ const DropdownItem = React.forwardRef(({
   handleKeyDown,
   selectedValue,
   theme,
+  DropdownItemClassName,
 }, ref) => {
   const id = useId(propsId);
   const { isDesktop } = useContext(ManorContext);
@@ -43,7 +44,7 @@ const DropdownItem = React.forwardRef(({
       tabIndex="0"
     >
       {selectedValue === value && <FontAwesomeIcon icon={faCheck} size="xs" />}
-      <StyledItemContent>{children}</StyledItemContent>
+      <StyledItemContent className={DropdownItemClassName}>{children}</StyledItemContent>
     </StyledListItem>
   );
 });
@@ -86,6 +87,10 @@ DropdownItem.propTypes = {
    */
   // eslint-disable-next-line react/forbid-prop-types
   theme: PropTypes.object,
+  /**
+   * Additional props for dropdown items content
+   */
+  DropdownItemClassName: PropTypes.string,
 };
 
 DropdownItem.defaultProps = {
@@ -94,6 +99,7 @@ DropdownItem.defaultProps = {
   handleClick: null,
   handleKeyDown: null,
   theme: undefined,
+  DropdownItemClassName: '',
 };
 
 export default DropdownItem;
