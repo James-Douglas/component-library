@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.9...@comparethemarketau/manor-dropdown@0.12.10) (2021-07-23)
+
+
+### Bug Fixes
+
+* **dropdown:** ETT-1783 ([#639](https://github.com/comparethemarketau/manor-react/issues/639)) ([9ac50cc](https://github.com/comparethemarketau/manor-react/commit/9ac50cc734d32027b68c3ea13e5ee2f5420e8f9c))
+
+
+
+
+
 ## [0.12.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.8...@comparethemarketau/manor-dropdown@0.12.9) (2021-05-24)
 
 **Note:** Version bump only for package @comparethemarketau/manor-dropdown
