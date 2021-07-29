@@ -14,7 +14,7 @@ describe('Disclaimer', () => {
     fireEvent.click(checkbox);
     expect(checkbox.checked).toBe(true);
     expect(changeHandler).toHaveBeenCalled();
-    expect(changeHandler.mock.calls[0][0]).toBe(true);
+    expect(changeHandler.mock.calls[0][0]).toBe('test', true);
   });
   it('checks on click of label', () => {
     const changeHandler = jest.fn();
@@ -24,6 +24,6 @@ describe('Disclaimer', () => {
     fireEvent.click(disclaimerText);
     expect(checkbox.checked).toBe(true);
     expect(changeHandler).toHaveBeenCalled();
-    expect(changeHandler.mock.calls[0][0]).toBe(true);
+    expect(changeHandler.mock.calls[0][0]).toBe('test-2', true);
   });
 });

@@ -31,7 +31,7 @@ const Disclaimer = ({
   const changeHandler = () => {
     setChecked(!checked);
     if (handleChange) {
-      handleChange(!checked);
+      handleChange(id, !checked);
     }
   };
 
@@ -41,7 +41,7 @@ const Disclaimer = ({
         const newChecked = !checked;
         setChecked(newChecked);
         if (handleChange) {
-          handleChange(newChecked);
+          handleChange(id, newChecked);
         }
       }
     }
@@ -102,7 +102,7 @@ Disclaimer.propTypes = {
     PropTypes.array,
   ]),
   /**
-   * Called on change with the value of the Disclaimers checkbox
+   * Called on change with { id, value }.
    */
   handleChange: PropTypes.func,
   /**
