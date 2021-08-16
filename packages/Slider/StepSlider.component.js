@@ -98,6 +98,7 @@ const StepSlider = ({
     }
 
     if (ariaLabel === StepSlider.defaultProps.ariaLabel) {
+      // eslint-disable-next-line no-console
       console.warn('The aria-label attribute has been set with the as default value of "Slider" please set the ariaLabel prop with a descriptive string label for the field');
     }
     return ariaLabel;
