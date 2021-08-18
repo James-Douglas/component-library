@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-card@0.6.20...@comparethemarketau/manor-card@0.7.0) (2021-08-18)
+
+
+### Features
+
+* **cards:** update cards component/ETT-1770  ([44d1906](https://github.com/comparethemarketau/manor-react/commit/44d1906d0fb98c2a5fd64f494ac4198505da4cb1))
+
+
+
+
+
 ## [0.6.20](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-card@0.6.19...@comparethemarketau/manor-card@0.6.20) (2021-05-24)
 
 **Note:** Version bump only for package @comparethemarketau/manor-card
