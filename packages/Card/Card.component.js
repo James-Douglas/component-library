@@ -10,10 +10,12 @@ const Card = ({
   margin,
   padding,
   className,
+  boxShadow,
 }) => {
   const id = useId(propsId);
+  const shadow = boxShadow !== false;
   return (
-    <StyledCard id={id} margin={margin} padding={padding} className={className}>
+    <StyledCard id={id} margin={margin} padding={padding} className={className} shadow={shadow}>
       {children}
     </StyledCard>
   );
@@ -40,6 +42,10 @@ Card.propTypes = {
    * Classes to be applied to the Card component
    */
   className: PropTypes.string,
+  /**
+   * Allow setting of box shadow to true or false for the card
+   */
+  boxShadow: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
 };
 
@@ -49,6 +55,7 @@ Card.defaultProps = {
   margin: ['4', '4', '16'],
   padding: ['16'],
   className: '',
+  boxShadow: true,
 };
 
 export default Card;

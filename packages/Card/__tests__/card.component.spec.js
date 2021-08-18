@@ -29,4 +29,18 @@ describe('Card', () => {
     expect(card).toHaveStyle('margin: 0.4rem 0.8rem 1.2rem 1.6rem');
     expect(card).toHaveStyle('padding: 0.8rem 0.8rem 0.8rem 0.4rem');
   });
+
+  it('renders with box-shadow', () => {
+    const { container } = render(<Card id="card-one" boxShadow={false} />);
+
+    const card = container.querySelector('[id="card-one"]');
+    expect(card).toHaveStyle('box-shadow: none');
+  });
+
+  it('renders without box-shadow', () => {
+    const { container } = render(<Card id="card-one" />);
+
+    const card = container.querySelector('[id="card-one"]');
+    expect(card).not.toHaveStyle('box-shadow: none');
+  });
 });
