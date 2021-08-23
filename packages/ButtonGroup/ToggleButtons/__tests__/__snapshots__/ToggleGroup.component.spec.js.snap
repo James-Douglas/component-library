@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ToggleGroup renders with minimal props 1`] = `"<div class=\\"sc-AxheI bXnOQb\\"><label id=\\"\\" for=\\"toggle-group\\" class=\\"sc-Axmtr zreGG label\\"></label></div><div id=\\"toggle-group\\" class=\\"sc-fzpans jdLqgK\\"></div><div class=\\"sc-fzplWN cKZgFO\\"></div>"`;
+exports[`ToggleGroup renders with minimal props 1`] = `"<div class=\\"sc-AxheI bXnOQb\\"><label id=\\"\\" for=\\"toggle-group\\" class=\\"sc-Axmtr eRRmJW label\\"></label></div><div id=\\"toggle-group\\" class=\\"sc-fzpans jdLqgK\\"></div><div class=\\"sc-fzplWN cKZgFO\\"></div>"`;

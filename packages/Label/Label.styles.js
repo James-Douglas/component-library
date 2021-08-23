@@ -11,6 +11,7 @@ export const StyledLabel = styled.label`
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme, variant }) => (variant === 'default' ? theme.fontSize.base : theme.spacing[12])};
   color: ${({ theme }) => theme.label.color};
+  display: flex;
   ${({
     theme, variant, breakpoint,
   }) => variant === 'compact' && css`
