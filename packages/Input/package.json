@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-input",
-  "version": "0.19.5",
+  "version": "0.19.6",
   "description": "Manor Input component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@comparethemarketau/manor-field-validation": "^0.7.7",
     "@comparethemarketau/manor-hooks": "^0.6.4",
-    "@comparethemarketau/manor-label": "^0.8.16",
+    "@comparethemarketau/manor-label": "^0.8.17",
     "@comparethemarketau/manor-supporting-elements": "^0.6.4",
     "@comparethemarketau/manor-tooltip": "^0.19.4",
     "@comparethemarketau/manor-typography": "^0.15.3",

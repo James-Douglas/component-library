@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.12](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.11...@comparethemarketau/manor-buttongroup@0.17.12) (2021-08-25)
+
+
+### Bug Fixes
+
+* **label:** change tooltip behaviour ([#644](https://github.com/comparethemarketau/manor-react/issues/644)) ([3c7891a](https://github.com/comparethemarketau/manor-react/commit/3c7891a9c88df443ea78f38c02bd17c837772b16))
+
+
+
+
+
 ## [0.17.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.9...@comparethemarketau/manor-buttongroup@0.17.11) (2021-07-07)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
