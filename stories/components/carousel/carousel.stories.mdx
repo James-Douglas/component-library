@@ -1,0 +1,27 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+import { useState } from 'react';
+import { Typography } from '@comparethemarketau/manor-typography';
+import { Carousel } from '@comparethemarketau/manor-carousel';
+import CarouselView from './carousel.view';
+
+<Meta title="Components/Carousel" component={Carousel} />
+
+# Carousel
+
+A controllable slideshow component. It switches between given children using a smooth animation, provides interactible bullet indicators.
+
+**Switch to canvas view to see examples**
+
+<Story name="Mock carousel" parameters={{ docs: { disable: true } }}>
+  
+  {() => {
+    return (
+      <div style={{ padding: '2%' }}>
+        <CarouselView />
+      </div>
+    )
+  }}
+</Story>
+
+### Props - Carousel
+<Props of={Carousel} />

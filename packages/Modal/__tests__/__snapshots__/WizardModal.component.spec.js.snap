@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WizardModal renders with minimal props 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background: #f6f6f6;
+  box-shadow: 0 1.5rem 3rem 0 rgba(0,0,0,0.11),0 0.5rem 1.5rem 0 rgba(0,0,0,0.08);
+  z-index: inherit;
+  max-width: 76.8rem;
+  min-width: 32.5rem;
+  height: 100%;
+  max-height: 69.6rem;
+  pointer-events: auto;
+  position: relative;
+  -webkit-animation-name: jkFcyt;
+  animation-name: jkFcyt;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  padding: 2.4rem 2.4rem 2rem 2.4rem;
+}
+
+.c2 {
+  cursor: pointer;
+  z-index: inherit;
+  color: #757575;
+  font-size: 2.4rem;
+}
+
+<div
+  class="c0 
+    
+  "
+  id="test-wizard-modal"
+>
+  <div
+    class="c1"
+  >
+    <div
+      aria-label="Close Modal"
+      aria-pressed="false"
+      class="c2 icon-close"
+      role="button"
+      tabindex="0"
+    >
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-times fa-w-10 "
+        data-icon="times"
+        data-prefix="far"
+        focusable="false"
+        role="img"
+        viewBox="0 0 320 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

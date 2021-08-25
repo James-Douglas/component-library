@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carousel renders with minimal props 1`] = `
+<div
+  class="swiper-container swiper-container-fade swiper-container-initialized swiper-container-horizontal"
+  id="test-carousel"
+  style="cursor: grab;"
+>
+  <div
+    class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"
+  />
+  <div
+    class="swiper-wrapper"
+    style="transition-duration: 0ms;"
+  />
+</div>
+`;

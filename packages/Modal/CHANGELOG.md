@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0-beta.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.11.0-beta.5...@comparethemarketau/manor-modal@0.11.0-beta.6) (2021-08-18)
+
+
+### Features
+
+* **sml-1806:** add example for dynamic height ([31af6c8](https://github.com/comparethemarketau/manor-react/commit/31af6c83d2acc3b6a1d25891a37a4b54d3a47efa))
+* **sml-1806:** hidden scrollbars as default ([bc294d5](https://github.com/comparethemarketau/manor-react/commit/bc294d541b8a3beceb2edbb68652164fac533d9c))
+* **sml-1806:** ipad adaptation ([14993f1](https://github.com/comparethemarketau/manor-react/commit/14993f16dd933ac87ef893d22f397ff055f21caf))
+* **sml-1806:** support dynamic height content ([18b5d44](https://github.com/comparethemarketau/manor-react/commit/18b5d443c31c072446931da0d5a26d644f71275c))
+
+
+
+
+
+# [0.11.0-beta.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.11.0-beta.4...@comparethemarketau/manor-modal@0.11.0-beta.5) (2021-08-17)
+
+
+### Features
+
+* **sml-1801:** better works in narrow screen ([3622e61](https://github.com/comparethemarketau/manor-react/commit/3622e61095994c0e457d27593f4deab43dd1cc89))
+* **sml-1806:** support pass in actions component ([fdc0121](https://github.com/comparethemarketau/manor-react/commit/fdc01216e992bebe14ed8e802ba633b21c3b0a78))
+* **sml-1806:** typing error ([b2ada0e](https://github.com/comparethemarketau/manor-react/commit/b2ada0e74cd31929c6cf77606352d1daa52d5d6a))
+
+
+
+
+
+# [0.11.0-beta.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.11.0-beta.3...@comparethemarketau/manor-modal@0.11.0-beta.4) (2021-08-13)
+
+
+### Features
+
+* **sml-1806:** mobile adaptation ([434a3df](https://github.com/comparethemarketau/manor-react/commit/434a3df3a9f788df27abe2786474423165cbe4a1))
+
+
+
+
+
+# [0.11.0-beta.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.11.0-beta.2...@comparethemarketau/manor-modal@0.11.0-beta.3) (2021-08-09)
+
+
+### Features
+
+* **sml-1801:** update test snapshot ([82299de](https://github.com/comparethemarketau/manor-react/commit/82299decd93266860752f0cfa3e40328629f4611))
+* **sml-1806:** mobile adaptation ([2fded3d](https://github.com/comparethemarketau/manor-react/commit/2fded3d2f92b4b87779bd4169ba3227ddccb6bf1))
+
+
+
+
+
+# [0.11.0-beta.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.10.39...@comparethemarketau/manor-modal@0.11.0-beta.2) (2021-08-06)
+
+
+### Features
+
+* **sml-1806:** add carousel storybook ([180d0b7](https://github.com/comparethemarketau/manor-react/commit/180d0b72c29dd380df7c92ff3ba5f0447d5c234f))
+* **sml-1806:** add modal with inbuild carousel ([333d75c](https://github.com/comparethemarketau/manor-react/commit/333d75c7367954ca2e9c00ed3c261972bf09ff66))
+* **sml-1806:** pre release tag ([d75edd1](https://github.com/comparethemarketau/manor-react/commit/d75edd165067badc66ea514451e358c1de4344f8))
+
+
+
+
+
 ## [0.10.39](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.10.37...@comparethemarketau/manor-modal@0.10.39) (2021-07-07)
 
 **Note:** Version bump only for package @comparethemarketau/manor-modal

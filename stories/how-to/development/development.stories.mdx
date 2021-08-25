@@ -47,4 +47,18 @@ can be run once a build has completed to deploy a feature branch. The feature br
 
 Like all CTM feature branches, this relies on correct branch naming (`feature/<ticket>-<description>`)
 
+### Publishing a beta version to Nexus
+
+Fot the first beta version ,add `beta.0` at the end of library version in the file package.json
+So the version should, for example, look like this: 0.11.0-beta.0
+
+Next you will go ahead and commit all your changes.
+
+Then go to Bamboo to change the release configuration(Script configuration) temporarly.
+
+[Bamboo Manor-react build plan](https://bamboo.comparethemarket.com.au/build/admin/edit/editBuildTasks.action?buildKey=APUI-MFB-RL)
+
+Update the value of `master` to your specific branch then build your branch manually.
+
+
 

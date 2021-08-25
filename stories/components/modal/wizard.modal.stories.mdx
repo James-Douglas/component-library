@@ -1,0 +1,31 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+import { useState } from 'react';
+import { WizardModal } from '@comparethemarketau/manor-modal';
+import { Typography } from '@comparethemarketau/manor-typography';
+import { Button } from '@comparethemarketau/manor-button';
+import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
+import WizardModalView from './wizard.modal.view';
+
+<Meta title="Components/Modal/WizardModal" component={WizardModal} />
+
+# Wizard Modal
+
+A modal in wizard styles, the Wizard Modal functions temporarily copied the styles from the Modal component, this is because of a compromise based on the designing prototypes.
+
+Technically, it can be based on Modal component totally not the copy styles, but the Modal component should be modified to accept more customer defined, like action buttons.
+
+**Switch to canvas view to see examples**
+
+<Story name="Mock wizard modal" parameters={{ docs: { disable: true } }}>
+  
+  {() => {
+    return (
+      <div style={{ padding: '2%' }}>
+        <WizardModalView />
+      </div>
+    )
+  }}
+</Story>
+
+### Props - WizardModal
+<Props of={WizardModal} />

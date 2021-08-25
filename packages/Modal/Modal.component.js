@@ -133,6 +133,7 @@ const Modal = ({
             </StyledTitleContainer>
           </Column>
           <Column cols={1} valign="flex-end" halign="center">
+            // TODO: this is not using standard manor components, need to refactor this to do so. See also: WizardModal.conponent.js
             <StyledCloseIcon className="icon-close" onClick={handleClose} onKeyPress={handleClose} aria-label="Close Modal" tabIndex="0" role="button" aria-pressed="false">
               <FontAwesomeIcon icon={faTimes} />
             </StyledCloseIcon>

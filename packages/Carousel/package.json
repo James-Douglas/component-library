@@ -1,7 +1,7 @@
 {
-  "name": "@comparethemarketau/manor-card",
-  "version": "0.7.1",
-  "description": "Manor Card component",
+  "name": "@comparethemarketau/manor-carousel",
+  "version": "0.1.0",
+  "description": "Manor Carousel component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
   "license": "Proprietary",
@@ -19,10 +19,11 @@
   },
   "dependencies": {
     "@comparethemarketau/manor-hooks": "^0.6.4",
-    "@comparethemarketau/manor-utils": "^0.4.6",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "swiper": "^6.8.0"
   },
   "peerDependencies": {
+    "@comparethemarketau/manor-provider": "^0.8.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "styled-components": "^5.0.0"
