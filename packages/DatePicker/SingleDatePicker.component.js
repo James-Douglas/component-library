@@ -30,6 +30,7 @@ const SingleDatePicker = ({
   validationMessage,
   isDayBlocked,
   handleChange,
+  handleBlur,
   readonly,
   pickerVisible,
 }) => {
@@ -99,6 +100,7 @@ const SingleDatePicker = ({
   }, [selectedDate, handleChange]);
 
   const dateHandleBlur = (e) => {
+    handleBlur && handleBlur(e);
     if (!node.current.contains(e.target) && node.current !== e.target) {
       setHasFocus(false);
     }
@@ -242,6 +244,10 @@ SingleDatePicker.propTypes = {
    */
   handleChange: PropTypes.func,
   /**
+   * Called on blur with focus event.
+   */
+  handleBlur: PropTypes.func,
+  /**
    * Specifies that the date input should be read-only. However you can still set dates from the picker
    */
   readonly: PropTypes.bool,
@@ -262,6 +268,7 @@ SingleDatePicker.defaultProps = {
   numberOfMonths: 1,
   validationMessage: null,
   handleChange: null,
+  handleBlur: null,
   isDayBlocked: undefined,
   readonly: false,
   pickerVisible: false,

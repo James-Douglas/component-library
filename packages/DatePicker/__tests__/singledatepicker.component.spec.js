@@ -16,6 +16,7 @@ describe('SingleDatePicker', () => {
         dateTooltip={{ title: 'Start Date' }}
         dateAriaLabel="Select Date"
         date={startDate}
+        handleBlur={() => null}
         numberOfMonths={numberOfMonths}
         isDayBlocked={(day) => day.weekday() === 4}
       />,
