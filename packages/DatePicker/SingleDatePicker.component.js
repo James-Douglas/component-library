@@ -68,6 +68,14 @@ const SingleDatePicker = ({
       const formatted = _value.format(displayFormat);
       setValue(formatted);
       // debouncedTrackInput(formatted);
+
+      const datePicker = node.current.querySelector('input');
+
+      if (datePicker && datePicker.scrollIntoView) {
+        datePicker.focus();
+        datePicker.scrollIntoView({ behavior: 'smooth' });
+        setIsVisisble(false);
+      }
     } else {
       setValue(_value);
       debouncedTrackInput(_value);
