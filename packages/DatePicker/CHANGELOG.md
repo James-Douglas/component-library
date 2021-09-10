@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.23.1...@comparethemarketau/manor-date-picker@0.24.0) (2021-09-10)
+
+
+### Features
+
+* **datepicker:** ETT-2582 ([a27f537](https://github.com/comparethemarketau/manor-react/commit/a27f537ea98a3d64dd42de1e2d46e4e664b08e8c))
+
+
+
+
+
 ## [0.23.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.23.0...@comparethemarketau/manor-date-picker@0.23.1) (2021-09-09)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
