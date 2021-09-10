@@ -73,9 +73,8 @@ const SingleDatePicker = ({
 
       const datePicker = node.current.querySelector('input');
 
-      if (datePicker && datePicker.scrollIntoView) {
+      if (datePicker && datePicker.focus) {
         datePicker.focus();
-        datePicker.scrollIntoView({ behavior: 'smooth' });
         setIsVisisble(false);
       }
     } else {
