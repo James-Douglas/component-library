@@ -73,7 +73,7 @@ const SingleDatePicker = ({
 
       const datePicker = node.current.querySelector('input');
 
-      if (datePicker && datePicker.focus) {
+      if (datePicker) {
         datePicker.focus();
         setIsVisisble(false);
       }
