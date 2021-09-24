@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.11.1...@comparethemarketau/manor-modal@0.12.0) (2021-09-24)
+
+
+### Features
+
+* change to jsx comment ([#651](https://github.com/comparethemarketau/manor-react/issues/651)) ([26829c8](https://github.com/comparethemarketau/manor-react/commit/26829c805efc3889d5d0691ff5fa658155e51ac9))
+
+
+
+
+
 ## [0.11.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.10.39...@comparethemarketau/manor-modal@0.11.1) (2021-08-25)
 
 **Note:** Version bump only for package @comparethemarketau/manor-modal
