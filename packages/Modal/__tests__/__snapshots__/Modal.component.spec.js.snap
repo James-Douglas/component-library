@@ -383,7 +383,6 @@ exports[`Modal renders with minimal props 1`] = `
         
       "
         >
-          // TODO: this is not using standard manor components, need to refactor this to do so. See also: WizardModal.conponent.js
           <div
             aria-label="Close Modal"
             aria-pressed="false"
