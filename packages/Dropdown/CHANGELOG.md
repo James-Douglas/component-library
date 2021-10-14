@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.13](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.12...@comparethemarketau/manor-dropdown@0.12.13) (2021-10-14)
+
+
+### Bug Fixes
+
+* **dropdown:** fix/ETT-2226 Remove mobile dropdown hover ([#652](https://github.com/comparethemarketau/manor-react/issues/652)) ([40a0667](https://github.com/comparethemarketau/manor-react/commit/40a0667d4498d32ff69a3f72d0963765ccdfc238))
+
+
+
+
+
 ## [0.12.12](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.10...@comparethemarketau/manor-dropdown@0.12.12) (2021-08-25)
 
 **Note:** Version bump only for package @comparethemarketau/manor-dropdown
