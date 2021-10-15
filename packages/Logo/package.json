@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-logo",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Manor Logo component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
