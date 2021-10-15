@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Picture, picturePropTypes } from '@comparethemarketau/manor-picture';
 import StyledLogo from './Logo.styles';
@@ -9,11 +9,11 @@ const Logo = ({
   const {
     src, srcsets, alt, title, className,
   } = picture;
-  const clickHandler = () => {
+  const clickHandler = useCallback((e) => {
     if (handleClick) {
-      handleClick();
+      handleClick(e);
     }
-  };
+  }, [handleClick]);
   return (
     <StyledLogo size={size} id="logo">
       <a href={link} onClick={clickHandler}>

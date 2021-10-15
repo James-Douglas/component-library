@@ -15,6 +15,10 @@ import CTMLogoInline from '../../../images/ctm-logo-inline.svg';
     <Logo
       size="large"
       link="https://www.comparethemarket.com.au"
+      handleClick={(e) => {
+        e.preventDefault();
+        window.open("https://www.comparethemarket.com.au", "_blank", "noopener,noreferrer");
+      }}
       picture={{
         src: CTMLogoStacked,
         srcsets: [
