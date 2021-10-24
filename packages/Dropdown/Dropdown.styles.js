@@ -95,7 +95,7 @@ export const StyledListul = styled.ul`
     border: ${({ theme }) => theme.borders.transparent};
     font-size: ${({ theme }) => theme.fontSize.base};
     padding: ${({ theme }) => `${theme.spacing['8']} ${theme.spacing['36']}`};
-    ${({ desktop }) => desktop && css`
+    ${({ screenTouch }) => !screenTouch && css`
       &:hover {
         cursor: pointer;
         background: ${({ theme }) => theme.dropdown.list.hoverBackground};
@@ -104,7 +104,7 @@ export const StyledListul = styled.ul`
     ${({ desktop }) => !desktop && css`
       font-size: ${({ theme }) => theme.fontSize.base};
       line-height: ${({ theme }) => theme.lineHeight.tight};
-      padding: ${({ theme }) => `${theme.spacing['16']} ${theme.spacing['16']} ${theme.spacing['20']}`};
+      padding: ${({ theme }) => `${theme.spacing['16']} ${theme.spacing['36']} ${theme.spacing['20']}`};
     `}
     &:focus {
       outline: none;
