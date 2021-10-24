@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.13...@comparethemarketau/manor-dropdown@0.12.14) (2021-10-24)
+
+
+### Bug Fixes
+
+* **dropdown:** fix mistake touch state on iphone ([#654](https://github.com/comparethemarketau/manor-react/issues/654)) ([1b5ee61](https://github.com/comparethemarketau/manor-react/commit/1b5ee6112ed6993f562210d83c020198aa5f0c29))
+
+
+
+
+
 ## [0.12.13](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.12...@comparethemarketau/manor-dropdown@0.12.13) (2021-10-14)
 
 
