@@ -382,6 +382,7 @@ const Combobox = ({
             role="comboMobileField"
             disableClearIcon={disableClearIcon}
             disableInteractionTracking
+            gtmPidAnonymous={gtmPidAnonymous}
           />
         </StyledDefault>
       )}
