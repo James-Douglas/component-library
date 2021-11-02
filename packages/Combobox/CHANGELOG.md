@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.13.13...@comparethemarketau/manor-combobox@0.13.14) (2021-11-02)
+
+
+### Bug Fixes
+
+* **combobox:** passing on gtmPidAnonymous for mobile ([#655](https://github.com/comparethemarketau/manor-react/issues/655)) ([632a738](https://github.com/comparethemarketau/manor-react/commit/632a7382cded577cf7b58916a1d21ccc8eef58ac))
+
+
+
+
+
 ## [0.13.13](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.13.12...@comparethemarketau/manor-combobox@0.13.13) (2021-08-25)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combobox
