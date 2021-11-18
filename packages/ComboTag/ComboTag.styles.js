@@ -11,7 +11,9 @@ export const StyledContainer = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  background: ${({ theme }) => (theme.colors.white)};
+  ${({ bordered, theme }) => !bordered && css`
+    background: ${theme.colors.white};
+  `}
   border: ${({ theme }) => (theme.borders.transparent)};
   border-bottom: ${({ theme, hasList }) => hasList && (theme.borders.active)};
   ${({ hasList, componentFocused, theme }) => (hasList && componentFocused) && css`

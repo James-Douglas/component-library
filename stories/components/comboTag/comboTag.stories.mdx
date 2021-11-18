@@ -144,6 +144,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
     const renderLimit = number('renderLimit', 10, {}, componentPropsId);
     const characterMinimum = number('characterMinimum', 1, {}, componentPropsId);
     const selectedTags = object('selectedTags', [{label: 'Afghanistan', code: 'AF', alert: true }], componentPropsId);
+    const validationMessage = text('validationMessage', '', componentPropsId);
     return (
       <div style={{ padding: '2%', marginTop: '200px'}}>
         <FluidContainer>
@@ -168,6 +169,7 @@ In Manor, the `ComboTag` extends `Input` and as such shares similar functionalit
                 alertText={["appears on the Smartraveller.gov.au ", <b>Do not travel list.</b>]}
                 selectedTags={selectedTags}
                 prefix={faMapMarkerAlt}
+                validationMessage={validationMessage}
               />
             </Column>
           </Row>
@@ -184,7 +186,7 @@ Additionally a condition can be passed to set the error state of the tag, as we 
 a click handler.
 
 <Preview>
-  <Story name="ComboTag (Keypress version)">
+  <Story name="ComboTag (Keypress version)" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
     {() => {
       const masking = val => {
         const raw = val.toString().replace(/^0+|[0-9][ ,]+/g, '0');
@@ -197,6 +199,8 @@ a click handler.
         }
         return result.reverse();
       };
+      const componentPropsId = 'Component Props';
+      const validationMessage = text('validationMessage', '', componentPropsId);
       const condition = (x, y) => {
         return x > 100;
       }
@@ -220,6 +224,7 @@ a click handler.
             tagAlertIcon={faExclamationCircle}
             label="With a label"
             description="And a description"
+            validationMessage={validationMessage}
             bordered
           />
           <br/>
@@ -234,6 +239,7 @@ a click handler.
             tagAlertIcon={faExclamationCircle}
             label="Masking via the mask prop"
             description="And a description"
+            validationMessage={validationMessage}
             bordered
           />
           <br/>
@@ -248,6 +254,7 @@ a click handler.
             tagAlertIcon={faExclamationCircle}
             label="Masking via custom handleInput mask (input has type='number')"
             description="You can still press space, enter and comma to add a tag"
+            validationMessage={validationMessage}
             bordered
             controlled
           />

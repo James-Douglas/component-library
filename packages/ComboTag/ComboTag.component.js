@@ -363,7 +363,7 @@ const ComboTag = ({
       {description
       && <Label htmlFor={id} text={description} variant="description" />}
       <StyledOuterWrapper hasList={hasList}>
-        <StyledContainer componentFocused={componentFocused} hasList={hasList}>
+        <StyledContainer componentFocused={componentFocused} hasList={hasList} bordered={bordered}>
           <StyledPresentationLayer
             role="presentation"
             onBlur={handleOnBlur}
@@ -427,7 +427,7 @@ const ComboTag = ({
               </StyledTagHolder>
             </StyledTagContainer>
 
-            {validationMessage
+            {(validationMessage && bordered)
           && <FieldValidation message={validationMessage} />}
 
             {hasList
@@ -454,6 +454,8 @@ const ComboTag = ({
           </StyledPresentationLayer>
         </StyledContainer>
       </StyledOuterWrapper>
+      {(validationMessage && !bordered)
+      && <FieldValidation message={validationMessage} />}
     </>
   );
 };
@@ -466,7 +468,7 @@ ComboTag.propTypes = {
    */
   trackingLabel: PropTypes.string.isRequired,
   /**
-   * Unique identifier for the Combobox
+   * Unique identifier for the ComboTag
    */
   id: PropTypes.string,
   /**
