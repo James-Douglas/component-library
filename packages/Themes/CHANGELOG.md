@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.14.0...@comparethemarketau/manor-themes@0.15.0) (2021-12-06)
+
+
+### Features
+
+* CompareDrawer component (SML-2005) ([2a3e966](https://github.com/comparethemarketau/manor-react/commit/2a3e966bc86d73fabd97d0d1e10340ee5ff98d21))
+
+
+
+
+
 # [0.14.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-themes@0.13.2...@comparethemarketau/manor-themes@0.14.0) (2021-05-24)
 
 

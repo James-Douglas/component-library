@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-progress",
-  "version": "0.7.18",
+  "version": "0.7.19",
   "description": "Manor Progress component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,12 +18,12 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-grid": "^0.7.17",
-    "@comparethemarketau/manor-hooks": "^0.6.4",
+    "@comparethemarketau/manor-grid": "^0.7.18",
+    "@comparethemarketau/manor-hooks": "^0.6.5",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.14.0"
+    "@comparethemarketau/manor-themes": "^0.15.0"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.8.2",

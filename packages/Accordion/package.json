@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-accordion",
-  "version": "0.6.18",
+  "version": "0.6.19",
   "description": "Manor Accordion component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,16 +18,16 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-grid": "^0.7.17",
-    "@comparethemarketau/manor-hooks": "^0.6.4",
-    "@comparethemarketau/manor-utils": "^0.4.6",
+    "@comparethemarketau/manor-grid": "^0.7.18",
+    "@comparethemarketau/manor-hooks": "^0.6.5",
+    "@comparethemarketau/manor-utils": "^0.4.7",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.14.0",
+    "@comparethemarketau/manor-themes": "^0.15.0",
     "react-tracking": "^8.1.0"
   },
   "peerDependencies": {

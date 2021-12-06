@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-compare-drawer",
-  "version": "0.8.9",
+  "version": "0.9.0",
   "description": "Manor Compare Drawer component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,10 +18,10 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-drawer": "^0.8.9",
-    "@comparethemarketau/manor-button": "^0.10.0",
-    "@comparethemarketau/manor-grid": "^0.7.17",
-    "@comparethemarketau/manor-hooks": "^0.6.4",
+    "@comparethemarketau/manor-button": "^0.10.1",
+    "@comparethemarketau/manor-drawer": "^0.8.10",
+    "@comparethemarketau/manor-grid": "^0.7.18",
+    "@comparethemarketau/manor-hooks": "^0.6.5",
     "@comparethemarketau/manor-overlay": "^0.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/pro-light-svg-icons": "^5.12.1",
@@ -31,7 +31,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.14.0",
+    "@comparethemarketau/manor-themes": "^0.15.0",
     "react-tracking": "^8.1.0"
   },
   "peerDependencies": {

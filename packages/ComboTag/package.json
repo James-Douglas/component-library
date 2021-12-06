@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-combo-tag",
-  "version": "0.12.7",
+  "version": "0.12.8",
   "description": "Manor comboTag component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,15 +18,15 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-empty-state": "^0.8.6",
-    "@comparethemarketau/manor-field-validation": "^0.7.7",
-    "@comparethemarketau/manor-hooks": "^0.6.4",
-    "@comparethemarketau/manor-input": "^0.19.6",
-    "@comparethemarketau/manor-label": "^0.8.17",
+    "@comparethemarketau/manor-empty-state": "^0.8.7",
+    "@comparethemarketau/manor-field-validation": "^0.7.8",
+    "@comparethemarketau/manor-hooks": "^0.6.5",
+    "@comparethemarketau/manor-input": "^0.19.7",
+    "@comparethemarketau/manor-label": "^0.8.18",
     "@comparethemarketau/manor-picture": "^0.4.1",
-    "@comparethemarketau/manor-tag": "^0.0.21",
-    "@comparethemarketau/manor-tooltip": "^0.19.4",
-    "@comparethemarketau/manor-typography": "^0.15.3",
+    "@comparethemarketau/manor-tag": "^0.0.22",
+    "@comparethemarketau/manor-tooltip": "^0.19.5",
+    "@comparethemarketau/manor-typography": "^0.15.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/pro-light-svg-icons": "^5.12.1",
@@ -35,7 +35,7 @@
     "use-debounce": "^6.0.0"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.14.0",
+    "@comparethemarketau/manor-themes": "^0.15.0",
     "react-tracking": "^8.1.0"
   },
   "peerDependencies": {
