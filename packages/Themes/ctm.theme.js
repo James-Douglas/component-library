@@ -636,6 +636,13 @@ const ctmTheme = {
     closeIcon: colors.grey500,
     shadow: '0px 0px 6px rgba(0, 0, 0, 0.15)',
   },
+  compareDrawer: {
+    borderTop: `5px solid ${colors.primary500}`,
+    background: colors.white,
+  },
+  emptyCard: {
+    background: colors.grey50,
+  },
   tag: {
     background: colors.primary50,
     alert: colors.error50,

@@ -1,0 +1,146 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean, object, number } from '@storybook/addon-knobs';
+import { CompareDrawer } from '@comparethemarketau/manor-compare-drawer';
+import { ManorProvider } from '@comparethemarketau/manor-provider';
+import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
+import { Button } from '@comparethemarketau/manor-button';
+import { Typography } from '@comparethemarketau/manor-typography';
+import styled from 'styled-components';
+import { useState } from 'react';
+import { Picture } from '@comparethemarketau/manor-picture';
+import originLogo from '../../../images/ORIGIN.png';
+
+<Meta title="Components/CompareDrawer" component={CompareDrawer} />
+
+# CompareDrawer
+
+**Switch to canvas view to see examples**
+
+The CompareDrawer component displays products that have been selected to be compared.
+
+## Behavior
+* Z-Index can be altered if required via the `zIndex` Prop
+
+
+<Story name="compare drawer" parameters={{ docs: { disable: true } }}>
+  {() => {
+    const StyledCard = styled.div`
+      text-align: center;
+      padding: 4rem;
+    `;
+    const myLogo = (<Picture src={originLogo} />);
+    const initialProductsArray = [
+      {
+        productId: 'firstProductItemId',
+        provider: {
+          logo: <Picture src={originLogo} />,
+        },
+        productName: 'Gold Comprehensive 1',
+        pricing: {
+          amount: {
+            prefix: '$',
+            total: 638.63,
+            dollars: '638',
+            separator: '.',
+            cents: '63'
+          },
+          excess: 'Excess $701'
+        }
+      },
+      {
+        productId: 'secondProductItemId',
+        provider: {
+          logo: <Picture src={originLogo} />,
+        },
+        productName: 'Gold Comprehensive 2',
+        pricing: {
+          amount: {
+            prefix: '$',
+            total: 637.63,
+            dollars: '637',
+            separator: '.',
+            cents: '63'
+          },
+          excess: 'Excess $701'
+        }
+      },
+    ];
+    const [productsStore, setProductsStore] = useState(initialProductsArray);
+    const addProduct = () => {
+      const random = Math.floor(Math.random() * 1000);
+      if(productsStore.length < 3) {
+        setProductsStore(
+          (prev) => {
+            return [
+              ... prev,
+              {
+                productId: `ProductItemId${random}`,
+                provider: {
+                  logo: <Picture src={originLogo} />,
+                },
+                productName: "Gold Comprehensive",
+                pricing: {
+                  amount: {
+                    prefix: '$',
+                    total: 639.63,
+                    dollars: '638',
+                    separator: '.',
+                    cents: '63',
+                  },
+                  excess: 'Excess $700'
+                }
+              }
+            ]
+          }
+        );
+      }
+    }
+    const handleItemRemoved = (productId) => {
+      setProductsStore(
+        (prev) => {
+          return prev.filter(product => product.productId !== productId);
+        }
+      );
+    };
+    return (
+      <>
+        <div>
+          <Row className="row-view">
+            <Column cols={12} valign="center">
+              <StyledCard>
+                <Typography variant="h4">Basic CompareDrawer demo</Typography>
+                <Typography variant="body1">This is an example of the CompareDrawer component.</Typography>
+                <div style={{ display: 'inline-block', marginTop: '4.8rem' }}>
+                  <Button
+                    id="btn01"
+                    variant="primary"
+                    handleClick={() => {addProduct()}}
+                  >
+                    Add Product
+                  </Button>
+                  <Button
+                    id="btn02"
+                    variant="primary"
+                    handleClick={() => {productsStore.length && handleItemRemoved(productsStore[0].productId)}}
+                  >
+                    Remove Product
+                  </Button>
+                </div>
+              </StyledCard>
+            </Column>
+          </Row>
+        </div>
+        <CompareDrawer
+          id="theCompareDrawer"
+          trackingLabel="Compare Drawer"
+          compareNowClick={() => alert("Compare Now Button Test")}
+          onProductRemoved={handleItemRemoved}
+          products={productsStore}
+        />
+      </>
+    );
+  }}
+</Story>
+
+### Props
+<Props of={CompareDrawer} />
