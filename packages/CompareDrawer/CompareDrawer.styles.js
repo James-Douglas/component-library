@@ -97,11 +97,13 @@ export const CompareCardLogo = styled.div`
 `;
 
 export const CompareCardProductName = styled.div`
-  width: ${({ breakpoint }) => ((breakpoint === 'lg') && '12rem')};
+  width: ${({ breakpoint }) => ((breakpoint === 'lg') && '15rem')};
   width: ${({ breakpoint }) => ((breakpoint === 'md') && '8rem')};
   align-items: center;
   font-size: ${({ theme, breakpoint }) => ((breakpoint === 'lg') && theme.fontSize.sm)};
   font-size: ${({ theme, breakpoint }) => ((breakpoint === 'md') && theme.fontSize.xs)};
+  line-height: ${({ theme, breakpoint }) => ((breakpoint === 'lg') && '1.8rem')};
+  line-height: ${({ theme, breakpoint }) => ((breakpoint === 'md') && '1.6rem')};
   font-weight: ${({ theme }) => theme.fontWeight.semibold};
   display: ${({ breakpoint }) => ((breakpoint === 'sm' || breakpoint === 'xs') ? 'none' : 'flex')};
 `;
