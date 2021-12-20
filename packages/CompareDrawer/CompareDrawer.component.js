@@ -175,20 +175,20 @@ CompareDrawer.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       productId: PropTypes.string,
-      provider: {
+      provider: PropTypes.shape({
         logo: PropTypes.node,
-      },
+      }),
       productName: PropTypes.string,
-      pricing: {
-        amount: {
+      pricing: PropTypes.shape({
+        amount: PropTypes.shape({
           prefix: PropTypes.string,
           total: PropTypes.number,
           dollars: PropTypes.string,
           separator: PropTypes.string,
           cents: PropTypes.string,
-        },
+        }),
         excess: PropTypes.string,
-      },
+      }),
     }),
   ),
   /**
