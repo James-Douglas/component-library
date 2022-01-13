@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-input",
-  "version": "0.19.7",
+  "version": "0.19.8",
   "description": "Manor Input component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
