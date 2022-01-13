@@ -15,6 +15,7 @@ const CurrencyInput = ({
   prefillValue,
   handleChange,
   currencySymbol,
+  currencySymbolIgnoreForAriaDescribedBy,
   required,
   disabled,
   readonly,
@@ -73,6 +74,7 @@ const CurrencyInput = ({
       type="tel"
       handleChange={changeHandler}
       prefixContent={currencySymbol}
+      prefixIgnoreForAriaDescribedBy={currencySymbolIgnoreForAriaDescribedBy}
       placeholder={placeholder}
       required={required}
       maxlength={maxlength}
@@ -174,12 +176,19 @@ CurrencyInput.propTypes = {
    */
   autocomplete: PropTypes.string,
   /**
-   * Currency symbol to be displayed within the input prefix
+   * Currency symbol to be displayed within the input prefix.
+   * Note: if a node/fontIcon/image is supplied, ensure that it is accessible using alt text or by using srOnly for text
+   * (see Typography component for more info about srOnly)
    */
   currencySymbol: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
+  /**
+   * Exclude the currencySymbol prefix id from the aria-describedby prop if it adds no value to visually impaired users.
+   * For example: if label explicitly states something like "Enter dollar value"
+   */
+  currencySymbolIgnoreForAriaDescribedBy: PropTypes.bool,
   /**
    * Classes to be applied to the Currency component
    */
@@ -198,6 +207,7 @@ CurrencyInput.defaultProps = {
   placeholder: '',
   autocomplete: 'off',
   currencySymbol: '',
+  currencySymbolIgnoreForAriaDescribedBy: false,
   required: true,
   disabled: false,
   readonly: false,

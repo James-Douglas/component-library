@@ -26,7 +26,9 @@ const DateInput = ({
   handleFocus,
   handleBlur,
   prefixContent,
+  prefixIgnoreForAriaDescribedBy,
   suffixContent,
+  suffixIgnoreForAriaDescribedBy,
   disableClearIcon,
   format,
   gtmPidAnonymous,
@@ -44,7 +46,9 @@ const DateInput = ({
       type="text"
       handleChange={handleChange}
       prefixContent={prefixContent}
+      prefixIgnoreForAriaDescribedBy={prefixIgnoreForAriaDescribedBy}
       suffixContent={suffixContent}
+      suffixIgnoreForAriaDescribedBy={suffixIgnoreForAriaDescribedBy}
       mask={mask}
       guide
       placeholder={format}
@@ -144,18 +148,30 @@ DateInput.propTypes = {
   className: PropTypes.string,
   /**
    * Content to be displayed as a prefix for the input
+   * Note: if a node/fontIcon/image is supplied, ensure that it is accessible using alt text or by using srOnly for text
+   * (see Typography component for more info about srOnly)
    */
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
   /**
+   * Exclude the prefix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  prefixIgnoreForAriaDescribedBy: PropTypes.bool,
+  /**
    * Content to be displayed as  suffix for the input
+   * Note: if a node/fontIcon/image is supplied, ensure that it is accessible using alt text or by using srOnly for text
+   * (see Typography component for more info about srOnly)
    */
   suffixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
+  /**
+   * Exclude the suffix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  suffixIgnoreForAriaDescribedBy: PropTypes.bool,
   /**
    * Props to be applied to cancel close button
    */
@@ -198,7 +214,9 @@ DateInput.defaultProps = {
   handleFocus: null,
   handleBlur: null,
   prefixContent: <StyledFontAwesomeIcon icon={faCalendarAlt} />,
+  prefixIgnoreForAriaDescribedBy: false,
   suffixContent: '',
+  suffixIgnoreForAriaDescribedBy: false,
   disableClearIcon: false,
   format: 'DD/MM/YYYY',
   gtmPidAnonymous: false,

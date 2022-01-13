@@ -83,7 +83,9 @@ const Input = React.forwardRef(({
   readonly,
   prefixContent,
   prefixBlock,
+  prefixIgnoreForAriaDescribedBy,
   suffixContent,
+  suffixIgnoreForAriaDescribedBy,
   autocomplete,
   maxlength,
   handleChange,
@@ -124,10 +126,10 @@ const Input = React.forwardRef(({
     const labelledBy = {
       label: `${id}-label`,
     };
-    if (prefixContent) {
+    if (prefixContent && !prefixIgnoreForAriaDescribedBy) {
       describedBy.prefix = `${id}-prefix`;
     }
-    if (suffixContent) {
+    if (suffixContent && !suffixIgnoreForAriaDescribedBy) {
       describedBy.suffix = `${id}-suffix`;
     }
     if (tooltip) {
@@ -137,7 +139,17 @@ const Input = React.forwardRef(({
     }
     setAriaDescribedByIds({ ...describedBy });
     setAriaLabelledByIds({ ...labelledBy });
-  }, [tooltip, setTooltipOptions, setAriaDescribedByIds, id, setAriaLabelledByIds, prefixContent, suffixContent]);
+  }, [
+    tooltip,
+    setTooltipOptions,
+    setAriaDescribedByIds,
+    id,
+    setAriaLabelledByIds,
+    prefixContent,
+    suffixContent,
+    prefixIgnoreForAriaDescribedBy,
+    suffixIgnoreForAriaDescribedBy,
+  ]);
 
   const doTrackEvent = (action, val) => {
     if (!disableInteractionTracking) {
@@ -256,8 +268,8 @@ const Input = React.forwardRef(({
               disabled={disabled}
               readOnly={readonly}
               value={controlled ? value : internalValue}
-              aria-labelledby={[...ariaLabelledBy, Object.entries(ariaLabelledByIds).map(([_, ariaLabelledById]) => ariaLabelledById)].join(',')}
-              aria-describedby={[...ariaDescribedBy, Object.entries(ariaDescribedByIds).map(([_, ariaDescribedById]) => ariaDescribedById)].join(',')}
+              aria-labelledby={[...ariaLabelledBy, Object.entries(ariaLabelledByIds).map(([_, ariaLabelledById]) => ariaLabelledById)].join(' ')}
+              aria-describedby={[...ariaDescribedBy, Object.entries(ariaDescribedByIds).map(([_, ariaDescribedById]) => ariaDescribedById)].join(' ')}
               onChange={changeHandler}
               autoComplete={autocomplete}
               onClick={handleOnClick}
@@ -304,11 +316,17 @@ Input.propTypes = {
    */
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
-   * Space separated List of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
+   * Array of ids for elements used to label the component, use this for any external elements that are used to label this prop.
+   * There is no need to supply the id of a label that is supplied to this component via the label prop.
+   * Note: this array is converted to a space separated list of IDs once it is applied to the aria-labelledby attribute for the underlying input component.
+   * ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
    */
   ariaLabelledBy: PropTypes.arrayOf(PropTypes.string),
   /**
-   * Space separated List of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
+   * Array of ids for elements used to describe the component (tooltips etc), use this for any external elements that are used to describe this prop.
+   * There is no need to supply the id of a prefix/suffix/tooltip that is supplied to this component via the corresponding prop.
+   * Note: this array is converted to a space separated list of IDs once it is applied to the aria-labelledby attribute for the underlying input component
+   * ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
    */
   ariaDescribedBy: PropTypes.arrayOf(PropTypes.string),
   /**
@@ -404,6 +422,8 @@ Input.propTypes = {
   handleKeyDown: PropTypes.func,
   /**
    * Content to be displayed as a prefix for the input
+   * Note: if a node/fontIcon/image is supplied, ensure that it is accessible using alt text or by using srOnly for text
+   * (see Typography component for more info about srOnly)
    */
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
@@ -414,12 +434,22 @@ Input.propTypes = {
    */
   prefixBlock: PropTypes.bool,
   /**
+   * Exclude the prefix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  prefixIgnoreForAriaDescribedBy: PropTypes.bool,
+  /**
    * Content to be displayed as  suffix for the input
+   * Note: if a node/fontIcon/image is supplied, ensure that it is accessible using alt text or by using srOnly for text
+   * (see Typography component for more info about srOnly)
    */
   suffixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
+  /**
+   * Exclude the suffix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  suffixIgnoreForAriaDescribedBy: PropTypes.bool,
   /**
    * Used for the combo component, this is the list of options that is displayed on input.
    */
@@ -492,7 +522,9 @@ Input.defaultProps = {
   prefillValue: '',
   prefixContent: '',
   prefixBlock: false,
+  prefixIgnoreForAriaDescribedBy: false,
   suffixContent: '',
+  suffixIgnoreForAriaDescribedBy: false,
   autocomplete: 'off',
   handleFocus: null,
   handleBlur: null,

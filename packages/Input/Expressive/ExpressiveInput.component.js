@@ -20,7 +20,9 @@ const ExpressiveInput = ({
   readonly,
   prefixContent,
   prefixBlock,
+  prefixIgnoreForAriaDescribedBy,
   suffixContent,
+  suffixIgnoreForAriaDescribedBy,
   autocomplete,
   maxlength,
   handleChange,
@@ -45,7 +47,9 @@ const ExpressiveInput = ({
       handleChange={handleChange}
       prefixContent={prefixContent}
       prefixBlock={prefixBlock}
+      prefixIgnoreForAriaDescribedBy={prefixIgnoreForAriaDescribedBy}
       suffixContent={suffixContent}
+      suffixIgnoreForAriaDescribedBy={suffixIgnoreForAriaDescribedBy}
       placeholder={placeholder}
       required={required}
       maxlength={maxlength}
@@ -168,18 +172,30 @@ ExpressiveInput.propTypes = {
   prefixBlock: PropTypes.bool,
   /**
    * icon to be displayed within the input prefix
+   * Note: if a node/fontIcon/image is supplied, ensure that it is accessible using alt text or by using srOnly for text
+   * (see Typography component for more info about srOnly)
    */
   prefixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
   /**
+   * Exclude the prefix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  prefixIgnoreForAriaDescribedBy: PropTypes.bool,
+  /**
    * Content to be displayed as  suffix for the input
+   * Note: if a node/fontIcon/image is supplied, ensure that it is accessible using alt text or by using srOnly for text
+   * (see Typography component for more info about srOnly)
    */
   suffixContent: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
+  /**
+   * Exclude the suffix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  suffixIgnoreForAriaDescribedBy: PropTypes.bool,
   /**
    * Disables the clear icon when true
    */
@@ -208,8 +224,10 @@ ExpressiveInput.defaultProps = {
   placeholder: '',
   autocomplete: 'off',
   prefixContent: '',
+  prefixIgnoreForAriaDescribedBy: false,
   prefixBlock: false,
   suffixContent: '',
+  suffixIgnoreForAriaDescribedBy: false,
   required: true,
   disabled: false,
   readonly: false,
