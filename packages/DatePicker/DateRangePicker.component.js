@@ -33,6 +33,7 @@ const DateRangePicker = ({
   startDateAriaLabel,
   startDateAriaLabelledBy,
   startDateAriaDescribedBy,
+  startDateSuffixIgnoreForAriaDescribedBy,
   startDateValue,
   endDateId: propsEndDateId,
   endDateTooltip,
@@ -40,6 +41,7 @@ const DateRangePicker = ({
   endDateAriaLabel,
   endDateAriaLabelledBy,
   endDateAriaDescribedBy,
+  endDateSuffixIgnoreForAriaDescribedBy,
   endDateValue,
   numberOfMonths,
   minimumNights,
@@ -266,6 +268,7 @@ const DateRangePicker = ({
             ariaDescribedBy={startDateAriaDescribedBy}
             value={startDate || ''}
             suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
+            suffixIgnoreForAriaDescribedBy={startDateSuffixIgnoreForAriaDescribedBy}
             handleFocus={startDateHandleFocus}
             handleBlur={blurHandler}
             handleChange={startDateHandleChange}
@@ -288,6 +291,7 @@ const DateRangePicker = ({
             ariaDescribedBy={endDateAriaDescribedBy}
             value={endDate || ''}
             suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
+            suffixIgnoreForAriaDescribedBy={endDateSuffixIgnoreForAriaDescribedBy}
             handleFocus={endDateHandleFocus}
             handleBlur={blurHandler}
             handleChange={endDateHandleChange}
@@ -365,6 +369,10 @@ DateRangePicker.propTypes = {
    */
   startDateAriaDescribedBy: PropTypes.arrayOf(PropTypes.string),
   /**
+   * Exclude the start date field prefix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  startDateSuffixIgnoreForAriaDescribedBy: PropTypes.bool,
+  /**
    * Array of ids of elements used to label the component ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute )
    */
   endDateAriaLabelledBy: PropTypes.arrayOf(PropTypes.string),
@@ -372,6 +380,10 @@ DateRangePicker.propTypes = {
    * Array of ids of elements used to describe the component (tooltips etc) ( see this link for usage info https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute )
    */
   endDateAriaDescribedBy: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Exclude the end date field prefix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  endDateSuffixIgnoreForAriaDescribedBy: PropTypes.bool,
   /**
    * Sets the value of the start date input
    */
@@ -439,8 +451,10 @@ DateRangePicker.defaultProps = {
   startDateAriaLabel: '',
   startDateAriaLabelledBy: [],
   startDateAriaDescribedBy: [],
+  startDateSuffixIgnoreForAriaDescribedBy: false,
   endDateAriaLabelledBy: [],
   endDateAriaDescribedBy: [],
+  endDateSuffixIgnoreForAriaDescribedBy: false,
   startDateValue: null,
   endDateTooltip: null,
   endDatePlaceholder: '',
