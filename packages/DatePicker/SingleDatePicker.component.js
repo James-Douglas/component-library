@@ -25,6 +25,7 @@ const SingleDatePicker = ({
   dateAriaLabel,
   ariaLabelledBy,
   ariaDescribedBy,
+  suffixIgnoreForAriaDescribedBy,
   date,
   numberOfMonths,
   validationMessage,
@@ -165,6 +166,7 @@ const SingleDatePicker = ({
           label={dateAriaLabel}
           ariaLabelledBy={ariaLabelledBy}
           ariaDescribedBy={ariaDescribedBy}
+          suffixIgnoreForAriaDescribedBy={suffixIgnoreForAriaDescribedBy}
           value={value}
           prefixContent=""
           suffixContent={<StyledFontAwesomeIcon icon={faCalendarAlt} size="1x" />}
@@ -227,6 +229,10 @@ SingleDatePicker.propTypes = {
    */
   ariaDescribedBy: PropTypes.arrayOf(PropTypes.string),
   /**
+   * Exclude the prefix id from the aria-describedby prop if it adds no value to visually impaired users.
+   */
+  suffixIgnoreForAriaDescribedBy: PropTypes.bool,
+  /**
    * Sets the value of the date input
    * moment instance, e.g: minDate={moment('2020-12-01T00:00:00.000')}
    */
@@ -277,6 +283,7 @@ SingleDatePicker.defaultProps = {
   dateAriaLabel: '',
   ariaLabelledBy: [],
   ariaDescribedBy: [],
+  suffixIgnoreForAriaDescribedBy: false,
   date: null,
   numberOfMonths: 1,
   validationMessage: null,
