@@ -1,4 +1,5 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { useState, useEffect } from 'react';
 import { DateRangePicker } from '@comparethemarketau/manor-date-picker';
 import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
@@ -6,7 +7,7 @@ import moment from 'moment';
 
 <Meta title="Components/DatePicker/DateRangePicker" component={DateRangePicker} />
 
-# Date Picker Range
+# Date Range Picker
 <Preview>
   <Story name="date range picker" height="500px">
     {() => {
@@ -71,3 +72,72 @@ import moment from 'moment';
 
 ### Props
 <Props of={DateRangePicker} />
+
+<Story name="date range picker with knobs" decorators={[withKnobs]} height="500px">
+  {() => {
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState(null);
+    const [validation, setValidation] = useState({
+      startDate: '',
+      endDate: '',
+    });
+    const isDayBlocked = (day) => {
+      const currentDate = moment();
+      return day.isBefore(currentDate);
+    }
+    useEffect(() => {
+      if (!startDate) {
+        setValidation({ ...validation, startDate: 'Please enter a start date' });
+      } else if (startDate && isDayBlocked(startDate)) {
+        setValidation({ ...validation, startDate: 'Start date must not be in the past.' });
+      } else {
+        setValidation({ ...validation, startDate: '' });
+      }
+    }, [startDate, setValidation]);
+    useEffect(() => {
+      if (!startDate) {
+        setValidation({ ...validation, endDate: '' });
+      } else if (!endDate) {
+        setValidation({ ...validation, endDate: 'Please enter an end date!' });
+      } else if (endDate.isBefore(startDate)) {
+        setValidation({ ...validation, endDate: 'End date cannot be before start date!' });
+      } else {
+        setValidation({ ...validation, endDate: '' });
+      }
+    }, [endDate, startDate, setValidation]);
+    const componentPropsId = 'Component Props';
+    const dateRagePickerTrackingLabel = text('trackingLabel', 'Trip Duration', componentPropsId);
+    const startDateId = text('startDateId', 'dateRangePicker-start-date', componentPropsId);
+    const startDateAriaLabel = text('startDateAriaLabel', 'Start Date', componentPropsId);
+    const endDateId = text('endDateId', 'dateRangePicker-end-date', componentPropsId);
+    const endDateAriaLabel = text('endDateAriaLabel', 'End Date', componentPropsId);
+    const pickerVisible = boolean('pickerVisible', false, componentPropsId);
+    return (
+      <div style={{ padding: '2%' }}>
+         <FluidContainer>
+          <Row>
+            <Column>
+              <DateRangePicker
+                trackingLabel={dateRagePickerTrackingLabel}
+                startDateId={startDateId}
+                startDateTooltip={{ trackingLabel: 'start date tooltip', title: 'Start Date' }}
+                startDateAriaLabel={startDateAriaLabel}
+                startDateValue={startDate}
+                endDateId={endDateId}
+                endDateTooltip={{ trackingLabel: 'end date tooltip', title: 'End Date' }}
+                endDateAriaLabel={endDateAriaLabel}
+                endDateValue={endDate}
+                numberOfMonths={2}
+                endDateValidationMessage={validation.endDate}
+                startDateValidationMessage={validation.startDate}
+                isDayBlocked={isDayBlocked}
+                handleChange={(dates) => { setStartDate(dates.startDate); setEndDate(dates.endDate); }}
+                pickerVisible={pickerVisible}
+              />
+              </Column>
+            </Row>
+          </FluidContainer>
+      </div>
+    );
+  }}
+</Story>

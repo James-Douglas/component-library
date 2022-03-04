@@ -29,7 +29,6 @@ const DateRangePicker = ({
   trackingLabel,
   startDateId: propsStartDateId,
   startDateTooltip,
-  startDatePlaceholder,
   startDateAriaLabel,
   startDateAriaLabelledBy,
   startDateAriaDescribedBy,
@@ -37,7 +36,6 @@ const DateRangePicker = ({
   startDateValue,
   endDateId: propsEndDateId,
   endDateTooltip,
-  endDatePlaceholder,
   endDateAriaLabel,
   endDateAriaLabelledBy,
   endDateAriaDescribedBy,
@@ -62,7 +60,8 @@ const DateRangePicker = ({
   const [endDate, setEndDate] = useState(endDateValue ? endDateValue.format(DISPLAY_FORMAT) : '');
   const [endDateMoment, setEndDateMoment] = useState(endDateValue ? moment(endDateValue, DISPLAY_FORMAT, true) : null);
   const [focusedInput, setFocusedInput] = useState(START_DATE);
-  const [isVisisble, setIsVisisble] = useState(pickerVisible);
+  const [isVisible, setIsVisible] = useState(pickerVisible);
+  const [isInitialVisible, setIsInitialVisible] = useState(pickerVisible);
   const [startDateValidationMessageText, setStartDateValidationMessage] = useState(null);
   const [endDateValidationMessageText, setEndDateValidationMessage] = useState(null);
   const calendarArea = createRef();
@@ -90,8 +89,17 @@ const DateRangePicker = ({
   }, [trackInteraction, trackingLabel, startDate, endDate, componentHasFocus, hadFocus, startDateAriaLabel, endDateAriaLabel]);
 
   useEffect(() => {
-    setIsVisisble(pickerVisible);
+    setIsVisible(pickerVisible);
+    setIsInitialVisible(pickerVisible);
   }, [pickerVisible]);
+
+  useEffect(() => {
+    const datePicker = node.current.querySelector('input');
+    if (isInitialVisible && isVisible && (!startDate && !endDate)) {
+      datePicker.focus();
+      setIsInitialVisible(false);
+    }
+  }, [node, isInitialVisible, isVisible, startDate, endDate]);
 
   const dateIsBlocked = useCallback((date) => (typeof isDayBlocked === 'function' ? isDayBlocked(date) : false), [isDayBlocked]);
 
@@ -113,7 +121,7 @@ const DateRangePicker = ({
       setEndDateMoment(dates.endDate);
     }
     if (focusedInput === END_DATE) {
-      setIsVisisble(false);
+      setIsVisible(false);
     }
     debouncedTrackSelection(
       dates.startDate ? dates.startDate.format(DISPLAY_FORMAT) : '',
@@ -159,7 +167,7 @@ const DateRangePicker = ({
   }, [startDateMoment, endDateMoment]);
 
   const fieldNameHandleFocus = (range) => {
-    setIsVisisble(true);
+    setIsVisible(true);
     setFocusedInput(range);
   };
 
@@ -172,7 +180,7 @@ const DateRangePicker = ({
 
   const keyboardAccessibilityFromDate = (event) => {
     if (event.key === 'Tab') {
-      setIsVisisble(true);
+      setIsVisible(true);
     }
   };
 
@@ -216,7 +224,7 @@ const DateRangePicker = ({
   useEffect(() => {
     if (endDateMoment) {
       if (endDateMoment.isValid()) {
-        setIsVisisble(false);
+        setIsVisible(false);
         if (dateIsBlocked(endDateMoment)) {
           setEndDateValidationMessage(endDateValidationMessage);
           return;
@@ -230,13 +238,13 @@ const DateRangePicker = ({
 
   const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {
-      setIsVisisble(false);
+      setIsVisible(false);
     }
-  }, [node, setIsVisisble]);
+  }, [node, setIsVisible]);
 
   const escFunction = useCallback((event) => {
     if (event.keyCode === 27) {
-      setIsVisisble(false);
+      setIsVisible(false);
     }
   }, []);
 
@@ -262,7 +270,6 @@ const DateRangePicker = ({
           <DateInput
             id={startDateId}
             tooltip={startDateTooltip}
-            placeholder={startDatePlaceholder}
             label={startDateAriaLabel}
             ariaLabelledBy={startDateAriaLabelledBy}
             ariaDescribedBy={startDateAriaDescribedBy}
@@ -285,7 +292,6 @@ const DateRangePicker = ({
           <DateInput
             id={endDateId}
             tooltip={endDateTooltip}
-            placeholder={endDatePlaceholder}
             label={endDateAriaLabel}
             ariaLabelledBy={endDateAriaLabelledBy}
             ariaDescribedBy={endDateAriaDescribedBy}
@@ -305,7 +311,7 @@ const DateRangePicker = ({
           />
         </StyledDateRangePickerWrap>
       </StyledDateRangePicker>
-      {isVisisble && (
+      {isVisible && (
         <StyledCalendar
           endDateAriaLabel={endDateAriaLabel}
           startDateAriaLabel={startDateAriaLabel}
@@ -353,10 +359,6 @@ DateRangePicker.propTypes = {
    */
   endDateTooltip: PropTypes.shape(tooltipPropTypes),
   /**
-   * Placeholder value to be displayed in the Input start date component.
-   */
-  startDatePlaceholder: PropTypes.string,
-  /**
    * Label for the Input start date component.
    */
   startDateAriaLabel: PropTypes.string,
@@ -388,10 +390,6 @@ DateRangePicker.propTypes = {
    * Sets the value of the start date input
    */
   startDateValue: PropTypes.instanceOf(moment),
-  /**
-   * Placeholder value to be displayed in the Input end date component.
-   */
-  endDatePlaceholder: PropTypes.string,
   /**
    * Label for the Input start date component.
    */
@@ -435,6 +433,8 @@ DateRangePicker.propTypes = {
   handleChange: PropTypes.func,
   /**
    * Allows manual control over the visibility of the picker
+   * - the field focus will be forced on the start date input field.
+   * NOTE: if this is applied, this component must be the first form input component on the page.
    */
   pickerVisible: PropTypes.bool,
   /**
@@ -447,7 +447,6 @@ DateRangePicker.defaultProps = {
   startDateId: null,
   endDateId: null,
   startDateTooltip: null,
-  startDatePlaceholder: '',
   startDateAriaLabel: '',
   startDateAriaLabelledBy: [],
   startDateAriaDescribedBy: [],
@@ -457,7 +456,6 @@ DateRangePicker.defaultProps = {
   endDateSuffixIgnoreForAriaDescribedBy: false,
   startDateValue: null,
   endDateTooltip: null,
-  endDatePlaceholder: '',
   endDateAriaLabel: '',
   endDateValue: null,
   numberOfMonths: 1,

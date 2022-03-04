@@ -21,7 +21,6 @@ const SingleDatePicker = ({
   trackingLabel,
   dateId: propsDateId,
   dateTooltip,
-  datePlaceholder,
   dateAriaLabel,
   ariaLabelledBy,
   ariaDescribedBy,
@@ -43,19 +42,29 @@ const SingleDatePicker = ({
   const [value, setValue] = useState(selectedDate && selectedDate.format(displayFormat));
   const [hasFocus, setHasFocus] = useState(false);
   const hadFocus = usePrevious(hasFocus);
-  const [isVisisble, setIsVisisble] = useState(pickerVisible);
+  const [isVisible, setIsVisible] = useState(pickerVisible);
+  const [isInitialVisible, setIsInitialVisible] = useState(pickerVisible);
   const [validationMessageDate, setValidationMessageDate] = useState(null);
 
   useEffect(() => {
-    setIsVisisble(pickerVisible);
+    setIsVisible(pickerVisible);
+    setIsInitialVisible(pickerVisible);
   }, [pickerVisible]);
+
+  useEffect(() => {
+    const datePicker = node.current.querySelector('input');
+    if (isInitialVisible && isVisible && !selectedDate) {
+      datePicker.focus();
+      setIsInitialVisible(false);
+    }
+  }, [node, isInitialVisible, isVisible, selectedDate]);
 
   const dateHandleFocus = (e) => {
     handleFocus && handleFocus(e);
     if (!hasFocus) {
       setHasFocus(true);
     }
-    setIsVisisble(true);
+    setIsVisible(true);
   };
 
   const debouncedTrackInput = useDebouncedCallback(
@@ -66,7 +75,7 @@ const SingleDatePicker = ({
   const dateHandleChange = (_value) => {
     const parsed = moment(_value, displayFormat, true);
     setSelectedDate(parsed);
-    setIsVisisble(false);
+    setIsVisible(false);
     if (moment.isMoment(_value)) {
       const formatted = _value.format(displayFormat);
       setValue(formatted);
@@ -76,7 +85,7 @@ const SingleDatePicker = ({
 
       if (datePicker) {
         datePicker.focus();
-        setIsVisisble(false);
+        setIsVisible(false);
       }
     } else {
       setValue(_value);
@@ -135,13 +144,13 @@ const SingleDatePicker = ({
 
   const handleClickOutside = useCallback((e) => {
     if (!node.current.contains(e.target)) {
-      setIsVisisble(false);
+      setIsVisible(false);
     }
-  }, [node, setIsVisisble]);
+  }, [node, setIsVisible]);
 
   const escFunction = useCallback((event) => {
     if (event.keyCode === 27) {
-      setIsVisisble(false);
+      setIsVisible(false);
     }
   }, []);
 
@@ -162,7 +171,6 @@ const SingleDatePicker = ({
         <DateInput
           id={dateId}
           tooltip={dateTooltip}
-          placeholder={datePlaceholder}
           label={dateAriaLabel}
           ariaLabelledBy={ariaLabelledBy}
           ariaDescribedBy={ariaDescribedBy}
@@ -181,7 +189,7 @@ const SingleDatePicker = ({
           disableInteractionTracking
         />
       </StyledDateRangePickerWrap>
-      {isVisisble && (
+      {isVisible && (
         <StyledCalendar>
           <RDSingleDatePicker
             date={selectedDate && selectedDate.isValid() ? selectedDate : null}
@@ -212,10 +220,6 @@ SingleDatePicker.propTypes = {
    * Define a tooltip to be displayed alongside this component. See Tooltip props for details.
    */
   dateTooltip: PropTypes.shape(tooltipPropTypes),
-  /**
-   * Placeholder value to be displayed in the Input date component.
-   */
-  datePlaceholder: PropTypes.string,
   /**
    * Label for the Input start date component.
    */
@@ -272,6 +276,8 @@ SingleDatePicker.propTypes = {
   readonly: PropTypes.bool,
   /**
    * Allows manual control over the visibility of the picker
+   * - the field focus will be forced on the date input field.
+   * NOTE: if this is applied, this component must be the first form input component on the page.
    */
   pickerVisible: PropTypes.bool,
 };
@@ -279,7 +285,6 @@ SingleDatePicker.propTypes = {
 SingleDatePicker.defaultProps = {
   dateId: null,
   dateTooltip: null,
-  datePlaceholder: '',
   dateAriaLabel: '',
   ariaLabelledBy: [],
   ariaDescribedBy: [],
