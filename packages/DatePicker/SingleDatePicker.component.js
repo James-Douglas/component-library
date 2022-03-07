@@ -53,7 +53,7 @@ const SingleDatePicker = ({
 
   useEffect(() => {
     const datePicker = node.current.querySelector('input');
-    if (isInitialVisible && isVisible && !selectedDate) {
+    if (isInitialVisible && isVisible && (!selectedDate || selectedDate.toString() === 'Invalid date')) {
       datePicker.focus();
       setIsInitialVisible(false);
     }

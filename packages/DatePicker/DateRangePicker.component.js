@@ -95,7 +95,11 @@ const DateRangePicker = ({
 
   useEffect(() => {
     const datePicker = node.current.querySelector('input');
-    if (isInitialVisible && isVisible && (!startDate && !endDate)) {
+    if (isInitialVisible && isVisible
+        && (
+          (!startDate && !endDate) || (startDate.toString() === 'Invalid date' && endDate.toString() === 'Invalid date')
+        )
+    ) {
       datePicker.focus();
       setIsInitialVisible(false);
     }
