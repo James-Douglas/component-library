@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.7](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.24.6...@comparethemarketau/manor-date-picker@0.24.7) (2022-03-07)
+
+**Note:** Version bump only for package @comparethemarketau/manor-date-picker
+
+
+
+
+
 ## [0.24.6](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.24.5...@comparethemarketau/manor-date-picker@0.24.6) (2022-03-04)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
