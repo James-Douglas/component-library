@@ -53,10 +53,6 @@ exports[`Button renders correctly with minimal props 1`] = `
   box-shadow: 0px 0.3rem 0.8rem rgba(0,0,0,0.1);
 }
 
-.c1:hover {
-  background: #0d7522;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -73,6 +69,12 @@ exports[`Button renders correctly with minimal props 1`] = `
 
 .c0 {
   font-family: "SourceSansPro","Helvetica","Arial";
+}
+
+@media (hover:hover) {
+  .c1:hover {
+    background: #0d7522;
+  }
 }
 
 <div>
@@ -157,10 +159,6 @@ exports[`Button renders with props 1`] = `
   box-shadow: 0px 0.3rem 0.8rem rgba(0,0,0,0.1);
 }
 
-.c1:hover {
-  background: #0d7522;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -177,6 +175,12 @@ exports[`Button renders with props 1`] = `
 
 .c0 {
   font-family: "SourceSansPro","Helvetica","Arial";
+}
+
+@media (hover:hover) {
+  .c1:hover {
+    background: #0d7522;
+  }
 }
 
 <div>

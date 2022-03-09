@@ -65,17 +65,21 @@ const heroVariant = css`
   color: ${({ theme }) => theme.button.hero.color};
   fill: ${({ theme }) => theme.button.hero.fill};
   background: ${({ theme }) => theme.button.hero.background};
-  :hover {
-    background: ${({ theme }) => theme.button.hero.backgroundHover};
-  }
+  @media (hover: hover) {
+    :hover {
+      background: ${({ theme }) => theme.button.hero.backgroundHover};
+    }
+  };
   ${({ inverted }) => inverted && css`
     background: ${({ theme }) => theme.button.hero.backgroundInverted};
     color: ${({ theme }) => theme.button.hero.colorInverted};
     fill: ${({ theme }) => theme.button.hero.fillInverted};
     box-shadow: ${({ theme }) => theme.button.shadows.default};
-    :hover {
-      background: ${({ theme }) => theme.button.hero.backgroundInvertedHover};
-    }
+    @media (hover: hover) {
+      :hover {
+        background: ${({ theme }) => theme.button.hero.backgroundInvertedHover};
+      }
+    };
   `}
 `;
 
@@ -83,34 +87,48 @@ const primaryVariant = css`
   color: ${({ theme }) => theme.button.primary.color};
   fill: ${({ theme }) => theme.button.primary.fill};
   background: ${({ theme }) => theme.button.primary.background};
-  :hover {
-    background: ${({ theme }) => theme.button.primary.backgroundHover};
-  }
+  @media (hover: hover) {
+    :hover {
+      background: ${({ theme }) => theme.button.primary.backgroundHover};
+    }
+  };
   ${({ inverted }) => inverted && css`
     background: ${({ theme }) => theme.button.primary.backgroundInverted};
     color: ${({ theme }) => theme.button.primary.colorInverted};
     fill: ${({ theme }) => theme.button.primary.fillInverted};
-    :hover {
-      background: ${({ theme }) => theme.button.primary.backgroundInvertedHover};
-    }
+    @media (hover: hover) {
+      :hover {
+        background: ${({ theme }) => theme.button.primary.backgroundInvertedHover};
+      }
+    };
   `}
 `;
 
+/**
+ * @media (hover: hover): Prevent sticky hover effects for buttons on touch devices
+ * If the browser supports proper/true/real/non-emulated hovering, then apply styles included when the button is hovered over.
+ * ref:1: https://www.w3.org/TR/mediaqueries-4/#descdef-media-hover
+ *     2: https://stackoverflow.com/questions/17233804/how-to-prevent-sticky-hover-effects-for-buttons-on-touch-devices
+ */
 const secondaryVariant = css`
   color: ${({ theme }) => theme.button.secondary.color};
   fill: ${({ theme }) => theme.button.secondary.fill};
   border: ${({ theme }) => theme.button.secondary.border};
   background: ${({ theme }) => theme.button.secondary.background};
-  :hover {
-    background: ${({ theme }) => theme.button.secondary.backgroundHover};
+  @media (hover: hover) {
+    :hover {
+      background: ${({ theme }) => theme.button.secondary.backgroundHover};
+    }
   }
   ${({ inverted }) => inverted && css`
     background: ${({ theme }) => theme.button.secondary.backgroundInverted};
     color: ${({ theme }) => theme.button.secondary.colorInverted};
     border: ${({ theme }) => theme.button.secondary.borderInverted};
     fill: ${({ theme }) => theme.button.secondary.fillInverted};
-    :hover {
-      background: ${({ theme }) => theme.button.secondary.backgroundInvertedHover};
+    @media (hover: hover) {
+      :hover {
+        background: ${({ theme }) => theme.button.secondary.backgroundInvertedHover};
+      }
     }
   `}
 `;
