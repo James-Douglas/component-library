@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.10.1...@comparethemarketau/manor-button@0.11.0) (2022-03-09)
+
+
+### Features
+
+* **sml-2156:** add hover media query ([#668](https://github.com/comparethemarketau/manor-react/issues/668)) ([382e0ee](https://github.com/comparethemarketau/manor-react/commit/382e0eec0bb527c5f443f8efa47578a042944646))
+
+
+
+
+
 ## [0.10.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.10.0...@comparethemarketau/manor-button@0.10.1) (2021-12-06)
 
 **Note:** Version bump only for package @comparethemarketau/manor-button
