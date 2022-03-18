@@ -14,6 +14,9 @@ export const CompareDrawerContainer = styled.div`
   *, *:before, *:after {
     box-sizing: border-box;
   }
+  :root {
+    --sab: env(safe-area-inset-bottom);
+  }
   font-family: ${({ theme }) => theme.fontFamily};
   position: fixed;
   margin: 0;
@@ -41,13 +44,20 @@ export const CompareDrawerContainer = styled.div`
   &.CompareDrawerContainerActive {
     ${({ direction, size }) => direction === 'bottom' && css`
       animation-name: ${animateBottom(size)};
-      bottom: 0;
+      bottom: 0px;
+      @supports(padding: max(0px)) {
+        padding-bottom: max(0px, env(safe-area-inset-bottom));
+      }
     `}
     ${({ direction, size }) => direction === 'top' && css`
       animation-name: ${animateTop(size)};
       top: 0;
     `}
   }
+`;
+
+export const BottomLine = styled.div`
+  border-bottom: ${({ theme }) => theme.borders.disabled};
 `;
 
 export const CompareDrawerBody = styled.div`

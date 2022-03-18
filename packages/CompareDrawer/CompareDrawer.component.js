@@ -23,6 +23,7 @@ import {
   EmptyCompareCard,
   CompareButton,
   StyledRemoveText,
+  BottomLine,
 } from './CompareDrawer.styles';
 
 const CompareDrawer = ({
@@ -41,7 +42,9 @@ const CompareDrawer = ({
   const [visibility, setVisibility] = useState(visible);
   const { trackInteraction, breakpoint } = useContext(ManorContext);
   const firstUpdate = useRef(true);
+
   const size = (breakpoint === 'xs') ? 172 : 102;
+  const safeAreaBottomHeight = getComputedStyle(document.documentElement).getPropertyValue('--sab');
   const direction = 'bottom';
 
   useEffect(() => {
@@ -86,6 +89,11 @@ const CompareDrawer = ({
       </EmptyCompareCard>,
     );
   }
+  /**
+   * Check Home Button Visibility [safeAreaBottomHeight]
+   * https://webkit.org/blog/7929/designing-websites-for-iphone-x/
+   * https://benfrain.com/how-to-get-the-value-of-phone-notches-environment-variables-env-in-javascript-from-css/
+  */
 
   return (
     <>
@@ -125,8 +133,6 @@ const CompareDrawer = ({
           }
           {emtyCards}
           {
-            // (productsStore.length > 1)
-            // && (
             <CompareButton breakpoint={breakpoint}>
               <Button
                 variant="primary"
@@ -140,9 +146,11 @@ const CompareDrawer = ({
                 Compare now
               </Button>
             </CompareButton>
-            // )
           }
         </CompareDrawerBody>
+        { (breakpoint !== 'xs'
+        && (!safeAreaBottomHeight && safeAreaBottomHeight !== '0px'))
+        && <BottomLine /> }
       </CompareDrawerContainer>
     </>
   );
