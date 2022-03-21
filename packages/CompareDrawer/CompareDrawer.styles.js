@@ -30,14 +30,14 @@ export const CompareDrawerContainer = styled.div`
   animation-direction: normal;
   animation-play-state: running;
   ${({ size, direction }) => direction === 'top' && css`
-    height: ${size}px;
+    min-height: ${size}px;
     width: 100%;
     top: -${size + 5}px;
     left: 0;
   `}
   ${({ size, direction }) => direction === 'bottom' && css`
     width: 100%;
-    height: ${size}px;
+    min-height: ${size}px;
     bottom: -${size + 5}px; 
     left: 0;
   `}
