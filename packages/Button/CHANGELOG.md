@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.11.0...@comparethemarketau/manor-button@0.11.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* button hover style problem fix in touch screen ([#673](https://github.com/comparethemarketau/manor-react/issues/673)) ([4b04099](https://github.com/comparethemarketau/manor-react/commit/4b040992e6e1b628b17f25f58254c32f1dc4871b))
+
+
+
+
+
 # [0.11.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.10.1...@comparethemarketau/manor-button@0.11.0) (2022-03-09)
 
 
