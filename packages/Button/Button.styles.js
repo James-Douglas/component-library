@@ -65,7 +65,7 @@ const heroVariant = css`
   color: ${({ theme }) => theme.button.hero.color};
   fill: ${({ theme }) => theme.button.hero.fill};
   background: ${({ theme }) => theme.button.hero.background};
-  @media (hover: hover) {
+  @media (hover: hover) (pointer: fine) {
     :hover {
       background: ${({ theme }) => theme.button.hero.backgroundHover};
     }
@@ -75,7 +75,7 @@ const heroVariant = css`
     color: ${({ theme }) => theme.button.hero.colorInverted};
     fill: ${({ theme }) => theme.button.hero.fillInverted};
     box-shadow: ${({ theme }) => theme.button.shadows.default};
-    @media (hover: hover) {
+    @media (hover: hover) (pointer: fine) {
       :hover {
         background: ${({ theme }) => theme.button.hero.backgroundInvertedHover};
       }
@@ -87,7 +87,7 @@ const primaryVariant = css`
   color: ${({ theme }) => theme.button.primary.color};
   fill: ${({ theme }) => theme.button.primary.fill};
   background: ${({ theme }) => theme.button.primary.background};
-  @media (hover: hover) {
+  @media (hover: hover) (pointer: fine) {
     :hover {
       background: ${({ theme }) => theme.button.primary.backgroundHover};
     }
@@ -96,7 +96,7 @@ const primaryVariant = css`
     background: ${({ theme }) => theme.button.primary.backgroundInverted};
     color: ${({ theme }) => theme.button.primary.colorInverted};
     fill: ${({ theme }) => theme.button.primary.fillInverted};
-    @media (hover: hover) {
+    @media (hover: hover) (pointer: fine) {
       :hover {
         background: ${({ theme }) => theme.button.primary.backgroundInvertedHover};
       }
@@ -115,7 +115,7 @@ const secondaryVariant = css`
   fill: ${({ theme }) => theme.button.secondary.fill};
   border: ${({ theme }) => theme.button.secondary.border};
   background: ${({ theme }) => theme.button.secondary.background};
-  @media (hover: hover) {
+  @media (hover: hover) (pointer: fine) {
     :hover {
       background: ${({ theme }) => theme.button.secondary.backgroundHover};
     }
@@ -125,7 +125,7 @@ const secondaryVariant = css`
     color: ${({ theme }) => theme.button.secondary.colorInverted};
     border: ${({ theme }) => theme.button.secondary.borderInverted};
     fill: ${({ theme }) => theme.button.secondary.fillInverted};
-    @media (hover: hover) {
+    @media (hover: hover) (pointer: fine) {
       :hover {
         background: ${({ theme }) => theme.button.secondary.backgroundInvertedHover};
       }
