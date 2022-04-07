@@ -1,9 +1,11 @@
-/* eslint-disable react/forbid-prop-types */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Overlay } from '@comparethemarketau/manor-overlay';
 import FocusTrap from 'focus-trap-react';
+
 import {
   StyledAlignment, StyledModal,
 } from './GenericModal.styles';
@@ -31,8 +33,22 @@ const GenericModal = ({
   zIndex,
   trapFocus,
   focusTrapOptions,
+  disableBodyScrollLock,
 }) => {
   const id = useId(propsId);
+
+  useEffect(() => {
+    if (visible && !disableBodyScrollLock) {
+      disableBodyScroll(document.body);
+    }
+    if (!visible) {
+      enableBodyScroll(document.body);
+    }
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [visible, disableBodyScrollLock]);
+
   return (
     <>
       {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
@@ -97,7 +113,12 @@ GenericModal.propTypes = {
    * use case we likely want to disable that with focusTrapOptions: { escapeDeactivates: false }
    * https://github.com/focus-trap/focus-trap#focustrap--createfocustrapelement-createoptions
    */
+  // eslint-disable-next-line react/forbid-prop-types
   focusTrapOptions: PropTypes.object,
+  /**
+   * Disable the scroll lock behavior
+  */
+  disableBodyScrollLock: PropTypes.bool,
 };
 
 GenericModal.defaultProps = {
@@ -111,6 +132,7 @@ GenericModal.defaultProps = {
   zIndex: 999999,
   trapFocus: false,
   focusTrapOptions: {},
+  disableBodyScrollLock: false,
 };
 
 export default GenericModal;

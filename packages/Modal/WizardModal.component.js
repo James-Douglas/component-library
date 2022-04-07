@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimes, faArrowLeft,
 } from '@fortawesome/pro-regular-svg-icons';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 import { throttle } from '@comparethemarketau/manor-utils';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
@@ -32,6 +34,7 @@ const WizardModal = ({
   zIndex,
   children,
   goBackActionTitle,
+  disableBodyScrollLock,
 }) => {
   const id = useId(propsId);
   const headerBarRef = useRef(null);
@@ -43,6 +46,18 @@ const WizardModal = ({
   const classNames = `
     ${className}
   `;
+
+  useEffect(() => {
+    if (visible && !disableBodyScrollLock) {
+      disableBodyScroll(document.body);
+    }
+    if (!visible) {
+      enableBodyScroll(document.body);
+    }
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [visible, disableBodyScrollLock]);
 
   useLayoutEffect(() => {
     if (headerBarRef) {
@@ -179,6 +194,10 @@ WizardModal.propTypes = {
    * Title for the go back action button
    */
   goBackActionTitle: PropTypes.string,
+  /**
+   * Disable the scroll lock behavior
+   */
+  disableBodyScrollLock: PropTypes.bool,
 };
 
 WizardModal.defaultProps = {
@@ -192,6 +211,7 @@ WizardModal.defaultProps = {
   zIndex: 999999,
   children: null,
   goBackActionTitle: 'Back to results',
+  disableBodyScrollLock: false,
 };
 
 export default WizardModal;

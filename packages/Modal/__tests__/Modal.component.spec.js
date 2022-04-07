@@ -17,6 +17,30 @@ describe('Modal', () => {
     expect(modal).toMatchSnapshot();
   });
 
+  it('renders with scroll lock', () => {
+    const { baseElement, rerender } = render(
+      <Modal id="test-modal" visible disableBodyScrollLock={false} trackingLabel="test">
+        <div style={{ height: '100vh' }} />
+      </Modal>,
+    );
+
+    expect(baseElement).toHaveStyle('overflow: hidden');
+
+    rerender(
+      <Modal id="test-modal" visible disableBodyScrollLock trackingLabel="test">
+        <div style={{ height: '100vh' }} />
+      </Modal>,
+    );
+    expect(baseElement).not.toHaveStyle('overflow: hidden');
+
+    rerender(
+      <Modal id="test-modal" visible={false} disableBodyScrollLock={false} trackingLabel="test">
+        <div style={{ height: '100vh' }} />
+      </Modal>,
+    );
+    expect(baseElement).not.toHaveStyle('overflow: hidden');
+  });
+
   it('does not render if visible={false}', () => {
     const { container } = render(<Modal id="test-modal" visible={false} />);
     const modal = container.querySelector('#test-modal');

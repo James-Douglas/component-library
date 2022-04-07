@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPhone, faComments } from '@fortawesome/pro-regular-svg-icons';
 import FocusTrap from 'focus-trap-react';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { throttle } from '@comparethemarketau/manor-utils';
 import { ManorContext } from '@comparethemarketau/manor-provider';
@@ -57,6 +59,7 @@ const Modal = ({
   zIndex,
   trapFocus,
   focusTrapOptions,
+  disableBodyScrollLock,
 }) => {
   const id = useId(propsId);
   const headerBarRef = useRef(null);
@@ -85,6 +88,18 @@ const Modal = ({
     }
     return null;
   }, [headerBarRef, headerBarHeight]);
+
+  useEffect(() => {
+    if (visible && !disableBodyScrollLock) {
+      disableBodyScroll(document.body);
+    }
+    if (!visible) {
+      enableBodyScroll(document.body);
+    }
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [visible, disableBodyScrollLock]);
 
   useEffect(() => {
     if (headerBarRef && headerBarRef.current) {
@@ -188,7 +203,7 @@ const Modal = ({
                       <FontAwesomeIcon icon={faPhone} />
                     </StyledSupplementaryBarItemIcon>
                     <StyledSupplementaryBarItemText>
-                      <Typography gutterBottom={false} component="span" variant="subtitle2">Request a call</Typography>
+                      <Typography component="span" variant="subtitle2">Request a call</Typography>
                     </StyledSupplementaryBarItemText>
                   </StyledSupplementaryBarItem>
                 )}
@@ -211,7 +226,7 @@ const Modal = ({
                 {phoneNumber && (
                   <StyledFlexContainer>
                     <StyledSupplementaryBarItemText>
-                      <Typography gutterBottom={false} variant="body1">Call us on</Typography>
+                      <Typography variant="body1">Call us on</Typography>
                     </StyledSupplementaryBarItemText>
                     <StyledSupplementaryBarItem desktop={isDesktop}>
                       <StyledSupplementaryBarItemIcon>
@@ -352,6 +367,10 @@ Modal.propTypes = {
    * https://github.com/focus-trap/focus-trap#focustrap--createfocustrapelement-createoptions
    */
   focusTrapOptions: PropTypes.object,
+  /**
+   * Disable the body scroll lock behavior
+   */
+  disableBodyScrollLock: PropTypes.bool,
 };
 
 Modal.defaultProps = {
@@ -379,6 +398,7 @@ Modal.defaultProps = {
   },
   trapFocus: false,
   focusTrapOptions: {},
+  disableBodyScrollLock: false,
 };
 
 export default Modal;
