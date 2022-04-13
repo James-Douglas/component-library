@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPhone, faComments } from '@fortawesome/pro-regular-svg-icons';
 import FocusTrap from 'focus-trap-react';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { RemoveScroll } from 'react-remove-scroll';
 
 import { Container, Row, Column } from '@comparethemarketau/manor-grid';
 import { throttle } from '@comparethemarketau/manor-utils';
@@ -88,18 +88,6 @@ const Modal = ({
     }
     return null;
   }, [headerBarRef, headerBarHeight]);
-
-  useEffect(() => {
-    if (visible && !disableBodyScrollLock) {
-      disableBodyScroll(document.body, { allowTouchMove: () => true });
-    }
-    if (!visible) {
-      enableBodyScroll(document.body);
-    }
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [visible, disableBodyScrollLock]);
 
   useEffect(() => {
     if (headerBarRef && headerBarRef.current) {
@@ -253,6 +241,7 @@ const Modal = ({
       {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
       {visible
         && (
+        <RemoveScroll enabled={!disableBodyScrollLock}>
           <Wrapper trapFocus={trapFocus} focusTrapOptions={focusTrapOptions}>
             <StyledAlignment visible={visible} zIndex={zIndex}>
               <StyledModal id={id} className={classNames} desktop={isDesktop} dynamicHeight={dynamicHeight}>
@@ -265,6 +254,7 @@ const Modal = ({
               </StyledModal>
             </StyledAlignment>
           </Wrapper>
+        </RemoveScroll>
         )}
     </>
   );

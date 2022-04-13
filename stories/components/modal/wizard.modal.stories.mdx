@@ -4,6 +4,8 @@ import { WizardModal } from '@comparethemarketau/manor-modal';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { Button } from '@comparethemarketau/manor-button';
 import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
+import { Footer } from '@comparethemarketau/manor-footer';
+
 import WizardModalView from './wizard.modal.view';
 
 <Meta title="Components/Modal/WizardModal" component={WizardModal} />
@@ -22,6 +24,9 @@ Technically, it can be based on Modal component totally not the copy styles, but
     return (
       <div style={{ padding: '2%' }}>
         <WizardModalView />
+        <div style={{height: '100vh'}}>
+          <Footer />
+        </div>
       </div>
     )
   }}

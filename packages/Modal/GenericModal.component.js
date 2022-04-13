@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { RemoveScroll } from 'react-remove-scroll';
 
 import { useId } from '@comparethemarketau/manor-hooks';
 import { Overlay } from '@comparethemarketau/manor-overlay';
@@ -37,30 +37,20 @@ const GenericModal = ({
 }) => {
   const id = useId(propsId);
 
-  useEffect(() => {
-    if (visible && !disableBodyScrollLock) {
-      disableBodyScroll(document.body);
-    }
-    if (!visible) {
-      enableBodyScroll(document.body);
-    }
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [visible, disableBodyScrollLock]);
-
   return (
     <>
       {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={handleOverlayClick} zIndex={zIndex} />}
       {visible
       && (
-        <Wrapper trapFocus={trapFocus} focusTrapOptions={focusTrapOptions}>
-          <StyledAlignment visible={visible} zIndex={zIndex}>
-            <StyledModal id={id} className={className}>
-              {children}
-            </StyledModal>
-          </StyledAlignment>
-        </Wrapper>
+        <RemoveScroll enabled={!disableBodyScrollLock}>
+          <Wrapper trapFocus={trapFocus} focusTrapOptions={focusTrapOptions}>
+            <StyledAlignment visible={visible} zIndex={zIndex}>
+              <StyledModal id={id} className={className}>
+                {children}
+              </StyledModal>
+            </StyledAlignment>
+          </Wrapper>
+        </RemoveScroll>
       )}
     </>
   );

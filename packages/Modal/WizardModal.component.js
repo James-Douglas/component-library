@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimes, faArrowLeft,
 } from '@fortawesome/pro-regular-svg-icons';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { RemoveScroll } from 'react-remove-scroll';
 
 import { throttle } from '@comparethemarketau/manor-utils';
 import { ManorContext } from '@comparethemarketau/manor-provider';
@@ -46,18 +46,6 @@ const WizardModal = ({
   const classNames = `
     ${className}
   `;
-
-  useEffect(() => {
-    if (visible && !disableBodyScrollLock) {
-      disableBodyScroll(document.body);
-    }
-    if (!visible) {
-      enableBodyScroll(document.body);
-    }
-    return () => {
-      clearAllBodyScrollLocks();
-    };
-  }, [visible, disableBodyScrollLock]);
 
   useLayoutEffect(() => {
     if (headerBarRef) {
@@ -133,12 +121,14 @@ const WizardModal = ({
     visible && (
       <>
         {overlay && <Overlay visible={visible} opacityLevel={overlayOpacity} handleClick={overlayClickHandler} zIndex={zIndex} />}
-        <StyledAlignment visible={visible} zIndex={zIndex} ref={wizardModalRef}>
-          <StyledModal id={id} className={classNames} desktop={isDesktop} dynamicHeight={dynamicHeight} breakpoint={breakpoint}>
-            <Header />
-            {children}
-          </StyledModal>
-        </StyledAlignment>
+        <RemoveScroll enabled={!disableBodyScrollLock}>
+          <StyledAlignment visible={visible} zIndex={zIndex} ref={wizardModalRef}>
+            <StyledModal id={id} className={classNames} desktop={isDesktop} dynamicHeight={dynamicHeight} breakpoint={breakpoint}>
+              <Header />
+              {children}
+            </StyledModal>
+          </StyledAlignment>
+        </RemoveScroll>
       </>
     )
   );

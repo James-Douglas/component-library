@@ -223,20 +223,20 @@ const WizardModalView = () => {
             Mock wizard modal with external action buttons
           </Button>
         </Column>
-        <WizardModal id="demo-2" trackingLabel="demo-2-tracking" visible={visibleIndex == 1} onClose={closeModals}>
+        <WizardModal id="demo-1" trackingLabel="demo-2-tracking" visible={visibleIndex == 1} onClose={closeModals}>
           {getPages()[carouselIndex]}
           <ActionButtons />
         </WizardModal>
       </Row>
       <Row>
         <Column xsOffset={4} xs={4} sm={4} md={4} lg={4}>
-          <Button id="demo-1-btn" variant="secondary" handleClick={() => open(2)} trackingLabel="test">
+          <Button id="demo-2-btn" variant="secondary" handleClick={() => open(2)} trackingLabel="test">
             Mock wizard modal with dynamic height
           </Button>
         </Column>
         <WizardModal
-          id="demo-3"
-          trackingLabel="demo-3-tracking"
+          id="demo-2"
+          trackingLabel="demo-2-tracking"
           visible={visibleIndex == 2}
           onClose={closeModals}
           dynamicHeight
