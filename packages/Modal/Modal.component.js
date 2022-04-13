@@ -91,7 +91,7 @@ const Modal = ({
 
   useEffect(() => {
     if (visible && !disableBodyScrollLock) {
-      disableBodyScroll(document.body);
+      disableBodyScroll(document.body, { allowTouchMove: () => true });
     }
     if (!visible) {
       enableBodyScroll(document.body);
