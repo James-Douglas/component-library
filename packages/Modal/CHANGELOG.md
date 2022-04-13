@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.12.5...@comparethemarketau/manor-modal@0.13.0) (2022-04-13)
+
+
+### Features
+
+* **ctm-4721:** enable touchmove event to function ([#676](https://github.com/comparethemarketau/manor-react/issues/676)) ([029dc87](https://github.com/comparethemarketau/manor-react/commit/029dc874b09ad3663e23938bb240dde3be23a88c))
+
+
+
+
+
 ## [0.12.5](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.12.4...@comparethemarketau/manor-modal@0.12.5) (2022-04-07)
 
 **Note:** Version bump only for package @comparethemarketau/manor-modal
