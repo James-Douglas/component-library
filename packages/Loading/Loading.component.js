@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { useInterval } from '@comparethemarketau/manor-hooks';
 import Progress from './Progress';
+import Spinner from './Spinner';
 import {
   StyledContainer,
   StyledInnerContainer,
@@ -19,6 +20,7 @@ const LoadingComponent = ({
   className,
   maxProgress,
   variant,
+  type,
 }) => {
   const [progress, setProgress] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
@@ -78,7 +80,7 @@ const LoadingComponent = ({
             </StyledMessageContainer>
           )
         }
-        <Progress value={progress} variant={variant} />
+        {{ bar: <Progress value={progress} variant={variant} />, spinner: <Spinner variant={variant} /> }[type]}
       </StyledInnerContainer>
     </StyledContainer>
   );
@@ -118,6 +120,10 @@ LoadingComponent.propTypes = {
    * Defines  colors
    */
   variant: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * Defines type of loading component
+   */
+  type: PropTypes.oneOf(['bar', 'spinner']),
 };
 
 LoadingComponent.defaultProps = {
@@ -129,6 +135,7 @@ LoadingComponent.defaultProps = {
   className: '',
   maxProgress: 100,
   variant: 'primary',
+  type: 'bar',
 };
 
 export default LoadingComponent;

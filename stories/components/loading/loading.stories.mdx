@@ -7,12 +7,12 @@ import { Button } from '@comparethemarketau/manor-button';
 
 <Meta title="Components/Loading" component={Loading} />
 
-# Primary Loading
+# Primary Loading bar
 
 The Loading component can be used to provide feedback to a user whilst processing is occurring.
 
 <Preview>
-  <Story name="primary loading">
+  <Story name="primary loading bar">
     {() => {
      return (
       <div style={{ padding: '2%' }}>
@@ -23,14 +23,42 @@ The Loading component can be used to provide feedback to a user whilst processin
   </Story>
 </Preview>
 
-# Secondary Loading
+# Secondary Loading Bar
 
 <Preview>
-  <Story name="secondary loading">
+  <Story name="secondary loading bar">
     {() => {
      return (
       <div style={{ padding: '2%'}}>
         <Loading variant="secondary" />
+      </div>
+      )
+    }}
+  </Story>
+</Preview>
+
+# Primary Loading Spinner
+
+<Preview>
+  <Story name="primary loading spinner">
+    {() => {
+     return (
+      <div style={{ padding: '2%'}}>
+        <Loading type="spinner" />
+      </div>
+      )
+    }}
+  </Story>
+</Preview>
+
+# Secondary Loading Spinner
+
+<Preview>
+  <Story name="secondary loading spinner">
+    {() => {
+     return (
+      <div style={{ padding: '2%'}}>
+        <Loading type="spinner" variant="secondary" />
       </div>
       )
     }}
