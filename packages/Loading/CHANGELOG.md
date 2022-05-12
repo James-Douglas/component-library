@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-loading@0.4.26...@comparethemarketau/manor-loading@0.5.0) (2022-05-12)
+
+
+### Features
+
+* **loading:** CTM-4783_new spinner variant of Loading component ([#680](https://github.com/comparethemarketau/manor-react/issues/680)) ([ebafb57](https://github.com/comparethemarketau/manor-react/commit/ebafb577c5e701cf03814ab77f589843e7732dcf))
+
+
+
+
+
 ## [0.4.26](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-loading@0.4.25...@comparethemarketau/manor-loading@0.4.26) (2021-12-06)
 
 **Note:** Version bump only for package @comparethemarketau/manor-loading
