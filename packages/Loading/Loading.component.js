@@ -75,7 +75,7 @@ const LoadingComponent = ({
         {
           messages[messageIndex]
           && (
-            <StyledMessageContainer>
+            <StyledMessageContainer type={type}>
               <div className="loading-message"><StyledLoadingText><Typography variant="body1">{messages[messageIndex]}</Typography></StyledLoadingText></div>
             </StyledMessageContainer>
           )

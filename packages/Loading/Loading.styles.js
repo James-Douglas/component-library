@@ -17,6 +17,7 @@ export const StyledMessageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: ${({ theme, type }) => type === 'spinner' && theme.spacing[32]}
 `;
 
 export const StyledLoadingText = styled.span`

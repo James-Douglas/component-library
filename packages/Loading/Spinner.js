@@ -17,7 +17,7 @@ const MuiTheme = createMuiTheme({
 
 const Spinner = ({ variant }) => (
   <MUIThemeProvider theme={MuiTheme}>
-    <CircularProgress size="6.6rem" color={variant} style={{ marginTop: ctmTheme.spacing[32] }} />
+    <CircularProgress size="6.6rem" color={variant} />
   </MUIThemeProvider>
 );
 
