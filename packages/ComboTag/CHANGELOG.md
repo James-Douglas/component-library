@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.12.9...@comparethemarketau/manor-combo-tag@0.12.10) (2022-05-16)
+
+
+### Bug Fixes
+
+* **ctm-4686:** destination Drop Down is cutoff by footer ([#679](https://github.com/comparethemarketau/manor-react/issues/679)) ([a3b6dbe](https://github.com/comparethemarketau/manor-react/commit/a3b6dbe745bdb3a583546987ec00cfaf4eb00e9d))
+
+
+
+
+
 ## [0.12.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combo-tag@0.12.8...@comparethemarketau/manor-combo-tag@0.12.9) (2022-01-13)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combo-tag
