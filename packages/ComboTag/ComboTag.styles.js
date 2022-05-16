@@ -2,43 +2,50 @@ import styled, { css } from 'styled-components';
 
 export const StyledOuterWrapper = styled.div`
   width: 100%;
-  ${({ hasList }) => hasList && css`
-    display: flex;
-  `}
+  ${({ hasList }) => hasList
+    && css`
+      display: flex;
+    `}
 `;
 
 export const StyledContainer = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  ${({ bordered, theme }) => !bordered && css`
-    background: ${theme.colors.white};
-  `}
-  border: ${({ theme }) => (theme.borders.transparent)};
-  border-bottom: ${({ theme, hasList }) => hasList && (theme.borders.active)};
-  ${({ hasList, componentFocused, theme }) => (hasList && componentFocused) && css`
-    border: ${theme.borders.active};
-  `}
+  ${({ bordered, theme }) => !bordered
+    && css`
+      background: ${theme.colors.white};
+    `}
+  border: ${({ theme }) => theme.borders.transparent};
+  border-bottom: ${({ theme, hasList }) => hasList && theme.borders.active};
+  ${({ hasList, componentFocused, theme }) => hasList
+    && componentFocused
+    && css`
+      border: ${theme.borders.active};
+    `}
 `;
 
 export const StyledPresentationLayer = styled.div`
   height: 100%;
   width: 100%;
-  ${({ hasList }) => hasList && css`
-  display: flex;
-`}
+  ${({ hasList }) => hasList
+    && css`
+      display: flex;
+    `}
 `;
 
 export const StyledTagContainer = styled.div`
   display: flex;
   width: 100%;
   min-height: ${({ theme, hasList }) => (hasList ? theme.spacing[60] : theme.spacing[44])};
-  ${({ hasList, theme }) => !hasList && css`
-    background: ${theme.colors.white};
-  `}
-  ${({ theme, bordered }) => bordered && css`
-    border: ${theme.borders.component};
-  `}
+  ${({ hasList, theme }) => !hasList
+    && css`
+      background: ${theme.colors.white};
+    `}
+  ${({ theme, bordered }) => bordered
+    && css`
+      border: ${theme.borders.component};
+    `}
 `;
 
 export const StyledPrefixContainer = styled.div`
@@ -58,9 +65,10 @@ export const StyledPrefix = styled.div`
   align-items: center;
   z-index: inherit;
   flex: 1;
-  ${({ onClick }) => onClick && css`
-    cursor: pointer;
-  `}
+  ${({ onClick }) => onClick
+    && css`
+      cursor: pointer;
+    `}
 `;
 
 export const StyledInputWrap = styled.div`
@@ -89,29 +97,30 @@ export const StyledDropdownList = styled.div`
   position: absolute;
   left: 0;
   width: 100%;
-  display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')};
-  background: ${({ theme }) => (theme.combo.list.background)};
-  box-shadow: ${({ theme }) => (theme.combo.list.shadow)};
-  margin-top: ${({ theme }) => (theme.spacing.px)};
-  ${({ theme, comboListSpacing }) => comboListSpacing && css`
-    margin-top: ${theme.spacing[8]};
-  `}
+  display: ${({ position }) => (position === 'hidden' ? 'none' : 'block')};
+  background: ${({ theme }) => theme.combo.list.background};
+  box-shadow: ${({ theme }) => theme.combo.list.shadow};
+  margin-top: ${({ theme }) => theme.spacing.px};
+  ${({ theme, comboListSpacing }) => comboListSpacing
+    && css`
+      margin-top: ${theme.spacing[8]};
+    `}
   &:focus {
     outline: none;
   }
-  z-index: ${({ theme }) => (theme.zIndex[40])};
+  z-index: ${({ theme }) => theme.zIndex[40]};
 `;
 
 export const StyledList = styled.ul`
   margin: 0;
-  width: ${({ theme }) => (theme.maxWidth.full)};
+  width: ${({ theme }) => theme.maxWidth.full};
   padding: 0;
-  color: ${({ theme }) => (theme.combo.list.color)};
-  z-index: ${({ theme }) => (theme.zIndex[30])};
+  color: ${({ theme }) => theme.combo.list.color};
+  z-index: ${({ theme }) => theme.zIndex[30]};
 `;
 
 export const StyledDefault = styled.div`
-  width: ${({ theme }) => (theme.maxWidth.full)};
+  width: ${({ theme }) => theme.maxWidth.full};
 `;
 
 export const StyledListItem = styled.li`
@@ -123,7 +132,7 @@ export const StyledListItem = styled.li`
   min-height: ${({ theme }) => theme.spacing[28]};
   border: ${({ theme }) => theme.borders.transparent};
   padding: ${({ theme }) => `${theme.spacing[8]} ${theme.spacing[40]}`};
-  color: ${({ theme }) => (theme.combo.list.item.color)};
+  color: ${({ theme }) => theme.combo.list.item.color};
   transition: background-color 0.4s ease;
   &:hover {
     background: ${({ theme }) => theme.combo.list.item.backgroundHover};
@@ -146,15 +155,15 @@ export const StyledButtonWrap = styled.div`
   justify-content: space-around;
   text-align: center;
   border: ${({ theme }) => theme.combo.list.border};
-  padding:  ${({ theme }) => `${theme.spacing[8]} 0`};
-  background: ${({ theme }) => (theme.combo.button.background)};
+  padding: ${({ theme }) => `${theme.spacing[8]} 0`};
+  background: ${({ theme }) => theme.combo.button.background};
   &:focus {
     outline: none;
     border: ${({ theme }) => theme.combo.button.borderFocus};
     border-width: ${({ theme }) => theme.spacing.px}; /* IE 11 specific fix */
   }
   &:hover {
-    background: ${({ theme }) => (theme.combo.button.backgroundHover)};
+    background: ${({ theme }) => theme.combo.button.backgroundHover};
   }
   font-size: ${({ theme }) => theme.fontSize.base};
   p {
@@ -167,18 +176,18 @@ export const WrapList = styled.div`
 `;
 
 export const StyledComboListWrap = styled.div`
-  max-height: ${({ renderView }) => `${renderView * 52}px`};
+  max-height: ${({ desktop }) => (desktop ? '25vh' : '75vh')};
   overflow-y: auto;
 `;
 
 export const StyledEmptyStateMessage = styled.div`
   position: relative;
-  box-shadow: ${({ theme }) => (theme.combo.list.shadow)};
-  width: ${({ theme }) => (theme.maxWidth.full)};
+  box-shadow: ${({ theme }) => theme.combo.list.shadow};
+  width: ${({ theme }) => theme.maxWidth.full};
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.combo.list.item.color};
   text-align: center;
-  z-index: ${({ theme }) => (theme.zIndex[50])};
+  z-index: ${({ theme }) => theme.zIndex[50]};
 `;
 
 export const StyledErrorToolTip = styled.div`

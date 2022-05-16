@@ -58,7 +58,7 @@ function comboDropdownList(
   return (
     <WrapList desktop={desktop}>
       <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop} comboListSpacing={comboListSpacing}>
-        <StyledComboListWrap renderView={renderView}>
+        <StyledComboListWrap desktop={desktop} renderView={renderView}>
           <div>
             {!emptyState && comboDataList(apiData, handleSelectItem, filteredValuesRefs, listIcon)}
             {noResultCondition && (
