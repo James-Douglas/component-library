@@ -1,7 +1,7 @@
 {
-  "name": "@comparethemarketau/manor-buttongroup",
-  "version": "0.17.13",
-  "description": "Manor ButtonGroup components",
+  "name": "@comparethemarketau/manor-scrollablenavigation",
+  "version": "0.1.1",
+  "description": "Manor Scrollable Navigation component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
   "license": "Proprietary",
@@ -18,29 +18,18 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-field-validation": "^0.7.8",
-    "@comparethemarketau/manor-hooks": "^0.6.5",
-    "@comparethemarketau/manor-label": "^0.8.18",
-    "@comparethemarketau/manor-picture": "^0.4.1",
-    "@comparethemarketau/manor-tooltip": "^0.19.5",
-    "@comparethemarketau/manor-typography": "^0.15.4",
-    "@fortawesome/fontawesome-svg-core": "^1.2.26",
-    "@fortawesome/free-solid-svg-icons": "^5.12.0",
-    "@fortawesome/pro-regular-svg-icons": "^5.12.0",
-    "@fortawesome/react-fontawesome": "^0.1.8",
-    "@comparethemarketau/manor-link": "^0.6.14",
-    "lodash": "^4.17.19",
-    "classnames": "^2.2.6",
+    "@comparethemarketau/manor-themes": "^0.15.0",
+    "@material-ui/core": "^4.11.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@comparethemarketau/manor-themes": "^0.15.0",
     "react-tracking": "^8.1.0"
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.8.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "styled-components": "^5.0.0"
+    "styled-components": "^5.0.0",
+    "lodash": "^4.17.19"
   }
 }

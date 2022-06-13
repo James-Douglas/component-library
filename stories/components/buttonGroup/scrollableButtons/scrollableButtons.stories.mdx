@@ -1,0 +1,38 @@
+import { Meta, Preview, Story, Props } from '@storybook/addon-docs/blocks';
+import { Container, Row, Column } from '@comparethemarketau/manor-grid';
+import FluidContainer from '@comparethemarketau/manor-grid/Container/FluidContainer.component';
+import { Typography } from '@comparethemarketau/manor-typography';
+import { ScrollableButtons } from "../../../../packages/ButtonGroup";
+import { ProductSections } from "./MockCompontents/SectionConfig";
+
+<Meta
+  title="Components/ButtonGroup/ScrollableButtons/Scrollable Buttons"
+  component={ ScrollableButtons}
+/>
+
+# ScrollableButtons
+
+
+<Preview>
+  <Story name="Scrollable Buttons">
+    <FluidContainer>
+      <Row>
+        <Column>
+          <Typography variant="h3">
+            ScrollableButtons
+          </Typography>
+        </Column>
+      </Row>
+      <Row>
+        <Column>
+          <ScrollableButtons trackingLabel="Car Product Details Page Navigation shortcuts" selectedId="about-the-provider" buttons={ProductSections}/> 
+        </Column>
+      </Row>
+    </FluidContainer>
+  </Story>
+</Preview>
+
+
+## Props
+
+<Props of={ScrollableButtons} />
