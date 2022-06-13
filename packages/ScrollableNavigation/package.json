@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-scrollablenavigation",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Manor Scrollable Navigation component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -27,9 +27,9 @@
   },
   "peerDependencies": {
     "@comparethemarketau/manor-provider": "^0.8.2",
+    "lodash": "^4.17.19",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "styled-components": "^5.0.0",
-    "lodash": "^4.17.19"
+    "styled-components": "^5.0.0"
   }
 }
