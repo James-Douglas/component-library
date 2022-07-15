@@ -12,7 +12,7 @@ import {
 } from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, doSignOutSuccess, authVerifyMobile,
+  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, doSignOutSuccess, authVerifyMobile, microUIProps,
 }) => {
   const { isDesktop } = useContext(ManorContext);
   const size = (stuck || !isDesktop) ? 'small' : 'large';
@@ -35,6 +35,7 @@ const Header = ({
             visible="true"
             id="auth"
             doSignOutSuccess={doSignOutSuccess}
+            microUIProps={microUIProps}
             verifyMobile={authVerifyMobile}
           />
           )}
@@ -89,6 +90,11 @@ Header.propTypes = {
    * Should we ask the user to verify their mobile on sign in or sign up
    */
   authVerifyMobile: PropTypes.bool,
+  /**
+   * If anything is needed to be passed on to the MicroUI, use this.
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  microUIProps: PropTypes.any,
 };
 
 Header.defaultProps = {
@@ -100,6 +106,7 @@ Header.defaultProps = {
   authuiComponentName: 'AuthHeader',
   doSignOutSuccess: null,
   authVerifyMobile: false,
+  microUIProps: null,
 };
 
 export default Header;
