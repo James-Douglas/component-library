@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.11.17...@comparethemarketau/manor-header@0.12.0) (2022-07-15)
+
+
+### Features
+
+* **db-824:** added microui props to header ([#685](https://github.com/comparethemarketau/manor-react/issues/685)) ([9772bca](https://github.com/comparethemarketau/manor-react/commit/9772bca62060b8d5370186c5e0216d62bdaca544))
+
+
+
+
+
 ## [0.11.17](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-header@0.11.16...@comparethemarketau/manor-header@0.11.17) (2021-12-06)
 
 **Note:** Version bump only for package @comparethemarketau/manor-header
