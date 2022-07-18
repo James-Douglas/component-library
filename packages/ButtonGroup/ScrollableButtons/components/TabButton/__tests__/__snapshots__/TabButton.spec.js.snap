@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabButton renders with props 1`] = `
+.c1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: SourceSansPro,Arial,sans-serif;
+  text-align: left;
+  color: inherit;
+  font-weight: 400;
+  line-height: 1.4;
+  font-size: 1.6rem;
+}
+
+.c0 {
+  display: inline-block;
+  list-style: none;
+}
+
+.c0 a:focus-visible {
+  outline: #0b60b7 auto 1px;
+  outline-offset: -1px;
+}
+
+.c2 {
+  padding-top: 1.2rem;
+  padding-right: 2.4rem;
+  padding-bottom: 1.2rem;
+  padding-left: 2.4rem;
+  font-size: 1.4rem;
+  color: #616161;
+}
+
+@media (hover:hover) {
+  .c0:hover {
+    background: #e7f0fb;
+  }
+}
+
+<div>
+  <li
+    class="c0"
+  >
+    <a
+      class="MuiTypography-root MuiLink-root MuiLink-underlineNone MuiTypography-colorPrimary"
+      href="#"
+      style="font-family: \\"SourceSansPro\\", \\"Helvetica\\", \\"Arial\\"; color: rgb(11, 96, 183);"
+    >
+      <p
+        class="c1 c2"
+      >
+        test
+      </p>
+    </a>
+  </li>
+</div>
+`;

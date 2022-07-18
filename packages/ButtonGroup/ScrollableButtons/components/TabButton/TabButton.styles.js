@@ -5,8 +5,26 @@ export const TabButtonContainer = styled.li`
   display: inline-block;
   list-style: none;
   ${({ selected, theme }) => selected && `
-    border-bottom: 0.2rem solid ${theme.colors.primary500};
+    p {
+      border-bottom: 0.2rem solid ${theme.colors.primary500};
+    }
   `}
+
+  a:focus-visible {
+    outline: ${({ theme }) => theme.colors.primary500} auto 1px;
+    outline-offset: -1px;
+  }
+
+  /*
+  * @media (hover: hover): Prevent sticky hover effects for buttons on touch devices
+  * If the browser supports proper/true/real/non-emulated hovering, then apply styles included when the button is hovered over.
+  * ref:1: https://www.w3.org/TR/mediaqueries-4/#descdef-media-hover
+  *     2: https://stackoverflow.com/questions/17233804/how-to-prevent-sticky-hover-effects-for-buttons-on-touch-devices
+  */
+  @media (hover: hover) {
+    :hover {
+      background: ${({ theme }) => theme.button.tertiary.backgroundHover};
+  }
 `;
 
 export const TextContainer = styled(Typography)`
