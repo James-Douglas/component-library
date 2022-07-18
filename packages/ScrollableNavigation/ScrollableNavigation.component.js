@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ctmTheme } from '@comparethemarketau/manor-themes';
+import { ScrollableButtons } from '@comparethemarketau/manor-buttongroup';
 
 import useCurrentSection from './hooks/useCurrentSection';
-import ScrollableButtons from '../ButtonGroup/ScrollableButtons/ScrollableButtons.component';
 import StickyBarContainer from './ScrollableNavigation.style';
 
 const ScrollableNavigation = ({
@@ -21,7 +21,7 @@ const ScrollableNavigation = ({
 ScrollableNavigation.defaultProps = {
   stickyBarElementId: 'policy-product-sticky-bar',
   isSticky: false,
-  zIndex: ctmTheme.zIndex[10],
+  zIndex: parseInt(ctmTheme.zIndex[10], 10),
 };
 
 ScrollableNavigation.propTypes = {
