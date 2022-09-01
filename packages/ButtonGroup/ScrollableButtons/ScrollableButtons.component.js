@@ -23,7 +23,7 @@ const ScrollableButtons = ({ trackingLabel, selectedId, buttons }) => {
     handleRightClick,
     handleScroll,
     handleTabRefReady,
-    handleTabMoveAround,
+    handleTabMoveSideways,
   } = useArrowControl(selectedId, trackingLabel);
 
   const defaultHref = '';
@@ -57,7 +57,7 @@ const ScrollableButtons = ({ trackingLabel, selectedId, buttons }) => {
                 label={label}
                 href={href || defaultHref}
                 handleClick={handleClick}
-                onClick={() => { handleTabMoveAround(id); }}
+                onClick={(event) => { handleTabMoveSideways(id, event); }}
                 onRef={(tabRef) => handleTabRefReady(id, tabRef)}
               />
             );

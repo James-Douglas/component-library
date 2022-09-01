@@ -15,16 +15,16 @@ const TabButton = ({
     }
   }, []);
 
-  const handleClick = () => {
+  const handleClick = (event) => {
     if (onClick && !selected) {
-      onClick();
-      handleOnClick();
+      onClick(event);
+      handleOnClick(event);
     }
   };
 
   return (
     <TabButtonContainer ref={ref} selected={selected}>
-      <Link trackingLabel={label} href={href} underline="none" handleClick={handleClick}>
+      <Link trackingLabel={label} href={href} underline="none" handleClick={(event) => { handleClick(event); }}>
         <TextContainer selected={selected}>
           {label}
         </TextContainer>

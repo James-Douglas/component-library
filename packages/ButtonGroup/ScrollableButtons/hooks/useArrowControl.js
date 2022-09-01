@@ -1,5 +1,5 @@
 import {
-  useState, useEffect, useRef, useCallback, useContext,
+  useState, useEffect, useRef, useContext, useCallback,
 } from 'react';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 
@@ -21,8 +21,6 @@ const useArrowControl = (scrolledToSectionId, trackingLabel) => {
       setDisableAllArrows(false);
     }
   }, []);
-
-  // console.log('contentRef.current.offsetWidth', contentRef.current.offsetWidth);
 
   const handleScroll = (event) => {
     if (!event || !event.target) {
@@ -55,15 +53,24 @@ const useArrowControl = (scrolledToSectionId, trackingLabel) => {
     trackInteraction('Click', 'Scrollable Buttons', '', trackingLabel, 'right arrow button');
   };
 
-  // if the tab item is covered by the arrow controls, we need to move the tab item away from the arrow controls.
-  const handleTabMoveAround = useCallback((id) => {
+  // make the current section visible when user scrolls down (or up) by moving tab sidways (left/right)
+  const handleTabMoveSideways = useCallback((id, event) => {
     const tabRef = tabRefs[id];
     // have to check ref here because the tab might not be rendered yet
     if (!tabRef || !tabRef.current) {
       return;
     }
-    // track the tab which be clicked
-    trackInteraction('Click', 'Scrollable Buttons', '', trackingLabel, tabRef.current.innerText);
+
+    // clicking on tab link to scroll to a section
+    if (event && event.type === 'click') {
+      event && event.preventDefault(); // to avoid the link (<a> element) from performing anchor
+      document.getElementById(id).scrollIntoView();
+      // track clicked tab
+      trackInteraction('Click', 'Scrollable Buttons', '', trackingLabel, tabRef.current.innerText);
+    } else {
+      // track the tab scrolled to
+      trackInteraction('Scroll', 'Scrollable Buttons', '', trackingLabel, tabRef.current.innerText);
+    }
 
     // left overflow
     const tabLeftSide = tabRef.current.getBoundingClientRect().left;
@@ -89,8 +96,8 @@ const useArrowControl = (scrolledToSectionId, trackingLabel) => {
   }, [tabRefs, trackInteraction, trackingLabel]);
 
   useEffect(() => {
-    handleTabMoveAround(scrolledToSectionId);
-  }, [handleTabMoveAround, scrolledToSectionId]);
+    handleTabMoveSideways(scrolledToSectionId);
+  }, [handleTabMoveSideways, scrolledToSectionId]);
 
   const handleTabRefReady = (id, tabRef) => {
     setTabRefs((prev) => ({ ...prev, [id]: tabRef }));
@@ -107,7 +114,7 @@ const useArrowControl = (scrolledToSectionId, trackingLabel) => {
     handleRightClick,
     handleScroll,
     handleTabRefReady,
-    handleTabMoveAround,
+    handleTabMoveSideways,
   };
 };
 
