@@ -19,6 +19,10 @@ const TabButton = ({
     if (onClick && !selected) {
       onClick(event);
       handleOnClick(event);
+    } else {
+      // if current button is already selected, don't do anything
+      // also, avoid the link (<a> element) from performing an anchor action
+      event && event.preventDefault();
     }
   };
 
