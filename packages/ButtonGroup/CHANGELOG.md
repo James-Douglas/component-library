@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.18](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.17...@comparethemarketau/manor-buttongroup@0.17.18) (2022-09-02)
+
+
+### Bug Fixes
+
+* **buttongroup:** tab button selected click on safari ([#688](https://github.com/comparethemarketau/manor-react/issues/688)) ([48d0331](https://github.com/comparethemarketau/manor-react/commit/48d0331fb7e0cb6ef9c63d4281a9c18d59d2a3b0))
+
+
+
+
+
 ## [0.17.17](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.15...@comparethemarketau/manor-buttongroup@0.17.17) (2022-09-01)
 
 
