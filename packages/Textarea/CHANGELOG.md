@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-textarea@0.11.11...@comparethemarketau/manor-textarea@0.12.0) (2023-01-17)
+
+
+### Features
+
+* **input:** ado-7553 add left align prop ([#690](https://github.com/comparethemarketau/manor-react/issues/690)) ([5175d65](https://github.com/comparethemarketau/manor-react/commit/5175d65853c81f89d543c16a5ef35833abbc9b57))
+
+
+
+
+
 ## [0.11.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-textarea@0.11.10...@comparethemarketau/manor-textarea@0.11.11) (2021-12-06)
 
 **Note:** Version bump only for package @comparethemarketau/manor-textarea
