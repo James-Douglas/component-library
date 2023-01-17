@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 const StyledOptionalText = styled.div`
   display: flex;
-  position: absolute;
-  right: 0;
-  padding-top: ${({ theme }) => theme.spacing[8]};
+  justify-content: ${({ alignRight }) => (alignRight ? 'end' : 'start')};
+  padding-top: ${({ bottom, theme }) => (bottom ? theme.spacing[8] : 0)};
 `;
 
 export default StyledOptionalText;

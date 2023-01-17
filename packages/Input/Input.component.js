@@ -14,7 +14,7 @@ import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { SupportingElements } from '@comparethemarketau/manor-supporting-elements';
 
 import {
-  StyledAffix, StyledClearIcon, StyledInput, StyledMaskInput, StyledInputClearWrap, StyledInputContainer, StyledInputWrap, StyledWrapper,
+  StyledAffix, StyledClearIcon, StyledInput, StyledMaskInput, StyledInputClearWrap, StyledInputContainer, StyledInputWrap, StyledWrapper, StyledHeaderWrapper,
 } from './Input.styles';
 
 export const renderClearIcon = (value, clearInput, isAutofill, label, disabled, disableClearIcon, expressive, breakpoint) => {
@@ -108,6 +108,7 @@ const Input = React.forwardRef(({
   disableInteractionTracking,
   trackingFieldType,
   controlled,
+  alignOptionalText,
 }, ref) => {
   const id = useId(propsId);
   const [ariaLabelledByIds, setAriaLabelledByIds] = useState({});
@@ -240,8 +241,15 @@ const Input = React.forwardRef(({
 
   return (
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
-      {!expressive
-        && <Label htmlFor={id} text={label} id={ariaLabelledByIds.label} tooltip={tooltipOptions} removeGutters={removeGutters} />}
+      {(!expressive || alignOptionalText === 'topRight')
+        && (
+        <StyledHeaderWrapper>
+          {!expressive
+            && <Label htmlFor={id} text={label} id={ariaLabelledByIds.label} tooltip={tooltipOptions} removeGutters={removeGutters} />}
+          {(alignOptionalText === 'topRight')
+            && <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} align={alignOptionalText} />}
+        </StyledHeaderWrapper>
+        )}
       <StyledInputContainer className={`input-container${gtmPidAnonymous ? ' data-hj-suppress' : ''}`}>
         <StyledInputWrap
           isAutofill={isAutofill}
@@ -290,7 +298,8 @@ const Input = React.forwardRef(({
           </StyledInputClearWrap>
           {renderAffix('suffix', suffixContent, isAutofill, disabled, affixClick, prefixBlock, expressive, breakpoint, ariaDescribedByIds.suffix)}
         </StyledInputWrap>
-        <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} />
+        {(alignOptionalText === 'bottomLeft' || alignOptionalText === 'bottomRight')
+          && <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} align={alignOptionalText} />}
       </StyledInputContainer>
       {dataList && <div className={gtmPidAnonymousClass}>{dataList()}</div>}
       <FieldValidation message={validationMessage} />
@@ -503,6 +512,11 @@ Input.propTypes = {
    * Manually set this prop to true if you intend to controll the value/add custom masking
    */
   controlled: PropTypes.bool,
+  /**
+   * Manually set this prop if you wish to position "Option" text other than bottom right hand corner when "required"
+   * is set to true.
+   */
+  alignOptionalText: PropTypes.oneOf(['bottomRight', 'bottomLeft', 'topRight']),
 };
 
 Input.defaultProps = {
@@ -547,6 +561,7 @@ Input.defaultProps = {
   disableInteractionTracking: false,
   trackingFieldType: 'Input',
   controlled: false,
+  alignOptionalText: 'bottomRight',
 };
 
 export default Input;

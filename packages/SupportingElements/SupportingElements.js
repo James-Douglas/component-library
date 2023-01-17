@@ -4,11 +4,14 @@ import { Typography } from '@comparethemarketau/manor-typography';
 import StyledOptionalText from './SupportingElements.styles';
 
 const SupportingElements = ({
-  required, disabled, label, additionalContent, validationMessage,
+  required, disabled, label, additionalContent, validationMessage, align,
 }) => {
   if ((required && !additionalContent) || disabled || validationMessage) return null;
+  const shouldAlignRight = (align === 'bottomRight' || align === 'topRight');
+  const isAtBottom = (align === 'bottomRight' || align === 'bottomLeft');
+
   return (
-    <StyledOptionalText>
+    <StyledOptionalText alignRight={shouldAlignRight} bottom={isAtBottom}>
       {additionalContent}
       {!required && (
         <>
@@ -46,12 +49,17 @@ SupportingElements.propTypes = {
    * (current use case - text area character count)
    */
   additionalContent: PropTypes.node,
+  /**
+   * Define how the field should be aligned
+   */
+  align: PropTypes.oneOf(['bottomRight', 'bottomLeft', 'topRight', 'topLeft']),
 };
 
 SupportingElements.defaultProps = {
   additionalContent: null,
   validationMessage: null,
   disabled: false,
+  align: 'bottomRight',
 };
 
 export default SupportingElements;
