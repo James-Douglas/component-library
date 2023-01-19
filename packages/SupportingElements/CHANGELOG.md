@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-supporting-elements@0.7.0...@comparethemarketau/manor-supporting-elements@0.7.1) (2023-01-19)
+
+**Note:** Version bump only for package @comparethemarketau/manor-supporting-elements
+
+
+
+
+
 # [0.7.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-supporting-elements@0.6.5...@comparethemarketau/manor-supporting-elements@0.7.0) (2023-01-17)
 
 

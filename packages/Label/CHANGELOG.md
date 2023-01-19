@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.19](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-label@0.8.18...@comparethemarketau/manor-label@0.8.19) (2023-01-19)
+
+**Note:** Version bump only for package @comparethemarketau/manor-label
+
+
+
+
+
 ## [0.8.18](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-label@0.8.17...@comparethemarketau/manor-label@0.8.18) (2021-12-06)
 
 **Note:** Version bump only for package @comparethemarketau/manor-label

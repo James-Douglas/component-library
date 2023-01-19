@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.13.3...@comparethemarketau/manor-modal@0.13.4) (2023-01-19)
+
+**Note:** Version bump only for package @comparethemarketau/manor-modal
+
+
+
+
+
 ## [0.13.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.13.2...@comparethemarketau/manor-modal@0.13.3) (2023-01-17)
 
 **Note:** Version bump only for package @comparethemarketau/manor-modal

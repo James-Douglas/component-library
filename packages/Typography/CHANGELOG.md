@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.15.4...@comparethemarketau/manor-typography@0.16.0) (2023-01-19)
+
+
+### Features
+
+* **input:** ado-7553 add help text prop ([#692](https://github.com/comparethemarketau/manor-react/issues/692)) ([af2fd48](https://github.com/comparethemarketau/manor-react/commit/af2fd4840bccf11b3ca4002a5716e3bed5af6a60))
+
+
+
+
+
 ## [0.15.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-typography@0.15.3...@comparethemarketau/manor-typography@0.15.4) (2021-12-06)
 
 **Note:** Version bump only for package @comparethemarketau/manor-typography
