@@ -29,6 +29,7 @@ const Typography = ({
   noWrap,
   style,
   className,
+  helpTextFontSize,
   ...props
 }) => {
   const componentToRender = component || variantTags[variant];
@@ -42,6 +43,7 @@ const Typography = ({
       noWrap={noWrap}
       style={style}
       className={className}
+      helpTextFontSize={helpTextFontSize}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
@@ -109,6 +111,26 @@ Typography.propTypes = {
    * Classes to be applied to the rendered element
    */
   className: PropTypes.string,
+  /**
+   * Set this value to override helpText default font size (2xs). Note that
+   * it will only take effect when variant set to 'helpText'.
+   *
+   * The array list must match the keys in theme.fontSize
+   */
+  helpTextFontSize: PropTypes.oneOf([
+    '',
+    '2xs',
+    'xs',
+    'sm',
+    'base',
+    'lg',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl',
+    '5xl',
+    '6xl',
+  ]),
 };
 
 Typography.defaultProps = {
@@ -121,6 +143,7 @@ Typography.defaultProps = {
   children: [],
   style: null,
   className: '',
+  helpTextFontSize: '',
 };
 
 export default Typography;

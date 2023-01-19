@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CurrencyInput renders with minimal props 1`] = `"<div class=\\"sc-fzplWN bXErYq input-wrap\\"><div class=\\"sc-fznyAO dReVTr\\"><div class=\\"sc-AxheI bXnOQb\\"><label id=\\"test-id-label\\" for=\\"test-id\\" class=\\"sc-Axmtr eRRmJW label\\"></label></div></div><div class=\\"sc-fzokOt fPGYLW input-container\\"><div class=\\"sc-fzqBZW TWKzg\\"><div class=\\"sc-fzqNJr gMmdbG input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" inputmode=\\"text\\" placeholder=\\"\\" aria-labelledby=\\"test-id-label\\" aria-describedby=\\"test-id-tooltip\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-fzoyAV kNusyV input-default \\" breakpoint=\\"md\\" value=\\"\\"></div></div></div></div>"`;
+exports[`CurrencyInput renders with minimal props 1`] = `
+"<div class=\\"sc-fzoyAV eqWfmS input-wrap\\"><div class=\\"sc-fzoLag lklRLh\\"><div class=\\"sc-fzqBZW fmiwex\\"><div class=\\"sc-fznyAO sc-fzqNJr jNNCzq row \\"><div class=\\"sc-fznKkj sc-fznZeY heaNxX 
+        
+      \\"><div class=\\"sc-AxheI icYfQq\\"><label id=\\"test-id-label\\" for=\\"test-id\\" class=\\"sc-Axmtr eRRmJW label\\"></label></div></div><div class=\\"sc-fznKkj sc-fznZeY fLKEbY 
+        
+      \\"></div></div></div></div><div class=\\"sc-fznxsB fGlJUK input-container\\"><div class=\\"sc-fznJRM lbTSwh\\"><div class=\\"sc-fznWqX cSFth input-clear-wrap\\"><input id=\\"test-id\\" name=\\"test-id\\" type=\\"tel\\" inputmode=\\"text\\" placeholder=\\"\\" aria-labelledby=\\"test-id-label\\" aria-describedby=\\"test-id-tooltip\\" autocomplete=\\"off\\" maxlength=\\"15\\" class=\\"sc-fzoiQi edBPHm input-default \\" breakpoint=\\"md\\" value=\\"\\"></div></div></div></div>"
+`;

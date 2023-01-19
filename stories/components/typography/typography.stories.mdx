@@ -20,12 +20,13 @@ The Typography component can be used to render text content. A `variant` is requ
 
 <Story name="typography with props" decorators={[withKnobs]} parameters={{ docs: { disable: true } }}>
   {() => {
-    const variant = select('variant', ['h1','h2','h3','h4','h5','h6','subtitle1','subtitle2','body1','body2','caption','overline','srOnly'], 'body1');
+    const variant = select('variant', ['h1','h2','h3','h4','h5','h6','subtitle1','subtitle2','body1','body2','caption','overline','srOnly','helpText'], 'body1');
     const component = text('component', null);
     const align = select('align', ['inherit', 'left', 'center', 'right', 'justify'], 'inherit');
     const color = select('color', ['initial', 'inherit'], 'inherit');
     const display = select('display', ['initial', 'block', 'inline'], 'block');
     const noWrap = boolean('noWrap', false);
+    const helpTextFontSize = select('helpTextFontSize', ['2xs', 'xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'], '2xs');
     return (
       <DemoContainer>
         <Typography
@@ -35,6 +36,7 @@ The Typography component can be used to render text content. A `variant` is requ
           color={color}
           display={display}
           noWrap={noWrap}
+          helpTextFontSize={helpTextFontSize}
       >
         Here is some text
       </Typography>

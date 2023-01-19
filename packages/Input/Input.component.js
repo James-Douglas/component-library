@@ -12,6 +12,7 @@ import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { SupportingElements } from '@comparethemarketau/manor-supporting-elements';
+import { FluidContainer, Row, Column } from '@comparethemarketau/manor-grid';
 
 import {
   StyledAffix, StyledClearIcon, StyledInput, StyledMaskInput, StyledInputClearWrap, StyledInputContainer, StyledInputWrap, StyledWrapper, StyledHeaderWrapper,
@@ -109,6 +110,7 @@ const Input = React.forwardRef(({
   trackingFieldType,
   controlled,
   alignOptionalText,
+  helpText,
 }, ref) => {
   const id = useId(propsId);
   const [ariaLabelledByIds, setAriaLabelledByIds] = useState({});
@@ -241,13 +243,23 @@ const Input = React.forwardRef(({
 
   return (
     <StyledWrapper className="input-wrap" inputValue={internalValue} inFieldLabel={inFieldLabel} breakpoint={breakpoint} removeGutters={removeGutters}>
-      {(!expressive || alignOptionalText === 'topRight')
+      {(!expressive || helpText || alignOptionalText === 'topRight')
         && (
         <StyledHeaderWrapper>
-          {!expressive
-            && <Label htmlFor={id} text={label} id={ariaLabelledByIds.label} tooltip={tooltipOptions} removeGutters={removeGutters} />}
-          {(alignOptionalText === 'topRight')
-            && <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} align={alignOptionalText} />}
+          <FluidContainer>
+            <Row removeMarginBottom>
+              <Column cols={alignOptionalText === 'topRight' ? 10 : 12}>
+                {!expressive
+                  && <Label htmlFor={id} text={label} id={ariaLabelledByIds.label} tooltip={tooltipOptions} removeGutters />}
+                {helpText
+                  && <Typography variant="helpText" helpTextFontSize="xs" component="span">{helpText}</Typography>}
+              </Column>
+              <Column cols={2} halign="flex-end">
+                {(alignOptionalText === 'topRight')
+                  && <SupportingElements required={required} disabled={disabled} label={label} validationMessage={validationMessage} align={alignOptionalText} />}
+              </Column>
+            </Row>
+          </FluidContainer>
         </StyledHeaderWrapper>
         )}
       <StyledInputContainer className={`input-container${gtmPidAnonymous ? ' data-hj-suppress' : ''}`}>
@@ -517,6 +529,10 @@ Input.propTypes = {
    * is set to true.
    */
   alignOptionalText: PropTypes.oneOf(['bottomRight', 'bottomLeft', 'topRight']),
+  /**
+   * Sets the help text under label
+   */
+  helpText: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -562,6 +578,7 @@ Input.defaultProps = {
   trackingFieldType: 'Input',
   controlled: false,
   alignOptionalText: 'bottomRight',
+  helpText: '',
 };
 
 export default Input;

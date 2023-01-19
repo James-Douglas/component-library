@@ -45,6 +45,7 @@ export const StyledHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: ${({ theme }) => theme.spacing[8]};
 `;
 
 export const StyledClearIcon = styled.button`

@@ -3,7 +3,7 @@ import React from 'react';
 
 // eslint-disable-next-line import/prefer-default-export
 export const StyledTypography = styled(({
-  component, variant, align, color, display, noWrap, ...otherProps
+  component, variant, align, color, display, noWrap, helpTextFontSize, ...otherProps
 }) => {
   const Tag = component;
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -119,6 +119,9 @@ export const StyledTypography = styled(({
   ${({ theme, variant }) => variant === 'helpText' && css`
     font-weight: ${theme.fontWeight.normal};
     color: ${theme.colors.grey600};
+    ${({ helpTextFontSize }) => helpTextFontSize && css`
+      font-size: ${theme.fontSize[`${helpTextFontSize}`]};
+    `};
   `};
   // OVERLINE
   ${({ theme, variant }) => variant === 'overline' && css`

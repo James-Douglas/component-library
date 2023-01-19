@@ -94,6 +94,7 @@ populated with `prefillValue` and prefilled styles will be applied.
     const prefixBlock = boolean('prefixBlock', false, componentPropsId);
     const suffixContent = text('suffixContent', '', componentPropsId);
     const alignOptionalText = select('alignOptionalText', ['bottomRight', 'bottomLeft', 'topRight'], 'bottomRight' , componentPropsId);
+    const helpText = text('helpText', '', componentPropsId);
     const { trackingLabel, title, body, placement, screenReaderLabel, variant }= getTooltipKnobs(tooltipGroupId);
     return (
       <div style={{ padding: '2%' }}>
@@ -122,6 +123,7 @@ populated with `prefillValue` and prefilled styles will be applied.
           prefixBlock={prefixBlock}
           suffixContent={suffixContent}
           alignOptionalText={alignOptionalText}
+          helpText={helpText}
         />
       </div>
     );
