@@ -5,7 +5,7 @@ export const StyledWrapper = styled.div`
   color: ${({ theme }) => theme.toggle.button.text};
   ${({ disabled }) => disabled
     && css`
-      color: ${({ theme }) => theme.toggle.button.disabledColor};
+      color: ${({ theme }) => theme.toggle.greyed.color};
     `};
 `;
 

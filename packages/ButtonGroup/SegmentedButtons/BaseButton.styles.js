@@ -41,6 +41,10 @@ export const StyledToggleInput = styled.input`
     box-shadow: none;
     font-weight: ${({ theme }) => theme.fontWeight.semibold};
   }
+  
+  &:disabled + label div {
+    background-color: ${({ theme }) => theme.toggle.greyed.background};
+  }
 
   &:disabled + label:hover {
     cursor: not-allowed;
