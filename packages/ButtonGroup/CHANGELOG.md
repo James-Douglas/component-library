@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.19...@comparethemarketau/manor-buttongroup@0.18.0) (2023-02-06)
+
+
+### Features
+
+* **ado-8471:** segmented buttons disabled style ([#693](https://github.com/comparethemarketau/manor-react/issues/693)) ([7f9c322](https://github.com/comparethemarketau/manor-react/commit/7f9c322f97c7d757fa2285f151ce2fdb7b0f6333))
+
+
+
+
+
 ## [0.17.19](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-buttongroup@0.17.18...@comparethemarketau/manor-buttongroup@0.17.19) (2023-01-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-buttongroup
