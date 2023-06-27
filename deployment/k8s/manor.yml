@@ -20,7 +20,7 @@ spec:
           image: quay.io/comparethemarketau/manor-react:$DOCKER_TAG
           imagePullPolicy: Always
           ports:
-            - containerPort: 9493
+            - containerPort: 8443
       imagePullSecrets:
         - name: regcred
 ---
@@ -32,7 +32,7 @@ spec:
   selector:
     app: manor
   ports:
-    - port: 9493
+    - port: 8443
       protocol: TCP
 ---
 kind: Ingress
@@ -51,4 +51,4 @@ spec:
           - path: /manor(/|$)(.*)
             backend:
               serviceName: manor-service
-              servicePort: 9493
+              servicePort: 8443

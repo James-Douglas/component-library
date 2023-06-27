@@ -1,7 +1,7 @@
 #-----------------------------------------------------#
 # BUILD
 #-----------------------------------------------------#
-FROM node:10.17.0-alpine as build
+FROM node:12.12.0-alpine as build
 
 ARG NPM_FONTAWESOME_TOKEN
 ENV NPM_FONTAWESOME_TOKEN=${NPM_FONTAWESOME_TOKEN}
@@ -21,3 +21,4 @@ WORKDIR /usr/share/nginx/html
 COPY --from=build /usr/src/app/storybook-static/ .
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 CMD service nginx start
+

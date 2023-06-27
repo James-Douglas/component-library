@@ -7,7 +7,14 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "react-app-polyfill": "^1.0.3"
+    "react-app-polyfill": "^1.0.3",
+    "lodash": "4.17.21",
+    "minimist": "1.2.6",
+    "@jridgewell/source-map": "0.3.3"
+  },
+  "resolutions": {
+    "lodash": "4.17.21",
+    "minimist": "1.2.6"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -16,7 +23,7 @@
     "tdd": "jest --coverage --watchAll",
     "test": "cross-env JEST_SILENT_REPORTER_DOTS=true jest --reporters=jest-silent-reporter --coverage --watchAll",
     "test:ci": "cross-env CI=true jest",
-    "storybook": "start-storybook -p 9009 -s public",
+    "storybook": "yarn install && start-storybook -p 8443 -s public",
     "build-storybook": "build-storybook -s public",
     "lint": "eslint --ext .js --ignore-pattern 'packages/**/lib/*' ./packages",
     "update-ctm-deps": "lerna exec --parallel \"npm-check-updates '/^@comparethemarketau/.*$/' --upgrade --packageManager yarn\""
@@ -132,7 +139,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^3.1.1",
     "rollup-plugin-smart-asset": "^2.0.7",
-    "semantic-release": "^15.13.24",
+    "semantic-release": "^17.4.2",
     "styled-components": "5.1.1",
     "tailwindcss": "^1.1.2",
     "tailwindcss-typography": "^2.2.0"

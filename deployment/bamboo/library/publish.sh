@@ -5,15 +5,15 @@ export NPM_FONTAWESOME_TOKEN=$bamboo_fa_token_password
 
 source ~/.nvm/nvm.sh
 
-echo "running: nvm install v10.17.0"
-nvm install v10.17.0
+echo "running: nvm install v12.12.0"
+nvm install v12.12.0
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not install the correct node version with nvm"
   exit 1
 fi
 
-echo "running: nvm use v10.17.0"
-nvm use v10.17.0
+echo "running: nvm use v12.12.0"
+nvm use v12.12.0
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not set the correct node version with nvm"
   exit 1
