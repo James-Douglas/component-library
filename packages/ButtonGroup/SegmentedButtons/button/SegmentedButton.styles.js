@@ -10,7 +10,7 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledSegmentedButtonContent = styled.div`
-  height: 100%;
+  height: ${({ height }) => height};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,7 @@ export const StyledSegmentedButtonContent = styled.div`
   text-align: center;
   width: auto;
   & div {
-    margin-bottom: ${({ theme }) => theme.spacing[12]};
+    margin-bottom: ${({ theme, subText }) => (subText ? theme.spacing[40] : theme.spacing[12])};
   }
   ${({ fixed }) => fixed
     && css`

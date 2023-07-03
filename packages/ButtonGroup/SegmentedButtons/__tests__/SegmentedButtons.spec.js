@@ -33,6 +33,7 @@ describe('SegmentedButtons', () => {
         },
         {
           label: 'button3',
+          subText: 'subTextButton3',
           value: 3,
           id: 'c',
         },
@@ -71,6 +72,7 @@ describe('SegmentedButtons', () => {
       expect(button2.props.id).toEqual('b');
 
       expect(button3.props.title).toEqual('button3');
+      expect(button3.props.subText).toEqual('subTextButton3');
       expect(button3.props.value).toEqual(3);
       expect(button3.props.id).toEqual('c');
 

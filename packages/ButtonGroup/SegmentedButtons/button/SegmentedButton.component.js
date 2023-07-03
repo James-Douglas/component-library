@@ -13,6 +13,7 @@ import {
 const SegmentedButton = ({
   id: propsId,
   title,
+  subText,
   value,
   name,
   contentWidth,
@@ -49,9 +50,21 @@ const SegmentedButton = ({
           <StyledSegmentedButtonContent
             fixed={fixed}
             contentWidth={contentWidth}
+            height={subText ? '50%' : '100%'}
           >
-            <Typography variant="body1" component="div">{title}</Typography>
+            <Typography variant={subText ? 'subtitle2' : 'body1'} component="div">{title}</Typography>
           </StyledSegmentedButtonContent>
+          {subText
+              && (
+              <StyledSegmentedButtonContent
+                fixed={fixed}
+                contentWidth={contentWidth}
+                subText
+                height={subText ? '50%' : '100%'}
+              >
+                <Typography variant="helpText" component="div" align="center">{subText}</Typography>
+              </StyledSegmentedButtonContent>
+              )}
         </StyledWrapper>
       </ButtonLabel>
     </BaseButton>
@@ -72,6 +85,13 @@ SegmentedButton.propTypes = {
   title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
+    PropTypes.node,
+  ]),
+  /**
+   * The optional subText content to render in the button
+   */
+  subText: PropTypes.oneOfType([
+    PropTypes.string,
     PropTypes.node,
   ]),
   /**
@@ -127,6 +147,7 @@ SegmentedButton.defaultProps = {
   id: null,
   name: '',
   title: '',
+  subText: null,
   contentWidth: null,
   selectedValue: null,
   invalid: false,

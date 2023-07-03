@@ -31,6 +31,7 @@ export const generateButtons = (
     const propsToAdd = {
       name,
       title: entry.label,
+      subText: entry.subText,
       value: entry.value,
       id: entry.id,
       selectedValue: selectedButtonValue,

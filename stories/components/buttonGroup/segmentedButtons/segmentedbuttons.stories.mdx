@@ -46,13 +46,13 @@ The SegmentedButtons component manages a group of buttons. The default behaviour
       <Row>
         <Column>
           <SegmentedButtons
-            label="Flex width Segmented buttons with an odd number of buttons"
+            label="Flex width Segmented buttons with an odd number of buttons and subText"
             trackingLabel="Example B"
             flex
             buttonsContent={[
-              { label: 'button1', value: 6 },
-              { label: 'button2', value: 7 },
-              { label: 'button3', value: 8 },
+              { label: 'Flat', value: 'flat', subText: <>Get the same Feed-in Tariff regardless of<br/> the amount exported or time of day. (as <br/>per plan T&C's</>},
+              { label: 'Time of Export', value: 'toe', subText: <>Get variable Feed-in Tariffs, depending<br/> on the time of the day you export to the <br/>grid (as per plan T&C’s)</>},
+              { label: 'Block FiT', value: 'block', subText: <>Get variable Feed-in Tariffs, based on <br/>the amount you export to the grid (as <br/>per plan T&C’s)</>},
             ]}
             name="SegmentedButtons2"
             handleToggle={() => {}}
