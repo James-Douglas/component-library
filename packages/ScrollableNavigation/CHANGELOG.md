@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-scrollablenavigation@0.1.8...@comparethemarketau/manor-scrollablenavigation@0.1.9) (2023-07-04)
+
+**Note:** Version bump only for package @comparethemarketau/manor-scrollablenavigation
+
+
+
+
+
 ## [0.1.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-scrollablenavigation@0.1.7...@comparethemarketau/manor-scrollablenavigation@0.1.8) (2023-07-03)
 
 **Note:** Version bump only for package @comparethemarketau/manor-scrollablenavigation
