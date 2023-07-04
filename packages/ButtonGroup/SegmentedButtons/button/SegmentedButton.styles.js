@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const StyledWrapper = styled.div`
-  padding: 1.4rem 1.6rem 0.2rem 1.6rem;
+  padding: ${({ theme, hasSubText }) => (hasSubText ? `${theme.spacing[4]} ${theme.spacing[16]}` : `${theme.spacing[16]} ${theme.spacing[16]} ${theme.spacing[4]} ${theme.spacing[16]}`)};
   color: ${({ theme }) => theme.toggle.button.text};
   ${({ disabled }) => disabled
     && css`
@@ -14,7 +14,7 @@ export const StyledSegmentedButtonContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: ${({ theme }) => theme.fontSize.base};
+  font-size: ${({ theme, subText }) => (subText ? theme.fontSize.sm : theme.fontSize.base)};
   line-height: ${({ theme }) => theme.lineHeight.tight};
   min-height: ${({ theme }) => theme.spacing[20]};
   text-align: center;
