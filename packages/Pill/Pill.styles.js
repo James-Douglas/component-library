@@ -13,29 +13,33 @@ const ManorStyledPill = styled(({ ...otherProps }) => (
 ))`
   & {
     height: ${({ size, theme }) => (size === 'medium' ? `${theme.spacing[40]} !important` : `${theme.spacing[32]} !important`)};
-    border: ${({ theme }) => (`1px solid ${theme.colors.primary500} !important`)};
+    border: ${({ theme, disabled }) => (disabled ? `1px solid ${theme.colors.grey800} !important` : `1px solid ${theme.colors.primary500} !important`)};
     background: ${({ theme, selected }) => `${selected ? theme.colors.primary50 : 'transparent'} !important`};
     border-radius: ${({ theme }) => `${theme.spacing[20]} !important`};
+    &:hover {
+      border:  ${({ theme }) => `${theme.colors.primary50} !important`};
+      background: ${({ theme }) => `${theme.colors.primary50} !important`};
+    }
   }
-   
+
   & .MuiChip-icon {
-    color: ${({ theme }) => theme.colors.primary500};
+    color: ${({ theme, disabled }) => (disabled ? theme.colors.grey800 : theme.colors.primary500)};
+  }
+  
+  &.Mui-disabled {
+    color: ${({ theme }) => theme.colors.grey800};
   }
 
   & .MuiChip-deleteIcon {
     font-size: ${({ theme }) => theme.spacing[16]};
     margin-left: 0rem;
     margin-right: 1rem !important;
-    color: ${({ theme }) => theme.colors.primary500};
-    &:hover {
-      color: ${({ theme }) => theme.colors.primary500};
-    }
+    color: ${({ theme, disabled }) => (disabled ? theme.colors.grey800 : theme.colors.primary500)};
   }
 `;
 
 const StyledLabel = styled(Typography)`
-  color: ${({ theme }) => theme.colors.primary500};
-  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.grey800};
 `;
 
 export { ManorStyledPillToggle, ManorStyledPill, StyledLabel };
