@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-pill@0.4.14...@comparethemarketau/manor-pill@0.5.0) (2023-07-20)
+
+
+### Features
+
+* **ado-16696:** changed stylying of pills ([#698](https://github.com/comparethemarketau/manor-react/issues/698)) ([311e881](https://github.com/comparethemarketau/manor-react/commit/311e8812f8b6cb99cdb360c631672c0d320b5ff7))
+
+
+
+
+
 ## [0.4.14](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-pill@0.4.13...@comparethemarketau/manor-pill@0.4.14) (2023-01-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-pill
