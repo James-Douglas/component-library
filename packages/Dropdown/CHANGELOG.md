@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.18...@comparethemarketau/manor-dropdown@0.13.0) (2023-07-25)
+
+
+### Features
+
+* **ado-16691:** changed mobile dropdowns ([#699](https://github.com/comparethemarketau/manor-react/issues/699)) ([78bcaad](https://github.com/comparethemarketau/manor-react/commit/78bcaad1775cf01c485b2e3ac4af67dce6269d97))
+
+
+
+
+
 ## [0.12.18](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-dropdown@0.12.17...@comparethemarketau/manor-dropdown@0.12.18) (2023-01-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-dropdown
