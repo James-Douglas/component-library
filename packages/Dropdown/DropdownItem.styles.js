@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const StyledListItem = styled.li`
   svg {
@@ -6,14 +6,6 @@ export const StyledListItem = styled.li`
     left: 1rem;
     top: 1rem;
   }
-
-  ${({ active, desktop }) => (active && !desktop) && css`
-     svg {
-      position: absolute;
-      left: 1rem;
-      top: 2rem;
-     }
-  `}
 `;
 
 export const StyledItemContent = styled.span`

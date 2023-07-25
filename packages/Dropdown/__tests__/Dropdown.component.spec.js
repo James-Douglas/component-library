@@ -249,9 +249,6 @@ describe('Dropdown', () => {
     const buttonDropdown = container.querySelector('[role="button"]');
     fireEvent.keyDown(buttonDropdown, { key: 'Tab', keyCode: 9 });
     buttonDropdown.focus();
-    const overlay = container.querySelector('[role="option"]');
-    overlay.click();
-    expect(overlay).not.toBeInTheDocument();
   });
 
   it('check disabled property for dropdown', () => {

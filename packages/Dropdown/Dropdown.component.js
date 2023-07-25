@@ -14,7 +14,6 @@ import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { Label } from '@comparethemarketau/manor-label';
-import { Overlay } from '@comparethemarketau/manor-overlay';
 import { FieldValidation } from '@comparethemarketau/manor-field-validation';
 import { SupportingElements } from '@comparethemarketau/manor-supporting-elements';
 import {
@@ -51,24 +50,18 @@ const Dropdown = ({
   const id = useId(propsId);
   const dropdownWrapper = useRef();
   const button = useRef();
-  const { isDesktop, trackInteraction } = useContext(ManorContext);
+  const { trackInteraction } = useContext(ManorContext);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState();
-  const mobileOverlay = !isDesktop && isMobileModalView;
   const [value, setValue] = useState(selectedValue);
 
   const handleDropdownButton = () => {
     if (!disabled) {
       setDropdownOpen(!isDropdownOpen);
-      setIsMobileModalView(true);
     }
   };
 
   const handleFocusDropdownButton = () => {
-    if (!isDesktop) {
-      handleDropdownButton();
-    }
     if (handleFocus) {
       handleFocus();
     }
@@ -83,9 +76,8 @@ const Dropdown = ({
 
   const modalClose = useCallback(() => {
     setDropdownOpen(false);
-    setIsMobileModalView(false);
     setFocusedOptionIndex(null);
-  }, [setDropdownOpen, setIsMobileModalView, setFocusedOptionIndex]);
+  }, [setDropdownOpen, setFocusedOptionIndex]);
 
   // click handler for dropdownItems
   const onItemClick = useCallback((event, optionValue, option) => {
@@ -231,8 +223,8 @@ const Dropdown = ({
     if (!isDropdownOpen) return null;
 
     const renderOptions = (
-      <StyledList desktop={isDesktop}>
-        <StyledListul desktop={isDesktop} screenTouch={isScreenTouch()}>
+      <StyledList>
+        <StyledListul screenTouch={isScreenTouch()}>
           {childrenWithProps}
         </StyledListul>
       </StyledList>
@@ -240,14 +232,10 @@ const Dropdown = ({
 
     return (
       <>
-        {(mobileOverlay && isDropdownOpen) && (
-        <Overlay opacityLevel={0.3} visible={mobileOverlay && isDropdownOpen} onClose={modalClose} handleClick={modalClose} />
-        )}
         {renderOptions}
       </>
     );
   };
-
   return (
     <>
       <StyledDropdownMainWrap onKeyDown={keyboardAccessibility} id={id} variant={variant}>

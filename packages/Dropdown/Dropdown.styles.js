@@ -5,7 +5,6 @@ export const StyledDropdownMainWrap = styled.div`
     box-sizing: border-box;
   }
   position: relative;
-  margin-bottom: ${({ theme }) => theme.spacing[20]};
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize.base};
   ${({ variant }) => (variant === 'text' || variant === 'text-fixed-chevron') && css`
@@ -85,10 +84,8 @@ export const StyledListul = styled.ul`
   margin: 0;
   padding: 0;
   width: 100%;
-  ${({ desktop }) => desktop && css`
-    max-height: ${({ theme }) => (theme.spacing[252])};
-    overflow: auto;
-  `}
+  max-height: ${({ theme }) => (theme.spacing[252])};
+  overflow: auto;
   li {
     list-style-type: none;
     position: relative;
@@ -100,11 +97,6 @@ export const StyledListul = styled.ul`
         cursor: pointer;
         background: ${({ theme }) => theme.dropdown.list.hoverBackground};
       }
-    `}
-    ${({ desktop }) => !desktop && css`
-      font-size: ${({ theme }) => theme.fontSize.base};
-      line-height: ${({ theme }) => theme.lineHeight.tight};
-      padding: ${({ theme }) => `${theme.spacing['16']} ${theme.spacing['36']} ${theme.spacing['20']}`};
     `}
     &:focus {
       outline: none;
@@ -121,19 +113,6 @@ export const StyledList = styled.div`
   z-index: ${({ theme }) => theme.zIndex[40]};
   background: ${({ theme }) => theme.colors.white};
   top: ${({ theme }) => `calc(100% + ${theme.spacing[8]})`};
-  ${({ desktop }) => (!desktop) && css`
-    max-height: initial;
-    overflow: auto;
-    right: ${({ theme }) => theme.spacing[8]};
-    left: ${({ theme }) => theme.spacing[8]};
-    width: ${({ theme }) => `calc(100% - ${theme.spacing[16]})`};
-    position: fixed;
-    bottom: ${({ theme }) => theme.spacing[32]};
-    top: ${({ theme }) => theme.spacing[152]};
-    background: ${({ theme }) => theme.colors.white};
-    border-radius: ${({ theme }) => theme.borderRadius.default};
-    z-index: ${({ theme }) => theme.zIndex[40]};
-  `};
 `;
 
 export const StyledAffix = styled.span`
