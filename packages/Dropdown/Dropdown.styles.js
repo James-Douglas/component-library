@@ -112,7 +112,9 @@ export const StyledList = styled.div`
   box-shadow: ${({ theme }) => theme.dropdown.shadow};
   z-index: ${({ theme }) => theme.zIndex[40]};
   background: ${({ theme }) => theme.colors.white};
-  top: ${({ theme }) => `calc(100% + ${theme.spacing[8]})`};
+  ${({ variant }) => (variant === 'text' || variant === 'text-fixed-chevron') && css`
+    top: ${({ theme }) => `calc(100% + ${theme.spacing[4]})`};
+  `}
 `;
 
 export const StyledAffix = styled.span`

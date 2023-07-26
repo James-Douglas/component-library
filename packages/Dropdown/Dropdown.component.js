@@ -223,7 +223,7 @@ const Dropdown = ({
     if (!isDropdownOpen) return null;
 
     const renderOptions = (
-      <StyledList>
+      <StyledList variant={variant}>
         <StyledListul screenTouch={isScreenTouch()}>
           {childrenWithProps}
         </StyledListul>
