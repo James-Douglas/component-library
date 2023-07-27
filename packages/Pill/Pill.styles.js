@@ -40,6 +40,7 @@ const ManorStyledPill = styled(({ ...otherProps }) => (
 
 const StyledLabel = styled(Typography)`
   color: ${({ theme }) => theme.colors.grey800};
+  padding: ${({ theme }) => theme.spacing[8]};
 `;
 
 export { ManorStyledPillToggle, ManorStyledPill, StyledLabel };
