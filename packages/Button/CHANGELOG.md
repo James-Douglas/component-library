@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.11.1...@comparethemarketau/manor-button@0.11.2) (2023-09-20)
+
+
+### Bug Fixes
+
+* **Button:** specify required uuid dep version ([#704](https://github.com/comparethemarketau/manor-react/issues/704)) ([4c25590](https://github.com/comparethemarketau/manor-react/commit/4c255903d02bba2c162ca29abcf40f72a6d7e177))
+
+
+
+
+
 ## [0.11.1](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.11.0...@comparethemarketau/manor-button@0.11.1) (2022-03-22)
 
 
