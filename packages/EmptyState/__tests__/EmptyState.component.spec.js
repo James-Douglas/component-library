@@ -4,10 +4,10 @@ import { render } from '../../../testUtils';
 import EmptyState from '../EmptyState.component';
 
 describe('Empty State', () => {
-  it('renders empty state page with default image', () => {
+  it('renders empty state page with no image', () => {
     const { container } = render(<EmptyState />);
     const picture = container.querySelector('img');
-    expect(picture).toHaveAttribute('src', 'sergei.png');
+    expect(picture).toBeNull();
   });
 
   it('renders empty state page with custom image', () => {

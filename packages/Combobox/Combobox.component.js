@@ -40,6 +40,7 @@ export function comboDropdownList(
   filteredValuesRefs,
   listVisible,
   renderView,
+  hasPicture,
 ) {
   const positionDesktop = !desktop ? 'relative' : 'absolute';
   const emptyState = !listVisible || currentPrefillValue.length < characterMinimum;
@@ -48,12 +49,12 @@ export function comboDropdownList(
   return (
     <WrapList desktop={desktop}>
       <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
-        <StyledComboListWrap desktop={desktop} renderView={renderView}>
+        <StyledComboListWrap desktop={desktop} renderView={renderView} hasPicture={hasPicture}>
           <StyledComboList desktop={desktop}>
             {!emptyState && comboDataList(filteredValues, handleSelectItem, filteredValuesRefs, listIcon)}
           </StyledComboList>
-          {!emptyState && <div>{listInfoBox(listInfoBoxContent, currentPrefillValue, characterMinimum, bottomButton)}</div>}
         </StyledComboListWrap>
+        {!emptyState && <div>{listInfoBox(listInfoBoxContent, currentPrefillValue, characterMinimum, bottomButton)}</div>}
       </StyledDropdownList>
     </WrapList>
   );
@@ -142,7 +143,7 @@ const Combobox = ({
   const mobileOverlay = !isDesktop && isMobileModalView;
 
   const dataRefs = useMemo(
-    () => apiData.map((item) => React.createRef()),
+    () => apiData.map(() => React.createRef()),
     [apiData],
   );
 
@@ -312,7 +313,7 @@ const Combobox = ({
           >
             {emptyStateCondition && mobileOverlay && <StyledEmptyStateMessage><Typography variant="body1">{helperMessage}</Typography></StyledEmptyStateMessage>}
             {noResultCondition && mobileOverlay && (
-              <StyledEmptyStateMessage>
+              <StyledEmptyStateMessage noResults>
                 <EmptyState
                   picture={emptyStatePicture}
                   className={`${emptyStateClassName} empty-state-wrap`}
@@ -353,6 +354,7 @@ const Combobox = ({
                 dataRefs,
                 listVisible,
                 renderView,
+                emptyStatePicture,
               )}
               disableClearIcon={disableClearIcon}
               gtmPidAnonymous={gtmPidAnonymous}

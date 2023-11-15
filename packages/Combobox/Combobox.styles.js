@@ -13,7 +13,7 @@ export const StyledDropdownList = styled.div`
   }
   ${({ desktop }) => !desktop && css`
     height: 100%;
-    max-height: ${({ theme }) => (theme.minHeight.full)};;
+    max-height: ${({ theme }) => (theme.minHeight.full)};
     margin: 0;
   `}
   z-index: ${({ theme }) => (theme.zIndex[40])};
@@ -64,6 +64,7 @@ export const StyledIconWrap = styled.span`
 export const StyledButtonWrap = styled.div`
   justify-content: space-around;
   text-align: center;
+  margin-top:  ${({ theme }) => theme.spacing[28]};
   border: ${({ theme }) => theme.combo.list.border};
   padding:  ${({ theme }) => `${theme.spacing[8]} 0`};
   background: ${({ theme }) => (theme.combo.button.background)};
@@ -140,6 +141,9 @@ export const StyledComboListWrap = styled.div`
     flex-direction: column;
     width: ${({ theme }) => (theme.maxWidth.full)};
     max-width: ${({ theme }) => (theme.maxWidth.full)};
+  `}
+  height: 15%;
+  ${({ hasPicture }) => hasPicture && css`
     height: ${({ theme }) => (theme.minHeight.full)};
   `}
   max-height: ${({ renderView }) => `${renderView * 52}px`};
@@ -162,6 +166,9 @@ export const StyledEmptyStateMessage = styled.div`
   left: ${({ theme }) => theme.spacing[16]};
   max-height: ${({ theme }) => (theme.spacing[200])};
   top: ${({ theme }) => theme.spacing[92]};
+  ${({ noResults }) => noResults && css`
+    top: ${({ theme }) => theme.spacing[44]};
+  `}
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.combo.list.item.color};
   text-align: center;

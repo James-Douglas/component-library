@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 import { Picture, picturePropTypes } from '@comparethemarketau/manor-picture';
-import placeholder from '../../images/sergei.png';
 import {
   StyledEmptyState, StyledEmptyStateWrap, StyledPictureContainer, StyledFlexContainer, StyledHeadingContainer, StyledContentContainer,
 } from './EmptyState.styles';
@@ -17,9 +16,9 @@ const EmptyState = ({
 }) => {
   const { isDesktop } = useContext(ManorContext);
   const pictureProps = {
-    src: picture ? picture.src : placeholder,
-    srcsets: picture ? picture.srcsets : [{ srcset: placeholder }],
-    alt: picture ? picture.alt : 'no results found',
+    src: picture?.src,
+    srcsets: picture?.srcsets,
+    alt: picture?.alt,
     title: 'no results found',
   };
 
@@ -27,9 +26,7 @@ const EmptyState = ({
     <StyledEmptyState className={className}>
       <StyledEmptyStateWrap desktop={isDesktop} className={className}>
         <StyledFlexContainer>
-          <StyledPictureContainer>
-            <Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} />
-          </StyledPictureContainer>
+          {picture && <StyledPictureContainer><Picture src={pictureProps.src} srcsets={pictureProps.srcsets} alt={pictureProps.alt} title={pictureProps.title} /></StyledPictureContainer>}
         </StyledFlexContainer>
         <StyledHeadingContainer>
           <Typography align={textPosition} color="inherit" variant="h3">{heading}</Typography>
