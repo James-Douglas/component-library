@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-empty-state@0.8.8...@comparethemarketau/manor-empty-state@0.8.9) (2023-11-15)
+
+
+### Bug Fixes
+
+* **ado-29716:** made image optional for combos ([#707](https://github.com/comparethemarketau/manor-react/issues/707)) ([023cd1b](https://github.com/comparethemarketau/manor-react/commit/023cd1bb9f848c08b436e74dc032389fde635c6a))
+
+
+
+
+
 ## [0.8.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-empty-state@0.8.7...@comparethemarketau/manor-empty-state@0.8.8) (2023-01-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-empty-state

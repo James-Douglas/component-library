@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.22](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.13.21...@comparethemarketau/manor-combobox@0.13.22) (2023-11-15)
+
+
+### Bug Fixes
+
+* **ado-29716:** made image optional for combos ([#707](https://github.com/comparethemarketau/manor-react/issues/707)) ([023cd1b](https://github.com/comparethemarketau/manor-react/commit/023cd1bb9f848c08b436e74dc032389fde635c6a))
+
+
+
+
+
 ## [0.13.21](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.13.20...@comparethemarketau/manor-combobox@0.13.21) (2023-09-20)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combobox
