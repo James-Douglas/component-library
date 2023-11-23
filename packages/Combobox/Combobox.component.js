@@ -49,7 +49,7 @@ export function comboDropdownList(
   return (
     <WrapList desktop={desktop}>
       <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
-        <StyledComboListWrap desktop={desktop} renderView={renderView} hasPicture={hasPicture}>
+        <StyledComboListWrap height={window.visualViewport?.height} desktop={desktop} renderView={renderView} hasPicture={hasPicture}>
           <StyledComboList desktop={desktop}>
             {!emptyState && comboDataList(filteredValues, handleSelectItem, filteredValuesRefs, listIcon)}
           </StyledComboList>

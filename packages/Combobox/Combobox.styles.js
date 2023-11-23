@@ -142,7 +142,9 @@ export const StyledComboListWrap = styled.div`
     width: ${({ theme }) => (theme.maxWidth.full)};
     max-width: ${({ theme }) => (theme.maxWidth.full)};
   `}
-  height: 15%;
+  ${({ height }) => height && css`
+    height: ${height}px};
+  `}
   ${({ hasPicture }) => hasPicture && css`
     height: ${({ theme }) => (theme.minHeight.full)};
   `}
