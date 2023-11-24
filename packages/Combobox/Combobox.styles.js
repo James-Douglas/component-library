@@ -76,7 +76,7 @@ export const StyledButtonWrap = styled.div`
 
 export const StyledDiv = styled.div`
   .input-wrap {
-    width: 80%;
+    width: 100%;
   }
 `;
 

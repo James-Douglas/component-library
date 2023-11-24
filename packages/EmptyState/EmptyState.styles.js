@@ -8,7 +8,6 @@ export const StyledEmptyState = styled.div`
 export const StyledEmptyStateWrap = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.spacing[16]};
-  max-width: ${({ theme }) => theme.emptyState.containerMaxWidth};
   text-align: center;
 `;
 
