@@ -1,21 +1,14 @@
-import styled, { css } from 'styled-components';
-import { Button } from '@comparethemarketau/manor-button';
+import styled from 'styled-components';
 
 export const StyledDropdownList = styled.div`
-  position: ${({ position }) => (position === 'absolute' ? 'absolute' : 'relative')};
-  width: ${({ theme }) => (theme.maxWidth.full)};
+  position: absolute;
+  width: ${({ theme }) => theme.maxWidth.full};
   display:  ${({ position }) => (position === 'hidden' ? 'none' : 'block')};
-  background: ${({ theme }) => (theme.combo.list.background)};
-  box-shadow: ${({ theme, desktop }) => (desktop ? theme.combo.list.shadow : '')};
-  margin-top: ${({ theme }) => (theme.spacing[8])};
+  background: ${({ theme }) => theme.combo.list.background};
+  box-shadow: ${({ theme }) => theme.combo.list.shadow};
   &:focus {
     outline: none;
   }
-  ${({ desktop }) => !desktop && css`
-    height: 100%;
-    max-height: ${({ theme }) => (theme.minHeight.full)};
-    margin: 0;
-  `}
   z-index: ${({ theme }) => (theme.zIndex[40])};
 `;
 
@@ -64,7 +57,6 @@ export const StyledIconWrap = styled.span`
 export const StyledButtonWrap = styled.div`
   justify-content: space-around;
   text-align: center;
-  margin-top:  ${({ theme }) => theme.spacing[28]};
   border: ${({ theme }) => theme.combo.list.border};
   padding:  ${({ theme }) => `${theme.spacing[8]} 0`};
   background: ${({ theme }) => (theme.combo.button.background)};
@@ -83,26 +75,6 @@ export const StyledButtonWrap = styled.div`
 `;
 
 export const StyledDiv = styled.div`
-  ${({ desktop }) => !desktop && css`
-    width: ${({ theme }) => (theme.maxWidth.full)};
-    top: ${({ theme }) => theme.spacing[4]};
-    position: fixed;
-    right: ${({ theme }) => theme.spacing[16]};
-    left: ${({ theme }) => theme.spacing[16]};
-    max-width: ${({ theme }) => `calc(100% - ${theme.spacing[8]})`};
-    .label {
-      visibility: hidden;
-    }
-    .input-wrap {
-      width: auto;
-      right: ${({ theme }) => theme.spacing[16]};
-      left: ${({ theme }) => theme.spacing[16]};
-      position: fixed;
-      top: ${({ theme }) => theme.spacing[162]};
-    }
-    z-index: ${({ theme }) => (theme.zIndex[40])};
-  `}
-
   .input-wrap {
     width: 80%;
   }
@@ -110,85 +82,9 @@ export const StyledDiv = styled.div`
 
 export const WrapList = styled.div`
   position: relative;
-  ${({ desktop }) => !desktop && css`
-    width: 100%;
-    right: 0;
-    left: 0;
-    position: fixed;
-    bottom: 0;
-    top: 0;
-    background: ${({ theme }) => theme.colors.white};
-    border-radius: ${({ theme }) => theme.borderRadius.default};
-    padding-top: ${({ theme }) => theme.spacing[72]};
-    max-height: 100vh;
-    overflow: hidden;
-    &:after {
-      position: absolute;
-      content: '';
-      left: 0;
-      top: 0;
-      width: ${({ theme }) => (theme.maxWidth.full)};
-      height: ${({ theme }) => (theme.spacing[72])};
-      background: ${({ theme }) => theme.combo.button.background};
-    }
-    z-index: ${({ theme }) => (theme.zIndex.entry)};
-  `}
 `;
 
 export const StyledComboListWrap = styled.div`
-  ${({ desktop }) => !desktop && css`
-    display: flex;
-    flex-direction: column;
-    width: ${({ theme }) => (theme.maxWidth.full)};
-    max-width: ${({ theme }) => (theme.maxWidth.full)};
-  `}
-  ${({ height }) => height && css`
-    height: ${height}px};
-  `}
-  ${({ hasPicture }) => hasPicture && css`
-    height: ${({ theme }) => (theme.minHeight.full)};
-  `}
   max-height: ${({ renderView }) => `${renderView * 52}px`};
   overflow-y: auto;
-`;
-
-export const StyledComboList = styled.div`
-  ${({ desktop }) => !desktop && css`
-    font-size: ${({ theme }) => theme.fontSize['3xl']};
-    flex-grow: 1;
-    overflow: auto;
-  `}
-`;
-
-export const StyledEmptyStateMessage = styled.div`
-  position: fixed;
-  width: ${({ theme }) => (theme.maxWidth.full)};
-  max-width: ${({ theme }) => `calc(100% - ${theme.spacing[32]})`};
-  right: ${({ theme }) => theme.spacing[16]};
-  left: ${({ theme }) => theme.spacing[16]};
-  max-height: ${({ theme }) => (theme.spacing[200])};
-  top: ${({ theme }) => theme.spacing[92]};
-  ${({ noResults }) => noResults && css`
-    top: ${({ theme }) => theme.spacing[44]};
-  `}
-  font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.combo.list.item.color};
-  text-align: center;
-  img {
-    max-width: ${({ theme }) => (theme.spacing[100])};
-    margin-bottom: ${({ theme }) => (theme.spacing[20])};
-  }
-  .empty-state-wrap {
-    max-height: ${({ theme }) => (theme.spacing[100])};
-  }
-  z-index: ${({ theme }) => (theme.zIndex[50])};
-`;
-
-export const StyledIconCloseModal = styled(Button)`
-  ${({ desktop }) => !desktop && css`
-    font-size: ${({ theme }) => theme.fontSize['3xl']};
-    position: absolute;
-    right: 7%;
-    top: ${({ theme }) => (theme.spacing[12])};
-  `}
 `;

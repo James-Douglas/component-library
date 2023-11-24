@@ -48,16 +48,9 @@ the input field.
                     id="combo-id-first"
                     required={false}
                     renderView={5}
-                    emptyStatePicture={{
-                      src: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png",
-                      srcsets: [{ srcset: "https://www.comparethemarket.com.au/wp-content/uploads/2019/08/Artboard-1-copy-2@2x.png"}],
-                      alt: 'alt text',
-                      title: 'no results found',
-                    }}
                     tooltip={{ trackingLabel: 'combobox tooltip', title: 'Combobox component' }}
                     emptyStateHeading = "Sorry, no results found"
                     emptyStateChildren='Try adjusting your search to find what you are looking for.'
-                    helperMessage='Please enter your address in the field above and we will try locate it.'
                     listIcon={faMapMarkerAlt}
                     listInfoBoxContent={(<>Can’t find your address? <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
                     handleChange={(value) => {

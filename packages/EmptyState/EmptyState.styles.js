@@ -15,9 +15,6 @@ export const StyledEmptyStateWrap = styled.div`
 export const StyledFlexContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${({ theme }) => theme.spacing[32]};
-  margin-bottom: ${({ theme }) => theme.spacing[32]};
-
 `;
 
 export const StyledPictureContainer = styled.div`

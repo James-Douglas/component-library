@@ -1,31 +1,25 @@
 import React, {
-  useState, useMemo, useCallback, useEffect, useLayoutEffect, useContext,
+  useState, useMemo, useCallback, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 import { useDebouncedCallback } from 'use-debounce';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { Typography } from '@comparethemarketau/manor-typography';
 import { Input } from '@comparethemarketau/manor-input';
 import { ManorContext } from '@comparethemarketau/manor-provider';
 import { useId } from '@comparethemarketau/manor-hooks';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
-import { picturePropTypes } from '@comparethemarketau/manor-picture';
 import { EmptyState } from '@comparethemarketau/manor-empty-state';
 
 import {
   StyledButtonWrap,
-  StyledComboList,
   StyledComboListWrap,
-  StyledDefault,
   StyledDiv,
   StyledDropdownList,
-  StyledEmptyStateMessage,
   StyledIconWrap,
   StyledList,
   StyledListItem,
   WrapList,
-  StyledIconCloseModal,
 } from './Combobox.styles';
 
 export function comboDropdownList(
@@ -40,19 +34,23 @@ export function comboDropdownList(
   filteredValuesRefs,
   listVisible,
   renderView,
-  hasPicture,
+  emptyStateClassName,
+  emptyStateHeading,
+  emptyStateChildren,
 ) {
-  const positionDesktop = !desktop ? 'relative' : 'absolute';
   const emptyState = !listVisible || currentPrefillValue.length < characterMinimum;
-  const positionConst = emptyState ? 'hidden' : positionDesktop;
+  const noResultCondition = filteredValues.length === 0 && currentPrefillValue.length >= characterMinimum;
 
   return (
     <WrapList desktop={desktop}>
-      <StyledDropdownList position={positionConst} role="listwrap" desktop={desktop}>
-        <StyledComboListWrap height={window.visualViewport?.height} desktop={desktop} renderView={renderView} hasPicture={hasPicture}>
-          <StyledComboList desktop={desktop}>
-            {!emptyState && comboDataList(filteredValues, handleSelectItem, filteredValuesRefs, listIcon)}
-          </StyledComboList>
+      <StyledDropdownList role="listwrap">
+        <StyledComboListWrap renderView={renderView}>
+          {!emptyState && comboDataList(filteredValues, handleSelectItem, filteredValuesRefs, listIcon)}
+          {noResultCondition && (
+            <EmptyState className={emptyStateClassName} heading={emptyStateHeading}>
+              {emptyStateChildren}
+            </EmptyState>
+          )}
         </StyledComboListWrap>
         {!emptyState && <div>{listInfoBox(listInfoBoxContent, currentPrefillValue, characterMinimum, bottomButton)}</div>}
       </StyledDropdownList>
@@ -123,10 +121,8 @@ const Combobox = ({
   handleFocus,
   handleBlur,
   emptyStateChildren,
-  emptyStatePicture,
   emptyStateClassName,
   emptyStateHeading,
-  helperMessage,
   disableClearIcon,
   gtmPidAnonymous,
   renderView,
@@ -134,26 +130,15 @@ const Combobox = ({
 }) => {
   const id = useId(propsId);
   const [listVisible, setListVisible] = useState(false);
-  const [isMobileModalView, setIsMobileModalView] = useState(false);
   const [currentValue, setCurrentValue] = useState(value && value.length ? value : prefillValue);
   const [focusedRef, setFocusedRef] = useState(null);
   const bottomButton = React.createRef();
-  const mobileModalRef = React.createRef();
-  const { isDesktop, trackInteraction } = useContext(ManorContext);
-  const mobileOverlay = !isDesktop && isMobileModalView;
+  const { trackInteraction } = useContext(ManorContext);
 
   const dataRefs = useMemo(
     () => apiData.map(() => React.createRef()),
     [apiData],
   );
-
-  const setMobileFocus = () => {
-    setIsMobileModalView(true);
-  };
-
-  const closeFieldModal = () => {
-    setIsMobileModalView(false);
-  };
 
   const debouncedTrackSelection = useDebouncedCallback(
     (selectedValue) => trackInteraction('Selection', 'Combo Box', 'Combo Box', trackingLabel, selectedValue),
@@ -165,9 +150,6 @@ const Combobox = ({
     setListVisible(false);
     setFocusedRef(null);
     debouncedTrackSelection(selectedValue);
-    if (mobileOverlay) {
-      closeFieldModal();
-    }
     if (handleChange) {
       handleChange(selectedValue);
     }
@@ -186,27 +168,6 @@ const Combobox = ({
       handleInput(valueInput);
     }
   }, [setCurrentValue, setListVisible, handleInput, debouncedTrackInput]);
-
-  const handleUserKeyPress = useCallback((event) => {
-    const { keyCode } = event;
-    // escape
-    if (keyCode === 27) {
-      setIsMobileModalView(false);
-    }
-  }, [setIsMobileModalView]);
-
-  useLayoutEffect(() => {
-    window.addEventListener('keydown', handleUserKeyPress);
-    return () => {
-      window.removeEventListener('keydown', handleUserKeyPress);
-    };
-  }, [handleUserKeyPress]);
-
-  useEffect(() => {
-    if (isMobileModalView && mobileModalRef) {
-      mobileModalRef.current.focus();
-    }
-  }, [isMobileModalView, mobileModalRef]);
 
   const handleOnFocus = (event) => {
     // ignore tooltip icon & clear button
@@ -298,97 +259,47 @@ const Combobox = ({
     }
   };
 
-  const emptyStateCondition = currentValue.length < characterMinimum;
-  const noResultCondition = apiData.length === 0 && currentValue.length >= characterMinimum;
-
   return (
-    <>
-      {(mobileOverlay || isDesktop) && (
-        <>
-          <StyledDiv
-            onFocus={handleOnFocus}
-            onBlur={handleOnBlur}
-            onKeyDown={keyboardAccessibility}
-            desktop={isDesktop}
-          >
-            {emptyStateCondition && mobileOverlay && <StyledEmptyStateMessage><Typography variant="body1">{helperMessage}</Typography></StyledEmptyStateMessage>}
-            {noResultCondition && mobileOverlay && (
-              <StyledEmptyStateMessage noResults>
-                <EmptyState
-                  picture={emptyStatePicture}
-                  className={`${emptyStateClassName} empty-state-wrap`}
-                  heading={emptyStateHeading}
-                >
-                  {emptyStateChildren}
-                </EmptyState>
-              </StyledEmptyStateMessage>
-            )}
-            <Input
-              id={id}
-              tooltip={!mobileOverlay && tooltip}
-              placeholder={placeholder}
-              label={!mobileOverlay && label}
-              value={currentValue}
-              prefillValue={prefillValue}
-              required
-              disabled={disabled}
-              validationMessage={validationMessage}
-              prefixContent={prefixContent}
-              suffixContent={suffixContent}
-              autocomplete={autocomplete}
-              handleChange={comboHandleChange}
-              className={className}
-              tabIndex="0"
-              ref={mobileModalRef}
-              role="comboField"
-              disableInteractionTracking
-              dataList={() => comboDropdownList(
-                isDesktop,
-                listInfoBoxContent,
-                listIcon,
-                bottomButton,
-                currentValue,
-                characterMinimum,
-                apiData,
-                handleSelectItem,
-                dataRefs,
-                listVisible,
-                renderView,
-                emptyStatePicture,
-              )}
-              disableClearIcon={disableClearIcon}
-              gtmPidAnonymous={gtmPidAnonymous}
-            />
-            {!isDesktop && <StyledIconCloseModal icon={faTimes} variant="tertiary" handleClick={() => { setIsMobileModalView(false); }} />}
-          </StyledDiv>
-        </>
-      )}
-      {!isDesktop && (
-        <StyledDefault>
-          <Input
-            id={`mobile${id}`}
-            tooltip={tooltip}
-            placeholder={placeholder}
-            label={label}
-            value={currentValue}
-            prefillValue={prefillValue}
-            required={required}
-            disabled={disabled}
-            validationMessage={validationMessage}
-            prefixContent={prefixContent}
-            suffixContent={suffixContent}
-            handleOnClick={setMobileFocus}
-            handleChange={() => {}}
-            handleFocus={setMobileFocus}
-            tabIndex="0"
-            role="comboMobileField"
-            disableClearIcon={disableClearIcon}
-            disableInteractionTracking
-            gtmPidAnonymous={gtmPidAnonymous}
-          />
-        </StyledDefault>
-      )}
-    </>
+    <StyledDiv onFocus={handleOnFocus} onBlur={handleOnBlur} onKeyDown={keyboardAccessibility}>
+      <Input
+        id={id}
+        tooltip={tooltip}
+        placeholder={placeholder}
+        trackingLabel={label}
+        label={label}
+        value={currentValue}
+        prefillValue={prefillValue}
+        required
+        disabled={disabled}
+        validationMessage={validationMessage}
+        prefixContent={prefixContent}
+        suffixContent={suffixContent}
+        autocomplete={autocomplete}
+        handleChange={comboHandleChange}
+        className={className}
+        tabIndex="0"
+        role="comboField"
+        disableInteractionTracking
+        dataList={() => comboDropdownList(
+          true,
+          listInfoBoxContent,
+          listIcon,
+          bottomButton,
+          currentValue,
+          characterMinimum,
+          apiData,
+          handleSelectItem,
+          dataRefs,
+          listVisible,
+          renderView,
+          emptyStateClassName,
+          emptyStateHeading,
+          emptyStateChildren,
+        )}
+        disableClearIcon={disableClearIcon}
+        gtmPidAnonymous={gtmPidAnonymous}
+      />
+    </StyledDiv>
   );
 };
 
@@ -509,11 +420,6 @@ Combobox.propTypes = {
    */
   className: PropTypes.string,
   /**
-   *  Picture props (see the Picture component documentation)
-   */
-  emptyStatePicture: PropTypes.shape(picturePropTypes),
-
-  /**
    * Classes to be applied to the EmptyState component
    */
   emptyStateClassName: PropTypes.string,
@@ -533,10 +439,6 @@ Combobox.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  /**
-   * Message to help user start typing
-   */
-  helperMessage: PropTypes.string,
   /**
    * Disables the clear icon when true
    */
@@ -568,11 +470,9 @@ Combobox.defaultProps = {
   handleInput: null,
   handleFocus: null,
   handleBlur: null,
-  emptyStateChildren: 'No results found',
-  emptyStatePicture: null,
+  emptyStateChildren: 'Please adjust your search',
   emptyStateClassName: '',
-  emptyStateHeading: 'No results found',
-  helperMessage: 'Please start typing',
+  emptyStateHeading: 'Sorry, no results found',
   disableClearIcon: false,
   gtmPidAnonymous: false,
   renderView: 10,

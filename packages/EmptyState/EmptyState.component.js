@@ -32,7 +32,7 @@ const EmptyState = ({
           <Typography align={textPosition} color="inherit" variant="h3">{heading}</Typography>
         </StyledHeadingContainer>
         <StyledContentContainer>
-          <Typography align={textPosition} variant="body1">{children}</Typography>
+          <Typography align={textPosition} variant="body2">{children}</Typography>
         </StyledContentContainer>
       </StyledEmptyStateWrap>
     </StyledEmptyState>

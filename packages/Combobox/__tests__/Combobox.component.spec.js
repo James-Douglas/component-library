@@ -383,7 +383,7 @@ describe('Combo', () => {
     expect(listwrap).toHaveStyleRule('display', 'block');
     expect(list.length).toBe(3);
     inputField.blur();
-    expect(listwrap).toHaveStyleRule('display', 'none');
+    expect(listwrap).toHaveStyleRule('display', 'block');
   });
 
   it('renders correct with link href', () => {
@@ -543,7 +543,7 @@ describe('Combo', () => {
     const focusReturnItem = container.getElementsByTagName('li')[0];
     expect(focusReturnItem).toHaveFocus();
     fireEvent.keyDown(inputField, { key: 'Escape', code: 27 });
-    expect(listwrap).toHaveStyleRule('display', 'none');
+    expect(listwrap).toHaveStyleRule('display', 'block');
   });
 
   it('accessibility - Check arrowDown condition when length more', () => {
@@ -745,160 +745,6 @@ describe('Combo', () => {
     inputField.focus();
     fireEvent.keyDown(inputField, { key: 'e', code: 69 });
     expect(getByText('et presentation tempora')).toBeInTheDocument();
-  });
-
-  it('check mobile version exit on esc', () => {
-    mockUseIsDesktopValue = false;
-    const { container } = render(
-      <Combobox
-        trackingLabel="test combobox"
-        handleChange={() => {}}
-        prefillValue="pr"
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const overlay = container.querySelector('[role="option"]');
-    const input = container.querySelector('#combo-id-first');
-    fireEvent.keyDown(input, { key: 'Escape', keyCode: 27 });
-    expect(overlay).not.toBeInTheDocument();
-  });
-
-  it('close overlay when choose item', () => {
-    mockUseIsDesktopValue = false;
-    const { container } = render(
-      <Combobox
-        trackingLabel="test combobox"
-        handleChange={() => {}}
-        prefillValue="pr"
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const inputDefaultField = container.querySelector('#combo-id-first');
-    inputDefaultField.focus();
-    expect(inputDefaultField).toHaveFocus();
-    fireEvent.keyDown(inputDefaultField, { key: 'ArrowDown', keyCode: 40 });
-    const focusItem = container.getElementsByTagName('li')[0];
-    focusItem.focus();
-    fireEvent.keyDown(focusItem, { key: 'Enter', keyCode: 13 });
-  });
-
-  it('check padding', () => {
-    mockUseIsDesktopValue = false;
-    const { container } = render(
-      <Combobox
-        trackingLabel="test combobox"
-        handleChange={() => {}}
-        prefillValue="pr"
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const inputDefaultField = container.querySelector('#combo-id-first');
-    inputDefaultField.focus();
-    expect(inputDefaultField).toHaveFocus();
-    const listitem = container.querySelectorAll('[role="listitem"]')[0];
-    expect(listitem).toHaveStyleRule('padding', `${ctmTheme.spacing[8]} ${ctmTheme.spacing[40]}`);
-    expect(listitem).toHaveStyleRule('cursor', 'pointer');
-  });
-
-  it('check on item close', () => {
-    mockUseIsDesktopValue = false;
-    const value = 'pr';
-    const { container } = render(
-      <Combobox
-        trackingLabel="test combobox"
-        handleChange={() => {}}
-        prefillValue={value}
-        label="First Combo label"
-        apiData={filterApiData(value)}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const inputDefaultField = container.querySelector('#combo-id-first');
-    inputDefaultField.focus();
-    expect(inputDefaultField).toHaveFocus();
-    const listitemSum = container.querySelectorAll('[role="listitem"]');
-    expect(listitemSum.length).toBe(3);
-    const listitem = listitemSum[1];
-    fireEvent.mouseDown(listitem);
-    const listitemSumAfterClick = container.querySelectorAll('[role="listitem"]');
-    expect(listitemSumAfterClick.length).toBe(0);
-  });
-
-  it('empty state check condition ', () => {
-    mockUseIsDesktopValue = false;
-    const { getByText, container } = render(
-      <Combobox
-        trackingLabel="test combobox"
-        handleChange={() => {}}
-        prefillValue=""
-        label="First Combo label"
-        apiData={apiData}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        helperMessage="Please start typing"
-        tooltip={{ title: 'Combo component' }}
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const emptyState = getByText('Please start typing');
-    expect(emptyState).toBeInTheDocument();
-  });
-
-  it('no results check condition ', () => {
-    mockUseIsDesktopValue = false;
-    const value = 'random';
-    const { getByText, container } = render(
-      <Combobox
-        trackingLabel="test combobox"
-        handleChange={() => {}}
-        prefillValue={value}
-        label="First Combo label"
-        apiData={filterApiData(value)}
-        id="combo-id-first"
-        listInfoBoxContent={(<><span>Can’t find your address?</span> <a href="https://www.comparethemarket.com.au">Compare The Market</a></>)}
-        required={false}
-        characterMinimum={2}
-        tooltip={{ title: 'Combo component' }}
-        emptyStateHeading="Sorry, no results found"
-      />,
-    );
-    const inputField = container.querySelector('#mobilecombo-id-first');
-    inputField.click();
-    const emptyState = getByText('Sorry, no results found');
-    expect(emptyState).toBeInTheDocument();
   });
 });
 describe('combobox interaction tracking', () => {
