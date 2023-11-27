@@ -34,12 +34,13 @@ export function comboDropdownList(
   filteredValuesRefs,
   listVisible,
   renderView,
+  showEmptyState,
   emptyStateClassName,
   emptyStateHeading,
   emptyStateChildren,
 ) {
   const emptyState = !listVisible || currentPrefillValue.length < characterMinimum;
-  const noResultCondition = filteredValues.length === 0 && currentPrefillValue.length >= characterMinimum;
+  const noResultCondition = showEmptyState && filteredValues.length === 0 && currentPrefillValue.length >= characterMinimum;
 
   return (
     <WrapList desktop={desktop}>
@@ -120,6 +121,7 @@ const Combobox = ({
   handleInput,
   handleFocus,
   handleBlur,
+  showEmptyState,
   emptyStateChildren,
   emptyStateClassName,
   emptyStateHeading,
@@ -292,6 +294,7 @@ const Combobox = ({
           dataRefs,
           listVisible,
           renderView,
+          showEmptyState,
           emptyStateClassName,
           emptyStateHeading,
           emptyStateChildren,
@@ -420,6 +423,10 @@ Combobox.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Show empty state
+   */
+  showEmptyState: PropTypes.bool,
+  /**
    * Classes to be applied to the EmptyState component
    */
   emptyStateClassName: PropTypes.string,
@@ -470,6 +477,7 @@ Combobox.defaultProps = {
   handleInput: null,
   handleFocus: null,
   handleBlur: null,
+  showEmptyState: false,
   emptyStateChildren: 'Please adjust your search',
   emptyStateClassName: '',
   emptyStateHeading: 'Sorry, no results found',
