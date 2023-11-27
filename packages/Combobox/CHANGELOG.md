@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.26](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.13.25...@comparethemarketau/manor-combobox@0.13.26) (2023-11-27)
+
+**Note:** Version bump only for package @comparethemarketau/manor-combobox
+
+
+
+
+
 ## [0.13.25](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-combobox@0.13.24...@comparethemarketau/manor-combobox@0.13.25) (2023-11-24)
 
 **Note:** Version bump only for package @comparethemarketau/manor-combobox
