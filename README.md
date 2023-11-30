@@ -1,6 +1,6 @@
 # Manor component Library
 
-[Documentation & live demonstration](https://services.dev.comparethemarket.cloud/manor/?path=/docs/welcome--page)
+[Documentation & live demonstration](https://master.dev.comparethemarket.com.au/)
 
 # Quick Start
 
