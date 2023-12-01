@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.24.9...@comparethemarketau/manor-date-picker@0.25.0) (2023-12-01)
+
+
+### Features
+
+* **ado-27470:** added a dot on today's date for calendar ([#713](https://github.com/comparethemarketau/manor-react/issues/713)) ([ebda95a](https://github.com/comparethemarketau/manor-react/commit/ebda95a7ae5a792600b36b9424fd22a9b4d5bea6))
+
+
+
+
+
 ## [0.24.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-date-picker@0.24.8...@comparethemarketau/manor-date-picker@0.24.9) (2023-01-19)
 
 **Note:** Version bump only for package @comparethemarketau/manor-date-picker
