@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@comparethemarketau/manor-typography';
 
-const Timer = ({ targetTime, typographyVariant }) => {
-  const diffMs = Date.parse(targetTime) - Date.now();
-  const [hours, setHours] = useState(Math.floor(diffMs / 3.6e6));
-  const [minutes, setMinutes] = useState(Math.floor((diffMs % 3.6e6) / 6e4));
-  const [seconds, setSeconds] = useState(Math.floor((diffMs % 6e4) / 1000));
+const Timer = ({ msTimer, targetTime, typographyVariant }) => {
+  // eslint-disable-next-line no-param-reassign
+  if (targetTime) msTimer = Date.parse(targetTime) - Date.now();
+  const [hours, setHours] = useState(Math.floor(msTimer / 3.6e6));
+  const [minutes, setMinutes] = useState(Math.floor((msTimer % 3.6e6) / 6e4));
+  const [seconds, setSeconds] = useState(Math.floor((msTimer % 6e4) / 1000));
   useEffect(() => {
     const myInterval = setInterval(() => {
       if (hours === 0 && minutes === 0 && seconds === 0) {
@@ -31,7 +32,7 @@ const Timer = ({ targetTime, typographyVariant }) => {
   });
 
   return (
-    diffMs > 0
+    msTimer > 0
       ? <Typography variant={typographyVariant}> {hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</Typography>
       : <Typography variant={typographyVariant}>0:00:00</Typography>
   );
@@ -39,9 +40,13 @@ const Timer = ({ targetTime, typographyVariant }) => {
 
 Timer.propTypes = {
   /**
+   * Timer value in milliseconds
+   */
+  msTimer: PropTypes.number,
+  /**
    * An ISO String of target time
    */
-  targetTime: PropTypes.string.isRequired,
+  targetTime: PropTypes.string,
   /**
    * The typography variant we want to display the countdown in
    */
@@ -49,6 +54,8 @@ Timer.propTypes = {
 };
 
 Timer.defaultProps = {
+  msTimer: 0,
+  targetTime: '',
   typographyVariant: 'body1',
 };
 

@@ -26,6 +26,8 @@ The Timer component is used to display a countdown until the target date in hour
             <Timer targetTime={timer1Date.toISOString()} />
             <Typography variant="h4">Timer with subtitle2 typography</Typography>
             <Timer typographyVariant="subtitle2" targetTime={timer2Date.toISOString()} />
+            <Typography variant="h4">Timer using milliseconds instead of targetTime</Typography>
+            <Timer msTimer={32000} />
           </div>
         </div>
       );
