@@ -1,0 +1,37 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { Timer } from '@comparethemarketau/manor-timer';
+import { Typography } from '@comparethemarketau/manor-typography';
+
+<Meta title="Components/Timer" component={Timer} />
+
+# Timer
+
+The Timer component is used to display a countdown until the target date in hours:minutes:seconds
+
+<Preview>
+  <Story name="Timer">
+    {() => {
+      const timer1Date = new Date();
+      timer1Date.setMinutes(timer1Date.getMinutes() + 1);
+      timer1Date.setSeconds(timer1Date.getSeconds() + 30);
+      const timer2Date = new Date();
+      timer2Date.setHours(timer2Date.getHours() + 1);
+      timer2Date.setMinutes(timer2Date.getMinutes() + 1);
+      timer2Date.setSeconds(timer2Date.getSeconds() + 30);
+      return (
+        <div style={{ padding: '2%'}}>
+          <div style={{ display: 'flex', height: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <Typography variant="h4">Timer</Typography>
+            <Timer targetTime={timer1Date.toISOString()} />
+            <Typography variant="h4">Timer with subtitle2 typography</Typography>
+            <Timer typographyVariant="subtitle2" targetTime={timer2Date.toISOString()} />
+          </div>
+        </div>
+      );
+    }}
+  </Story>
+</Preview>
+
+### Props
+<Props of={Timer} />
