@@ -22,7 +22,7 @@ export const StyledDateRangePickerWrap = styled.div`
 
 export const StyledDateRangePicker = styled.div`
   display: flex;
-  max-width: ${({ theme }) => '48rem'};
+  max-width: 62rem;
   & div :last-child {
     margin-right: 0 !important;
   }
@@ -34,4 +34,13 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   path {
     fill: ${({ theme }) => theme.datepicker.navigationButtonColor};
   }
+`;
+
+export const StyledTodayWrap = styled.div`
+  color: ${({ theme, selected }) => (selected ? theme.colors.white : theme.colors.primary500)};
+`;
+
+export const StyledTodayDot = styled.div`
+  position: absolute;
+  margin: ${({ theme }) => `-${theme.spacing[8]} 0 0 ${theme.spacing[16]}`};
 `;

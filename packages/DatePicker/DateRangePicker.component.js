@@ -1,13 +1,7 @@
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import React, {
-  createRef,
-  useCallback,
-  useLayoutEffect,
-  useState,
-  useEffect,
-  useContext,
-  useRef,
+  createRef, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import { DayPickerRangeController as RSDayPickerRange } from 'react-dates';
@@ -19,9 +13,10 @@ import { useId, useMountEffect, usePrevious } from '@comparethemarketau/manor-ho
 import { DateInput } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { ManorContext } from '@comparethemarketau/manor-provider';
-
 import { StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
-import { StyledDateRangePicker, StyledDateRangePickerWrap, StyledFontAwesomeIcon } from './DateRangePicker.styles';
+import {
+  StyledDateRangePicker, StyledDateRangePickerWrap, StyledFontAwesomeIcon, StyledTodayDot, StyledTodayWrap,
+} from './DateRangePicker.styles';
 
 const DISPLAY_FORMAT = 'DD/MM/YYYY';
 
@@ -49,12 +44,12 @@ const DateRangePicker = ({
   handleChange,
   pickerVisible,
   readonly,
+  keepOpen,
 }) => {
   const startDateId = useId(propsStartDateId);
   const endDateId = useId(propsEndDateId);
   const { breakpoint, trackInteraction } = useContext(ManorContext);
-  const containerRef = React.useRef();
-  const node = containerRef;
+  const node = React.useRef();
   const [startDate, setStartDate] = useState(startDateValue ? startDateValue.format(DISPLAY_FORMAT) : '');
   const [startDateMoment, setStartDateMoment] = useState(startDateValue ? moment(startDateValue, DISPLAY_FORMAT, true) : null);
   const [endDate, setEndDate] = useState(endDateValue ? endDateValue.format(DISPLAY_FORMAT) : '');
@@ -252,6 +247,10 @@ const DateRangePicker = ({
     }
   }, []);
 
+  const renderToday = (day, mods) => (day.isSame(moment(), 'date')
+    ? (<StyledTodayWrap selected={mods.has('selected') || mods.has('selected-start-no-selected-end') || mods.has('selected-start')}>{day.format('D')}<StyledTodayDot>•</StyledTodayDot></StyledTodayWrap>)
+    : (day.format('D')));
+
   useLayoutEffect(() => {
     // add when mounted
     document.addEventListener('mousedown', handleClickOutside);
@@ -315,7 +314,7 @@ const DateRangePicker = ({
           />
         </StyledDateRangePickerWrap>
       </StyledDateRangePicker>
-      {isVisible && (
+      {(isVisible || keepOpen) && (
         <StyledCalendar
           endDateAriaLabel={endDateAriaLabel}
           startDateAriaLabel={startDateAriaLabel}
@@ -329,6 +328,7 @@ const DateRangePicker = ({
             onDatesChange={onDatesChange} // PropTypes.func.isRequired,
             focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
             onFocusChange={focusHandler} // PropTypes.func.isRequired,
+            renderDayContents={renderToday}
             numberOfMonths={numberOfMonths}
             hideKeyboardShortcutsPanel
             isDayBlocked={isDayBlocked}
@@ -445,6 +445,10 @@ DateRangePicker.propTypes = {
    * Specifies that the date input should be read-only. However you can still set dates from the picker
    */
   readonly: PropTypes.bool,
+  /**
+   * Will keep the calendar open
+   */
+  keepOpen: PropTypes.bool,
 };
 
 DateRangePicker.defaultProps = {
@@ -470,6 +474,7 @@ DateRangePicker.defaultProps = {
   handleChange: null,
   pickerVisible: false,
   readonly: false,
+  keepOpen: false,
 };
 
 export default DateRangePicker;

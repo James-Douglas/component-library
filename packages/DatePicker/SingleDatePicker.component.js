@@ -13,7 +13,9 @@ import { DateInput } from '@comparethemarketau/manor-input';
 import { tooltipPropTypes } from '@comparethemarketau/manor-tooltip';
 import { useDebouncedCallback } from 'use-debounce';
 import { StyledCalendar, StyledDateRangePickerContainer } from './DatePicker.styles';
-import { StyledDateRangePickerWrap, StyledFontAwesomeIcon } from './SingleDatePicker.styles';
+import {
+  StyledDateRangePickerWrap, StyledFontAwesomeIcon, StyledTodayWrap, StyledTodayDot,
+} from './SingleDatePicker.styles';
 
 const displayFormat = 'DD/MM/YYYY';
 
@@ -34,6 +36,7 @@ const SingleDatePicker = ({
   handleFocus,
   readonly,
   pickerVisible,
+  keepOpen,
 }) => {
   const dateId = useId(propsDateId);
   const { trackInteraction } = useContext(ManorContext);
@@ -165,6 +168,10 @@ const SingleDatePicker = ({
     };
   }, [handleClickOutside, escFunction]);
 
+  const renderToday = (day, mods) => (day.isSame(moment(), 'date')
+    ? (<StyledTodayWrap selected={mods.has('selected')}>{day.format('D')}<StyledTodayDot>•</StyledTodayDot></StyledTodayWrap>)
+    : (day.format('D')));
+
   return (
     <StyledDateRangePickerContainer ref={node}>
       <StyledDateRangePickerWrap>
@@ -189,14 +196,15 @@ const SingleDatePicker = ({
           disableInteractionTracking
         />
       </StyledDateRangePickerWrap>
-      {isVisible && (
+      {(isVisible || keepOpen) && (
         <StyledCalendar>
           <RDSingleDatePicker
             date={selectedDate && selectedDate.isValid() ? selectedDate : null}
             onDateChange={handleDatePickerSelection}
-            keepOpenOnDateSelect
             hideKeyboardShortcutsPanel
             numberOfMonths={numberOfMonths}
+            keepOpenOnDateSelect={keepOpen}
+            renderDayContents={renderToday}
             focused
             isDayBlocked={isDayBlocked || undefined}
             transitionDuration={0}
@@ -280,6 +288,10 @@ SingleDatePicker.propTypes = {
    * NOTE: if this is applied, this component must be the first form input component on the page.
    */
   pickerVisible: PropTypes.bool,
+  /**
+   * Will keep the calendar open
+   */
+  keepOpen: PropTypes.bool,
 };
 
 SingleDatePicker.defaultProps = {
@@ -298,6 +310,7 @@ SingleDatePicker.defaultProps = {
   isDayBlocked: undefined,
   readonly: false,
   pickerVisible: false,
+  keepOpen: false,
 };
 
 export default SingleDatePicker;

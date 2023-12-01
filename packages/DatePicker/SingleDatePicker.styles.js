@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const StyledDateRangePickerWrap = styled.div`
-  width: ${({ theme }) => theme.spacing[176]};
+  max-width: 32rem;
   .date-input-calendar {
     padding-right: ${({ theme }) => theme.spacing[12]};
   }
@@ -20,4 +20,13 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   path {
     fill: ${({ theme }) => theme.datepicker.navigationButtonColor};
   }
+`;
+
+export const StyledTodayWrap = styled.div`
+  color: ${({ theme, selected }) => (selected ? theme.colors.white : theme.colors.primary500)};
+`;
+
+export const StyledTodayDot = styled.div`
+  position: absolute;
+  margin: ${({ theme }) => `-${theme.spacing[8]} 0 0 ${theme.spacing[16]}`};
 `;
