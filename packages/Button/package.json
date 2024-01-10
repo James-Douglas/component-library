@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-button",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "description": "Manor Button component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
