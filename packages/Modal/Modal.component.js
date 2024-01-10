@@ -161,7 +161,7 @@ const Modal = ({
         )}
         {primaryActionTitle && (
           <StyledPrimaryButton>
-            <Button id="primary-btn" variant="primary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem 4rem' }} handleClick={handlePrimaryActionClick} trackingLabel={`Primary button for ${trackingLabel}`}>{primaryActionTitle}</Button>
+            <Button disableButtonsOnClick id="primary-btn" variant="primary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem 4rem' }} handleClick={handlePrimaryActionClick} trackingLabel={`Primary button for ${trackingLabel}`}>{primaryActionTitle}</Button>
           </StyledPrimaryButton>
         )}
       </StyledContentButtons>

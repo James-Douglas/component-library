@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ManorContext } from '@comparethemarketau/manor-provider';
@@ -27,10 +27,11 @@ const Button = ({
   children,
   className,
   iconButton,
+  disableButtonsOnClick,
 }) => {
   const id = useId(propsId);
   const { trackInteraction } = useContext(ManorContext);
-
+  const [disableButton, setDisableButton] = useState(disabled);
   const renderContent = () => {
     if (icon) {
       return (
@@ -48,9 +49,10 @@ const Button = ({
   const clickHandler = useCallback((e) => {
     trackInteraction('Click', 'Button', variant, trackingLabel, trackingLabel);
     if (handleClick) {
+      if (disableButtonsOnClick) setDisableButton(true);
       handleClick(e);
     }
-  }, [handleClick, trackingLabel, trackInteraction, variant]);
+  }, [handleClick, trackingLabel, trackInteraction, variant, disableButtonsOnClick]);
 
   const renderButton = () => {
     const isButton = !href.length > 0;
@@ -62,7 +64,7 @@ const Button = ({
         variant={variant}
         iconAlign={iconAlign}
         inverted={inverted}
-        disabled={disabled}
+        disabled={disableButton}
         href={isButton ? null : href}
         target={isButton ? null : target}
         rel={isButton ? null : rel}
@@ -163,6 +165,10 @@ Button.propTypes = {
    * Sets whether the button is purely icon only
    */
   iconButton: PropTypes.bool,
+  /**
+   * Disables buttons on click
+   */
+  disableButtonsOnClick: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -182,6 +188,7 @@ Button.defaultProps = {
   handleClick: null,
   className: '',
   iconButton: false,
+  disableButtonsOnClick: false,
 };
 
 export default Button;
