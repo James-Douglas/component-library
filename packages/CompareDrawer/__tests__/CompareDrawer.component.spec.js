@@ -221,7 +221,7 @@ describe('CompareDrawer', () => {
     expect(handleRemoveItemFun).toHaveBeenCalled();
     expect(handleRemoveItemFun).toHaveBeenCalledWith('secondProductItemId');
     expect(getByText('Compare now')).toBeInTheDocument();
-    expect(getByText('Compare now').getAttribute('disabled')).toEqual(null);
+    expect(getByText('Compare now').getAttribute('disabled')).toEqual('');
 
     expect(getAllByText('Select another product to compare').length).toBe(2);
     const compareDrawerChild = container.firstChild;

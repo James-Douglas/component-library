@@ -31,7 +31,7 @@ const Button = ({
 }) => {
   const id = useId(propsId);
   const { trackInteraction } = useContext(ManorContext);
-  const [disableButton, setDisableButton] = useState(disabled);
+  const [forceDisableOnClick, setForceDisableOnClick] = useState(false);
   const renderContent = () => {
     if (icon) {
       return (
@@ -49,7 +49,7 @@ const Button = ({
   const clickHandler = useCallback((e) => {
     trackInteraction('Click', 'Button', variant, trackingLabel, trackingLabel);
     if (handleClick) {
-      if (disableButtonsOnClick) setDisableButton(true);
+      if (disableButtonsOnClick) setForceDisableOnClick(true);
       handleClick(e);
     }
   }, [handleClick, trackingLabel, trackInteraction, variant, disableButtonsOnClick]);
@@ -64,7 +64,7 @@ const Button = ({
         variant={variant}
         iconAlign={iconAlign}
         inverted={inverted}
-        disabled={disableButton}
+        disabled={disabled || forceDisableOnClick}
         href={isButton ? null : href}
         target={isButton ? null : target}
         rel={isButton ? null : rel}
