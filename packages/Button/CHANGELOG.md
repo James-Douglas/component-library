@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.4](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.11.3...@comparethemarketau/manor-button@0.11.4) (2024-01-12)
+
+
+### Bug Fixes
+
+* **ado-33345:** fixing disabled buttons ([#717](https://github.com/comparethemarketau/manor-react/issues/717)) ([9b7ac72](https://github.com/comparethemarketau/manor-react/commit/9b7ac7247c6430daaf13089b7b3f22d7f5f77498))
+
+
+
+
+
 ## [0.11.3](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-button@0.11.2...@comparethemarketau/manor-button@0.11.3) (2024-01-10)
 
 

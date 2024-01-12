@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-compare-drawer@0.9.8...@comparethemarketau/manor-compare-drawer@0.9.9) (2024-01-12)
+
+
+### Bug Fixes
+
+* **ado-33345:** fixing disabled buttons ([#717](https://github.com/comparethemarketau/manor-react/issues/717)) ([9b7ac72](https://github.com/comparethemarketau/manor-react/commit/9b7ac7247c6430daaf13089b7b3f22d7f5f77498))
+
+
+
+
+
 ## [0.9.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-compare-drawer@0.9.7...@comparethemarketau/manor-compare-drawer@0.9.8) (2024-01-10)
 
 
