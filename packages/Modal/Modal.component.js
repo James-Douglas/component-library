@@ -60,6 +60,7 @@ const Modal = ({
   trapFocus,
   focusTrapOptions,
   disableBodyScrollLock,
+  disableButtonsOnClick,
 }) => {
   const id = useId(propsId);
   const headerBarRef = useRef(null);
@@ -156,12 +157,12 @@ const Modal = ({
       <StyledContentButtons>
         {secondaryActionTitle && (
           <StyledSecondaryButton>
-            <Button id="secondary-btn" variant="tertiary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem 4rem' }} handleClick={handleSecondaryActionClick} trackingLabel={`Secondary button for ${trackingLabel}`}>{secondaryActionTitle}</Button>
+            <Button disableButtonsOnClick={disableButtonsOnClick} id="secondary-btn" variant="tertiary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem 4rem' }} handleClick={handleSecondaryActionClick} trackingLabel={`Secondary button for ${trackingLabel}`}>{secondaryActionTitle}</Button>
           </StyledSecondaryButton>
         )}
         {primaryActionTitle && (
           <StyledPrimaryButton>
-            <Button disableButtonsOnClick id="primary-btn" variant="primary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem 4rem' }} handleClick={handlePrimaryActionClick} trackingLabel={`Primary button for ${trackingLabel}`}>{primaryActionTitle}</Button>
+            <Button disableButtonsOnClick={disableButtonsOnClick} id="primary-btn" variant="primary" style={{ margin: 0, display: 'inline-block', padding: '1.2rem 4rem' }} handleClick={handlePrimaryActionClick} trackingLabel={`Primary button for ${trackingLabel}`}>{primaryActionTitle}</Button>
           </StyledPrimaryButton>
         )}
       </StyledContentButtons>
@@ -361,6 +362,10 @@ Modal.propTypes = {
    * Disable the body scroll lock behavior
    */
   disableBodyScrollLock: PropTypes.bool,
+  /**
+   * Disables buttons on click
+   */
+  disableButtonsOnClick: PropTypes.bool,
 };
 
 Modal.defaultProps = {
@@ -389,6 +394,7 @@ Modal.defaultProps = {
   trapFocus: false,
   focusTrapOptions: {},
   disableBodyScrollLock: false,
+  disableButtonsOnClick: false,
 };
 
 export default Modal;
