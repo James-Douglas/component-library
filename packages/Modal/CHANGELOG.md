@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.9](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.13.8...@comparethemarketau/manor-modal@0.13.9) (2024-01-23)
+
+
+### Bug Fixes
+
+* **ado-34826:** made disable on click an option on modal ([#718](https://github.com/comparethemarketau/manor-react/issues/718)) ([8af5cad](https://github.com/comparethemarketau/manor-react/commit/8af5cadaa8fd01e728092a2a2641a343f170f978))
+
+
+
+
+
 ## [0.13.8](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-modal@0.13.7...@comparethemarketau/manor-modal@0.13.8) (2024-01-12)
 
 **Note:** Version bump only for package @comparethemarketau/manor-modal
