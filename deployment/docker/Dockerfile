@@ -1,10 +1,7 @@
 #-----------------------------------------------------#
 # BUILD
 #-----------------------------------------------------#
-FROM node:12.12.0-alpine as build
-
-ARG NPM_FONTAWESOME_TOKEN
-ENV NPM_FONTAWESOME_TOKEN=${NPM_FONTAWESOME_TOKEN}
+FROM node:16.20.2-alpine as build
 
 WORKDIR /usr/src/app
 COPY . /usr/src/app

@@ -65,7 +65,7 @@ exports[`WizardModal renders with minimal props 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="svg-inline--fa fa-times fa-w-10 "
+        class="svg-inline--fa fa-times "
         data-icon="times"
         data-prefix="far"
         focusable="false"

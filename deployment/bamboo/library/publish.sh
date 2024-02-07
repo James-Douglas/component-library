@@ -1,19 +1,17 @@
 #!/bin/bash
 set -e
-# Token variable needs to be set prior to sourcing nvm completion
-export NPM_FONTAWESOME_TOKEN=$bamboo_fa_token_password
 
 source ~/.nvm/nvm.sh
 
-echo "running: nvm install v12.12.0"
-nvm install v12.12.0
+echo "running: nvm install v16.20.2"
+nvm install v16.20.2
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not install the correct node version with nvm"
   exit 1
 fi
 
-echo "running: nvm use v12.12.0"
-nvm use v12.12.0
+echo "running: nvm use v16.20.2"
+nvm use v16.20.2
 if [ "$?" -ne 0 ]; then
   echo "ERROR - Could not set the correct node version with nvm"
   exit 1

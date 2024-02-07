@@ -198,7 +198,7 @@ exports[`Button renders with props 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="svg-inline--fa fa-info-circle fa-w-16 fa-1x "
+          class="svg-inline--fa fa-info-circle fa-1x "
           data-icon="info-circle"
           data-prefix="far"
           focusable="false"

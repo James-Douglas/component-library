@@ -15,7 +15,7 @@ exports[`ScrollableButtons renders with props 1`] = `
       <svg
         aria-hidden="true"
         arrowdirection="Left"
-        class="svg-inline--fa fa-angle-left fa-w-6 sc-AxiKw hQrLWm"
+        class="svg-inline--fa fa-angle-left sc-AxiKw hQrLWm"
         data-icon="angle-left"
         data-prefix="far"
         focusable="false"
@@ -73,7 +73,7 @@ exports[`ScrollableButtons renders with props 1`] = `
       <svg
         aria-hidden="true"
         arrowdirection="Right"
-        class="svg-inline--fa fa-angle-right fa-w-6 sc-AxiKw ldkiVq"
+        class="svg-inline--fa fa-angle-right sc-AxiKw ldkiVq"
         data-icon="angle-right"
         data-prefix="far"
         focusable="false"
