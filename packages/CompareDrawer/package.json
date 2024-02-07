@@ -1,6 +1,6 @@
 {
   "name": "@comparethemarketau/manor-compare-drawer",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "Manor Compare Drawer component",
   "main": "lib/index.cjs.js",
   "author": "Compare The Market",
@@ -18,8 +18,8 @@
     "tag": "latest"
   },
   "dependencies": {
-    "@comparethemarketau/manor-button": "^0.11.4",
-    "@comparethemarketau/manor-drawer": "^0.8.15",
+    "@comparethemarketau/manor-button": "^0.11.5",
+    "@comparethemarketau/manor-drawer": "^0.8.16",
     "@comparethemarketau/manor-grid": "^0.7.18",
     "@comparethemarketau/manor-hooks": "^0.6.5",
     "@comparethemarketau/manor-overlay": "^0.4.0",
