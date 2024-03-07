@@ -4,7 +4,7 @@ export const StyledHeader = styled.header`
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  background: ${({ theme }) => (theme.header.background)};
+  background: ${({ theme, bgColor }) => bgColor || theme.header.background};
   z-index: ${({ theme }) => (theme.zIndex[10])};
   height: ${({ theme, stuck, desktop }) => ((stuck || !desktop) ? theme.header.heightStuck : theme.header.height)};
   box-shadow: ${({ theme, stuck }) => (stuck ? theme.header.shadow : 'none')};
@@ -12,7 +12,7 @@ export const StyledHeader = styled.header`
   left: ${({ isSticky, stuck }) => (isSticky && !stuck ? '1rem' : 0)};
   top: ${({ isSticky, stuck }) => (isSticky && !stuck ? '1rem' : 0)};
   padding-left: ${({ theme }) => theme.spacing[16]};
-  justify-content: space-between;
+  justify-content: ${({ justify }) => justify};
   align-items: center;
 `;
 

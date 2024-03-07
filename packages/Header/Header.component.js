@@ -12,14 +12,14 @@ import {
 } from './Header.styles';
 
 const Header = ({
-  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, doSignOutSuccess, authVerifyMobile, microUIProps,
+  isSticky, stuck, number, logo, contactStrip, authuiURL, authuiComponentName, doSignOutSuccess, authVerifyMobile, microUIProps, bgColor, justify,
 }) => {
   const { isDesktop } = useContext(ManorContext);
   const size = (stuck || !isDesktop) ? 'small' : 'large';
 
   return (
     <>
-      <StyledHeader stuck={stuck} isSticky={isSticky} desktop={isDesktop} authuiURL={authuiURL}>
+      <StyledHeader stuck={stuck} isSticky={isSticky} desktop={isDesktop} authuiURL={authuiURL} bgColor={bgColor} justify={justify}>
         {React.cloneElement(logo, { size })}
         <StyledAdditionalContent>
           {(number && !contactStrip)
@@ -54,6 +54,14 @@ const Header = ({
 };
 
 Header.propTypes = {
+  /**
+   * Defines the placement of items inside the header component
+   */
+  justify: PropTypes.string,
+  /**
+   * Defines the background color of component
+   */
+  bgColor: PropTypes.string,
   /**
    * Defines if the header is sticky via boolean (used by StickyHeader)
    */
@@ -98,6 +106,8 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
+  bgColor: '',
+  justify: 'space-between',
   isSticky: false,
   stuck: false,
   number: '',
