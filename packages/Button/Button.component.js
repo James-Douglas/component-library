@@ -28,6 +28,7 @@ const Button = ({
   className,
   iconButton,
   disableButtonsOnClick,
+  referrer,
 }) => {
   const id = useId(propsId);
   const { trackInteraction } = useContext(ManorContext);
@@ -72,6 +73,7 @@ const Button = ({
         style={style}
         className={className}
         iconButton={iconButton}
+        referrer={referrer}
       >
         {renderContent()}
       </BaseTag>
@@ -169,6 +171,10 @@ Button.propTypes = {
    * Disables buttons on click
    */
   disableButtonsOnClick: PropTypes.bool,
+  /**
+   *  The referrer property returns the URL of the document that loaded the current document.
+   */
+  referrer: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -189,6 +195,7 @@ Button.defaultProps = {
   className: '',
   iconButton: false,
   disableButtonsOnClick: false,
+  referrer: '',
 };
 
 export default Button;
