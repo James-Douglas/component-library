@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.11](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-compare-drawer@0.9.10...@comparethemarketau/manor-compare-drawer@0.9.11) (2024-03-08)
+
+**Note:** Version bump only for package @comparethemarketau/manor-compare-drawer
+
+
+
+
+
 ## [0.9.10](https://github.com/comparethemarketau/manor-react/compare/@comparethemarketau/manor-compare-drawer@0.9.9...@comparethemarketau/manor-compare-drawer@0.9.10) (2024-02-07)
 
 **Note:** Version bump only for package @comparethemarketau/manor-compare-drawer
