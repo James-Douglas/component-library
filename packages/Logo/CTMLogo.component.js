@@ -32,8 +32,8 @@ const CTMLogo = ({
         src,
         srcsets: [
           {
-            srcset: inverted ? CTMLogoStackedInverted : CTMLogoStacked,
             media: `(max-width: ${theme.breakpoints.lg})`,
+            srcset: inverted ? CTMLogoStackedInverted : CTMLogoStacked,
           },
           {
             srcset: inverted ? CTMLogoInlineInverted : CTMLogoInline,
