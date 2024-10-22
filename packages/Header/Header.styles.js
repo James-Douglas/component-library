@@ -38,8 +38,8 @@ export const StyledContactStrip = styled.div`
 
 export const StyledText = styled.div`
   p {
-    color: ${({ theme }) => theme.colors.grey800};
     padding-right: ${({ theme }) => theme.spacing[16]};
+    color: ${({ theme }) => theme.colors.grey800};
     margin: 0;
   }
 `;
